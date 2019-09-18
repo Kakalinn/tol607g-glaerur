@@ -1,0 +1,534 @@
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, icelandic]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usepackage{verbatim}
+\usepackage{multicol}
+\usepackage{minted}
+\parskip 0pt
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Log}{Log}
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}
+\newcommand\abs[1]{\left|#1\right|}
+\newcommand\p[1]{\left(#1\right)}
+\newcommand\sqp[1]{\left[#1\right]}
+\newcommand\cp[1]{\left\{#1\right\}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\Im{\operatorname{Im}}
+\renewcommand\Re{\operatorname{Re}}
+
+\usetheme{Madrid}
+\definecolor{dark yellow}{rgb} {0.6,0.6,0.0}
+\definecolor{dark green}{rgb} {0.0,0.6,0.0}
+
+\title{Talnafræði}
+\subtitle{Leifareikningur, frumtölur o.fl.}
+\author{Atli Fannar Franklín}
+\date{\today}
+
+\graphicspath{{myndir/}}
+
+\AtBeginSection[] {
+  \begin{frame}
+    \frametitle{Efnisyfirlit}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Leifareikningur]{Leifareikningur}
+
+\begin{frame}
+\frametitle{Hvað er leifareikningur?}
+
+\begin{itemize}
+
+\item<1-> Þegar við tölum um leifareikning erum við að tala um útreikninga sem eru allir gerðir á leifum einhverrar frumtölu $p$. Þá geymum við ávallt bara afgang tölunnar okkur þegar henni er deilt með $p$ í stað þess að geyma töluna alla.
+
+\item<2-> Samlagning virkar með hvaða tölu $n$ sem er en til þess að margföldun virki eins og við viljum þurfum við að nota frumtölu $p$. Þetta er vegna þess að ef við vinnum með frumtölu þýðir $ab = 0$ að $a = 0$ eða $b = 0$. Ef við værum að reikna með t.d. 15 væri $5 \cdot 3 = 0$ hins vegar, sem við viljum ekki.
+
+\item<3-> Það að geyma 'bara' leifina getur samt sagt okkur heilmikið um niðurstöðuna. Einnig kemur oft fyrir að svar í dæmi sé svo stórt að það sé bara beðið um að skila leifinni.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Fleiri leifaaðgerðir}
+
+\begin{itemize}
+
+\item<1-> Þegar við hefjum í veldi í leifareikningi hækkar talan ekki endilega, svo við erum oft beðin um að hefja tölu í afar stór veldi þegar við erum að framkvæma leifareikning. Hvernig má gera slíkt hratt? Það er augljóst hvernig má hefja í $n$-ta veldi í $\mathcal{O}(n)$ tíma. Hins vegar má gera það í $\mathcal{O}(\log(n))$ tíma!
+
+\item<2-> Við hefjum bara í annað veldi aftur og aftur til að komast nær veldinu í $\log$ tíma, með smá auka til þess að við endum örugglega í nákvæmlega rétta veldinu!
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Fast mod pow}
+
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll modpow(ll b, ll e, ll m) {
+    ll res = 1;
+    while(e) {
+        if(e & 1) res = ((res * b) % m + m) % m;
+        b = ((b * b) % m + m) % m;
+        e >>= 1;
+    }
+    return res;
+}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{En deiling?}
+
+\begin{itemize}
+
+\item<1-> Hvernig deilum við þegar við erum að vinna með leif?
+
+\item<2-> Það er svolítið snúnara og við þurfum að skoða nokkra aðra hluti fyrst til að geta svarað þessu. Fyrst skoðum við stærsta samdeili. Vitið þið hvernig má finna stærsta samdeili í tölvu?
+
+\item<3-> Við notum reiknirit Evklíðs bara eins og það leggur sig! 
+
+\item<4-> Æfing: Sýna að þetta sé $\mathcal{O}(\log(n))$ (hint: sýna að $a + b$ minnki um fjórðung eftir tvær ítranir sama hvað)
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Reiknirit Evklíðs}
+
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll gcd(ll a, ll b) { 
+    return b == 0 ? a : gcd(b, a % b); 
+}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Reiknirit Evklíðs}
+
+\begin{itemize}
+
+\item<1-> Skoðum þetta reiknirit samt aðeins nánar. Ef $a, b \in \mathbb{Z}$ og $d = gcd(a, b)$ kallast jafnan $ax + by = d$ Bézout-jafnan. Ef við greinum nákvæmlega hvað reiknirit Evklíðs gerir þá getum við séð að við getum lesið lausn á Bézout-jöfnunni út úr því sem reiknirit Evklíðs gerir.
+
+\item<2-> Því ef við breitum forritinu að ofan bara aðeins, svo það haldi aðeins meira bókhald, þá getum við leyst þessa jöfnu frítt með.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Útvíkkaða reiknirit Evklíðs}
+
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll egcd(ll a, ll b, ll& x, ll& y) {
+    if (b == 0) { 
+        x = 1; y = 0; 
+        return a; 
+    }
+    ll d = egcd(b, a % b, x, y);
+    x -= a / b * y; 
+    swap(x, y); 
+    return d; 
+}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Deiling núna?}
+
+\begin{itemize}
+
+\item<1-> Hvernig deilum við þá? Það er til ein auðveld leið sem notar litlu setningu Fermats. Hún segir að fyrir frumtölu $p$ og $a < p$ þá sé $a^{p - 1} = 1 \ (mod \ p)$. En þá sést að $a^{p - 2}$ sé margföldunarandhverfa. En þetta er yfirleitt ekki leiðin sem notuð er. Við notum reiknirit Evklíðs.
+
+\item<2-> Viljum finna margföldunarandhverfu $a$ þegar við erum að vinna modulo $p$. Þá er stærsti samdeilir $a$ og $p$ jafn einum, svo útvíkkaða reiknirit Evklíðs gefur okkur lausn á $ax + py = 1$. En þessi jafna skoðuð modulo $p$ er bara $ax = 1$, svo $x$ er margföldunarandhverfa $a$ modulo $p$.
+
+\item<3-> Því fáum við mjög stutt og þægilegt forrit til að gera þetta með því að nota \texttt{egcd} fallið okkar.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Leifamargföldunarandhverfa}
+
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll mod_inv(ll a, ll m) {
+    ll x, y;
+    ll d = egcd(a, m, x, y);
+    return (x % m + m) % m; 
+}
+\end{minted}
+
+\end{frame}
+
+\section[Frumtölur]{Frumtölur}
+
+\begin{frame}
+\frametitle{Frumtölutékk}
+
+\begin{itemize}
+
+\item<1-> Hvernig gáum við hvort tala sé frumtala?
+
+\item<2-> Við skulum skoða þrjár leiðir til þess, byrjum á þeirri 'augljósu'.
+
+\item<3-> Við deilum bara upp í töluna með smærri tölum og sjáum hvort við fáum alltaf einhvern afgang.
+
+\item<4-> Það er samt margt sem má gera til að spara. T.d. þarf bara að skoða deila upp í kvaðratrótina af tölunni því ef tala er ekki frumtala er einhver þáttur minna en eða jafn kvaðratrót hennar.
+
+\item<5-> Við þurfum líka (fyrir utan $2$ og $3$) bara að skoða deila á forminu $6k + 1$ og $6k + 5$ því $2$ deilir $6k$, $3$ deilir $6k + 3$ og $2$ deilir $6k + 4$.
+
+\item<6-> Saman gefur þetta okkur reiknirit sem keyrir í $\mathcal{O}(\sqrt{n})$ tíma.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Leifamargföldunarandhverfa}
+
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+bool isprime(ll n) {
+    if(n < 2) return false;
+    if(n == 2 || n == 3) return true;
+    if(n % 2 == 0 || n % 3 == 0) return false;
+    for(ll i = 5; i * i <= n; i += 6) {
+        if(n % i == 0) return false;
+        if(n % (i + 2) == 0) return false;
+    }
+    return true;
+}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Hraðar?}
+
+\begin{itemize}
+
+\item<1-> Getum við gert þetta hraðar?
+
+\item<2-> Jáá... samt ekki.
+
+\item<3-> Við getum notað probabilistic prime testing, s.s. fall sem segir að inntakið sé \textit{líklega} frumtala.
+
+\item<4-> Það hljómar kannski grunsamlega en maður getur keyrt þetta forrit nokkra tugi skipta og þá eru líkurnar á því að forritið skili rangri niðurstöðu öll skiptin svo stjarnfræðilega litlar að maður myndi nýta tíma sinn betur við að hafa áhyggjur af tölvubilana af völdum geimgeisla.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Miller-Rabin pælingar}
+
+\begin{itemize}
+
+\item<1-> Bendum fyrst á að ef $x^2 = 1 \ (mod \ p)$ þá má þátta þetta sem $(x-1)(x+1) = 0 \ (mod \ p)$ og þar sem $p$ er frumtala þýðir það að $x = \pm 1 \ (mod \ p)$.
+
+\item<2-> Tökum nú eitthvað $p > 2$ og $a < p$. Ritum $p - 1 = 2^sd$ þ.a. $d$ sé odda. Þá með því að taka ferningsrót af jöfnunni $a^{p - 1} = 1 \ (mod \ p)$ (sem er bara litla setning Fermats) þá annað hvort verður hægri hliðin einhvern tímann $-1$ og þá verðum við að stoppa, eða á endanum deilum við út öllum tvistum í veldi $a$. Því er annað hvort $a^d = 1 \ (mod \ p)$ eða $a^{2^r d} = -1 \ (mod \ p)$ fyrir eitthvað $0 \leq r \leq s - 1$.
+
+\item<3-> Því til að afsanna að $n$ sé frumtala reynum við að finna $a < n$ þ.a. $a^d \neq 1 \ (mod \ n)$ og $a^{2^rd} \neq -1 \ (mod \ n)$ fyrir öll $0 \leq r \leq s - 1$.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Miller-Rabin pælingar frh.}
+
+\begin{itemize}
+
+\item<1-> Að finna svona $a$ hljómar langsótt, en í ljós kemur að hátt hlutfall talna virkar sem slíkt $a$ ef $n$ er ekki frumtala (að sýna þetta er aðeins of flókið til að fara í það hér).
+
+\item<2-> Því virkar reiknirit Miller-Rabin með því að velja handahófskennt $a$ og sjá hvort það útiloki það að $n$ sé frumtala.
+
+\item<3-> Því er reikniritið þannig að ef það segir $p$ er ekki frumtala, þá er það nauðsynlega satt. En ef reikniritið segir $p$ er frumtala þýðir það 'ég gat ekki útilokað það að $p$ sé frumtala, það gæti samt verið ekki frumtala'.
+
+\item<4-> En ef við prófum mörg $a$ þá eru líkurnar mjög svo okkur í hag. Láta má forritið taka inn breytu \texttt{it} sem segir hversu oft hún á að reyna og er þá hægt að stilla það eftir því hversu paranoid maður er. Þetta keyrir þá í $\mathcal{O}(it\log(n)^3)$ tíma fyrir stórar tölur $n$ (s.s. þegar við erum farin að nota bigInt).
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Miller-Rabin útfærsla}
+
+\begin{small}
+\begin{minted}{cpp}
+bool isprobablyprime(ll n, int it) {
+    if(n % 2 == 0) return n == 2;
+    if(n <= 3) return n == 3;
+    ll d = n - 1, r = 0;
+    while(d % 2 == 0) d >>= 1, r++;
+    for(int i = 0; i < it; ++i) {
+        ll a = (n - 3) * rand() / RAND_MAX + 2;
+        ll x = modpow(a, d, n);
+        if(x == 1 || x == n - 1) continue;
+        for(ll j = 0; j < r - 1; ++j) {
+            x = (x * x % n + n) % n;
+            if(x == n - 1) continue;
+        }
+        return false;
+    }
+    return true;
+}
+\end{minted}
+\end{small}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Magnafsláttur}
+
+\begin{itemize}
+
+\item<1-> En ef við viljum finna allar frumtölur undir $n$? Getum við fengið einhverskonar magnafslátt þá?
+
+\item<2-> Já! Við notum sáldur Eratosthenes!
+
+\item<3-> Það er mjög einfalt reiknirit. Við byrjum í 2 og krossum út allar sléttar tölur upp að $n$. Svo förum við áfram að næstu tölu sem er ekki búið að krossa út og krossum út öll margfeldi af henni, rinse and repeat. Þegar við erum komin upp að $n$ er búið að krossa út allt nema frumtölurnar.
+
+\item<4-> Svo gerum við þetta aðeins hraðara með því að fara bara upp í rótina af $n$, krossa bara út tölur þar sem frumþátturinn okkar getur verið minnsti frumþátturinn o.s.frv. Þegar við förum að hellast yfir í bigInt verður tímaflækjan á þessu $\mathcal{O}(n\log(n)\log(\log(n)))$.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Eratosthenes útfærsla}
+
+\begin{small}
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+vector<bool> eratosthenes(ll n) {
+    vector<bool> res(n + 1, true);
+    res[0] = res[1] = false;
+    for(ll i = 2; i * i <= n; ++i) {
+        if(res[i]) {
+            for(ll j = i * i; j <= n; j += i) {
+                res[j] = false;
+            }
+        }
+    }
+    return res;
+}
+\end{minted}
+\end{small}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Frumþáttun}
+
+\begin{itemize}
+
+\item<1-> Sáldur Eratosthenes er mjög gott til að frumþátta tölur því þá geymir maður bara frumþátt tölunnar í stað bool og er þá tala frumtala ef hún er sjálf geymd í sætinu sínu. Þá má frumþátta með því að deila út tölunni í sæti þess í sáldrinu aftur og aftur þar til maður fær út ás.
+
+\item<2-> En er til einhver hraðari leið til að frumþátta $n$?
+
+\item<3-> Aftur er svarið jááaaa, samt ekki.
+
+\item<4-> Við notum afmælisdagaþversögnina! Ef við höfum $n$ möguleg gildi er viðbúið að við þurfum að taka tilviljanakennt gildi $\mathcal{O}(\sqrt{n})$ sinnum til að fá endurtekningu. Við munum nýta þetta til að finna frumþátt í $n$. En fyrst smá hliðarspor.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Floyd rásarleit}
+
+\begin{itemize}
+
+\item<1-> Ef við höfum fall $f$ sem tekur inn heiltölur, hvernig finnum við hvort $f(x + n) = f(x)$ fyrir eitthvað $n$ (fyrir öll $x$ stærri en eitthvað $k$)?
+
+\item<2-> Þetta er oft nytsamlegt að geta gert hratt og til þess notum við rásarleitarreiknirit Floyds, einnig þekkt sem skjaldböku- og hérareikniritið.
+
+\item<3-> Trikkið er að $i$ er margfeldi af rásarlengd $f$ þ.þ.a.a. $f(i) = f(2i)$. Því dugar að skoða þá jöfnu til að finna rásarlengd $f$. Þegar það er búið getum við farið til baka til að hvar rásin byrjar og útfrá því er auðvelt að finna raunverulega rásarlengd.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Floyd útfærsla}
+
+\begin{tiny}
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+typedef pair<int,int> ii;
+
+ii floyd(int (*f)(int), int x0) {
+    int t = (*f)(x0), h = (*f)((*f)(x0));
+    while(t != h) {
+        t = (*f)(t); 
+        h = (*f)((*f)(h));
+    }
+    int mu = 0; t = x0;
+    while(t != h) {
+        t = (*f)(t);
+        h = (*f)(h);
+        mu++;
+    }
+    int lam = 1; h = (*f)(t);
+    while(t != h) {
+        h = (*f)(h);
+        lam++;
+    }
+    // lengd rásar, upphafspunktur rásarhegðunar
+    return ii(lam, mu);
+}
+
+\end{minted}
+\end{tiny}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Pollard rho þáttun}
+
+\begin{itemize}
+
+\item<1-> Hugmyndin er nú sú að við látum $g(x) = x^2 + 1 \ (mod \ n)$ og búum til runu $x, g(x), g(g(x)), \dots$ þar sem $x$ er valið bara einhvern veginn. Köllum þessar tölur $x_1,x_2,\dots$. Við reiknum svona gildi og tékkum hvort við fáum einhvern tímann $\operatorname{gcd}(x_i - x_j, n) > 1$. Þá er runan farin að endurtaka sig ekki bara modulo $n$ heldur modulo $d$ þar sem $d$ deilir $n$. Þá gefur þessi stærsti samdeilir okkur tölu sem deilir $n$.
+
+\item<2-> Ef $\operatorname{gcd}(x_i - x_j, n) = 1$ fyrir öll gildin sem við skoðum er annað hvort $n$ frumtala eða okkur tókst bara ekki að finna frumþátt í $n$. Því prófum við nokkur upphafsgildi fyrir $x$ yfirleitt og gefumst upp ef ekkert þeirra virkar. Þetta reiknirit er almennt bara notað á bigInt því það borgar sig ekki fyrir en þá, en við sýnum þetta hér fyrir long long bara til að sýna einhverja útfærslu.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pollard rho útfærsla}
+
+\begin{minted}{cpp}
+ll rho(ll n) {
+    vector<ll> seed = {2, 3, 4, 5, 7, 11, 13, 1031};
+    for(ll s : seed) {
+        ll x = s, y = x, d = 1;
+        while(d == 1) {
+            x = ((x * x + 1) % n + n) % n;
+            y = ((y * y + 1) % n + n) % n;
+            y = ((y * y + 1) % n + n) % n;
+            d = gcd(abs(x - y), n);
+        }
+        if(d == n) continue;
+        return d;
+    }
+    return -1;
+}
+\end{minted}
+
+\end{frame}
+
+\section[Ýmist fleira]{Ýmist fleira}
+
+\begin{frame}
+\frametitle{Talnafræðiföll}
+
+\begin{itemize}
+
+\item<1-> Nú með þessum aðferður hér á undan getum við frumþáttað tölu $n = p_1^{e_1}\dots p_r^{e_r}$. En hvað má nýta þetta í?
+
+\item<2-> Þetta má nýta í föll eins og:
+
+\end{itemize}
+
+\only<3-> {\[\textrm{Fjöldi deila } n: d(n) = \prod_{i = 1}^r (e_i + 1)\]}
+
+\only<4-> {\[\textrm{Summa deila } n: \sigma(n) = \prod_{i = 1}^r \frac{p_i^{e_i + 1} - 1}{p_i - 1}\]}
+
+\only<4-> {\[\textrm{Fjöldi talna minni en } n \textrm{ ósamþátta } n: \varphi(n) = n\prod_{i = 1}^r \p{1 - \frac{1}{p_i}}\]}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Kínverska leifasetningin}
+
+\begin{itemize}
+
+\item<1-> Hvað ef við höfum jöfnuhneppi á forminu $a_ix = b_i \ (mod \ m_i)$ þar sem $i = 1,\dots,n$? Hvernig leysum við slíkt?
+
+\item<2-> Í slíkt notum við kínversku leifasetninguna!
+
+\item<3-> Það að reikna lausnina er samt rosalega ljótt og leiðinlegt. Við látum því duga að segja að ef $m_i$-in eru ósamþátta tvö og tvö, þá \textit{er til} ótvírætt ákvörðuð lausn, og það dugar okkur yfirleitt. Mjög sjaldan þarf maður að reikna út raunverulegu lausnina.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Fast Fourier Transform}
+
+\begin{itemize}
+
+\item<1-> Þetta, eins og flæðireikniritin förum við ekki í.
+
+\item<2-> Hins vegar, eins og flæðireikniritin, eru mörg þyngri keppnisforritunardæmi sem byggja á þessu.
+
+\item<3-> Því mælum við eindregið með að áhugasamir kynni sér þetta. Þetta er svolítið þungt efni, en þið getið rætt það við okkur ef þið viljið aðstoð við að átta ykkur á því.
+
+\end{itemize}
+
+\end{frame}
+
+\end{document}

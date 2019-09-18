@@ -1,0 +1,558 @@
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, icelandic]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usepackage{verbatim}
+\usepackage{multicol}
+\usepackage{minted}
+\parskip 0pt
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Log}{Log}
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}
+\newcommand\abs[1]{\left|#1\right|}
+\newcommand\p[1]{\left(#1\right)}
+\newcommand\sqp[1]{\left[#1\right]}
+\newcommand\cp[1]{\left\{#1\right\}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\Im{\operatorname{Im}}
+\renewcommand\Re{\operatorname{Re}}
+
+\usetheme{Madrid}
+
+\title{Að leysa keppnisforritunardæmi}
+\subtitle{Almenn aðferðafræði og grunnþekking}
+\author{Atli Fannar Franklín}
+\date{\today}
+
+\graphicspath{{myndir/}}
+
+\AtBeginSection[] {
+  \begin{frame}
+    \frametitle{Efnisyfirlit}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Grunnforritunaratriði]{Grunnforritunaratriði}
+
+\begin{frame}
+\frametitle{Þekking forritunarmála}
+
+\begin{itemize}
+
+\item<1-> Í keppnum eru C++ og Java ávallt leyfð, oft Python líka. Stundum má nota hvað sem er. Við munum halda okkur við C++ og einstöku sinnum grípum við kannski í Python (aðallega svo við þurfum ekki að skrifa okkar eigin bigInt útfærslu).
+
+\item<2-> Við munum nú fara snöggt í það sem þið ættuð að þekkja í því forritunarmáli sem þið munuð nota í þessum kúrs.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Grunntög}
+
+\begin{itemize}
+
+\item<1-> Þið ættuð að þekkja eftirfarandi grunntög (eða hliðstæður þeirra) í ykkar máli: 
+
+\begin{itemize}
+
+\item<2-> \texttt{int} - 32 bita formerkjaheiltala
+
+\item<3-> \texttt{unsigned int} - 32 bita formerkjalaus heiltala
+
+\item<4-> \texttt{long long} - 64 bita formerkjaheiltala
+
+\item<5-> \texttt{unsigned long long} - 64 bita formerkjalaus heiltala
+
+\item<6-> \texttt{double} - 32 bita fleytitala
+
+\item<7-> \texttt{char} - 8 bita formerkjalaus tala
+
+\item<8-> \texttt{string} - Runa af \texttt{char} til að geyma texta
+
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gagnagrindur}
+
+\begin{itemize}
+
+\item<1-> Þið ættuð að þekkja eftirfarandi gagnagrindur (eða hliðstæður þeirra) í ykkar máli: 
+
+\begin{itemize}
+
+\item<2-> Fylki - \texttt{T a[n]}
+
+\item<3-> Vigra - \texttt{vector<T> v}
+
+\item<4-> Lista - \texttt{list<T> l}
+
+\item<5-> Hlaða - \texttt{stack<T> s}
+
+\item<6-> Biðraðir - \texttt{queue<T> q}
+
+\item<7-> Tvíleitartré - \texttt{set<T> s} og \texttt{map<T, S> m}
+
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Algengar aðgerðir}
+
+\begin{itemize}
+
+\item<1-> Þið ættuð að þekkja hvernig megi framkvæma raðanir í ykkar máli (t.d. \texttt{std::sort})
+
+\item<2-> Þið ættuð að þekkja hvernig megi lesa af staðalinntaki og prenta á staðalúttak (t.d. \texttt{cin} og \texttt{cout} eða \texttt{scanf} og \texttt{printf})
+
+\end{itemize}
+
+\end{frame}
+
+\section[Að leysa dæmi]{Að leysa dæmi}
+
+\begin{frame}
+\frametitle{Keppnisforritunardæmi}
+
+\begin{itemize}
+
+\item<1-> Hvað felur keppnisforritunardæmi í sér?
+
+\item<2-> Það fer eftir keppninni. Við munum skoða þetta eins og það er í bæði ICPC og á Codeforces. Aðrar keppnir eru til sem fara fram öðruvísi eins og t.d. Google Code Jam, en það sem þið sjáið hér er ekki erfitt að heimfæra upp á slíkar keppnir.
+
+\item<3-> Venjulegt keppnisforritunardæmi felur í sér eftirfarandi atriði:
+
+\begin{itemize}
+
+\item<4-> Verkefnalýsingu
+
+\item<5-> Tímamörkum (og minnismörkum)
+
+\item<6-> Inntaks- og úttakslýsing
+
+\item<7-> Einföld sýnidæmi
+
+\end{itemize}
+
+\item<8-> Verkefnið felur þá í sér að skrifa forrit sem leysir gefið verkefni með því að lesa inn inntak á staðalinntaki eins og í lýsingu og prenta svarið út á forminu sem lýst er í úttakslýsingu á staðalúttak. Það að það leysi verkefnið felur þá í sér að það fari ekki yfir tíma- né minnistakmarkanir.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{A Different Problem (af Kattis)}
+Write a program that computes the difference between non-negative integers. \\
+\begin{large}
+Input \\
+\end{large}
+Each line of the input consists of a pair of integers. Each integer is between $0$
+and $10^{15}$ (inclusive). The input is terminated by end of file. \\
+\begin{large}
+Output \\
+\end{large}
+For each pair of integers in the input, output one line, containing the absolute value of their difference. \\
+
+\begin{tabular}{ll}
+Sample Input 1 & Sample Output 1 \\
+10 12 & 2 \\
+71293781758123 72784 & 71293781685339 \\
+1 12345677654321 & 12345677654320 \\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{A Different Problem sýnilausn}
+
+\begin{minted}{cpp}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    // ATH: long long er nauðsynlegt 
+    // því int mun valda overflow
+    long long a, b;
+    while(cin >> a >> b) {
+        cout << abs(a - b) << endl;
+    }
+}
+\end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dómar}
+
+\begin{itemize}
+
+\item<1-> Ef sýnilausninni að ofan er skilað fæst grænn haki við skilin og textann 'Accepted'. En hvað annað hefði geta komið upp?
+
+\item<2-> Möguleg svör (á Kattis) eru:
+
+\begin{itemize}
+
+\item<2-> Accepted
+
+\item<2-> Compile Error
+
+\item<2-> Run Time Error
+
+\item<2-> Time Limit Exceeded
+
+\item<2-> Wrong Answer
+
+\item<2-> Output Limit Exceeded
+
+\item<2-> Memory Limit Exceeded
+
+\item<2-> Judge Error (ætti aldrei að koma upp)
+
+\end{itemize}
+
+\item<3-> Sumar keppnir nota önnur kerfi en Kattis, t.d. Domjudge, eða jafnvel sín eigin kerfi. En þau eru yfirleitt svipuð þessu.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Að prófa forritið sitt}
+
+\begin{itemize}
+
+\item<1-> Eins og þið sáuð hér fyrr þurfti að nota \texttt{long long} til að fá ekki overflow, en sýnidæmin sýndu það ekki.
+
+\item<2-> Yfirleitt eru sýnidæmin lítil hjálp og maður þarf að passa sig að prófa forritið sitt á sem flestum mögulegum gildrum áður en maður skilar.
+
+\item<3-> Yfirleitt fer maður í gegnum hluti eins og 'Hvað með mjög stór inntök?', 'Hvað með mjög lítil inntök?', 'Hvað með neikvæðar tölur?' etc. etc.
+
+\item<4-> Það að sjá út svona hluti sem þarf að prófa er bara æfing, en það er mikilvægt að hafa það í huga.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Nokkur Time Limit Exceeded ráð}
+
+\begin{itemize}
+
+\item<1-> Yfirleitt þegar maður fær þetta svar er tímaflækja forritsins ekki nógu góð (skoðum það á eftir), en stundum dugar að kreista bara smá meiri hraða úr forritinu. Þá koma hér nokkur ráð:
+
+\begin{itemize}
+
+\item<2-> Ef mikið er lesið prentað til skiptis, notið \texttt{cin.tie(NULL)}. Ef mikið er lesið eða prentað, notið \texttt{ios::sync\_with\_stdio(false)}. Ekki nota \texttt{std::endl}, notið frekar \verb|'\n'|.
+
+\item<3-> Forðist þess að nota dýrar aðgerðir eins og deiling og modulus séu framkvæmdar ef nota má einfaldari aðgerðrir eins og samanburð og samlagningu í staðinn.
+
+\item<4-> Forreiknið eitthvað, ef þið reiknið sömu gildi á $\cos$ oft t.d., forreiknið þau og flettið upp.
+
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+\section[Tímaflækjur]{Tímaflækjur}
+
+\begin{frame}
+\frametitle{Tímaflækjur}
+
+\begin{itemize}
+
+\item<1-> Tímaflækjur ættu að vera kunnuglegar þar sem þær eru teknar fyrir í stærðfræðimynstrum.
+
+\item<2-> Þær lýsa hraða forritsins sem fall af inntaksstærð. Ef forrit keyrir í $\mathcal{O}(f(n))$ þýðir það að tíminn vaxi í versta falli eins og $f(n)$ þegar inntaksstærð $n$ vex. Svipað segir $\Theta(f(n))$ að hraðinn vaxi eins og $f(n)$ og $o(f(n))$ segir að hraðinn vaxi í besta falli eins og $f(n)$.
+
+\item<3-> Þetta hunsar alla fasta og við lítum svo á að allar grunnaðgerðir eins og samlagning og margföldun (á 32 og 64 bita heiltölum eða fleytitölum, ekki á bigInt) taki fastan tíma.
+
+\item<4-> Því er það að leggja saman $n$ tölur $\mathcal{O}(n)$ en það að leggja þær saman 100 sinnum er líka $\mathcal{O}(n)$. Hins vegar væri það að leggja þær saman $m$ sinnum $\mathcal{O}(mn)$.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Tímaflækja algengra hluta}
+
+\begin{itemize}
+
+\item<1-> Að gera eitthvað sem tekur $\mathcal{O}(f(n))$ tíma $n$ sinnum tekur $\mathcal{O}(nf(n))$ tíma.
+
+\item<2-> Að raða lista af tölum með góðu reikniriti tekur $\mathcal{O}(n\log(n))$ tíma. Hér skiptir grunntala lograns ekki máli því það munar bara fasta.
+
+\item<3-> Að helmingunarleita (meir um það síðar) í röðuðum lista að staki er $\mathcal{O}(\log(n))$.
+
+\item<4-> Þessir reikningar geta aðstoðað mikið við að segja hvort forrit muni keyra innan gefinna tímamarka. Við miðum við að tölva geti framkvæmt $10^8$ aðgerðir á sek. sem þumalputtareglu.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Hvað er hægt að gera í $10^8$ aðgerðum?}
+
+\begin{tabular}{l|l|l}
+Stærð $n$ & Versta leyfilega tímaflækja & Dæmi \\ \hline
+$\leq 10$ & $\mathcal{O}(n!)$ & Brute force TSP\\
+$\leq 15$ & $\mathcal{O}(n^22^n)$ & DP TSP\\ 
+$\leq 20$ & $\mathcal{O}(n2^n)$ & DP á hlutmengjum\\
+$\leq 100$ & $\mathcal{O}(n^4)$ & Blossom reikniritið\\
+$\leq 400$ & $\mathcal{O}(n^3)$ & Floyd-Warshall reikniritið\\
+$\leq 10000$ & $\mathcal{O}(n^2)$ & LCS\\
+$\leq 100000$ & $\mathcal{O}(n\sqrt{n})$ & Rótarþáttun\\
+$\leq 1000000$ & $\mathcal{O}(n\log(n))$ & Byggja Fenwick-tré\\
+$\leq 100000000$ & $\mathcal{O}(n)$ & NGE\\
+$> 100000000$ & $\mathcal{O}(\log(n))$, $\mathcal{O}(1)$ & Stærðfræðileg lausn\\
+\end{tabular}
+
+\end{frame}
+
+\section[Ad Hoc]{Ad Hoc}
+
+\begin{frame}
+\frametitle{Tegundir dæma}
+
+\begin{itemize}
+
+\item<1-> Í framhaldinu munum við skoða ýmsar tegundir dæma og tegundir lausna á þeim.
+
+\item<2-> Nú fyrst munum við bara skoða svokölluð 'Ad hoc' dæmi. Skilgreining frá Merriam-Webster:  'formed or used for specific or immediate problems or needs', t.d. 'ad hoc solutions'.
+
+\item<3-> Þetta eru s.s. dæmi sem krefjast ekki sérþekkingar og snúast bara um að útfæra það sem þú ert beðinn um að útfæra. Þetta eru yfirleitt léttustu dæmin á keppnum, en þó ekki alltaf.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dæmi um ad hoc}
+
+\begin{itemize}
+
+\item<1-> Færð $3\times3$ mylluborð, er einhver búinn að vinna?
+
+\item<2-> Raðaðu gefin spil eftir tegund og svo innbyrðis í vaxandi röð.
+
+\item<3-> Hvaða reit þarf biskup á skákborði að millilenda á ef hann á að fara frá $a$ til $b$ (ef hann getur farið frá $a$ til $b$).
+
+\item<4-> Leysum þrjú svona ad-hoc dæmi saman.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mixed Fractions - Lýsing}
+\begin{small}
+You are part of a team developing software to help students learn basic mathematics. You are to write one part of that software, which is to display possibly improper fractions as mixed fractions. A proper fraction is one where the numerator is less than the denominator; a mixed fraction is a whole number followed by a proper fraction. For example the improper fraction 27/12 is equivalent to the mixed fraction 2 3/12. You should not reduce the fraction (i.e. don’t change 3/12 to 1/4).
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mixed Fractions - I/O}
+\begin{large}
+Input \\
+\end{large}
+\begin{small}
+Input has one test case per line. Each test case contains two integers in the range $[1, 2^{31}-1]$. The first number is the numerator and the second is the denominator. A line containing 0 0 will follow the last test case. \\
+\end{small}
+\begin{large}
+Output \\
+\end{large}
+\begin{small}
+For each test case, display the resulting mixed fraction as a whole number followed by a proper fraction, using whitespace to separate the output tokens. \\
+
+\begin{tabular}{ll}
+Sample Input 1 & Sample Output 1 \\
+27 12 & 2 3 / 12 \\
+2460000 98400 & 25 0 / 98400 \\
+3 4000 & 0 3 / 4000 \\
+0 0 & \\
+\end{tabular}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Mixed Fractions - Sýnilausn}
+\begin{small}
+\begin{minted}{cpp}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cin >> a >> b;
+    while(a != 0 || b != 0) {
+        cout << (a / b) << " " << (a % b) << " / " << b << endl;
+        cin >> a >> b;
+    }
+}
+\end{minted}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Baby Bites - Lýsing}
+\begin{small}
+Arild just turned 1 year old, and is currently learning how to count. His favorite thing to count is how many mouthfuls he has in a meal: every time he gets a bite, he will count it by saying the number out loud.
+
+Unfortunately, talking while having a mouthful sometimes causes Arild to mumble incomprehensibly, making it hard to know how far he has counted. Sometimes you even suspect he loses his count! You decide to write a program to determine whether Arild’s counting makes sense or not.
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Baby Bites - I/O}
+\begin{large}
+Input \\
+\end{large}
+\begin{small}
+The first line of input contains an integer $n$ $(1 \leq n \leq 1000)$, the number of bites Arild receives. Then second line contains $n$ space-separated words spoken by Arild, the i’th of which is either a non-negative integer $a_i$ $(0 \leq ai \leq 10000)$ or the string “mumble”. \\
+\end{small}
+\begin{large}
+Output \\
+\end{large}
+\begin{small}
+If Arild’s counting might make sense, print the string “makes sense”. Otherwise, print the string “something is fishy”. \\
+
+\begin{tabular}{ll}
+Sample Input 1 & Sample Output 1 \\
+5 & makes sense \\
+1 2 3 mumble 5 & \\
+Sample Input 2 & Sample Output 2 \\
+8 & something is fishy \\
+1 2 3 mumble mumble 7 mumble 8 & \\
+Sample Input 3 & Sample Output 3 \\
+3 & makes sense \\
+mumble mumble mumble & \\
+\end{tabular}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Baby Bites - Sýnilausn}
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    string s;
+    cin >> n;
+    for(int i = 1; i <= n; ++i) {
+        cin >> s;
+        if(s == "mumble" || s == to_string(i)) continue;
+        cout << "something is fishy" << endl;
+        return 0;
+    }
+    cout << "makes sense" << endl;
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Run-Length Encoding, Run! - Lýsing}
+\begin{small}
+Forrest lives in a prehistoric era of “dial-up Internet.” Unlike the fast streaming of today’s broadband era, dial-up connections are only capable of transmitting small amounts of text data at reasonable speeds. Forrest has noticed that his communications typically include repeated characters, and has designed a simple compression scheme based on repeated information. Text data is encoded for transmission, possibly resulting in a much shorter data string, and decoded after transmission to reveal the original data.
+
+The compression scheme is rather simple. When encoding a text string, repeated consecutive characters are replaced by a single instance of that character and the number of occurrences of that character (the character’s run length). Decoding the encoded string results in the original string by repeating each character the number of times encoded by the run length. Forrest calls this encoding scheme run-length encoding. (We don’t think he was actually the first person to invent it, but we haven’t mentioned that to him.)
+
+For example, the string HHHeelllo is encoded as H3e2l3o1. Decoding H3e2l3o1 results in the original string. Forrest has hired you to write an implementation for his run-length encoding algorithm.
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Run-Length Encoding, Run! - I/O}
+\begin{large}
+Input \\
+\end{large}
+\begin{small}
+Input consists of a single line of text. The line starts with a single letter: E for encode or D for decode. This letter is followed by a single space and then a message. The message consists of 1 to 100 characters. Each string to encode contains only upper- and lowercase English letters, underscores, periods, and exclamation points. No consecutive sequence of characters exceeds 9 repetitions. Each string to decode has even length. Its characters alternate between the same characters as strings to encode and a single digit between 1 and 9, indicating the run length for the preceding character. \\
+\end{small}
+\begin{large}
+Output \\
+\end{large}
+\begin{small}
+On an input of E output the run-length encoding of the provided message. On an input of D output the original string corresponding to the given run-length encoding. \\
+\begin{tabular}{ll}
+Sample Input 1 & Sample Output 1 \\
+E HHHeellloWooorrrrlld!!  & H3e2l3o1W1o3r4l2d1!2 \\
+Sample Input 2 & Sample Output 2 \\
+D H3e2l3o1W1o3r4l2d1!2 & HHHeellloWooorrrrlld!! \\
+\end{tabular}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Run-Length Encoding, Run! - Sýnilausn}
+\vspace*{-0.20cm}
+\begin{scriptsize}
+\begin{minted}{cpp}
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    char c;
+    string s;
+    int cnt = 1;
+    cin >> c >> s;
+    if(c == 'E') {
+        s.push_back('#');
+        for(int i = 0; i < s.size() - 1; ++i) {
+            if(s[i] == s[i + 1]) cnt++;
+            else {
+                cout << s[i] << cnt;
+                cnt = 1;
+            }
+        }
+        cout << '\n';
+    } else {
+        for(int i = 0; i < s.size(); i += 2) {
+            for(int j = 0; j < s[i + 1] - '0'; ++j) cout << s[i];
+        }
+        cout << '\n';
+    }
+}
+\end{minted}
+\end{scriptsize}
+\end{frame}
+
+\end{document}

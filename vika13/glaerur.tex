@@ -1,0 +1,2801 @@
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, icelandic]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage{multicol}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Log}{Log}
+\renewcommand\O{\mathcal{O}}
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}
+\newcommand\abs[1]{\left|#1\right|}
+\newcommand\p[1]{\left(#1\right)}
+\newcommand\sqp[1]{\left[#1\right]}
+\newcommand\cp[1]{\left\{#1\right\}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\Im{\operatorname{Im}}
+\renewcommand\Re{\operatorname{Re}}
+\usepackage{color}
+
+\newcommand\env[2]
+{
+	\begin{#1}
+	#2
+	\end{#1}
+}
+\newcommand\varenv[3]
+{
+	\begin[#2]{#1}
+	#3
+	\end{#1}
+}
+
+\newcommand\code[1]{\tiny\lstinputlisting[language=C]{#1}}
+
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\definecolor{mygreen}{rgb}{0, 0, 1}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+\lstset{
+	commentstyle=\color{mygray},
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	keywordstyle=\color{mygreen},
+	showspaces=false,
+	showstringspaces=false,
+	stringstyle=\color{myorange},
+	tabsize=4
+}
+\lstset{literate=
+{æ}{{\ae}}1
+{í}{{\'{i}}}1
+{ó}{{\'{o}}}1
+{á}{{\'{a}}}1
+{é}{{\'{e}}}1
+{ú}{{\'{u}}}1
+{ý}{{\'{y}}}1
+{ð}{{\dh}}1
+{þ}{{\th}}1
+{ö}{{\"o}}1
+{Á}{{\'{A}}}1
+{Í}{{\'{I}}}1
+{Ó}{{\'{O}}}1
+{Ú}{{\'{U}}}1
+{Æ}{{\AE}}1
+{Ö}{{\"O}}1
+{Ø}{{\O}}1
+{Þ}{{\TH}}1
+}
+
+\usetheme{Madrid}
+
+\title{Rúmfræði}
+\author{Bergur Snorrason}
+\date{\today}
+
+\AtBeginSection[] {
+	\begin{frame}
+		\frametitle{Efnisyfirlit}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Inngangur]{Inngangur}
+
+\env{frame}
+{
+	\frametitle{Google Code Jam}
+	\env{itemize}
+	{
+		\item<1-> Aðfaranótt 6. apríl hefst fyrsta umferð í Google Code Jam.
+		\item<2-> Hún stendur yfir í 24 tíma.
+		\item<3-> Ég mæli með.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lokakeppnin}
+	\env{itemize}
+	{
+		\item<1-> Eftir viku verður lokakeppnin okkar.
+		\item<2-> Dæmin verða sex talsnins:
+		\env{itemize}
+		{
+			\item<3-> \emph{Assosiation of Myths}
+			\item<4-> \emph{Digbuild}
+			\item<5-> \emph{Geezer Scripts}
+			\item<6-> \emph{Planetaris}
+			\item<7-> \emph{Strikercount}
+			\item<8-> \emph{Tildes}
+		}
+		\item<9-> Keppnin verður með svipuðu sniði og síðast.
+		\item<10-> Til að fá skil þarf að leysa eitt dæmi.
+	}
+}
+
+\section[Rúmfræði]{Rúmfræði}
+
+\env{frame}
+{
+	\frametitle{Hornaföll}
+	\env{columns}
+	{
+		\env{column}
+		{
+			{0.7\textwidth}
+			\env{itemize}
+			{
+				\item<1-> Þessi glæra ætti að vera upprifjun fyrir flest ykkar.
+				\item<2-> Þríhyrningur er sagður rétthyrndur ef eitt horna hans er $90^{\circ}$.
+				\item<3-> Fyrir rétthyrnda þríhyrninga gildir:
+				\env{itemize}
+				{
+				\item<4-> $\dfrac{A}{L} = \cos\theta$.
+				\item<5-> $\dfrac{M}{L} = \sin\theta$.
+				\item<6-> $\dfrac{M}{A} = \dfrac{\sin\theta}{\cos\theta} = \tan\theta$.
+				}
+				\item<7-> Einnig gildir regla Pýthagorasar, $L^2 = A^2 + M^2$.
+			}
+		}
+		\env{column}
+		{
+			{0.3\textwidth}
+			\scalebox{0.75}
+			{
+				\env{tikzpicture}
+				{
+					\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+					\tkzDefPoint(0,0){A}
+					\tkzDefPoint(4,0){B}
+					\tkzDefPoint(0,3){C}
+					\tkzMarkRightAngle[size = 0.4](B,A,C)
+					\tkzMarkAngle[label=$\theta$, size = 0.8](C,B,A)
+					\tkzDrawSegments(A,B B,C C,A)
+
+					\tkzLabelSegment[below=1pt](A,B){$A$}  
+					\tkzLabelSegment[above=2pt](B,C){$L$}  
+					\tkzLabelSegment[left=1pt](A,C){$M$}  
+				}
+			}
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hornaföll}
+	\env{columns}
+	{
+		\env{column}
+		{
+			{0.7\textwidth}
+			\env{itemize}
+			{
+				\item<1-> Almennar gildir um þríhyrninga:
+				\env{itemize}
+				{
+				\item<2-> $\dfrac{\sin a}{A} = \dfrac{\sin b}{B} = \dfrac{\sin c}{C}$ (sínus reglan).
+				\item<3-> $A^2 = B^2 + C^2 - 2BC\cos a$ (kósínus reglan)
+				}
+				\item<4-> {\bf Æfing:} Sannið reglu Pýthagorasar með kósínus reglunni.
+			}
+		}
+		\env{column}
+		{
+			{0.3\textwidth}
+			\scalebox{0.8}
+			{
+				\env{tikzpicture}
+				{
+					\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+					\tkzDefPoint(0,0){A}
+					\tkzDefPoint(4,0){B}
+					\tkzDefPoint(2,3){C}
+					\tkzMarkAngle[label=$b$, size = 0.8](B,A,C)
+					\tkzMarkAngle[label=$c$, size = 0.8](C,B,A)
+					\tkzMarkAngle[label=$a$, size = 0.8](A,C,B)
+					\tkzDrawSegments(A,B B,C C,A)
+
+					\tkzLabelSegment[below=1pt](A,B){$A$}  
+					\tkzLabelSegment[above=1pt](B,C){$B$}  
+					\tkzLabelSegment[left=1pt](A,C){$C$}  
+				}
+			}
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
+	Þér er gefið heiltölu $n$ og rauntölu $r$. Þú teiknar hring á blað með geilsa $r$.
+	Þú vilt teikna $n$ jafn stóra hringi í kringum hringinn þinn þannig að þeir skeri
+	hringinn þinn og aðlæga hringi í nákvæmlega einum punkti.
+	Hver þarf geilsi ytri hringjanna að vera.\\
+	https://codeforces.com/problemset/problem/1100/C
+}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
+	Ef $n = 6$ fæst eftirfarandi mynd, þar sem $R$ er svarið.
+	\center
+	\env{tikzpicture}
+	{
+		\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+		\tkzDefPoint(0,0){O}
+		\tkzDefPoint(1,0){A}
+		\tkzDefPoint(-1,0){B}
+		\tkzDefPoint(0.5, 0.8660254038){C}
+		\tkzDefPoint(0.5, -0.8660254038){D}
+		\tkzDefPoint(-0.5, -0.8660254038){E}
+		\tkzDefPoint(-0.5, 0.8660254038){F}
+
+		\tkzDefPoint(2,0){AA}
+		\tkzDefPoint(-2,0){BB}
+		\tkzDefPoint(1,1.732050808){CC}
+		\tkzDefPoint(1,-1.732050808){DD}
+		\tkzDefPoint(-1,-1.732050808){EE}
+		\tkzDefPoint(-1,1.732050808){FF}
+
+		\tkzDrawSegments(O,A EE,E)
+		\tkzDrawCircle(O,A)
+		\tkzDrawCircle[dashed](AA,A)
+		\tkzDrawCircle[dashed](BB,B)
+		\tkzDrawCircle[dashed](CC,C)
+		\tkzDrawCircle[dashed](DD,D)
+		\tkzDrawCircle[dashed](EE,E)
+		\tkzDrawCircle[dashed](FF,F)
+
+		\tkzLabelSegment[above=1pt](O,A){$r$}  
+		\tkzLabelSegment[left=1pt](E,EE){$R$}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
+	Sjáum að fjarlægðin frá miðjum myndarinnar að miðju ytri hringjanna er
+	$r + R$. Við fáum því eftirfarandi jafnarma þríhyrning.
+	\center
+	\env{tikzpicture}
+	{
+		\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+		\tkzDefPoint(0,0){O}
+		\tkzDefPoint(1,0){A}
+		\tkzDefPoint(-1,0){B}
+		\tkzDefPoint(0.5, 0.8660254038){C}
+		\tkzDefPoint(0.5, -0.8660254038){D}
+		\tkzDefPoint(-0.5, -0.8660254038){E}
+		\tkzDefPoint(-0.5, 0.8660254038){F}
+
+		\tkzDefPoint(2,0){AA}
+		\tkzDefPoint(-2,0){BB}
+		\tkzDefPoint(1,1.732050808){CC}
+		\tkzDefPoint(1,-1.732050808){DD}
+		\tkzDefPoint(-1,-1.732050808){EE}
+		\tkzDefPoint(-1,1.732050808){FF}
+		\tkzLabelAngle[pos = 0.6](DD,O,AA){$\theta$}
+		\tkzMarkAngle[size = 0.3, pos = 0.1](DD,O,AA)
+
+		\tkzDrawSegments(O,AA O,DD AA,DD)
+		\tkzDrawCircle(O,A)
+		\tkzDrawCircle[dashed](AA,A)
+		\tkzDrawCircle[dashed](BB,B)
+		\tkzDrawCircle[dashed](CC,C)
+		\tkzDrawCircle[dashed](DD,D)
+		\tkzDrawCircle[dashed](EE,E)
+		\tkzDrawCircle[dashed](FF,F)
+
+		\tkzLabelSegment[above=1pt](O,AA){$r + R$}  
+		\tkzLabelSegment[left=1pt](O,DD){$r + R$}
+		\tkzLabelSegment[right=1pt](AA,DD){$2R$}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
+	\env{itemize}
+	{
+	\item<1-> Hornið $\theta$ af síðustu glæru er það eina (ásamt $R$, að sjálfsögðu)
+		háð $n$ á myndinn, svo almennt þurfum við að finna $R$ út frá eftirfarandi mynd.\\
+	\item<2-> Nú er 
+		$\theta = \dfrac{360^{\circ}}{n}$
+		og
+		$\omega = \dfrac{180^{\circ} - \theta}{2}$.
+	\item<3-> Sínus reglan gefur okkur svo að
+		\[
+			\frac{2R}{\sin \theta} = \frac{r + R}{\sin \omega}
+			\Rightarrow
+			2R\sin\omega - R\sin\theta = r\sin\theta
+			\Rightarrow
+			R = \frac{r\sin\theta}{2\sin\omega - \sin\theta}
+		\]
+	}
+	\center
+	\env{tikzpicture}
+	{
+		\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+		\tkzDefPoint(0,0){O}
+		\tkzDefPoint(2,0){AA}
+		\tkzDefPoint(1,-1.732050808){DD}
+		\tkzLabelAngle[pos = 0.6](DD,O,AA){$\theta$}
+		\tkzMarkAngle[size = 0.3, pos = 0.1](DD,O,AA)
+
+		\tkzLabelAngle[pos = -0.6](O,AA,DD){$\omega$}
+		\tkzMarkAngle[size = 0.3, pos = 0.1](O,AA,DD)
+
+		\tkzLabelAngle[pos = 0.6](AA,DD,O){$\omega$}
+		\tkzMarkAngle[size = 0.3, pos = 0.1](AA,DD,O)
+
+		\tkzDrawSegments(O,AA O,DD AA,DD)
+
+		\tkzLabelSegment[above=1pt](O,AA){$r + R$}  
+		\tkzLabelSegment[left=1pt](O,DD){$r + R$}
+		\tkzLabelSegment[right=1pt](AA,DD){$2R$}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tvinntölur}
+	\env{itemize}
+	{
+		\item<1-> Skilgreinum mengið $\mathbb{C} := \mathbb{R} \times \mathbb{R}$.
+		\item<2-> Skilgreinum svo margföldun á $\mathbb{C}$ þannig að fyrir $(a, b), (c, d) \in \mathbb{C}$ þ.a.
+			\[
+				(a, b) \cdot (c, d) = (ac - bd, ad + bc)
+			\]
+		\item<3-> Við táknum iðulega $(0, 1) \in \mathbb{C}$ með $i$ og $(x, y) \in \mathbb{C}$ með $x + yi$.
+		\item<4-> Stök $\mathbb{C}$ kallast \emph{tvinntölur}.
+		\item<5-> Ef $z = x + yi \in \mathbb{C}$ þá köllum við $x$ \emph{raunhluta} $z$ og $y$ \emph{þverhluta} $z$.
+		\item<6-> Ef $z = x + yi$ þá er \emph{lengd} $z$ gefin með $|z| = \sqrt{x^2 + y^2}$.
+		\item<6-> Ef $z = x + yi$ köllum við $x - yi$ \emph{samoka} $z$, táknað $\overline{z}$.
+	}
+}
+
+\section[Rúmfræði í bitum]{Rúmfræði í bitum}
+
+\env{frame}
+{
+	\frametitle{Inngangur}
+	\env{itemize}
+	{
+		\item<1-> Við munum aðallega fjalla tvívíða rúmfræði í þessum fyrirlestri.
+		\item<2-> Þegar leysa þarf þrívíð rúmfræði dæmi er oft góð hugmynd að byrja
+			á að leysa dæmin í tveimur víddum (ef unnt er) og reyna svo að yfirfæra
+			tvívíðu lausnina í þriðju víddina.
+		\item<3-> Hingað til í námskeiðinu höfum við að mestu fengist við heiltölur
+			og stöku sinnum þurft að vinna með fleytitölur.
+		\item<4-> Í rúmfræði er þetta þó öfugt, við vinnum aðallega með fleytitölur og
+			stöku sinnum heiltölur.
+		\item<5-> Þegar við notum fleytitölur er mikilvægt að passa að samanburðir er
+			ekki fullkomnir.
+		\item<6-> Við látum því duga að tvær tölur sé \emph{nógu} líkar, í vissum skilningi.
+	}
+}
+
+\begin{frame}[fragile]
+	\frametitle{Fleytitölu samanburðir}
+	\code{comp.h}
+\end{frame}
+
+\env{frame}
+{
+	\frametitle{Punktar}
+	\env{itemize}
+	{
+		\item<1-> Það eru tvær algengar leiðir til að útfæra punkta í plani.
+		\item<2-> Augljósari aðferðin er að skilgreina gagnagrind (\texttt{struct}) sem geymir
+			tvær fleytitölur.
+		\item<3-> Hin aðferðin er að nota innbyggða (í flestum málum) tvinntölu gagnatagið.
+		\item<4-> Þó þessi aðgerð gæti verið nokkuð heimulleg þá er hún þægileg og fljótleg í útfærslu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Notkun á \texttt{complex} úr \texttt{C++} í rúmfræði}
+	\env{itemize}
+	{
+		\item<1-> Fallið \texttt{real(p)} skilar ofanvarpi $p$ á $x$-ás.
+		\item<2-> Fallið \texttt{imag(p)} skilar ofanvarpi $p$ á $y$-ás.
+		\item<3-> Fallið \texttt{abs(p)} skilar fjarlægð $p$ frá $(0, 0)$.
+		\item<4-> Fallið \texttt{abs(p - q)} skilar fjarlægð milli $p$ og $q$.
+		\item<5-> Fallið \texttt{arg(p)} skilar horninu sem $p$ myndar við jákvæða hluta $x$-ás.
+		\item<6-> Fallið \texttt{norm(p)} skilar sama og \texttt{abs(p)*abs(p)}.
+		\item<7-> Fallið \texttt{conj(p)} speglar $p$ um $x$-ás.
+	}
+}
+
+\begin{frame}[fragile]
+	\frametitle{Punktar}
+	\code{point.h}
+\end{frame}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi}
+	Þú byrjar í $(0, 0)$ og færð gefnar skipanir. Skapnirnar eru allar einn bókstafur og ein tala.
+	Ef skipunin er \texttt{'f' x} gengur þú áfram um $x$ metra, \texttt{'b' x} gengur þú aftur á bak
+	um $x$ metra, \texttt{'r' x} snýrð þú þér um $x$ gráður til hægri og \texttt{'l' x} snýrð þú
+	þér um $x$ gráður til vinstri. Eftir að fylgja öllum þessum skipunum, hversu langt ertu frá
+	$(0, 0)$.
+}
+
+\env{frame}
+{
+	\frametitle{Sýnidæmi}
+	\env{itemize}
+	{
+	\item<1-> Ef við erum í $p \in \mathbb{C}$ og viljum taka $r$ metra skref í stefnu $\theta$ getum
+		við einfaldlega lagt $r\cdot e^{i\theta}$ við $p$.
+	\item<2-> Hvert við snúum í upphafi skiptir ekki mál því það hefur ekki áhrif á fjarlægðinni til $(0, 0)$.
+	}
+}
+
+\begin{frame}[fragile]
+	\frametitle{Sýnidæmi}
+	\code{kindalogo.cpp}
+\end{frame}
+
+\env{frame}
+{
+	\frametitle{Línur}
+	\env{itemize}
+	{
+		\item<1-> Samkvæmt fyrstu frumsendu rúmfræðinnar skilgreina tveir ólíkir punktar nákvæmlega eina línu.
+		\item<2-> Svo við getum einfaldlega sagt að lína sé tveir punktar.
+		\item<3-> Helsti ókostur þessa aðferðar er að sama línan getur verið skilgreint með mismunandi pörum af puntkum.
+		\item<4-> Stundum hentar betur að skilgreina línu með skurðpunkt við $y$-ás og hallatölu. 
+		\item<5-> Þá er einfaldara að bera saman línur en það þarf að höndla sérstaklega línuna í gegnum $(0, 0)$ og $(0, 1)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skurðpunktur lína}
+	\env{itemize}
+	{
+		\item<1-> Ef tvær línur eru ekki samsíða þá skerast þær í nákvæmlega einum punkti.
+		\item<2-> Við þurfum oft að finna þennan punkt.
+		\item<3-> Gefum okkur tvær línur $\{(x, y) : ax+by=c\}$ og $\{(x, y) : dx+ey=f\}$.
+		\item<4-> Gerum ráð fyrir að línurnar séu ekki samsíða.
+		\item<5-> Skurðpunkturinn fæst þá greinilega með því að leysa jöfnuhneppið
+			\[
+				\left (
+				\begin{array}{c c | c}
+					a & b & c\\
+					d & e & f
+				\end{array}
+				\right )
+			\]
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skurðpunktur lína}
+		\[
+			\left (
+			\begin{array}{c c}
+				a & b\\
+				d & e
+			\end{array}
+			\right )
+			\left (
+			\begin{array}{c}
+				x\\
+				y
+			\end{array}
+			\right )
+			=
+			\left (
+			\begin{array}{c}
+				c\\
+				f
+			\end{array}
+			\right )
+		\]
+			\pause 
+		\[
+			\Rightarrow
+			\left (
+			\begin{array}{c}
+				x\\
+				y
+			\end{array}
+			\right )
+			=
+			\left (
+			\begin{array}{c c}
+				a & b\\
+				d & e
+			\end{array}
+			\right )^{-1}
+			\left (
+			\begin{array}{c}
+				c\\
+				f
+			\end{array}
+			\right )
+		\]
+			\pause 
+		\[
+			\Rightarrow
+			\left (
+			\begin{array}{c}
+				x\\
+				y
+			\end{array}
+			\right )
+			=
+			\frac{1}{ae - bd}
+			\left (
+			\begin{array}{c c}
+				e & -b\\
+				-d & a
+			\end{array}
+			\right )
+			\left (
+			\begin{array}{c}
+				c\\
+				f
+			\end{array}
+			\right )
+		\]
+			\pause 
+		\[
+			\Rightarrow
+			\left (
+			\begin{array}{c}
+				x\\
+				y
+			\end{array}
+			\right )
+			=
+			\frac{1}{ae - bd}
+			\left (
+			\begin{array}{c}
+				ce - bf\\
+				af - cd
+			\end{array}
+			\right )
+		\]
+			\pause 
+		\[
+			\Rightarrow
+			\left (
+			\begin{array}{c}
+				x\\
+				y
+			\end{array}
+			\right )
+			=
+			\left (
+			\begin{array}{c}
+			\frac{ce - bf}{ae - bd}\\
+			\frac{af - cd}{ae - bd}
+			\end{array}
+			\right )
+		\]
+}
+
+\env{frame}
+{
+	\frametitle{Línustrik}
+	\env{itemize}
+	{
+		\item<1-> Af augljósum ástæðum sést að best er að skilgreina línustrik sem par punkta, nánar tiltekið endapunkta línustriksins.
+		\item<2-> Markmið okkar í þessum hluta af fyrirlestrinu verður að útfæra fall sem finnur fjarlægð milli línustrika.
+		\item<3-> Við munum byrja á að útfæra góð hjálparföll sem nýtast meðal annars í að finna þessa fjarlægð, en eru einnig
+			hentug í öðrum dæmum.
+		\item<4-> Við munum útfæra:
+		\env{itemize}
+		{
+			\item<5-> Fall sem skoðar hvort tvö bil skerist (\texttt{bxb}).
+			\item<6-> Fall sem skoðar hvort línustrik skerist (\texttt{lxl}).
+			\item<7-> Fall sem finnur stystu fjarlægð punkts og línustriks (\texttt{p2l}).
+			\item<8-> Fall sem finnur stystu fjarlægð tveggja línustrika (\texttt{l2l}).
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skurður bila}
+	\env{itemize}
+	{
+		\item<1-> Þegar við viljum skoða skurð tveggja bila nægir okkur að skoða hvort annar endapunktur bils er í hinu bilinu.
+		\item<2-> \code{bxb.h}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skurður tveggja línustrika}
+	\env{itemize}
+	{
+		\small
+		\item<1-> Þessi glæra gæti verið nokkuð dularfull en hún mun verða skýrari seinna í þessum fyrirlestri.
+		\item<2-> Við munum skoða áttunina á þríhyrningunum sem við getum myndað með endapunktum línustrikanna.
+		\item<3-> Látum $a, b, c, d$ vera endapunkta línustrikanna.
+		\item<4-> Ef þríhyningurinn stikaður með $\langle a, b, c, a \rangle$ hefur öfuga áttun miðað við $\langle a, b, d, a \rangle$ þá liggja
+			punktarnir $c$ og $d$ sitthvoru megin við línustrikið $\langle a, b \rangle$.
+		\item<5-> Við þurfum líka að ganga úr skugga um ferhyrningarnir sem endapunktarnir mynda skerast.
+		\item<6-> Það eru leiðinleg sértilfelli þegar þrír af endapunktunum liggja á sömulínunni.
+		\item<7-> Ég mun eftirláta ykkur að laga þetta sértilfelli, því þar sem við höfum aðallega
+			áhuga á að finna fjarlægð línubila nægir að segja að línustrikin skerist ekki í þessu sértilfelli.
+		\item<8-> Þetta mun skýrast betur á eftir.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skurður tveggja línustrika}
+	\code{lxl.h}
+}
+
+\env{frame}
+{
+	\frametitle{Fjarlægð punkts og línustriks}
+	\env{itemize}
+	{
+		\item<1-> Hér hefst fjörið. 
+		\item<2-> Látum línustrikið vera $\langle (x_0, y_0), (x_1, y_1) \rangle$ og punktinn $(x, y)$.
+		\item<3-> Við getum þá stikað línustrikið með $l(t) = (x_0 + t\cdot(x_1 - x_0), y_0 + t\cdot(y_1 - y_0)), t \in [0, 1].$
+		\item<4-> Látum $d$ tákna Evklíðsku firðina. Við munum nú lágmarka $d^2$ til að auðvelda deildunina.
+		\item<5-> Látum $f(t) = d(l(t), (x, y))^2$.
+		\item<6-> Við fáum enn fremur að
+		\env{align*}
+		{
+			f(t)
+			=& (x_0 + t\cdot(x_1 - x_0) - x)^2 + (y_0 + t\cdot(y_1 - y_0) - y)^2\\
+			=& x_0^2 + t^2(x_1 - x_0)^2 + x^2 + 2x_0t(x_1 - x_0) - 2xx_0 - 2tx(x_1 - x_0)\\
+			+& y_0^2 + t^2(y_1 - y_0)^2 + y^2 + 2y_0t(y_1 - y_0) - 2yy_0 - 2ty(y_1 - y_0).
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fjarlægð punkts og línustriks}
+	\env{itemize}
+	{
+		\item<1-> Deildum nú $f$ og fáum 
+		\env{align*}
+		{
+			f'(t)
+			=& 2t(x_1 - x_0)^2 + 2x_0(x_1 - x_0) - 2x(x_1 - x_0)\\
+			+& 2t(y_1 - y_0)^2 + 2y_0(y_1 - y_0) - 2y(y_1 - y_0).
+		}
+		\item<2-> Metum nú í $0$ óg fáum
+		\env{align*}
+		{
+			& f'(t_0) = 0\\
+			\Rightarrow & t_0(x_1 - x_0)^2 + x_0(x_1 - x_0) - x(x_1 - x_0)\\
+			+& t_0(y_1 - y_0)^2 + y_0(y_1 - y_0) - y(y_1 - y_0) = 0\\
+			\Rightarrow & t_0 = \frac{x(x_1 - x_0) + y(y_1 - y_0) - x_0(x_1 - x_0) - y_0(y_1 - y_0)}{(y_1 - y_0)^2 + (x_1 - x_0)^2}\\
+			\Rightarrow & t_0 = \frac{(x - x_0)(x_1 - x_0) + (y - y_0)(y_1 - y_0)}{(y_1 - y_0)^2 + (x_1 - x_0)^2}.\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fjarlægð punkts og línustriks}
+	\env{itemize}
+	{
+		\item<1-> Við erum nú búin að finna þann punkt á línunni gegnum $(x_0, y_0)$ og $(x_1, y_1)$ sem er
+			næstur $(x, y)$. 
+		\item<2-> Þar sem línustrikið er stikað af $t$ þegar $t \in [0, 1]$ þá er þessi punktur
+			á línustrikinu ef $t_0 \in [0, 1]$.
+		\item<3-> Ef svo er ekki nægir okkur að skoða fjarlægð $(x, y)$ til endapunktana $(x_0, y_0)$ og $(x_1, y_1)$.
+		\item<4-> \code{p2l.h}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fjarlægð milli tveggja línustrika}
+	\env{itemize}
+	{
+		\item<1-> Gefum okkur línustrikin $\langle a, b \rangle$ og $\langle c, d \rangle$.
+		\item<2-> Ef þau skerast þá er fjarlægðin á milli þeirra bersýnilega $0$.
+		\item<3-> Gerum því ráð fyrir að þau skerist ekki.
+		\item<4-> Þá er bersýnilega fjarlægð línustrikana minnst á milli 
+			$a$ og $\langle c, d \rangle$, 
+			$b$ og $\langle c, d \rangle$, 
+			$c$ og $\langle a, b \rangle$ eða 
+			$d$ og $\langle a, b \rangle$.
+		\item<5-> Ég hef ekki minnst á það hingað til, en við höfum gert ráð fyrir að endapunktar 
+			línustrikana séu mismunandi.
+		\item<6-> Ef $a = b$ og $c = d$ þá er fjarlægð línustrikana fjarlægðin milli $a$ og $c$.
+		\item<7-> Ef $a = b$ og $c \neq d$ þá er fjarlægð línustrikana fjarlægðin milli $a$ og $\langle c, d \rangle$.
+		\item<8-> Ef $a \neq b$ og $c = d$ þá er fjarlægð línustrikana fjarlægðin milli $c$ og $\langle a, b \rangle$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fjarlægð milli tveggja línustrika}
+	\code{l2l.h}
+}
+
+\env{frame}
+{
+	\frametitle{Hringir}
+	\env{itemize}
+	{
+		\item<1-> Til að útfæra hringi geymum við iðulega miðpunkt hringsins og geisla hans.
+		\item<2-> Það er gott að vita að unnt er að ákvarð hring útfrá:
+		\env{itemize}
+		{
+			\item<3-> Miðju og geisla.
+			\item<4-> Miðju og og punkti á jaðri hringsins.
+			\item<5-> Þremur punktum á jaðri hringsins.
+			\item<6-> Tveimur punktum á jaðri hringsins og geisla (hér er þó tveir mögulegir hringir).
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Marghyrningar}
+	\env{itemize}
+	{
+		\item<1-> \emph{Marghyrningur} er samfelldur, lokaður ferill í plani 
+			sem samanstendur af beinum línustrikum.
+		\item<2-> Ef ferillinn er einfaldur þá kallast marghyrningurinn \emph{einfaldur}.
+		\item<3-> Marghyrningur eru sagður vera \emph{kúptur} ef sérhver beina lína dregin gegnum
+			marghyrninginn sker mest tvo punkta á marghyrningnum.
+	}
+	\scalebox{0.6}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=0,xmax=10,ymin=0,ymax=5]
+			\tkzDefPoint(0,2){A1}
+			\tkzDefPoint(4,0){B1}
+			\tkzDefPoint(4,3){C1}
+			\tkzDefPoint(3,4){D1}
+			\tkzDefPoint(2,4){E1}
+			\tkzDefPoint(1,5){F1}
+			\tkzDrawSegments(A1,B1 B1,C1 C1,D1 D1,E1 E1,F1 F1,A1)
+
+			\tkzDefPoint(7,2){A2}
+			\tkzDefPoint(11,0){B2}
+			\tkzDefPoint(7,3){C2}
+			\tkzDefPoint(10,4){D2}
+			\tkzDefPoint(9,4){E2}
+			\tkzDefPoint(8,5){F2}
+			\tkzDrawSegments(A2,B2 B2,C2 C2,D2 D2,E2 E2,F2 F2,A2)
+
+			\tkzDefPoint(13,4){A3}
+			\tkzDefPoint(13,0){B3}
+			\tkzDefPoint(19,0){C3}
+			\tkzDefPoint(19,4){D3}
+			\tkzDefPoint(16,5){E3}
+			\tkzDrawSegments(A3,B3 B3,C3 C3,D3 D3,E3 E3,A3)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Framsetning marghyrninga}
+	\env{itemize}
+	{
+		\item<1-> Þegar við viljum tákna marghyrning í tölvu notum við einfaldlega hornpunkta hans.
+		\item<2-> Röð punktanna skiptir máli.
+			\scalebox{0.3}
+			{
+				\env{tikzpicture}
+				{
+					\tkzInit[xmin=0,xmax=10,ymin=0,ymax=5]
+					\tkzDefPoint(0,2){A1}
+					\tkzDefPoint(2,2){B1}
+					\tkzDefPoint(2,0){C1}
+					\tkzDefPoint(0,0){D1}
+					\tkzDrawSegments(A1,B1 B1,C1 C1,D1 D1,A1)
+
+					\tkzDefPoint(4,2){A2}
+					\tkzDefPoint(6,0){B2}
+					\tkzDefPoint(6,2){C2}
+					\tkzDefPoint(4,0){D2}
+					\tkzDrawSegments(A2,B2 B2,C2 C2,D2 D2,A2)
+				}
+			}
+		\item<3-> Til þæginda geymum við einn punkt tvisvar, nánar tiltekið er fremsti og aftasti punkturinn eins.
+		\item<4-> Þetta er því við höfum oft meira áhuga á línustrikunum milli hornpuntkanna heldur en hornpunktunum sjálfum.
+		\item<5-> \code{polygon.h}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Nokkur atriði um marghyrninga}
+	\env{itemize}
+	{
+		\item<1-> Þar sem marghyrningar er mjög vinsælir í keppnum munum við fara í nokkur atriði sem er gott að kunna.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Ummál marghyrnings}
+	\env{itemize}
+	{
+		\item<1-> Ummála marghyrnings er einfalt að reikna í línulegum tíma.
+		\item<2-> Maður leggur einfaldlega saman allar hliðarlengdirnar.
+	}
+}
+
+\begin{frame}[fragile]
+	\frametitle{Ummál marghyrnings}
+	\code{ummal.h}
+\end{frame}
+
+\env{frame}
+{
+	\frametitle{Flatarmál marghyrnings}
+	\env{itemize}
+	{
+		\item<1-> Ummál marghyrninga er þó ekki jafnt algengt í keppnum og flatarmál marghyrninga.
+		\item<2-> Það er einnig auðvelt að reikna flatarmálið í línulegum tíma, þó það sé ekki
+			endilega augljóst að þetta skili flatarmálinu.
+		\item<3-> Fyrir áhugasama er hægt að nota setningu Green til að leiða út eftirfarandi forritsbút.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Flatarmál marghyrnings}
+	\env{itemize}
+	{
+		\item<1-> \code{flatarmal.h}
+		\item<2-> Við þurfum að skila tölugildinu því við getum fengið neikvætt flatarmál.
+		\item<3-> Neikvætt flatarmál hljómar kannski furðulega en það fellur eðlilega úr sönnun summunar
+			ef notast er við setningu Green.
+		\item<4-> Til að nota hana þarf að reikna ferilheildi og útkoman úr ferilheildum skiptir
+			um formerki þegar breytt er um átt stikunar ferilsins.
+		\item<5-> Þetta þýðir að formerki \texttt{r} eftir forlykkjuna er jákvætt ef punktar \texttt{p} 
+			eru gefnir rangsælis og neikvætt ef þeir eru gefnir réttsælis.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Punktur í marghyrning}
+	\env{itemize}
+	{
+		\item<1-> Að ákvarða hvort punktur sé inni í marghyrning (e. the point in polygon problem) er algent undirvandamál
+			í rúmfræði dæmum.
+		\item<2-> Aðallega er gengist við tvær aðferðir til að leysa slík dæmi, sú fyrri er að nota geislarakningu 
+			(e. raytracing) og hin er að reikna summu aðliggjandi horna marghyrningsins miðað við punktinn.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Geislarakning}
+	\env{itemize}
+	{
+		\item<1-> Við getum dregið geisla frá punktinum sem við viljum skoða í einhverja átt og talið hversu oft
+			við skerum jaðar marghyrningsins. 
+		\item<2-> Ef við erum fyrir utan marghyrninginn og skerum jaðarinn erum við inni í honum,
+			en ef við erum fyrir utan og skerum jaðarinn erum við fyrir innan (þetta er í raun skilgreining
+			á því hvenær geislinn \emph{sker} marghyrninginn).
+		\item<3-> Svo ef við skerum jaðarinn slétt tölu sinnum er punkturinn fyrir innan, og annars fyrir utan (Setning Jordan).
+		\item<4-> Við getum látið geislann vera línustrik, nógu langt til að vera út fyrir marghyrninginn, og
+			notað síðan \texttt{lxl} til að ákvarða í línulegum tíma hversu oft geislinn sker marghyrninginn.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Geislarakning}
+	\center
+	\scalebox{1.0}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-1,-1){A}
+			\tkzDefPoint(-1,1){B}
+			\tkzDefPoint(3,1){C}
+			\tkzDefPoint(4,0){D}
+			\tkzDefPoint(5,1){E}
+			\tkzDefPoint(6,1){F}
+			\tkzDefPoint(7,0){G}
+			\tkzDefPoint(6,-1){H}
+			\tkzDrawSegments(A,B B,C C,D D,E E,F F,G G,H H,A)
+
+			\tkzDefPoint(0,-0.5){P1}
+			\tkzDefPoint(0,0){P2}
+			\tkzDefPoint(-2,0.5){P3}
+			\tkzDefPoint(10,-0.5){Q1}
+			\tkzDefPoint(10,0){Q2}
+			\tkzDefPoint(10,0.5){Q3}
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawSegments[dashed](P1,Q1 P2,Q2 P3,Q3)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Geislarakning}
+	\env{itemize}
+	{
+		\item<1-> Þessi aðferð er með aragrúa af sértilfellum sem gerir þessa aðferð nokkuð óþægilega í útfærslu.
+		\item<2-> Öll sértilfellin eiga það sameiginlegt að vera þegar geislinn sker endapunkta línustrika marghyrningsins.
+		\item<3-> Ef marghyrningurinn er kúptur er nokkuð auðvelt að eiga við þessi sértilfelli, en það
+			gildir ekki í flestum dæmum.
+		\item<4-> Þessi aðferð verður því ekki úrfærð hér.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afstæð hornasumma}
+	\env{itemize}
+	{
+		\item<1-> Látum $p_i$, $i < n$ tákna hornpunkta marghyrnings, $p$ einhvern punkt, $\alpha(a, b, c)$ vera
+			hornið milli sem punktarnir $a$, $b$ og $c$ mynda og $\beta(a, b, c)$ vera $1$ ef brotna línustrikið
+			$\langle a, b, c \rangle$ ,,beygir'' til vinstri en $-1$ annars.
+		\item<2-> \emph{Afstæð hornsumma marghyrnings með tilliti til punkts $q$} er
+			$\sum_{i = 0}^n \beta(q, p_i, p_{i + 1})\alpha(p_i, q, p_{i + 1})$.
+		\item<3-> Ef $q$ er inni í marghyrningnum þá er þessi summa bersýnilega $2\pi$.
+		\item<4-> Ef $q$ er fyrir utan marghyrninginn þá verður summan hins vegar $0$.
+	}
+	\scalebox{0.7}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=0,xmax=4,ymin=0,ymax=3]
+			\tkzDefPoint(1,3){A}
+			\tkzDefPoint(0,0){B}
+			\tkzDefPoint(3,0){C}
+			\tkzDrawSegments(A,B B,C)
+			\tkzMarkAngle[label=$\alpha$, size = 0.8](C,B,A)
+
+			\tkzDrawPoint(A)
+			\tkzDrawPoint(B)
+			\tkzDrawPoint(C)
+			\tkzLabelPoint(A){$a$}
+			\tkzLabelPoint(B){$b$}
+			\tkzLabelPoint(C){$c$}
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afstæð hornasumma}
+	\scalebox{1.0}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-1,-3){A}
+			\tkzDefPoint(-1,3){B}
+			\tkzDefPoint(3,3){C}
+			\tkzDefPoint(4,0){D}
+			\tkzDefPoint(5,3){E}
+			\tkzDefPoint(6,3){F}
+			\tkzDefPoint(7,0){G}
+			\tkzDefPoint(6,-3){H}
+			\tkzDrawSegments(A,B B,C C,D D,E E,F F,G G,H H,A)
+
+			\tkzDefPoint(0,-0.5){P1}
+			\tkzDefPoint(-2,0.5){P2}
+			\tkzDrawSegments[dashed](P1,A P1,B P1,C P1,D P1,E P1,F P1,G P1,H)
+			\tkzDrawPoint(P1)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afstæð hornasumma}
+	\scalebox{1.0}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-1,-3){A}
+			\tkzDefPoint(-1,3){B}
+			\tkzDefPoint(3,3){C}
+			\tkzDefPoint(4,0){D}
+			\tkzDefPoint(5,3){E}
+			\tkzDefPoint(6,3){F}
+			\tkzDefPoint(7,0){G}
+			\tkzDefPoint(6,-3){H}
+			\tkzDrawSegments(A,B B,C C,D D,E E,F F,G G,H H,A)
+
+			\tkzDefPoint(-2,0.5){P1}
+			\tkzDrawSegments[dashed](P1,A P1,B P1,C P1,D P1,E P1,F P1,G P1,H)
+			\tkzDrawPoint(P1)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afstæð hornasumma}
+	\scalebox{1.0}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-1,-3){A}
+			\tkzDefPoint(-1,3){B}
+			\tkzDefPoint(3,3){C}
+			\tkzDefPoint(4,0){D}
+			\tkzDefPoint(5,3){E}
+			\tkzDefPoint(6,3){F}
+			\tkzDefPoint(7,0){G}
+			\tkzDefPoint(6,-3){H}
+			\tkzDrawSegments(A,B B,C C,D D,E E,F F,G G,H H,A)
+
+			\tkzDefPoint(4,2){P1}
+			\tkzDefPoint(-2,0.5){P2}
+			\tkzDrawSegments[dashed](P1,A P1,B P1,C P1,D P1,E P1,F P1,G P1,H)
+			\tkzDrawPoint(P1)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afstæð hornasumma}
+	\code{is_in.h}
+}
+
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\env{itemize}
+	{
+		\item<1-> \emph{Kúptur hjúpur punktasafns} er minnsti kúpti marghyrningur sem
+			inniheldur all punkta punktasafnsins.
+		\item<2-> Maður getur ímyndað sér að maður taki teygju og strekki hana yfir punkta safnið og
+			sleppi henni svo.
+		\item<3-> Við munum nota aðferð sem kallast \emph{Graham's scan} til að finna kúpta hjúp punktasafns.
+	}
+	\center
+	\scalebox{0.3}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-2.4,-7.4){A}
+			\tkzDefPoint(-5.1,-0.6){B}
+			\tkzDefPoint(7.3,1.7){C}
+
+			\tkzDefPoint(4.1,-0.6){P1}
+			\tkzDefPoint(0,0){P2}
+			\tkzDefPoint(-3,-3.4){P3}
+			\tkzDefPoint(-2,-4){P4}
+			\tkzDefPoint(-1,-2){P5}
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\env{itemize}
+	{
+		\item<1-> \emph{Kúptur hjúpur punktasafns} er minnsti kúpti marghyrningur sem
+			inniheldur all punkta punktasafnsins.
+		\item<1-> Maður getur ímyndað sér að maður taki teygju og strekki hana yfir punkta safnið og
+			sleppi henni svo.
+		\item<1-> Við munum nota aðferð sem kallast \emph{Graham's scan} til að finna kúpta hjúp punktasafns.
+	}
+	\center
+	\scalebox{0.3}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-2.4,-7.4){A}
+			\tkzDefPoint(-5.1,-0.6){B}
+			\tkzDefPoint(7.3,1.7){C}
+
+			\tkzDefPoint(4.1,-0.6){P1}
+			\tkzDefPoint(0,0){P2}
+			\tkzDefPoint(-3,-3.4){P3}
+			\tkzDefPoint(-2,-4){P4}
+			\tkzDefPoint(-1,-2){P5}
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(A)
+			\tkzDrawPoint(B)
+			\tkzDrawPoint(C)
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\env{itemize}
+	{
+		\item<1-> \emph{Kúptur hjúpur punktasafns} er minnsti kúpti marghyrningur sem
+			inniheldur all punkta punktasafnsins.
+		\item<1-> Maður getur ímyndað sér að maður taki teygju og strekki hana yfir punkta safnið og
+			sleppi henni svo.
+		\item<1-> Við munum nota aðferð sem kallast \emph{Graham's scan} til að finna kúpta hjúp punktasafns.
+	}
+	\center
+	\scalebox{0.3}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(-2.4,-7.4){A}
+			\tkzDefPoint(-5.1,-0.6){B}
+			\tkzDefPoint(7.3,1.7){C}
+
+			\tkzDefPoint(4.1,-0.6){P1}
+			\tkzDefPoint(0,0){P2}
+			\tkzDefPoint(-3,-3.4){P3}
+			\tkzDefPoint(-2,-4){P4}
+			\tkzDefPoint(-1,-2){P5}
+			\tkzDrawSegments[dashed](A,B B,C C,A)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(A)
+			\tkzDrawPoint(B)
+			\tkzDrawPoint(C)
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Graham's Scan}
+	\env{itemize}
+	{
+		\item<1-> Við byrjum á að velja vendipunkt, yfirleitt látin vera punkturinn neðst til vinstri.
+		\item<2-> Við látum hann fremst í safnið og röðum svo restin miðið við hornið sem þeir mynda við vendipunktinn.
+		\item<3-> Við gefum okkur svo hlaða og látum aftasta, fremsta og næst fremsta punktinn á hlaðann.
+		\item<4-> Við göngum síðan í gegnum raðaða punkta safnið okkur og fyrir hvert stak fjarlægjum við ofan af hlaðanum
+			á meðan efstu tvö stökin á hlaðanum og stakið sem við erum á í listanum mynda hægri beygju. Þegar þau mynda
+			vinstri beygju bætum við stakinu úr safninu á hlaðan.
+		\item<5-> Þegar við er búin að fara í gegnum allt safnið er hlaðinn kúpti hjúpurinn.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1)
+			\tkzDrawSegments[dashed](P1,P2)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P2)
+			%\tkzDrawSegments[dashed](P1,P2)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P2)
+			\tkzDrawSegments[dashed](P2,P3)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1)
+			\tkzDrawSegments[dashed](P1,P3)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P3)
+			%\tkzDrawSegments[dashed](P1,P3)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P3)
+			\tkzDrawSegments[dashed](P3,P4)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1)
+			\tkzDrawSegments[dashed](P1,P4)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4)
+			%\tkzDrawSegments[dashed](P1,P4)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4)
+			\tkzDrawSegments[dashed](P4,P5)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P5)
+			%\tkzDrawSegments[dashed](P4,P5)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P5)
+			\tkzDrawSegments[dashed](P5,P6)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4)
+			\tkzDrawSegments[dashed](P4,P6)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6)
+			%\tkzDrawSegments[dashed](P4,P6)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6)
+			\tkzDrawSegments[dashed](P6,P7)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7)
+			%\tkzDrawSegments[dashed](P6,P7)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7)
+			\tkzDrawSegments[dashed](P7,P8)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P8)
+			%\tkzDrawSegments[dashed](P7,P8)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P8)
+			\tkzDrawSegments[dashed](P8,P9)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P8 P8,P9)
+			%\tkzDrawSegments[dashed](P8,P9)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P8 P8,P9)
+			\tkzDrawSegments[dashed](P9,P10)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P8)
+			\tkzDrawSegments[dashed](P8,P10)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7)
+			\tkzDrawSegments[dashed](P7,P10)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P10)
+			%\tkzDrawSegments[dashed](P10,P11)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P10)
+			\tkzDrawSegments[dashed](P10,P11)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7)
+			\tkzDrawSegments[dashed](P7,P11)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\addtocounter{framenumber}{-1}
+\env{frame}
+{
+	\frametitle{Kútpur hjúpur punktasafns}
+	\center
+	\scalebox{0.5}
+	{
+		\env{tikzpicture}
+		{
+			\tkzInit[xmin=-10,xmax=10,ymin=-10,ymax=10]
+			\tkzDefPoint(0,0){P0}
+			\tkzDefPoint(10,1){P1}
+			\tkzDefPoint(3,2){P2}
+			\tkzDefPoint(4,4){P3}
+			\tkzDefPoint(7,9){P4}
+			\tkzDefPoint(2,8){P5}
+			\tkzDefPoint(1,13){P6}
+			\tkzDefPoint(-1,13){P7}
+			\tkzDefPoint(-2,9){P8}
+			\tkzDefPoint(-2,4){P9}
+			\tkzDefPoint(-4,5){P10}
+			\tkzDefPoint(-6,2){P11}
+			\tkzDrawSegments(P11,P0 P0,P1 P1,P4 P4,P6 P6,P7 P7,P11)
+			%\tkzDrawSegments[dashed](P7,P11)
+			\tkzDrawPoint(P0)
+			\tkzDrawPoint(P1)
+			\tkzDrawPoint(P2)
+			\tkzDrawPoint(P3)
+			\tkzDrawPoint(P4)
+			\tkzDrawPoint(P5)
+			\tkzDrawPoint(P6)
+			\tkzDrawPoint(P7)
+			\tkzDrawPoint(P8)
+			\tkzDrawPoint(P9)
+			\tkzDrawPoint(P10)
+			\tkzDrawPoint(P11)
+			\tkzLabelPoint(P0){$0$}
+			\tkzLabelPoint(P1){$1$}
+			\tkzLabelPoint(P2){$2$}
+			\tkzLabelPoint(P3){$3$}
+			\tkzLabelPoint(P4){$4$}
+			\tkzLabelPoint(P5){$5$}
+			\tkzLabelPoint(P6){$6$}
+			\tkzLabelPoint(P7){$7$}
+			\tkzLabelPoint(P8){$8$}
+			\tkzLabelPoint(P9){$9$}
+			\tkzLabelPoint(P10){$10$}
+			\tkzLabelPoint(P11){$11$}
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Graham's Scan}
+	\env{itemize}
+	{
+		\item<1-> Það er ljóst að hlaðinn í lok reikniritsins lýsir kúptum marghyrningi.
+		\item<2-> Það er þó aðeins meira mál að sýna að þetta sé í raun kúpti hjúpur punktasafnsins.
+		\item<3-> Við látum það ógert í þessum fyrirlestri.
+		\item<4-> Ef punktasafnið inniheldur $n$ punkta þá er reikniritið $\mathcal{O}(n \log n)$ út af því við þurfum að 
+			raða punktunum. Eftir röðun er reikniritið $\mathcal{O}(n)$ því hver punktur fer inn á hlaðan einu sinni.
+		\item<5-> {\bf ATH:} Útfærslan á næstu glæru gerir ráð fyrir því að það sé til óúrkynjaður kúptur hjúpur,
+			m.ö.o. til eru þrír punktar í safninu sem liggja ekki á sömu línu.
+		\item<6-> {\bf Æfing:} Búið til fall sem ákvarðar hvort punkta safn hafi óúrkynjaðan kúpt hjúp ({\bf Ábending:}
+			minniháttar breytingar \texttt{ccw} gefa fall sem segir hvort gefnir punktar liggi á sömu línu).
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Graham's Scan}
+	\code{convex_hull.h}
+}
+
+\env{frame}
+{
+	\frametitle{Þriðjungunarleit}
+	\env{itemize}
+	{
+		\item<1-> Þið hafið öll heyrt um helmingunarleit.
+		\item<2-> Sum ykkar hafa þó kannski ekki heyrt um þriðjungunarleit.
+		\item<3-> Þriðjungunarleit finnur útgildi kúpts falls. 
+		\item<4-> Ólíkt helmingurnarleit þá skiptum við leitarsvæðinu upp í þriðjunga, í stað helminga,
+			og notum til þess tvo punkta.
+		\item<5-> Látum $f$ vera kúpt fall á $[a, b]$.
+		\item<6-> Þá gildir fyrir $s, t \in [a, b]$, $s < t$ að ef $f(s) > f(t)$ þá tekur $f$ lágildi
+			á $[s, b]$, en annars tekur $f$ lágildi á $[a, t]$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Þriðjungunar leit}
+	\code{ts.h}
+}
+
+\env{frame}
+{
+	\frametitle{Niðurlag}
+	\env{itemize}
+	{
+		\item<1-> Við erum nú búnir að fara yfir það efni sem við ætluðum okkur.
+		\item<2-> Ef ykkur vantar námskeið fyrir komandi annir sem tengjast lauslega keppnisforritun
+			eru t.d. í boði \emph{Þýðendur}, \emph{Líkinda og tölfræði}, \emph{Fléttufræði},
+			\emph{Rúmfræði}, \emph{Algebra II}, \emph{Slembiferli}, \emph{Tvinnfallagreining (Stærðfræðigreining IIIB)}
+			og \emph{Töluleg greining}.
+		\item<3-> Við mælum sérstaklega með \emph{Algebra I}, \emph{Greining reiknirita} og \emph{Netafræði}.
+	}
+}
+
+\end{document}

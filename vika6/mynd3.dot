@@ -1,0 +1,47 @@
+graph {
+	a [label="50"]
+	b [label="17"]
+	c [label="10"]
+	d [label="1"]
+	e [label="0"]
+	f [label="1"]
+	g [label="9"]
+	h [label="7"]
+	i [label="3"]
+	j [label="4"]
+	k [label="23"]
+	l [label="6"]
+	m [label="5"]
+	n [label="5"]
+	o [label="0"]
+	p [label="1"]
+	q [label="17"]
+	r [label="8"]
+	s [label="9"]
+	a -- b
+	a -- k
+
+	b -- c
+	b -- h
+
+	c -- d
+	c -- g
+
+	d -- e
+	d -- f
+
+	h -- i
+	h -- j
+
+	k -- l
+	k -- q
+
+	l -- m
+	l -- p
+
+	m -- n
+	m -- o
+
+	q -- r
+	q -- s
+}
