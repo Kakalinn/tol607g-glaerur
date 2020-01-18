@@ -1,0 +1,405 @@
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, icelandic]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{multicol}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Log}{Log}
+\renewcommand\O{\mathcal{O}}
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}
+\newcommand\abs[1]{\left|#1\right|}
+\newcommand\p[1]{\left(#1\right)}
+\newcommand\sqp[1]{\left[#1\right]}
+\newcommand\cp[1]{\left\{#1\right\}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\Im{\operatorname{Im}}
+\renewcommand\Re{\operatorname{Re}}
+\usepackage{color}
+
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\definecolor{mygreen}{rgb}{0, 0, 1}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+\lstset{
+commentstyle=\color{mygray},
+numbersep=5pt,
+numberstyle=\tiny\color{mygray},
+keywordstyle=\color{mygreen},
+showspaces=false,
+showstringspaces=false,
+stringstyle=\color{myorange},
+tabsize=4
+}
+\lstset{literate=
+{æ}{{\ae}}1
+{í}{{\'{i}}}1
+{ó}{{\'{o}}}1
+{á}{{\'{a}}}1
+{é}{{\'{e}}}1
+{ú}{{\'{u}}}1
+{ý}{{\'{y}}}1
+{ð}{{\dh}}1
+{þ}{{\th}}1
+{ö}{{\"o}}1
+{Á}{{\'{A}}}1
+{Í}{{\'{I}}}1
+{Ó}{{\'{O}}}1
+{Ú}{{\'{U}}}1
+{Æ}{{\AE}}1
+{Ö}{{\"O}}1
+{Ø}{{\O}}1
+{Þ}{{\TH}}1
+}
+
+\usetheme{Madrid}
+
+\title{Lausnar aðferðir}
+\subtitle{Allsherjar leit og ráðug reiknirit}
+\author{Bergur Snorrason}
+\date{\today}
+
+\AtBeginSection[] {
+  \begin{frame}
+    \frametitle{Efnisyfirlit}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Inngangur}
+
+\begin{frame}
+	\frametitle{Almennar nálganir lausna}
+\begin{itemize}
+	\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
+	\begin{itemize}
+		\item<2-> Allsherjar leit (e. \emph{complete search}),
+		\item<3-> Gráðug reiknirit (e. \emph{greedy algorithms}),
+		\item<4-> Deila og drotna reiknirit (e. \emph{divide and conquer algorithms}),
+		\item<5-> Kvik bestun (e. \emph{dynamic programming}).
+	\end{itemize}
+	\item<6-> Í dag verður farið í fyrstu tvær aðferðirnar.
+	\item<7-> Við styttum oft "allsherjar leit" í "CS" (fyrir "Complete search") og "kvik bestun" í "DP".
+\end{itemize}
+\end{frame}
+
+\section{Allsherjar leit (ofbeldi aðferðin)}
+
+\begin{frame}
+	\frametitle{Allshersjar leit}
+\begin{itemize}
+	\item<1-> Þegar við erum að ræða dæmi kallast safn allra mögulega lausna \emph{lausnarrúm} dæmisins.
+	\item<2-> \emph{Allsherjar leit} felur í sér að leita í gegnum allt lausnarrúmið.
+	\item<3-> Tökum dæmi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, dæmi}
+\begin{itemize}
+	\item<1-> Gefnar eru $n$ mismunandi heiltölur. Hver þeirra er stærst?
+	\item<2-> Hér er lausnarrúmið einfaldlega þær tölur sem eru gefnar.
+	\item<3-> Okkur nægir að ítra í gegnum allar tölurnar og halda utan um stærstu töluna sem við höfum séð hingað til.
+	\item<4-> Þessi aðferð er $\O(n)$.
+	\item<5-> Almennt fáum við að ef lausnarrúmið er af stærð $m$ og við getum athugað hverja lasun í $\O(k)$, þá er CS $\O(mk)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, öll hlutmengi}
+\begin{itemize}
+	\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að CS sé alltaf einfalt. Það þarf þó ekki að vera.
+	\item<2-> Tökum annað dæmi.
+	\item<3-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
+	\item<4-> Ef við viljum leysa þetta dæmi með CS þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Útúrdúr um hlutmengi}
+\begin{itemize}
+	\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
+	\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $1, 2, ..., n$.
+	\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Útúrdúr um bitaframsetingu talna}
+\begin{itemize}
+	\item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvíræð ákvörðuð tala $b$ sem $1$ í
+		$k$-ta sæti bitaframsetningar sinnar þ.þ.a.a. $k$-ta stak $A$ sé í $H$.
+	\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
+	\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
+	\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
+	\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Allshersjar leit, öll hlutmengi}
+\tiny
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+
+int main()
+{
+	int n, i, j;
+	scanf("%d", &n);
+	int a[n];
+	for (i = 0; i < n; i++) scanf("%d", &(a[i]));
+
+	int mx = 0, mask;
+	for (i = 0; i < (1 << n); i++)
+	{
+		int s[n], c = 0;
+		for (j = 0; j < n; j++) if (((1 << j)&i) != 0) s[c++] = j;
+		for (j = 1; j < c; j++) if (a[s[j]] < a[s[j - 1]]) break;
+		if (j == c && c > mx) mx = c, mask = i;
+	}
+
+	printf("%d\n", mx);
+	for (i = 0; i < n; i++) if (((1 << i)&mask) != 0) printf("%d ", a[i]);
+
+	printf("\n");
+	return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, öll hlutmengi}
+\begin{itemize}
+	\item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\O(n)$ að ganga út skugga um hvort tiltekin lausn sé í raun rétt, svo reikniritið er
+		$\O(n2^n)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, allar umraðanir}
+\begin{itemize}
+	\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
+	\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = 1 \cdot 2 \cdot ... \cdot n$ vegu.
+	\item<3-> Tökum mjög einfalt dæmi:
+	\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hver á sinni línu.
+	\item<5-> Við getum notað okkur innbyggða fallið \texttt{next\_permutation} í \texttt{C++}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Allshersjar leit, allar umraðanir}
+\tiny
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n, i;
+	cin >> n;
+	vector<int> p;
+	for (i = 0; i < n; i++) p.push_back(i + 1);
+	do {
+		for (i = 0; i < n; i++) cout << p[i] << ' ';
+		cout << '\n';
+	} while (next_permutation(p.begin(), p.end()));
+	return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Allshersjar leit, allar umraðanir endurkvæmt}
+\tiny
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void perm(int* a, int* f, int n, int x)
+{
+	int i;
+	if (x == n)
+	{
+		for (i = 0; i < n; i++) printf("%d ", a[i]);
+		printf("\n");
+		return;
+	}
+	for (i = 0; i < n; i++) if (f[i] == 0)
+	{
+		f[i] = 1;
+		a[x] = i + 1;
+		perm(a, f, n, x + 1);
+		f[i] = 0;
+	}
+}
+
+int main()
+{
+	int i, n;
+	scanf("%d", &n);
+	int a[n], f[n];
+	for (i = 0; i < n; i++) f[i] = 0;
+	perm(a, f, n, 0);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, allar umraðanir}
+\begin{itemize}
+	\item<1-> Mikilvægt er að \texttt{p} sé vaxandi röð til að fyrra forritið virki rétt, því lykkjan hættir þegar það lendir á síðustu umröðunni,
+		í stafrófsröð.
+	\item<2-> Bæði eru þessi forrit $\O(n\cdot n!)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Allshersjar leit, kostir og gallar}
+\begin{itemize}
+	\item<1-> Það eru ýmsir kostir við CS, til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum á eftir aðferðir þar sem það gildir ekki)
+		og CS lausnir eiga það til að vera auðveldar í útfærslu (það mætti segja að þær séu "eftir uppskrift").
+	\item<2-> Eitt þarf samt að hafa í huga. Á keppnum eru CS dæmi yfirleitt flokkuð léttu dæmin, ef það er slíkt dæmi í keppninni á annað borð.
+	\item<3-> Keppnir innihalda frekar dæmi þar sem CS er aðeins hluti af lausninni.
+\end{itemize}
+\end{frame}
+
+\section{Gráðug reiknirit}
+
+\begin{frame}
+	\frametitle{Gráðug reiknirit}
+\begin{itemize}
+	\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tíma punkti kallast \emph{gráðugt}.
+	\item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
+	\item<3-> Tökum dæmi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gráðug reiknirit, dæmi}
+\begin{itemize}
+	\item<1-> 
+		Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+		Í boði er ótakmarkað magn af $1$ krónum, $5$ krónum og $10$ krónum.
+		Hver er minnsti fjöldi af klinki sem þú getur gefið?
+	\item<2-> Dæmi um lausn er:
+	\item<3-> Látum $k$ tákna dýrasta klinkið sem er ekki dýrara en $n$. Gefum til baka $k$ og endurtökum fyrir $n - k$ þangað til $n$ er $0$.
+	\item<4-> Tökum til dæmis $n = 24$. Þá myndum við gefa $10, 10, 1, 1, 1, 1$ til baka.
+	\item<5-> Það vill svo skemmtilega til að þessi gráðuga lausn virkar fyrir öll $n$.
+	\item<6-> En hvað ef við breytum aðeins dæminu?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gráðug reiknirit, dæmi}
+\begin{itemize}
+	\item<1-> 
+		Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+		Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
+		Hver er minnsti fjöldi af klinki sem þú getur gefið?
+	\item<2-> Tökum til dæmis $n = 24$. Þá myndum aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
+	\item<3-> En þetta er ekki besta leiðin. Betra væri að gefa $8, 8, 8$.
+	\item<4-> Svo gráðuga aðferðin virkar bara stundum.
+	\item<5-> Þetta dæmi er þekkt sem Skiptimynta dæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gráðug reiknirit, annað (hefðbundara) dæmi}
+\begin{itemize}
+	\item<1-> 
+		Þú ert yfirmaður hjá leigubíla fyrirtæki.
+		Í dag mættu $n$ bílstjórar í vinnuna og það eru $m$ leigubílar til að skipa bílstjóra á.
+		Ekki eru þó allir bílstrjórar og leigubílar skapaðir jafnir.
+		Bíll $i$ er $h_i$ hestöfl og bílstjóri $j$ getur keyrt bíla sem eru $g_j$ hestöfl eða minna.
+		Hver er mesti fjöld bíla sem þú getur skipað á bílstjóra, án þess að bílstjóri fá bíl umfram sína getu?
+	\item<2->  Tökum eftir að við viljum að bíll sé keyrður af þeim bílstrjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
+	\item<3->  Byrjum á að raða bílunum og bílstjórunum í vaxandi röð.
+	\item<4->  Við getum núna í línulegum tíma fundið þann bílstrjóra sem getur keyrt fyrsta bíl.
+	\item<5->  Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gráðug reiknirit, annað (hefðbundara) dæmi}
+\begin{itemize}
+	\item<1-> Teljum hversu marga bíla við náum að úthluta og sú tala er lausnin.
+	\item<2-> Þessi lausn er $\O(n + m)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Gráðug reiknirit, annað (hefðbundnara dæmi)}
+\tiny
+Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
+Næstu $n$ tölur lýsa getu bílstjóranna.
+Síðustu $m$ tölurnar eru hestöfl bílanna.
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n, m, i, j, x, r;
+	vector<int> a, b;
+	cin >> n >> m;
+	for (i = 0; i < n; i++)
+	{
+		cin >> x;
+		a.push_back(x);
+	}
+	for (i = 0; i < m; i++)
+	{
+		cin >> x;
+		b.push_back(x);
+	}
+	sort(a.begin(), a.end());
+	sort(b.begin(), b.end());
+	r = j = 0;
+	for (i = 0; i < m; i++)
+	{
+		while (j < n && a[j] < b[i]) j++;
+		if (j < n) r++, j++;
+	}
+	cout << r << endl;
+	return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\section{Samantekt}
+\begin{frame}
+\frametitle{Samantekt}
+\begin{itemize}
+	\item<1-> Allsherjar leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
+		Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
+	\item<2-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
+		Gráðug reiknirit eiga ekki að fá TLE, en algengt er að fá WA.
+\end{itemize}
+\end{frame}
+
+\end{document}
