@@ -4,18 +4,10 @@ using namespace std;
 int main()
 {
 	int n, m, i, j, x, r;
-	vector<int> a, b;
 	cin >> n >> m;
-	for (i = 0; i < n; i++)
-	{
-		cin >> x;
-		a.push_back(x);
-	}
-	for (i = 0; i < m; i++)
-	{
-		cin >> x;
-		b.push_back(x);
-	}
+	vector<int> a(n), b(m);
+	for (i = 0; i < n; i++) cin >> a[i];
+	for (i = 0; i < m; i++) cin >> b[i];
 	sort(a.begin(), a.end());
 	sort(b.begin(), b.end());
 	r = j = 0;

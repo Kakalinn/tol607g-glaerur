@@ -78,7 +78,7 @@ tabsize=4
 \usetheme{Madrid}
 
 \title{Lausnar aðferðir}
-\subtitle{Allsherjar leit og ráðug reiknirit}
+\subtitle{Tæmandi leit og ráðug reiknirit}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -100,23 +100,23 @@ tabsize=4
 \begin{itemize}
 	\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
 	\begin{itemize}
-		\item<2-> Allsherjar leit (e. \emph{complete search}),
+		\item<2-> Tæmandi leit eða ofbeldis aðferðin (e. \emph{complete search, brute force}),
 		\item<3-> Gráðug reiknirit (e. \emph{greedy algorithms}),
-		\item<4-> Deila og drotna reiknirit (e. \emph{divide and conquer algorithms}),
+		\item<4-> Deila og drottna reiknirit (e. \emph{divide and conquer algorithms}),
 		\item<5-> Kvik bestun (e. \emph{dynamic programming}).
 	\end{itemize}
 	\item<6-> Í dag verður farið í fyrstu tvær aðferðirnar.
-	\item<7-> Við styttum oft "allsherjar leit" í "CS" (fyrir "Complete search") og "kvik bestun" í "DP".
+	\item<7-> Við styttum oft ,,tæmandi leit'' í ,,CS" (fyrir ,,Complete search") og ,,kvik bestun" í ,,DP".
 \end{itemize}
 \end{frame}
 
-\section{Allsherjar leit (ofbeldi aðferðin)}
+\section{Tæmandi leit (ofbeldi aðferðin)}
 
 \begin{frame}
 	\frametitle{Allshersjar leit}
 \begin{itemize}
 	\item<1-> Þegar við erum að ræða dæmi kallast safn allra mögulega lausna \emph{lausnarrúm} dæmisins.
-	\item<2-> \emph{Allsherjar leit} felur í sér að leita í gegnum allt lausnarrúmið.
+	\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið.
 	\item<3-> Tökum dæmi.
 \end{itemize}
 \end{frame}
@@ -160,6 +160,26 @@ tabsize=4
 	\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
 	\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
 	\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Útúrdúr um bitaframsetingu talna}
+\begin{itemize}
+	\item<1->  Þegar kemur að því að not bitakenni í forritun notum við okkur eftirfarandi:
+	\item<2->[]
+\begin{tabular}{| l | l |}
+\hline
+Kennir $n$-ta einstökungs & \quad \texttt{1 << n}\\
+Kennir fyllimengis kennis & \quad \texttt{\textasciitilde{A}}\\
+Kennir samengis tveggja kenna & \quad \texttt{A|B}\\
+Kennir sniðmengis tveggja kenna & \quad \texttt{A\&B}\\
+Kennir samhverfs mismunar tveggja kenna & \quad \texttt{A\textasciicircum B}\\
+Kennir mismunar tveggja kenna & \quad \texttt{A\&(\textasciitilde{B})}\\
+\hline
+\end{tabular}
+	\item<3-> NB: Vegna forgang aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
+	\item<4-> Til dæmis er \texttt{A\&B == 0} jafngild \texttt{A\&(B == 0)} í \texttt{C++}.
 \end{itemize}
 \end{frame}
 
@@ -282,7 +302,7 @@ int main()
 	\frametitle{Allshersjar leit, kostir og gallar}
 \begin{itemize}
 	\item<1-> Það eru ýmsir kostir við CS, til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum á eftir aðferðir þar sem það gildir ekki)
-		og CS lausnir eiga það til að vera auðveldar í útfærslu (það mætti segja að þær séu "eftir uppskrift").
+		og CS lausnir eiga það til að vera auðveldar í útfærslu (það mætti segja að þær séu ,,eftir uppskrift").
 	\item<2-> Eitt þarf samt að hafa í huga. Á keppnum eru CS dæmi yfirleitt flokkuð léttu dæmin, ef það er slíkt dæmi í keppninni á annað borð.
 	\item<3-> Keppnir innihalda frekar dæmi þar sem CS er aðeins hluti af lausninni.
 \end{itemize}
@@ -365,18 +385,10 @@ using namespace std;
 int main()
 {
 	int n, m, i, j, x, r;
-	vector<int> a, b;
 	cin >> n >> m;
-	for (i = 0; i < n; i++)
-	{
-		cin >> x;
-		a.push_back(x);
-	}
-	for (i = 0; i < m; i++)
-	{
-		cin >> x;
-		b.push_back(x);
-	}
+	vector<int> a(n), b(m);
+	for (i = 0; i < n; i++) cin >> a[i];
+	for (i = 0; i < m; i++) cin >> b[i];
 	sort(a.begin(), a.end());
 	sort(b.begin(), b.end());
 	r = j = 0;
@@ -395,7 +407,7 @@ int main()
 \begin{frame}
 \frametitle{Samantekt}
 \begin{itemize}
-	\item<1-> Allsherjar leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
+	\item<1-> Tæmandi leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
 		Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
 	\item<2-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
 		Gráðug reiknirit eiga ekki að fá TLE, en algengt er að fá WA.
