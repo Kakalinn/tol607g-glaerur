@@ -1,3 +1,6 @@
+%TODO nefna glaerurnar
+%TODO Lesa yfir fyrsta kafla, heap
+%TODO mynd í segmenttree
 \documentclass{beamer}
 \usefonttheme[onlymath]{serif}
 \usepackage[T1]{fontenc}
@@ -91,249 +94,45 @@ tabsize=4
   \end{frame}
 }
 
-
 \begin{document}
 
 \frame{\titlepage}
 
-\section[Listar]{Listar}
-
-\begin{frame}
-\frametitle{Listar}
-\begin{itemize}
-
-\item<1-> Listi er einföld gagnagrind notuð til að geyma gögn á skilvirkann hátt.
-\item<2-> Við viljum getað:
-	\begin{itemize}
-		\item<3-> Bætt staki í listann.
-		\item<4-> Leitað að staki í listanum.
-		\item<5-> Eytt staki úr listanum.
-	\end{itemize}
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Eintengdir listar}
-\begin{itemize}
-
-\item<1-> Einfaldasta (og sennilega algengasta) leiðin til að útfæra lista er með eintengdum lista (singly linked list).
-\item<2-> Eintengdur listi samanstendur af nóðum.
-\item<3-> Hver nóða geymir stak í listanum og upplýsingar um staðsetningu (bendi á) næstu nóðu.
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Útfærsla}
-	\tiny
-	\begin{lstlisting}[language=C++]
-typedef struct snode
-{
-	int v;
-	struct snode* n;
-} node;
-
-class llist
-{
-	public:
-	node* h;
-	node* t;
-	llist()
-	{
-		h = NULL; t = NULL;
-	}
-	void add(int n)
-	{
-		...
-	}
-	bool find(int n)
-	{
-		...
-	}
-	bool del(int n)
-	{
-		...
-	}
-};
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Útfærsla}
-	\tiny
-	\begin{lstlisting}[language=C++]
-void add(int n)
-{
-	node* a = new node;
-	a->v = n;
-	a->n = NULL;
-	if (h == NULL)
-	{
-		h = a; t = a;
-	}
-	else
-	{
-		t->n = a;
-		t = t->n;
-	}
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Útfærsla}
-	\tiny
-	\begin{lstlisting}[language=C++]
-bool find(int n)
-{
-	node* g = h;
-	while (g != NULL)
-	{
-		if (g->v == n)
-		{
-			break;
-		}
-		g = g->n;
-	}
-	return g != NULL;
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Útfærsla}
-	\tiny
-	\begin{lstlisting}[language=C++]
-bool del(int n)
-{
-	if (h->v == n)
-	{
-		if (h == t)
-		{
-			delete h; h = NULL; t = NULL; return true;
-		}
-		node* g = h; h = h->n; delete g; return true;
-	}
-	node* gg = h; node* g = h->n;
-	while (g != NULL)
-	{
-		if (g->v == n)
-		{
-			break;
-		}
-		gg = g; g = g->n;
-	}
-	if (g == NULL)
-	{
-		return false;
-	}
-	gg->n = g->n;
-	if (g == t)
-	{
-		t = gg;
-	}
-	delete g;
-	return true;
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\frametitle{Kostir og gallar}
-\begin{itemize}
-
-\item<1-> Gallar:
-	\begin{itemize}
-		\item<2-> Mjög hæg leit.
-		\item<3-> Býður ekki upp á handahófskennda vísun (e. random access).
-	\end{itemize}
-\item<4-> Kostir:
-	\begin{itemize}
-		\item<5-> Er hluti af \texttt{C++ STL}.
-		\item<6-> Unnt er að skeyta saman listum í $\mathcal{O}(1)$, eitthvað sem er
-			til dæmis ekki unnt með \texttt{vector} í \texttt{C++}.
-	\end{itemize}
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Tímaflækjur}
-\begin{itemize}
-
-\item<1-> Innsetning: $\mathcal{O}(1)$.
-\item<2-> Leita að staki: $\mathcal{O}(n)$.
-\item<3-> Eyða taki: $\mathcal{O}(n)$.
-
-\end{itemize}
-\end{frame}
-
-\section[Forgangsbiðraðir]{Forgangsbiðraðir}
-
-\begin{frame}
-\frametitle{Forgangsbiðraðir}
-\begin{itemize}
-
-\item<1-> Forgangsbiðraðir (e. priority queues) eru þægilegar gagnagrindur að hafa.
-\item<2-> Við notum þær til að geyma röðuð gögn.
-\item<3-> Við viljum getað:
-	\begin{itemize}
-		\item<4-> Bætt staki í biðröðina.
-		\item<5-> Fundið \emph{besta} stakið í biðröðinni.
-		\item<6-> Eytt besta stakinu úr biðröðinni.
-	\end{itemize}
-
-\end{itemize}
-\end{frame}
+\section[Hrúgur]{Hrúgur}
 
 \begin{frame}
 \frametitle{Hrúgur}
 \begin{itemize}
-
-\item<1-> Algengasta leiðin til að útfæra forgangsbiðraðir er að nota hrúgu (e. heap)
-\item<2-> Hrúga er tvíundartré sem uppfyllir \emph{hrúguskilyrðinu}.
-\item<3-> \emph{Hrúguskilyrðið}: Sérhver nóða er betri en, eða jafn góð, börnum sínum.
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Framsetning hrúga í tölvum}
-\begin{itemize}
-
-\item<1-> Hrúgur eru nokkuð einfaldar í útfærslu.
-\item<2-> Hægt er að tákna \emph{tréð} sem \emph{fylki}.
-\item<3-> Helsta atriðið verður að útfæra \emph{hrúguskilyrðis lagara}.
-\item<4-> Þegar tvíundartré eru útfærð með fylkjum er yfirleitt notuð önnur af tveimur aðferðum.
-
+	\item<1-> Rótartvíundartré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
+	\item<2-> Við köllum slík tré \emph{hrúgur} (e. heap).
+	\item<3-> Hrúgur eru heppilega auðveldar í útfærslu.
+	\item<4-> Við geymum tréð sem flyki og eina erfiðið er að viðhalda hrúguskilyrðið.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Fylki sem tré}
 \begin{itemize}
-
-\item<1-> Sú fyrri:
+\item<1-> Þegar við geymum tréð sem flyki notum við eina af tveimur aðferðum.
+\item<2-> Sú fyrri:
 	\begin{itemize}
-		\item<2-> Rótin er í staki $1$ í fylkinu.
-		\item<3-> Vinstra barn staksins $i$ er stak $2\times i$.
-		\item<4-> Hægra barn staksins $i$ er stak $2\times i + 1$.
-		\item<5-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i}{2} \right \rfloor$.
+		\item<3-> Rótin er í staki $1$ í fylkinu.
+		\item<4-> Vinstra barn staksins $i$ er stak $2\times i$.
+		\item<5-> Hægra barn staksins $i$ er stak $2\times i + 1$.
+		\item<6-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i}{2} \right \rfloor$.
 	\end{itemize}
-\item<6-> Sú seinni:
+\item<7-> Sú seinni:
 	\begin{itemize}
-		\item<7-> Rótin er í staki $0$ í fylkinu.
-		\item<8-> Vinstra barn staksins $i$ er stak $2\times i + 1$.
-		\item<9-> Hægra barn staksins $i$ er stak $2\times i + 2$.
-		\item<10-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i - 1}{2} \right \rfloor$.
+		\item<8-> Rótin er í staki $0$ í fylkinu.
+		\item<9-> Vinstra barn staksins $i$ er stak $2\times i + 1$.
+		\item<10-> Hægra barn staksins $i$ er stak $2\times i + 2$.
+		\item<11-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i - 1}{2} \right \rfloor$.
 	\end{itemize}
-
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúgur í \texttt{C}}
+	\frametitle{Hrúga í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 #define PARENT(i) ((i - 1)/2)
@@ -370,7 +169,7 @@ void push(int x)
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúgur í \texttt{C}}
+	\frametitle{Hrúga í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 void pop()
@@ -394,25 +193,17 @@ void push(int x)
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúgur í \texttt{C}}
+	\frametitle{Hrúga í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 void fix_down(int i)
 {
 	int mx = i;
-	if (RIGHT(i) < hn && h[mx] < h[RIGHT(i)])
-	{
-		mx = RIGHT(i);
-	}
-	if (LEFT(i) < hn && h[mx] < h[LEFT(i)])
-	{
-		mx = LEFT(i);
-	}
+	if (RIGHT(i) < hn && h[mx] < h[RIGHT(i)]) mx = RIGHT(i);
+	if (LEFT(i) < hn && h[mx] < h[LEFT(i)]) mx = LEFT(i);
 	if (mx != i)
 	{
-		int s = h[i];
-		h[i] = h[mx];
-		h[mx] = s;
+		swap(h[i], h[mx]);
 		fix_down(mx);
 	}
 }
@@ -420,20 +211,15 @@ void fix_down(int i)
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúgur í \texttt{C}}
+	\frametitle{Hrúga í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 void fix_up(int i)
 {
-	if (i == 0)
-	{
-		return;
-	}
+	if (i == 0) return;
 	else if (h[i] > h[PARENT(i)])
 	{
-		int s = h[i];
-		h[i] = h[PARENT(i)];
-		h[PARENT(i)] = s;
+		swap(h[i], h[PARENT(i)]);
 		fix_up(PARENT(i));
 	}
 }
@@ -441,35 +227,203 @@ void fix_up(int i)
 \end{frame}
 
 \begin{frame}
-\frametitle{Kostir og gallar}
 \begin{itemize}
+	\item<1-> Þetta gefur okkur útfærlsu á forgangsbiðröð.
+	\item<2-> Við getum fundið stærsta stakið í $\mathcal{O}(1)$.
+	\item<3-> Við getum eytt stærsta stakinu í $\mathcal{O}(\log n)$.
+	\item<4-> Við getum bætt við stakií $\mathcal{O}(\log n)$.
+\end{itemize}
+\end{frame}
 
-\item<1-> Gallar:
-	\begin{itemize}
-		\item<2-> Styður ekki beint almenna leit.
-		\item<3-> Styður ekki beint samruna.
-	\end{itemize}
-\item<4-> Kostir:
-	\begin{itemize}
-		\item<5-> Er hluti af \texttt{C++ STL}.
-		\item<6-> Heldur kvikt utan um röðun.
-	\end{itemize}
+\section[Biltré]{Biltré}
 
+\begin{frame}
+\frametitle{Dæmi}
+\begin{itemize}
+\item<1-> Gefinn er listi með $n$ tölum.
+\item<2-> Næst koma $q$ fyrir spurnir, þar sem hver er af einni af tveimur gerðum:
+	\begin{itemize}
+	\item<3-> Breyttu $i$-tu tölunni í listanum í $k$.
+	\item<4-> Reiknaðu summu allra talna á bilinu $[i, j]$.
+	\end{itemize}
+\item<5-> Það er auðséð að einföld útfærlsa á þessum fyrir spurnum gefur okkur $\mathcal{O}(1)$ fyrir þá fyrri og $\mathcal{O}(n)$ fyrir þá seinni.
+\item<6-> Þar sem allar (eða langflestar) fyrirspurnir gætu verið af seinni gerðin yrði lausnin í heildin $\mathcal{O}(qn)$.
+\item<7-> Það er þó hægt að leysa þetta dæmi hraðar.
+\item<8-> Algengt er að nota til þess \emph{biltré}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tímaflækjur}
+\frametitle{Biltré}
 \begin{itemize}
-
-\item<1-> Finna \emph{besta} stakið: $\mathcal{O}(1)$.
-\item<2-> Innsetning: $\mathcal{O}(\log n)$.
-\item<3-> Eyða \emph{besta} stakinu: $\mathcal{O}(\log n)$.
-
+\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
+\item<2-> Rótin geymir svar við fyrirspurninni \texttt{1 n} 
+og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m} og \texttt{m + 1 j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
+\item<3-> Þær nóður sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Notkun}
+\begin{itemize}
+\item<1-> Gerum ráð fyrir að við höfum biltré eins og lýst er að ofan og látum $H$ tákna hæð trésins.
+\item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
+\item<3-> Fyrri fyrirspurnin er einföld.
+\item<4-> Ef við eigum að breyta $i$-ta stakinu í $k$ finnum við fyrst laufið sem svarar til fyrirspurnar \texttt{i i},
+	setjum svarið þar sem $k$ og förum svo upp í rót í gegnum foreldrana og uppfærum á leiðinni gildin í þeim nóðu sem við lendum í.
+\item<5-> Þar sem við heimsækjum bara þær nóður sem eru á veginum frá rót til laufs (mest $H$ nóður) er tímaflækjan á fyrri fyrirspurninn $\mathcal{O}(H)$.
+\end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Hrúga í \texttt{C}}
+	\tiny
+	\begin{lstlisting}[language=C]
+// ath: p er af staerd 4*n + 1
+#define LEFT(x) ((x)*2)
+#define RIGHT(x) ((x)*2 + 1)
+void update(int* p, int i, int j, int x, int y, int e)
+{
+	if (i == j) p[e] = y;
+	else
+	{
+		int m = (i + j)/2;
+		if (x <= m) update(p, i, m, x, y, LEFT(e));
+		else update(p, m + 1, j, x, y, RIGHT(e));
+		p[e] = p[LEFT(e)] + p[RIGHT(e)];
+	}
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Notkun}
+\begin{itemize}
+\item<1-> Seinni fyrirspurnin er ögn flóknari.
+\item<2-> Auðveldast er að ímynda sér að við förum niður tréð og leitum að hvorum endapunktinum fyrir sig.
+\item<3-> Á leiðinni upp getum við svo pússlað saman svarinu, eftir því hvort við erum að skoða hægri eða vinstri endapunktinn.
+\item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í nóðu
+$[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er hægri endapunkturinn).
+\item<5-> Við göngum svona upp þar til við lendum í bili sem inniheldur hinn endapunktinn.
+\item<6-> Með sömu rökum og áðan er tímaflækjan $\mathcal{O}(H)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Hrúga í \texttt{C}}
+	\tiny
+	\begin{lstlisting}[language=C]
+int queryl(int* p, int i, int j, int x, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	return (x <= m) ? (queryl(p, i, m, x, LEFT(e)) + p[RIGHT(e)])
+                    : (queryl(p, m + 1, j, x, RIGHT(e)));
+}
+
+int queryr(int* p, int i, int j, int x, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	return (x <= m) ? (queryr(p, i, m, x, LEFT(e)))
+                    : (p[LEFT(e)] + queryr(p, m + 1, j, x, RIGHT(e)));
+}
+
+int query(int* p, int i, int j, int x, int y, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	if (x <= m && y <= m) return query(p, i, m, x, y, LEFT(e));
+	if (x > m && y > m) return query(p, m + 1, j, x, y, RIGHT(e));
+	return queryl(p, i, m, x, LEFT(e)) + queryr(p, m + 1, j, y, RIGHT(e));
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Notkun}
+\begin{itemize}
+\item<1-> Þar sem lengd hvers bils sem nóða svara til helmingast þegar farið er niður tréð er $\mathcal{O}(H) = \mathcal{O}(\log n)$.
+\item<2-> Við erum því komin með lausn á upprunalega dæminu sem er $\mathcal{O}(q \log n)$.
+\item<3-> Þetta væri nógu hratt ef, til dæmis, $n = q = 10^5$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Annað dæmi}
+\begin{itemize}
+\item<1-> Fyrsta lína inntaksins inniheldur tvær tölur, $n$ og $m$, báðar jákvæðar heiltölur minni en $10^5$.
+\item<2-> Næsta lína inniheldur $n$ heiltölur, á milli $-10^9$ og $10^9$.
+\item<3-> Næstu $m$ línur innihalda fyrirspurnir, af tveimur gerðum. 
+\item<4-> Fyrri gerðin hefst á \texttt{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $y$ sem $x$-tu töluna.
+\item<5-> Seinni gerðin hefst á \texttt{2} og inniheldur svo tvær tölu,
+$x$ og $y$. Hér á að prenta út stærstu töluna á hlutbilinu $[x, y]$ í talnalistanum.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Hrúga í \texttt{C}}
+	\tiny
+	\begin{lstlisting}[language=C]
+int queryl(int* p, int i, int j, int x, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	return (x <= m) ? (max(queryl(p, i, m, x, LEFT(e)), p[RIGHT(e)]))
+                    : (queryl(p, m + 1, j, x, RIGHT(e)));
+}
+int queryr(int* p, int i, int j, int x, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	return (x <= m) ? (queryr(p, i, m, x, LEFT(e)))
+                    : (max(p[LEFT(e)], queryr(p, m + 1, j, x, RIGHT(e))));
+}
+int query(int* p, int i, int j, int x, int y, int e)
+{
+	if (i == j) return p[e];
+	int m = (i + j)/2;
+	if (x <= m && y <= m) return query(p, i, m, x, y, LEFT(e));
+	if (x > m && y > m) return query(p, m + 1, j, x, y, RIGHT(e));
+	return max(queryl(p, i, m, x, LEFT(e)), queryr(p, m + 1, j, y, RIGHT(e)));
+}
+void update(int* p, int i, int j, int x, int y, int e)
+{
+	if (i == j) p[e] = y;
+	else
+	{
+		int m = (i + j)/2;
+		if (x <= m) update(p, i, m, x, y, LEFT(e));
+		else update(p, m + 1, j, x, y, RIGHT(e));
+		p[e] = max(p[LEFT(e)], p[RIGHT(e)]);
+	}
+}
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Hrúga í \texttt{C}}
+	\tiny
+	\begin{lstlisting}[language=C]
+int main()
+{
+	int n, m, i, x, y, z;
+	scanf("%d%d", &n, &m);
+	int a[n], p[4*n + 1];
+	for (i = 0; i < n; i++) scanf("%d", &(a[i]));
+	for (i = 0; i < 4*n + 1; i++) p[i] = 0;
+	for (i = 0; i < n; i++) update(p, 0, n - 1, i, a[i], 1);
+	while (m-- != 0)
+	{
+		scanf("%d%d%d", &x, &y, &z);
+		if (x == 1) update(p, 0, n - 1, y - 1, z, 1);
+		if (x == 2) printf("%d\n", query(p, 0, n - 1, y - 1, z - 1, 1));
+	}
+
+	return 0;
+}
+	\end{lstlisting}
+\end{frame}
 
 \section[Sammengisleit]{Sammengisleit}
 
@@ -548,14 +502,8 @@ int p[MAX];
 
 int find(int x)
 {
-	if (p[x] == x)
-	{
-		return x;
-	}
-	else
-	{
-		return find(p[x]);
-	}
+	if (p[x] == x) return x;
+	else return find(p[x]);
 }
 
 void join(int x, int y)
@@ -567,10 +515,7 @@ int main()
 {
 	int i;
 	int n = MAX;
-	for (i = 0; i < n; i++)
-	{
-		p[i] = i;
-	}
+	for (i = 0; i < n; i++) p[i] = i;
 	...
 }
 \end{lstlisting}
@@ -617,15 +562,8 @@ int p[MAX];
 
 int find(int x)
 {
-	if (p[x] == x)
-	{
-		return x;
-	}
-	else
-	{
-		p[x] = find(p[x]);	//keðjuþjöppunin á sér stað í þessar línu
-		return p[x];
-	}
+	if (p[x] == x) return x;
+	return p[x] = find(p[x]);
 }
 
 void join(int x, int y)
@@ -637,10 +575,7 @@ int main()
 {
 	int i;
 	int n = MAX;
-	for (i = 0; i < n; i++)
-	{
-		p[i] = i;
-	}
+	for (i = 0; i < n; i++) p[i] = i;
 	...
 }
 \end{lstlisting}
@@ -652,19 +587,6 @@ int main()
 	\item<1-> Það er flóknara að lýsa tímaflækju keðjuþjappaðrar sammengisleitar.
 	\item<2-> \emph{Á heildina litið} (e. amortized) er tímaflækjan er $\mathcal{O}(\alpha(n))$, þar sem $\alpha$ er andhverfa \emph{Ackermann} fallsins.
 	\item<3-> Fyrir þau $n$ sem við fáumst við er $\alpha(n)$ nánast fast.
-\end{itemize}
-\end{frame}
-
-\section[Forskot á sæluna]{Forskot á sæluna}
-
-\begin{frame}[fragile]
-\frametitle{Forskot á sæluna}
-\begin{itemize}
-
-\item<1-> Forgangsbiðraðir eru notaðar í reiknirit Dijkstra.
-\item<2-> Sammengisleit er notuð í reiknirit Kruskals.
-\item<3-> Við munum nota hrúgur aftur í næstu viku.
-
 \end{itemize}
 \end{frame}
 
