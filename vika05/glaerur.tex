@@ -106,14 +106,14 @@ tabsize=4
 	\item<1-> Rótartvíundartré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
 	\item<2-> Við köllum slík tré \emph{hrúgur} (e. heap).
 	\item<3-> Hrúgur eru heppilega auðveldar í útfærslu.
-	\item<4-> Við geymum tréð sem flyki og eina erfiðið er að viðhalda hrúguskilyrðið.
+	\item<4-> Við geymum tréð sem fylki og eina erfiðið er að viðhalda hrúguskilyrðinu.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Fylki sem tré}
 \begin{itemize}
-\item<1-> Þegar við geymum tréð sem flyki notum við eina af tveimur aðferðum.
+\item<1-> Þegar við geymum tréð sem fylki notum við eina af tveimur aðferðum.
 \item<2-> Sú fyrri:
 	\begin{itemize}
 		\item<3-> Rótin er í staki $1$ í fylkinu.
@@ -231,7 +231,8 @@ void fix_up(int i)
 	\item<1-> Þetta gefur okkur útfærlsu á forgangsbiðröð.
 	\item<2-> Við getum fundið stærsta stakið í $\mathcal{O}(1)$.
 	\item<3-> Við getum eytt stærsta stakinu í $\mathcal{O}(\log n)$.
-	\item<4-> Við getum bætt við stakií $\mathcal{O}(\log n)$.
+	\item<4-> Við getum bætt við staki í $\mathcal{O}(\log n)$.
+	\item<5-> Forgangsbiðraðir (e. priority queue) eru oftast útfærðar með svona hrúgum og eru að finna í mörgum forritunarmálum.
 \end{itemize}
 \end{frame}
 
@@ -261,6 +262,20 @@ void fix_up(int i)
 og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m} og \texttt{m + 1 j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
 \item<3-> Þær nóður sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mynd af keðjum}
+	\begin{figure}
+		\includegraphics[scale=0.5]{mynd2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mynd af keðjum}
+	\begin{figure}
+		\includegraphics[scale=0.3]{mynd3.png}
+	\end{figure}
 \end{frame}
 
 \begin{frame}

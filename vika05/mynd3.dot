@@ -1,0 +1,29 @@
+digraph {
+	a [label="[1,7]"]
+	b [label="[1,4]"]
+	c [label="[5,7]"]
+	d [label="[1,2]"]
+	e [label="[3,4]"]
+	f [label="[5,6]"]
+	g [label="[7,7]"]
+
+	h [label="[1,1]"]
+	i [label="[2,2]"]
+	j [label="[3,3]"]
+	k [label="[4,4]"]
+	l [label="[5,5]"]
+	m [label="[6,6]"]
+
+	a -> b;
+	a -> c;
+	b -> d;
+	b -> e;
+	c -> f;
+	c -> g;
+	d -> h;
+	d -> i;
+	e -> j;
+	e -> k;
+	f -> l;
+	f -> m;
+}
