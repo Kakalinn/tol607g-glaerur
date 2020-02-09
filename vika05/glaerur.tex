@@ -1,6 +1,4 @@
-%TODO nefna glaerurnar
 %TODO Lesa yfir fyrsta kafla, heap
-%TODO mynd í segmenttree
 \documentclass{beamer}
 \usefonttheme[onlymath]{serif}
 \usepackage[T1]{fontenc}
@@ -81,7 +79,7 @@ tabsize=4
 \usetheme{Madrid}
 
 \title{Gagnagrindur}
-\subtitle{Listar, forgangsbiðraðir og sammengisleit}
+\subtitle{\texttt{STL}, biltré, sammengisleit}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -98,12 +96,94 @@ tabsize=4
 
 \frame{\titlepage}
 
+\section[STL]{STL}
+
+\begin{frame}
+\frametitle{STL}
+\begin{itemize}
+	\item<1-> Í flestum forritunarmálum eru ýmsar gagnagrindur útfærðar.
+	\item<2-> Við köllum þessar gagnagrindur vanalega \texttt{STL}.
+	\item<3-> Skoðum helstu \texttt{STL} gagnagrindur í \texttt{C++}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{vector}}
+\begin{itemize}
+	\item Gagnagrindin \texttt{vector} virkar svipað og fylki.
+	\item Hún leyfir $\mathcal{O}(1)$ uppflettingu á $i$-ta stakinu.
+	\item Hún leyfir $\mathcal{O}(1)$ breytingar á $i$-ta stakinu.
+	\item Hún leyfir að skeyta staki aftast í $\mathcal{O}(1)$.
+	\item Ef við getum gert eitthvað með fylki, þá getum við það líka með \texttt{vector}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Listi (\texttt{list})}
+\begin{itemize}
+	\item Gagnagrindin \texttt{list} er einteingdur listi.
+	\item Við getum fundið $k$-ta stakið í lista í $\mathcal{O}(k)$.
+	\item Við getum bætt staki fyrir aftan gefið stak í $\mathcal{O}(1)$ (en þurfum fyrst að finna stakið).
+	\item Við getum skeytt saman listum í $\mathcal{O}(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hlaði (\texttt{stack})}
+\begin{itemize}
+	\item Gagnagrindin er mjög einföld.
+	\item Við getum bætt við staki í $\mathcal{O}(1)$.
+	\item Við getum fjarlægt/lesið stakið sem hefur verið styst í hlaðanum í $\mathcal{O}(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Biðröð (\texttt{queue})}
+\begin{itemize}
+	\item Gagnagrindin er mjög einföld.
+	\item Við getum bætt við staki í $\mathcal{O}(1)$.
+	\item Við getum fjarlægt/lesið stakið sem hefur verið lengst í biðröðinni í $\mathcal{O}(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{dequeue}}
+\begin{itemize}
+	\item Nafnið er stytting á ,,double-ended queue''.
+	\item Við getum skeytt staki fremst eða aftast í $\mathcal{O}(1)$.
+	\item Við getum fjarlægt/lesið stakið fremst eða aftast í $\mathcal{O}(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Forgangsbiðröð (\texttt{prioirit\_queue})}
+\begin{itemize}
+	\item Gagnagrindin geymir samanberanleg stök.
+	\item Gerum ráð fyrir sambanburður stakan sé taki $k$ tíma og það séu $n$ stök í biðröðinni.
+	\item Við getum bætt við stökum í $\mathcal{O}(k \log n)$.
+	\item Við getum fjarlægt stakið með hæstan forgang í $\mathcal{O}(k \log n)$.
+	\item Við getum lesið stakið með hæstan forgang í $\mathcal{O}(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengi (\texttt{set})}
+\begin{itemize}
+	\item Gagnagrindin geymir samanberanleg stök.
+	\item Gerum ráð fyrir sambanburður stakan taki $k$ tíma og það séu $n$ stök í menginu.
+	\item Við getum bætt við staki í mengið í $\mathcal{O}(k \log n)$.
+	\item Við getum fjarlægt stak úr menginu í $\mathcal{O}(k \log n)$.
+	\item Við getum athugað hvort stak sé í menginu í $\mathcal{O}(k \log n)$.
+	\item Einnig er til \texttt{multiset}, sem leyfir endurtekningar.
+\end{itemize}
+\end{frame}
+
 \section[Hrúgur]{Hrúgur}
 
 \begin{frame}
 \frametitle{Hrúgur}
 \begin{itemize}
-	\item<1-> Rótartvíundartré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
+	\item<1-> Rótartvíundatré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
 	\item<2-> Við köllum slík tré \emph{hrúgur} (e. heap).
 	\item<3-> Hrúgur eru heppilega auðveldar í útfærslu.
 	\item<4-> Við geymum tréð sem fylki og eina erfiðið er að viðhalda hrúguskilyrðinu.
@@ -226,16 +306,6 @@ void fix_up(int i)
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-\begin{itemize}
-	\item<1-> Þetta gefur okkur útfærlsu á forgangsbiðröð.
-	\item<2-> Við getum fundið stærsta stakið í $\mathcal{O}(1)$.
-	\item<3-> Við getum eytt stærsta stakinu í $\mathcal{O}(\log n)$.
-	\item<4-> Við getum bætt við staki í $\mathcal{O}(\log n)$.
-	\item<5-> Forgangsbiðraðir (e. priority queue) eru oftast útfærðar með svona hrúgum og eru að finna í mörgum forritunarmálum.
-\end{itemize}
-\end{frame}
-
 \section[Biltré]{Biltré}
 
 \begin{frame}
@@ -257,7 +327,7 @@ void fix_up(int i)
 \begin{frame}
 \frametitle{Biltré}
 \begin{itemize}
-\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
+\item<1-> Biltré (e. segment tree) er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
 \item<2-> Rótin geymir svar við fyrirspurninni \texttt{1 n} 
 og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m} og \texttt{m + 1 j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
 \item<3-> Þær nóður sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
@@ -265,21 +335,21 @@ og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við
 \end{frame}
 
 \begin{frame}
-\frametitle{Mynd af keðjum}
+\frametitle{Mynd af biltré, $n = 4$}
 	\begin{figure}
 		\includegraphics[scale=0.5]{mynd2.png}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mynd af keðjum}
+\frametitle{Mynd af biltré, $n = 7$}
 	\begin{figure}
 		\includegraphics[scale=0.3]{mynd3.png}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Notkun}
+\frametitle{Notkun biltrjáa}
 \begin{itemize}
 \item<1-> Gerum ráð fyrir að við höfum biltré eins og lýst er að ofan og látum $H$ tákna hæð trésins.
 \item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
@@ -291,7 +361,7 @@ og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúga í \texttt{C}}
+	\frametitle{Biltré í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 // ath: p er af staerd 4*n + 1
@@ -312,20 +382,20 @@ void update(int* p, int i, int j, int x, int y, int e)
 \end{frame}
 
 \begin{frame}
-\frametitle{Notkun}
+\frametitle{Notkun biltrjáa}
 \begin{itemize}
 \item<1-> Seinni fyrirspurnin er ögn flóknari.
 \item<2-> Auðveldast er að ímynda sér að við förum niður tréð og leitum að hvorum endapunktinum fyrir sig.
 \item<3-> Á leiðinni upp getum við svo pússlað saman svarinu, eftir því hvort við erum að skoða hægri eða vinstri endapunktinn.
-\item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í nóðu
-$[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er hægri endapunkturinn).
+\item<4-> Til dæmis, ef við erum að leita að vinstri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í nóðu
+$[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er vinstri endapunkturinn).
 \item<5-> Við göngum svona upp þar til við lendum í bili sem inniheldur hinn endapunktinn.
 \item<6-> Með sömu rökum og áðan er tímaflækjan $\mathcal{O}(H)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúga í \texttt{C}}
+	\frametitle{Biltré í \texttt{C}}
 	\tiny
 	\begin{lstlisting}[language=C]
 int queryl(int* p, int i, int j, int x, int e)
@@ -356,7 +426,7 @@ int query(int* p, int i, int j, int x, int y, int e)
 \end{frame}
 
 \begin{frame}
-\frametitle{Notkun}
+\frametitle{Tímaflækja biltrjáa}
 \begin{itemize}
 \item<1-> Þar sem lengd hvers bils sem nóða svara til helmingast þegar farið er niður tréð er $\mathcal{O}(H) = \mathcal{O}(\log n)$.
 \item<2-> Við erum því komin með lausn á upprunalega dæminu sem er $\mathcal{O}(q \log n)$.
@@ -370,14 +440,15 @@ int query(int* p, int i, int j, int x, int y, int e)
 \item<1-> Fyrsta lína inntaksins inniheldur tvær tölur, $n$ og $m$, báðar jákvæðar heiltölur minni en $10^5$.
 \item<2-> Næsta lína inniheldur $n$ heiltölur, á milli $-10^9$ og $10^9$.
 \item<3-> Næstu $m$ línur innihalda fyrirspurnir, af tveimur gerðum. 
-\item<4-> Fyrri gerðin hefst á \texttt{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $y$ sem $x$-tu töluna.
+\item<4-> Fyrri gerðin hefst á \texttt{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $x$-tu töluna sem $y$.
 \item<5-> Seinni gerðin hefst á \texttt{2} og inniheldur svo tvær tölu,
 $x$ og $y$. Hér á að prenta út stærstu töluna á hlutbilinu $[x, y]$ í talnalistanum.
+\item<6-> Hvernig leysum við þettta?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúga í \texttt{C}}
+	\frametitle{Lausn}
 	\tiny
 	\begin{lstlisting}[language=C]
 int queryl(int* p, int i, int j, int x, int e)
@@ -417,7 +488,7 @@ void update(int* p, int i, int j, int x, int y, int e)
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Hrúga í \texttt{C}}
+	\frametitle{Lausn}
 	\tiny
 	\begin{lstlisting}[language=C]
 int main()
@@ -484,8 +555,8 @@ int main()
 	\item<1-> Gerum ráð fyrir að tölurnar sem við munum vinna með séu jákvæðar og minni en $n$.
 	\item<2-> Við munum þá gefa okkur $n$ staka fylki $p$, þar sem $i$-ta stakið í fylkinu er upphafstillt sem $i$.
 	\item<3-> Fylkið $p$ mun nú geyma \emph{foreldri} sérhvers stak.
-	\item<3-> Foreldrin myndi keðjur.
-	\item<4-> Sérhver keðja endar í einhverju staki, sem við munum kalla \emph{ráðherra} jafngildisflokksins.
+	\item<4-> Foreldrin myndi keðjur.
+	\item<5-> Sérhver keðja endar í einhverju staki, sem við munum kalla \emph{ráðherra} jafngildisflokksins.
 \end{itemize}
 \end{frame}
 
@@ -518,7 +589,7 @@ int p[MAX];
 int find(int x)
 {
 	if (p[x] == x) return x;
-	else return find(p[x]);
+	return find(p[x]);
 }
 
 void join(int x, int y)
@@ -540,7 +611,7 @@ int main()
 \frametitle{Tímaflækjur frumstæðri sammengisleitar}
 \begin{itemize}
 	\item<1-> Við sjáum nú að tímaflækja \texttt{find} er línuleg í lengd keðjunnar, svo 
-		þar sem lengd keðjunnar getur verið, í versta falli, $n$ þá er \texttt{find} $\mathcal{O}(n)$.
+		þar sem lengd keðjunnar getur verið í versta falli $n$ þá er \texttt{find} $\mathcal{O}(n)$.
 	\item<2-> Fallið \texttt{join} gerir lítið annað en að kalla tvisvar á \texttt{find} svo það er líka
 		$\mathcal{O}(n)$.
 	\item<3-> Er samt ekki hægt að bæta þetta eitthvað?
@@ -551,7 +622,7 @@ int main()
 \begin{frame}
 \frametitle{Keðjuþjöppuð sammengisleit}
 \begin{itemize}
-	\item<1-> Eins og nafnið á glæruni gefur til kynna er hugmyndin að þjappa keðjunum saman í hvert skipti sem kallað er á
+	\item<1-> Eins og nafnið á glærunni gefur til kynna er hugmyndin að þjappa keðjunum saman í hvert skipti sem kallað er á
 		\texttt{find}.
 	\item<2-> Þetta er gert með því að setja \texttt{p[x]} sem ráðherra flokks \texttt{x}, í hverju skrefi endurkvæmninnar.
 \end{itemize}
