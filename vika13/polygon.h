@@ -1,1 +1,1 @@
-typedef vector<point> polygon;
+typedef vector<pt> polygon;

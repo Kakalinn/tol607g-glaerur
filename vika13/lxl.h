@@ -1,14 +1,14 @@
 // Skilar attun á þrihyrningnum stikuðum með <a, b, c, a>
-int sgnarea(point a, point b, point c)
+int sgnarea(pt a, pt b, pt c)
 {
-	double f = real(b - a)*imag(c - a) - imag(b - a)*real(c - a);
+	double f = imag((c - a)/(b - a));
 	if (fabs(f) < EPS) return 0;
 	if (f < EPS) return -1;
 	return 1;
 }
 
 // Skerast <a, b> og <c, d>?
-int lxl(point a, point b, point c, point d)
+int lxl(pt a, pt b, pt c, pt d)
 {
 	int a1 = sgnarea(a, b, c), a2 = sgnarea(a, b, d),
 	    a3 = sgnarea(c, d, a), a4 = sgnarea(c, d, b);

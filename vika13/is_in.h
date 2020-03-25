@@ -1,16 +1,16 @@
 // alpha í glaerunum
-double angle(point a, point o, point b)
+double angle(pt a, pt o, pt b)
 {
 	double r = fabs(arg(a - o) - arg(b - o));
 	return r < M_PI ? r : 2*M_PI - r;
 }
 
-int beta(point a, point b, point c)
+int beta(pt a, pt b, pt c)
 {
-	return real(b - a)*imag(c - a) - imag(b - a)*real(c - a) > 0.0 ? 1 : -1;
+	return imag((c - a)/(b - a)) > 0.0 ? 1 : -1;
 }
 
-int is_in(polygon& p, point q)
+int is_in(polygon& p, pt q)
 {
 	int i;
 	double s = 0.0;

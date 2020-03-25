@@ -10,11 +10,11 @@ int main()
 	{
 		double a, b;
 		scanf("%lf %lf", &a, &b);
-		if (eq(a, b)) {printf("%.4f = %.4f\n", a, b);}
-		if (neq(a, b)) {printf("%.4f =/= %.4f\n", a, b);}
-		if (less_than(a, b)) {printf("%.4f < %.4f\n", a, b);}
-		if (less_than_or_eq(a, b)) {printf("%.4f <= %.4f\n", a, b);}
-		if (greater_than(a, b)) {printf("%.4f > %.4f\n", a, b);}
-		if (greater_than_or_eq(a, b)) {printf("%.4f >= %.4f\n", a, b);}
+		if (eq(a, b)) printf("%.4f = %.4f\n", a, b);
+		if (neq(a, b)) printf("%.4f =/= %.4f\n", a, b);
+		if (less_than(a, b)) printf("%.4f < %.4f\n", a, b);
+		if (less_than_or_eq(a, b)) printf("%.4f <= %.4f\n", a, b);
+		if (greater_than(a, b)) printf("%.4f > %.4f\n", a, b);
+		if (greater_than_or_eq(a, b)) printf("%.4f >= %.4f\n", a, b);
 	}
 }

@@ -2,9 +2,9 @@
 typedef struct
 {
 	double x, y;
-} point;
+} pt;
 
 
 
 // 2:
-typedef complex<double> point;
+typedef complex<double> pt;

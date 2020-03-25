@@ -1,4 +1,4 @@
-double p2l(point p, point l1, point l2)
+double p2l(pt p, pt l1, pt l2)
 {
 	double t = (real(l2 - l1)*real(p - l1) + imag(l2 - l1)*imag(p - l1))
 		/norm(l2 - l1);
