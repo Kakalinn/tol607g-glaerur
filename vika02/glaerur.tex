@@ -1,0 +1,243 @@
+%\documentclass[handout]{beamer}
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, icelandic]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{tkz-euclide}
+\usepackage{hyperref}
+\usetikzlibrary{calc}
+\usepackage{multicol}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Log}{Log}
+\renewcommand\O{\mathcal{O}}
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}
+\newcommand\abs[1]{\left|#1\right|}
+\newcommand\p[1]{\left(#1\right)}
+\newcommand\sqp[1]{\left[#1\right]}
+\newcommand\cp[1]{\left\{#1\right\}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\Im{\operatorname{Im}}
+\renewcommand\Re{\operatorname{Re}}
+\usepackage{color}
+
+\newcommand\env[2]
+{
+	\begin{#1}
+	#2
+	\end{#1}
+}
+\newcommand\varenv[3]
+{
+	\begin[#2]{#1}
+	#3
+	\end{#1}
+}
+
+\newcommand\code[1]{\tiny\lstinputlisting[language=C]{#1}}
+
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\definecolor{mygreen}{rgb}{0, 0, 1}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+\lstset{
+	commentstyle=\color{mygray},
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	keywordstyle=\color{mygreen},
+	showspaces=false,
+	showstringspaces=false,
+	stringstyle=\color{myorange},
+	tabsize=4
+}
+\lstset{literate=
+{æ}{{\ae}}1
+{í}{{\'{i}}}1
+{ó}{{\'{o}}}1
+{á}{{\'{a}}}1
+{é}{{\'{e}}}1
+{ú}{{\'{u}}}1
+{ý}{{\'{y}}}1
+{ð}{{\dh}}1
+{þ}{{\th}}1
+{ö}{{\"o}}1
+{Á}{{\'{A}}}1
+{Í}{{\'{I}}}1
+{Ó}{{\'{O}}}1
+{Ú}{{\'{U}}}1
+{Æ}{{\AE}}1
+{Ö}{{\"O}}1
+{Ø}{{\O}}1
+{Þ}{{\TH}}1
+}
+
+%\usetheme{Madrid}
+
+\title{Grunnatriði og Ad Hoc}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Grunntög og takmarkanir þeirra}
+	\env{itemize}
+	{
+		\item<1-> Í grunninn snýst forritun um gögn.
+		\item<2-> Þegar við forritum flokkum við gögnin okkar með \emph{tögum}.
+		\item<3-> Dæmi um tög í \texttt{C/C++} eru \texttt{int} og \texttt{double}.
+		\item<4-> Helstu tögin í \texttt{C/C++} eru (yfirleitt):
+		\env{tabular}
+		{
+			{l l l}
+			Heiti & Lýsing & Skorður\\
+			\texttt{int} & Heiltala & Á bilinu $[-2^{31}, 2^{31} - 1]$\\
+			\texttt{unsigned int} & Heiltala & Á bilinu $[0, 2^{32} - 1]$\\
+			\texttt{long long} & Heiltala & Á bilinu $[-2^{63}, 2^{63} - 1]$\\
+			\texttt{unsigned long long} & Heiltala & Á bilinu $[0, 2^{64} - 1]$\\
+			\texttt{double} & Fleytitala & Takmörkuð nákvæmni\\
+			\texttt{char} & Heiltala & Á bilinu $[-128, 127]$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hvað með tölur utan þessa bila?}
+	\env{itemize}
+	{
+		\item<1-> Einn helsti kostur \texttt{Python} í keppnisforritun er að heiltölur geta verið eins stórar (eða litlar) og vera skal.
+		\pause \code{fact.py}
+		\pause \code{fact.out}
+		\item<4-> Það er einnig hægt að nota \texttt{fractions} pakkann í \texttt{Python} til að vinna með fleytitölur án þess að tapa nákvæmni.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hvað með tölur utan þessa bila?}
+	\env{itemize}
+	{
+		\item<1-> Sumir \texttt{C/C++} þýðendur bjóða upp á gagnatagið \texttt{\_\_int128} (til dæmis \texttt{gcc}).
+		\item<2-> Þetta tag býður upp á að nota tölur á bilinu $[-2^{127}, 2^{127} - 1]$.
+		\item<3-> Þetta þarf ekki að nota oft.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Röðun}
+	\env{itemize}
+	{
+		\item<1-> Við munum reglulega þurfa að raða gögnum í einhverja röð.
+		\item<2-> 
+		\pause
+		\begin{tabular}{l l}
+			Forritunarmál & Röðun\\
+			\hline
+			\texttt{C} & \texttt{qsort(...)}\\
+			\texttt{C++} & \texttt{sort()}\\
+			\texttt{Python} & \texttt{this.sort()} eða \texttt{sorted(...)}\\
+		\end{tabular}
+		\item<3-> Skoðum nú hvert forritunarmál til að sjá nánar hvernig föllin eru notuð.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Röðun í \texttt{C++}}
+	\env{itemize}
+	{
+		\item<1-> Í grunninn tekur \texttt{sort(...)} við tveimur gildum.
+		\item<2-> Fyrra gildið svarar til fyrsta staks þess sem við viljum raða og seinna gildið vísar á enda þess sem við viljum raða
+			(ekki síðasta stakið)
+		\item<3-> Ef við erum með $n$ staka fylki \texttt{a} þá röðum við því með \texttt{sort(a, a + n)}.
+		\item<4-> Við getum raða nær öllum ílátum með \texttt{sort}.
+		\item<5-> Ef við erum með eitthva ílát (til dæmis \texttt{vector}) \texttt{a} má raða með \texttt{sort(a.begin(), a.end())}.
+		\item<6-> Við getum líka bætt við okkar eigin samanburðarfalli sem þriðja inntak.
+		\item<7-> Það kemur þá í stað ``minna eða samasem'' samanburðarins sem er sjálfgefinn.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Röðun í \texttt{Python}}
+	\env{itemize}
+	{
+		\item<1-> Til að raða lista í \texttt{Python} þá má nota annað hvort \texttt{this.sort()} eða \texttt{sorted(...)}.
+		\item<2-> Gerum ráð fyrir að listinn okkar heiti \texttt{a}.
+		\item<3-> Þá nægir að kalla á \texttt{a.sort()} og eftir það er \texttt{a} raðað.
+		\item<4-> Hinsvegar skilar \texttt{sorted(a)} afriti af \texttt{a} sem hefur verið raðað.
+		\item<5-> Til að raða \texttt{a} á þennan hátt þarf \texttt{a = sorted(a)}.
+		\item<6-> Nota má inntakið \texttt{key} til að raða eftir öðrum samanburðum.
+		\item<7-> Það er einnig inntak sem heitir \texttt{reverse} sem er Boole gildi sem leyfir auðveldlega að raða öfugt.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Röðun í \texttt{C}}
+	\env{itemize}
+	{
+		\item<1-> Í \texttt{C} er enginn sjálfgefinn samanburður, svo við þurfum alltaf að skrifa okkar eigið samanburðarfall.
+		\item<2-> Til röðunar notum við fallið \texttt{qsort(...)}.
+		\item<3-> Fallið tekur fjögur viðföng:
+		\env{itemize}
+		{
+			\item<4-> \texttt{void* a}. Þetta er fylkið sem við viljum raða.
+			\item<5-> \texttt{size\_t n}. Þetta er fjöldi staka í fylkinu sem \texttt{a} svarar til.
+			\item<6-> \texttt{size\_t s}. Þetta er stærð hvers staks í fylkinu okkar (í bætum).
+			\item<7-> \texttt{int (*cmp)(const void *, const void*)}. Þetta er samanburðarfallið okkar.
+		}
+		\item<8-> Síðasta inntakið er kannski flókið við fyrstu sýn en er einfalt fyrir okkur að nota.
+		\item<9-> Þetta er \emph{fallabendir} (e. \emph{function pointer}) ef þið viljið kynna ykkur það frekar.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Röðun í \emph{C}}
+	\code{sort.c}
+}
+
+\env{frame}
+{
+	\frametitle{Uppsetning dæma}
+	\env{itemize}
+	{
+		\item<1-> Dæmin sem við sjáum á Kattis eru (oftast) af stöðluðu sniði.
+		\env{itemize}
+		{
+			\item<2-> Fyrst er saga.
+		}
+	}
+}
+
+\end{document}
+
