@@ -96,7 +96,7 @@
 
 %\usetheme{Madrid}
 
-\title{Grunnatriði og Ad Hoc}
+\title{Grunnatriði og Ad hoc}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -234,8 +234,368 @@
 		\item<1-> Dæmin sem við sjáum á Kattis eru (oftast) af stöðluðu sniði.
 		\env{itemize}
 		{
-			\item<2-> Fyrst er saga.
+			\item<2-> Saga.
+			\item<3-> Dæmið.
+			\item<4-> Inntaks -og úttakslýsingar.
+			\item<5-> Sýnidæmi.
 		}
+		\item<6-> Fyrstu tveir punktarnir geta verið blandaðir saman.
+		\item<7-> Þeir eru líka lengsti hluti dæmisins.
+	}
+}
+\env{frame}
+{
+	\includegraphics[scale = 0.38]{daemi}
+}
+
+\env{frame}
+{
+	\frametitle{Röng lausn. Hver er villan?}
+	\code{differentint.cpp}
+}
+
+\env{frame}
+{
+	\frametitle{Rétt lausn}
+	\code{different.cpp}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{long long}}
+	\env{itemize}
+	{
+		\item<1-> Þurfum við þó alltaf að skrifa \texttt{long long}?
+		\item<2-> Nei!
+		\item<3-> Við getum notað \texttt{typedef}.
+		\item<4-> Við notum einfaldlega \texttt{typedef <gamla> <nýja>;}.
+		\item<5-> Venjan í keppnisforritun er að nota \texttt{typedef long long ll;}.
+		\item<6-> Við munum nota \texttt{typedef} aftur.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Rétt lausn með \texttt{typedef}}
+	\code{differentll.cpp}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{Time Limit Exceede}}
+	\env{itemize}
+	{
+		\item<1-> Hvernig vitum að lausnin okkar sé of hæg?
+		\item<2-> Ein leið er að útfæra lausnina, senda hana inn og gá hvað Kattis segir.
+		\item<3-> Það myndi þó spara mikla vinnu ef við gætum svarað spurningunni án þess að útfæra.
+		\item<4-> Einnig gæti leynst önnur villa í útfærslunni okkar sem gefur okkur \texttt{Time Limit Exceeded} (\texttt{TLE}).
+		\item<5-> Til að ákvarða hvort lausn sé nógu hröð þá notum við tímaflækjur.
+		\item<6-> Sum ykkar munu þekkja tímaflækjar og önnur ekki.
+		\item<7-> Skoðum fyrst hvað tímaflækjur eru í grófum dráttum.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tímaflækjur í grófum dráttum}
+	\env{itemize}
+	{
+		\item<1-> Keyrslutími forrits er háður stærðinni á inntakinu.
+		\item<2-> Tímaflækjan lýsir hvernig keyrslutími forritsins skalast þegar inntakið skalast.
+		\item<3-> Ef forritið er með tímaflækju $\mathcal{O}(f(n))$ þýðir það að keyrslutíminn vex eins of $f$ þegar $n$ vex.
+		\item<4-> Til dæmis ef forritið hefur tímaflækju $\mathcal{O}(n)$ þá tvöfaldast keyrslutími þegar inntakið tvöfaldast (í versta falli).
+		\item<5-> Hér gerum við ráð fyrir að grunnaðgerðirnar okkar taki fastann tíma, eða séu með tímaflækju $\mathcal{O}(1)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef forritið okkar þarf að framkvæma $\mathcal{O}(f(n))$ aðgerð $m$ sinnum þá er tímaflækjan $\mathcal{O}(m \cdot f(n))$.
+		\item<2-> Þetta er reglan sem við notum oftast í keppnisforritun.
+		\item<3-> Hún segir okkur til dæmis að tvöföld \texttt{for}-lykkja, þar sem hver \texttt{for}-lykkja er $n$ löng, er $\mathcal{O}(n^2)$.
+		\item<4-> Ef við erum með tvær einfaldar \texttt{for}-lykkjur, báðar af lenged $n$, þá er forritið 
+			$\mathcal{O}(n) + \mathcal{O}(n) = \mathcal{O}(n)$
+		\item<5-> Einnig gildir að tímaflækja forritsins okkar takmarkast af hægasta hluta forritsins.
+		\item<6-> Til dæmis er
+			$\mathcal{O}(n + n + n + n + n^2) = \mathcal{O}(n^2)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Stærðfræði}
+	\env{itemize}
+	{
+		\item<1-> Við segjum að fall $g(x)$ sé í menginu $\mathcal{O}(f(x))$ ef til eru rauntölur $c$ og $x_0$ þannig að
+		\[
+			|g(x)| \leq c \cdot f(x)
+		\]
+		fyrir öll $x > x_0$.
+		\item<2-> Þetta þýðir í raun að fallið $|g(x)|$ verður á endanum minna en $k \cdot f(x)$.
+		\item<3-> Þessi lýsing undirstrikar betur að $f(x)$ er efra mat á $g(x)$, og er því að segja að $g(x)$ hagi sér ekki verr en $f(x)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Þekktar tímaflækjur}
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjur algrengra aðgerða eru:
+		\item<2->
+		\tiny
+		\env{tabular}
+		{
+			{l | l | l}
+			Aðgerð & Lýsing & Tímaflækja\\
+			\hline
+			Línulega leit & Almenn leit í fylki & $\mathcal{O}(n)$\\
+			Helmingunarleit & Leit í röðuðu fylki & $\mathcal{O}(\log n)$\\
+			Röðun á heiltölum & Röðun á heiltalna fylki & $\mathcal{O}(n \log n)$\\
+			Almenn röðun & Röðun með $\mathcal{O}(T(n))$ samanburð & $\mathcal{O}(T(n) \cdot n \log n)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{$10^8$ reglan}
+	\env{itemize}
+	{
+		\item<1-> Þegar við ræðum tímaflækjur er ``tími'' er ekki endilega rétt orðið.
+		\item<2-> Við erum frekar að lýsa fjölda aðgerða sem forritið framkvæmir.
+		\item<3-> Í keppnisforritun notum við \emph{$10^8$ regluna}:
+		\env{itemize}
+		{
+			\item<4-> Tökum verstu tilfellin sem koma fyrir í inntakslýsingunni á dæminu,
+						stingum því inn í tímaflækjuna okkar
+						og deilum með $10^8$.
+			\item<5-> Ef útkoman er minni en fjöldi sekúnda í tímamörkum dæmisins þá er lausnin okkar nógu hröð, annars er hún of hæg.
+		}
+		\item<6-> Þessa reglu mætti um orða sem: ``Við gerum ráð fyrir að forritið geti framkvæmt $10^8$ aðgerðir á sekúndu''.
+		\item<7-> Þessi regla er gróf nálgun, en virkar mjög vel því þetta er það sem dæmahöfundar hafa í huga þegar þeir semja dæmi.
+		\item<8-> Með þetta í huga fáum við eftirfarandi töflu.
+	}
+}
+
+\env{frame}
+{
+	\env{tabular}
+	{
+		{l | l | l}
+		Stærð $n$ & Versta tímaflækja & Dæmi\\
+		\hline
+		$\leq 10$ & $\mathcal{O}(n!)$ & TSP með heildstærðri leit\\
+		$\leq 15$ & $\mathcal{O}(n^22^n)$ & TSP með kvikri bestun\\
+		$\leq 20$ & $\mathcal{O}(n2^n)$ & Kvik bestun yfir hlutmengi\\
+		$\leq 100$ & $\mathcal{O}(n^4)$ & Almenn spyrðingar\\
+		$\leq 400$ & $\mathcal{O}(n^3)$ & Floyd-Warshall\\
+		$\leq 10^4$ & $\mathcal{O}(n^2)$ & Lengsti sameiginlegi hlutstrengur\\
+		$\leq 10^5$ & $\mathcal{O}(n \sqrt{n})$ & Reiknirit sem byggja á rótarþáttun\\
+		$\leq 10^6$ & $\mathcal{O}(n \log n)$ & Of mikið til að þora að taka dæmi\\
+		$\leq 10^7$ & $\mathcal{O}(n)$ & Næsta tala sem er stærri (\texttt{NGE})\\
+		$\leq 2^{10^7}$ & $\mathcal{O}(\log n)$ & Helmingunarleit\\
+		$> 10^7$ & $\mathcal{O}(1)$ & Ad hoc
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Innbyggðar gagnagrindur í \texttt{C+}}
+	\env{itemize}
+	{
+		\item<1-> Grunnur \texttt{C++} býr yfir mörgum sterkum gagnagrindum.
+		\item<2-> Skoðum helstu slíku gagnagrindur og tímaflækjur mikilvægust aðgerða þeirra.
+		\item<3-> Við munum bara fjalla um gagnagrindurnar í grófum dráttum.
+		\item<4-> Það er hægt að finna ítarlegra efni og dæmi um notkun á netinu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fylki}
+	\env{itemize}
+	{
+		\item<1-> Lýkt og í mörgum öðrum forritunarmálum eru fylki í \texttt{C++}.
+		\item<2-> Fylki geyma gögn og eru af fastri stærð.
+		\item<3-> Þar sem þau eru af fastri stærð má gefa þeim tileinkað, aðliggjandi svæði í minni.
+		\item<4-> Þetta leyfir manni að vísa í fylkið í $\mathcal{O}(1)$.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
+			Bæta staki aftast & $\mathcal{O}(n)$\\
+			Skeyta saman tveimur fylkum & $\mathcal{O}(n)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{vector}}
+	\env{itemize}
+	{
+		\item<1-> Gagnagrindin \texttt{vector} er að mestu leiti eins og fylki.
+		\item<2-> Það má þó bæta stökum aftan á \texttt{vector} í $\mathcal{O}(1)$.
+		\item<3-> Margir nota bara \texttt{vector} og aldrei fylki sem slík.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
+			Bæta staki aftast & $\mathcal{O}(1)$\\
+			Skeyta saman tveimur fylkum & $\mathcal{O}(n)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{list}}
+	\env{itemize}
+	{
+		\item<1-> Gagnagrindin \texttt{list} geymir gögn líkt og fylki gera, en stökin eru ekki aðliggjandi í minni.
+		\item<2-> Því er uppfletting ekki hröð.
+		\item<3-> Aftur á móti er hægt að gera smávægilegar breytingar á \texttt{list} sem er ekki hægt að gera á fylkjum.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Finna stak & $\mathcal{O}(n)$\\
+			Bæta staki aftast & $\mathcal{O}(1)$\\
+			Bæta staki fremst & $\mathcal{O}(1)$\\
+			Bæta staki fyrir aftan tiltekið stak & $\mathcal{O}(1)$\\
+			Bæta staki fyrir framan tiltekið stak & $\mathcal{O}(1)$\\
+			Skeyta saman tveimur \texttt{list} & $\mathcal{O}(1)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{stack}}
+	\env{itemize}
+	{
+		\item<1-> Gagnagrindin \texttt{stack} geymir gögn og leyfir aðgang að síðasta staki sem var bætt við.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Bæta við staki & $\mathcal{O}(n)$\\
+			Lesa nýjasta stakið & $\mathcal{O}(1)$\\
+			Fjarlægja nýjasta stakið  & $\mathcal{O}(1)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{queue}}
+	\env{itemize}
+	{
+		\item<1-> Gagnagrindin \texttt{queue} geymir gögn og leyfir aðgang að fyrsta stakinu sem var bætt við.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Bæta við staki & $\mathcal{O}(n)$\\
+			Lesa elsta stakið & $\mathcal{O}(1)$\\
+			Fjarlægja elsta stakið  & $\mathcal{O}(1)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{stack}}
+	\env{itemize}
+	{
+		\item<1-> Gagnagrindin \texttt{set} geymir gögn án endurtekninga og leyfir hraða uppflettingu.
+		\env{tabular}
+		{
+			{l | l}
+			Aðgerð & Tímaflækja\\
+			\hline
+			Bæta við staki & $\mathcal{O}(\log n)$\\
+			Gá hvort staki hafi verið bætt við  & $\mathcal{O}(\log n)$\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausnar aðferðir}
+	\env{itemize}
+	{
+		\item<1-> Lausnir okkar má flokka í fjóra flokka:
+		\env{itemize}
+		{
+			\item<2-> Ad hoc.
+			\item<3-> Gráðugar lausnir.
+			\item<4-> Deila og drottna (\texttt{D\&C}).
+			\item<5-> Kvik bestun (\texttt{DP}).
+		}
+		\item<6-> Þessi skipting er ekki fullkomin, en það er þó gott að hafa hana í huga.
+		\item<7-> Til dæmis má færa rök fyrir því að gráðugar lausnir og \texttt{D\&C} séu sértilfelli af kvikri bestun.
+		\item<8-> Við munum byrja á því að fjalla almennt um þessar aðferðir og fara svo í sértækara efni.
+		\item<9-> Þá er oft gott að hafa í huga hvernig flokka megi reikniritin.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Ad hoc}
+	\env{itemize}
+	{
+		\item<1-> Ef lausn dæmisins byggir ekki á sérþekkingu flokkast dæmið sem \emph{Ad hoc}.
+		\item<2-> Þessi dæmi eru stundum flokkuð undir ``implementation'', eða sem \emph{útfærsludæmi}.
+		\item<3-> Þetta er gert því flest Ad hoc dæmi snúast um að fylgja beint leiðbeiningum.
+		\item<4-> Það eru þó undantekningar.
+		\item<5-> Í NCPC $2020$ var Ad hoc dæmi sem mætti ekki flokkast sem útfærsludæmi.
+		\item<6-> Ad hoc dæmi flokkast oft til léttari dæma í keppnum.
+		\item<7-> Áðurnefnt NCPC dæmi er þó aftur undanteking, því engin keppandi náði að leysa það dæmi.
+		\item<8-> Samkvæmt skilgreiningu getum við ekki rætt Ad hoc dæmi ítarlega. Tökum því nokkur dæmi.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Blandað brot}
+	\env{itemize}
+	{
+		\item<1-> Þú átt að breyta almennu broti í blandað brot.
+		\item<2-> Munið að almenna brotið $p/q$, og blandaða brotið $a\ b/c$ tákna sömu töluna ef $p/q = a + b/c$.
+		\item<3-> Munið einnig að ef $a\ b/c$ er almennt brot þá gildir $b < c$.
+		\item<4-> Blandaða brotið ykkar á að hafa sama nefnara og upprunarlega brotið.
+		\item<5-> Inntakið inniheldur tvær heiltölur $1 \leq p, q \leq 10^9$.
+		\item<6-> Úttakið skal innihalda blandaða brotið sem svarar til $p/q$.
+		\item<7->
+		\env{tabular}
+		{
+			{l | l | l}
+			& Inntak & Úttak\\
+			\hline
+			Sýnidæmi 1 & \texttt{27 12} & \texttt{2 3 / 12}\\
+			Sýnidæmi 2 & \texttt{2460000 98400} & \texttt{25 0 / 98400}\\
+			Sýnidæmi 3 & \texttt{3 4000} & \texttt{0 3 / 4000}\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Test}
+	\env{itemize}
+	{
+		\item<1->
 	}
 }
 
