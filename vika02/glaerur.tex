@@ -290,7 +290,7 @@
 		\item<3-> Það myndi þó spara mikla vinnu ef við gætum svarað spurningunni án þess að útfæra.
 		\item<4-> Einnig gæti leynst önnur villa í útfærslunni okkar sem gefur okkur \texttt{Time Limit Exceeded} (\texttt{TLE}).
 		\item<5-> Til að ákvarða hvort lausn sé nógu hröð þá notum við tímaflækjur.
-		\item<6-> Sum ykkar munu þekkja tímaflækjar og önnur ekki.
+		\item<6-> Sum ykkar þekkjið tímaflækjur en önnur ekki.
 		\item<7-> Skoðum fyrst hvað tímaflækjur eru í grófum dráttum.
 	}
 }
@@ -398,6 +398,34 @@
 		$\leq 10^7$ & $\mathcal{O}(n)$ & Næsta tala sem er stærri (\texttt{NGE})\\
 		$\leq 2^{10^7}$ & $\mathcal{O}(\log n)$ & Helmingunarleit\\
 		$> 10^7$ & $\mathcal{O}(1)$ & Ad hoc
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{TLE} trikk}
+	\env{itemize}
+	{
+		\item<1-> Stundum fær maður \texttt{TLE} þótt maður sé viss um að lausnin sé nógu hröð.
+		\item<2-> Ef forritið þarf að lesa eða skrifa mikið gæti það verið að hægja nóg á forritun til að gefa \texttt{TLE}.
+		\item<3-> Þetta stafar af því að til að lesa eða skrifa þarf forritið að tala við stýrikerfið.
+		\item<4-> Til að leysa skrifa sum forrit í \emph{biðminni} (e. \emph{buffer}) og prenta bara þegar það fyllist.
+		\item<5-> Svona er þetta gert í \texttt{C}.
+		\item<6-> Í \texttt{C++} er biðminnið tæmt þegar \texttt{std::endl} er prentað.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{\texttt{TLE} trikk}
+	\env{itemize}
+	{
+		\item<1-> Í \texttt{C++} er biðminnið tæmt þegar \texttt{std::endl} er prentað.
+		\item<2-> Til að koma í veg fyrir þetta er hægt að prenta \texttt{\textbackslash n} í staðinn.
+		\item<3-> Til dæmis \texttt{cout << x << '\textbackslash n'}.
+		\item<4-> Það borgar sig einnig að setja \texttt{ios::sync\_with\_stdio(false)} fremst í \texttt{main()}.
+		\item<5-> Ef þið eruð í \texttt{Java} mæli ég með \texttt{Kattio}.
+		\item<6-> Það má finna á GitHub.
 	}
 }
 
@@ -588,6 +616,53 @@
 			Sýnidæmi 3 & \texttt{3 4000} & \texttt{0 3 / 4000}\\
 		}
 	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn á blandað brot}
+	\env{itemize}
+	{
+		\item<1-> Hér nægir okkur að reikna.
+		\item<2-> Við getum aðeins stytt okkur leið með því að nota heiltöludeilingu.
+		\item<3-> Við fáum þá að $a$ er heiltalan sem fæst með deilingunni $p/q$ og $b$ er afgangurinn.
+	}
+}
+
+\env{frame}
+{
+	\code{mixedfractions.c}
+}
+
+\env{frame}
+{
+	\frametitle{Barnahjal}
+	\env{itemize}
+	{
+		\item<1-> Þið eruð að reyna að kenna barni að telja.
+		\item<2-> Það er þó ekki alltaf hægt að heyra hvað barnið segir.
+		\item<3-> Þið viljið ákvarða hvort það sem barnið er að segja gæti mögulega verið rétt.
+		\item<4-> Fyrsta lína inntaksins inniheldur heiltölu $n$.
+		\item<5-> Síðan fylgir ein lína með $1 \leq n \leq 10^3$ strengju.
+		\item<6-> Hver strengur er annaðhvort heiltala á bilinu $[0, 10^4]$ eða strengurinn ``mumble''.
+		\item<7-> Ef það er hægt að skipta út öllum ``mumble'' fyrir tölu þannig að talningin sé rétt skal prenta ``jebb''.
+		\item<8-> Annars skal prenta ``neibb''.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn á Barnahjal}
+	\env{itemize}
+	{
+		\item<1-> Ef $i$-ti strengurinn inniheldur strenginn sem svarar til $i$ eða ``mumble'', fyrir öll $i$, þá er barnið kannski að telja rétt.
+		\item<2-> Annars er barnið að telja rangt.
+	}
+}
+
+\env{frame}
+{
+	\code{babybites.py}
 }
 
 \env{frame}
