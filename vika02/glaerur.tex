@@ -1,5 +1,5 @@
-%\documentclass[handout]{beamer}
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\documentclass{beamer}
 \usefonttheme[onlymath]{serif}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -162,7 +162,7 @@
 			Forritunarmál & Röðun\\
 			\hline
 			\texttt{C} & \texttt{qsort(...)}\\
-			\texttt{C++} & \texttt{sort()}\\
+			\texttt{C++} & \texttt{sort(...)}\\
 			\texttt{Python} & \texttt{this.sort()} eða \texttt{sorted(...)}\\
 		\end{tabular}
 		\item<3-> Skoðum nú hvert forritunarmál til að sjá nánar hvernig föllin eru notuð.
@@ -178,7 +178,7 @@
 		\item<2-> Fyrra gildið svarar til fyrsta staks þess sem við viljum raða og seinna gildið vísar á enda þess sem við viljum raða
 			(ekki síðasta stakið)
 		\item<3-> Ef við erum með $n$ staka fylki \texttt{a} þá röðum við því með \texttt{sort(a, a + n)}.
-		\item<4-> Við getum raða nær öllum ílátum með \texttt{sort}.
+		\item<4-> Við getum raðað flest öllum ílátum með \texttt{sort}.
 		\item<5-> Ef við erum með eitthva ílát (til dæmis \texttt{vector}) \texttt{a} má raða með \texttt{sort(a.begin(), a.end())}.
 		\item<6-> Við getum líka bætt við okkar eigin samanburðarfalli sem þriðja inntak.
 		\item<7-> Það kemur þá í stað ``minna eða samasem'' samanburðarins sem er sjálfgefinn.
@@ -289,8 +289,8 @@
 		\item<2-> Ein leið er að útfæra lausnina, senda hana inn og gá hvað Kattis segir.
 		\item<3-> Það myndi þó spara mikla vinnu ef við gætum svarað spurningunni án þess að útfæra.
 		\item<4-> Einnig gæti leynst önnur villa í útfærslunni okkar sem gefur okkur \texttt{Time Limit Exceeded} (\texttt{TLE}).
-		\item<5-> Til að ákvarða hvort lausn sé nógu hröð þá notum við tímaflækjur.
-		\item<6-> Sum ykkar þekkjið tímaflækjur en önnur ekki.
+		\item<5-> Til að ákvarða hvort lausn sé nógu hröð þá notum við \emph{tímaflækjur}.
+		\item<6-> Sum ykkar þekka tímaflækjur en önnur ekki.
 		\item<7-> Skoðum fyrst hvað tímaflækjur eru í grófum dráttum.
 	}
 }
@@ -301,9 +301,9 @@
 	\env{itemize}
 	{
 		\item<1-> Keyrslutími forrits er háður stærðinni á inntakinu.
-		\item<2-> Tímaflækjan lýsir hvernig keyrslutími forritsins skalast þegar inntakið skalast.
+		\item<2-> Tímaflækjan lýsir hvernig keyrslutími forritsins skalast með inntakinu (í versta falli).
 		\item<3-> Ef forritið er með tímaflækju $\mathcal{O}(f(n))$ þýðir það að keyrslutíminn vex eins of $f$ þegar $n$ vex.
-		\item<4-> Til dæmis ef forritið hefur tímaflækju $\mathcal{O}(n)$ þá tvöfaldast keyrslutími þegar inntakið tvöfaldast (í versta falli).
+		\item<4-> Til dæmis ef forritið hefur tímaflækju $\mathcal{O}(n)$ þá tvöfaldast keyrslutími þegar inntakið tvöfaldast.
 		\item<5-> Hér gerum við ráð fyrir að grunnaðgerðirnar okkar taki fastann tíma, eða séu með tímaflækju $\mathcal{O}(1)$.
 	}
 }
@@ -354,7 +354,8 @@
 			Línulega leit & Almenn leit í fylki & $\mathcal{O}(n)$\\
 			Helmingunarleit & Leit í röðuðu fylki & $\mathcal{O}(\log n)$\\
 			Röðun á heiltölum & Röðun á heiltalna fylki & $\mathcal{O}(n \log n)$\\
-			Almenn röðun & Röðun með $\mathcal{O}(T(n))$ samanburð & $\mathcal{O}(T(n) \cdot n \log n)$\\
+			Strengjasamanburður & Bera saman tvo strengi af lengd $n$ & $\mathcal{O}(n)$\\
+			Almenn röðun & Röðun með $\mathcal{O}(T(m))$ samanburð & $\mathcal{O}(T(m) \cdot n \log n)$\\
 		}
 	}
 }
@@ -390,14 +391,14 @@
 		$\leq 10$ & $\mathcal{O}(n!)$ & TSP með heildstærðri leit\\
 		$\leq 15$ & $\mathcal{O}(n^22^n)$ & TSP með kvikri bestun\\
 		$\leq 20$ & $\mathcal{O}(n2^n)$ & Kvik bestun yfir hlutmengi\\
-		$\leq 100$ & $\mathcal{O}(n^4)$ & Almenn spyrðingar\\
+		$\leq 100$ & $\mathcal{O}(n^4)$ & Almenn spyrðing\\
 		$\leq 400$ & $\mathcal{O}(n^3)$ & Floyd-Warshall\\
 		$\leq 10^4$ & $\mathcal{O}(n^2)$ & Lengsti sameiginlegi hlutstrengur\\
 		$\leq 10^5$ & $\mathcal{O}(n \sqrt{n})$ & Reiknirit sem byggja á rótarþáttun\\
 		$\leq 10^6$ & $\mathcal{O}(n \log n)$ & Of mikið til að þora að taka dæmi\\
 		$\leq 10^7$ & $\mathcal{O}(n)$ & Næsta tala sem er stærri (\texttt{NGE})\\
 		$\leq 2^{10^7}$ & $\mathcal{O}(\log n)$ & Helmingunarleit\\
-		$> 10^7$ & $\mathcal{O}(1)$ & Ad hoc
+		$> 2^{10^7}$ & $\mathcal{O}(1)$ & Ad hoc
 	}
 }
 
@@ -409,9 +410,8 @@
 		\item<1-> Stundum fær maður \texttt{TLE} þótt maður sé viss um að lausnin sé nógu hröð.
 		\item<2-> Ef forritið þarf að lesa eða skrifa mikið gæti það verið að hægja nóg á forritun til að gefa \texttt{TLE}.
 		\item<3-> Þetta stafar af því að til að lesa eða skrifa þarf forritið að tala við stýrikerfið.
-		\item<4-> Til að leysa skrifa sum forrit í \emph{biðminni} (e. \emph{buffer}) og prenta bara þegar það fyllist.
+		\item<4-> Til að leysa þetta skrifa sum forrit í \emph{biðminni} (e. \emph{buffer}) og prenta bara þegar það fyllist.
 		\item<5-> Svona er þetta gert í \texttt{C}.
-		\item<6-> Í \texttt{C++} er biðminnið tæmt þegar \texttt{std::endl} er prentað.
 	}
 }
 
@@ -450,6 +450,7 @@
 		\item<2-> Fylki geyma gögn og eru af fastri stærð.
 		\item<3-> Þar sem þau eru af fastri stærð má gefa þeim tileinkað, aðliggjandi svæði í minni.
 		\item<4-> Þetta leyfir manni að vísa í fylkið í $\mathcal{O}(1)$.
+		\item<5->
 		\env{tabular}
 		{
 			{l | l}
@@ -457,7 +458,7 @@
 			\hline
 			Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
 			Bæta staki aftast & $\mathcal{O}(n)$\\
-			Skeyta saman tveimur fylkum & $\mathcal{O}(n)$\\
+			Skeyta saman tveimur & $\mathcal{O}(n)$\\
 		}
 	}
 }
@@ -470,6 +471,7 @@
 		\item<1-> Gagnagrindin \texttt{vector} er að mestu leiti eins og fylki.
 		\item<2-> Það má þó bæta stökum aftan á \texttt{vector} í $\mathcal{O}(1)$.
 		\item<3-> Margir nota bara \texttt{vector} og aldrei fylki sem slík.
+		\item<4->
 		\env{tabular}
 		{
 			{l | l}
@@ -477,7 +479,7 @@
 			\hline
 			Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
 			Bæta staki aftast & $\mathcal{O}(1)$\\
-			Skeyta saman tveimur fylkum & $\mathcal{O}(n)$\\
+			Skeyta saman tveimur & $\mathcal{O}(n)$\\
 		}
 	}
 }
@@ -490,6 +492,7 @@
 		\item<1-> Gagnagrindin \texttt{list} geymir gögn líkt og fylki gera, en stökin eru ekki aðliggjandi í minni.
 		\item<2-> Því er uppfletting ekki hröð.
 		\item<3-> Aftur á móti er hægt að gera smávægilegar breytingar á \texttt{list} sem er ekki hægt að gera á fylkjum.
+		\item<4->
 		\env{tabular}
 		{
 			{l | l}
@@ -500,7 +503,7 @@
 			Bæta staki fremst & $\mathcal{O}(1)$\\
 			Bæta staki fyrir aftan tiltekið stak & $\mathcal{O}(1)$\\
 			Bæta staki fyrir framan tiltekið stak & $\mathcal{O}(1)$\\
-			Skeyta saman tveimur \texttt{list} & $\mathcal{O}(1)$\\
+			Skeyta saman tveimur & $\mathcal{O}(1)$\\
 		}
 	}
 }
@@ -511,12 +514,13 @@
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{stack} geymir gögn og leyfir aðgang að síðasta staki sem var bætt við.
+		\item<2->
 		\env{tabular}
 		{
 			{l | l}
 			Aðgerð & Tímaflækja\\
 			\hline
-			Bæta við staki & $\mathcal{O}(n)$\\
+			Bæta við staki & $\mathcal{O}(1)$\\
 			Lesa nýjasta stakið & $\mathcal{O}(1)$\\
 			Fjarlægja nýjasta stakið  & $\mathcal{O}(1)$\\
 		}
@@ -529,12 +533,13 @@
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{queue} geymir gögn og leyfir aðgang að fyrsta stakinu sem var bætt við.
+		\item<2->
 		\env{tabular}
 		{
 			{l | l}
 			Aðgerð & Tímaflækja\\
 			\hline
-			Bæta við staki & $\mathcal{O}(n)$\\
+			Bæta við staki & $\mathcal{O}(1)$\\
 			Lesa elsta stakið & $\mathcal{O}(1)$\\
 			Fjarlægja elsta stakið  & $\mathcal{O}(1)$\\
 		}
@@ -543,16 +548,18 @@
 
 \env{frame}
 {
-	\frametitle{\texttt{stack}}
+	\frametitle{\texttt{set}}
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{set} geymir gögn án endurtekninga og leyfir hraða uppflettingu.
+		\item<2->
 		\env{tabular}
 		{
 			{l | l}
 			Aðgerð & Tímaflækja\\
 			\hline
 			Bæta við staki & $\mathcal{O}(\log n)$\\
+			Fjarlægja stak & $\mathcal{O}(\log n)$\\
 			Gá hvort staki hafi verið bætt við  & $\mathcal{O}(\log n)$\\
 		}
 	}
@@ -563,18 +570,19 @@
 	\frametitle{Lausnar aðferðir}
 	\env{itemize}
 	{
-		\item<1-> Lausnir okkar má flokka í fjóra flokka:
+		\item<1-> Lausnir okkar má flokka í fimm flokka:
 		\env{itemize}
 		{
 			\item<2-> Ad hoc.
-			\item<3-> Gráðugar lausnir.
-			\item<4-> Deila og drottna (\texttt{D\&C}).
-			\item<5-> Kvik bestun (\texttt{DP}).
+			\item<3-> Heildstæð leit.
+			\item<4-> Gráðugar lausnir.
+			\item<5-> Deila og drottna (\texttt{D\&C}).
+			\item<6-> Kvik bestun (\texttt{DP}).
 		}
-		\item<6-> Þessi skipting er ekki fullkomin, en það er þó gott að hafa hana í huga.
-		\item<7-> Til dæmis má færa rök fyrir því að gráðugar lausnir og \texttt{D\&C} séu sértilfelli af kvikri bestun.
-		\item<8-> Við munum byrja á því að fjalla almennt um þessar aðferðir og fara svo í sértækara efni.
-		\item<9-> Þá er oft gott að hafa í huga hvernig flokka megi reikniritin.
+		\item<7-> Þessi skipting er ekki fullkomin, en það er þó gott að hafa hana í huga.
+		\item<8-> Til dæmis má færa rök fyrir því að gráðugar lausnir og \texttt{D\&C} séu sértilfelli af kvikri bestun.
+		\item<9-> Við munum byrja á því að fjalla almennt um þessar aðferðir og fara svo í sértækara efni.
+		\item<10-> Þá er oft gott að hafa í huga hvernig flokka megi reikniritin.
 	}
 }
 
@@ -642,8 +650,8 @@
 		\item<1-> Þið eruð að reyna að kenna barni að telja.
 		\item<2-> Það er þó ekki alltaf hægt að heyra hvað barnið segir.
 		\item<3-> Þið viljið ákvarða hvort það sem barnið er að segja gæti mögulega verið rétt.
-		\item<4-> Fyrsta lína inntaksins inniheldur heiltölu $n$.
-		\item<5-> Síðan fylgir ein lína með $1 \leq n \leq 10^3$ strengju.
+		\item<4-> Fyrsta lína inntaksins inniheldur heiltölu $1 \leq n \leq 10^3$.
+		\item<5-> Síðan fylgir ein lína með $n$ strengjum.
 		\item<6-> Hver strengur er annaðhvort heiltala á bilinu $[0, 10^4]$ eða strengurinn ``mumble''.
 		\item<7-> Ef það er hægt að skipta út öllum ``mumble'' fyrir tölu þannig að talningin sé rétt skal prenta ``jebb''.
 		\item<8-> Annars skal prenta ``neibb''.
@@ -655,7 +663,8 @@
 	\frametitle{Lausn á Barnahjal}
 	\env{itemize}
 	{
-		\item<1-> Ef $i$-ti strengurinn inniheldur strenginn sem svarar til $i$ eða ``mumble'', fyrir öll $i$, þá er barnið kannski að telja rétt.
+		\item<1-> Ef $i$-ti strengurinn inniheldur strenginn sem svarar til tölurnnar $i$ eða ``mumble'', fyrir öll $i$,
+			þá er barnið kannski að telja rétt.
 		\item<2-> Annars er barnið að telja rangt.
 	}
 }
@@ -665,14 +674,14 @@
 	\code{babybites.py}
 }
 
-\env{frame}
-{
-	\frametitle{Test}
-	\env{itemize}
-	{
-		\item<1->
-	}
-}
+%\env{frame}
+%{
+	%\frametitle{Test}
+	%\env{itemize}
+	%{
+		%\item<1->
+	%}
+%}
 
 \end{document}
 
