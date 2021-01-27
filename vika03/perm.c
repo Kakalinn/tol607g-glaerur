@@ -1,5 +1,6 @@
 #include <stdio.h>
-void perm(int* a, int* f, int n, int x)
+#define SWAP(E, F) { int swap = (E); (E) = (F); (F) = swap; }
+void perm(int* a, int n, int x)
 {
 	int i;
 	if (x == n)
@@ -8,20 +9,21 @@ void perm(int* a, int* f, int n, int x)
 		printf("\n");
 		return;
 	}
-	for (i = 0; i < n; i++) if (f[i] == 0)
+	for (i = x; i < n; i++)
 	{
-		f[i] = 1;
-		a[x] = i + 1;
-		perm(a, f, n, x + 1);
-		f[i] = 0;
+		SWAP(a[x], a[i]);
+		perm(a, n, x + 1);
+		SWAP(a[x], a[i]);
 	}
+	return;
 }
 
 int main()
 {
 	int i, n;
 	scanf("%d", &n);
-	int a[n], f[n];
-	for (i = 0; i < n; i++) f[i] = 0;
-	perm(a, f, n, 0);
+	int a[n];
+	for (i = 0; i < n; i++) a[i] = i + 1;
+	perm(a, n, 0);
+	return 0;
 }

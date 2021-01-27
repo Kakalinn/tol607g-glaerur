@@ -1,417 +1,370 @@
-\documentclass{beamer}
-\usefonttheme[onlymath]{serif}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english, icelandic]{babel}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{gensymb}
-\usepackage{parskip}
-\usepackage{mathtools}
-\usepackage{listings}
-\usepackage{xfrac}
-\usepackage{graphicx}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usepackage{multicol}
+\input{../preamble}
 
-\DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\ord}{ord}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\trace}{trace}
-\DeclareMathOperator{\fix}{fix}
-\DeclareMathOperator{\Log}{Log}
-\renewcommand\O{\mathcal{O}}
-\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
-\newcommand\ceil[1]{\left\lceil#1\right\rceil}
-\newcommand\abs[1]{\left|#1\right|}
-\newcommand\p[1]{\left(#1\right)}
-\newcommand\sqp[1]{\left[#1\right]}
-\newcommand\cp[1]{\left\{#1\right\}}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\renewcommand\qedsymbol{$\blacksquare$}
-\renewcommand\Im{\operatorname{Im}}
-\renewcommand\Re{\operatorname{Re}}
-\usepackage{color}
-
-\definecolor{mygray}{rgb}{0.4,0.4,0.4}
-\definecolor{mygreen}{rgb}{0, 0, 1}
-\definecolor{myorange}{rgb}{1.0,0.4,0}
-
-\lstset{
-commentstyle=\color{mygray},
-numbersep=5pt,
-numberstyle=\tiny\color{mygray},
-keywordstyle=\color{mygreen},
-showspaces=false,
-showstringspaces=false,
-stringstyle=\color{myorange},
-tabsize=4
-}
-\lstset{literate=
-{æ}{{\ae}}1
-{í}{{\'{i}}}1
-{ó}{{\'{o}}}1
-{á}{{\'{a}}}1
-{é}{{\'{e}}}1
-{ú}{{\'{u}}}1
-{ý}{{\'{y}}}1
-{ð}{{\dh}}1
-{þ}{{\th}}1
-{ö}{{\"o}}1
-{Á}{{\'{A}}}1
-{Í}{{\'{I}}}1
-{Ó}{{\'{O}}}1
-{Ú}{{\'{U}}}1
-{Æ}{{\AE}}1
-{Ö}{{\"O}}1
-{Ø}{{\O}}1
-{Þ}{{\TH}}1
-}
-
-\usetheme{Madrid}
-
-\title{Lausnar aðferðir}
-\subtitle{Tæmandi leit og ráðug reiknirit}
+\title{Tæmandi leit og gráðug reiknirit}
 \author{Bergur Snorrason}
 \date{\today}
-
-\AtBeginSection[] {
-  \begin{frame}
-    \frametitle{Efnisyfirlit}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
 
 \begin{document}
 
 \frame{\titlepage}
 
-\section{Inngangur}
-
-\begin{frame}
+\env{frame}
+{
 	\frametitle{Almennar nálganir lausna}
-\begin{itemize}
-	\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
-	\begin{itemize}
-		\item<2-> Tæmandi leit eða ofbeldis aðferðin (e. \emph{complete search, brute force}),
-		\item<3-> Gráðug reiknirit (e. \emph{greedy algorithms}),
-		\item<4-> Deila og drottna reiknirit (e. \emph{divide and conquer algorithms}),
-		\item<5-> Kvik bestun (e. \emph{dynamic programming}).
-	\end{itemize}
-	\item<6-> Í dag verður farið í fyrstu tvær aðferðirnar.
-	\item<7-> Við styttum oft ,,tæmandi leit'' í ,,CS'' (fyrir ,,Complete search'') og ,,kvik bestun'' í ,,DP''.
-\end{itemize}
-\end{frame}
+	\env{itemize}
+	{
+		\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
+		\env{itemize}
+		{
+			\item<2-> \emph{Ad hoc},
+			\item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
+			\item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
+			\item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
+			\item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
+		}
+		\item<7-> Í síðustu viku fjölluðum við um Ad hoc dæmi.
+		\item<8-> Í þessari viku fjöllum við um tæmandi leit og gráðug reiknirit.
+		\item<9-> Við styttum oft ,,tæmandi leit'' í \texttt{CS} (fyrir ,,Complete search'') og ,,kvik bestun'' í \texttt{DP}.
+	}
+}
 
-\section{Tæmandi leit (ofbeldi aðferðin)}
+\env{frame}
+{
+	\frametitle{Tæmandi leit}
+	\env{itemize}
+	{
+		\item<1-> Safn allra lausna dæmis kallast \emph{lausnarrúm} dæmisins.
+		\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið.
+		\item<3-> Tökum dæmi.
+	}
+}
 
-\begin{frame}
-	\frametitle{Allshersjar leit}
-\begin{itemize}
-	\item<1-> Þegar við erum að ræða dæmi kallast safn allra mögulega lausna \emph{lausnarrúm} dæmisins.
-	\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið.
-	\item<3-> Tökum dæmi.
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\frametitle{Dæmi}
+	\env{itemize}
+	{
+		\item<1-> Gefinn er listi $a$ af $n$ mismunandi heiltölum á bilinu $[0, m]$.
+		\item<2-> Hver þeirra er stærst?
+		\item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
+		\item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
+		\item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í $a$.
+		\item<6-> Við getum athugað hvort tala sé í $a$ með því að ítra í gegnum $a$, sem tekur $\mathcal{O}($\onslide<7->{$\,n\,$}$)$ tíma.
+		\item<8-> Þessi aðferð er því $\mathcal{O}($\onslide<9->{$nm$}$)$.
+		\item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
+	}
+}
 
-\begin{frame}
-	\frametitle{Allshersjar leit, dæmi}
-\begin{itemize}
-	\item<1-> Gefnar eru $n$ mismunandi heiltölur. Hver þeirra er stærst?
-	\item<2-> Hér er lausnarrúmið einfaldlega þær tölur sem eru gefnar.
-	\item<3-> Okkur nægir að ítra í gegnum allar tölurnar og halda utan um stærstu töluna sem við höfum séð hingað til.
-	\item<4-> Þessi aðferð er $\O(n)$.
-	\item<5-> Almennt fáum við að ef lausnarrúmið er af stærð $m$ og við getum athugað hverja lasun í $\O(k)$, þá er CS $\O(mk)$.
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Almennt fáum við að ef lausnarrúmið er af stærð $S$ og við getum athugað hverja lausn í $\mathcal{O}(T(k))$
+			þá er tæmandi leit $\mathcal{O}(S \cdot T(k))$.
+		\item<2-> Gildin $n!$ og $2^n$ eru algengar stærðir á lausnarrúmum.
+		\item<3-> Þar af leiðandi eru $\mathcal{O}(n \cdot n!) = \mathcal{O}((n + 1)!)$ og $\mathcal{O}(n 2^n)$ algengar tímaflækjur.
+		\item<4-> Oft má á þægilegan hátt breyta slíkum lausnum í $\mathcal{O}(n!)$ og $\mathcal{O}(2^n)$.
+	}
+}
 
-\begin{frame}
-	\frametitle{Allshersjar leit, öll hlutmengi}
-\begin{itemize}
-	\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að CS sé alltaf einfalt. Það þarf þó ekki að vera.
-	\item<2-> Tökum annað dæmi.
-	\item<3-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
-	\item<4-> Ef við viljum leysa þetta dæmi með CS þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\frametitle{Tæmandi leit, öll hlutmengi}
+	\env{itemize}
+	{
+		\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé alltaf einföld.
+		\item<2-> Svo er ekki alltaf.
+		\item<3-> Tökum annað dæmi.
+		\item<4-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
+		\item<5-> Ef við viljum leysa þetta dæmi með tæmandi leit þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
+	}
+}
 
-\begin{frame}
+\env{frame}
+{
 	\frametitle{Útúrdúr um hlutmengi}
-\begin{itemize}
-	\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
-	\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $1, 2, ..., n$.
-	\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
-\end{itemize}
-\end{frame}
+	\env{itemize}
+	{
+		\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
+		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $1, 2, ..., n$.
+		\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
+	}
+}
 
-\begin{frame}
+\env{frame}
+{
 	\frametitle{Útúrdúr um bitaframsetingu talna}
-\begin{itemize}
-	\item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvíræð ákvörðuð tala $b$ sem $1$ í
-		$k$-ta sæti bitaframsetningar sinnar þ.þ.a.a. $k$-ta stak $A$ sé í $H$.
-	\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
-	\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
-	\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
-	\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Útúrdúr um bitaframsetingu talna}
-\begin{itemize}
-	\item<1->  Þegar kemur að því að not bitakenni í forritun notum við okkur eftirfarandi:
-	\item<2->[]
-\begin{tabular}{| l | l |}
-\hline
-Kennir $n$-ta einstökungs & \quad \texttt{1 << n}\\
-Kennir fyllimengis kennis & \quad \texttt{\textasciitilde{A}}\\
-Kennir samengis tveggja kenna & \quad \texttt{A|B}\\
-Kennir sniðmengis tveggja kenna & \quad \texttt{A\&B}\\
-Kennir samhverfs mismunar tveggja kenna & \quad \texttt{A\textasciicircum B}\\
-Kennir mismunar tveggja kenna & \quad \texttt{A\&(\textasciitilde{B})}\\
-\hline
-\end{tabular}
-	\item<3-> NB: Vegna forgang aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
-	\item<4-> Til dæmis er \texttt{A\&B == 0} jafngild \texttt{A\&(B == 0)} í \texttt{C++}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Allshersjar leit, öll hlutmengi}
-\tiny
-\begin{lstlisting}[language=C]
-#include <stdio.h>
-
-int main()
-{
-	int n, i, j;
-	scanf("%d", &n);
-	int a[n];
-	for (i = 0; i < n; i++) scanf("%d", &(a[i]));
-
-	int mx = 0, mask;
-	for (i = 0; i < (1 << n); i++)
+	\env{itemize}
 	{
-		int s[n], c = 0;
-		for (j = 0; j < n; j++) if (((1 << j)&i) != 0) s[c++] = j;
-		for (j = 1; j < c; j++) if (a[s[j]] < a[s[j - 1]]) break;
-		if (j == c && c > mx) mx = c, mask = i;
-	}
-
-	printf("%d\n", mx);
-	for (i = 0; i < n; i++) if (((1 << i)&mask) != 0) printf("%d ", a[i]);
-
-	printf("\n");
-	return 0;
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Allshersjar leit, öll hlutmengi}
-\begin{itemize}
-	\item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\O(n)$ að ganga út skugga um hvort tiltekin lausn sé í raun rétt, svo reikniritið er
-		$\O(n2^n)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Allshersjar leit, allar umraðanir}
-\begin{itemize}
-	\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
-	\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = 1 \cdot 2 \cdot ... \cdot n$ vegu.
-	\item<3-> Tökum mjög einfalt dæmi:
-	\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hver á sinni línu.
-	\item<5-> Við getum notað okkur innbyggða fallið \texttt{next\_permutation} í \texttt{C++}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Allshersjar leit, allar umraðanir}
-\tiny
-\begin{lstlisting}[language=C++]
-#include <bits/stdc++.h>
-using namespace std;
-
-int main()
-{
-	int n, i;
-	cin >> n;
-	vector<int> p;
-	for (i = 0; i < n; i++) p.push_back(i + 1);
-	do {
-		for (i = 0; i < n; i++) cout << p[i] << ' ';
-		cout << '\n';
-	} while (next_permutation(p.begin(), p.end()));
-	return 0;
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Allshersjar leit, allar umraðanir endurkvæmt}
-\tiny
-\begin{lstlisting}[language=C]
-#include <stdio.h>
-void perm(int* a, int* f, int n, int x)
-{
-	int i;
-	if (x == n)
-	{
-		for (i = 0; i < n; i++) printf("%d ", a[i]);
-		printf("\n");
-		return;
-	}
-	for (i = 0; i < n; i++) if (f[i] == 0)
-	{
-		f[i] = 1;
-		a[x] = i + 1;
-		perm(a, f, n, x + 1);
-		f[i] = 0;
+		\item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvírætt ákvörðuð tala $b$ sem hefur $1$ í
+			$k$-ta sæti bitaframsetningar sinnar þá og því aðeins að $k$-ta stak $A$ sé í $H$.
+		\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
+		\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
+		\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
+		\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
 	}
 }
 
-int main()
+\env{frame}
 {
-	int i, n;
-	scanf("%d", &n);
-	int a[n], f[n];
-	for (i = 0; i < n; i++) f[i] = 0;
-	perm(a, f, n, 0);
+	\env{itemize}
+	{
+		\item<1-> Þegar kemur að því að not bitakenni í forritun notum við okkur eftirfarandi:
+		\item<2->[]
+			\env{tabular}
+			{
+				{| l | l |}
+				\hline
+				Kennir $k$-ta einstökungs & \quad \texttt{1 << k}\\
+				Kennir fyllimengis kennis & \quad \texttt{\textasciitilde{A}}\\
+				Kennir samengis tveggja kenna & \quad \texttt{A|B}\\
+				Kennir sniðmengis tveggja kenna & \quad \texttt{A\&B}\\
+				Kennir samhverfs mismunar tveggja kenna & \quad \texttt{A\textasciicircum B}\\
+				Kennir mismunar tveggja kenna & \quad \texttt{A\&(\textasciitilde{B})}\\
+				\hline
+			}
+		\item<3-> NB: Vegna forgang aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
+		\item<4-> Til dæmis er \texttt{A\&B == 0} jafngilt \texttt{A\&(B == 0)} í \texttt{C/C++},
+			þó við viljum yfirleitt \texttt{(A\&B) == 0}.
+	}
 }
-\end{lstlisting}
-\end{frame}
 
-\begin{frame}
-	\frametitle{Allshersjar leit, allar umraðanir}
-\begin{itemize}
-	\item<1-> Mikilvægt er að \texttt{p} sé vaxandi röð til að fyrra forritið virki rétt, því lykkjan hættir þegar það lendir á síðustu umröðunni,
-		í stafrófsröð.
-	\item<2-> Bæði eru þessi forrit $\O(n\cdot n!)$
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\frametitle{Lausn á dæminu}
+	\env{itemize}
+	{
+		\item<1-> Við getum nú leyst dæmið.
+		\item<2-> Til að ítra í gegnum öll hlutmengi ítrum við í gegnum alla bitakenni mengisins.
+	}
+}
 
-\begin{frame}
-	\frametitle{Allshersjar leit, kostir og gallar}
-\begin{itemize}
-	\item<1-> Það eru ýmsir kostir við CS, til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum á eftir aðferðir þar sem það gildir ekki)
-		og CS lausnir eiga það til að vera auðveldar í útfærslu (það mætti segja að þær séu ,,eftir uppskrift'').
-	\item<2-> Eitt þarf samt að hafa í huga. Á keppnum eru CS dæmi yfirleitt flokkuð léttu dæmin, ef það er slíkt dæmi í keppninni á annað borð.
-	\item<3-> Keppnir innihalda frekar dæmi þar sem CS er aðeins hluti af lausninni.
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\frametitle{Lausn}
+	\code{lis.c}
+}
 
-\section{Gráðug reiknirit}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
+			svo reikniritið er $\mathcal{O}($\onslide<2->{$n2^n$}$)$.
+	}
+}
 
-\begin{frame}
+\env{frame}
+{
+	\frametitle{Tæmandi leit, allar umraðanir}
+	\env{itemize}
+	{
+		\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
+		\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1$ vegu.
+		\item<3-> Tökum mjög einfalt dæmi:
+		\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hver á sinni línu.
+		\item<5-> Við getum notað okkur innbyggða fallið \texttt{next\_permutation(...)} í \texttt{C++}.
+	}
+}
+
+\env{frame}
+{
+	\code{perm.cpp}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Mikilvægt er að \texttt{p} sé vaxandi í upphafi því lykkjan hættir þegar það lendir á síðustu umröðunni, í stafrófsröð.
+		\item<2-> Þessi lausn er $\mathcal{O}($\onslide<3->{$(n + 1)!$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum nú annað dæmi.
+		\item<2-> Gefnar eru $n$ mismunandi heiltölur.
+		\item<3-> Raðið þeim.
+		\item<4-> Þetta má að sjálfsögðu leysa með innbyggðum röðunarföllum, en við viljum leysa þetta með tæmandi leit.
+		\item<5-> Við getum notað sama forrit og áðan, með smávægilegum breytingum.
+	}
+}
+
+\env{frame}
+{
+	\code{sort.cpp}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan á þessari lausn er $\mathcal{O}($\onslide<2->{$(n + 1)!$}$)$.
+		\item<3-> Við getum bætt hana.
+		\item<4-> Byrjum á að leysa dæmið án þess að nota \texttt{next\_permutation(...)}.
+		\item<5-> Við getum gert það endurkvæmt.
+		\item<6-> Í hverju skrefi í endurkvæmninni veljum við stak sem við höfum ekki valið áður, setjum það á hlaða og höldum áfram.
+	}
+}
+
+\env{frame}
+{
+	\code{sort.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölrunar séu \texttt{3 2 5 4 1}.
+		\item<2-> Við byrjum með tómann hlaða, táknum hann með \texttt{x x x x x}.
+		\item<3-> Við bætum fyrst við \texttt{3} og fáum \texttt{3 x x x x}.
+		\item<4-> Síðan bætum við \texttt{2} við og fáum \texttt{3 2 x x x}.
+		\item<5-> Næst prófum við allar umraðanir \texttt{5 4 1} þar fyrir aftan.
+		\item<6-> En við sjáum strax að það mun aldrei verða raðað, því $3 > 2$.
+		\item<7-> Svo við getum sleppt því að skoða dýpra.
+	}
+}
+
+\env{frame}
+{
+	\code{sort-pruned.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan eftir þessa breytingu er ekki augljós.
+		\item<2-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
+		\item<3-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
+		\item<4-> Svo tímaflækjan er $\mathcal{O}($\onslide<5->{$2^n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tæmandi leit, kostir og gallar}
+	\env{itemize}
+	{
+		\item<1-> Það eru ýmsir kostir við tæmandi leit.
+		\item<2-> Til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum á eftir aðferðir þar sem það gildir ekki)
+		\item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (þegar maður er kominn með smá æfingu).
+		\item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
+		\item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
+	}
+}
+
+\env{frame}
+{
 	\frametitle{Gráðug reiknirit}
-\begin{itemize}
-	\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tíma punkti kallast \emph{gráðugt}.
-	\item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
-	\item<3-> Tökum dæmi.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Gráðug reiknirit, dæmi}
-\begin{itemize}
-	\item<1-> 
-		Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
-		Í boði er ótakmarkað magn af $1$ krónum, $5$ krónum og $10$ krónum.
-		Hver er minnsti fjöldi af klinki sem þú getur gefið?
-	\item<2-> Dæmi um lausn er:
-	\item<3-> Látum $k$ tákna dýrasta klinkið sem er ekki dýrara en $n$. Gefum til baka $k$ og endurtökum fyrir $n - k$ þangað til $n$ er $0$.
-	\item<4-> Tökum til dæmis $n = 24$. Þá myndum við gefa $10, 10, 1, 1, 1, 1$ til baka.
-	\item<5-> Það vill svo skemmtilega til að þessi gráðuga lausn virkar fyrir öll $n$.
-	\item<6-> En hvað ef við breytum aðeins dæminu?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Gráðug reiknirit, dæmi}
-\begin{itemize}
-	\item<1-> 
-		Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
-		Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
-		Hver er minnsti fjöldi af klinki sem þú getur gefið?
-	\item<2-> Tökum til dæmis $n = 24$. Þá myndum aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
-	\item<3-> En þetta er ekki besta leiðin. Betra væri að gefa $8, 8, 8$.
-	\item<4-> Svo gráðuga aðferðin virkar bara stundum.
-	\item<5-> Þetta dæmi er þekkt sem Skiptimynta dæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Gráðug reiknirit, annað (hefðbundara) dæmi}
-\begin{itemize}
-	\item<1-> 
-		Þú ert yfirmaður hjá leigubíla fyrirtæki.
-		Í dag mættu $n$ bílstjórar í vinnuna og það eru $m$ leigubílar til að skipa bílstjóra á.
-		Ekki eru þó allir bílstrjórar og leigubílar skapaðir jafnir.
-		Bíll $i$ er $h_i$ hestöfl og bílstjóri $j$ getur keyrt bíla sem eru $g_j$ hestöfl eða minna.
-		Hver er mesti fjöld bíla sem þú getur skipað á bílstjóra, án þess að bílstjóri fá bíl umfram sína getu?
-	\item<2->  Tökum eftir að við viljum að bíll sé keyrður af þeim bílstrjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
-	\item<3->  Byrjum á að raða bílunum og bílstjórunum í vaxandi röð.
-	\item<4->  Við getum núna í línulegum tíma fundið þann bílstrjóra sem getur keyrt fyrsta bíl.
-	\item<5->  Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Gráðug reiknirit, annað (hefðbundara) dæmi}
-\begin{itemize}
-	\item<1-> Teljum hversu marga bíla við náum að úthluta og sú tala er lausnin.
-	\item<2-> Þessi lausn er $\O(n + m)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Gráðug reiknirit, annað (hefðbundnara dæmi)}
-\tiny
-Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
-Næstu $n$ tölur lýsa getu bílstjóranna.
-Síðustu $m$ tölurnar eru hestöfl bílanna.
-\begin{lstlisting}[language=C++]
-#include <bits/stdc++.h>
-using namespace std;
-
-int main()
-{
-	int n, m, i, j, x, r;
-	cin >> n >> m;
-	vector<int> a(n), b(m);
-	for (i = 0; i < n; i++) cin >> a[i];
-	for (i = 0; i < m; i++) cin >> b[i];
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());
-	r = j = 0;
-	for (i = 0; i < m; i++)
+	\env{itemize}
 	{
-		while (j < n && a[j] < b[i]) j++;
-		if (j < n) r++, j++;
+		\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tímapunkti kallast \emph{gráðugt}.
+		\item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
+		\item<3-> Tökum dæmi.
 	}
-	cout << r << endl;
-	return 0;
 }
-\end{lstlisting}
-\end{frame}
 
-\section{Samantekt}
-\begin{frame}
-\frametitle{Samantekt}
-\begin{itemize}
-	\item<1-> Tæmandi leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
-		Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
-	\item<2-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
-		Gráðug reiknirit eiga ekki að fá TLE, en algengt er að fá WA.
-\end{itemize}
-\end{frame}
+\env{frame}
+{
+	\frametitle{Dæmi}
+	\env{itemize}
+	{
+		\item<1-> 
+			Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+			Í boði er ótakmarkað magn af $1$ krónum, $5$ krónum og $10$ krónum.
+			Hver er minnsti fjöldi af klinki sem þú getur gefið?
+		\item<2-> Dæmi um lausn er:
+		\item<3-> Látum $k$ tákna dýrasta klinkið sem er ekki dýrara en $n$. Gefum til baka $k$ og endurtökum fyrir $n - k$ þangað til $n$ er $0$.
+		\item<4-> Tökum til dæmis $n = 24$. Þá myndum við gefa $10, 10, 1, 1, 1, 1$ til baka.
+		\item<5-> Það vill svo skemmtilega til að þessi gráðuga lausn virkar fyrir öll $n$.
+		\item<6-> En hvað ef við breytum aðeins dæminu?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Dæmi}
+	\env{itemize}
+	{
+		\item<1-> 
+			Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+			Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
+			Hver er minnsti fjöldi af klinki sem þú getur gefið?
+		\item<2-> Tökum til dæmis $n = 24$. Þá myndum aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
+		\item<3-> En þetta er ekki besta leiðin. Betra væri að gefa $8, 8, 8$.
+		\item<4-> Svo gráðuga aðferðin virkar bara stundum.
+		\item<5-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Dæmi}
+	\env{itemize}
+	{
+		\item<1-> 
+			Þú ert yfirmaður hjá leigubíla fyrirtæki.
+			Í dag mættu $n$ bílstjórar í vinnuna og það eru $m$ leigubílar til að skipa bílstjóra á.
+			Ekki eru þó allir bílstjórar og leigubílar skapaðir jafnir.
+			Bíll $i$ er $h_i$ hestöfl og bílstjóri $j$ getur keyrt bíla sem eru $g_j$ hestöfl eða minna.
+			Hver er mesti fjöldi bíla sem þú getur skipað á bílstjóra
+				þannig að hver bílstjóri fær mest einn bíl,
+				hver bíll er með mest einn bílstjóra og
+				enginn bílstjóri fær bíl sem hann ræður ekki við.
+		\item<2-> Tökum eftir að við viljum að bíll sé keyrður af þeim bílstjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
+		\item<3-> Byrjum á að raða bílunum og bílstjórunum í vaxandi röð.
+		\item<4-> Við getum núna í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bíl.
+		\item<5-> Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Gráðug reiknirit, annað (hefðbundnara dæmi)}
+	Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
+		Næstu $n$ tölur lýsa getu bílstjóranna.
+		Síðustu $m$ tölurnar eru hestöfl bílanna.
+		\code{loowater.cpp}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn}
+	\env{itemize}
+	{
+		\item<1-> Þessi lausn er $\mathcal{O}($\onslide<2->{$n + m$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er of gráðug lausn.
+		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
+		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélag í liðakeppnum).
+		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \texttt{WA}
+					getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Samantekt}
+	\env{itemize}
+	{
+		\item<1-> Tæmandi leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
+			Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
+		\item<2-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
+			Gráðug reiknirit eiga ekki að fá TLE, en algengt er að fá WA.
+	}
+}
 
 \end{document}
+
+

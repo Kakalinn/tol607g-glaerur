@@ -182,38 +182,13 @@ sh.dict)
 sh.dict) (./glaerur.nav) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd)
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [2] [3] [4] [5] [6] [7]
-[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
-[23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37]
-[38] [39] [40] [41] [42] [43] [44] [45]
-(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./lis.c
-(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)
-Overfull \hbox (5.48592pt too wide) in paragraph at lines 20--22
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][] 
-) [46] [47] [48] [49] [50] [51] [52] [53] (./perm.cpp) [54] [55] [56] [57]
-[58] [59] [60] [61] [62] (./sort.cpp) [63] [64] [65] [66] [67] [68] (./sort.c)
-[69] [70] [71] [72] [73] [74] [75] [76] (./sort-pruned.c) [77] [78] [79]
-[80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94]
-[95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107]
-(./loowater.cpp) [108] [109] [110] [111] [112] [113] [114] [115] [116] [117]
-(./glaerur.aux) )
-(see the transcript file for additional information){/usr/share/texmf-dist/font
-s/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm
--super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi
-1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/
-share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-dis
-t/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/cm-super/sfss0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/
-sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></
-usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf
--dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on glaerur.pdf (117 pages, 386635 bytes).
+(/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd) [2]
+[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] (./glaerur.aux) ){/us
+r/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts
+/type1/public/cm-super/sfsi1000.pfb></usr/share/texmf-dist/fonts/type1/public/c
+m-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss100
+0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb>
+Output written on glaerur.pdf (15 pages, 79880 bytes).
 Transcript written on glaerur.log.

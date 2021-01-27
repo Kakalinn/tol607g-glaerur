@@ -11,10 +11,11 @@ int main()
 	sort(a.begin(), a.end());
 	sort(b.begin(), b.end());
 	r = j = 0;
-	for (i = 0; i < n; i++)
+	for (i = 0; i < m; i++)
 	{
-		while (j < m && b[j] < a[i]) j++;
-		if (j < m) r++, j++;
+		while (j < n && a[j] < b[i]) j++;
+		if (j < n) r++, j++;
 	}
-	printf("%d\n", r);
+	cout << r << endl;
+	return 0;
 }

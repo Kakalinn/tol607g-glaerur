@@ -1,100 +1,4 @@
-\documentclass[handout]{beamer}
-%\documentclass{beamer}
-\usefonttheme[onlymath]{serif}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english, icelandic]{babel}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{gensymb}
-\usepackage{parskip}
-\usepackage{mathtools}
-\usepackage{listings}
-\usepackage{xfrac}
-\usepackage{graphicx}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{xifthen}
-\usepackage{tkz-euclide}
-\usepackage{hyperref}
-\usetikzlibrary{calc}
-\usepackage{multicol}
-
-\DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\ord}{ord}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\trace}{trace}
-\DeclareMathOperator{\fix}{fix}
-\DeclareMathOperator{\Log}{Log}
-\renewcommand\O{\mathcal{O}}
-\newcommand\floor[1]{\left\lfloor#1\right\rfloor}
-\newcommand\ceil[1]{\left\lceil#1\right\rceil}
-\newcommand\abs[1]{\left|#1\right|}
-\newcommand\p[1]{\left(#1\right)}
-\newcommand\sqp[1]{\left[#1\right]}
-\newcommand\cp[1]{\left\{#1\right\}}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-\renewcommand\qedsymbol{$\blacksquare$}
-\renewcommand\Im{\operatorname{Im}}
-\renewcommand\Re{\operatorname{Re}}
-\usepackage{color}
-
-\newcommand\env[2]
-{
-	\begin{#1}
-	#2
-	\end{#1}
-}
-\newcommand\varenv[3]
-{
-	\begin[#2]{#1}
-	#3
-	\end{#1}
-}
-
-\newcommand\code[1]{\tiny\lstinputlisting[language=C]{#1}}
-
-\definecolor{mygray}{rgb}{0.4,0.4,0.4}
-\definecolor{mygreen}{rgb}{0, 0, 1}
-\definecolor{myorange}{rgb}{1.0,0.4,0}
-
-\lstset{
-	commentstyle=\color{mygray},
-	numbersep=5pt,
-	numberstyle=\tiny\color{mygray},
-	keywordstyle=\color{mygreen},
-	showspaces=false,
-	showstringspaces=false,
-	stringstyle=\color{myorange},
-	tabsize=4
-}
-\lstset{literate=
-{æ}{{\ae}}1
-{í}{{\'{i}}}1
-{ó}{{\'{o}}}1
-{á}{{\'{a}}}1
-{é}{{\'{e}}}1
-{ú}{{\'{u}}}1
-{ý}{{\'{y}}}1
-{ð}{{\dh}}1
-{þ}{{\th}}1
-{ö}{{\"o}}1
-{Á}{{\'{A}}}1
-{Í}{{\'{I}}}1
-{Ó}{{\'{O}}}1
-{Ú}{{\'{U}}}1
-{Æ}{{\AE}}1
-{Ö}{{\"O}}1
-{Ø}{{\O}}1
-{Þ}{{\TH}}1
-}
-
-%\usetheme{Madrid}
+\input{../preamble}
 
 \title{Grunnatriði og Ad hoc}
 \author{Bergur Snorrason}
@@ -113,6 +17,7 @@
 		\item<2-> Þegar við forritum flokkum við gögnin okkar með \emph{tögum}.
 		\item<3-> Dæmi um tög í \texttt{C/C++} eru \texttt{int} og \texttt{double}.
 		\item<4-> Helstu tögin í \texttt{C/C++} eru (yfirleitt):
+		\item<5->[]
 		\env{tabular}
 		{
 			{l l l}
@@ -156,15 +61,16 @@
 	\env{itemize}
 	{
 		\item<1-> Við munum reglulega þurfa að raða gögnum í einhverja röð.
-		\item<2-> 
-		\pause
-		\begin{tabular}{l l}
+		\item<2->[]
+		\env{tabular}
+		{
+			{l l}
 			Forritunarmál & Röðun\\
 			\hline
 			\texttt{C} & \texttt{qsort(...)}\\
 			\texttt{C++} & \texttt{sort(...)}\\
 			\texttt{Python} & \texttt{this.sort()} eða \texttt{sorted(...)}\\
-		\end{tabular}
+		}
 		\item<3-> Skoðum nú hvert forritunarmál til að sjá nánar hvernig föllin eru notuð.
 	}
 }
@@ -344,8 +250,8 @@
 	\env{itemize}
 	{
 		\item<1-> Tímaflækjur algrengra aðgerða eru:
-		\item<2->
-		\tiny
+		\item<2->[]
+		\scriptsize
 		\env{tabular}
 		{
 			{l | l | l}
@@ -388,7 +294,7 @@
 		{l | l | l}
 		Stærð $n$ & Versta tímaflækja & Dæmi\\
 		\hline
-		$\leq 10$ & $\mathcal{O}(n!)$ & TSP með heildstærðri leit\\
+		$\leq 10$ & $\mathcal{O}(n!)$ & TSP með tæmandi leit\\
 		$\leq 15$ & $\mathcal{O}(n^22^n)$ & TSP með kvikri bestun\\
 		$\leq 20$ & $\mathcal{O}(n2^n)$ & Kvik bestun yfir hlutmengi\\
 		$\leq 100$ & $\mathcal{O}(n^4)$ & Almenn spyrðing\\
@@ -450,7 +356,7 @@
 		\item<2-> Fylki geyma gögn og eru af fastri stærð.
 		\item<3-> Þar sem þau eru af fastri stærð má gefa þeim tileinkað, aðliggjandi svæði í minni.
 		\item<4-> Þetta leyfir manni að vísa í fylkið í $\mathcal{O}(1)$.
-		\item<5->
+		\item<5->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -471,7 +377,7 @@
 		\item<1-> Gagnagrindin \texttt{vector} er að mestu leiti eins og fylki.
 		\item<2-> Það má þó bæta stökum aftan á \texttt{vector} í $\mathcal{O}(1)$.
 		\item<3-> Margir nota bara \texttt{vector} og aldrei fylki sem slík.
-		\item<4->
+		\item<4->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -492,7 +398,7 @@
 		\item<1-> Gagnagrindin \texttt{list} geymir gögn líkt og fylki gera, en stökin eru ekki aðliggjandi í minni.
 		\item<2-> Því er uppfletting ekki hröð.
 		\item<3-> Aftur á móti er hægt að gera smávægilegar breytingar á \texttt{list} sem er ekki hægt að gera á fylkjum.
-		\item<4->
+		\item<4->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -514,7 +420,7 @@
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{stack} geymir gögn og leyfir aðgang að síðasta staki sem var bætt við.
-		\item<2->
+		\item<2->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -533,7 +439,7 @@
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{queue} geymir gögn og leyfir aðgang að fyrsta stakinu sem var bætt við.
-		\item<2->
+		\item<2->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -552,7 +458,7 @@
 	\env{itemize}
 	{
 		\item<1-> Gagnagrindin \texttt{set} geymir gögn án endurtekninga og leyfir hraða uppflettingu.
-		\item<2->
+		\item<2->[]
 		\env{tabular}
 		{
 			{l | l}
@@ -570,14 +476,14 @@
 	\frametitle{Lausnar aðferðir}
 	\env{itemize}
 	{
-		\item<1-> Lausnir okkar má flokka í fimm flokka:
+		\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
 		\env{itemize}
 		{
-			\item<2-> Ad hoc.
-			\item<3-> Heildstæð leit.
-			\item<4-> Gráðugar lausnir.
-			\item<5-> Deila og drottna (\texttt{D\&C}).
-			\item<6-> Kvik bestun (\texttt{DP}).
+			\item<2-> \emph{Ad hoc},
+			\item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
+			\item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
+			\item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
+			\item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
 		}
 		\item<7-> Þessi skipting er ekki fullkomin, en það er þó gott að hafa hana í huga.
 		\item<8-> Til dæmis má færa rök fyrir því að gráðugar lausnir og \texttt{D\&C} séu sértilfelli af kvikri bestun.
@@ -613,7 +519,7 @@
 		\item<4-> Blandaða brotið ykkar á að hafa sama nefnara og upprunarlega brotið.
 		\item<5-> Inntakið inniheldur tvær heiltölur $1 \leq p, q \leq 10^9$.
 		\item<6-> Úttakið skal innihalda blandaða brotið sem svarar til $p/q$.
-		\item<7->
+		\item<7->[]
 		\env{tabular}
 		{
 			{l | l | l}
