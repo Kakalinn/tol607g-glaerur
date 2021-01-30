@@ -1,0 +1,8 @@
+Sample input 1                    Sample output 1
+5 10                              98950
+1000 980 960 940 10
+
+
+Sample input 2                    Sample output 2
+5 100                             100
+100 100 100 103 100
