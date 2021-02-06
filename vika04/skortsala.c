@@ -1,8 +1,6 @@
 #include <stdlib.h>
-#include <math.h>
 #include <stdio.h>
 typedef long long ll;
-ll min(ll a, ll b) { if (a > b) return b; return a; }
 ll max(ll a, ll b) { if (a < b) return b; return a; }
 
 ll foo(ll* a, ll l, ll r, ll k)

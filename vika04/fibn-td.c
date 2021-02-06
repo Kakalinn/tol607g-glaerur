@@ -2,7 +2,7 @@
 #define MAXN 1000000
 
 int d[MAXN]; // Hér geymum við skilagildi fib(...).
-			 // Ef d[i] = -1 þá eigum við eftir að reikna það.
+			 // Ef d[i] = -1 þá eigum við eftir að reikna fib(i).
 int fib(int x)
 {
 	if (d[x] != -1) return d[x];

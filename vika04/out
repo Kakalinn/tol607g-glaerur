@@ -212,29 +212,9 @@ sh.dict) (./glaerur.nav) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./mergesort.c
 (/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [46] [47] [48] [49] [50]
 [51] [52] [53] [54] [55] [56] [57] [58] [59] (./bs-rec.c) [60] [61] [62]
-[63] [64] [65] [66] [67] [68] [69] [70] [71] [72]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[73]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[74]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[75]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[76]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[77]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[78]
-Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
- [] 
-[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93]
-[94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106]
+[63] [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]
+[78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92]
+[93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106]
 [107] [108] [109] [110] [111] [112] [113] [114] [115] [116] [117] [118]
 [119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129] [130]
 [131] [132] [133] [134] [135] [136] [137] [138] [139] [140] [141] [142]
@@ -242,21 +222,21 @@ Overfull \hbox (204.35175pt too wide) in paragraph at lines 296--296
 (./shortsell.in) [153] (./shortsell.in) [154] (./shortsell.in) [155]
 (./shortsell.in) [156] (./shortsell.in) [157] (./shortsell.in) [158]
 (./shortsell.in) [159] (./shortsell.in) [160] (./shortsell.in) [161]
-(./shortsell.in) [162] (./shortsell.in) [163] (./shortsell.in) [164] [165]
-[166] [167] [168] [169] [170] [171] [172] [173] [174] [175] [176] [177]
-[178] [179] (./skortsala.c
-Overfull \hbox (5.48592pt too wide) in paragraph at lines 19--20
+(./shortsell.in) [162] [163] [164] [165] [166] [167] [168] [169] [170] [171]
+[172] [173] [174] [175] [176] [177] (./skortsala.c
+Overfull \hbox (5.48592pt too wide) in paragraph at lines 17--18
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][] 
 
-Overfull \hbox (5.48592pt too wide) in paragraph at lines 20--21
+Overfull \hbox (5.48592pt too wide) in paragraph at lines 18--19
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][] 
-) [180] [181] [182] [183] [184] [185] (./fib2n.c) [186] [187] [188] [189]
-[190] (./fibn-td.c) [191] [192] [193] [194] [195] [196] [197] (./fibn-iter.c)
-[198] (./fibn-iter.c) [199] (./fibn-iter.c) [200] (./fibn-iter.c) [201]
-[202] [203] [204] [205] (./tddp-template.c) [206] (./tddp-template.c) [207]
-[208] [209] [210] [211] [212] [213] [214] [215] [216]
+) [178] [179] [180] [181] [182] [183] (./fib2n.c) [184] [185] [186] [187]
+[188] [189] (./fibn-td.c) [190] [191] [192] [193] [194] [195] [196]
+(./fibn-iter.c) [197] (./fibn-iter.c) [198] (./fibn-iter.c) [199]
+(./fibn-iter.c) [200] [201] [202] [203] [204] [205] (./tddp-template.c)
+[206] (./tddp-template.c) [207] [208] [209] [210] [211] [212] [213] [214]
+[215] [216]
 Overfull \hbox (4.84534pt too wide) detected at line 779
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
@@ -306,27 +286,148 @@ Overfull \hbox (9.71262pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][] 
 ) [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235] [236]
-[237] [238] (./coin-td.c) [239] (./glaerur.aux) )
+[237] [238] (./coin-td.c) [239] [240] (./coin-bu.c) [241] [242] [243] [244]
+[245] [246] [247] [248] (./coin-bu.c) [249] (./altcoin-bu.c) [250] [251]
+[252] (./glaerur.vrb) [253] (./glaerur.vrb) [254] (./glaerur.vrb) [255]
+(./glaerur.vrb) [256] (./glaerur.vrb) [257] (./glaerur.vrb) [258]
+(./glaerur.vrb) [259] (./glaerur.vrb) [260] (./glaerur.vrb) [261]
+(./glaerur.vrb) [262] (./glaerur.vrb) [263] (./glaerur.vrb) [264]
+(./glaerur.vrb) [265] (./glaerur.vrb) [266] (./glaerur.vrb) [267]
+(./glaerur.vrb) [268] (./glaerur.vrb) [269] (./glaerur.vrb) [270]
+(./glaerur.vrb) [271] (./glaerur.vrb) [272] (./glaerur.vrb) [273]
+(./glaerur.vrb) [274] (./glaerur.vrb) [275] (./glaerur.vrb) [276]
+(./glaerur.vrb) [277] (./glaerur.vrb) [278] (./glaerur.vrb) [279]
+(./glaerur.vrb) [280] (./glaerur.vrb) [281] (./glaerur.vrb) [282]
+(./glaerur.vrb) [283] (./glaerur.vrb) [284] (./glaerur.vrb) [285]
+(./glaerur.vrb) [286] (./glaerur.vrb) [287] (./glaerur.vrb) [288]
+(./glaerur.vrb) [289] (./glaerur.vrb) [290] (./glaerur.vrb) [291]
+(./glaerur.vrb) [292] (./glaerur.vrb) [293] (./glaerur.vrb) [294]
+(./glaerur.vrb) [295] (./glaerur.vrb) [296] (./glaerur.vrb) [297]
+(./glaerur.vrb) [298] (./glaerur.vrb) [299] (./glaerur.vrb) [300]
+(./glaerur.vrb
+Overfull \hbox (60.50424pt too wide) in paragraph at lines 9--9
+[]                                                                \T1/cmtt/m/n/
+10.95 |[] 
+) [301] (./glaerur.vrb) [302] (./glaerur.vrb) [303] (./glaerur.vrb) [304]
+(./glaerur.vrb) [305] (./glaerur.vrb) [306] (./glaerur.vrb) [307]
+(./glaerur.vrb) [308] (./glaerur.vrb) [309] (./glaerur.vrb) [310]
+(./glaerur.vrb) [311] (./glaerur.vrb) [312] (./glaerur.vrb) [313]
+(./glaerur.vrb) [314] (./glaerur.vrb) [315] (./glaerur.vrb) [316]
+(./glaerur.vrb) [317] (./glaerur.vrb) [318] (./glaerur.vrb) [319]
+(./glaerur.vrb) [320] (./glaerur.vrb) [321] (./glaerur.vrb) [322]
+(./glaerur.vrb) [323] (./glaerur.vrb) [324] (./glaerur.vrb) [325]
+(./glaerur.vrb) [326] (./glaerur.vrb) [327] (./glaerur.vrb) [328]
+(./glaerur.vrb) [329] (./glaerur.vrb) [330] (./glaerur.vrb) [331]
+(./glaerur.vrb) [332] (./glaerur.vrb
+Overfull \hbox (66.16261pt too wide) in paragraph at lines 9--9
+[]                                                                 \T1/cmtt/m/n
+/10.95 |[] 
+) [333] [334] [335] [336] [337] [338] [339] (./altcoin-td.c
+Overfull \hbox (22.39272pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+
+Overfull \hbox (1.25922pt too wide) in paragraph at lines 21--22
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][] 
+) [340] [341] [342] [343] [344] (./coin-td.c
+consecutive:
+
+Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+) [345] (./coin-td.c
+consecutive:
+
+Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+) [346] (./coin-td.c
+consecutive:
+
+Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+) [347] (./coin-td.c
+consecutive:
+
+Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+) [348] (./coin-td.c
+consecutive:
+
+Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+) [349] (./altcoin-td.c
+consecutive:
+
+Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+) [350] (./altcoin-td.c
+consecutive:
+
+Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+) [351] (./altcoin-td.c
+consecutive:
+
+Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+) [352] (./altcoin-td.c
+consecutive:
+
+Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+) [353] (./altcoin-td.c
+consecutive:
+
+Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+) [354] [355] [356] [357] [358] [359] [360] (./coin-bu-pre-traverse.c) [361]
+(./coin-bu-traverse.c) [362] [363] [364] [365] [366] (./coin-td-traverse.c)
+[367] [368] [369] [370] [371] [372] [373] (./lcs-traverse.c
+Overfull \hbox (9.71262pt too wide) in paragraph at lines 11--12
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][] 
+
+Overfull \hbox (22.39272pt too wide) in paragraph at lines 23--24
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][] 
+
+Overfull \hbox (1.25922pt too wide) in paragraph at lines 32--33
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][] 
+) [374] [375] [376] [377] [378] [379] [380] [381] [382] [383] [384] [385]
+[386] [387] [388] [389] [390] [391] [392] [393] [394] [395] [396] [397]
+[398] [399] [400] [401] (./tsp.c
+Overfull \hbox (5.48592pt too wide) in paragraph at lines 24--25
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+) [402] [403] (./glaerur.aux) )
 (see the transcript file for additional information){/usr/share/texmf-dist/font
 s/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-
 super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8
-.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
-/share/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/
-public/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
-/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><
-/usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sftt1095.pfb>
-Output written on glaerur.pdf (239 pages, 703512 bytes).
+ex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.p
+fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm
+-super/sfsi1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095
+.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fo
+nts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss
+1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on glaerur.pdf (403 pages, 974897 bytes).
 Transcript written on glaerur.log.
