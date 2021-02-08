@@ -203,14 +203,14 @@
 		\item<3-> Við getum því skoðað öll mögulega gildi $x_j$ og séð hvað er best.
 		\item<4-> Við viljum því reikna gildin á fallinu
 		\[
-			f(x) = 
+			f(i) = 
 			\left \{
 			\env{array}
 			{
 				{l l}
-				\infty, & \text{ef $x < 0$}\\
-				0, & \text{ef $x = 0$}\\
-				\text{min}_{j = 1, 2, ..., m} f(x - x_j) + 1, & \text{annars}.
+				\infty, & \text{ef $i < 0$}\\
+				0, & \text{ef $i = 0$}\\
+				\text{min}_{j = 1, 2, ..., m} f(i - x_j) + 1, & \text{annars}.
 			}
 			\right .
 		\]
@@ -241,8 +241,8 @@
 	{
 		\item<1-> Breytum dæminu örlítið.
 		\item<2-> Núna höfum við takmarkað magn af hverju klinki.
-		\item<3-> Nánar tiltekið höfum við $m$ klink hvert að virði $x_1, x_2, ..., x_m$ (núna geta verið endurtekin gildi).
-		\item<4-> Hver minnsti fjöldi að klinki sem þarf til að gefa til baka $n$ krónur, ef það er á annað borð hægt.
+		\item<3-> Nánar tiltekið höfum við $m$ klink að andvirði $x_1, x_2, ..., x_m$ (núna geta verið endurtekin gildi).
+		\item<4-> Hver er minnsti fjöldi að klinki sem þarf til að gefa til baka $n$ krónur, ef það er á annað borð hægt.
 		\item<5-> Nú er óþarfi að gera ráð fyrir því að $x_1 = 1$.
 		\item<6-> Hvernig mætti breyta neðansæknu lausninni til að höndla þetta?
 		\item<7-> Skoðum aftur neðansæknu lausnina.
@@ -1329,9 +1329,9 @@
 	{
 		\item<1-> Hvernig myndum við þó leysa seinna dæmið með ofansækinni kvikri bestun?
 		\item<2-> Við þurfum að hugsa það aðeins öðruvísi.
-		\item<3-> Nú hefum við um tvennt að velja fyrir hvern pening.
+		\item<3-> Nú höfum við um tvennt að velja fyrir hvern pening.
 		\item<4-> Annaðhvort notum við hann, eða ekki.
-		\item<5-> Svo við látum $f(i, j)$ tákna minnsta fjölda af klinki sem þarf til að gefa til baka $n$ krónur,
+		\item<5-> Svo við látum $f(n, j)$ tákna minnsta fjölda af klinki sem þarf til að gefa til baka $n$ krónur,
 					ef við megum nota klink $x_j, x_{j + 1}, ..., x_m$.
 		\item<6-> Þá fáum við að
 		\[
@@ -1342,8 +1342,8 @@
 				\infty, & \text{ef $i < 0$}\\
 				\infty, & \text{ef $i \neq 0$ og $j = m + 1$}\\
 				0, & \text{ef $i = 0$ og $j = m + 1$}\\
-				\text{min}(f(i, j + 1) &\\
-				+ f(i - x_j, j + 1) + 1), & \text{annars.}\\
+				\text{min}(f(i, j + 1), &\\
+				f(i - x_j, j + 1) + 1), & \text{annars.}\\
 			}
 			\right .
 		\]
@@ -1369,10 +1369,10 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Í neðansæknu lausninni á hefðbundna dæminu þarf að reikna, allt að, $n + 1$ fallgildi.
+		\item<1-> Í ofansæknu lausninni á hefðbundna dæminu þarf að reikna, allt að, $n + 1$ fallgildi.
 		\item<2-> Hvert gildi má reikna í $\mathcal{O}($\onslide<3->{$\,m\,$}$)$ tíma.
 		\item<4-> Svo í heildina er hún $\mathcal{O}($\onslide<5->{$n \cdot m$}$)$.
-		\item<1->[] \selectcode{coin-td.c}{7}{18}
+		\item<1->[] \selectcode{coin-td.c}{9}{18}
 	}
 }
 
@@ -1380,10 +1380,21 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Í neðansæknu lausninni á hinu dæminu þarf að reikna, allt að, $(n + 1) \cdot (m + 1)$ fallgildi.
+		\item<1-> Í ofansæknu lausninni á hinu dæminu þarf að reikna, allt að, $(n + 1) \cdot (m + 1)$ fallgildi.
 		\item<2-> Hvert gildi má þó reikna í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$ tíma.
 		\item<4-> Svo í heildina er hún $\mathcal{O}($\onslide<5->{$n \cdot m$}$)$.
-		\item<1->[] \selectcode{altcoin-td.c}{7}{18}
+		\item<1->[] \selectcode{altcoin-td.c}{9}{16}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þessi dæmi eru oft kölluð \emph{hlutmengjasummudæmi} (e. \emph{Subset Sum Problem}).
+		\item<2-> Í sinni einföldustu mynd eru þau: ``Er hægt að finna hlutrunu í gefinni talnarunu þannig að hlutrunan summast upp í $t$?''.
+		\item<3-> Eins og við sáum, er bæði hægt að skoða dæmið með og án endurtekninga, ásamt öðrum kröfum.
+		\item<4-> Fræga \emph{bakpokadæmið} (e. \emph{Knapsack Problem}) er dæmi um hlutmengjasummu dæmi.
 	}
 }
 
@@ -1395,7 +1406,7 @@
 		\item<2-> Það er yfirleitt farið aðra af tveimur leiðum.
 		\item<3-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
 					þá erum við í raun að velja hvort er betra: \texttt{dp(x, y + 1)} eða \texttt{dp(x - a[y], y + 1) + 1}.
-		\item<4-> Sú fyrri felur í sér að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
+		\item<4-> Fyrri aðferðin felur í sér að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
 		\item<5-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
 		\item<6-> Síðan er eftir á hægt að þræða sig í gegn og finna klinkið sem þarf.
 	}
@@ -1433,7 +1444,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Helsti kostur fyrri aðferðarinnar er að þar er besta skrefið ákvarðað í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$ tíma.
+		\item<1-> Helsti kostur fyrri aðferðarinnar er að besta skrefið er ákvarðað í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$ tíma.
 		\item<3-> Í seinni aðferðinni tekur það jafnalangan tíma og \texttt{dp\_lookup(...)} tekur að meta hverja stöðu.
 		\item<4-> Þetta má þó bæta með minnun.
 		\item<5-> Þetta kemur bara til með að gera nógu góða lausn hæga ef það þarf að reikna fyrir mörg $n$.
@@ -1456,7 +1467,7 @@
 		\item<4-> Gefið er tvívítt fylki $(d_{ij})_{1 \leq i, j \leq n}$,
 					þar sem $d_{ij}$ táknar tímann sem það tekur að fara úr $i$-tu stöðunni í $j$-tu stöðuna.
 		\item<5-> Við viljum nú ferðast í gegnum allar stöðurnar í einhverri röð þannig að við	
-					byrjum og endum í sömu stöðu, förum í hverja stöðu nákvæmlega einu sinni og tökum sem stystan tíma.
+					byrjum og endum í sömu stöðu, förum í hverja stöðu nákvæmlega einu sinni (tvisvar í upphafsstöðuna) og tökum sem stystan tíma.
 		\item<6-> Þetta er fræga \emph{Farandsölumannadæmið} (e. \emph{Travelling Salseman Problem}).
 		\item<7-> Sígilt er að leysa þetta dæmi endurkvæmt í $\mathcal{O}((n + 1)!)$ tíma.
 		\item<8-> Við höfum nú tólin til að gera betur.
@@ -1497,7 +1508,7 @@
 		\item<4-> Hvert fallgildi er reiknað í $\mathcal{O}($\onslide<5->{$\,n\,$}$)$ tíma.
 		\item<6-> Svo í heildina er forritið $\mathcal{O}($\onslide<7->{$n^2 \cdot 2^n$}$)$.
 		\item<8-> Samkvæmt $10^8$ reglunni náum við að leysa dæmi með $n \leq$ \onslide<9->{$18$}.
-		\item<10-> I aftur á móti náum við bara $n \leq$ \onslide<11->{$10$} með augljósum endurkvæmu lausninni.
+		\item<10-> Við náum bara $n \leq$ \onslide<11->{$10$} með augljósum endurkvæmu lausninni.
 	}
 }
 
@@ -1505,35 +1516,6 @@
 {
 	\code{tsp.c}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \env{frame}
 {

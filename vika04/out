@@ -1,7 +1,7 @@
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
-(./glaerur.tex
+(./kvik-bestun.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-12-03> xparse <2020-03-03> (../preamble.tex
 (/usr/share/texmf-dist/tex/latex/beamer/beamer.cls
@@ -176,7 +176,7 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex)
 topaths.code.tex)))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 calc.code.tex)) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-) (./glaerur.aux)
+) (./kvik-bestun.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -186,7 +186,7 @@ calc.code.tex)) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-(./glaerur.out) (./glaerur.out)
+(./kvik-bestun.out) (./kvik-bestun.out)
 (/usr/share/texmf-dist/tex/latex/translator/translator-basic-dictionary-English
 .dict)
 (/usr/share/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-
@@ -198,80 +198,53 @@ h.dict)
 (/usr/share/texmf-dist/tex/latex/translator/translator-numbers-dictionary-Engli
 sh.dict)
 (/usr/share/texmf-dist/tex/latex/translator/translator-theorem-dictionary-Engli
-sh.dict) (./glaerur.nav) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
+sh.dict) (./kvik-bestun.nav) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.m
+ap}] (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd) [2]
-[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [15] [16] [17] [18] [19]
-[20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] (./glaerur.vrb) [31]
-(./glaerur.vrb) [32] (./glaerur.vrb) [33] (./glaerur.vrb) [34] (./glaerur.vrb)
-[35] (./glaerur.vrb) [36] (./glaerur.vrb) [37] (./glaerur.vrb) [38]
-(./glaerur.vrb) [39] (./glaerur.vrb) [40] (./glaerur.vrb) [41] (./glaerur.vrb)
-[42] [43] [44] [45] (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./mergesort.c
-(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [46] [47] [48] [49] [50]
-[51] [52] [53] [54] [55] [56] [57] [58] [59] (./bs-rec.c) [60] [61] [62]
-[63] [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]
-[78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92]
-[93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106]
-[107] [108] [109] [110] [111] [112] [113] [114] [115] [116] [117] [118]
-[119] [120] [121] [122] [123] [124] [125] [126] [127] [128] [129] [130]
-[131] [132] [133] [134] [135] [136] [137] [138] [139] [140] [141] [142]
-[143] (./ts.c) [144] [145] [146] [147] [148] [149] [150] [151] [152]
-(./shortsell.in) [153] (./shortsell.in) [154] (./shortsell.in) [155]
-(./shortsell.in) [156] (./shortsell.in) [157] (./shortsell.in) [158]
-(./shortsell.in) [159] (./shortsell.in) [160] (./shortsell.in) [161]
-(./shortsell.in) [162] [163] [164] [165] [166] [167] [168] [169] [170] [171]
-[172] [173] [174] [175] [176] [177] (./skortsala.c
-Overfull \hbox (5.48592pt too wide) in paragraph at lines 17--18
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][] 
-
-Overfull \hbox (5.48592pt too wide) in paragraph at lines 18--19
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][] 
-) [178] [179] [180] [181] [182] [183] (./fib2n.c) [184] [185] [186] [187]
-[188] [189] (./fibn-td.c) [190] [191] [192] [193] [194] [195] [196]
-(./fibn-iter.c) [197] (./fibn-iter.c) [198] (./fibn-iter.c) [199]
-(./fibn-iter.c) [200] [201] [202] [203] [204] [205] (./tddp-template.c)
-[206] (./tddp-template.c) [207] [208] [209] [210] [211] [212] [213] [214]
-[215] [216]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[3] [4] [5] [6] (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./fib2n.c
+(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [7] [8] [9] [10] [11]
+[12] (./fibn-td.c) [13] [14] [15] [16] [17] [18] [19] (./fibn-iter.c) [20]
+(./fibn-iter.c) [21] (./fibn-iter.c) [22] (./fibn-iter.c) [23] [24] [25]
+[26] [27] [28] (./tddp-template.c) [29] (./tddp-template.c) [30]
+(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [31] [32] [33] [34] [35]
+[36] [37] [38] [39]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[217]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[40]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[218]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[41]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[219]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[42]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[220]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[43]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[221]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[44]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[222]
-Overfull \hbox (4.84534pt too wide) detected at line 779
+[45]
+Overfull \hbox (4.84534pt too wide) detected at line 147
 \OT1/mathkerncmss/m/sl/10.95 f\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.95
  i\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 j\OT1/cmss/m/n/10.95 ) = [
 ]
-[223] (./lcs.c
+[46] (./lcs.c
 Overfull \hbox (9.71262pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][] 
@@ -279,120 +252,96 @@ Overfull \hbox (9.71262pt too wide) in paragraph at lines 12--13
 Overfull \hbox (1.25922pt too wide) in paragraph at lines 23--24
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
-) [224] (./lcs.c
+) [47] (./lcs.c
 consecutive:
 
 Overfull \hbox (9.71262pt too wide) in paragraph at lines 12--13
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][] 
-) [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235] [236]
-[237] [238] (./coin-td.c) [239] [240] (./coin-bu.c) [241] [242] [243] [244]
-[245] [246] [247] [248] (./coin-bu.c) [249] (./altcoin-bu.c) [250] [251]
-[252] (./glaerur.vrb) [253] (./glaerur.vrb) [254] (./glaerur.vrb) [255]
-(./glaerur.vrb) [256] (./glaerur.vrb) [257] (./glaerur.vrb) [258]
-(./glaerur.vrb) [259] (./glaerur.vrb) [260] (./glaerur.vrb) [261]
-(./glaerur.vrb) [262] (./glaerur.vrb) [263] (./glaerur.vrb) [264]
-(./glaerur.vrb) [265] (./glaerur.vrb) [266] (./glaerur.vrb) [267]
-(./glaerur.vrb) [268] (./glaerur.vrb) [269] (./glaerur.vrb) [270]
-(./glaerur.vrb) [271] (./glaerur.vrb) [272] (./glaerur.vrb) [273]
-(./glaerur.vrb) [274] (./glaerur.vrb) [275] (./glaerur.vrb) [276]
-(./glaerur.vrb) [277] (./glaerur.vrb) [278] (./glaerur.vrb) [279]
-(./glaerur.vrb) [280] (./glaerur.vrb) [281] (./glaerur.vrb) [282]
-(./glaerur.vrb) [283] (./glaerur.vrb) [284] (./glaerur.vrb) [285]
-(./glaerur.vrb) [286] (./glaerur.vrb) [287] (./glaerur.vrb) [288]
-(./glaerur.vrb) [289] (./glaerur.vrb) [290] (./glaerur.vrb) [291]
-(./glaerur.vrb) [292] (./glaerur.vrb) [293] (./glaerur.vrb) [294]
-(./glaerur.vrb) [295] (./glaerur.vrb) [296] (./glaerur.vrb) [297]
-(./glaerur.vrb) [298] (./glaerur.vrb) [299] (./glaerur.vrb) [300]
-(./glaerur.vrb
+) [48] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61]
+(./coin-td.c) [62] [63] (./coin-bu.c) [64] [65] [66] [67] [68] [69] [70]
+[71] (./coin-bu.c) [72] (./altcoin-bu.c) [73] [74] [75] (./kvik-bestun.vrb)
+[76] (./kvik-bestun.vrb) [77] (./kvik-bestun.vrb) [78] (./kvik-bestun.vrb)
+[79] (./kvik-bestun.vrb) [80] (./kvik-bestun.vrb) [81] (./kvik-bestun.vrb)
+[82] (./kvik-bestun.vrb) [83] (./kvik-bestun.vrb) [84] (./kvik-bestun.vrb)
+[85] (./kvik-bestun.vrb) [86] (./kvik-bestun.vrb) [87] (./kvik-bestun.vrb)
+[88] (./kvik-bestun.vrb) [89] (./kvik-bestun.vrb) [90] (./kvik-bestun.vrb)
+[91] (./kvik-bestun.vrb) [92] (./kvik-bestun.vrb) [93] (./kvik-bestun.vrb)
+[94] (./kvik-bestun.vrb) [95] (./kvik-bestun.vrb) [96] (./kvik-bestun.vrb)
+[97] (./kvik-bestun.vrb) [98] (./kvik-bestun.vrb) [99] (./kvik-bestun.vrb)
+[100] (./kvik-bestun.vrb) [101] (./kvik-bestun.vrb) [102] (./kvik-bestun.vrb)
+[103] (./kvik-bestun.vrb) [104] (./kvik-bestun.vrb) [105] (./kvik-bestun.vrb)
+[106] (./kvik-bestun.vrb) [107] (./kvik-bestun.vrb) [108] (./kvik-bestun.vrb)
+[109] (./kvik-bestun.vrb) [110] (./kvik-bestun.vrb) [111] (./kvik-bestun.vrb)
+[112] (./kvik-bestun.vrb) [113] (./kvik-bestun.vrb) [114] (./kvik-bestun.vrb)
+[115] (./kvik-bestun.vrb) [116] (./kvik-bestun.vrb) [117] (./kvik-bestun.vrb)
+[118] (./kvik-bestun.vrb) [119] (./kvik-bestun.vrb) [120] (./kvik-bestun.vrb)
+[121] (./kvik-bestun.vrb) [122] (./kvik-bestun.vrb) [123] (./kvik-bestun.vrb
 Overfull \hbox (60.50424pt too wide) in paragraph at lines 9--9
 []                                                                \T1/cmtt/m/n/
 10.95 |[] 
-) [301] (./glaerur.vrb) [302] (./glaerur.vrb) [303] (./glaerur.vrb) [304]
-(./glaerur.vrb) [305] (./glaerur.vrb) [306] (./glaerur.vrb) [307]
-(./glaerur.vrb) [308] (./glaerur.vrb) [309] (./glaerur.vrb) [310]
-(./glaerur.vrb) [311] (./glaerur.vrb) [312] (./glaerur.vrb) [313]
-(./glaerur.vrb) [314] (./glaerur.vrb) [315] (./glaerur.vrb) [316]
-(./glaerur.vrb) [317] (./glaerur.vrb) [318] (./glaerur.vrb) [319]
-(./glaerur.vrb) [320] (./glaerur.vrb) [321] (./glaerur.vrb) [322]
-(./glaerur.vrb) [323] (./glaerur.vrb) [324] (./glaerur.vrb) [325]
-(./glaerur.vrb) [326] (./glaerur.vrb) [327] (./glaerur.vrb) [328]
-(./glaerur.vrb) [329] (./glaerur.vrb) [330] (./glaerur.vrb) [331]
-(./glaerur.vrb) [332] (./glaerur.vrb
+) [124] (./kvik-bestun.vrb) [125] (./kvik-bestun.vrb) [126] (./kvik-bestun.vrb)
+ [127] (./kvik-bestun.vrb) [128] (./kvik-bestun.vrb) [129] (./kvik-bestun.vrb)
+[130] (./kvik-bestun.vrb) [131] (./kvik-bestun.vrb) [132] (./kvik-bestun.vrb)
+[133] (./kvik-bestun.vrb) [134] (./kvik-bestun.vrb) [135] (./kvik-bestun.vrb)
+[136] (./kvik-bestun.vrb) [137] (./kvik-bestun.vrb) [138] (./kvik-bestun.vrb)
+[139] (./kvik-bestun.vrb) [140] (./kvik-bestun.vrb) [141] (./kvik-bestun.vrb)
+[142] (./kvik-bestun.vrb) [143] (./kvik-bestun.vrb) [144] (./kvik-bestun.vrb)
+[145] (./kvik-bestun.vrb) [146] (./kvik-bestun.vrb) [147] (./kvik-bestun.vrb)
+[148] (./kvik-bestun.vrb) [149] (./kvik-bestun.vrb) [150] (./kvik-bestun.vrb)
+[151] (./kvik-bestun.vrb) [152] (./kvik-bestun.vrb) [153] (./kvik-bestun.vrb)
+[154] (./kvik-bestun.vrb) [155] (./kvik-bestun.vrb
 Overfull \hbox (66.16261pt too wide) in paragraph at lines 9--9
 []                                                                 \T1/cmtt/m/n
 /10.95 |[] 
-) [333] [334] [335] [336] [337] [338] [339] (./altcoin-td.c
-Overfull \hbox (22.39272pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-
-Overfull \hbox (1.25922pt too wide) in paragraph at lines 21--22
+) [156] [157] [158] [159] [160] [161] [162] (./altcoin-td.c
+Overfull \hbox (1.25922pt too wide) in paragraph at lines 22--23
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
-) [340] [341] [342] [343] [344] (./coin-td.c
+) [163] [164] [165] [166] [167] (./coin-td.c
 consecutive:
 
 Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
-) [345] (./coin-td.c
+) [168] (./coin-td.c
 consecutive:
 
 Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
-) [346] (./coin-td.c
+) [169] (./coin-td.c
 consecutive:
 
 Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
-) [347] (./coin-td.c
+) [170] (./coin-td.c
 consecutive:
 
 Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
-) [348] (./coin-td.c
+) [171] (./coin-td.c
 consecutive:
 
 Overfull \hbox (10.47917pt too wide) in paragraph at lines 16--17
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
-) [349] (./altcoin-td.c
+) [172] (./altcoin-td.c
 consecutive:
-
-Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-) [350] (./altcoin-td.c
+) [173] (./altcoin-td.c
 consecutive:
-
-Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-) [351] (./altcoin-td.c
+) [174] (./altcoin-td.c
 consecutive:
-
-Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-) [352] (./altcoin-td.c
+) [175] (./altcoin-td.c
 consecutive:
-
-Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-) [353] (./altcoin-td.c
+) [176] (./altcoin-td.c
 consecutive:
-
-Overfull \hbox (44.29277pt too wide) in paragraph at lines 14--15
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][] 
-) [354] [355] [356] [357] [358] [359] [360] (./coin-bu-pre-traverse.c) [361]
-(./coin-bu-traverse.c) [362] [363] [364] [365] [366] (./coin-td-traverse.c)
-[367] [368] [369] [370] [371] [372] [373] (./lcs-traverse.c
+) [177] [178] [179] [180] [181] [182] [183] [184] [185] [186] [187]
+(./coin-bu-pre-traverse.c) [188] (./coin-bu-traverse.c) [189] [190] [191]
+[192] [193] (./coin-td-traverse.c) [194] [195] [196] [197] [198] [199] [200]
+(./lcs-traverse.c
 Overfull \hbox (9.71262pt too wide) in paragraph at lines 11--12
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][] 
@@ -404,13 +353,13 @@ Overfull \hbox (22.39272pt too wide) in paragraph at lines 23--24
 Overfull \hbox (1.25922pt too wide) in paragraph at lines 32--33
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
-) [374] [375] [376] [377] [378] [379] [380] [381] [382] [383] [384] [385]
-[386] [387] [388] [389] [390] [391] [392] [393] [394] [395] [396] [397]
-[398] [399] [400] [401] (./tsp.c
+) [201] [202] [203] [204] [205] [206] [207] [208] [209] [210] [211] [212]
+[213] [214] [215] [216] [217] [218] [219] [220] [221] [222] [223] [224]
+[225] [226] [227] [228] (./tsp.c
 Overfull \hbox (5.48592pt too wide) in paragraph at lines 24--25
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
-) [402] [403] (./glaerur.aux) )
+) [229] [230] (./kvik-bestun.aux) )
 (see the transcript file for additional information){/usr/share/texmf-dist/font
 s/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-
 super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
@@ -423,11 +372,10 @@ fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm
--super/sfsi1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095
-.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fo
-nts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss
-1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on glaerur.pdf (403 pages, 974897 bytes).
-Transcript written on glaerur.log.
+-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600
+.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fo
+nts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/cm-super/sftt1095.pfb>
+Output written on kvik-bestun.pdf (230 pages, 600080 bytes).
+Transcript written on kvik-bestun.log.

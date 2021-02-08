@@ -11,7 +11,8 @@ int dp_lookup(int x, int y)
 	if (x < 0) return INF;
 	if (d[x][y] != -1) return d[x][y];
 	if (y == m) return x == 0 ? 0 : INF;
-	return d[x][y] = min(dp_lookup(x, y + 1), dp_lookup(x - a[y], y + 1) + 1);
+	return d[x][y] = min(dp_lookup(x, y + 1),
+							dp_lookup(x - a[y], y + 1) + 1);
 }
 
 int main()
