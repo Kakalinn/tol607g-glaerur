@@ -1,0 +1,259 @@
+\title{Tæmandi leit og gráðug reiknirit}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Almennar nálganir lausna}
+	\env{itemize}
+	{
+		\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
+		\env{itemize}
+		{
+			\item<2-> \emph{Ad hoc},
+			\item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
+			\item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
+			\item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
+			\item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
+		}
+		\item<7-> Í síðustu viku fjölluðum við um Ad hoc dæmi.
+		\item<8-> Í þessari viku fjöllum við um tæmandi leit og gráðug reiknirit.
+		\item<9-> Við styttum oft ,,tæmandi leit'' í \texttt{CS} (fyrir ,,Complete search'') og ,,kvik bestun'' í \texttt{DP}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tæmandi leit}
+	\env{itemize}
+	{
+		\item<1-> Safn allra lausna dæmis kallast \emph{lausnarrúm} dæmisins.
+		\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið.
+		\item<3-> Tökum dæmi.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Dæmi}
+	\env{itemize}
+	{
+		\item<1-> Gefinn er listi $a$ af $n$ mismunandi heiltölum á bilinu $[0, m]$.
+		\item<2-> Hver þeirra er stærst?
+		\item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
+		\item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
+		\item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í $a$.
+		\item<6-> Við getum athugað hvort tala sé í $a$ með því að ítra í gegnum $a$, sem tekur $\mathcal{O}($\onslide<7->{$\,n\,$}$)$ tíma.
+		\item<8-> Þessi aðferð er því $\mathcal{O}($\onslide<9->{$nm$}$)$.
+		\item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Almennt fáum við að ef lausnarrúmið er af stærð $S$ og við getum athugað hverja lausn í $\mathcal{O}(T(k))$
+			þá er tæmandi leit $\mathcal{O}(S \cdot T(k))$.
+		\item<2-> Gildin $n!$ og $2^n$ eru algengar stærðir á lausnarrúmum.
+		\item<3-> Þar af leiðandi eru $\mathcal{O}(n \cdot n!) = \mathcal{O}((n + 1)!)$ og $\mathcal{O}(n 2^n)$ algengar tímaflækjur.
+		\item<4-> Oft má á þægilegan hátt breyta slíkum lausnum í $\mathcal{O}(n!)$ og $\mathcal{O}(2^n)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tæmandi leit, öll hlutmengi}
+	\env{itemize}
+	{
+		\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé alltaf einföld.
+		\item<2-> Svo er ekki alltaf.
+		\item<3-> Tökum annað dæmi.
+		\item<4-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
+		\item<5-> Ef við viljum leysa þetta dæmi með tæmandi leit þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Útúrdúr um hlutmengi}
+	\env{itemize}
+	{
+		\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
+		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $1, 2, ..., n$.
+		\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Útúrdúr um bitaframsetingu talna}
+	\env{itemize}
+	{
+		\item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvírætt ákvörðuð tala $b$ sem hefur $1$ í
+			$k$-ta sæti bitaframsetningar sinnar þá og því aðeins að $k$-ta stak $A$ sé í $H$.
+		\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
+		\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
+		\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
+		\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þegar kemur að því að not bitakenni í forritun notum við okkur eftirfarandi:
+		\item<2->[]
+			\env{tabular}
+			{
+				{| l | l |}
+				\hline
+				Kennir $k$-ta einstökungs & \quad \texttt{1 << k}\\
+				Kennir fyllimengis kennis & \quad \texttt{\textasciitilde{A}}\\
+				Kennir samengis tveggja kenna & \quad \texttt{A|B}\\
+				Kennir sniðmengis tveggja kenna & \quad \texttt{A\&B}\\
+				Kennir samhverfs mismunar tveggja kenna & \quad \texttt{A\textasciicircum B}\\
+				Kennir mismunar tveggja kenna & \quad \texttt{A\&(\textasciitilde{B})}\\
+				\hline
+			}
+		\item<3-> NB: Vegna forgang aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
+		\item<4-> Til dæmis er \texttt{A\&B == 0} jafngilt \texttt{A\&(B == 0)} í \texttt{C/C++},
+			þó við viljum yfirleitt \texttt{(A\&B) == 0}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn á dæminu}
+	\env{itemize}
+	{
+		\item<1-> Við getum nú leyst dæmið.
+		\item<2-> Til að ítra í gegnum öll hlutmengi ítrum við í gegnum alla bitakenni mengisins.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn}
+	\code{code/lis.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
+			svo reikniritið er $\mathcal{O}($\onslide<2->{$n2^n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tæmandi leit, allar umraðanir}
+	\env{itemize}
+	{
+		\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
+		\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1$ vegu.
+		\item<3-> Tökum mjög einfalt dæmi:
+		\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hver á sinni línu.
+		\item<5-> Við getum notað okkur innbyggða fallið \texttt{next\_permutation(...)} í \texttt{C++}.
+	}
+}
+
+\env{frame}
+{
+	\code{code/perm.cpp}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Mikilvægt er að \texttt{p} sé vaxandi í upphafi því lykkjan hættir þegar það lendir á síðustu umröðunni, í stafrófsröð.
+		\item<2-> Þessi lausn er $\mathcal{O}($\onslide<3->{$(n + 1)!$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum nú annað dæmi.
+		\item<2-> Gefnar eru $n$ mismunandi heiltölur.
+		\item<3-> Raðið þeim.
+		\item<4-> Þetta má að sjálfsögðu leysa með innbyggðum röðunarföllum, en við viljum leysa þetta með tæmandi leit.
+		\item<5-> Við getum notað sama forrit og áðan, með smávægilegum breytingum.
+	}
+}
+
+\env{frame}
+{
+	\code{code/sort.cpp}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan á þessari lausn er $\mathcal{O}($\onslide<2->{$(n + 1)!$}$)$.
+		\item<3-> Við getum bætt hana.
+		\item<4-> Byrjum á að leysa dæmið án þess að nota \texttt{next\_permutation(...)}.
+		\item<5-> Við getum gert það endurkvæmt.
+		\item<6-> Í hverju skrefi í endurkvæmninni veljum við stak sem við höfum ekki valið áður, setjum það á hlaða og höldum áfram.
+	}
+}
+
+\env{frame}
+{
+	\code{code/sort.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölrunar séu \texttt{3 2 5 4 1}.
+		\item<2-> Við byrjum með tómann hlaða, táknum hann með \texttt{x x x x x}.
+		\item<3-> Við bætum fyrst við \texttt{3} og fáum \texttt{3 x x x x}.
+		\item<4-> Síðan bætum við \texttt{2} við og fáum \texttt{3 2 x x x}.
+		\item<5-> Næst prófum við allar umraðanir \texttt{5 4 1} þar fyrir aftan.
+		\item<6-> En við sjáum strax að það mun aldrei verða raðað, því $3 > 2$.
+		\item<7-> Svo við getum sleppt því að skoða dýpra.
+	}
+}
+
+\env{frame}
+{
+	\code{code/sort-pruned.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan eftir þessa breytingu er ekki augljós.
+		\item<2-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
+		\item<3-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
+		\item<4-> Svo tímaflækjan er $\mathcal{O}($\onslide<5->{$2^n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Tæmandi leit, kostir og gallar}
+	\env{itemize}
+	{
+		\item<1-> Það eru ýmsir kostir við tæmandi leit.
+		\item<2-> Til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum á eftir aðferðir þar sem það gildir ekki)
+		\item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (þegar maður er kominn með smá æfingu).
+		\item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
+		\item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
+	}
+}
+
+\end{document}

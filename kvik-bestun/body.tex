@@ -1,0 +1,1522 @@
+\title{Kvik bestun}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Rakningarvensl}
+	\env{itemize}
+	{
+		\item<1-> Talnarunan $a_1, a_2, ...$ kallast \emph{$k$-ta stigs rakningarvensl} ef til er fall
+					$f \colon \mathbb{R}^k \rightarrow \mathbb{R}$ þannig að
+					\[
+						a_n = f(a_{n - 1}, a_{n - 2}, ..., a_{n - k})
+					\]
+					fyrir ölll $n > k$.
+		\item<2-> Frægasta dæmið um rakningarvensl er \emph{Fibonacci runan}.
+		\item<3-> Hún er \onslide<4->{annars} stigs rakningarvensl gefin með fallinu $f(x, y) = x + y$.
+		\item<5-> Reikna má upp úr þessum venslum endurkvæmt.
+	}
+}
+
+\env{frame}
+{
+	\code{code/fib2n.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í hverju skrefi skiptist endurkvæmnin í tvennt svo þetta forrit hefur tímaflækju $\mathcal{O}($\onslide<2->{$2^n$}$)$.
+		\item<3-> Við getum þó bætt þetta til muna með því að geyma niðurstöðuna úr hverju kalli.
+		\item<4-> Þá nægir að reikna hvert gildi einu sinni.
+		\item<5-> Þessi viðbót kallast \emph{minnun} (e. \emph{memoization}).
+	}
+}
+
+\env{frame}
+{
+	\code{code/fibn-td.c}
+}
+
+\env{frame}
+{
+	\frametitle{Ofansækin kvik bestun}
+	\env{itemize}
+	{
+		\item<1-> Nú reiknum við hvert gildi aðeins einu sinni.
+		\item<2-> Við þurfum að reikna $n$ gildi og hvert gildi má reikna í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$ tíma, svo í heildina er forritið
+					$\mathcal{O}($\onslide<4->{$\,n\,$}$)$.
+		\item<5-> Án minnunar náum við með erfiðum að reikna fertugust Fibonacci töluna (því eframatið $\mathcal{O}(2^n)$ mætti bæta ögn)
+					en með minnun náum við hæglega að reikna milljónustu Fibonacci töluna (hún mun þó ekki einu sinni passa í $64$ bita).
+		\item<6-> Ef lausnin okkar er endurkvæm með minnun kallast hún \emph{ofansækin kvik bestun} (e. \emph{top down dynamic programming}).
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Neðansækin kvik bestun}
+	\env{itemize}
+	{
+		\item<1-> Það er þó lítið mál að breyta endurkvæmnu lausninni okkar í ítraða lausn.
+		\item<2-> Eina sem við þurfum að passa er að reikna gildin í vaxandi röð.
+		\item<3->[]
+			\code{code/fibn-iter.c}
+		\item<4-> Þegar ofansækin kvik bestunar lausn er útfærð með ítrun köllum við það \emph{neðansækin kvik bestun} 
+					(e. \emph{bottom up dymanic programming}).
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í neðansækinni kvikri bestun byrjum við með grunntilfellin og smíðum flóknari lausnirnar út frá þeim.
+		\item<2-> Í ofansækinni kvikri bestun brjótum við fyrst flóknu dæmin niður í smærri dæmi sem við vitum svarið við og reiknum svo út úr því.
+		\item<3-> Ef endurkvæmnafallið okkar er háð $k$ breytum þá segjum við að lausnin okkar sé \emph{$k$ víð kvik bestun}.
+		\item<4-> Ofansækin kvik bestun hentar þegar við erum að vinna með fleiri en eina vídd.
+		\item<5-> Þá getur verið erfitt að ítra í gegnum stöðurnar í ``réttri röð''.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Annar kostur ofansækinnar kvikrar bestunar er að lausnirnar geta verið nokkuð einsleitar.
+		\item<2->[]
+			\code{code/tddp-template.c}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lengsta sameiginlega hlutruna}
+	\env{itemize}
+	{
+		\item<1-> Tökum annað dæmi.
+		\item<2-> Látum $S = s_1s_2...s_n$ og $T = t_1t_2...t_m$ vera strengi af lengd $n$ og $m$, þannig að $1 \leq n, m \leq 10^4$.
+		\item<3-> Hver er lengd lengsta strengs $X$ þannig að hann sé hlutruna í bæði $S$ og $T$?
+		\item<4-> Takið eftir að \texttt{"12"} og \texttt{"13"} eru hlutrunur í \texttt{"123"} en \texttt{"21"} er það ekki.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Getum við sett upp dæmið með þægilegum rakningarvenslum?
+		\item<2-> Ef svo er þá getum við notað kvika bestun.
+		\item<3-> Það er yfirleitt þægilegast að hugsa um rakningarvenslin sem fall, frekar en runu.
+		\item<4-> Látum $f(i, j)$ tákna lengstu sameiginlegu hlutrunu strengjanna $s_1s_2...s_i$ og $t_1t_2...t_j$.
+		\item<5-> Okkur mun svo nægja að reikna $f(n, m)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við vitum að $f(0, i) = f(j, 0) = 0$.
+		\item<2-> Þetta munu vera grunntilfellin okkar.
+		\item<3-> Almennt gildir að ef við erum að reikna $f(i, j)$ og $s_i = t_j$ þá getum við látið þann staf vera aftastan í sameiginlegu hlutrununni.
+		\item<4-> Svo $f(i, j) = f(i - 1, j - 1) + 1$ ef $s_i = t_j$.
+		\item<5-> Ef $s_i \neq t_j$ þá verður annað stakið (eða bæði stökin) að vera ekki í hlutrununni.
+		\item<6-> Við veljum að sjálfsögðu að sleppa þeim sem gefur okkur betra svar, það er að segja $f(i, j) = \text{max}(f(i - 1, j), f(i, j - 1))$.
+		\item<7-> Við getum svo sett allt saman og fengið
+		\[
+			f(i, j) =
+			\left \{
+			\env{array}
+			{
+				{l l}
+				0, & \text{ef $i = 0$ eða $j = 0$}\\
+				f(i - 1, j - 1) + 1, & \text{annars, og ef $s_i = t_j$}\\
+				\text{max}(f(i - 1, j), f(i, j - 1)), & \text{annars}.
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\code{code/lcs.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Það er þessi virði að bera saman \texttt{dp\_lookup(...)} fallið í forritinu og $f(i, j)$ af glærunni í framan.
+	}
+	\[
+		f(i, j) =
+		\left \{
+		\env{array}
+		{
+			{l l}
+			0, & \text{ef $i = 0$ eða $j = 0$}\\
+			f(i - 1, j - 1) + 1, & \text{annars, og ef $s_i = t_j$}\\
+			\text{max}(f(i - 1, j), f(i, j - 1)), & \text{annars}.
+		}
+		\right .
+	\]
+	\selectcode{code/lcs.c}{8}{14}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Forritið okkar þarf í versta falli að reikna öll möguleg gildi á $f(i, j)$, sem eru $(n + 1) \cdot (m + 1)$ talsins.
+		\item<2-> En hvert gildi má reikna í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$ tíma.
+		\item<4-> Svo forritið hefur tímaflækjuna $\mathcal{O}($\onslide<5->{$n \cdot m$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skiptimyndadæmið}
+	\env{itemize}
+	{
+		\item<1-> Skoðum aftur Skiptimyntadæmið úr síðust viku.
+		\item<2-> Þú ert með ótakmarkað magn af $m$ mismunandi myntum.
+		\item<3-> Þær eru virði  $x_1, x_2, ..., x_m$. Til þæginda gerum við ráð fyrir því að $x_1 = 1$.
+		\item<4-> Hver er minnsti nauðsynlegi fjöldi af klinki ef þú vilt gefa $n$ krónur til baka.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við byrjum að gefa til baka $x_j$ krónur.
+		\item<2-> Þá erum við búin að smækka dæmið niður í $n - x_j$.
+		\item<3-> Við getum því skoðað öll mögulega gildi $x_j$ og séð hvað er best.
+		\item<4-> Við viljum því reikna gildin á fallinu
+		\[
+			f(i) = 
+			\left \{
+			\env{array}
+			{
+				{l l}
+				\infty, & \text{ef $i < 0$}\\
+				0, & \text{ef $i = 0$}\\
+				\text{min}_{j = 1, 2, ..., m} f(i - x_j) + 1, & \text{annars}.
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\code{code/coin-td.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þetta dæmi má þó hæglega gera neðansækið.
+	}
+}
+
+\env{frame}
+{
+	\code{code/coin-bu.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Breytum dæminu örlítið.
+		\item<2-> Núna höfum við takmarkað magn af hverju klinki.
+		\item<3-> Nánar tiltekið höfum við $m$ klink að andvirði $x_1, x_2, ..., x_m$ (núna geta verið endurtekin gildi).
+		\item<4-> Hver er minnsti fjöldi að klinki sem þarf til að gefa til baka $n$ krónur, ef það er á annað borð hægt.
+		\item<5-> Nú er óþarfi að gera ráð fyrir því að $x_1 = 1$.
+		\item<6-> Hvernig mætti breyta neðansæknu lausninni til að höndla þetta?
+		\item<7-> Skoðum aftur neðansæknu lausnina.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hefðbundna skiptimyntadæmið}
+	\code{code/coin-bu.c}
+}
+
+\env{frame}
+{
+	\frametitle{Nýja dæmið}
+	\code{code/altcoin-bu.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skoðum báðar aðferðirnar á litlu sýnidæmi.
+		\item<2-> Skoðum fyrst með endurtekningum og síðan án endurtekningar.
+	}
+}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2, -1, -1, -1, -1, -1, -1, -1, -1]
+              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2, -1, -1, -1, -1, -1, -1, -1, -1]
+                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3, -1, -1, -1, -1, -1, -1, -1]
+                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3, -1, -1, -1, -1, -1, -1, -1]
+                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4, -1, -1, -1, -1, -1, -1]
+                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4, -1, -1, -1, -1, -1, -1]
+                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5, -1, -1, -1, -1, -1]
+                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5, -1, -1, -1, -1, -1]
+                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6, -1, -1, -1, -1]
+                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6, -1, -1, -1, -1]
+                                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7, -1, -1, -1]
+                                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7, -1, -1, -1]
+                                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8, -1, -1]
+                                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8, -1, -1]
+                                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8,  9, -1]
+                                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8,  9, -1]
+                                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10]
+                                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10]
+          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  4,  5,  6,  7,  8,  9, 10]
+          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  4,  5,  6,  7,  8,  9, 10]
+              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  5,  6,  7,  8,  9, 10]
+              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  5,  6,  7,  8,  9, 10]
+                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  6,  7,  8,  9, 10]
+                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  6,  7,  8,  9, 10]
+                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  7,  8,  9, 10]
+                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  7,  8,  9, 10]
+                          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  8,  9, 10]
+                          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  8,  9, 10]
+                              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  9, 10]
+                              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  9, 10]
+                                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  3, 10]
+                                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  3, 10]
+                                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  3,  4]
+                                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  3,  2,  3,  4,  3,  4]
+          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+                  ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+                  ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  4,  3,  4]
+                      ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  4]
+                      ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  4]
+                          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  4]
+                          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  4]
+                              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  2]
+                              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1,  2,  1,  2,  1,  2,  3,  2,  3,  2]
+                                                                |
+\end{verbatim}
+% neðsta línan er hakk til að myndin sé ekki aðeins of lág. það lítur út fyrir að verbatim sé ekki með fasta hæð á línum, bara dálkum. sad :(
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                      ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                  ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+              ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+          ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+          ^   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                      ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                  ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1,  2, -1, -1, -1, -1, -1, -1]
+              ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1, -1,  2, -1, -1, -1, -1, -1, -1]
+          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+             ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1, -1, -1, -1]
+          ^           |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1, -1, -1, -1]
+                              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1, -1, -1, -1]
+                          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1, -1,  3, -1]
+                          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1, -1,  3, -1]
+                      ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1,  2,  3, -1]
+                      ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1,  2,  3, -1]
+                  ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1, -1, -1,  2,  3, -1]
+              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1,  2, -1,  2,  3, -1]
+              ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2, -1,  2, -1,  2,  3, -1]
+          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                ^
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2,  1,  2, -1,  2,  3, -1]
+          ^                   |
+\end{verbatim}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+     n = 10
+     a = [1, 3, 5]
+                 
+
+          0   1   2   3   4   5   6   7   8   9  10
+     d = [0,  1, -1,  1,  2,  1,  2, -1,  2,  3, -1]
+                                                                 |
+\end{verbatim}
+% sama hakk og áðan
+\end{frame}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvernig myndum við þó leysa seinna dæmið með ofansækinni kvikri bestun?
+		\item<2-> Við þurfum að hugsa það aðeins öðruvísi.
+		\item<3-> Nú höfum við um tvennt að velja fyrir hvern pening.
+		\item<4-> Annaðhvort notum við hann, eða ekki.
+		\item<5-> Svo við látum $f(n, j)$ tákna minnsta fjölda af klinki sem þarf til að gefa til baka $n$ krónur,
+					ef við megum nota klink $x_j, x_{j + 1}, ..., x_m$.
+		\item<6-> Þá fáum við að
+		\[
+			f(i, j) = \left \{
+			\env{array}
+			{
+				{l l}
+				\infty, & \text{ef $i < 0$}\\
+				\infty, & \text{ef $i \neq 0$ og $j = m + 1$}\\
+				0, & \text{ef $i = 0$ og $j = m + 1$}\\
+				\text{min}(f(i, j + 1), &\\
+				f(i - x_j, j + 1) + 1), & \text{annars.}\\
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\code{code/altcoin-td.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Það er nokkuð létt að meta tímaflækjurnar á neðansæknu lausnunum.
+		\item<2-> Þær eru báðar tvöfaldar \texttt{for}-lykkjur, sú ytri af lengd $m$ og innri af lengd $\mathcal{O}(n)$.
+		\item<3-> Svo tímaflækjurnar eru $\mathcal{O}($\onslide<4->{$n \cdot m$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í ofansæknu lausninni á hefðbundna dæminu þarf að reikna, allt að, $n + 1$ fallgildi.
+		\item<2-> Hvert gildi má reikna í $\mathcal{O}($\onslide<3->{$\,m\,$}$)$ tíma.
+		\item<4-> Svo í heildina er hún $\mathcal{O}($\onslide<5->{$n \cdot m$}$)$.
+		\item<1->[] \selectcode{code/coin-td.c}{9}{18}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í ofansæknu lausninni á hinu dæminu þarf að reikna, allt að, $(n + 1) \cdot (m + 1)$ fallgildi.
+		\item<2-> Hvert gildi má þó reikna í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$ tíma.
+		\item<4-> Svo í heildina er hún $\mathcal{O}($\onslide<5->{$n \cdot m$}$)$.
+		\item<1->[] \selectcode{code/altcoin-td.c}{9}{16}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þessi dæmi eru oft kölluð \emph{hlutmengjasummudæmi} (e. \emph{Subset Sum Problem}).
+		\item<2-> Í sinni einföldustu mynd eru þau: ``Er hægt að finna hlutrunu í gefinni talnarunu þannig að hlutrunan summast upp í $t$?''.
+		\item<3-> Eins og við sáum, er bæði hægt að skoða dæmið með og án endurtekninga, ásamt öðrum kröfum.
+		\item<4-> Fræga \emph{bakpokadæmið} (e. \emph{Knapsack Problem}) er dæmi um hlutmengjasummu dæmi.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvað gerum við ef við viljum vita \emph{hvaða} klink á að gefa til baka, ekki bara hversu mikið?
+		\item<2-> Það er yfirleitt farið aðra af tveimur leiðum.
+		\item<3-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
+					þá erum við í raun að velja hvort er betra: \texttt{dp(x, y + 1)} eða \texttt{dp(x - a[y], y + 1) + 1}.
+		\item<4-> Fyrri aðferðin felur í sér að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
+		\item<5-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
+		\item<6-> Síðan er eftir á hægt að þræða sig í gegn og finna klinkið sem þarf.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Finnur bara fjöldann}
+	\code{code/coin-bu-pre-traverse.c}
+}
+
+\env{frame}
+{
+	\frametitle{Finnur hvaða klink}
+	\code{code/coin-bu-traverse.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hin aðferðin hentar oft betur ef við erum með ofansækina kvika bestun.
+		\item<2-> Þá búum við til annað endurkvæmt fall sem notar \texttt{dp\_lookup(...)} til að finna besta skrefið.
+		\item<3-> Þetta fall er auðvelt að smíða því það mun vera næstum eins og \texttt{dp\_lookup(...)}.
+		\item<4-> Þegar það er búið að finna besta gildið prentar það hvert gildið er, og heldur svo áfram endurkvæmt.
+	}
+}
+
+\env{frame}
+{
+	\code{code/coin-td-traverse.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Helsti kostur fyrri aðferðarinnar er að besta skrefið er ákvarðað í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$ tíma.
+		\item<3-> Í seinni aðferðinni tekur það jafnalangan tíma og \texttt{dp\_lookup(...)} tekur að meta hverja stöðu.
+		\item<4-> Þetta má þó bæta með minnun.
+		\item<5-> Þetta kemur bara til með að gera nógu góða lausn hæga ef það þarf að reikna fyrir mörg $n$.
+		\item<6-> Skoðum nú hvernig við gætum nýtt þetta til að finna lengsta sameiginlega hlutstreng.
+	}
+}
+
+\env{frame}
+{
+	\code{code/lcs-traverse.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Stundum getur verið erfitt að ákvarða hvernig stöðurúmið okkar á að líta út.
+		\item<2-> Tökum vel þekkt dæmi.
+		\item<3-> Gerum ráð fyrir að við séum með $n$ stöður.
+		\item<4-> Gefið er tvívítt fylki $(d_{ij})_{1 \leq i, j \leq n}$,
+					þar sem $d_{ij}$ táknar tímann sem það tekur að fara úr $i$-tu stöðunni í $j$-tu stöðuna.
+		\item<5-> Við viljum nú ferðast í gegnum allar stöðurnar í einhverri röð þannig að við	
+					byrjum og endum í sömu stöðu, förum í hverja stöðu nákvæmlega einu sinni (tvisvar í upphafsstöðuna) og tökum sem stystan tíma.
+		\item<6-> Þetta er fræga \emph{Farandsölumannadæmið} (e. \emph{Travelling Salseman Problem}).
+		\item<7-> Sígilt er að leysa þetta dæmi endurkvæmt í $\mathcal{O}((n + 1)!)$ tíma.
+		\item<8-> Við höfum nú tólin til að gera betur.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum fyrst eftir að það skiptir ekki máli í hvaða stöðu við byrjum.
+		\item<2-> Við getum því gert ráð fyrir að við byrjum í fyrstu stöðunni.
+		\item<3-> Látum $P$ tákna mengi alla staða, $A$ vera eiginlegt hlutmengi þar í og $s$ vera stak utan $A$.
+		\item<4-> Við getum þá látið $f(s, A)$ vera stysta leiðin til að fara í allar stöður $A$ nákvæmlega einu sinni frá $s$ og enda í fyrstu stöðunni.
+		\item<5-> Tökum eftir að $f(s, \emptyset) = d_{s1}$.
+		\item<6-> Við getum nú sett fallið $f$ fram endurkvæmt með
+		\[
+			f(s, A) = 
+			\left \{
+			\env{array}
+			{
+				{l l}
+				d_{s1}, & \text{ef $A = \emptyset$}\\
+				\text{min}_{e \in A} (d_{se} + f(e, A \setminus e)), & \text{annars}.
+			}
+			\right .
+		\]
+		\item<7-> Svarið við dæminu fæst svo með $f($\onslide<8->{$1, P \setminus \{1\}$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Wikipedia kennir þessa aðferð við Held og Karp ($1962$) og segir að þetta sé með fyrstu hagnýtingum kvikrar bestunar.
+		\item<2-> Í versta falli þurfum við að reikna \onslide<3->{$n \cdot 2^{n - 1}$} falligildi á $f$, ef við erum með $n$ stöður.
+		\item<4-> Hvert fallgildi er reiknað í $\mathcal{O}($\onslide<5->{$\,n\,$}$)$ tíma.
+		\item<6-> Svo í heildina er forritið $\mathcal{O}($\onslide<7->{$n^2 \cdot 2^n$}$)$.
+		\item<8-> Samkvæmt $10^8$ reglunni náum við að leysa dæmi með $n \leq$ \onslide<9->{$18$}.
+		\item<10-> Við náum bara $n \leq$ \onslide<11->{$10$} með augljósum endurkvæmu lausninni.
+	}
+}
+
+\env{frame}
+{
+	\code{code/tsp.c}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
