@@ -1,0 +1,41 @@
+\title{Sniðmát}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Rótarþáttun}
+	\env{itemize}
+	{
+		\item<1-> Skoðum aftur dæmið sem við skoðuðum í biltrjáa kaflanum.
+		\item<2-> Hvað ef við skiptum listanum okkar upp í nokkurn hólf og geymum summu hvers hólfs fyrir sig.
+		\item<3-> Segjum að við höfum $k$ hólf, og $n$ tölur.
+		\item<4-> Ef við viljum finna summu yfir hlutbil nægir okkur leggja saman þau gildi frá endapunktum bilsins upp að næstu hólfamörkum,
+			svo leggjum við saman hólfin á milli.
+		\item<5-> Þessa aðgerð er því $\mathcal{O}(k + n/k)$, og ef við veljum $k = \sqrt{n}$ fæst að hún er $\mathcal{O}(\sqrt{n})$.
+		\item<6-> Til að uppfæra gildi í listanum leggjum við saman öll stökin í hólfinu, sem tekur $\mathcal{O}(\sqrt{n})$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Rótarþáttun}
+	\env{itemize}
+	{
+		\item<1-> Þessa almennu aðferð má nota í flestum dæmum sem eru leysanleg með biltrjám og kallast hún \emph{rótarþáttun} (e. squareroot decomposition).
+		\item<2-> Þetta er þó hægara en biltréin (virkar t.d. ekki fyrir $n = 10^6$.
+		\item<3-> Kosturinn við þessa aðferð er að hún er létt í útfærlsu eftir smá æfingu og er almennari en biltréin.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Rótarþáttun}
+	\code{code/sq.c}
+}
+
+\end{document}

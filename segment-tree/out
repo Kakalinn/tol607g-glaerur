@@ -216,22 +216,30 @@ consecutive:
 ) [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]
 (./code/daemi2-segmenttree.c
 consecutive:
-) [52] [53] [54] (output/glaerur.aux) ) ){/usr/share/texmf-dist/fonts/enc/dvips
-/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-su
-per-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmssi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-</usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/share/tex
-mf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.
-pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share
-/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-dist/fon
-ts/type1/public/cm-super/sftt1440.pfb>
-Output written on output/glaerur.pdf (54 pages, 290713 bytes).
+) [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65]
+[66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] (./code/segmenttree-le.c
+
+consecutive:
+)
+Overfull \vbox (2.12816pt too high) detected at line 226
+[77] [78] (output/glaerur.aux) ) )
+(see the transcript file for additional information){/usr/share/texmf-dist/font
+s/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-
+super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmssi12.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msam10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-d
+ist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1
+/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on output/glaerur.pdf (78 pages, 358723 bytes).
 Transcript written on output/glaerur.log.
 line 0: Cannot load input from '*.gnuplot'
 
+mv: cannot stat 'output/glaerur.pdf': No such file or directory

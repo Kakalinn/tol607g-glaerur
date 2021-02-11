@@ -165,8 +165,64 @@
 {
 	\env{itemize}
 	{
-		\item<1-> 
+		\item<1-> Leysa má ýmis dæmi af þessari gerð, með biltrjám.
+		\item<2-> Þessi dæmi eru yfirleitt kölluð \emph{punkt-uppfærlsur, bil-fyrirspurnir} (e. \emph{point-update, range-query}).
+		\item<3-> Algengt er að sýna næst hvernig nota megi biltré til að leysa \emph{bil-uppfærslur, punkt-fyrirspurnir}
+					(e. \emph{range-update, point-query }).
+		\item<4-> Þetta er, í grófum dráttum, gert með því að snúa trjánum við.
+		\item<5-> Við munum ekki skoða þetta.
+		\item<6-> Við tökum frekar fyrir \emph{lygn biltré}.
+		\item<7-> Þau leyfa okkur að leysa \emph{bil-uppfærlsur, bil-fyrirspurnir} (e. \emph{range-update, range-query}).
 	}
+}
+
+\env{frame}
+{
+	\frametitle{Lygn dreifing}
+	\env{itemize}
+	{
+		\item<1-> Sem beinagrind munum við nota biltrjáa utfærsluna sem við notuðum til að leysa fyrsta dæmið.
+		\item<2-> Við munum nú láta fyrri fyrirspurnina, \texttt{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
+		\item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
+		\item<4-> Við geymum í annari hrúgu þær uppfærslur sem við eigum eftir að framkvæma.
+		\item<5-> Í hverri endurkvæmni (bæði uppfærlum og fyrirspurnum) dreifum við uppfærslunum í nóðunni niður á við.
+		\item<6-> Þetta kallast \emph{lygn drefing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
+		\item<7-> Ef biltré hefur lygna dreifingu köllum við það \emph{lygnt biltré} (e. \emph{segment tree with lazy propagation}).
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til nóðu í bilþréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
+		\item<2-> Gerum ráð fyrir að við eigum eftir að framkvæm uppfærslu \texttt{i j k}.
+		\item<3-> Næst þegar við köllum á \texttt{query\_rec(i, j, ...)} eða \texttt{update\_rec(i, j, ...)}
+					þá munum við dreifa uppfærslunni \texttt{i j k}.
+		\item<4-> Eftir dreifinguna munum við ekki eiga eftir uppfærslu á bilinu $[i, j]$, en við munum eiga eftir uppfærslurnar
+					\texttt{i m k} og \texttt{(m + 1) j k}.
+		\item<5-> Þegar við dreifum uppfærslunni \texttt{i i k} þá nægir að uppfæra tilheyrandi lauf í biltrénu.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrar nóður geyma summu barna sinna''.
+		\item<2-> Þetta gildir ekki fyrir lygn biltré.
+		\item<3-> Nóður lygna biltrjáa þurfa að geyma summu barna sinna,
+					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar útfærslur afkomenda hennar.
+		\item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
+		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \texttt{i j k} þá þurfum við að bæta $k \cdot (j - i - 1)$ við rót biltrésins,
+					því rótin geymir summu allra stakana.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lyngt biltré}
+	\selectcode{code/segmenttree-le.c}{11}{44}
 }
 
 \env{frame}

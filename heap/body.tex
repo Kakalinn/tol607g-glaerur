@@ -1,0 +1,70 @@
+\title{Hrúgur}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Hrúgur}
+	\env{itemize}
+	{
+		\item<1-> Rótartvíundatré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
+		\item<2-> Við köllum slík tré \emph{hrúgur} (e. heap).
+		\item<3-> Hrúgur eru heppilega auðveldar í útfærslu.
+		\item<4-> Við geymum tréð sem fylki og eina erfiðið er að viðhalda hrúguskilyrðinu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fylki sem tré}
+	\env{itemize}
+	{
+		\item<1-> Þegar við geymum tréð sem fylki notum við eina af tveimur aðferðum.
+		\item<2-> Sú fyrri:
+		\env{itemize}
+		{
+			\item<3-> Rótin er í staki $1$ í fylkinu.
+			\item<4-> Vinstra barn staksins $i$ er stak $2\times i$.
+			\item<5-> Hægra barn staksins $i$ er stak $2\times i + 1$.
+			\item<6-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i}{2} \right \rfloor$.
+		}
+		\item<7-> Sú seinni:
+		\env{itemize}
+		{
+			\item<8-> Rótin er í staki $0$ í fylkinu.
+			\item<9-> Vinstra barn staksins $i$ er stak $2\times i + 1$.
+			\item<10-> Hægra barn staksins $i$ er stak $2\times i + 2$.
+			\item<11-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i - 1}{2} \right \rfloor$.
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hrúga í \texttt{C}}
+	\code{code/heap-skel.c}
+}
+
+\env{frame}
+{
+	\frametitle{Hrúga í \texttt{C}}
+	\code{code/pop-peek-push.c}
+}
+
+\env{frame}
+{
+	\frametitle{Hrúga í \texttt{C}}
+	\code{code/fix-down.c}
+}
+
+\env{frame}
+{
+	\frametitle{Hrúga í \texttt{C}}
+	\code{code/fix-up.c}
+}
+
+\end{document}
