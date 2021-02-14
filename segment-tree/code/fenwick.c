@@ -5,65 +5,99 @@
 #define MAXN 5000000
 #define LEFT(x) ((x)*2)
 #define RIGHT(x) ((x)*2 + 1)
-int p[MAXN], o[MAXN], n;
+typedef long long ll;
+ll p[3*MAXN + 1], o[3*MAXN + 1], n;
 
-void prop(int x, int y, int e) //Hjálparfall
+void prop(ll x, ll y, ll e) //Hjálparfall
 { // Fall sem dreifir lygnum uppfærslum niður um eina hæð.
 	p[e] += (y - x + 1)*o[e];   
 	if (x != y) o[LEFT(e)] += o[e], o[RIGHT(e)] += o[e];
 	o[e] = 0;
 }
-int query_rec(int i, int j, int x, int y, int e)
+ll query_rec(ll i, ll j, ll x, ll y, ll e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);
 	if (x == i && y == j) return p[e];
-	int m = (i + j)/2;
+	ll m = (i + j)/2;
 	if (x <= m && y <= m) return query_rec(i, m, x, y, LEFT(e));
 	else if (x > m && y > m) return query_rec(m + 1, j, x, y, RIGHT(e));
 	return query_rec(i, m, x, m, LEFT(e))
 			+ query_rec(m + 1, j, m + 1, y, RIGHT(e));
 }
-int query(int x, int y)
+ll query(ll x, ll y)
 { // Finnum summuna yfir [x, y].
 	return query_rec(0, n - 1, x, y, 1);
 }
-void update_rec(int i, int j, int x, int y, int z, int e)
+void update_rec(ll i, ll j, ll x, ll y, ll z, ll e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);
 	if (x == i && y == j) { o[e] = z; return; }
-	int m = (i + j)/2;
+	ll m = (i + j)/2;
 	p[e] += (y - x + 1)*z;
 	if (x <= m && y <= m) update_rec(i, m, x, y, z, LEFT(e));
 	else if (x > m && y > m) update_rec(m + 1, j, x, y, z, RIGHT(e));
 	else update_rec(i, m, x, m, z, LEFT(e)),
 		   update_rec(m + 1, j, m + 1, y, z, RIGHT(e));
 }
-void update(int x, int y, int z)
+void update(ll x, ll y, ll z)
 { // Bætum z við stökin á bilinu [x, y]
 	update_rec(0, n - 1, x, y, z, 1);
 }
 
-int slow(int* a, int l, int r)
+ll slow(ll* a, ll l, ll r)
 {
-	int x = 0;
+	ll x = 0;
 	while (l <= r) x += a[l++];
 	return x;
+}
+
+ll get_int()
+{
+	ll ret = 0;
+	char c = getchar();
+	ll sgn;
+
+	while (1)
+	{
+		if (c == EOF) return EOF;
+		if (c >= '0' && c <= '9') { sgn = 1; break; }
+		if (c == '-')
+		{
+			c = getchar();
+			if (c < '0' || c > '9') continue;
+			sgn = -1;
+			break;
+		}
+		c = getchar();
+	}
+
+	while (1)
+	{
+		ret = ret*10 + c - '0';
+		c = getchar();
+		if (c < '0' || c > '9') return sgn*ret;
+	}
 }
 
 int main()
 {
 	srand(time(NULL));
-	int i, j, q = 1000000, x, w, y;
-	n = 100;
-	int a[n];
-	for (i = 0; i < n; i++) a[i] = 0;
-	for (i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	n = get_int();
+	ll i, j, q = get_int(), x, w, y;
+	for (i = 0; i < 3*n + 1; i++) p[i] = o[i] = 0;
 	while (q-- != 0)
 	{
-		x = rand()%(n - 1), w = x + rand()%(n - x), y = rand()%(n*10);
-		update(x, w, y);
-		for (i = x; i <= w; i++) a[i] += y;
-		for (i = 0; i < n; i++) for (j = i; j < n; j++) assert(query(i, j) == slow(a, i, j));
+		char c = getchar();
+		if (c == '+')
+		{
+			ll x = get_int(), y = get_int();
+			update(x, x, y);
+		}
+		else
+		{
+			ll x = get_int() - 1;
+			printf("%lld\n", x == -1 ? 0 : query(0, x));
+		}
 	}
 	return 0;
 }

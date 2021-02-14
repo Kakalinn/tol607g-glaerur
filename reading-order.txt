@@ -1,0 +1,15 @@
+inngangur
+
+grunnatidi
+ad-hoc
+
+taemandi-leit
+gradug-reiknirit
+
+deila-og-drottna
+kvik-bestun
+
+heap
+union-find
+segment-tree
+square-root-decomposition
