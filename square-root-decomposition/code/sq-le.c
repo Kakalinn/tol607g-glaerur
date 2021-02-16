@@ -4,15 +4,10 @@
 #include <time.h>
 #include <assert.h>
 #define MAXN 2000000
-int a[MAXN], s[MAXN], o[MAXN], n, e;
-void update(int x, int y)
-{
-	s[x/e] = s[x/e] - a[x] + y;
-	a[x] = y;
-}
+int a[MAXN], s[MAXN], o[MAXN], n, e; // n = e*e
 
-void prop(int x)
-{
+void prop(int x) // Hjálparfall
+{ // Framkvæmir þær uppfærslur sem á eftir að gera á fötu x.
 	int i;
 	s[x] += o[x]*e;
 	for (i = 0; i < e; i++) a[x*e + i] += o[x];
@@ -20,7 +15,7 @@ void prop(int x)
 }
 
 int query(int x, int y)
-{ // [x, y[
+{ // Finnum summuna yfir [x, y - 1].
 	prop(x/e), prop((y - 1)/e);
     int r = 0;
 	while (x%e != 0 && x < y) r += a[x++];
@@ -30,8 +25,8 @@ int query(int x, int y)
     return r;
 }
 
-void rupdate(int x, int y, int z)
-{ // [x, y[
+void update(int x, int y, int z)
+{ // Bætum z við stökin [x, y - 1].
 	prop(x/e), prop((y - 1)/e);
 	while (x%e != 0 && x < y) a[x] += z, s[x++/e] += z;
 	if (x == y) return;
@@ -40,17 +35,23 @@ void rupdate(int x, int y, int z)
 }
 
 int slow(int* b, int l, int r)
-{
+{ // Línuleg útfærsla til að bera saman.
 	int x = 0;
-	while (l <= r) x += b[l++];
+	while (l < r) x += b[l++];
 	return x;
 }
 
+// Þetta forrit prófar range-sum-query, range-addition-update á slembnar uppfærlsur.
+// Eftir hverja uppfærslu eru allar mögulegar fyrirspurnir framkvæmdar.
+// Svo forritið er hægt, nánar O(q*n^3).
+// Það er allt í lagi að hafa q stórt.
+// Forritið þarf ekki að klára keyrlsuna á meðan n er nógu lítið (helst minna en 100).
+// Gefna talan n er stækkuð þangað til að hún er ferningstala.
 int main()
 {
 	srand(time(NULL));
-	int i, q = 1000000, x, w, y, z;
-	e = 1, n = 10000;
+	int i, j, q = 1000000, x, w, y;
+	e = 1, n = 100;
 	while (e*e < n) e++;
 	n = e*e;
 	int b[n];
@@ -58,35 +59,10 @@ int main()
 	for (i = 0; i < e; i++) s[i] = 0;
 	while (q-- != 0)
 	{
-		x = rand()%(n - 1), w = x + 1 + rand()%(n - x - 1), y = rand()%(n*10), z = rand()%2;
-		//if (z) a[x] = y, update(x, a[x]);
-		if (z)
-		{
-			//printf("updating [%d, %d[ by %d\n", x, w, y);
-			rupdate(x, w, y);
-			for (i = x; i < w; i++) b[i] += y;
-		}
-		else if (query(x, w + 1) != slow(b, x, w)) break;
-		//printf("now we have that:\n");
-		//printf("b: "); for (i = 0; i < n; i++) printf("%4d ", b[i]); printf("\n");
-		//printf("a: "); for (i = 0; i < n; i++) printf("%4d ", query(i, i + 1)); printf("\n");
-		//printf("s: "); for (i = 0; i < e; i++) printf("%4d ", s[i]); printf("\n");
-		//printf("o: "); for (i = 0; i < e; i++) printf("%4d ", o[i]); printf("\n");
-	}
-	if (q != -1)
-	{
-		// this is if it fails
-		printf("[%d %d], %d %d\n", x, w + 1, query(x, w + 1), slow(b, x, w));
-		for (i = 0; i < n; i++) printf("%4d ", query(i, i + 1)); printf("\n");
-		for (i = 0; i < n; i++) printf("%4d ", b[i]); printf("\n");
-		for (i = 0; i < n; i++)
-		{
-			if (i == x) printf("[    ");
-			else if (i == w + 2) printf("]    ");
-			else printf("     ");
-		}
-		if (w + 1 == i) printf("]\n");
-		else printf("\n");
+		x = rand()%(n - 1), w = x + 1 + rand()%(n - x - 1), y = rand()%(n*10);
+		update(x, w, y);
+		for (i = x; i < w; i++) b[i] += y;
+		for (i = 0; i < n; i++) for (j = i + 1; j <= n; j++) assert(query(i, j) == slow(b, i, j));
 	}
 	return 0;
 }

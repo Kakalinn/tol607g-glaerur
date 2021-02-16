@@ -44,7 +44,7 @@ int slow(int* a, int x, int y)
 	return r;
 }
 
-// Þetta forrit prófar sum-range-query, point-addition-update á slembnar uppfærlsur.
+// Þetta forrit prófar range-sum-query, point-addition-update á slembnar uppfærlsur.
 // Eftir hverja uppfærslu eru allar mögulegar fyrirspurnir framkvæmdar.
 // Svo forritið er hægt, nánar O(q*n^3).
 // Það er allt í lagi að hafa q stórt.

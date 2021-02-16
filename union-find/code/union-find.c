@@ -1,4 +1,5 @@
-int p[2000001]; // = [-1, -1, ..., -1]
+#define MAXN
+int p[MAXN]; // = [-1, -1, ..., -1]
 int find(int x)
 {
 	return p[x] < 0 ? x : (p[x] = find(p[x]));
@@ -13,8 +14,7 @@ void join(int x, int y)
 
 int main()
 {
-	int i;
-	int n = MAX;
-	for (i = 0; i < n; i++) p[i] = i;
+	int i, n = MAXN;
+	for (i = 0; i < n; i++) p[i] = -1;
 	...
 }

@@ -13,7 +13,7 @@ void prop(int x, int y, int e) //Hjálparfall
 	if (x != y) o[LEFT(e)] += o[e], o[RIGHT(e)] += o[e];
 	o[e] = 0;
 }
-int query_rec(int i, int j, int x, int y, int e)
+int query_rec(int i, int j, int x, int y, int e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);
 	if (x == i && y == j) return p[e];
@@ -27,7 +27,7 @@ int query(int x, int y)
 { // Finnum summuna yfir [x, y].
 	return query_rec(0, n - 1, x, y, 1);
 }
-void update_rec(int i, int j, int x, int y, int z, int e)
+void update_rec(int i, int j, int x, int y, int z, int e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);
 	if (x == i && y == j) { o[e] = z; return; }

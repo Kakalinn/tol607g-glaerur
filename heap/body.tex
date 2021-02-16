@@ -12,7 +12,7 @@
 	\env{itemize}
 	{
 		\item<1-> Rótartvíundatré sem uppfyllir að sérhver nóða er stærri en börnin sín er sagt uppfylla \emph{hrúguskilyrðið}.
-		\item<2-> Við köllum slík tré \emph{hrúgur} (e. heap).
+		\item<2-> Við köllum slík tré \emph{hrúgur} (e. \emph{heap}).
 		\item<3-> Hrúgur eru heppilega auðveldar í útfærslu.
 		\item<4-> Við geymum tréð sem fylki og eina erfiðið er að viðhalda hrúguskilyrðinu.
 	}
@@ -20,7 +20,6 @@
 
 \env{frame}
 {
-	\frametitle{Fylki sem tré}
 	\env{itemize}
 	{
 		\item<1-> Þegar við geymum tréð sem fylki notum við eina af tveimur aðferðum.
@@ -28,43 +27,53 @@
 		\env{itemize}
 		{
 			\item<3-> Rótin er í staki $1$ í fylkinu.
-			\item<4-> Vinstra barn staksins $i$ er stak $2\times i$.
-			\item<5-> Hægra barn staksins $i$ er stak $2\times i + 1$.
-			\item<6-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i}{2} \right \rfloor$.
+			\item<4-> Vinstra barn staks $i$ er stak $2 \cdot i$.
+			\item<5-> Hægra barn staks $i$ er stak $2 \cdot i + 1$.
+			\item<6-> Foreldri staks $i$ er stakið $\lfloor i/2 \rfloor$.
 		}
 		\item<7-> Sú seinni:
 		\env{itemize}
 		{
 			\item<8-> Rótin er í staki $0$ í fylkinu.
-			\item<9-> Vinstra barn staksins $i$ er stak $2\times i + 1$.
-			\item<10-> Hægra barn staksins $i$ er stak $2\times i + 2$.
-			\item<11-> Foreldri staks $i$ er stakið $\left \lfloor \dfrac{i - 1}{2} \right \rfloor$.
+			\item<9-> Vinstra barn staks $i$ er stak $2\cdot i + 1$.
+			\item<10-> Hægra barn staks $i$ er stak $2\cdot i + 2$.
+			\item<11-> Foreldri staks $i$ er stakið $\lfloor (i - 1)/2 \rfloor$.
 		}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Hrúga í \texttt{C}}
-	\code{code/heap-skel.c}
+	\env{itemize}
+	{
+		\item<1-> Bein afleiðing af hrúguskilyrðinu er að rótin er stærsta stakið í trénu.
+		\item<2-> Við getum því alltaf fengið skjótan aðgang að stærsta stakinu í trénu.
+		\item<3-> Algengt er að \emph{forgangsbiðraðir} (e. \emph{priority queues}) séu útfærðar með hrúgum.
+	}
 }
 
 \env{frame}
 {
-	\frametitle{Hrúga í \texttt{C}}
-	\code{code/pop-peek-push.c}
+	\code{code/heap.c}
 }
 
 \env{frame}
 {
-	\frametitle{Hrúga í \texttt{C}}
-	\code{code/fix-down.c}
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við séum með $n$ stök í hrúgunni.
+		\item<2-> Þá er hæð trésins $\mathcal{O}($\onslide<3->{$\log n$}$)$.
+		\item<4-> Þar sem \texttt{pop()} þarf aðeins að ferðast einu sinni niður að laufi er tímaflækjan
+					$\mathcal{O}($\onslide<5->{$\log n$}$)$.
+		\item<6-> Þar sem \texttt{push(...)} þarf aðeins að ferðast einu sinni upp að rót er tímaflækjan
+					$\mathcal{O}($\onslide<7->{$\log n$}$)$.
+		\item<8-> Nú þarf \texttt{peek()} ekki að gera annað en að lesa fremsta stakið í fylki svo tímaflækjan er
+					$\mathcal{O}($\onslide<9->{$\,1\,$}$)$.
+	}
 }
 
 \env{frame}
 {
-	\frametitle{Hrúga í \texttt{C}}
-	\code{code/fix-up.c}
 }
 
 \end{document}

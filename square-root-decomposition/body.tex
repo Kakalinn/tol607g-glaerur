@@ -1,4 +1,4 @@
-\title{Sniðmát}
+\title{Rótarþáttun}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -8,34 +8,153 @@
 
 \env{frame}
 {
-	\frametitle{Rótarþáttun}
+	\frametitle{Dæmi}
 	\env{itemize}
 	{
-		\item<1-> Skoðum aftur dæmið sem við skoðuðum í biltrjáa kaflanum.
-		\item<2-> Hvað ef við skiptum listanum okkar upp í nokkurn hólf og geymum summu hvers hólfs fyrir sig.
-		\item<3-> Segjum að við höfum $k$ hólf, og $n$ tölur.
-		\item<4-> Ef við viljum finna summu yfir hlutbil nægir okkur leggja saman þau gildi frá endapunktum bilsins upp að næstu hólfamörkum,
-			svo leggjum við saman hólfin á milli.
-		\item<5-> Þessa aðgerð er því $\mathcal{O}(k + n/k)$, og ef við veljum $k = \sqrt{n}$ fæst að hún er $\mathcal{O}(\sqrt{n})$.
-		\item<6-> Til að uppfæra gildi í listanum leggjum við saman öll stökin í hólfinu, sem tekur $\mathcal{O}(\sqrt{n})$.
+		\item<1-> Gefinn er listi með $n$ tölum.
+		\item<2-> Næst koma $q$ fyrirspurnir, þar sem hver er af einni af tveimur gerðum:
+		\env{itemize}
+		{
+			\item<3-> Bættu $k$ við $i$-tu töluna.
+			\item<4-> Reiknaðu summu allra talna á bilinu $[i, j]$.
+		}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Rótarþáttun}
+	\frametitle{Almenn $k$-þáttun}
 	\env{itemize}
 	{
-		\item<1-> Þessa almennu aðferð má nota í flestum dæmum sem eru leysanleg með biltrjám og kallast hún \emph{rótarþáttun} (e. squareroot decomposition).
-		\item<2-> Þetta er þó hægara en biltréin (virkar t.d. ekki fyrir $n = 10^6$.
-		\item<3-> Kosturinn við þessa aðferð er að hún er létt í útfærlsu eftir smá æfingu og er almennari en biltréin.
+		\item<1-> Hvað ef við skiptum fylkinu upp í $k$ (næstum) jafnstór hólf.
+		\item<2-> Við getum þá haldið utan um, og uppfært, summu hvers hólfs auðveldlega.
+		\item<3-> Til að finna summu á einhverju bili í fylkinu nægir að reikna summu hólfana á milli
+			endapunktana og leggja svo afganginn við (afgangurinn er í mesta lagi lengd tveggja hólfa).
+		\item<4-> Tökum eftirfarandi sýnidæmi sem skipt hefur verið í þrjú hólf,
+			\[
+				p = [0\ 1\ 4\ |\ 3\ 4\ 5\ |\ 0\ 1\ 8\ 9].
+			\]
+		\item<5-> Köllum fylkið sem geymir summu hvers hólfs \texttt{s}, sem verður þá
+			\[
+				s = [5\ 12\ 18].
+			\]
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Rótarþáttun}
-	\code{code/sq.c}
+	\env{itemize}
+	{
+		\item<1-> Ef við viljum uppfæra, til dæmis bæta $5$ við stak $2$, þá þurfum við að sjálfsögðu að uppfæra
+			\texttt{p}, en það þarf líka breyta \texttt{s}.
+		\item<2-> Til að breyta \texttt{p} gerum við einfaldlega \texttt{p[2] += 5}.
+		\item<3-> Til að uppfæra $s$ þurfum við að finna hólfið sem stak \texttt{2} tilheyrir. Þar sem það er í hólfi \texttt{0}
+			notum við \texttt{s[0] += 5}.
+		\item<4-> Svona líta svo fylkin út, fyrir og eftir uppfærslu.
+			\[
+			\begin {array}{c c}
+			\text{Fyrir breytingu} & \text{Eftir breytingu}\\
+				p = [0\ 1\ 4\ |\ 3\ 4\ 5\ |\ 0\ 1\ 8\ 9] & p = [0\ 1\ 9\ |\ 3\ 4\ 5\ |\ 0\ 1\ 8\ 9]\\
+				s = [5\ 12\ 18] & s = [10\ 12\ 18]
+			\end {array}.
+			\]
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ég fór mjög losaralega í hvernig ætti að framkvæma seinni aðgerðina.
+		\item<2-> Skoðum, sem dæmi, hverju eigi að skila fyrir \texttt{2 1 8}.
+		\item<3-> Það er aðeins eitt hólf á milli staks \texttt{1} og staks \texttt{8}, hólf \texttt{1}.
+		\item<4-> ,,Afgangurinn'', eins og ég kallaði hann áðan, eru þau stök sem ekki eru í hólfi \texttt{1}
+			en eru þó á bilinu frá \texttt{1} til \texttt{8}.
+		\item<5-> Þetta eru stök \texttt{1}, \texttt{2}, \texttt{6}, \texttt{7} og \texttt{8} (samtals summan er þá $31$).
+		\item<6-> Við erum því að leggja saman rauðu stökin á myndinni fyrir neðan,
+			\[
+			\begin {array}{c}
+				p = [0\ {\color{red} 1 \ 9\ }|\ {\color{blue}3\ 4\ 5\ } |\ {\color{red} 0\ 1\ 8\ } 9]\\ 
+				s = [10\ \alert{12}\ 18]
+		\end {array}.
+			\]
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> En er þetta hraðar en frumstæða aðferðin sem við skoðuðum í upphafi?
+		\item<2-> Það fer að sjálfsögðu allt eftir því hversu stór hólf við veljum.
+		\item<3-> Ef fylkinu er skipt upp í $n$ hólf er nokkuð ljóst að þessi aðferð er jafngild frumstæðu aðferðinni.
+		\item<4-> Ef fylkinu er skipt upp í $1$ hólf gildir það sama.
+		\item<5-> Munið að við létum $k$ tákna fjölda hólfa.
+		\item<6-> Fyrri aðgerðin er ennþá $\mathcal{O}($\onslide<7->{$\,1\,$}$)$,
+			en seinni aðgerðin verður $\mathcal{O}($\onslide<8->{$n/k + k$}$)$,
+			svo tímaflækjan er $\mathcal{O}($\onslide<9->{$qn/k + qk$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skynsamlegt val á $k$}
+	\env{itemize}
+	{
+		\item Þar sem að fyrrir aðgerðin er ekki háð skiptingunni þá nægir að lágmarka $\frac{n}{k} + k$.
+		\pause\item Látum $f(k) = \frac{n}{k} + k$.
+		\pause\item Við höfum $f'(k) = -\frac{n}{k^2} + 1$.
+		\pause\item Útgildispunktar fást í
+			\[
+				\begin{array}{l l}
+				\pause& f'(k) = 0\\
+				\pause\Rightarrow & 1 - \frac{n}{k^2} = 0\\
+				\pause\Rightarrow & 1 = \frac{n}{k^2}\\
+				\pause\Rightarrow & k^2 = n\\
+				\pause\Rightarrow & k = \sqrt{n}.
+			\end{array}
+			\]
+		\pause\item Nú þarf bara að ganga úr skugga um að þessi skipting sé betri en línuleg.
+}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef við veljum $k = \sqrt{n}$ þá er tímaflækja seinni aðgerðarinnar
+			\[
+				\mathcal{O} \left (\frac{n}{\sqrt{n}} + \sqrt{n}\right ) = \mathcal{O} (\sqrt{n} + \sqrt{n}) = \mathcal{O} (\sqrt{n}).
+			\]
+		\item<2-> Því er tímaflækjan á lausninni $\mathcal{O}($\onslide<3->{$q\sqrt{n}$}$)$.
+		\item<4-> Svo þessi aðferð er betri en sú frumstæða, ef við skiptum í $\sqrt{n}$ hólf.
+		\item<5-> Við köllum það \emph{rótarþáttun} (e. \emph{squareroot decomposition}) þegar við skiptum upp í $\sqrt{n}$ hólf.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/sq.c}{6}{23}
+}
+
+\env{frame}
+{
+	\frametitle{Lygn uppfærlsa}
+	\env{itemize}
+	{
+		\item<1-> Við getum einnig framkvæmt lygnar uppfærlsur þegar við notum rótarþáttun (líkt og með biltré).
+		\item<2-> Við uppfærum þá beint þau gildi sem eru í sömu hólfum og endarpunktar bilsins sem við uppfærum yfir.
+		\item<3-> Við framkvæmum svo lygna uppfærslu á þau hólf sem liggja þar á milli.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/sq-le.c}{6}{35}
+}
+
+\env{frame}
+{
 }
 
 \end{document}

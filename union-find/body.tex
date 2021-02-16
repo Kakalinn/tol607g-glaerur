@@ -1,4 +1,4 @@
-\title{Sniðmát}
+\title{Sammengisleit}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -16,8 +16,8 @@
 		\item<2-> Við viljum:
 		\env{itemize}
 		{
-			\item<3-> Bera saman samhengisþætti mismunandi staka.
-			\item<4-> Sameina samhengisþætti.
+			\item<3-> Bera saman jafngildisflokka mismunandi staka.
+			\item<4-> Sameina jafngildisflokka.
 		}
 		\item<5-> Við tölum um aðgerðirnar \texttt{find(x)} og \texttt{join(x, y)}.
 	}
@@ -38,9 +38,9 @@
 		\item<5-> \texttt{join(1, 4)} gefur okkur
 			$\{\{1, 2, 3, 4, 5\}\}$. 
 		\item<6-> Á sérhverjum tímapunkti myndi \texttt{find(x)} skila einhverju staki sem er í sama mengi og \texttt{x}.
-		\item<7-> Aðalatriðið er að \texttt{find(x)} skilar sama stakinu fyrir sérhvert stak í sérhverjum samhengisflokki.
-		\item<8-> Til dæmis, í þriðja punktinum myndi \texttt{find(1)} og \texttt{find(3)} alltaf skila sama stakinu.
-		\item<9-> Við köllum þetta stak \emph{ráðherra} jafngildisflokksins.
+		\item<7-> Mikilvægt er að \texttt{find(...)} skilar sama stakinu fyrir sérhvert stak í sérhverjum jafngildisflokki.
+		\item<8-> Til dæmis, í þriðja punktinum myndi \texttt{find(1)} og \texttt{find(3)} þurfa að skila sama stakinu.
+		\item<9-> Við köllum þetta stak \emph{ráðherra} (e. \emph{representative}) jafngildisflokksins.
 	}
 }
 
@@ -52,7 +52,8 @@
 		\item<2-> Við munum þá gefa okkur $n$ staka fylki $p$, þar sem $i$-ta stakið í fylkinu er upphafstillt sem $i$.
 		\item<3-> Fylkið $p$ mun nú geyma \emph{foreldri} sérhvers stak.
 		\item<4-> Foreldrin mynda keðjur.
-		\item<5-> Sérhver keðja endar í einhverju staki, sem munu vera ráðherra jafngildisflokksins.
+		\item<5-> Keðjurnar eru jafngildisflokkarnir.
+		\item<6-> Sérhver keðja endar í einhverju staki, sem munu vera ráðherra jafngildisflokksins.
 	}
 }
 
@@ -119,7 +120,7 @@
 		\item<3-> Ef við notum frumstæða sammengisleit breytist $p$ ekki neitt þegar kallað er á \texttt{find}
 			en með keðjuþjappaðri sammengisleit þjappast keðjan frá og með $5$ og því fæst
 			$p = [0, 0, 0, 0, 0, 0, 5, 6, 7]$.
-		\item<4-> Takið eftir að nú er líka styttra í ráðherrann fyrir stök $6$ og $7$, þó við heimsóttum þau ekki í endurkvæmninni.
+		\item<4-> Takið eftir að nú er líka styttra í ráðherrann fyrir stök $6$, $7$ og $8$, þó við heimsóttum þau ekki í endurkvæmninni.
 	}
 }
 
@@ -134,21 +135,21 @@
 	\env{itemize}
 	{
 		\item<1-> Það er flóknara að lýsa tímaflækju keðjuþjappaðrar sammengisleitar.
-		\item<2-> \emph{Á heildina litið} (e. amortized) er tímaflækjan er $\mathcal{O}(\alpha(n))$,
+		\item<2-> \emph{Á heildina litið} (e. \emph{amortized}) er tímaflækjan er $\mathcal{O}(\alpha(n))$,
 					þar sem $\alpha$ er andhverfa \emph{Ackermann} fallsins.
 		\item<3-> Fyrir þau $n$ sem við fáumst við er $\alpha(n)$ nánast fast.
-		\item<4-> Við ímyndum okkur því alltaf að semmengisleit hafi tímaflækju $\mathcal{O}(\,n\,)$.
+		\item<4-> Við ímyndum okkur því alltaf að sammengisleit hafi tímaflækju $\mathcal{O}(\,n\,)$.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{\emph{Stærðarmiðuðsameining} (e. \emph{union by size})}
+	\frametitle{\emph{Stærðarmiðuð sameining} (e. \emph{union by size})}
 	\env{itemize}
 	{
 		\item<1-> Þegar við sameinum keðjur þarf að velja hvor ráðherrann verður ennþá ráðherra.
 		\item<2-> Við getum þá valið ráðherrann sem hefur fleiri stök í sinni keðju.
-		\item<3->[] \selectcode{code/union-find.c}{1}{12}
+		\item<3->[] \selectcode{code/union-find.c}{2}{13}
 		\item<4-> Í þessari út færlsu geymir ráðherrann neikvæða tölu, en önnur stök vísa ennþá upp keðjuna.
 		\item<5-> Þessi tala svarar til fjölda staka í þeim keðjum sem enda í ráðherranum.
 		\item<6-> Svo \texttt{-p[find(x)]} er fjöldi staka í jafngildisflokki \texttt{x}.
