@@ -1,0 +1,302 @@
+\title{Inngangur að netafræði}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Net}
+	\env{itemize}
+	{
+		\item<1-> Tvennd $(V, E)$, þar sem $V$ er endanlegt mengi og $E \subset V \times V$, kallast \emph{net}.
+		\item<2-> Stökin í $V$ köllum við \emph{nóður} og stökin í $E$ köllum við \emph{leggi}.
+		\item<3-> Ef venslin $E$ eru samhverf, það er að segja ef 
+					\[
+						(u, v) \in E \Rightarrow (v, u) \in E,
+					\]
+					þá segjum við að netið sé \emph{óstefnt}.
+		\item<4-> Net sem er ekki óstefnt kallast \emph{stefnt}.
+		\item<5-> Við segjum að nóðan $v$ sé \emph{nágranni} nóðunnar $u$ ef $(u, v)$ er í $E$.
+		\item<6-> Við segjum að nóður $u$ og $v$ í óstefndu neti séu \emph{nágrannar} ef $(u, v)$ er í $E$.
+		\item<7-> Við segjum einnig að það liggi leggur á milli $u$ og $v$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Takið eftir að netið $G = (V, E)$ hefur $|V|$ fjöld nóða og $|V|$ fjölda leggja.
+		\item<2-> Tímaflækjur reinkirita í netafræði eru því iðulega gefnar sem föll af $|V|$ og $|E|$ (hingað til höfum við aðalega notað $n$).
+		\item<3-> Þegar ég forrita netafræði dæmi læt ég yfirleitt $n$ tákna fjölda nóða og $m$ tákna fjölda leggja.
+		\item<4-> Því kemur fyrir að ég lýsa tímaflækjum reikniritana með þessum breytum.
+		\item<5-> Ég mun einnig leyfa mér að nota $V$ í stað $|V|$ og $E$ í stað $|E|$, því þetta ætti aldrei valda ruglningi.
+		\item<6-> Sem dæmi skrifa ég frekar $\mathcal{O}(E + V)$ í stað $\mathcal{O}(|E| + |V|)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Oft hjálpar að skilja tiltekið net með því að teikna það.
+		\item<2-> Við byrjum á að teikna punkta fyrir nóðurnar.
+		\item<3-> Ef netið er óstefnt teiknum við svo línu á milli nágranna (svo hver lína svarar til leggs).
+		\item<4-> Ef netið er stefnt þá teiknum við ör í stað línu.
+		\item<5-> Leggur $(u, v)$ er þá táknaður með ör frá nóðu $u$ til nóðu $v$.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\node[draw, circle, thick] (1) at (0, 0) {$1$};
+			\node[draw, circle, thick] (2) at (2, 0) {$2$};
+			\node[draw, circle, thick] (3) at (2, 2) {$3$};
+			\node[draw, circle, thick] (4) at (4, 0) {$4$};
+
+			\path[draw] (1) -- (2) -- (3);
+			\path[draw] (1) edge[in=45, out=135, looseness=10] (1);
+			%\path[draw] (2) edge[bend left=30] (6);
+			%\path[draw] (2) edge[bend right=30] (6);
+			%\path[draw] (7) -- (8);
+		}
+		\env{itemize}
+		{
+			\item<1-> Hér má sjá teikningu sem svarar til $E = \{1, 2, 3, 4\}$ og $V = \{(1, 1), (1, 2), (2, 1), (2, 3), (3, 2)\}$.
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\node[draw, circle, thick] (1) at (0, 0) {$1$};
+			\node[draw, circle, thick] (2) at (2, 0) {$2$};
+			\node[draw, circle, thick] (3) at (2, 2) {$3$};
+			\node[draw, circle, thick] (4) at (4, 0) {$4$};
+
+			\path[draw, ->] (1) -- (2);
+			\path[draw, ->] (2) -- (1);
+			\path[draw, ->] (3) -- (2);
+		}
+		\env{itemize}
+		{
+			\item<1-> Hér má sjá teikningu sem svarar til $E = \{1, 2, 3, 4\}$ og $V = \{(1, 2), (2, 1), (3, 2)\}$.
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Leggir af gerðinni $(u, u)$ kallast \emph{lykkjur} (ástæða nafngiftarinnar sést að fyrri myndinni).
+		\item<2-> Net án leggja kallast \emph{einfalt}.
+		\item<3-> Í umfjöllun okkar gerum við ráð fyrir að öll net séu einföld nema annað sé tekið fram.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Runa nóða $v_1, v_2, ..., v_n$ kallast \emph{vegur} ef $(v_j, v_{j + 1}) \in E$, fyrir $j = 1, 2, ..., n - 1$.
+		\item<2-> Vegur kallast \emph{rás} ef $v_1 = v_n$.
+		\item<3-> Vegur kallast \emph{einfaldur} ef engar tvær nóður í $v_1, v_2, ..., v_n$ eru eins.
+		\item<4-> Rás kallast \emph{einföld} ef engar tvær nóður í $v_1, v_2, ..., v_{n - 1}$ eru eins.
+		\item<5-> Við segjum að vegurinn $v_1, v_2, ..., v_n$ \emph{liggi á milli nóðanna $v_1$ og $v_n$}.
+		\item<6-> Óstefnt net er sagt vera \emph{samanhangandi} ef til er vegur milli sérhverja tveggja nóða.
+		\item<7-> Óstefnt net er sagt vera \emph{tré} ef það er samanhangandi og inniheldur enga rás.
+	}
+}
+\env{frame}
+{
+	\frametitle{Framsetning neta í tölvum}
+	\env{itemize}
+	{
+		\item<1-> Það er engin stöðluð leið til að geyma net í minni.
+		\item<2-> Yfirleitt er notað eina af þremur gagnagrindum:
+		\env{itemize}
+		{
+			\item<3-> Leggjalista.
+			\item<4-> Nágrannafylki.
+			\item<5-> Nágrannalista (algengust).
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Leggjalisti}
+	\env{itemize}
+	{
+		\item<1-> Látum $G = (E, V)$ tákna netið okkar.
+		\item<2-> Þar sem $E$ er endanlegt megum við gera ráð fyrir að $E = \{1, 2, ..., n\}$, þar sem $n$ er fjöldi nóða í $G$.
+		\item<3-> Látum $m$ vera fjölda leggja í $G$.
+		\item<4-> Listi af tvenndum sem inniheldur nákvæmlega sömu stök og $V$ kallast \emph{leggjalisti} netsins $G$.
+		\item<5-> Við notum leggjalist sjaldan, en það kemur fyrir (til dæmis í reikniriti Kruskals).
+		\item<6-> Net í dæmum í keppnisforritun eru þó oftast gefin með leggja lista.
+		\item<7-> Í óstefndum netum er hver leggur tvítekinn í $E$ og við leyfum okkur að sleppa annari endurtekningunni í listanum.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			[scale=0.75]
+			\node[draw, circle, thick] (1) at (0,0) {1};
+			\node[draw, circle, thick] (2) at (2,0) {2};
+			\node[draw, circle, thick] (3) at (2,-2) {3};
+			\node[draw, circle, thick] (4) at (4,-1) {4};
+
+			\path[draw] (1) -- (2) -- (4) -- (3);
+			\path[draw] (2) -- (3);
+
+		}
+	}
+	\env{align*}
+	{
+	L = [&\\
+			&(1, 2),\\
+			&(2, 3),\\
+			&(2, 4),\\
+			&(3, 4)\\
+		]&
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Helsti galli leggjalistans er að það tekur $\mathcal{O}($\onslide<2->{$\,m\,$}$)$ tíma að ákvarða hvort nóður séu nágrannar
+					eða finna nágranna tilteknar nóðu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Nágrannafylki}
+	\env{itemize}
+	{
+		\item<1-> Látum $A$ vera $n \times n$ fylki þannig að $A_{uv} = 1$ ef $(u, v)$ er í $E$, en $A_{uv} = 0$ annars.
+		\item<2-> Við köllum $A$ nágrannafylki netsins $G$.
+		\item<3-> Takið eftir að það tekur $\mathcal{O}($\onslide<4->{$n^2$}$)$ tíma að upphafsstilla $A$.
+		\item<5-> Svo þessi aðferð er alferið of hæg ef, til dæmis, $n = 10^5$ (sem er oft raunin).
+		\item<6-> Þegar $n$ er nógu lítið eru nágrannafylki nytsamleg því við getum ákvarðað hvort tvær nóður séu nágrannar í
+					$\mathcal{O}($\onslide<7->{$\,1\,$}$)$ tíma.
+		\item<8-> Einnig hefur $A^p$ (fylkjamargföldun) hefur einnig áhugaverða talningarfræðilega merkingu sem við skoðum síðar.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			[scale=0.75]
+			\node[draw, circle, thick] (1) at (0,0) {1};
+			\node[draw, circle, thick] (2) at (2,0) {2};
+			\node[draw, circle, thick] (3) at (2,-2) {3};
+			\node[draw, circle, thick] (4) at (4,-1) {4};
+
+			\path[draw] (1) -- (2) -- (4) -- (3);
+			\path[draw] (2) -- (3);
+
+		}
+	}
+	\[
+		A = \left (
+		\env{array}
+		{
+			{l l l l}
+			0 & 1 & 0 & 0\\
+			1 & 0 & 1 & 1\\
+			0 & 1 & 0 & 1\\
+			0 & 1 & 1 & 0
+		}
+		\right )
+	\]
+}
+
+\env{frame}
+{
+	\frametitle{Nágrannalistar}
+	\env{itemize}
+	{
+		\item<1-> Látum nú $V$ tákna lista af $n$ listum.
+		\item<2-> Táknum $j$-ta lista $V$ með $V_j$.
+		\item<3-> Látum nú $V_u$ innihalda alla nágranna nóðunnar $u$ í netinu $G$, án endurtekningar.
+		\item<4-> Við köllum $V$ \emph{nágrannalista} (fleirtölu) netsins $G$ og $V_u$ \emph{nágrannalista} (eintölu) nóðunnar $u$ í netinu $G$.
+		\item<5-> Helsti kostur nágrannalistanna er að við getum skoðað alla nágranna tiltekinnar nóðu án þess að skoða neitt annað.
+		\item<6-> Við getum því ítrað í gegnum alla nágranna alla nóðanna í $\mathcal{O}($\onslide<7->{$\,m\,$}$)$ tíma,
+					óháð röð nóðanna.
+		\item<7-> Þetta kemur að góðum notum þegar við erum að ferðast í gegnum netið.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			[scale=0.75]
+			\node[draw, circle, thick] (1) at (0,0) {1};
+			\node[draw, circle, thick] (2) at (2,0) {2};
+			\node[draw, circle, thick] (3) at (2,-2) {3};
+			\node[draw, circle, thick] (4) at (4,-1) {4};
+
+			\path[draw] (1) -- (2) -- (4) -- (3);
+			\path[draw] (2) -- (3);
+
+		}
+	}
+	\env{align*}
+	{
+	L = [&\\
+			&[2]\\
+			&[1, 3, 4]\\
+			&[2, 4]\\
+			&[2, 3]\\
+		]&
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Eins minnst var á áðan eru net yfirleitt gefin með leggjalista, en við vinnum yfirleitt með nágrannalista.
+		\item<2-> Til að breyta á milli látum nágrannalistann okkar vera af tagi \texttt{vector<vector<int>\!\!\!\! >}.
+		\item<3-> Við upphafsstillum hann með $n$ tómum listum.
+		\item<4-> Við lesum svo í gegnum alla leggina og bætum í viðeigandi nóðum í tilheyrandi nágrannalista.
+		\item<5-> Ef leggur $(u, v)$ er í leggjalista stefnts nets þá bætum við $v$ við $V_u$.
+		\item<5-> Ef leggur $(u, v)$ er í leggjalista óstefnts nets þá bætum við $v$ við $V_u$ og $u$ við $V_v$.
+	}
+}
+
+\env{frame}
+{
+	\code{code/ll2nl.cpp}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

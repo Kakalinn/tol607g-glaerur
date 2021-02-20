@@ -1,5 +1,3 @@
-%\documentclass[handout]{beamer}
-%\documentclass{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, icelandic]{babel}
@@ -29,8 +27,8 @@
 	\end{#1}
 }
 
-\newcommand\code[1]{\tiny\lstinputlisting[language = C, numbers = left]{#1}}
-\newcommand\selectcode[3]{\tiny\lstinputlisting[language = C, numbers = left, firstnumber = #2, linerange = {#2 - #3}]{#1}}
+\newcommand\code[1]{{\tiny\lstinputlisting[language = C, numbers = left]{#1}}}
+\newcommand\selectcode[3]{{\tiny\lstinputlisting[language = C, numbers = left, firstnumber = #2, linerange = {#2 - #3}]{#1}}}
 
 \definecolor{mygray}{rgb}{0.4,0.4,0.4}
 \definecolor{mygreen}{rgb}{0, 0, 1}

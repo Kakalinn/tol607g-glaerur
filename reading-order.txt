@@ -1,15 +1,24 @@
+vika01
 inngangur
 
+vika02
 grunnatidi
 ad-hoc
 
+vika03
 taemandi-leit
 gradug-reiknirit
 
+vika04 og vika05
 deila-og-drottna
 kvik-bestun
 
+vika06
 heap
 union-find
 segment-tree
 square-root-decomposition
+
+vika07
+inngangur-neta
+bfs-dfs
