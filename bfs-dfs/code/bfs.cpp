@@ -1,16 +1,17 @@
 #include <bits/stdc++.h>
+#define rep(E, F) for (E = 0; E < (F); E++)
 using namespace std;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
 
-// Fyrsta lína inntaksins eru tvær heiltölur, fjöldi nóða og fjöldi leggja.
+// Fyrsta lína inntaksins eru tvær heiltölur, fjöldi hnúta og fjöldi leggja.
 // Síðan koma m línur sem svara til leggjalistans.
 int main()
 {
 	int i, j, n, m;
 	cin >> n >> m;
 	vvi g(n);
-	for (i = 0; i < m; i++)
+	rep(i, m)
 	{
 		int x, y;
 		cin >> x >> y;
@@ -26,12 +27,12 @@ int main()
 	{
 		int x = q.front();
 		q.pop();
-		for (i = 0; i < g[x].size(); i++) if (d[g[x][i]] == -1)
+		rep(i, g[x].size()) if (d[g[x][i]] == -1)
 		{
 			q.push(g[x][i]);
 			d[g[x][i]] = d[x] + 1;
 		}
 	}
-	for (i = 0; i < n; i++) printf("d[%d] = %d\n", i, d[i]);
+	rep(i, n) printf("d[%d] = %d\n", i, d[i]);
 	return 0;
 }

@@ -13,7 +13,7 @@ void dfs(vvi& g, int x)
 	rep(i, g[x].size()) if (v[g[x][i]] == 0) dfs(g, g[x][i]);
 }
 
-// Fyrsta lína inntaksins eru tvær heiltölur, fjöldi nóða og fjöldi leggja.
+// Fyrsta lína inntaksins eru tvær heiltölur, fjöldi hnúta og fjöldi leggja.
 // Síðan koma m línur sem svara til leggjalistans.
 int main()
 {

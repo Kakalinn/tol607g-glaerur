@@ -1,0 +1,52 @@
+\title{Miðmisseriskönnun}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Miðmisseriskönnun var að ljúka.
+		\item<2-> Það er ein athugasemd sem ég vil ræða.
+	}
+}
+
+\env{frame}
+{
+	Mætti kenna aðeins meira markvisst, taka fyrir alla algórithmana sem maður þarf að kunna fyrir næstu vikudæmi.
+	Oft eru einhverjar pælingar sem maður hefur aldrei séð áður,
+	eins og svokallaða ,,Two egg'' vandamálið sem var í raun endurskrifað í dæmið ,,Exploding Batteries'' á Kattis.
+	Þá þurfti maður að eyða miklum tíma í að googla og finna svipað vandamál (þannig rakst ég á ,,Two egg problem'').
+}
+
+\env{frame}
+{
+	\code{code/batteries.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ég mun fara að nota styttingunar \texttt{rep(...)} restina af námskeiðinu.
+		\item<2-> Hún er notuð til að spara skriftir í \texttt{for}-lykkjum.
+		\item<3-> Hún er skilgreind með \texttt{\#define rep(E, F) for (E = 0; E < (F); E++)}.
+		\item<4-> Þetta þýðir að \texttt{rep(i, n)} er jafngilt því að skrifa \texttt{for (i = 0; i < n; i++)}.
+		\item<5-> Sem dæmi um hagnýtingu þessara styttingu má sjá útfærsluna mína á bakstrengsfylkjasmið (e. suffix array constructor).
+	}
+}
+
+\env{frame}
+{
+	\code{code/suffix-array.c}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

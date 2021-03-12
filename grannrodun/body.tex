@@ -1,0 +1,173 @@
+\title{Grannröðun}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við séum með stefnt net.
+		\item<2-> Við viljum getað raðað hnútunum þannig að ef það er leggur frá hnútnum $u$ til hnútsins $v$ í netinu þá sé $u$ á undan $v$ í röðuninni.
+		\item<3-> Þetta má gera þá og því aðeins að netið sé órásað.
+		\item<4-> Við köllum slíka röðun \emph{grannröðun} (e. \emph{topological sort}).
+		\item<5-> Takið þó eftir að þessi röðun þarf ekki að vera ótvírætt ákvörðuð.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Sjáum fyrst að stefnt órásað net hefur alltaf hnút með engan legg inn í sig.
+		\item<2-> Einnig gildir að ef við fjarlægjum hnút úr stefndu órásuðu neti þá er netið ennþá órásað.
+		\item<3-> Ef hnútur hefur engan legg nn í sig má hann alltaf fara fremst í grannröðunina.
+		\item<4-> Við finnum því grannröðun með því að:
+		\env{itemize}
+		{
+			\item<5-> Finna hnút með engan legg inn í sig.
+			\item<6-> Setja hann fremst í grannröðinan.
+			\item<7-> Fjarlægja hann úr netinu.
+			\item<8-> Endurtaka þangað til enginn hnútur er eftir.
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\only<all:1-2> { \node[draw, circle, thick] (1) at (-1, -1) {$1$}; }
+			\only<all:3-> { \node[draw, circle, thick, white] (1) at (-1, -1) {$1$}; }
+
+			\only<all:1-5> { \node[draw, circle, thick] (2) at (1, 1) {$2$}; }
+			\only<all:6-> { \node[draw, circle, thick, white] (2) at (1, 1) {$2$}; }
+
+			\only<all:1-7> { \node[draw, circle, thick] (3) at (-1, 1) {$3$}; }
+			\only<all:8-> { \node[draw, circle, thick, white] (3) at (-1, 1) {$3$}; }
+
+			\only<all:1-8> { \node[draw, circle, thick] (4) at (0, 1) {$4$}; }
+			\only<all:9-> { \node[draw, circle, thick, white] (4) at (0, 1) {$4$}; }
+
+			\only<all:1-4> { \node[draw, circle, thick] (5) at (0, 0) {$5$}; }
+			\only<all:5-> { \node[draw, circle, thick, white] (5) at (0, 0) {$5$}; }
+
+			\only<all:1-3> { \node[draw, circle, thick] (6) at (0, -1) {$6$}; }
+			\only<all:4-> { \node[draw, circle, thick, white] (6) at (0, -1) {$6$}; }
+
+			\only<all:1-1> { \node[draw, circle, thick] (7) at (1, -1) {$7$}; }
+			\only<all:2-> { \node[draw, circle, thick, white] (7) at (1, -1) {$7$}; }
+
+			\only<all:1-6> { \node[draw, circle, thick] (8) at (-1, 0) {$8$}; }
+			\only<all:7-> { \node[draw, circle, thick, white] (8) at (-1, 0) {$8$}; }
+
+
+			\only<all:1-6> { \path[draw, ->] (8) -- (3); }
+			\only<all:1-4> { \path[draw, ->] (5) -- (4); }
+			\only<all:1-6> { \path[draw, ->] (8) -- (4); }
+			\only<all:1-1> { \path[draw, ->] (7) -- (2); }
+			\only<all:1-4> { \path[draw, ->] (5) -- (2); }
+			\only<all:1-3> { \path[draw, ->] (6) -- (5); }
+			\only<all:1-2> { \path[draw, ->] (1) -- (8); }
+			\only<all:1-3> { \path[draw, ->] (6) -- (8); }
+			\only<all:1-1> { \path[draw, ->] (7) -- (8); }
+		}
+	}
+	\env{center}
+	{
+		\only<all:1>
+		{
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:2>
+		{
+			$7$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:3>
+		{
+			$7$, $1$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:4>
+		{
+			$7$, $1$, $6$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:5>
+		{
+			$7$, $1$, $6$, $5$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:6>
+		{
+			$7$, $1$, $6$, $5$, $2$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:7>
+		{
+			$7$, $1$, $6$, $5$, $2$, $8$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:8>
+		{
+			$7$, $1$, $6$, $5$, $2$, $8$, $3$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+		\only<all:9>
+		{
+			$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$
+			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þegar við útfærum þetta byrjum við á að setja alla hnút með engan legg inn í sig í biðröð.
+		\item<2-> Tökum svo hnút úr biðröðinni og bætum við þeim hnútum sem hafa bara legg í sig frá þeim hnút.
+		\item<3-> Við fáum einnig að grannröðunin er ótvírætt ákvörðuð þá og því aðeins að biðröðin innihaldi aldrei fleiri en eitt stak.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/tsort.cpp}{7}{22}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við heimsækjum hvern hnút að mestu einu sinni og ferðumst eftir hverjum legg einu sinni.
+		\item<2-> Svo forritið er $\mathcal{O}($\onslide<3->{$E + V$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að þú sért að forrita verkefni.
+		\item<2-> Verkefnið samanstendur af $n$ skrám.
+		\item<3-> Hver skrá getur verið háð einhverjum öðrum skrám.
+		\item<4-> Passa þarf að þegar allt verkefnið er þýtt þá þarf skrá $u$ að vera þýdd á undan skrá $v$ ef $v$ er háð $u$.
+		\item<5-> Við getum þá búið til net, þar sem skrárnar eru hnútar og hæði er táknað með stefndum leggjum.
+		\item<6-> Þetta verður þá stefnt net.
+		\item<7-> Eðlilegt er að gera ráð fyrir að það sé órásað.
+		\item<8-> Grannröðun gefur okkur þá röð til að þýða skrárnar.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

@@ -1,0 +1,299 @@
+\title{Reiknirit Tarjans}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skilgreinum vensl $\sim$ á milli hnúta í óstefndu neti með því að $u \sim v$ ef og aðeins ef til er vegur milli $u$ og $v$.
+		\item<2-> Auðvelt er að sýna að þetta eru jafngildisvensl (sjálfhverf, samhverf og gegnvirk).
+		\item<3-> Við megum því skilgreina \emph{samhengisþátt} í netinu sem jafngildisflokka þessara vensla.
+		\item<4-> Samhengisþáttur í neti er því óstækkanlegt mengi þannig að komast má hverjum hnút í menginu til hvers annars með vegi.
+		\item<5-> Segja má að net sé samanhangandi þá og því aðeins að það innihaldi einn samhengisþátt.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum beitt dýptarleit eða breiddarleit til að finna alla hnúta sem eru í sama samhengisþætti og tiltekinn hnútur.
+		\item<2-> Ef við pössum að hefja bara leit einu sinni fyrir hvern samhengisþátt þá getum við fundið alla samhengisþætti í
+					$\mathcal{O}($\onslide<3->{$E + V$}$)$ tíma.
+		\item<4->[] \selectcode{code/cc.cpp}{7}{13}
+		\item<5->[] \selectcode{code/cc.cpp}{29}{30}
+	}
+}
+
+\env{frame}
+{
+	\code{code/cc.cpp}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef við tölum um að fjarlægja hnút úr neti þá er átt við að hnúturinn ásamt öllum leggjum til og frá honum eru fjarlægðir.
+		\item<2-> Gerum ráð fyrir að við höfum net $G$ og látum $G_u$ tákna netið þar sem hnútur $u$ hefur verið fjarlægður.
+		\item<3-> Við segjum að hnútur $u$ sé \emph{liðhnútur} (e. \emph{articulation point}) ef $G$ hefur færri samhengisþætti en $G_u$.
+		\item<4-> Til að fjarlægja legg úr neti nægir að fjarlægja legginn.
+		\item<5-> Táknum þá netið $G$ án leggsins $e$ með $G_e$.
+		\item<6-> Leggur $e$ eru sagður vera \emph{brú} (e. \emph{bridge}) ef $G$ hefur færri samhengisþætti en $G_e$.
+		\item<7-> Með öðrum orðum er hnútur $u$ liðhnútur (leggur $e$ brú) ef til eru hnútar $v_1$ og $v_2$ í sama samhengisþætti
+					þannig að allir vegir frá $v_1$ til $v_2$ fari í gegnum hnútinn $u$ (legginn $e$).
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ein leið til að finna alla liðhnúta er að telja fyrst samhengisþætti netsins, fjarlægja hnút, telja samhengisþætti
+					og endurtaka fyrir alla hnúta.
+		\item<2-> Þar sem við þurfum að finna alla samhengisþætti $V + 1$ neta er þessi aðferð með tímaflækju $\mathcal{O}($\onslide<3->{$V^2 + VE$}$)$.
+		\item<4-> Samskonar aðferð til að finna brýr væri með tímaflækju $\mathcal{O}($\onslide<5->{$E^2 + VE$}$)$.
+		\item<5-> Þetta er þó ekki æskilegt, því getum við getum fundið bæði alla liðhnúta og allar brýr með einni dýptarleit.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að netið okkar sé samanhangandi.
+		\item<2-> Ef svo er ekki getum við beitt þessari aðferð á hvern samhengisþátt.
+		\item<3-> Veljum einhvern hnút og framkvæmum dýptarleit frá honum.
+		\item<4-> Skilgreinum svo tvær breytur fyrir hvern hnút $u$ út frá þessari dýptarleit, $u_{low}$ og $u_{num}$.
+		\item<5-> Talan $u_{num}$ segir hversu mörg skref í leitin við tókum til að finna hnútinn $u$.
+		\item<6-> Talan $u_{low}$ er minnsta gildið $v_{num}$ þar sem $v$ er hnútur sem við við getum ferðast til án þess að nota leggi
+					sem hafa verið notaðir í leitinni.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að leitin okkar fari úr hnút $u$ í hnút $v$ með legg $e$.
+		\item<2-> Ef $v_{low} > u_{num}$ þá er $e$ brú.
+		\item<3-> Þetta þýðir að eina leiðin frá $v$ til $u$ er í gegnum legginn $e$.
+		\item<4-> Ef $v_{low} \geq u_{num}$ þá er $u$ liðhnútur.
+		\item<5-> Þetta þýðir að eina leiðin frá $v$ í fyrri hnúta leitarinnar er í gegnum hnútinn $u$.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\only<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{$0$}};}
+			\only<all:2-3, 34-35>{\node[draw, circle, thick, red] (1) at (2,0) {$0$};}
+			\only<all:4-33, 36->{\node[draw, circle, thick, blue] (1) at (2,0) {$0$};}
+			\only<all:35->{\node at (1.5,0.5) {$0$};}
+			\only<all:1-34>{\node at (1.5,0.5) {\phantom{$0$}};}
+
+			\only<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{$1$}};}
+			\only<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{$1$}};}
+			\only<all:4-5, 32-33>{\node[draw, circle, thick, red] (2) at (2,2) {$1$};}
+			\only<all:6-31, 34->{\node[draw, circle, thick, blue] (2) at (2,2) {$1$};}
+			\only<all:33->{\node at (1.5,2.5) {$0$};}
+			\only<all:1-32>{\node at (1.5,2.5) {\phantom{$0$}};}
+
+			\only<all:1-2, 4-24>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{$8$}};}
+			\only<all:3, 25>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{$8$}};}
+			\only<all:26-27>{\node[draw, circle, thick, red] (3) at (2,-2) {$8$};}
+			\only<all:28->{\node[draw, circle, thick, blue] (3) at (2,-2) {$8$};}
+			\only<all:27->{\node at (1.5,-1.5) {$0$};}
+			\only<all:1-26>{\node at (1.5,-1.5) {\phantom{$0$}};}
+
+			\only<all:1-4>{\node[draw, circle, thick] (4) at (4,1) {\phantom{$2$}};}
+			\only<all:5>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{$2$}};}
+			\only<all:8-21, 24-29, 32-36>{\node[draw, circle, thick, blue] (4) at (4,1) {$2$};}
+			\only<all:6-7, 22-23, 30-31>{\node[draw, circle, thick, red] (4) at (4,1) {$2$};}
+			\only<all:37->{\node[draw, circle, thick, green] (4) at (4,1) {$2$};}
+			\only<all:31->{\node at (3.5,1.5) {$0$};}
+			\only<all:1-30>{\node at (3.5,1.5) {\phantom{$0$}};}
+
+			\only<all:1-2, 4-6, 8-22>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{$7$}};}
+			\only<all:3, 7, 23>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{$7$}};}
+			\only<all:24-25, 28-29>{\node[draw, circle, thick, red] (5) at (4,-1) {$7$};}
+			\only<all:26-27, 30->{\node[draw, circle, thick, blue] (5) at (4,-1) {$7$};}
+			\only<all:29->{\node at (3.5,-0.5) {$0$};}
+			\only<all:1-28>{\node at (3.5,-0.5) {\phantom{$0$}};}
+
+			\only<all:1-6>{\node[draw, circle, thick] (6) at (6,0) {\phantom{$3$}};}
+			\only<all:7>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{$3$}};}
+			\only<all:8-9, 20-21>{\node[draw, circle, thick, red] (6) at (6,0) {$3$};}
+			\only<all:10-19, 22-36>{\node[draw, circle, thick, blue] (6) at (6,0) {$3$};}
+			\only<all:37->{\node[draw, circle, thick, green] (6) at (6,0) {$3$};}
+			\only<all:21->{\node at (5.5,0.5) {$3$};}
+			\only<all:1-20>{\node at (5.5,0.5) {\phantom{$3$}};}
+
+			\only<all:1-10>{\node[draw, circle, thick] (7) at (8,2) {\phantom{$5$}};}
+			\only<all:11>{\node[draw, circle, thick, yellow] (7) at (8,2) {\phantom{$5$}};}
+			\only<all:12-13>{\node[draw, circle, thick, red] (7) at (8,2) {$5$};}
+			\only<all:14->{\node[draw, circle, thick, blue] (7) at (8,2) {$5$};}
+			\only<all:13->{\node at (7.5,2.5) {$5$};}
+			\only<all:1-10>{\node at (7.5,2.5) {\phantom{$5$}};}
+
+			\only<all:1-8, 10, 12-14>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{$6$}};}
+			\only<all:9, 11, 15>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{$6$}};}
+			\only<all:16-17>{\node[draw, circle, thick, red] (8) at (6,-2) {$6$};}
+			\only<all:18->{\node[draw, circle, thick, blue] (8) at (6,-2) {$6$};}
+			\only<all:17->{\node at (5.5,-1.5) {$3$};}
+			\only<all:1-16>{\node at (5.5,-1.5) {\phantom{$3$}};}
+
+			\only<all:1-8>{\node[draw, circle, thick] (9) at (8,0) {\phantom{$4$}};}
+			\only<all:9>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{$4$}};}
+			\only<all:10-11, 14-15, 18-19>{\node[draw, circle, thick, red] (9) at (8,0) {$4$};}
+			\only<all:12-13, 16-17, 20-36>{\node[draw, circle, thick, blue] (9) at (8,0) {$4$};}
+			\only<all:37->{\node[draw, circle, thick, green] (9) at (8,0) {$4$};}
+			\only<all:19->{\node at (7.5,0.5) {$3$};}
+			\only<all:1-18>{\node at (7.5,0.5) {\phantom{$3$}};}
+
+			\path[draw] (1) -- (2);
+			\path[draw] (2) -- (4);
+			\path[draw] (4) -- (5);
+			\path[draw] (3) -- (5);
+			\path[draw] (1) -- (3);
+			\path[draw] (6) -- (8);
+			\path[draw] (8) -- (9);
+			\path[draw] (6) -- (9);
+			\path[draw] (1) -- (5);
+
+			\only<all:1-36> { \path[draw] (7) -- (9); }
+			\only<all:37> { \path[draw, green] (7) -- (9); }
+			\only<all:1-36> { \path[draw] (4) -- (6); }
+			\only<all:37> { \path[draw, green] (4) -- (6); }
+		}
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/lidhnutar-og-bryr.cpp}{10}{38}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan er $\mathcal{O}($\onslide<2->{$E + V$}$)$ því það er tímaflækja dýptarleitar.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við séum með stefnt net.
+		\item<2-> Þá eru venslin sem við skilgreindum áðan ekki lengur jafngildisvensl því þau eru ekki samhverf.
+		\item<3-> Við getum þó gert þau samhverf með því að krefjast að það sé til vegur í báðar áttir.
+		\item<4-> Með öðrum orðum er $x \sim y$ ef og aðeins ef til er vegur frá $u$ til $v$ og vegur frá $v$ til $u$.
+		\item<5-> Jafngildisflokkar þessara vensla eru kallaðir \emph{strangir samhengisþættir} (e. \emph{strong connected components}).
+		\item<6-> Ég mun þó leyfa mér að kalla þetta \emph{samhengisþætti} þegar ljóst er að við séum að ræða um stenft net.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Takið eftir að ef netið inniheldur rás þá eru allir hnútar í rásinni í sama samhengisþætti.
+		\item<2-> Einnig gildir að ef netið inniheldur enga rás er hver hnútur sinn eigin samhengisþáttur.
+		\item<3-> Slík net kallast \emph{stefnd órásuð net} (e. \emph{directed acycle graphs (DAG)}).
+		\item<4-> Þau hafa ýmsa þæginlega eiginleik, til dæmis má beyta kvikri bestun á þau.
+		\item<5-> Við getum breytt stefndu neti í órásað stefnt net með því að deila út jafngildisvenslunum.
+		\item<6-> Nánar, þá lítum við svo á að hnútar í sama samhengisþætti séu í raun sami hnúturinn
+					og verður leggur milli samhengisþátta ef vegur liggur milli einhverja hnúta í samhengisþáttunum sem fer ekki í annan samhengisþátt.
+		\item<7-> Við köllum þetta net \emph{herpingu} (e. \emph{contraction}) upprunalega netsins.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{ [scale=1.25]
+			\only<all:1> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
+			\only<all:1> { \node[draw, circle, thick, red, fill] (2) at (2,0) {}; }
+			\only<all:1> { \node[draw, circle, thick, red, fill] (4) at (2,-2) {}; }
+			\only<all:1> { \node[draw, circle, thick, red, fill] (7) at (0,-2) {}; }
+			\only<all:2-3> { \node[draw, circle, thick, white, fill] (2) at (2,0) {}; }
+			\only<all:2-3> { \node[draw, circle, thick, white, fill] (4) at (2,-2) {}; } % white nodes to keep pictures the same size
+			\only<all:2-3> { \node[draw, circle, thick, white, fill] (7) at (0,-2) {}; }
+			\only<all:2-3> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
+
+			\only<all:1-2> { \node[draw, circle, thick, blue, fill] (3) at (2,2) {}; }
+			\only<all:1-2> { \node[draw, circle, thick, blue, fill] (5) at (4,1) {}; }
+			\only<all:1-2> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
+			\only<all:3> { \node[draw, circle, thick, white, fill] (3) at (2,2) {}; }
+			\only<all:3> { \node[draw, circle, thick, white, fill] (5) at (4,1) {}; }
+			\only<all:3> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
+
+			\node[draw, circle, thick, yellow, fill] (8) at (0,2) {};
+
+			\node[draw, circle, thick, green, fill] (9) at (-2,2) {};
+
+			\only<all:1> { \path[draw, ->, very thick] (2) -- (1); }
+			\only<all:1> { \path[draw, ->, very thick] (4) -- (1); }
+			\only<all:1> { \path[draw, ->, very thick] (1) -- (7); }
+			\only<all:1> { \path[draw, ->, very thick] (7) -- (4); }
+			\only<all:1> { \path[draw, ->, very thick] (4) -- (2); }
+			\only<all:1> { \path[draw, ->, very thick] (2) -- (6); }
+
+			\only<all:2-> { \path[draw, ->, very thick] (1) -- (6); }
+			\only<all:1-2> { \path[draw, ->, very thick] (3) -- (5); }
+			\only<all:1-2> { \path[draw, ->, very thick] (6) -- (3); }
+			\only<all:1-2> { \path[draw, ->, very thick] (5) -- (6); }
+			\path[draw, ->, very thick] (1) -- (8);
+			\path[draw, ->, very thick] (8) -- (9);
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Til að finna herpinguna þurfum við fyrst að finna samhengisþættina.
+		\item<2-> Við getum breytt lítilega forritinu sem við vorum með áðan til að finna samhengisþætti stefnds nets.
+		\item<3-> Við getum skoðað hvort $u_{low} = u_{num}$ á leiðinni upp úr endurkvæmninni.
+		\item<4-> Ef svo er þá er $u$ fyrsti hnúturinn sem við sáum í samhengisþættinum sem $u$ tilheyrir.
+		\item<5-> Við geymum því hnútana sem við heimsækjum á hlaða.
+		\item<6-> Þegar við finnum umrætt $u$ (á leiðinni upp úr endurkvæmninni) tínum við af hlaðanum
+					þangað til við sjáum $u$ og setjum alla þá hnúta saman í samhengisþátt.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/stefndir-samhengisthaettir.cpp}{10}{44}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þar sem við leitum bara einu sinni í netinu með dýptarleit fæst að þetta reiknirit er $\mathcal{O}($\onslide<2->{$E + V$}$)$.
+		\item<3-> Við köllum þetta reiknrit, ásamt því sem finnur liðhnúta og brýr, reiknrit Tarjans.
+	}
+}
+
+
+
+
+\env{frame}
+{
+}
+
+\end{document}

@@ -1,0 +1,67 @@
+\title{Talnafræði}
+\subtitle{Veldishafning}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í talningarfræðidæmum er algengt að skila eigi leif svars.
+		\item<2-> Þetta er gert því leif er takmörkuð, en í talningarfræði er algengt að fá mjög stórar tölur.
+		\item<3-> Tökum dæmi.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veldishafning}
+	\env{itemize}
+	{
+		\item<1-> Gefnar eru þrjár jákvæðar heiltölur $x$, $n$ og $m$.
+		\item<2-> Finnið $x^n \mod m$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þetta er lítið mál að gera í $\mathcal{O}(n)$ tíma.
+		\item<2->[] \selectcode{code/exp-linear.c}{4}{11}
+		\item<3-> Við getum þó leyst þetta hraðar.
+		\item<4-> Sú lausn byggir á að deila og drottna.
+		\item<5-> Takið eftir að $x^{2n} = x^n \cdot x^n$ og $x^{2n + 1} = x^n \cdot x^n \cdot x$.
+		\item<6-> Því getum við í hverju skrefi helmingað veldisvísinn.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum útfært þetta endurkvæmt.
+		\item<2->[] \selectcode{code/exp-log-rec.c}{4}{10}
+		\item<3-> Við getum líka gert þetta með einfaldri \texttt{for}-lykkju.
+		\item<4->[] \selectcode{code/exp-log-iter.c}{4}{14}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Eins og sagt var áðan þá helmingast veldisvísirinn í hverju skrefi.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

@@ -10,14 +10,14 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Hvernig ítrum við í gegnum allar nóður stefnds nets.
+		\item<1-> Hvernig ítrum við í gegnum alla hnúta nets.
 		\item<2-> Þetta má að sjálfsögðu gera á marga vegu, en algengt er að notast við annað að tvennu:
 		\env{itemize}
 		{
 			\item<3-> \emph{Dýptarleit} (e. \emph{deapth-first search}).
 			\item<4-> \emph{Breiddarleit} (e. \emph{breadth-first search}).
 		}
-		\item<5-> Báðar byggja á því að byrja í einhverri nóðu og heimsækja svo nágranna hennar.
+		\item<5-> Báðar aðferðir byggja á því að byrja í einhverjum hnút og heimsækja svo nágranna hans.
 	}
 }
 
@@ -26,10 +26,11 @@
 	\frametitle{Dýptarleit}
 	\env{itemize}
 	{
-		\item<1-> Dýptarleit byrjar í einhverri nóðu.
-		\item<2-> Í hverju skrefi heimsækir leitin nóðu sem hefur ekki verið heimsótt áður í leitinni.
-		\item<3-> Ef allir nágrannar hafa verið heimsóttir þá er farið til baka og nágrannar síðustu nóðu eru skoðaðir.
-		\item<4-> Tökum dæmi.
+		\item<1-> Dýptarleit byrjar í einhverjum hnút.
+		\item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
+		\item<3-> Í hverju skrefi heimsækir leitin einhvern nágranna hnútsins sem hefur ekki verið heimsóttur áður í leitinni.
+		\item<4-> Ef allir nágrannar hafa verið heimsóttir þá er farið til baka og nágrannar síðasta hnúts eru skoðaðir.
+		\item<5-> Tökum dæmi.
 	}
 }
 
@@ -104,7 +105,7 @@
 		\item<1-> Þegar kemur að því að útfæra dýptarleit er oftast notast við endurkvæmni.
 		\item<2-> Endurkvæmnin sér sjálkrafa um að ,,fara til baka''.
 		\item<3->[]	\selectcode{code/dfs.cpp}{7}{15}
-		\item<4-> Eftir kall á \texttt{dfs(0)} segir \texttt{v[j]} okkur hvort til sé vegur frá nóðu \texttt{0} til nóðu \texttt{j}.
+		\item<4-> Eftir kall á \texttt{dfs(0)} segir \texttt{v[j]} okkur hvort til sé vegur frá hnúti \texttt{0} til hnúts \texttt{j}.
 	}
 }
 
@@ -112,11 +113,11 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Tökum eftir að leitin heimsækir hverju nóðu í mesta lagi einu sinni og
+		\item<1-> Tökum eftir að leitin heimsækir hvern hnút í mesta lagi einu sinni og
 					ferðast eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
 		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$E + V$}$)$.
 		\item<4-> Við getum í rauninni ekki beðið um betri tímaflækju.
-		\item<5-> Við munum alltaf þurfa að skoða allar nóður og ef við skoðum ekki alla leggi þá erum við að hunsa uppbyggingu netsins.
+		\item<5-> Við munum alltaf þurfa að skoða alla hnúta og ef við skoðum ekki alla leggi þá erum við að hunsa uppbyggingu netsins.
 	}
 }
 
@@ -125,17 +126,17 @@
 	\frametitle{Breiddarleit}
 	\env{itemize}
 	{
-		\item<1-> Við byrjum á að merkja allar nóður sem ,,ósnertar'', nema við merkjum eina nóðu sem ,,séð''.
-		\item<2-> Sú nóða er kölluð \emph{upphafsnóðan}.
-		\item<3-> Við endurtökum svo sömu skrefin þar til engar ,,séðar'' nóður eru eftir:
+		\item<1-> Við byrjum á að merkja alla hnúta sem ,,ósnerta'', nema við merkjum einn hnút sem ,,séðan''.
+		\item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
+		\item<3-> Við endurtökum svo sömu skrefin þar til engir ,,séðir'' hnútar eru eftir:
 		\env{itemize}
 		{
-			\item<4-> Veljum þá ,,séðu'' nóðu sem við sáum fyrst.
-			\item<5-> Merkjum alla ,,ósnerta'' nágranna hennar sem ,,séða''.
-			\item<6-> Merkjum upprunalegu nóðuna ,,kláraða''.
+			\item<4-> Veljum þann ,,séða'' hnút sem við sáum fyrst.
+			\item<5-> Merkjum alla ,,ósnerta'' nágranna hans sem ,,séða''.
+			\item<6-> Merkjum upprunalegu hnútinn ,,kláraðann''.
 		}
 		\item<7-> Tökum dæmi.
-		\item<8-> Við munum merkja ,,séðu'' nóður með hvenær við sáum þær.
+		\item<8-> Við munum merkja ,,séða'' hnúta með hvenær við sáum þá.
 	}
 }
 
@@ -209,10 +210,10 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við munum halda utan um ,,séðu'' nóðurnar með biðröð.
-		\item<2-> Við byrjum því á að setja upphafsnóðuna okkar í biðröðina.
-		\item<3-> Við tökum svo nóðu úr biðröðinni, setjum alla ,,óséða'' nágranna hennar í biðröðina og höldum áfram þangað til biðröðin er tóm.
-		\item<4->[] \selectcode{code/bfs.cpp}{21}{34}
+		\item<1-> Við munum halda utan um ,,séða'' hnúta með biðröð.
+		\item<2-> Við byrjum því á að setja upphafshnútinn okkar í biðröðina.
+		\item<3-> Við tökum svo hnút úr biðröðinni, setjum alla ,,óséða'' nágranna hans í biðröðina og höldum áfram þangað til biðröðin er tóm.
+		\item<4->[] \selectcode{code/bfs.cpp}{22}{35}
 	}
 }
 
@@ -220,13 +221,13 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við segjum að nóður $u$ og $v$ séu fjarlægð $k$ frá hvori annari ef stysti vegurinn frá $u$ til $v$ er af lengd $k$.
-		\item<2-> Við segjum líka að það séu $k$ skref á milli nóðanna.
-		\item<3-> Ef enginn vegur er á milli nóðanna segjum við að lengdin á milli þeirra sé $\infty$.
-		\item<4-> Milivægur eiginleiki breiddarleitar er að hún heimsækir fyrst þær nóður sem eru næst upphafsnóðunni.
-		\item<5-> Með öðrum orðum, ef $u$ er $k_1$ skref frá upphafsnóðunni og $v$ er $k_2$ skref frá upphafsnóðunni, $k_1 \neq k_2$,
+		\item<1-> Við segjum að hnútar $u$ og $v$ séu fjarlægð $k$ frá hvorum öðrum ef stysti vegurinn frá $u$ til $v$ er af lengd $k$.
+		\item<2-> Við segjum líka að það séu $k$ skref á milli hnútanna.
+		\item<3-> Ef enginn vegur er á milli hnútanna segjum við að lengdin á milli þeirra sé $\infty$.
+		\item<4-> Mikilvægur eiginleiki breiddarleitar er að hún heimsækir fyrst þá hnúta sem eru næst upphafshnútnum.
+		\item<5-> Með öðrum orðum, ef $u$ er $k_1$ skref frá upphafshnútnum og $v$ er $k_2$ skref frá upphafshnútunum, $k_1 \neq k_2$,
 					þá heimsækir breiddarleit $u$ á undan $v$ þá og því aðeins að $k_1 < k_2$.
-		\item<6-> Við getum því notað breiddarleit til að finna fjarlægðina frá upphafsnóðunni að öllum öðrum nóðum.
+		\item<6-> Við getum því notað breiddarleit til að finna fjarlægðina frá upphafshnútnum að öllum öðrum hnútum.
 	}
 }
 
@@ -234,7 +235,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Líkt og í dýptarleit þá heimsækjum við hverja nóðu í mesta lagi einu sinni og
+		\item<1-> Líkt og í dýptarleit þá heimsækjum við hvern hnút í mesta lagi einu sinni og
 					ferðumst eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
 		\item<2-> Svo tímaflækjan er aftur $\mathcal{O}($\onslide<3->{$E + V$}$)$.
 	}
@@ -245,8 +246,8 @@
 	\frametitle{Samanburður}
 	\env{itemize}
 	{
-		\item<1-> Báðar leitirnar segja okkur til hvaða nóða má komast frá upphafsnóðunni og gera það með sömu tímaflækju.
-		\item<2-> Breiddarleit gefur okkur einnig fjarlægð allra nóða frá upphafsnóðunni.
+		\item<1-> Báðar leitirnar segja okkur til hvaða hnúta má komast frá upphafshnútnum og gera það með sömu tímaflækju.
+		\item<2-> Breiddarleit gefur okkur einnig fjarlægð allra hnúta frá upphafshnútnum.
 		\item<3-> Í dýptarleit getum við unnið áfram með gögnin eftir endurkvæma kallið okkar, sem býður upp á mikla fjölbreyttni.
 		\item<4-> Dýptarleit má því finna í reikniritum sem finna grannröð neta, tengipunkta og brýr (þetta verður allt skilgreint seinna).
 	}
@@ -259,11 +260,11 @@
 		\item<1-> Fyrsta lína inntaksins inniheldur tvær heiltölur, $r$ og $c$.
 		\item<2-> Inntakið inniheldur síðan $r$ strengir, allir af lengd $c$.
 		\item<3-> Strengirnar byrjar og enda allir á \texttt{`X'} ásamt því að fyrsti og síðasti strengurinn inniheldur bara stafinn \texttt{`X'}.
-		\item<4-> Annars innihalda strengirnir bara stafina \texttt{`X'}, \texttt{`.'} og \texttt{`O'}.
+		\item<4-> Annars innihalda strengirnir bara stafina \texttt{`X'}, \texttt{`.'} og eitt stykki \texttt{`O'}.
 		\item<5-> Dæmi um slíkan streng er:
 		\code{code/2.in}
 		\item<6-> Við viljum svo prenta sama borð, nema í stað bókstafana á að koma hversu fá skref við þurfum að taka til frá \texttt{`O'}
-					til að komast þangað ef við megum ferðast upp, niður, til hægri og til vinstri.
+					til að komast þangað ef við megum ferðast upp, niður, til hægri og til vinstri, en ekki á reitunum með \texttt{`X'}.
 		\item<7-> Fyrir þá reiti sem við komumst ekki á prentum við \texttt{-1}.
 	}
 }
@@ -284,11 +285,11 @@
 	\env{itemize}
 	{
 		\item<1-> Við getum túlkað þessa mynd sem net.
-		\item<2-> Ímyndum okkur að hver auður reitur sé nóða.
-		\item<3-> Við tengjum svo aðliggjandi auða nóður með leggjum.
-		\item<4-> Þar við viljum finna fjalægðir frá tiltekinni nóðu til allra annara nóða notum við \onslide<5->{breiddar}leit.
-		\item<6-> Fjöldi nóða í netinu er alltaf minni en $r \cdot c$ og fjöldi leggja er alltaf minni en $2 \cdot r \cdot c$.
-		\item<7-> Svo þetta reiknirit er $\mathcal{O}($\onslide<8->{$r \cdot c$}$)$.
+		\item<2-> Ímyndum okkur að hver auður reitur sé hnútur.
+		\item<3-> Við tengjum svo aðliggjandi auða hnúta með leggjum.
+		\item<4-> Þar sem við viljum finna fjalægðir frá tilteknum hnút til allra annara hnúta notum við \onslide<5->{breiddar}leit.
+		\item<6-> Fjöldi hnúta í netinu er alltaf minni en $r \cdot c$ og fjöldi leggja er alltaf minni en $2 \cdot r \cdot c$.
+		\item<7-> Svo þetta reiknirit er $\mathcal{O}($\onslide<8->{$E + V$}$) = \mathcal{O}($\onslide<9->{$r \cdot c$}$)$.
 	}
 }
 
@@ -299,12 +300,13 @@
 
 \env{frame}
 {
+	\frametitle{Tæmandi leit á vegi}
 	\env{itemize}
 	{
-		\item<1-> Við getum breitt dýptarleitar útfærslunni okkar lítillega til að finna alla einfalda vegi í neti sem byrja í tiltekinni nóðu.
-		\item<2-> Til að koma í veg fyrir að heimsækja nóðu oftar en einu sinni í dýpterleit merkjum við hana og heimsækjum ekki merktar nóður.
-		\item<3-> Við munum ennþá þurfa að merkja nóður því við erum að leita að einföldum vegum (almennt er ekki takmarkaður fjöldi vega í neti).
-		\item<4-> Munur er að við munum merkja nóðuna þegar við sjáum hana, halda áfram endurkvæmt til ómerktra nágranna hennar og afmerkja hana svo.
+		\item<1-> Við getum breitt dýptarleitar útfærslunni okkar lítillega til að finna alla einfalda vegi í neti sem byrja í tilteknum hnút.
+		\item<2-> Til að koma í veg fyrir að heimsækja hnút oftar en einu sinni í dýpterleit merkjum við hann og heimsækjum ekki merkta hnúta.
+		\item<3-> Við munum ennþá þurfa að merkja hnúta því við erum að leita að einföldum vegum (almennt er ekki takmarkaður fjöldi vega í neti).
+		\item<4-> Munurinn er að við munum merkja hnút þegar við sjáum hann, halda áfram endurkvæmt til ómerktra nágranna hans og afmerkja hann svo.
 	}
 }
 
@@ -314,7 +316,7 @@
 	{
 		\item<1->[]	\selectcode{code/allir-vegir.cpp}{7}{18}
 		\item<2-> Þetta forrit prentar alla einfalda vegi sem ekki mætti lengja.
-		\item<3-> Til að hámarka fjölda slíkra vega getum við búið til net þar sem öll pör nóða eru nágrannar.
+		\item<3-> Til að hámarka fjölda slíkra vega getum við búið til net þar sem öll pör hnúta eru nágrannar.
 		\item<4-> Þá myndi þetta forrit prenta allar umraðanir.
 		\item<5-> Tímaflækjan er því $\mathcal{O}($\onslide<6->{$(V + 1)!$}$)$.
 	}

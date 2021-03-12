@@ -173,10 +173,8 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
 x) (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-topaths.code.tex)))
-(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
-calc.code.tex)) (./body.tex
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+topaths.code.tex))) (/usr/share/texmf-dist/tex/latex/tools/array.sty))
+(./body.tex (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 (output/glaerur.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -207,16 +205,26 @@ map}] (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33]
 [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
 [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63]
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [64] [65] [66] [67] [68]
-(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
+[64] [65] [66] (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [67] [68]
+[69] [70] [71] [72] (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./code/ll2nl.cpp
-Overfull \hbox (9.71262pt too wide) in paragraph at lines 6--7
+Overfull \hbox (9.71262pt too wide) in paragraph at lines 7--8
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
-(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [69] [70]
-(output/glaerur.aux) ) )
+(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [73] [74] [75] [76] [77]
+[78] [79] [80] [81] [82] [83] [84] (./code/ll2nlw.cpp
+Overfull \hbox (9.71262pt too wide) in paragraph at lines 8--9
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+Overfull \hbox (9.71262pt too wide) in paragraph at lines 20--21
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ 
+) [85] [86] (output/glaerur.aux) ) )
 (see the transcript file for additional information){/usr/share/texmf-dist/font
 s/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm
 -super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
@@ -227,13 +235,14 @@ ist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1
 nts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/
-public/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
-/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><
-/usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sftt1095.pfb>
-Output written on output/glaerur.pdf (70 pages, 294486 bytes).
+st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/
+type1/public/cm-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm
+-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800
+.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fo
+nts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/cm-super/sftt1095.pfb>
+Output written on output/glaerur.pdf (86 pages, 346828 bytes).
 Transcript written on output/glaerur.log.
 line 0: Cannot load input from '*.gnuplot'
 

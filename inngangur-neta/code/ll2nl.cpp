@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define rep(E, F) for (E = 0; E < (F); E++)
 using namespace std;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
@@ -7,21 +8,20 @@ typedef vector<vi> vvi;
 // Síðan koma m línur sem svara til leggjalistans.
 int main()
 {
-	int i, j, n, m;
+	int i, j, n, m, x, y;
 	cin >> n >> m;
 	vvi g(n);
-	for (i = 0; i < m; i++)
+	rep(i, m)
 	{
-		int x, y;
 		cin >> x >> y;
 		x--, y--;
 		g[x].push_back(y);
 		g[y].push_back(x); // Sleppa þesari línu ef netið er stefnt.
 	}
-	for (i = 0; i < n; i++)
+	rep(i, n)
 	{
 		printf("%d: ", i + 1);
-		for (j = 0; j < g[i].size(); j++) printf("%d ", g[i][j] + 1);
+		rep(j, g[i].size()) printf("%d ", g[i][j] + 1);
 		printf("\n");
 	}
 	return 0;

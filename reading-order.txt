@@ -22,3 +22,15 @@ square-root-decomposition
 vika07
 inngangur-neta
 bfs-dfs
+tarjan
+
+vika08
+vika08
+tarjan (eftir cpb(...))
+grannrodun
+inngangur-neta (vegin net)
+kruskal
+dijkstra
+bellman-ford
+floyd-warshall
+prim

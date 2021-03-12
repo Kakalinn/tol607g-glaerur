@@ -1,0 +1,134 @@
+\title{Reiknirit Prims ($1957$)}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við séum með óstefnt vegið samanhangandi net $G = (V, E)$.
+		\item<2-> Ef við viljum finna spannandi tré nægir að framkvæma leit í trénu (til dæmis breiddarleit eða dýptarleit).
+		\item<3-> Þar sem við komum aðeins við í hverjum hnút einu sinni ferðumst við aðeins eftir $|V| - 1$ legg.
+		\item<4-> Ef við viljum slembið spannandi tré getum við skipt biðröðinni í breiddarleit út fyrir einhverja gagnagrind
+					sem skilar alltaf slembnu staki.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum líka beitt aðferð svipaðri reikniriti Dijkstras til að finna minnsta spannandi tré með því að ferðast í netinu.
+		\item<2-> Við byrjum á að velja upphafshnút og merkjum hann sem ,,séðan''.
+		\item<3-> Þar sem allar hnútirnar munu vera í spannandi trénu skiptir ekki máli hvaða hnút við veljum.
+		\item<4-> Við ferðumst svo alltaf eftir þeim legg sem hefur minnsta vigt og tengist nákvæmlega einum ,,séðum'' hnút.
+		\item<5-> Við merkjum svo hnútinn sem við ferðuðumst í sem ,,séðan''.
+		\item<6-> Þetta er gert þangað til allir hnútar eru ,,séðir''.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\only<1> { \node[draw, circle, thick] (1) at (2,0) {}; }
+			\only<2-> { \node[draw, circle, thick, blue] (1) at (2,0) {}; }
+
+			\only<1-2> { \node[draw, circle, thick] (2) at (2,2) {}; }
+			\only<3-> { \node[draw, circle, thick, blue] (2) at (2,2) {}; }
+
+			\only<1-5> { \node[draw, circle, thick] (3) at (2,-2) {}; }
+			\only<6-> { \node[draw, circle, thick, blue] (3) at (2,-2) {}; }
+
+			\only<1-3> { \node[draw, circle, thick] (4) at (4,1) {}; }
+			\only<4-> { \node[draw, circle, thick, blue] (4) at (4,1) {}; }
+
+			\only<1-4> { \node[draw, circle, thick] (5) at (4,-1) {}; }
+			\only<5-> { \node[draw, circle, thick, blue] (5) at (4,-1) {}; }
+
+			\only<1-6> { \node[draw, circle, thick] (6) at (6,0) {}; }
+			\only<7-> { \node[draw, circle, thick, blue] (6) at (6,0) {}; }
+
+			\only<1-9> { \node[draw, circle, thick] (7) at (6,2) {}; }
+			\only<10-> { \node[draw, circle, thick, blue] (7) at (6,2) {}; }
+
+			\only<1-7> { \node[draw, circle, thick] (8) at (6,-2) {}; }
+			\only<8-> { \node[draw, circle, thick, blue] (8) at (6,-2) {}; }
+
+			\only<1-8> { \node[draw, circle, thick] (9) at (8,0) {}; }
+			\only<9-> { \node[draw, circle, thick, blue] (9) at (8,0) {}; }
+
+
+
+
+			\only<1-2> { \path[draw, thick] (1) -- (2); }
+			\only<3-11> { \path[draw, thick, blue] (1) -- (2); }
+			\node[fill = white] at (2,1) {$1$};
+
+			\only<1-3> { \path[draw, thick] (2) -- (4); }
+			\only<4-> { \path[draw, thick, blue] (2) -- (4); }
+			\node[fill = white] at (3,1.5) {$3$};
+
+			\only<1-4> { \path[draw, thick] (4) -- (5); }
+			\only<5-> { \path[draw, thick, blue] (4) -- (5); }
+			\node[fill = white] at (4,0) {$1$};
+
+			\only<1-5> { \path[draw, thick] (3) -- (5); }
+			\only<6-> { \path[draw, thick, blue] (3) -- (5); }
+			\node[fill = white] at (3,-1.5) {$2$};
+
+			\only<1-10> { \path[draw, thick] (1) -- (3); }
+			\only<1-10> { \node[fill = white] at (2,-1) {$4$}; }
+
+			\only<1-6> { \path[draw, thick] (4) -- (6); }
+			\only<7-> { \path[draw, thick, blue] (4) -- (6); }
+			\node[fill = white] at (5,0.5) {$9$};
+
+			\only<1-7> { \path[draw, thick] (6) -- (8); }
+			\only<8-> { \path[draw, thick, blue] (6) -- (8); }
+			\node[fill = white] at (6,-1) {$5$};
+
+			\only<1-8> { \path[draw, thick] (8) -- (9); }
+			\only<9-> { \path[draw, thick, blue] (8) -- (9); }
+			\node[fill = white] at (7,-1) {$1$};
+
+			\only<1-9> { \path[draw, thick] (7) -- (9); }
+			\only<10-> { \path[draw, thick, blue] (7) -- (9); }
+			\node[fill = white] at (7,1) {$5$};
+
+			\only<1-10> { \path[draw, thick] (6) -- (9); }
+			\only<1-10> { \node[fill = white] at (7,0) {$7$}; }
+
+			\only<1-10> { \path[draw, thick] (1) -- (5); }
+			\only<1-10> { \node[fill = white] at (3,-0.5) {$3$}; }
+		}
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/prim.cpp}{11}{30}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Burt séð frá nokkrum smáatriðum er þetta reiknirit að gera það sama og reiknirit Dijkstras.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$(V + E) \log E$}$)$.
+		\item<4-> Það er algengt að kenna reiknirit Prims, frekar en reiknirit Kruskals, þar sem það notast við forgangsbiðröð.
+		\item<5-> Það þekkja mun fleiri forgangsbiðraðir en sammengisleit.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
