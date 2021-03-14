@@ -51,25 +51,13 @@ void eratos()
 	rep(i, MAXN) if (e[i] == 1) for (j = 2*i; j < MAXN; j += i) e[j] = 0;
 }
 
-#ifdef SIMPLE
 int main()
-{
+{ // slowly finds all primes larger then |x| using Miller-Rabin (so maybe wrong).
 	ll x;
 	scanf("%lld", &x);
-	printf("%s\n", miller_rabin(x) ? "It is a prime." : "It is not a prime.");
-}
-#else
-int main()
-{
-	srand(time(NULL));
-	printf("Building sieve\n");
-	eratos();
-	printf("Done building sieve\n");
-	ll i, q = 10000000, s = 3;
-	rep(i, q) if (e[i] != miller_rabin(i))
+	while (1)
 	{
-		printf("failed at %d\n", i);
-		assert(0);
+		if (miller_rabin(x)) printf("%lld\n", x);
+		x++;
 	}
 }
-#endif

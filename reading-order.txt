@@ -34,3 +34,8 @@ dijkstra
 bellman-ford
 floyd-warshall
 prim
+
+vika10
+leifareikningur
+gcd
+frumtolur

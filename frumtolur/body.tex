@@ -375,8 +375,13 @@
 		\item<3-> Tímaflækjan á reikniritinu er $\mathcal{O}(s \cdot \log^3 n)$ og það er rétt með líkum betri en $1/4^s$.
 		\item<4-> Ég mun ekki fara í það afhverju reikniritið virkar.
 		\item<5-> Það er þó gott að þekkja það nógu vel til að geta notað það.
-		\item<6->[] \selectcode{code/miller-rabin.c}{21}{36}
+		\item<6-> Útfærslan sem er gefin notar niðurstöðu Jiang og Deng ($2014$) til að virka alltaf fyrir nógu litlar tölur.
 	}
+}
+
+\env{frame}
+{
+	\selectcode{code/miller-rabin.c}{27}{43}
 }
 
 \env{frame}
@@ -423,7 +428,8 @@
 		\item<1-> Þessi útgáfa er ekki verri en hin á neinn veg, og því er sniðugt að nota hana alltaf.
 		\item<2-> Hún hefur sömu tímaflækjur: $\mathcal{O}($\onslide<3->{$n \log \log n$}$)$ tíma að forreikna 
 					og \texttt{isp(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<4->{$\,1\,$}$)$ tíma.
-		\item<5-> Nýja \texttt{factor(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<6->{$\log n$}$)$ tíma því hún þarf að heimsækja hvern þátt tölunnar.
+		\item<5-> Nýja \texttt{factor(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<6->{$\log n$}$)$
+					tíma því hún þarf að heimsækja hvern frumþátt tölunnar.
 	}
 }
 
@@ -433,12 +439,52 @@
 	{
 		\item<1-> Reiknirit Pollards er reiknirit sem byggir á rásaleit til að finna þátt í samsettri tölu.
 		\item<2-> Reikniritið ákvarðar hvort talan $n$ sé samsett í $\mathcal{O}(\sqrt{a})$ tíma, þar sem $a$ er minnsti frumþáttur $n$.
-		\item<3-> Ef $n$ er frumtala er þetta ekki betra en tæmandi leit (því $a = n$).
-		\item<4-> Ef $n$ er samsett þá er $a \leq \sqrt{n}$ og því tekur reikniritið $\mathcal{O}(\sqrt[4]{n})$ tíma.
-		\item<5-> Þetta er því töluverð bæting ef $n$ er samsett.
-		\item<6-> Við þurfum því að ganga fyrst úr skugga um að $n$ sé frumtala.
+		\item<3-> Reikniritið finnur þátt í samsettri tölu $n$ í $\mathcal{O}(\sqrt{a})$ tíma, þar sem $a$ er minnsti frumþáttur $n$.
+		\item<4-> Nú gildir að $a \leq \sqrt{n}$ og því tekur reikniritið $\mathcal{O}(\sqrt[4]{n})$ tíma.
+		\item<5-> Þetta er því töluverð bæting.
+		\item<6-> Við þurfum samt fyrst úr skugga um að $n$ sé frumtala.
 		\item<7-> Við megum þó ekki nota tæmandi leit til þess því þá bætist tímaflækjan ekkert.
 		\item<8-> Líkt og með reiknirit Millers og Rabins þá mun ég ekki fara í smáatriði hér.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/pollard-rho.c}{49}{64}
+}
+
+\env{frame}
+{
+	\selectcode{code/pollard-rho.c}{78}{96}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Eftirfarandi jöfnur eru merkilegar hagnýtingar á frumþáttun.
+		\item<2-> Látum $n = p_1^{e_1} \cdot ... \cdot p_m^{e_m}$, þar sem $p_1, ..., p_m$ eru frumtölur og $e_1, ..., e_m$ eru heiltölur stærri en $1$.
+		\item<3-> Við fáum þá eftirfarandi föll:
+		\env{itemize}
+		{
+			\item<4-> Fjöldi deila $n$:
+			\[
+				d(n) = \prod_{k = 1}^r (e_k + 1).
+			\]
+			\item<5-> Summa deila $n$:
+			\[
+				\sigma(n) = \prod_{k = 1}^r \frac{p_i^{e_i + 1} - 1}{p_i - 1}.
+			\]
+			\item<6-> Fjöldi jákvæðra heiltana $k$, þannig að $\gcd(n, k) = 1$:
+			\[
+				\phi(n) = n\prod_{k = 1}^r (1 - 1/p_i).
+			\]
+		}
+		\item<7-> Einnig gefur setning kennd við Euler alhæfingu á litlu setningu Fermats:
+		\[
+			a^{\phi(m)} = 1 \mod m.
+		\]
+		ef $\gcd(a, n) = 1$.
 	}
 }
 
