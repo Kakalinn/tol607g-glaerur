@@ -11,14 +11,14 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Látum $a$, $b$ og $g$ vera jákvæðar heiltölur.
+		\item<1-> Látum $a$, $b$, $g$ og $h$ vera jákvæðar heiltölur.
 		\item<2-> Við segjum að talan $g$ sé \emph{samdeilir} $a$ og $b$ ef $g$ deilir bæði $a$ og $b$.
-		\item<3-> Við segjum að $g$ sé \emph{stærsti samdeilir} $a$ og $b$ ef hún er samdeilir þeirra og ekki er til annar samdeilir sem er stærri.
+		\item<3-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $g$ verið annað hvort $1$ eða $2$.
 		\item<4-> Við segjum að talan $h$ sé \emph{samfeldi} $a$ og $b$ ef bæði $a$ og $b$ deila $h$.
-		\item<5-> Við segjum að $h$ sé \emph{minnsta samfeldi} $a$ og $b$ ef hún er samfeldi þeirra og ekki er til annað samfeldi sem er minna.
-		\item<6-> Stærsta samdeili $a$ og $b$ táknum við með $\gcd(a, b)$.
-		\item<6-> Minnsta samfeldi $a$ og $b$ táknum við með $\lcm(a, b)$.
-		\item<7-> Við munum einblína á að reikna stærsta samdeili því $\lcm(a, b) \cdot \gcd(a, b) = a \cdot b$.
+		\item<5-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $h$ verið $4$, $8$ eða margar aðrar tölur.
+		\item<6-> \emph{Stærsta samdeili} $a$ og $b$ táknum við með $\gcd(a, b)$.
+		\item<7-> \emph{Minnsta samfeldi} $a$ og $b$ táknum við með $\lcm(a, b)$.
+		\item<8-> Við munum einblína á að reikna stærsta samdeili því $\lcm(a, b) \cdot \gcd(a, b) = a \cdot b$.
 	}
 }
 
@@ -40,7 +40,7 @@
 	\env{itemize}
 	{
 		\item<1-> Tökum eftir að ef $a = 2$ hefur þetta fall tímaflækjuna $\mathcal{O}($\onslide<2->{$\,b\,$}$)$.
-		\item<3-> Svi þetta verður almennt aldrei betra en $\mathcal{O}($\onslide<4->{$\max(a, b)$}$)$.
+		\item<3-> Svo þetta verður almennt aldrei betra en $\mathcal{O}($\onslide<4->{$\max(a, b)$}$)$.
 		\item<5-> En við getum bætt þetta.
 		\item<6-> Skoðum eitt einfalt dæmi.
 	}
@@ -451,10 +451,10 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við getum í raun tekið saman þau skref sem eiga sér stað þangað til $a > b$.
-		\item<2-> Við finnum í raun $q$ þannig að $b - a \cdot n$ sé jákvætt og minna en $a$.
-		\item<3-> En við getum fundið þessa tölu með \onslide<4->{leifareikningi}.
-		\item<4-> Við notum því $\gcd(a, b) = \gcd(r, a)$ í staðinn fyrir $\gcd(a, b) = \gcd(a, b - a)$, þar sem $r$ er leif $b$ með tilliti til $a$.
+		\item<1-> Við getum tekið saman þau skref sem eiga sér stað þangað til $a > b$.
+		\item<2-> Við finnum $q$ þannig að $b - a \cdot q$ sé jákvætt og minna en $a$.
+		\item<4-> En við getum fundið þessa tölu með \onslide<4->{leifareikningi}.
+		\item<5-> Við notum því $\gcd(a, b) = \gcd(r, a)$ í staðinn fyrir $\gcd(a, b) = \gcd(a, b - a)$, þar sem $r$ er leif $b$ með tilliti til $a$.
 	}
 }
 
@@ -530,9 +530,10 @@
 		\item<1-> Útfærslan einfaldast töluvert með þessari bætingu.
 		\item<2->[] \selectcode{code/gcd.c}{7}{10}
 		\item<3-> Þessi útfærsla verður $\mathcal{O}($\onslide<4->{$\log \max(a, b)$}$)$.
-		\item<4-> Ástæðan fyrir þessari bætingu er að ef \texttt{a} minnkar lítið eftir eitt skref
+		\item<5-> Ástæðan fyrir þessari bætingu er að ef \texttt{a} minnkar lítið eftir eitt skref
 					þá verður lítill munur á \texttt{a} og \texttt{b}, svo næst minnkar \texttt{a} meira.
-		\item<5-> Við kennum þetta reiknirit við Evklíð.
+		\item<6-> Við kennum þetta reiknirit við Evklíð.
+		\item<7-> Þetta ferli er einnig kallað \emph{keðjudeiling}.
 	}
 }
 
@@ -541,11 +542,11 @@
 	\frametitle{Jafna Bézouts}
 	\env{itemize}
 	{
-		\item<1-> Algengt er að nota reiknirit Evklíðs til að leysa jöfnu Bézouts.
+		\item<1-> Algengt er að nota keðjudeilingu til að leysa jöfnu Bézouts.
 		\item<2-> Látum $a$ og $b$ vera jákvæðar heiltölur.
 		\item<3-> Þá eru til heiltölur $x$ og $y$ þannig að $a \cdot x + b \cdot y = \gcd(a, b)$.
-		\item<4-> Þessi janfa kallast \emph{jafna Bézouts}.
-		\item<5-> Við notum svo kallað \emph{útvíkkaða reiknirit Evklíðs} til að finna tölurnar $x$ og $y$.
+		\item<4-> Þessi jafna kallast \emph{jafna Bézouts}.
+		\item<5-> Við notum svo kallaða \emph{útvíkkaða keðjudeilingu} til að finna tölurnar $x$ og $y$.
 		\item<6->[] \selectcode{code/egcd.c}{7}{19}
 	}
 }
@@ -554,12 +555,12 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Algengasta hagnýting jöfn Bézouts er til að finna margföldunar andhverfur.
+		\item<1-> Algengasta hagnýting jöfn Bézouts er til að finna margföldunarandhverfur.
 		\item<2-> Við höfum áður gert það með litlu setningu Fermats.
 		\item<3-> Gerum ráð fyrir að $a$ og $m$ séu jákvæðar heiltölur þannig að $\gcd(a, m) = 1$.
 		\item<4-> Látum svo heiltölurnar $x$ og $y$ leysa Bézout jöfnuna $a \cdot x + m \cdot y = 1$.
-		\item<5-> Þá fæst að $x$ er margföldunar andhverfa $a$ með tilliti til $m$.
-		\item<6-> Ef $\gcd(a, m) \neq 1$ þá er margföldunar andhvera $a$ ekki til.
+		\item<5-> Þá fæst að $x$ er margföldunarandhverfa $a$ með tilliti til $m$.
+		\item<6-> Ef $\gcd(a, m) \neq 1$ þá er margföldunarandhverfa $a$ ekki til.
 		\item<7->[] \selectcode{code/mulinv.c}{19}{25}
 		\item<8-> Takið eftir að $x$ getur verið neikvæð.
 		\item<9-> Til að koma í veg fyrir það má breyta skilagildinu í \texttt{(x\%m + m)\%m}.

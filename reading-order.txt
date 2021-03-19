@@ -37,5 +37,6 @@ prim
 
 vika10
 leifareikningur
+veldishafning
 gcd
 frumtolur

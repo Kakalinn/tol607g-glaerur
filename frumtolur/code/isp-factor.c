@@ -9,8 +9,7 @@ int factor(ll x)
 		if (x%i == 0) printf("%lld ", i), x /= i;
 		else i++;
 	}
-	if (x != 1) printf("%lld ", x);
-	printf("\n");
+	printf("%lld\n", x);
 	return 1;
 }
 

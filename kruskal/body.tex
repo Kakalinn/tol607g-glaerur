@@ -68,60 +68,60 @@
 			\node[draw, circle, thick] (8) at (6,-2) {};
 			\node[draw, circle, thick] (9) at (8,0) {};
 
-			\only<1> { \path[draw, thick] (1) -- (2); }
-			\only<2> { \path[draw, thick, red] (1) -- (2); }
-			\only<3-24> { \path[draw, thick, blue] (1) -- (2); }
+			\only<all:1> { \path[draw, thick] (1) -- (2); }
+			\only<all:2> { \path[draw, thick, red] (1) -- (2); }
+			\only<all:3-24> { \path[draw, thick, blue] (1) -- (2); }
 			\node[fill = white] at (2,1) {$1$};
 
-			\only<1-9> { \path[draw, thick] (2) -- (4); }
-			\only<10> { \path[draw, thick, red] (2) -- (4); }
-			\only<11-> { \path[draw, thick, blue] (2) -- (4); }
+			\only<all:1-9> { \path[draw, thick] (2) -- (4); }
+			\only<all:10> { \path[draw, thick, red] (2) -- (4); }
+			\only<all:11-> { \path[draw, thick, blue] (2) -- (4); }
 			\node[fill = white] at (3,1.5) {$3$};
 
-			\only<1-3> { \path[draw, thick] (4) -- (5); }
-			\only<4> { \path[draw, thick, red] (4) -- (5); }
-			\only<5-> { \path[draw, thick, blue] (4) -- (5); }
+			\only<all:1-3> { \path[draw, thick] (4) -- (5); }
+			\only<all:4> { \path[draw, thick, red] (4) -- (5); }
+			\only<all:5-> { \path[draw, thick, blue] (4) -- (5); }
 			\node[fill = white] at (4,0) {$1$};
 
-			\only<1-7> { \path[draw, thick] (3) -- (5); }
-			\only<8> { \path[draw, thick, red] (3) -- (5); }
-			\only<9-> { \path[draw, thick, blue] (3) -- (5); }
+			\only<all:1-7> { \path[draw, thick] (3) -- (5); }
+			\only<all:8> { \path[draw, thick, red] (3) -- (5); }
+			\only<all:9-> { \path[draw, thick, blue] (3) -- (5); }
 			\node[fill = white] at (3,-1.5) {$2$};
 
-			\only<1-13> { \path[draw, thick] (1) -- (3); }
-			\only<14> { \path[draw, thick, red] (1) -- (3); }
-			\only<15-23> { \path[draw, thick, yellow] (1) -- (3); }
-			\only<1-23> { \node[fill = white] at (2,-1) {$4$}; }
+			\only<all:1-13> { \path[draw, thick] (1) -- (3); }
+			\only<all:14> { \path[draw, thick, red] (1) -- (3); }
+			\only<all:15-23> { \path[draw, thick, yellow] (1) -- (3); }
+			\only<all:1-23> { \node[fill = white] at (2,-1) {$4$}; }
 
-			\only<1-21> { \path[draw, thick] (4) -- (6); }
-			\only<22> { \path[draw, thick, red] (4) -- (6); }
-			\only<23-> { \path[draw, thick, blue] (4) -- (6); }
+			\only<all:1-21> { \path[draw, thick] (4) -- (6); }
+			\only<all:22> { \path[draw, thick, red] (4) -- (6); }
+			\only<all:23-> { \path[draw, thick, blue] (4) -- (6); }
 			\node[fill = white] at (5,0.5) {$9$};
 
-			\only<1-15> { \path[draw, thick] (6) -- (8); }
-			\only<16> { \path[draw, thick, red] (6) -- (8); }
-			\only<17-> { \path[draw, thick, blue] (6) -- (8); }
+			\only<all:1-15> { \path[draw, thick] (6) -- (8); }
+			\only<all:16> { \path[draw, thick, red] (6) -- (8); }
+			\only<all:17-> { \path[draw, thick, blue] (6) -- (8); }
 			\node[fill = white] at (6,-1) {$5$};
 
-			\only<1-5> { \path[draw, thick] (8) -- (9); }
-			\only<6> { \path[draw, thick, red] (8) -- (9); }
-			\only<7-> { \path[draw, thick, blue] (8) -- (9); }
+			\only<all:1-5> { \path[draw, thick] (8) -- (9); }
+			\only<all:6> { \path[draw, thick, red] (8) -- (9); }
+			\only<all:7-> { \path[draw, thick, blue] (8) -- (9); }
 			\node[fill = white] at (7,-1) {$1$};
 
-			\only<1-17> { \path[draw, thick] (7) -- (9); }
-			\only<18> { \path[draw, thick, red] (7) -- (9); }
-			\only<19-> { \path[draw, thick, blue] (7) -- (9); }
+			\only<all:1-17> { \path[draw, thick] (7) -- (9); }
+			\only<all:18> { \path[draw, thick, red] (7) -- (9); }
+			\only<all:19-> { \path[draw, thick, blue] (7) -- (9); }
 			\node[fill = white] at (7,1) {$5$};
 
-			\only<1-19> { \path[draw, thick] (6) -- (9); }
-			\only<20> { \path[draw, thick, red] (6) -- (9); }
-			\only<21-23> { \path[draw, thick, yellow] (6) -- (9); }
-			\only<1-23> { \node[fill = white] at (7,0) {$7$}; }
+			\only<all:1-19> { \path[draw, thick] (6) -- (9); }
+			\only<all:20> { \path[draw, thick, red] (6) -- (9); }
+			\only<all:21-23> { \path[draw, thick, yellow] (6) -- (9); }
+			\only<all:1-23> { \node[fill = white] at (7,0) {$7$}; }
 
-			\only<1-11> { \path[draw, thick] (1) -- (5); }
-			\only<12> { \path[draw, thick, red] (1) -- (5); }
-			\only<13-23> { \path[draw, thick, yellow] (1) -- (5); }
-			\only<1-23> { \node[fill = white] at (3,-0.5) {$3$}; }
+			\only<all:1-11> { \path[draw, thick] (1) -- (5); }
+			\only<all:12> { \path[draw, thick, red] (1) -- (5); }
+			\only<all:13-23> { \path[draw, thick, yellow] (1) -- (5); }
+			\only<all:1-23> { \node[fill = white] at (3,-0.5) {$3$}; }
 		}
 	}
 }

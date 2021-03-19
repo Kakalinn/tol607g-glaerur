@@ -12,7 +12,10 @@ int isp(ll x)
 int main()
 {
 	ll x;
-	scanf("%lld", &x);
-	printf("%s\n", isp(x) ? "It is a prime." : "It is not a prime.");
+	while (scanf("%lld", &x) != EOF)
+	{
+		if (isp(x)) printf("%lld\n", x);
+		else fprintf(stderr, ">> %lld is not a prime\n", x);
+	}
 }
  

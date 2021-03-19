@@ -1,0 +1,928 @@
+\title{Talningarfræði}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Talningarfræði er sá angi strjállar stærðfræði sem fjallar um talningar á einhverjum fyrirbærum.
+		\item<2-> Þegar við fjölluðum um tæmandi leit kom fram að fjöldi hlutmengja í $n$ staka mengi er $2^n$.
+		\item<3-> Einnig kom fram að fjöldi umraðana á menginu $\{1, 2, ..., n\}$ er $n!$.
+		\item<4-> Bæði eru þetta mikilvægar niðurstöður úr talningarfræði.
+		\item<5-> Skerpum aðeins á grunnatriðum.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef við erum með $n$ hluti af einni gerð og $m$ hluti af annari gerð þá getum við valið einn hlut af hvorri gerð á $n \cdot m$ vegu.
+		\item<2-> Við þurfum í raun ekki meira en þetta.
+		\item<3-> Við notuðum þessa reglu til að sanna niðurstöðurnar á glærunni á undan.
+		\item<4-> Í talningarfræði er oft þægilegt að hugsa um endanleg mengi og fjöldatölur þeirra.
+		\item<5-> Ef $A$ er mengi þá táknar $|A|$ fjölda staka í $A$.
+		\item<6-> Við getum þá umorðað efsta punktinn sem: Ef $A$ og $B$ eru mengi þá er $|A \times B| = |A| \cdot |B|$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við vitum að það eru $2^n$ hlutmengi í $n$ staka mengi, en hvað eru mörg hlutmengi af stærð $k$?
+		\item<2-> Þegar við veljum fyrst stakið höfum við um $n$ stök að velja, síðan $n - 1$ stak og svo framvegis.
+		\item<3-> Við fáum því $n \cdot (n - 1) \cdot ... \cdot (n - k + 1) = \dfrac{n!}{k!}$ mengi.
+		\item<4-> Hvert mengi er þó talið $(n - k)!$ sinnum, svo loka talan er
+		\[
+			\frac{n!}{(n - k)!k!}.
+		\]
+		\item<5-> Þessi tala er táknuð með ${n \choose k}$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum eftir að $|A \cup B| \neq |A| + |B|$ því það gætu verið stök í bæði $A$ og $B$.
+		\item<2-> Ef svo er getum við einfaldlega fjarlægt þau stök sem eru tvítalin, og fáum
+		\[
+			|A \cup B| = |A| + |B| - |A \cap B|.
+		\]
+		\item<3-> Gerum nú ráð fyrir að
+		\[
+			|A_1 \cup ... \cup A_n| = \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |.
+		\]
+		\item<4-> Þá fæst
+	}
+}
+
+\env{frame}
+{
+	\scriptsize
+	\env{align*}
+	{
+		|A_1 \cup ... \cup A_{n + 1}|
+		&= |A_1 \cup ... \cup A_n| + |A_{n + 1}| - |(A_1 \cup ... \cup A_n) \cap A_{n + 1}|\\
+		&= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right | + 
+				|A_{n + 1}| -
+				|(A_1 \cap A_{n + 1}) \cup ... \cup (A_n \cap A_{n + 1})|\\
+		&= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right | + 
+				|A_{n + 1}| +
+				\sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J|} \left | \bigcap_{j \in J} (A_j \cap A_{n + 1}) \right |\\
+		&= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right | + 
+				|A_{n + 1}| +
+				\sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J|} \left | \bigcap_{j \in J \cup \{n + 1\}} A_j \right |\\
+		&= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right | + 
+				\sum_{\substack{J \subset \{1, ..., n\}}} (-1)^{|J|} \left | \bigcap_{j \in J \cup \{n + 1\}} A_j \right |\\
+		&= \sum_{\substack{J \subset \{1, ..., n + 1\} \\ J \neq \emptyset \\ n + 1 \not \in J}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |
+				+ \sum_{\substack{J \subset \{1, ..., n + 1\} \\ n + 1 \in J}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |\\
+		&= \sum_{\substack{J \subset \{1, ..., n, n + 1\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við höfum því sýnt með þrepun að
+		\[
+			|A_1 \cup ... \cup A_n| = \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |.
+		\]
+		\item<2-> Vera má að þessi jafna komi spánkst fyrir sjónir en er í raun að fjarlægja þau stök sem eru tvítekin,
+					bæta aftur við stökum sem eru þrítekin,
+					fjarlægja aftur stök sem eru fjórtekin
+					og svo framvegis.
+		\item<3-> Þessi jafna er kölluð \emph{lögmálið um fjöldatölu sammengja} (e. \emph{Inclusion-Exclusion principle}).
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Sjáum nú hagnýtingu á þessari jöfnu.
+		\item<2-> Munum að gagntækj vörpun $\sigma \colon \{1, 2, ... n\} \rightarrow \{1, 2, ..., n\}$ kallast \emph{umröðun} (e. \emph{permutation}).
+		\item<3-> Ef við festum $n$ þá höfum við sýnt að til sé $n!$ umraðanir.
+		\item<4-> Næst segjum við að $k \in \{1, 2, ..., n\}$ sé \emph{fastapunktur $\sigma$} (e. \emph{fixed point og $\sigma$}) ef $\sigma(k) = k$.
+		\item<5-> Með öðrum orðum hefur umröðunin ekki áhrif á þennan punkt.
+		\item<6-> Hversu margar umraðanir hafa engan fastapunkt?
+	}
+}
+
+\defverbatim{\derA}
+{ \begin{verbatim}
+1 2 3 4         2 1 4 3         3 1 2 4         4 1 2 3
+
+1 2 4 3         2 1 3 4         3 1 4 2         4 1 3 2
+
+1 3 2 4         2 3 1 4         3 2 1 4         4 2 1 3
+
+1 3 4 2         2 3 4 1         3 2 4 1         4 2 3 1
+
+1 4 2 3         2 4 1 3         3 4 1 2         4 3 1 2
+
+1 4 3 2         2 4 3 1         3 4 2 1         4 3 2 1
+
+\end{verbatim}}
+\defverbatim{\derB}
+{ \begin{verbatim}
+1 2 3 4         2 1 4 3         3 1 2 4         4 1 2 3
+^ ^ ^ ^                               ^                
+1 2 4 3         2 1 3 4         3 1 4 2         4 1 3 2
+^ ^                 ^ ^                             ^  
+1 3 2 4         2 3 1 4         3 2 1 4         4 2 1 3
+^     ^               ^           ^   ^           ^    
+1 3 4 2         2 3 4 1         3 2 4 1         4 2 3 1
+^                                 ^               ^ ^  
+1 4 2 3         2 4 1 3         3 4 1 2         4 3 1 2
+^                                                      
+1 4 3 2         2 4 3 1         3 4 2 1         4 3 2 1
+^   ^               ^                                  
+\end{verbatim}}
+\defverbatim{\derC}
+{ \begin{verbatim}
+                2 1 4 3                         4 1 2 3
+                                                       
+                                3 1 4 2                
+                                                       
+                                                       
+                                                       
+                2 3 4 1                                
+                                                       
+                2 4 1 3         3 4 1 2         4 3 1 2
+                                                       
+                                3 4 2 1         4 3 2 1
+                                                       
+\end{verbatim}}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skoðum fyrst þegar $n = 4$:
+	}
+	\only<all:1>{\derA}
+	\only<all:2>{\derB}
+	\only<all:3>{\derC}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við munum ferkar telja hversu margar umraðanir hafa fastapunkt.
+		\item<2-> Þetta er algengt að gera í talningarfræði.
+		\item<3-> Látum nú $A_j$ tákna mengi þeirra umraðana þar sem $j$ er fasta punktur.
+		\item<4-> Þá er $\bigcap_{j \in J} A_j$ mengi þeirra umraðana þar sem allir punktar $J$ eru fastapunktar.
+		\item<5-> Ef við festum $k$ punkta í umröðuninni getum við raðað restinni á $(n - k)!$ marga vegu.
+		\item<6-> Svo $|A_j| = (n - 1)!$ og $\left | \bigcap_{j \in J} A \right | = (n - |J|)!$.
+		\item<7-> Takið eftir að seinni stærðin er bara háð fjölda staka í menginu $J$.
+		\item<8-> Við vitum einnig að fjöldi hlutmengja $\{1, ..., n\}$ með $k$ stök er ${n \choose k}$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við fáum loks að fjöldi umraðana með einhvern fastapunkt er
+	}
+	\env{align*}
+	{
+		|A_1 \cup ... \cup A_n|
+		&= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |\\
+		&= \sum_{j = 1}^n (-1)^{j + 1} {n \choose j} (n - j)!\\
+		&= \sum_{j = 1}^n (-1)^{j + 1} \frac{n!}{(n - j)!j!} (n - j)!\\
+		&= \sum_{j = 1}^n (-1)^{j + 1} \frac{n!}{j!}\\
+		&= n!\sum_{j = 1}^n \frac{(-1)^{j + 1}}{j!}.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Fjöldi umraðana með engan fasta punkt er því
+	}
+	\env{align*}
+	{
+		n! - n!\sum_{j = 1}^n \frac{(-1)^{j + 1}}{j!} 
+		&= n! \left (1 + \sum_{j = 1}^n \frac{(-1)^j}{j!} \right )\\
+		&= n! \left (\frac{(-1)^0}{0!} + \sum_{j = 1}^n \frac{(-1)^j}{j!} \right )\\
+		&= n!\sum_{j = 0}^n \frac{(-1)^j}{j!}.
+	}
+	\env{itemize}
+	{
+		\item<2-> Algengt er að kalla þessa tölu $!n$.
+		\item<3-> Takið eftir að $!n/n!$ er $n$-ta hlutsumma veldaraðar $e^x$, fyrir $x = -1$.
+		\item<4-> Svo $!n/n!$ er að stefna á $e^{-1}$, þegar $n$ stefnir á $\infty$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Oft er hentugt að geta reiknað
+		\[
+			{n \choose k} \mod m.
+		\]
+		fyrir jákvæðar heiltölur $k \leq n < m$.
+		\item<2-> Munið að
+		\[
+			{n \choose k} = \frac{n!}{(n - k)!k!}.
+		\]
+		\item<3-> Ein leið til að gera þetta er að finna fyrst margföldunarandhverfur $(n - k)!$ og $k!$ með tilliti til $m$.
+		\item<4-> Við reiknum svo $!n \cdot ((n - k)!)^{-1} \cdot (k!)^{-1} \mod m$.
+		\item<5-> Hér þarf að passa sig að margföldunarandhverfan sé til.
+		\item<6-> Helst þarf $m$ að vera frumtala.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/nck-mulinv.c}{27}{39}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef við erum með fast $n$ og $m$ og viljum reikna fyrir $q$ mismunandi gildi á $k$ þá er tímaflækjan á þessari að ferð
+					$\mathcal{O}($\onslide<2->{$n \log m + q$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Önnur leið til að reikna ${n \choose k} \mod m$ byggir á kvikri bestun.
+		\item<2-> Sjáum fyrst að ef $n > 1$ og $1 < k < n$ þá
+	}
+	\onslide<3->
+	{
+		\env{align*}
+		{
+			{n - 1 \choose k - 1} + {n - 1 \choose k}
+			&= \frac{(n - 1)!}{(n - k)!(k - 1)!} + \frac{(n - 1)!}{(n - k - 1)!k!}\\
+			&= \frac{k(n - 1)!}{(n - k)!k!} + \frac{(n - k)(n - 1)!}{(n - k)!k!}\\
+			&= \frac{k(n - 1)! + n(n - 1)! - k(n - 1)!}{(n - k)!k!}\\
+			&= \frac{n(n - 1)!}{(n - k)!k!}\\
+			&= \frac{n!}{(n - k)!k!}\\
+			&= {n \choose k}.
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum því
+		\[
+			f(n, k) = \left \{
+			\env{array}
+			{ {l l}
+				0, & \text{ef $n < 1$}\\
+				0, & \text{ef $k < 0$}\\
+				0, & \text{ef $k > n$}\\
+				1, & \text{ef $k = 0$ eða $k = n$}\\
+				f(n - 1, k - 1) + f(n - 1, k) & \text{annars.}
+			}
+			\right .
+		\]
+		\item<2-> Við höfum svo að $f(n, k) = {n \choose k}$.
+		\item<3-> Útfærslan notar ofansækna kvika bestun.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/nck-dp.c}{6}{13}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Sjáum að það eru $n^2$ stöður.
+		\item<2-> Við reiknum hverja stöðu í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$ tíma, svo við getum svarað $q$ fyrirspurnum í
+					$\mathcal{O}($\onslide<4->{$n^2 + q$}$)$ tíma.
+		\item<5-> Það sem forritið okkar er í rauninni að gera er að reikna gildin í þríhyrningin Pascals.
+		\item<6-> Þekkt er að $k$-ta talan í $n$-tu línu þríhyrnings Pascals er ${n \choose k}$.
+	}
+}
+
+\defverbatim{\pascal}
+{ \begin{verbatim}
+                          1
+                        1   1
+                      1   2   1
+                    1   3   3   1
+                  1   4   6   4   1
+                1   5  10  10   5   1
+              1   6  15  20  15   6   1
+            1   7  21  35  35  21   7   1
+          1   8  28  56  70  56  28   8   1
+
+
+
+
+
+\end{verbatim}}
+\env{frame}
+{
+	\frametitle{Þríhyrningur Pascals}
+	\pascal
+}
+
+\env{frame}
+{
+	\frametitle{Fjöldi umhverfinga í umröðun}
+	\env{itemize}
+	{
+		\item<1-> Látum $\sigma$ vera umröðun á $\{1, ..., n\}$.
+		\item<2-> Þá kallast par $(i, j) \in \{1, ..., n\} \times \{1, ..., n\}$ þannig að $i < j$ og $\sigma(i) > \sigma(j)$,
+					\emph{umhverfing} (e. \emph{inversion}) í $\sigma$.
+		\item<3-> Látum \texttt{a} tákna $n$ staka lista þannig að $j$-ta stak listans sé $\sigma(j)$.
+		\item<4-> Svona táknum við iðulega umraðanir þegar við útfærum lausnir.
+		\item<5-> Gerum nú ráð fyrir að eina leiðin okkar til að breyta \texttt{a} er að skipta á aðlægum stökum.
+		\item<6-> Hvað tekur það minnst margar aðgerðir að raða listanum?
+		\item<7-> Það vill svo til að fjöldi umhverfinga í umröðununni er einmitt fjöldi aðgerða sem þarf til að raða listanum.
+		\item<8-> Við getum notað okkur þetta til að finna fjölda umhverfinga.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Fjöldi umhverfinga í umröðun}
+	\env{itemize}
+	{
+		\item<1-> Ein leið til að gera þetta er að færa fyrst minnsta stakið fremst, síðan næst minnsta stakið næst fremst og svo framvegis.
+		\item<2-> Þetta tekur $\mathcal{O}($\onslide<3->{$n^2$}$)$ tíma.
+		\item<4-> Þetta er því of hægt of $n > 10^4$.
+		\item<5-> Við getum þó notað biltré til að gera þetta hraðara.
+		\item<6-> Tökum eftir að þegar við höfum sett stak á sinn stað getum við hætt að hugsa um það.
+		\item<7-> Við þurfum í raun að sagt til um hversu mörg stök í listanum eru fyrir framan það stak sem við viljum færa
+					(við teljum ekki þau stök sem eru komin á sinn stað).
+		\item<8-> Við byrjum því með $1$ í hverju staki í biltrénu okkar.
+		\item<9-> Þegar við höfum fært stak á sinn stað setjum við tilheyrandi gildi sem $0$.
+		\item<10-> Summa fyrst $j - 1$ stakanna í trénu er því fjöldi staka sem $j$-ta stakið í listanum þarf að sipta á til að komast á sinn stað.
+	}
+}
+\defverbatim{\slowinva}
+{ \begin{verbatim}
+                4 1 6 5 7 3 2
+
+                svar:  0
+\end{verbatim}}
+\defverbatim{\slowinvb}
+{ \begin{verbatim}
+                4 1 6 5 7 3 2
+                  ^
+                svar:  0
+\end{verbatim}}
+\defverbatim{\slowinvc}
+{ \begin{verbatim}
+                1 4 6 5 7 3 2
+                ^
+                svar:  1
+\end{verbatim}}
+\defverbatim{\slowinvd}
+{ \begin{verbatim}
+                1 4 6 5 7 3 2
+                            ^
+                svar:  1
+\end{verbatim}}
+\defverbatim{\slowinve}
+{ \begin{verbatim}
+                1 4 6 5 7 2 3
+                          ^
+                svar:  2
+\end{verbatim}}
+\defverbatim{\slowinvf}
+{ \begin{verbatim}
+                1 4 6 5 2 7 3
+                        ^
+                svar:  3
+\end{verbatim}}
+\defverbatim{\slowinvg}
+{ \begin{verbatim}
+                1 4 6 2 5 7 3
+                      ^
+                svar:  4
+\end{verbatim}}
+\defverbatim{\slowinvh}
+{ \begin{verbatim}
+                1 4 2 6 5 7 3
+                    ^
+                svar:  5
+\end{verbatim}}
+\defverbatim{\slowinvi}
+{ \begin{verbatim}
+                1 2 4 6 5 7 3
+                  ^
+                svar:  6
+\end{verbatim}}
+\defverbatim{\slowinvj}
+{ \begin{verbatim}
+                1 2 4 6 5 7 3
+                            ^
+                svar:  6
+\end{verbatim}}
+\defverbatim{\slowinvk}
+{ \begin{verbatim}
+                1 2 4 6 5 3 7
+                          ^
+                svar:  7
+\end{verbatim}}
+\defverbatim{\slowinvl}
+{ \begin{verbatim}
+                1 2 4 6 3 5 7
+                        ^
+                svar:  8
+\end{verbatim}}
+\defverbatim{\slowinvm}
+{ \begin{verbatim}
+                1 2 4 3 6 5 7
+                      ^
+                svar:  9
+\end{verbatim}}
+\defverbatim{\slowinvn}
+{ \begin{verbatim}
+                1 2 3 4 6 5 7
+                    ^
+                svar: 10
+\end{verbatim}}
+\defverbatim{\slowinvo}
+{ \begin{verbatim}
+                1 2 3 4 6 5 7
+                      ^
+                svar: 10
+\end{verbatim}}
+\defverbatim{\slowinvp}
+{ \begin{verbatim}
+                1 2 3 4 6 5 7
+                          ^
+                svar: 10
+\end{verbatim}}
+\defverbatim{\slowinvq}
+{ \begin{verbatim}
+                1 2 3 4 5 6 7
+                        ^
+                svar: 11
+\end{verbatim}}
+\defverbatim{\slowinvr}
+{ \begin{verbatim}
+                1 2 3 4 5 6 7
+                          ^
+                svar: 11
+\end{verbatim}}
+\defverbatim{\slowinvs}
+{ \begin{verbatim}
+                1 2 3 4 5 6 7
+                            ^
+                svar: 11
+\end{verbatim}}
+\defverbatim{\slowinvt}
+{ \begin{verbatim}
+                1 2 3 4 5 6 7
+
+                svar: 11
+\end{verbatim}}
+\env{frame}
+{
+	\frametitle{Hæga aðferðin}
+	\only<all:1>{\slowinva}
+	\only<all:2>{\slowinvb}
+	\only<all:3>{\slowinvc}
+	\only<all:4>{\slowinvd}
+	\only<all:5>{\slowinve}
+	\only<all:6>{\slowinvf}
+	\only<all:7>{\slowinvg}
+	\only<all:8>{\slowinvh}
+	\only<all:9>{\slowinvi}
+	\only<all:10>{\slowinvj}
+	\only<all:11>{\slowinvk}
+	\only<all:12>{\slowinvl}
+	\only<all:13>{\slowinvm}
+	\only<all:14>{\slowinvn}
+	\only<all:15>{\slowinvo}
+	\only<all:16>{\slowinvp}
+	\only<all:17>{\slowinvq}
+	\only<all:18>{\slowinvr}
+	\only<all:19>{\slowinvs}
+	\only<all:20>{\slowinvt}
+}
+
+\defverbatim{\fastinva}
+{ \begin{verbatim}
+       listinn: 4 1 6 5 7 3 2
+
+       biltred: 1 1 1 1 1 1 1
+
+                svar:  0
+\end{verbatim}}
+\defverbatim{\fastinvb}
+{ \begin{verbatim}
+       listinn: 4 1 6 5 7 3 2
+                  ^
+       biltred: 1 1 1 1 1 1 1
+
+                svar:  0
+\end{verbatim}}
+\defverbatim{\fastinvc}
+{ \begin{verbatim}
+       listinn: 4 1 6 5 7 3 2
+                  ^
+       biltred: 1 1 1 1 1 1 1
+               | |
+                svar:  0
+\end{verbatim}}
+\defverbatim{\fastinvd}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 2
+
+       biltred: 1 0 1 1 1 1 1
+
+                svar:  1
+\end{verbatim}}
+\defverbatim{\fastinve}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 2
+                            ^
+       biltred: 1 0 1 1 1 1 1
+
+                svar:  1
+\end{verbatim}}
+\defverbatim{\fastinvf}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 2
+                            ^
+       biltred: 1 0 1 1 1 1 1
+               |           |
+                svar:  1
+\end{verbatim}}
+\defverbatim{\fastinvg}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 x
+
+       biltred: 1 0 1 1 1 1 0
+
+                svar:  6
+\end{verbatim}}
+\defverbatim{\fastinvh}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 x
+                          ^
+       biltred: 1 0 1 1 1 1 0
+
+                svar:  6
+\end{verbatim}}
+\defverbatim{\fastinvi}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 3 x
+                          ^
+       biltred: 1 0 1 1 1 1 0
+               |         |
+                svar:  6
+\end{verbatim}}
+\defverbatim{\fastinvj}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 x x
+
+       biltred: 1 0 1 1 1 0 0
+
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvk}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 x x
+                ^
+       biltred: 1 0 1 1 1 0 0
+
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvl}
+{ \begin{verbatim}
+       listinn: 4 x 6 5 7 x x
+                ^
+       biltred: 1 0 1 1 1 0 0
+               |
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvm}
+{ \begin{verbatim}
+       listinn: x x 6 5 7 x x
+
+       biltred: 0 0 1 1 1 0 0
+
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvn}
+{ \begin{verbatim}
+       listinn: x x 6 5 7 x x
+                      ^
+       biltred: 0 0 1 1 1 0 0
+
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvo}
+{ \begin{verbatim}
+       listinn: x x 6 5 7 x x
+                      ^
+       biltred: 0 0 1 1 1 0 0
+               |     |
+                svar: 10
+\end{verbatim}}
+\defverbatim{\fastinvp}
+{ \begin{verbatim}
+       listinn: x x 6 x 7 x x
+
+       biltred: 0 0 1 0 1 0 0
+
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvq}
+{ \begin{verbatim}
+       listinn: x x 6 x 7 x x
+                    ^
+       biltred: 0 0 1 0 1 0 0
+
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvr}
+{ \begin{verbatim}
+       listinn: x x 6 x 7 x x
+                    ^
+       biltred: 0 0 1 0 1 0 0
+               |   |
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvs}
+{ \begin{verbatim}
+       listinn: x x x x 7 x x
+
+       biltred: 0 0 0 0 1 0 0
+
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvt}
+{ \begin{verbatim}
+       listinn: x x x x 7 x x
+                        ^
+       biltred: 0 0 0 0 1 0 0
+
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvu}
+{ \begin{verbatim}
+       listinn: x x x x 7 x x
+                        ^
+       biltred: 0 0 0 0 1 0 0
+               |       |
+                svar: 11
+\end{verbatim}}
+\defverbatim{\fastinvv}
+{ \begin{verbatim}
+       listinn: x x x x x x x
+
+       biltred: 0 0 0 0 0 0 0
+
+                svar: 11
+\end{verbatim}}
+\env{frame}
+{
+	\frametitle{Hraða aðferðin}
+	\only<all:1>{\fastinva}
+	\only<all:2>{\fastinvb}
+	\only<all:3>{\fastinvc}
+	\only<all:4>{\fastinvd}
+	\only<all:5>{\fastinve}
+	\only<all:6>{\fastinvf}
+	\only<all:7>{\fastinvg}
+	\only<all:8>{\fastinvh}
+	\only<all:9>{\fastinvi}
+	\only<all:10>{\fastinvj}
+	\only<all:11>{\fastinvk}
+	\only<all:12>{\fastinvl}
+	\only<all:13>{\fastinvm}
+	\only<all:14>{\fastinvn}
+	\only<all:15>{\fastinvo}
+	\only<all:16>{\fastinvp}
+	\only<all:17>{\fastinvq}
+	\only<all:18>{\fastinvr}
+	\only<all:19>{\fastinvs}
+	\only<all:20>{\fastinvt}
+	\only<all:21>{\fastinvu}
+	\only<all:22>{\fastinvv}
+}
+
+\env{frame}
+{
+	\selectcode{code/invnum-segtree.c}{38}{48}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hver aðgerð á biltrénu er framkvæmd í $\mathcal{O}($\onslide<2->{$\log n$}$)$ tíma.
+		\item<3-> Við finnum því fjölda umhverfinga í $\mathcal{O}($\onslide<4->{$n \log n$}$)$ tíma.
+		\item<4-> Svo við getum auðveldlega fundið fjölda umhverfinga fyrir $n < 10^6$.
+		\item<5-> Takið þó eftir að fjöldinn gæti orðið $n \cdot (n - 1)/2$, svo það þarf alltaf að nota \texttt{long long}.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvað gerum við þó ef tölurnar sem eru gefnar eru ekki $\{1, 2, ..., n\}$ (líkt og í dæminu \emph{Ultra-QuickSort})?
+		\item<2-> Þá virkar oft að skipta minnstu tölunni út fyrir $1$, næst minnstu fyrir $2$ og svo framvegis.
+		\item<3-> Ef það eru endurtekiningar þarf að passa að öllum eins tölum sé breytt í eins tölur.
+		\item<4-> Þetta má gera með því að raða.
+		\item<5-> Við röðum fyrst tvenndunum $(a_j, j)$, þar sem $a_j$ táknar $j$-ta stakið í listanum okkar, eftir fyrsta stakinu.
+		\item<6-> Við getum þá labbað í gegn og breytt öllum tölunum.
+		\item<7-> Að lokum röðum tvenndunum aftur eftir seinna stakinu.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/compress.c}{4}{20}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Reikniritið keyrir í $\mathcal{O}($\onslide<2->{$n \log n$}$)$ tíma því við þurfum að raða.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Mörg talningarfræði dæmi má smækka á þægilegan máta.
+		\item<2-> Ef við látum, til dæmis, $f(n)$ tákna fjölda hlutmengja í mengin $\{1, 2, ..., n\}$ þá höfum við að
+		\[
+			f(n) = \left \{
+			\env{array}
+			{ {l l}
+				1, & \text{ef $n = 0$}\\
+				2 \cdot f(n - 1), & \text{annars}.
+			}
+			\right .
+		\]
+		\item<3-> Þetta gildir því það eru $f(n - 1)$ hlutmengi sem innihalda $n$ og $f(n - 1)$ hlutmengi sem innihalda ekki $n$.
+		\item<4-> Ef við getum smækkað dæmin á þennan máta má svo nota \onslide<5->{kvika bestun} til að leysa þau.
+		\item<6-> Oft þarf að bæta við vídd til að halda utan um önnur gögn.
+		\item<7-> Tökum dæmi.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að þú sért með $n$ spilastokka.
+		\item<2-> Hver stokkur inniheldur $k$ spil, númeruð frá $1$ og upp í $k$.
+		\item<3-> Á hversu marga vegu getur þú valið eitt spil úr hverjum stokk þannig að summa spilanna sé nákvæmlega $m$?
+		\item<4-> Þar sem þessi tala getur verið mjög stór skila reikna hana $\mod 10^9 + 7$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Festum fyrsta spilið sem $x$.
+		\item<2-> Við eigum þá eftir $n - 1$ stokk og viljum fá summuna $m - x$ úr þeim.
+		\item<3-> Með öðrum orðum höfum við smækkað dæmið.
+		\item<4-> Við skilgreinum því
+		\[
+			f(x, y) = \left \{
+			\env{array}
+			{ {l l}
+				1, & \text{ef $n = 0$ og $y = 0$}\\
+				0, & \text{ef $n = 0$ og $y \neq 0$}\\
+				\sum_{j = 1}^k f(x - 1, y - j), & \text{annars}.
+			}
+			\right .
+		\]
+		\item<5-> Nú gildir að $f(x, y)$ er fjöldi leiða til að fá summuna $y$ með $x$ stokkum.
+		\item<6-> Við getum svo útfært þetta eins of við höfum verið að útfæra kvikva bestun.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/cardmagic.c}{7}{16}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við höfum $n \cdot m$ stöður og hverju stöðu má reikna í $\mathcal{O}($\onslide<2->{$\,k\,$}$)$ tíma.
+		\item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$n \cdot m \cdot k$}$)$.
+		\item<5-> Nú getur $m$ ekki verið stærra en $n \cdot k$ svo við fáum $\mathcal{O}($\onslide<6->{$n^2 \cdot k^2$}$)$.
+	}
+}
+
+% Hér myndi líkindafræðin koma
+
+\env{frame}
+{
+	\frametitle{Flykjaaðgerðir}
+	\env{itemize}
+	{
+		\item<1-> Í stærðfræði þýðir ,,fylki'' annað en í tölvunarfræði.
+		\item<2-> Í stærðfræði er \emph{fylki} (e. \emph{matrix}) tvívíð uppröðun á tölum.
+		\item<3-> Fylkið er sagt vera $n \times m$ ef það hefur $n$ línur og $m$ dálka.
+		\item<4-> Dæmi um $2 \times 3$ fylki er
+		\[
+			\left (
+			\env{array}
+			{ {l l l}
+				2 & -1 & 0\\
+				0 & 14 & 0
+			}
+			\right ).
+		\]
+		\item<5-> Við táknum yfirleitt stakið í línu $j$ og dálki $k$ í fylki $A$ með $A_{jk}$.
+		\item<6-> Flyki í stærfræði er því eins og tvívítt fylki í tölvunarfærði.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Flykjaaðgerðir}
+	\env{itemize}
+	{
+		\item<1-> Þegar við viljum geyma stærðfræði fylki í tölvu notum við oftast tvívítt tölvunarfræði fylki.
+		\item<2-> Við höfum þá að $A_{jk}$ svarar til \texttt{a[j][k]}.
+		\item<3-> Ef $A$ er $n \times m$ fylki getum við líka geymt það með einvíðu tölvunarfræði fylki með samsvöruninni $A_{jk}$ við
+					\texttt{a[j*m + k]}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Flykjaaðgerðir}
+	\env{itemize}
+	{
+		\item<1-> Við getum lagt saman fylki af sömu stærð stakvíst, það er að segja $(A + B)_{jk} = A_{jk} + B_{jk}$.
+		\item<2-> Frádráttur virkar eins.
+		\item<3-> Við margföldum saman fylki af stærð $n \times m$ og $m \times r$ með
+		\[
+			(A \cdot B)_{jk} = \sum_{l = 1}^m A_{jl} \cdot B_{lk}.
+		\]
+		\item<4-> Oftast erum við að vinna með fylki sem eru af stærð $n \times n$.
+		\item<5-> Slík fylki kallast \emph{ferningsfylki}.
+		\item<6-> Takið eftir að fylkið $I$, gefið með $I_{jk} = 0$ ef $j \neq k$ og $I_{jk} = 1$ annars, er margföldunarhlutleysa.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/matrix.c}{3}{23}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Takið eftir að \texttt{multo(...)} hefur tímaflækju $\mathcal{O}($\onslide<2->{$n^3$}$)$.
+		\item<3-> Ef $A$ er $n \times n$ ferningsfylki getum við reinkað $A^p$.
+		\item<4-> Með því að nota deila og drottna aðferð, líkt og við gerðum í síðustu viku, getum við reiknað $A^p$ í
+					$\mathcal{O}($\onslide<5->{$n^3 \log p$}$)$ tíma.
+		\item<5-> Þetta má nýta mikið í talningarfræði.
+		\item<6-> Tökum dæmi.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum $G = (V, E)$ vera net og $A$ vera nágrannflyki $G$.
+		\item<2-> Munið að það þýðir að 
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
+

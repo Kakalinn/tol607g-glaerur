@@ -45,6 +45,21 @@
 {
 	\env{itemize}
 	{
+		\item<1-> Einnig þarf að passa sig að tölurnar verði ekki of stórar.
+		\item<2-> Til dæmis er algengt í keppnisforritun að reikna leif með tilliti til $m = 10^9 + 7$.
+		\item<3-> Takið eftir að $m$ er ekki of stór fyrir \texttt{int}.
+		\item<4-> Ef við erum með tvær \texttt{int} tölur, \texttt{a} og \texttt{b}, og viljum reikna \texttt{(a*b)\%m}
+					þá gæti \texttt{a*b} orðið of stór fyrir \texttt{int}.
+		\item<5-> Til að komast hjá þessu þurfum við að nota \texttt{long long}.
+		\item<6-> Ef tölurnar eru \texttt{long long} í stað \texttt{int} þurfum við að nota \texttt{\_\_int128}.
+		\item<7->[] \selectcode{code/bigprod.c}{2}{8}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
 		\item<1-> Stundum þurfum við að geta deilt í leifareikningi.
 		\item<2-> Þetta er ekki hægt að gera með hefðbundinni deilingu.
 		\item<3-> Við látum $b^{-1}$ tákna þá tölu sem uppfyllir að $1 = b \cdot b^{-1} \mod m$.

@@ -34,7 +34,7 @@ int miller_rabin(ll n)
 	rep(k, 12) if (t[k] <= n - 2)
 	{
 		ll a = t[k];
-		lll x = modpow(a, d, n);
+		ll x = modpow(a, d, n);
 		if (x == 1 || x == n - 1) continue;
 		rep(i, s - 1) if ((x = bigprod(x, x, n)) == n - 1) break;
 		if (i == s - 1) return 0;
@@ -42,22 +42,18 @@ int miller_rabin(ll n)
 	return 1;
 }
 
-int e[MAXN];
-void eratos()
+ll foo(ll a, ll b)
 {
-	int i, j;
-	rep(i, MAXN) e[i] = 1;
-	e[0] = e[1] = 0;
-	rep(i, MAXN) if (e[i] == 1) for (j = 2*i; j < MAXN; j += i) e[j] = 0;
+	return rand()%(b - a) + a;
 }
 
-int main()
-{ // slowly finds all primes larger then |x| using Miller-Rabin (so maybe wrong).
-	ll x;
-	scanf("%lld", &x);
-	while (1)
-	{
-		if (miller_rabin(x)) printf("%lld\n", x);
-		x++;
-	}
+int main(int argc, char** argv)
+{
+	srand(time(NULL));
+	ll x = 1, a, b;
+	if (argc == 1) scanf("%lld%lld", &a, &b);
+	else if (argc == 2) a = 2, scanf("%lld", &b);
+	else a = atoll(argv[1]), b = atoll(argv[2]);
+	while (!miller_rabin(x)) x = foo(a, b);
+	printf("%lld\n", x);
 }

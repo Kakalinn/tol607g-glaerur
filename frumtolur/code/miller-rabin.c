@@ -34,7 +34,7 @@ int miller_rabin(ll n)
 	rep(k, 12) if (t[k] <= n - 2)
 	{
 		ll a = t[k];
-		lll x = modpow(a, d, n);
+		ll x = modpow(a, d, n);
 		if (x == 1 || x == n - 1) continue;
 		rep(i, s - 1) if ((x = bigprod(x, x, n)) == n - 1) break;
 		if (i == s - 1) return 0;
