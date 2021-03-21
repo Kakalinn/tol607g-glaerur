@@ -109,8 +109,8 @@
 	{
 		\item<1-> Sjáum nú hagnýtingu á þessari jöfnu.
 		\item<2-> Munum að gagntækj vörpun $\sigma \colon \{1, 2, ... n\} \rightarrow \{1, 2, ..., n\}$ kallast \emph{umröðun} (e. \emph{permutation}).
-		\item<3-> Ef við festum $n$ þá höfum við sýnt að til sé $n!$ umraðanir.
-		\item<4-> Næst segjum við að $k \in \{1, 2, ..., n\}$ sé \emph{fastapunktur $\sigma$} (e. \emph{fixed point og $\sigma$}) ef $\sigma(k) = k$.
+		\item<3-> Ef við festum $n$ þá höfum við sýnt að til séu $n!$ umraðanir.
+		\item<4-> Næst segjum við að $k \in \{1, 2, ..., n\}$ sé \emph{fastapunktur $\sigma$} (e. \emph{fixed point of $\sigma$}) ef $\sigma(k) = k$.
 		\item<5-> Með öðrum orðum hefur umröðunin ekki áhrif á þennan punkt.
 		\item<6-> Hversu margar umraðanir hafa engan fastapunkt?
 	}
@@ -178,7 +178,7 @@
 	{
 		\item<1-> Við munum ferkar telja hversu margar umraðanir hafa fastapunkt.
 		\item<2-> Þetta er algengt að gera í talningarfræði.
-		\item<3-> Látum nú $A_j$ tákna mengi þeirra umraðana þar sem $j$ er fasta punktur.
+		\item<3-> Látum nú $A_j$ tákna mengi þeirra umraðana þar sem $j$ er fastapunktur.
 		\item<4-> Þá er $\bigcap_{j \in J} A_j$ mengi þeirra umraðana þar sem allir punktar $J$ eru fastapunktar.
 		\item<5-> Ef við festum $k$ punkta í umröðuninni getum við raðað restinni á $(n - k)!$ marga vegu.
 		\item<6-> Svo $|A_j| = (n - 1)!$ og $\left | \bigcap_{j \in J} A \right | = (n - |J|)!$.
@@ -239,8 +239,8 @@
 			{n \choose k} = \frac{n!}{(n - k)!k!}.
 		\]
 		\item<3-> Ein leið til að gera þetta er að finna fyrst margföldunarandhverfur $(n - k)!$ og $k!$ með tilliti til $m$.
-		\item<4-> Við reiknum svo $!n \cdot ((n - k)!)^{-1} \cdot (k!)^{-1} \mod m$.
-		\item<5-> Hér þarf að passa sig að margföldunarandhverfan sé til.
+		\item<4-> Við reiknum svo $n! \cdot ((n - k)!)^{-1} \cdot (k!)^{-1} \mod m$.
+		\item<5-> Hér þarf að passa að margföldunarandhverfan sé til.
 		\item<6-> Helst þarf $m$ að vera frumtala.
 	}
 }
@@ -916,8 +916,192 @@
 	\env{itemize}
 	{
 		\item<1-> Látum $G = (V, E)$ vera net og $A$ vera nágrannflyki $G$.
-		\item<2-> Munið að það þýðir að 
+		\item<2-> Við munum nú leifa netinu að hafa fleiri en einn veg á milli tveggja hnúta.
+		\item<3-> Þá segir $A_{uv}$ hversu margir vegir liggja frá hnúta $u$ til hnúts $v$.
+		\item<4-> Sýna má með þrepuna að $(A^p)_{uv}$ segir okkur þá hversu margir vegir liggja á milli hnúts $u$ og hnúts $v$,
+					sem eru af lengd nákvæmlega $p$.
+		\item<5-> Takið eftir að við getum leyst þetta dæmi fyrir mjög stór $p$.
+		\item<6-> Til dæmis væri lausnin okkar leifturhröð fyrir $n = 50$ og $p = 10^{18}$.
 	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Runa $(a_n)_{n \in \mathbb{N}}$ kallast \emph{$k$-ta stigs línulega rakningarvensl} ef til eru $c_1, ..., c_k$ þannig að
+		\[
+			a_n = \sum_{j = 1}^k c_j \cdot a_{n - j},
+		\]
+		fyrir öll $n$ þannig að $n - k \in \mathbb{N}$.
+		\item<2-> Munið, til dæmis, að Fiboncci tölurnar eru línulega rakningarvensl með $a_1 = a_2 = c_1 = c_2 = 1$.
+		\item<3-> Látum $k$-ta stigs línulega rakningarvensl vera gefnin, líkt og að ofan.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skilgreinum nú flykið
+		\[
+			M = \left (
+			\env{array}
+			{ {l l l l}
+				c_1 & c_2 & ... & c_k\\
+				1 & 0 & ... & 0\\
+				0 & 1 & ... & 0\\
+				\vdots & \vdots & \ddots & \vdots\\
+				0 & 0 & ... & 1
+			}
+			\right ).
+		\]
+		\item<2-> Takið eftir að
+		\[
+			M
+			\cdot
+			\left (
+			\env{array}
+			{ {l}
+				a_{n - 1}\\
+				a_{n - 2}\\
+				\vdots\\
+				a_{n - k}
+			}
+			\right )
+			=
+			\left (
+			\env{array}
+			{ {l}
+				\sum_{j = 1}^k c_j \cdot a_{n - j}\\
+				a_{n - 1}\\
+				a_{n - 2}\\
+				\vdots\\
+				a_{n - k + 1}
+			}
+			\right )
+			=
+			\left (
+			\env{array}
+			{ {l}
+				a_n\\
+				a_{n - 1}\\
+				a_{n - 2}\\
+				\vdots\\
+				a_{n - k + 1}
+			}
+			\right ).
+		\]
+		\item<3-> Svo við getum notað fylkið $M$ til að fá næstu tölu í rakningarvenslunum.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við þurufm þó ekki að hætta þar.
+		\item<2-> Við getum notað $M^p$ til að fá $a_{k + p}$.
+		\item<3-> Þetta getum við reinkað í $\mathcal{O}($\onslide<4->{$k^3 \log p$}$)$ tíma.
+		\item<5-> Við getum notað þetta til að reikna $n$-tu Fibonacci töluna í $\mathcal{O}($\onslide<6->{$\log n$}$)$ tíma.
+		\item<7-> Það er meiri en nógu hratt fyrir $n < 10^{18}$.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/fib.c}{14}{39}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Í dæmum sem beita má þessari aðferð er oft erfitt að finna rakningarvenslin (þegar þau eru ekki gefin beint).
+		\item<2-> Þá má nota netafræðina í staðin.
+		\item<3-> Tökum dæmi.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þú vilt leggja flísar á ganginn þinn þannig að hver flís er annað hvort svört eða hvít,
+					og engar tvær aðliggjandi flísar mega vera hvítar.
+		\item<2-> Gerum ráð fyrir að gangurinn sé þrjár flísar á breidd og $n$ flísar á lengd.
+		\item<3-> Á hversu marga vegu getur þú lagt flísarnar?
+		\item<4-> Flísar er snertast horn í horn teljast ekki aðliggjandi.
+	}
+}
+
+\defverbatim{\gangar}
+{ \begin{verbatim}
+     Hnutur: 0   1   2   3   4   5   6   7
+
+             0   0   0   0   1   1   1   1
+     Gangur: 0   0   1   1   0   0   1   1
+             0   1   0   1   0   1   0   1
+\end{verbatim}}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hægt er að setja þessa talningu fram með fjórða stigs línuegum rakningarvenslum.
+		\item<2-> Það er þau ekki auðséð hverjir stuðlarnir í þeim venslum erum.
+		\item<3-> En hvað ef við breitum þessu í net.
+		\item<4-> Látum hnútana í netinu vera mögulegir dálkar á ganginum:
+		\item<5->[] \gangar
+		\item<6-> Við bætum svo við legg á milli hnútanna $u$ og $v$ ef dálkarnir mega koma fyrir á ganginum.
+		\item<7-> Látum \texttt{1} tákna hvítar flísar.
+		\item<8-> Takið eftir að stöður \texttt{3}, \texttt{6} og \texttt{7} eru alfarið ólöglegar.
+	}
+}
+
+\defverbatim{\gangarfylki}
+{ \begin{verbatim}
+        0  1  2  3  4  5  6  7
+      +------------------------
+    0 | 1  1  1  0  1  1  0  0
+    1 | 1  0  1  0  1  0  0  0
+    2 | 1  1  0  0  1  1  0  0
+    3 | 0  0  0  0  0  0  0  0
+    4 | 1  1  1  0  0  0  0  0
+    5 | 1  0  1  0  0  0  0  0
+    6 | 0  0  0  0  0  0  0  0
+    7 | 0  0  0  0  0  0  0  0
+\end{verbatim}}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við fáum þá færslufylkið:
+		\item<2->[] \gangarfylki
+		\item<3-> Köllum þetta fylki $A$.
+		\item<4-> Við þurfum síðan að leggja saman $(A^{p - 1})_{uv}$ fyrir öll $u$ og $v$ þar sem $u$ er lögleg.
+		\item<5-> Þá eru við að telja saman alla vegi í netinu af lengd $p$ sem byrja í löglegri stöðu.
+		\item<6-> Við þurfum ekki að passa að síðasti hnúturinn sé löglegur því það liggur enginn leggur í ólöglegann hnút.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/digbuild.c}{28}{48}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Umræða um fylkjaaðgerðir er ekki fullkláruð fyrr en minnst er á Gauss eyðingu.
+		\item<2-> Þið munið eflaust eftir henni úr Línulegri Algebru.
+		\item<3-> Hún er nytsamlega til að, til dæmis, leysa jöfnuhneppi eða finna andhverfur fylkja.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/gauss.c}{6}{20}
 }
 
 \env{frame}
