@@ -26,7 +26,7 @@ void matpow(ll* a, ll p, ll n)
 }
 
 int main()
-{ // reiknar |n|-ta Fibonacci toluna.
+{ // reiknar |n|-tu Fibonacci toluna.
 	ll n, a[2][2] = {{1, 1}, {1, 0}};
 	scanf("%lld", &n);
 	if (n == 1 || n == 2) printf("1\n");

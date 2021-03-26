@@ -26,7 +26,7 @@ ll mulinv(ll a, ll m)
 
 ll f[MAXN], fm[MAXN];
 ll prepare_nck(ll m)
-{
+{ // Her tharf |m| ad vera frumtala.
 	ll i;
 	f[0] = 1;
 	rep(i, MAXN) if (i != 0) f[i] = (f[i - 1]*i)%m;

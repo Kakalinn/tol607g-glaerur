@@ -6,8 +6,8 @@ typedef long long ll;
 ll d[MAXN][MAXN], m;
 ll dp_lookup(ll x, ll y)
 {
-	if (d[x][y] != -1) return d[x][y];
 	if (x < 0 || y < 0 || y > x) return 0;
+	if (d[x][y] != -1) return d[x][y];
 	if (y == 0 || y == x) return 1;
 	return d[x][y] = (dp_lookup(x - 1, y - 1) + dp_lookup(x - 1, y))%m;
 }

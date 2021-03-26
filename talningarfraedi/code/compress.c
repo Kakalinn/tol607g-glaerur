@@ -13,7 +13,7 @@ void compress(int* a, int n)
 	rep(i, n) b[i].x = a[i], b[i].y = i;
 	qsort(b, n, sizeof(b[0]), cmpx);
 	for (i = k = 0; i < n; i = j, k++)
-		for (j = i, x = b[i].x; b[j].x == x; j++)
+		for (j = i, x = b[i].x; j < n && b[j].x == x; j++)
 			b[j].x = k;
 	qsort(b, n, sizeof(b[0]), cmpy);
 	rep(i, n) a[i] = b[i].x;

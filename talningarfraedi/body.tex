@@ -36,7 +36,7 @@
 	\env{itemize}
 	{
 		\item<1-> Við vitum að það eru $2^n$ hlutmengi í $n$ staka mengi, en hvað eru mörg hlutmengi af stærð $k$?
-		\item<2-> Þegar við veljum fyrst stakið höfum við um $n$ stök að velja, síðan $n - 1$ stak og svo framvegis.
+		\item<2-> Þegar við veljum fyrsta stakið höfum við um $n$ stök að velja, síðan $n - 1$ stak og svo framvegis.
 		\item<3-> Við fáum því $n \cdot (n - 1) \cdot ... \cdot (n - k + 1) = \dfrac{n!}{k!}$ mengi.
 		\item<4-> Hvert mengi er þó talið $(n - k)!$ sinnum, svo loka talan er
 		\[
@@ -95,9 +95,9 @@
 		\[
 			|A_1 \cup ... \cup A_n| = \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |.
 		\]
-		\item<2-> Vera má að þessi jafna komi spánkst fyrir sjónir en er í raun að fjarlægja þau stök sem eru tvítekin,
-					bæta aftur við stökum sem eru þrítekin,
-					fjarlægja aftur stök sem eru fjórtekin
+		\item<2-> Vera má að þessi jafna komi spánkst fyrir sjónir en í raun lýsir hún hvernig við fjarlægjum stök sem eru tvítekin,
+					bætum aftur við stökum sem eru þrítekin,
+					fjarlægjum aftur stök sem eru fjórtekin
 					og svo framvegis.
 		\item<3-> Þessi jafna er kölluð \emph{lögmálið um fjöldatölu sammengja} (e. \emph{Inclusion-Exclusion principle}).
 	}
@@ -108,7 +108,7 @@
 	\env{itemize}
 	{
 		\item<1-> Sjáum nú hagnýtingu á þessari jöfnu.
-		\item<2-> Munum að gagntækj vörpun $\sigma \colon \{1, 2, ... n\} \rightarrow \{1, 2, ..., n\}$ kallast \emph{umröðun} (e. \emph{permutation}).
+		\item<2-> Munum að gagntæk vörpun $\sigma \colon \{1, 2, ... n\} \rightarrow \{1, 2, ..., n\}$ kallast \emph{umröðun} (e. \emph{permutation}).
 		\item<3-> Ef við festum $n$ þá höfum við sýnt að til séu $n!$ umraðanir.
 		\item<4-> Næst segjum við að $k \in \{1, 2, ..., n\}$ sé \emph{fastapunktur $\sigma$} (e. \emph{fixed point of $\sigma$}) ef $\sigma(k) = k$.
 		\item<5-> Með öðrum orðum hefur umröðunin ekki áhrif á þennan punkt.
@@ -181,7 +181,7 @@
 		\item<3-> Látum nú $A_j$ tákna mengi þeirra umraðana þar sem $j$ er fastapunktur.
 		\item<4-> Þá er $\bigcap_{j \in J} A_j$ mengi þeirra umraðana þar sem allir punktar $J$ eru fastapunktar.
 		\item<5-> Ef við festum $k$ punkta í umröðuninni getum við raðað restinni á $(n - k)!$ marga vegu.
-		\item<6-> Svo $|A_j| = (n - 1)!$ og $\left | \bigcap_{j \in J} A \right | = (n - |J|)!$.
+		\item<6-> Svo $\left | \bigcap_{j \in J} A \right | = (n - |J|)!$.
 		\item<7-> Takið eftir að seinni stærðin er bara háð fjölda staka í menginu $J$.
 		\item<8-> Við vitum einnig að fjöldi hlutmengja $\{1, ..., n\}$ með $k$ stök er ${n \choose k}$.
 	}
@@ -208,7 +208,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Fjöldi umraðana með engan fasta punkt er því
+		\item<1-> Fjöldi umraðana með engan fastapunkt er því
 	}
 	\env{align*}
 	{
@@ -352,7 +352,7 @@
 		\item<2-> Þá kallast par $(i, j) \in \{1, ..., n\} \times \{1, ..., n\}$ þannig að $i < j$ og $\sigma(i) > \sigma(j)$,
 					\emph{umhverfing} (e. \emph{inversion}) í $\sigma$.
 		\item<3-> Látum \texttt{a} tákna $n$ staka lista þannig að $j$-ta stak listans sé $\sigma(j)$.
-		\item<4-> Svona táknum við iðulega umraðanir þegar við útfærum lausnir.
+		\item<4-> Svona táknum við iðulega umraðanir þegar við útfærum þær í tölvu.
 		\item<5-> Gerum nú ráð fyrir að eina leiðin okkar til að breyta \texttt{a} er að skipta á aðlægum stökum.
 		\item<6-> Hvað tekur það minnst margar aðgerðir að raða listanum?
 		\item<7-> Það vill svo til að fjöldi umhverfinga í umröðununni er einmitt fjöldi aðgerða sem þarf til að raða listanum.
@@ -367,10 +367,10 @@
 	{
 		\item<1-> Ein leið til að gera þetta er að færa fyrst minnsta stakið fremst, síðan næst minnsta stakið næst fremst og svo framvegis.
 		\item<2-> Þetta tekur $\mathcal{O}($\onslide<3->{$n^2$}$)$ tíma.
-		\item<4-> Þetta er því of hægt of $n > 10^4$.
+		\item<4-> Þetta er því of hægt ef $n > 10^4$.
 		\item<5-> Við getum þó notað biltré til að gera þetta hraðara.
 		\item<6-> Tökum eftir að þegar við höfum sett stak á sinn stað getum við hætt að hugsa um það.
-		\item<7-> Við þurfum í raun að sagt til um hversu mörg stök í listanum eru fyrir framan það stak sem við viljum færa
+		\item<7-> Við þurfum í raun að geta sagt til um hversu mörg stök í listanum eru fyrir framan það stak sem við viljum færa
 					(við teljum ekki þau stök sem eru komin á sinn stað).
 		\item<8-> Við byrjum því með $1$ í hverju staki í biltrénu okkar.
 		\item<9-> Þegar við höfum fært stak á sinn stað setjum við tilheyrandi gildi sem $0$.
@@ -736,8 +736,8 @@
 	{
 		\item<1-> Hver aðgerð á biltrénu er framkvæmd í $\mathcal{O}($\onslide<2->{$\log n$}$)$ tíma.
 		\item<3-> Við finnum því fjölda umhverfinga í $\mathcal{O}($\onslide<4->{$n \log n$}$)$ tíma.
-		\item<4-> Svo við getum auðveldlega fundið fjölda umhverfinga fyrir $n < 10^6$.
-		\item<5-> Takið þó eftir að fjöldinn gæti orðið $n \cdot (n - 1)/2$, svo það þarf alltaf að nota \texttt{long long}.
+		\item<5-> Svo við getum auðveldlega fundið fjölda umhverfinga fyrir $n < 10^6$.
+		\item<6-> Takið þó eftir að fjöldinn gæti orðið $n \cdot (n - 1)/2$, svo það þarf alltaf að nota \texttt{long long}.
 	}
 }
 
@@ -797,7 +797,7 @@
 		\item<1-> Gerum ráð fyrir að þú sért með $n$ spilastokka.
 		\item<2-> Hver stokkur inniheldur $k$ spil, númeruð frá $1$ og upp í $k$.
 		\item<3-> Á hversu marga vegu getur þú valið eitt spil úr hverjum stokk þannig að summa spilanna sé nákvæmlega $m$?
-		\item<4-> Þar sem þessi tala getur verið mjög stór skila reikna hana $\mod 10^9 + 7$.
+		\item<4-> Þar sem þessi tala getur verið mjög stór svo reikna skal hana $\mod 10^9 + 7$.
 	}
 }
 
@@ -833,7 +833,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við höfum $n \cdot m$ stöður og hverju stöðu má reikna í $\mathcal{O}($\onslide<2->{$\,k\,$}$)$ tíma.
+		\item<1-> Við höfum $n \cdot m$ stöður og hverja stöðu má reikna í $\mathcal{O}($\onslide<2->{$\,k\,$}$)$ tíma.
 		\item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$n \cdot m \cdot k$}$)$.
 		\item<5-> Nú getur $m$ ekki verið stærra en $n \cdot k$ svo við fáum $\mathcal{O}($\onslide<6->{$n^2 \cdot k^2$}$)$.
 	}
@@ -866,7 +866,6 @@
 
 \env{frame}
 {
-	\frametitle{Flykjaaðgerðir}
 	\env{itemize}
 	{
 		\item<1-> Þegar við viljum geyma stærðfræði fylki í tölvu notum við oftast tvívítt tölvunarfræði fylki.
@@ -878,7 +877,6 @@
 
 \env{frame}
 {
-	\frametitle{Flykjaaðgerðir}
 	\env{itemize}
 	{
 		\item<1-> Við getum lagt saman fylki af sömu stærð stakvíst, það er að segja $(A + B)_{jk} = A_{jk} + B_{jk}$.
@@ -889,7 +887,7 @@
 		\]
 		\item<4-> Oftast erum við að vinna með fylki sem eru af stærð $n \times n$.
 		\item<5-> Slík fylki kallast \emph{ferningsfylki}.
-		\item<6-> Takið eftir að fylkið $I$, gefið með $I_{jk} = 0$ ef $j \neq k$ og $I_{jk} = 1$ annars, er margföldunarhlutleysa.
+		\item<6-> Takið eftir að ferningsfylkið $I$, gefið með $I_{jk} = 0$ ef $j \neq k$ og $I_{jk} = 1$ annars, er margföldunarhlutleysa.
 	}
 }
 
@@ -906,8 +904,8 @@
 		\item<3-> Ef $A$ er $n \times n$ ferningsfylki getum við reinkað $A^p$.
 		\item<4-> Með því að nota deila og drottna aðferð, líkt og við gerðum í síðustu viku, getum við reiknað $A^p$ í
 					$\mathcal{O}($\onslide<5->{$n^3 \log p$}$)$ tíma.
-		\item<5-> Þetta má nýta mikið í talningarfræði.
-		\item<6-> Tökum dæmi.
+		\item<6-> Þetta má nýta mikið í talningarfræði.
+		\item<7-> Tökum dæmi.
 	}
 }
 
@@ -916,7 +914,7 @@
 	\env{itemize}
 	{
 		\item<1-> Látum $G = (V, E)$ vera net og $A$ vera nágrannflyki $G$.
-		\item<2-> Við munum nú leifa netinu að hafa fleiri en einn veg á milli tveggja hnúta.
+		\item<2-> Við munum nú leyfa netinu að hafa fleiri en einn veg á milli tveggja hnúta.
 		\item<3-> Þá segir $A_{uv}$ hversu margir vegir liggja frá hnúta $u$ til hnúts $v$.
 		\item<4-> Sýna má með þrepuna að $(A^p)_{uv}$ segir okkur þá hversu margir vegir liggja á milli hnúts $u$ og hnúts $v$,
 					sem eru af lengd nákvæmlega $p$.
@@ -927,6 +925,7 @@
 
 \env{frame}
 {
+	\frametitle{Úrvinnsla línulegra rakningarvensl}
 	\env{itemize}
 	{
 		\item<1-> Runa $(a_n)_{n \in \mathbb{N}}$ kallast \emph{$k$-ta stigs línulega rakningarvensl} ef til eru $c_1, ..., c_k$ þannig að
@@ -935,7 +934,7 @@
 		\]
 		fyrir öll $n$ þannig að $n - k \in \mathbb{N}$.
 		\item<2-> Munið, til dæmis, að Fiboncci tölurnar eru línulega rakningarvensl með $a_1 = a_2 = c_1 = c_2 = 1$.
-		\item<3-> Látum $k$-ta stigs línulega rakningarvensl vera gefnin, líkt og að ofan.
+		\item<3-> Látum $k$-ta stigs línuleg rakningarvensl vera gefnin, líkt og að ofan.
 	}
 }
 
@@ -947,12 +946,12 @@
 		\[
 			M = \left (
 			\env{array}
-			{ {l l l l}
-				c_1 & c_2 & ... & c_k\\
-				1 & 0 & ... & 0\\
-				0 & 1 & ... & 0\\
-				\vdots & \vdots & \ddots & \vdots\\
-				0 & 0 & ... & 1
+			{ {l l l l l}
+				c_1 & c_2 & ... & c_{k - 1} & c_k\\
+				1 & 0 & ... & 0 & 0\\
+				0 & 1 & ... & 0 & 0\\
+				\vdots & \vdots & \ddots & \vdots & \vdots\\
+				0 & 0 & ... & 1 & 0
 			}
 			\right ).
 		\]
@@ -1000,10 +999,10 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við þurufm þó ekki að hætta þar.
+		\item<1-> Við þurfum þó ekki að hætta þar.
 		\item<2-> Við getum notað $M^p$ til að fá $a_{k + p}$.
 		\item<3-> Þetta getum við reinkað í $\mathcal{O}($\onslide<4->{$k^3 \log p$}$)$ tíma.
-		\item<5-> Við getum notað þetta til að reikna $n$-tu Fibonacci töluna í $\mathcal{O}($\onslide<6->{$\log n$}$)$ tíma.
+		\item<5-> Við getum, til dæmis, notað þetta til að reikna $n$-tu Fibonacci töluna í $\mathcal{O}($\onslide<6->{$\log n$}$)$ tíma.
 		\item<7-> Það er meiri en nógu hratt fyrir $n < 10^{18}$.
 	}
 }
@@ -1031,7 +1030,7 @@
 					og engar tvær aðliggjandi flísar mega vera hvítar.
 		\item<2-> Gerum ráð fyrir að gangurinn sé þrjár flísar á breidd og $n$ flísar á lengd.
 		\item<3-> Á hversu marga vegu getur þú lagt flísarnar?
-		\item<4-> Flísar er snertast horn í horn teljast ekki aðliggjandi.
+		\item<4-> Flísar sem snertast horn í horn teljast ekki aðliggjandi.
 	}
 }
 
@@ -1049,10 +1048,10 @@
 	{
 		\item<1-> Hægt er að setja þessa talningu fram með fjórða stigs línuegum rakningarvenslum.
 		\item<2-> Það er þau ekki auðséð hverjir stuðlarnir í þeim venslum erum.
-		\item<3-> En hvað ef við breitum þessu í net.
+		\item<3-> En hvað ef við breytum þessu í net.
 		\item<4-> Látum hnútana í netinu vera mögulegir dálkar á ganginum:
 		\item<5->[] \gangar
-		\item<6-> Við bætum svo við legg á milli hnútanna $u$ og $v$ ef dálkarnir mega koma fyrir á ganginum.
+		\item<6-> Við bætum svo við legg á milli hnútanna $u$ og $v$ ef dálkarnir mega liggja hliðina á hvorum öðrum á ganginum.
 		\item<7-> Látum \texttt{1} tákna hvítar flísar.
 		\item<8-> Takið eftir að stöður \texttt{3}, \texttt{6} og \texttt{7} eru alfarið ólöglegar.
 	}
@@ -1075,12 +1074,12 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við fáum þá færslufylkið:
+		\item<1-> Við fáum þá nágrannafylkið:
 		\item<2->[] \gangarfylki
 		\item<3-> Köllum þetta fylki $A$.
-		\item<4-> Við þurfum síðan að leggja saman $(A^{p - 1})_{uv}$ fyrir öll $u$ og $v$ þar sem $u$ er lögleg.
-		\item<5-> Þá eru við að telja saman alla vegi í netinu af lengd $p$ sem byrja í löglegri stöðu.
-		\item<6-> Við þurfum ekki að passa að síðasti hnúturinn sé löglegur því það liggur enginn leggur í ólöglegann hnút.
+		\item<4-> Við þurfum síðan að leggja saman $(A^{p - 1})_{uv}$ fyrir öll $u$ og $v$ þar sem $u$ er löglegur dálkur.
+		\item<5-> Þá eru við að telja saman alla vegi í netinu af lengd $p$ sem byrja í löglegum dálki.
+		\item<6-> Við þurfum ekki að passa að síðasti hnúturinn sé löglegur því það liggur enginn leggur í ólöglegan hnút.
 	}
 }
 
@@ -1091,9 +1090,10 @@
 
 \env{frame}
 {
+	\frametitle{Gauss-eyðing}
 	\env{itemize}
 	{
-		\item<1-> Umræða um fylkjaaðgerðir er ekki fullkláruð fyrr en minnst er á Gauss eyðingu.
+		\item<1-> Umræða um fylkjaaðgerðir er ekki fullkláruð fyrr en minnst er á Gauss-eyðingu.
 		\item<2-> Þið munið eflaust eftir henni úr Línulegri Algebru.
 		\item<3-> Hún er nytsamlega til að, til dæmis, leysa jöfnuhneppi eða finna andhverfur fylkja.
 	}
