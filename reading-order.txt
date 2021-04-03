@@ -40,3 +40,9 @@ leifareikningur
 veldishafning
 gcd
 frumtolur
+
+vika11
+talningarfraedi
+
+vika12
+rumfraedi

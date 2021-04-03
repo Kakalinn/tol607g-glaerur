@@ -4,7 +4,6 @@
 #include <complex.h>
 #define rep(E, F) for (E = 0; E < (F); E++)
 #define EPS 1e-9
-int get_int();
 
 typedef double complex pt;
 
@@ -46,54 +45,31 @@ int convex_hull(pt* p, pt* h, int n)
 	return --j;
 }
 
-int rnd(double a)
-{
-	if (a < 0.0) return -rnd(-a);
-	return (int)(a + 0.5);
-}
+
+#if 0
+9
+-1 1
+0 1
+1 1
+-1 0
+0 0
+1 0
+-1 -1
+0 -1
+1 -1
+#endif
 
 int main()
 {
-	int i, n = get_int();
-	while (n != 0)
+	int i, n, m, x, y;
+	scanf("%d", &n);
+	pt a[n], h[n];
+	rep(i, n)
 	{
-		pt a[n], h[n];
-		rep(i, n)
-		{
-			int x = get_int(), y = get_int();
-			a[i] = x + y*I;
-		}
-		int m = convex_hull(a, h, n);
-		printf("%d\n", m);
-		rep(i, m) printf("%d %d\n", rnd(creal(h[i])), rnd(cimag(h[i])));
-		n = get_int();
+		scanf("%d%d", &x, &y);
+		a[i] = x + y*I;
 	}
-}
-
-int get_int()
-{
-	int ret = 0;
-	char c = getchar();
-	int sgn;
-
-	while (1)
-	{
-		if (c == EOF) return EOF;
-		if (c >= '0' && c <= '9') { sgn = 1; break; }
-		if (c == '-')
-		{
-			c = getchar();
-			if (c < '0' || c > '9') continue;
-			sgn = -1;
-			break;
-		}
-		c = getchar();
-	}
-
-	while (1)
-	{
-		ret = ret*10 + c - '0';
-		c = getchar();
-		if (c < '0' || c > '9') return sgn*ret;
-	}
+	m = convex_hull(a, h, n);
+	printf("%d\n", m);
+	rep(i, m) printf("%.2f %.2f\n", creal(h[i]), cimag(h[i]));
 }

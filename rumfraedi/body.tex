@@ -4,16 +4,7 @@
 
 \begin{document}
 
-\env{frame}
-{
-	\frametitle{Lokakeppnin}
-	\env{itemize}
-	{
-		\item<1-> Ljóst er að lokakeppnin verður að vera með breyttu sniði.
-		\item<2-> Hún verður haldin á netinu.
-		\item<3-> Við getum því ekki bannað gúggl, en bannað er að dreifa lausnum sínum á meðan á keppninni stendur yfir.
-	}
-}
+\frame{\titlepage}
 
 \env{frame}
 {
@@ -47,12 +38,12 @@
 					\coordinate (A) at (0, 0) {};
 					\coordinate (B) at (4, 0) {};
 					\coordinate (C) at (0, 3) {};
-					\node at (0.55, 0.55) {$\theta$};
+					\node at (3.2, 0.3) {$\theta$};
 
 					\draw (A) -- node[below] {$A$} (B);
 					\draw (B) -- node[above] {$L$} (C);
 					\draw (C) -- node[left] {$M$} (A);
-					\draw pic[draw, angle radius = 0.5cm] {angle=B--A--C};
+					\draw pic[draw, angle radius = 0.5cm] {angle=C--B--A};
 				}
 			}
 		}
@@ -61,7 +52,6 @@
 
 \env{frame}
 {
-	\frametitle{Hornaföll}
 	\env{columns}
 	{
 		\env{column}
@@ -91,9 +81,6 @@
 					\node at (3.4, 0.4) {$c$};
 					\coordinate (C) at (2, 3) {};
 					\node at (2, 2.2) {$a$};
-					%\tkzMarkAngle[label=$b$, size = 0.8](B,A,C)
-					%\tkzMarkAngle[label=$c$, size = 0.8](C,B,A)
-					%\tkzMarkAngle[label=$a$, size = 0.8](A,C,B)
 
 					\draw (A) -- node[below] {$A$} (B);
 					\draw (B) -- node[above] {$B$} (C);
@@ -110,16 +97,19 @@
 \env{frame}
 {
 	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
-	Þér er gefið heiltölu $n$ og rauntölu $r$. Þú teiknar hring á blað með geilsa $r$.
-	Þú vilt teikna $n$ jafn stóra hringi í kringum hringinn þinn þannig að þeir skeri
-	hringinn þinn og aðlæga hringi í nákvæmlega einum punkti.
-	Hver þarf geilsi ytri hringjanna að vera.\\
-	https://codeforces.com/problemset/problem/1100/C
+	\env{itemize}
+	{
+		\item<1-> Þér eru gefnar heiltölu $n$ og rauntölu $r$.
+		\item<2-> Þú teiknar hring á blað með geilsa $r$.
+		\item<3-> Síðan vilt þú teikna $n$ jafn stóra hringi í kringum hringinn þinn þannig að þeir skeri hringinn þinn og aðlæga hringi
+					í nákvæmlega einum punkti.
+		\item<4-> Hver þarf geilsi ytri hringjanna að vera?
+		\item<5-> https://codeforces.com/problemset/problem/1100/C
+	}
 }
 
 \env{frame}
 {
-	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
 	Ef $n = 6$ fæst eftirfarandi mynd, þar sem $R$ er svarið.
 	\center
 	\env{tikzpicture}
@@ -154,8 +144,7 @@
 
 \env{frame}
 {
-	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
-	Sjáum að fjarlægðin frá miðjum myndarinnar að miðju ytri hringjanna er
+	Sjáum að fjarlægðin frá miðju myndarinnar að miðju ytri hringjanna er
 	$r + R$. Við fáum því eftirfarandi jafnarma þríhyrning.
 	\center
 	\env{tikzpicture}
@@ -191,12 +180,9 @@
 
 \env{frame}
 {
-	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
 	\env{itemize}
 	{
-	\item<1-> Hornið $\theta$ af síðustu glæru er það eina (ásamt $R$, að sjálfsögðu)
-		háð $n$ á myndinni, svo almennt þurfum við að finna $R$ út frá eftirfarandi mynd.\\
-	\item<2-> Nú er 
+	\item<1-> Nú er 
 		$\theta = \dfrac{360^{\circ}}{n}$
 		og
 		$\omega = \dfrac{180^{\circ} - \theta}{2}$.
@@ -234,15 +220,16 @@
 
 \env{frame}
 {
-	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
 	\env{itemize}
 	{
-	\item<1-> Sínus reglan gefur okkur svo að
-	\begin{align*}
-		\frac{2R}{\sin \theta} = \frac{r + R}{\sin \omega}
-		& \Rightarrow 2R\sin\omega - R\sin\theta = r\sin\theta \\
-		& \Rightarrow R = \frac{r\sin\theta}{2\sin\omega - \sin\theta}.
-	\end{align*}
+		\item<1-> Sínus reglan gefur okkur loks að
+		\env{align*}
+		{
+			\frac{2R}{\sin \theta} = \frac{r + R}{\sin \omega}
+				& \Rightarrow 2R\sin\omega = r\sin\theta + R\sin\theta\\
+				& \Rightarrow 2R\sin\omega - R\sin\theta = r\sin\theta \\
+				& \Rightarrow R = \frac{r\sin\theta}{2\sin\omega - \sin\theta}.
+		}
 	}
 	\center
 	\env{tikzpicture}
@@ -281,22 +268,22 @@
 	\env{itemize}
 	{
 		\item<1-> Skilgreinum mengið $\mathbb{C} := \mathbb{R} \times \mathbb{R}$.
-		\item<2-> Skilgreinum svo samlagningu á $\mathbb{C}$ þannig að fyrir $(a, b), (c, d) \in \mathbb{C}$ þá
+		\item<2-> Skilgreinum svo samlagningu á $\mathbb{C}$ þannig að fyrir $(a, b), (c, d) \in \mathbb{C}$ þá er
 			\[
 				(a, b) + (c, d) = (a + c, b + d).
 			\]
-		\item<3-> Skilgreinum svo margföldun á $\mathbb{C}$ þannig að fyrir $(a, b), (c, d) \in \mathbb{C}$ þá
+		\item<3-> Skilgreinum svo margföldun á $\mathbb{C}$ þannig að fyrir $(a, b), (c, d) \in \mathbb{C}$ þá er
 			\[
 				(a, b) \cdot (c, d) = (ac - bd, ad + bc).
 			\]
 		\item<4-> Við táknum iðulega $(0, 1) \in \mathbb{C}$ með $i$ og $(x, y) \in \mathbb{C}$ með $x + yi$.
-		\item<5-> Stök $\mathbb{C}$ kallast \emph{tvinntölur}.
+		\item<5-> Takið eftir að $(x, y) = (x, 0) + i \cdot (y, 0)$.
+		\item<6-> Tölurnar í $\mathbb{C}$ köllum við \emph{tvinntölur}.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Tvinntölur}
 	\env{itemize}
 	{
 		\item<1-> Ef $z = x + yi \in \mathbb{C}$ þá...
@@ -313,36 +300,30 @@
 
 \env{frame}
 {
-	\frametitle{Kostir tvinntalna í rúmfræði}
 	\env{itemize}
 	{
-		\item<1-> Látum nú $x, y \in \mathbb{C}$.
-		\item<2-> Þá er rúmfræðileg túlkun $x + y$ einfaldlega hliðrun á $x$ um $y$ (eða öfugt).
-		\item<3-> Einnig, ef $|y| = 1$ þá er rúmfræðileg túlkun $x \cdot y$ snúningur á $x$ um $(0, 0)$ um $\text{Arg } y$ gráður.
-		\item<4-> Ef $|x| = r$ og $\text{Arg } x = \theta$ þá skrifum við oft $x = re^{i\theta}$.
-		\item<5-> Ef $x = r_1e^{i\theta_1}$ og $y = r_2e^{i\theta_2}$ þá er $x \cdot y = r_1r_2e^{i(\theta_1 + \theta_2)}$.
+		\item<1-> Látum nú $z, w \in \mathbb{C}$.
+		\item<2-> Þá er rúmfræðileg túlkun $z + w$ einfaldlega hliðrun á $z$ um $w$ (eða öfugt).
+		\item<3-> Einnig, ef $|w| = 1$ þá er rúmfræðileg túlkun $z \cdot w$ snúningur á $z$ í kringum $(0, 0)$ um $\text{Arg } w$ gráður.
+		\item<4-> Ef $|z| = r$ og $\text{Arg } z = \theta$ þá skrifum við oft $z = re^{i\theta}$.
+		\item<5-> Ef $z = r_1e^{i\theta_1}$ og $w = r_2e^{i\theta_2}$ þá er $z \cdot w = r_1r_2e^{i(\theta_1 + \theta_2)}$.
 		\item<6-> Þetta eru dæmi um hvernig við getum stytt okkur leiðir í rúmfræði með því að nota tvinntölur.
 		\item<7-> Fleiri (minna augljós) dæmi koma á eftir.
 	}
 }
 
-\section[Rúmfræði í bitum]{Rúmfræði í bitum}
-
 \env{frame}
 {
-	\frametitle{Inngangur}
+	\frametitle{Rúmfræði í forritun}
 	\env{itemize}
 	{
 		\item<1-> Við munum bara fjalla um tvívíða rúmfræði í þessum fyrirlestri.
 		\item<2-> Þegar leysa þarf þrívíð rúmfræði dæmi er oft góð hugmynd að byrja
 			á að leysa dæmin í tveimur víddum (ef unnt er) og reyna svo að yfirfæra
-			tvívíðu lausnina í þriðju víddina.
-		\item<3-> Hingað til í námskeiðinu höfum við að mestu fengist við heiltölur
+			tvívíðu lausnina í þriðju víddina.  \item<3-> Hingað til í námskeiðinu höfum við að mestu fengist við heiltölur
 			og stöku sinnum þurft að vinna með fleytitölur.
-		\item<4-> Í rúmfræði er þetta þó öfugt, við vinnum aðallega með fleytitölur og
-			stöku sinnum heiltölur.
-		\item<5-> Þegar við notum fleytitölur er mikilvægt að passa að samanburðir er
-			ekki fullkomnir.
+		\item<4-> Í rúmfræði er þetta þó öfugt, við vinnum aðallega með fleytitölur og stöku sinnum heiltölur.
+		\item<5-> Þegar við notum fleytitölur er mikilvægt að passa að samanburðir er ekki fullkomnir.
 		\item<6-> Við látum því duga að tvær tölur sé \emph{nógu} líkar, í vissum skilningi, til að þær séu jafnar.
 	}
 }
@@ -350,7 +331,7 @@
 \env{frame}
 {
 	\frametitle{Fleytitölu samanburðir}
-	\code{code/comp.h}
+	\selectcode{code/comp.c}{3}{13}
 }
 
 \env{frame}
@@ -358,43 +339,35 @@
 	\frametitle{Punktar}
 	\env{itemize}
 	{
-		\item<1-> Það eru tvær algengar leiðir til að útfæra punkta í plani.
-		\item<2-> Augljósari aðferðin er að skilgreina gagnagrind (\texttt{struct}) sem geymir
-			tvær fleytitölur.
-		\item<3-> Hin aðferðin er að nota innbyggða (í flestum málum) tvinntölu gagnatagið.
-		\item<4-> Þó þessi aðgerð gæti verið nokkuð heimulleg þá er hún þægileg og fljótleg í útfærslu.
+		\item<1-> Þegar kemur að því að geyma punkta í forritun munum við notast við tvinntölur.
+		\item<2-> Þó þessi aðgerð gæti verið nokkuð heimulleg þá er hún þægileg og fljótleg í útfærslu.
+		\item<3-> Hennar helsti kostur er að grunnaðgerðir á tvinntölum eru útfærðar í mörgum forritunarmálum.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Notkun á \texttt{complex} úr \texttt{C++} í rúmfræði}
+	\frametitle{Notkun á \texttt{complex.h} úr \texttt{C} í rúmfræði}
 	\env{itemize}
 	{
-		\item<1-> Fallið \texttt{real(p)} skilar ofanvarpi $p$ á $x$-ás.
-		\item<2-> Fallið \texttt{imag(p)} skilar ofanvarpi $p$ á $y$-ás.
-		\item<3-> Fallið \texttt{abs(p)} skilar fjarlægð $p$ frá $(0, 0)$.
-		\item<4-> Fallið \texttt{abs(p - q)} skilar fjarlægð milli $p$ og $q$.
-		\item<5-> Fallið \texttt{arg(p)} skilar stefnuhorninu $p$.
-		\item<6-> Fallið \texttt{norm(p)} skilar sama og \texttt{abs(p)*abs(p)}.
-		\item<7-> Fallið \texttt{conj(p)} speglar $p$ um $x$-ás.
+		\item<1-> Fallið \texttt{creal(p)} skilar ofanvarpi $p$ á $x$-ás.
+		\item<2-> Fallið \texttt{cimag(p)} skilar ofanvarpi $p$ á $y$-ás.
+		\item<3-> Fallið \texttt{cabs(p)} skilar fjarlægð $p$ frá $(0, 0)$.
+		\item<4-> Fallið \texttt{cabs(p - q)} skilar fjarlægð milli $p$ og $q$.
+		\item<5-> Fallið \texttt{carg(p)} skilar stefnuhorninu $p$.
+		\item<6-> Fallið \texttt{cnorm(p)} skilar sama og \texttt{abs(p)*abs(p)}.
+		\item<7-> Fallið \texttt{cconj(p)} speglar $p$ um $x$-ás.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Punktar}
-	\code{code/point.h}
-}
-
-\env{frame}
-{
-	\frametitle{Sýnidæmi}
-	Þú byrjar í $(0, 0)$ og færð gefnar skipanir. Skipanirnar eru allar einn bókstafur og ein tala.
-	Ef skipunin er \texttt{'f' x} gengur þú áfram um $x$ metra, \texttt{'b' x} gengur þú aftur á bak
-	um $x$ metra, \texttt{'r' x} snýrð þú þér um $x$ radíana til hægri og \texttt{'l' x} snýrð þú
-	þér um $x$ radíana til vinstri. Eftir að fylgja öllum þessum skipunum, hversu langt ertu frá
-	$(0, 0)$.
+	\env{itemize}
+	{
+		\item<1-> Við notum svo \texttt{typedef double complex pt;}.
+		\item<2-> Eftir það getum við skilgreint punktar með \texttt{pt p = x + I*y;}.
+		\item<3-> Þessi punktur svarar til punktsins $(x, y)$.
+	}
 }
 
 \env{frame}
@@ -402,16 +375,32 @@
 	\frametitle{Sýnidæmi}
 	\env{itemize}
 	{
-		\item<1-> Ef við erum í $p \in \mathbb{C}$ og viljum taka $r$ metra skref í stefnu $\theta$ getum
-			við einfaldlega lagt $re^{i\theta}$ við $p$.
+		\item<1-> Þú byrjar í $(0, 0)$ og færð gefnar skipanir.
+		\item<2-> Skipanirnar eru allar einn bókstafur og ein tala.
+		\item<3-> Ef skipunin er...
+		\env{itemize}
+		{
+			\item<4-> ...\texttt{f x} gengur þú áfram um $x$ metra.
+			\item<5-> ...\texttt{b x} gengur þú aftur á bak um $x$ metra.
+			\item<6-> ...\texttt{r x} snýrð þú þér um $x$ radíana til hægri.
+			\item<7-> ...\texttt{l x} snýrð þú þér um $x$ radíana til vinstri.
+		}
+		\item<8-> Hversu langt ertu frá $(0, 0)$, eftir að hafa fylgt öllum skipunum.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ef við erum í $p \in \mathbb{C}$ og viljum taka $r$ metra skref í stefnu $\theta$ getum við einfaldlega lagt $re^{i\theta}$ við $p$.
 		\item<2-> Hvert við snúum í upphafi skiptir ekki mál því það hefur ekki áhrif á fjarlægðinni til $(0, 0)$.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Sýnidæmi}
-	\code{code/kindalogo.cpp}
+	\selectcode{code/daemi.c}{4}{25}
 }
 
 \env{frame}
@@ -426,6 +415,8 @@
 		\item<5-> Þá er einfaldara að bera saman línur en það þarf að höndla sérstaklega línur samsíða $y$-ás.
 	}
 }
+
+\iffalse
 
 \env{frame}
 {
@@ -450,7 +441,6 @@
 
 \env{frame}
 {
-	\frametitle{Skurðpunktur lína}
 		\[
 			\left (
 			\begin{array}{c c}
@@ -556,7 +546,7 @@
 		\]
 }
 
-\section{Fjarlægð línustrika}
+\fi
 
 \env{frame}
 {
@@ -572,7 +562,6 @@
 
 \env{frame}
 {
-	\frametitle{Línustrik}
 	\env{itemize}
 	{
 		\item<1-> Við munum útfæra:
@@ -592,7 +581,7 @@
 	\env{itemize}
 	{
 		\item<1-> Þegar við viljum skoða skurð tveggja bila nægir okkur að skoða hvort annar endapunktur bils er í hinu bilinu.
-		\item<2->[] \selectcode{code/segmentdistance.c}{9}{14}
+		\item<2->[] \selectcode{code/fjarlaegd-milli-linustrika.c}{9}{14}
 	}
 }
 
@@ -601,18 +590,15 @@
 	\frametitle{Skurður tveggja línustrika}
 	\env{itemize}
 	{
-		\item<1-> Þessi glæra gæti verið nokkuð dularfull en hún mun verða skýrari seinna í þessum fyrirlestri.
-		\item<2-> Við munum skoða áttunina á þríhyrningunum sem við getum myndað með endapunktum línustrikanna.
-		\item<3-> Látum $a, b, c, d$ vera endapunkta línustrikanna.
-		\item<4-> Ef þríhyningurinn stikaður með $\langle a, b, c, a \rangle$ hefur öfuga áttun miðað við $\langle a, b, d, a \rangle$ þá liggja
-			punktarnir $c$ og $d$ sitthvoru megin við línustrikið $\langle a, b \rangle$.
-		\item<5-> Við þurfum líka að ganga úr skugga um ferhyrningarnir sem endapunktarnir mynda skerast.
+		\item<1-> Látum $a, b, c, d$ vera endapunkta línustrikanna.
+		\item<2-> Við viljum vita hvort punktarnir $c$ og $d$ séu sinn hvoru megin við línuna $\langle a, b \rangle$.
+		\item<3-> Við getum gert þetta með því að skoða í hvora áttina við beygjum ef göngum frá $a$ til $b$ og svo til $c$,
+					og síðan frá $a$ til $b$ og svo til $d$.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Skurður tveggja línustrika}
 	\env{itemize}
 	{
 		\item<1-> Það eru leiðinleg sértilfelli þegar þrír af endapunktunum liggja á sömu línunni.
@@ -624,8 +610,7 @@
 
 \env{frame}
 {
-	\frametitle{Skurður tveggja línustrika}
-	\selectcode{code/segmentdistance.c}{16}{32}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{16}{32}
 }
 
 \env{frame}
@@ -633,67 +618,17 @@
 	\frametitle{Fjarlægð punkts og línustriks}
 	\env{itemize}
 	{
-		\item<1-> Hér hefst fjörið. 
-		\item<2-> Látum línustrikið vera $\langle (x_0, y_0), (x_1, y_1) \rangle$ og punktinn $(x, y)$.
-		\item<3-> Við getum þá stikað línustrikið með $l(t) = (x_0 + t\cdot(x_1 - x_0), y_0 + t\cdot(y_1 - y_0)), t \in [0, 1].$
-		\item<4-> Látum $d$ tákna Evklíðsku firðina. Við munum nú lágmarka $d^2$ til að auðvelda deildunina.
+		\item<1-> Til að finna fjarlægð frá punkti að línustriki getum við nýtt okkur að fjarlægðin breytist ekki ef við hliðrum og snúum punktunum.
+		\item<2-> Við byrjum því á að hliðra þannig að annar endapunktur línustriksins verði $(0, 0)$.
+		\item<3-> Við getum svo snúið um $(0, 0)$ þannig að línustrikið verði samsíða $x$-ásnum.
+		\item<4-> Ef punkturinn liggur nú beint fyrir ofan eða neðan línustrikið þá er $y$-hnit punktsins (án formerkis) fjarlægðin frá línustrikinu.
+		\item<5-> Annars þurfum við að skoða hvor endapunktur línustriksins er nær punktinum.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Fjarlægð punkts og línustriks}
-	\env{itemize}
-	{
-		\item<1-> Látum $f(t) = d(l(t), (x, y))^2$.
-		\item<2-> Við fáum enn fremur að
-		\env{align*}
-		{
-			f(t)
-			=& (x_0 + t\cdot(x_1 - x_0) - x)^2 + (y_0 + t\cdot(y_1 - y_0) - y)^2\\
-			=& x_0^2 + t^2(x_1 - x_0)^2 + x^2 + 2x_0t(x_1 - x_0) - 2xx_0\\
-			-& 2tx(x_1 - x_0) + y_0^2 + t^2(y_1 - y_0)^2 + y^2 + 2y_0t(y_1 - y_0)\\
-			-& 2yy_0 - 2ty(y_1 - y_0).
-		}
-		\item<3-> Deildum nú $f$ og fáum 
-		\env{align*}
-		{
-			f'(t)
-			=& 2t(x_1 - x_0)^2 + 2x_0(x_1 - x_0) - 2x(x_1 - x_0)\\
-			+& 2t(y_1 - y_0)^2 + 2y_0(y_1 - y_0) - 2y(y_1 - y_0).
-		}
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Fjarlægð punkts og línustriks}
-	\env{itemize}
-	{
-		\item<1-> Metum nú í $0$ óg fáum
-		\env{align*}
-		{
-			& f'(t_0) = 0\\
-			\Rightarrow & t_0(x_1 - x_0)^2 + x_0(x_1 - x_0) - x(x_1 - x_0)\\
-			+& t_0(y_1 - y_0)^2 + y_0(y_1 - y_0) - y(y_1 - y_0) = 0\\
-			\Rightarrow & t_0 = \frac{x(x_1 - x_0) + y(y_1 - y_0) - x_0(x_1 - x_0) - y_0(y_1 - y_0)}{(y_1 - y_0)^2 + (x_1 - x_0)^2}\\
-			\Rightarrow & t_0 = \frac{(x - x_0)(x_1 - x_0) + (y - y_0)(y_1 - y_0)}{(y_1 - y_0)^2 + (x_1 - x_0)^2}.\\
-		}
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Fjarlægð punkts og línustriks}
-	\env{itemize}
-	{
-		\item<1-> Við erum nú búin að finna þann punkt á línunni gegnum $(x_0, y_0)$ og $(x_1, y_1)$ sem er
-			næstur $(x, y)$. 
-		\item<2-> Þar sem línustrikið er stikað af $t$ þegar $t \in [0, 1]$ þá er þessi punktur
-			á línustrikinu ef $t_0 \in [0, 1]$.
-		\item<3-> Ef svo er ekki nægir okkur að skoða fjarlægð $(x, y)$ til endapunktana $(x_0, y_0)$ og $(x_1, y_1)$.
-		\item<4->[] \selectcode{code/segmentdistance.c}{34}{41}
-	}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{34}{40}
 }
 
 \env{frame}
@@ -705,16 +640,18 @@
 		\item<2-> Ef þau skerast þá er fjarlægðin á milli þeirra $0$.
 		\item<3-> Gerum því ráð fyrir að þau skerist ekki.
 		\item<4-> Þá er bersýnilega fjarlægð línustrikana minnst á milli 
-			$a$ og $\langle c, d \rangle$, 
-			$b$ og $\langle c, d \rangle$, 
-			$c$ og $\langle a, b \rangle$ eða 
-			$d$ og $\langle a, b \rangle$.
+		\env{itemize}
+		{
+			\item<5-> $a$ og $\langle c, d \rangle$, 
+			\item<6-> $b$ og $\langle c, d \rangle$, 
+			\item<7-> $c$ og $\langle a, b \rangle$ eða 
+			\item<8-> $d$ og $\langle a, b \rangle$.
+		}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Fjarlægð milli tveggja línustrika}
 	\env{itemize}
 	{
 		\item<1-> Ég hef ekki minnst á það hingað til, en við höfum gert ráð fyrir að endapunktar 
@@ -727,11 +664,8 @@
 
 \env{frame}
 {
-	\frametitle{Fjarlægð milli tveggja línustrika}
-	\selectcode{code/segmentdistance.c}{43}{52}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{42}{51}
 }
-
-\section{Marghyrningar}
 
 \env{frame}
 {
@@ -739,10 +673,10 @@
 	\env{itemize}
 	{
 		\item<1-> \emph{Marghyrningur} er samfelldur, lokaður ferill í plani 
-			sem samanstendur af beinum línustrikum.
+			sem samanstendur af endanlega mörgum beinum línustrikum.
 		\item<2-> Ef ferillinn er einfaldur þá kallast marghyrningurinn \emph{einfaldur}.
-		\item<3-> Marghyrningur eru sagður vera \emph{kúptur} ef sérhver beina lína, sem er ekki samsíða hlið marghyrningsins,
-			dregin gegnum marghyrninginn sker mest tvo punkta á marghyrningnum.
+		\item<3-> Marghyrningur eru sagður vera \emph{kúptur} ef sérhver beina lína, sem liggur ekki ofan á hlið marghyrningsins,
+			sker mest tvo punkta á marghyrningnum.
 	}
 	\scalebox{0.6}
 	{
@@ -799,14 +733,7 @@
 			}
 		\item<3-> Til þæginda geymum við oft einn punkt tvisvar, nánar tiltekið er fremsti og aftasti punkturinn eins.
 		\item<4-> Þetta er því við höfum oft meira áhuga á línustrikunum milli hornpuntkanna heldur en hornpunktunum sjálfum.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Þar sem marghyrningar er mjög vinsælir í keppnum munum við fara í nokkur atriði sem er gott að kunna.
+		\item<5-> Þar sem marghyrningar er mjög vinsælir í keppnum munum við fara í nokkur atriði sem er gott að kunna.
 	}
 }
 
@@ -817,7 +744,7 @@
 	{
 		\item<1-> Ummála marghyrnings er einfalt að reikna í línulegum tíma.
 		\item<2-> Maður leggur einfaldlega saman allar hliðarlengdirnar.
-		\item<3->[] \code{code/ummal.h}
+		\item<3->[] \selectcode{code/flatarmal-og-ummal.c}{20}{26}
 	}
 }
 
@@ -830,18 +757,12 @@
 		\item<2-> Það er einnig auðvelt að reikna flatarmálið í línulegum tíma, þó það sé ekki
 			endilega augljóst að þetta skili flatarmálinu.
 		\item<3-> Fyrir áhugasama er hægt að nota setningu Green til að leiða út eftirfarandi forritsbút.
+		\item<4->[] \selectcode{code/flatarmal-og-ummal.c}{11}{18}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Flatarmál marghyrnings}
-	\code{code/flatarmal.h}
-}
-
-\env{frame}
-{
-	\frametitle{Flatarmál marghyrnings}
 	\env{itemize}
 	{
 		\item<1-> Við þurfum að skila tölugildinu því við getum fengið neikvætt flatarmál.
@@ -859,10 +780,9 @@
 	\frametitle{Punktur í marghyrning}
 	\env{itemize}
 	{
-		\item<1-> Að ákvarða hvort punktur sé inni í marghyrning (e. the point in polygon problem) er algent undirvandamál
-			í rúmfræði dæmum.
-		\item<2-> Aðallega er gengist við tvær aðferðir til að leysa slík dæmi, sú fyrri er að nota geislarakningu 
-			(e. raytracing) og hin er að reikna summu aðliggjandi horna marghyrningsins miðað við punktinn.
+		\item<1-> Að ákvarða hvort punktur sé inni í marghyrning er algent undirvandamál í rúmfræði dæmum.
+		\item<2-> Aðallega er gengist við tvær aðferðir til að leysa slík dæmi, sú fyrri er að nota \emph{geislarakningu}
+			(e. \emph{raytracing}) og hin er að reikna summu aðliggjandi horna marghyrningsins miðað við punktinn.
 	}
 }
 
@@ -878,13 +798,12 @@
 			á því hvenær geislinn \emph{sker} marghyrninginn).
 		\item<3-> Svo ef við skerum jaðarinn slétt tölu sinnum er punkturinn fyrir innan, og annars fyrir utan (Setning Jordan).
 		\item<4-> Við getum látið geislann vera línustrik, nógu langt til að vera út fyrir marghyrninginn, og
-			notað síðan \texttt{lxl} til að ákvarða í línulegum tíma hversu oft geislinn sker marghyrninginn.
+			notað síðan \texttt{lxl(...)} til að ákvarða í $\mathcal{O}($\onslide<5->{$\,n\,$}$)$ hversu oft geislinn sker marghyrninginn.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Geislarakning}
 	\center
 	\scalebox{1.0}
 	{
@@ -898,7 +817,6 @@
 			\coordinate (F) at (6,1) {};
 			\coordinate (G) at (7,0) {};
 			\coordinate (H) at (6,-1) {};
-			\draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- (H) -- (A);
 
 			\coordinate (P1) at (0,-0.5) {};
 			\coordinate (P2) at (0,0) {};
@@ -906,19 +824,22 @@
 			\coordinate (Q1) at (10,-0.5) {};
 			\coordinate (Q2) at (10,0) {};
 			\coordinate (Q3) at (10,0.5) {};
-			\draw[dashed] (P1) -- (Q1);
-			\draw[dashed] (P2) -- (Q2);
-			\draw[dashed] (P3) -- (Q3);
+			\draw[dashed, white] (P3) -- (Q3);
+			\draw[dashed, white] (P2) -- (Q2);
+			\draw[dashed, white] (P3) -- (Q3);
+			\draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- (H) -- (A);
 			\filldraw (P1) circle (0.05);
 			\filldraw (P2) circle (0.05);
 			\filldraw (P3) circle (0.05);
+			\only<all:2-> { \draw[dashed] (P1) -- (Q1); }
+			\only<all:3-> { \draw[dashed] (P2) -- (Q2); }
+			\only<all:4-> { \draw[dashed] (P3) -- (Q3); }
 		}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Geislarakning}
 	\env{itemize}
 	{
 		\item<1-> Þessi aðferð er með nokkur sértilfelli sem gerir hana óþægilega í útfærslu.
@@ -934,7 +855,7 @@
 	\frametitle{Afstæð hornasumma}
 	\env{itemize}
 	{
-		\item<1-> Látum $p_i$, $i < n$ tákna hornpunkta marghyrnings, $q$ einhvern punkt, $\alpha(a, b, c)$ vera
+		\item<1-> Látum $p_i$, $i < n$, tákna hornpunkta marghyrnings, $q$ einhvern punkt, $\alpha(a, b, c)$ vera
 			hornið milli $a$, $b$ og $c$ og $\beta(a, b, c)$ vera $1$ ef brotna línustrikið
 			$\langle a, b, c \rangle$ ,,beygir'' til vinstri en $-1$ annars.
 		\item<2-> \emph{Afstæð hornsumma marghyrnings með tilliti til punkts $q$} er
@@ -950,7 +871,6 @@
 			\coordinate (B) at (0,0) {};
 			\coordinate (C) at (3,0) {};
 			\draw (A) -- (B) -- (C);
-			%\tkzMarkAngle[label=$\alpha$, size = 0.8](C,B,A)
 			\draw pic[draw, angle radius = 0.5cm] {angle=C--B--A};
 
 			\node at (0.7, 3) {$a$};
@@ -966,7 +886,6 @@
 
 \env{frame}
 {
-	\frametitle{Afstæð hornasumma}
 	\scalebox{1.0}
 	{
 		\env{tikzpicture}
@@ -987,7 +906,7 @@
 			\filldraw (P1) circle (0.05);
 			\filldraw (P2) circle (0.05);
 			\filldraw (P3) circle (0.05);
-			\only<1>
+			\only<all:1>
 			{
 				\draw[dashed] (P1) -- (A);
 				\draw[dashed] (P1) -- (B);
@@ -998,7 +917,7 @@
 				\draw[dashed] (P1) -- (G);
 				\draw[dashed] (P1) -- (H);
 			}
-			\only<2>
+			\only<all:2>
 			{
 				\draw[dashed] (P2) -- (A);
 				\draw[dashed] (P2) -- (B);
@@ -1009,7 +928,7 @@
 				\draw[dashed] (P2) -- (G);
 				\draw[dashed] (P2) -- (H);
 			}
-			\only<3>
+			\only<all:3>
 			{
 				\draw[dashed] (P3) -- (A);
 				\draw[dashed] (P3) -- (B);
@@ -1026,8 +945,7 @@
 
 \env{frame}
 {
-	\frametitle{Afstæð hornasumma}
-	\selectcode{code/pointinpolygon.c}{11}{30}
+	\selectcode{code/punktur-i-marghyrningi.c}{11}{30}
 }
 
 \env{frame}
@@ -1037,12 +955,12 @@
 	{
 		\item<1-> \emph{Kúptur hjúpur punktasafns} er minnsti kúpti marghyrningur sem
 			inniheldur all punkta punktasafnsins.
-		\item<2-> Maður getur ímyndað sér að maður taki teygju og strekki hana yfir punkta safnið og
+			\item<2-> Maður getur ímyndað sér að maður taki teygju og strekki hana yfir punkta safnið og
 			sleppi henni svo.
-		\item<3-> Við munum nota aðferð sem kallast \emph{Graham's scan} til að finna kúpta hjúp punktasafns.
+			\item<3-> Við munum nota aðferð sem kallast \emph{Graham's scan} til að finna kúpta hjúp punktasafns.
 	}
 	\center
-	\scalebox{0.3}
+		\scalebox{0.3}
 	{
 		\env{tikzpicture}
 		{
@@ -1050,15 +968,15 @@
 			\coordinate (B) at (-5.1,-0.6) {};
 			\coordinate (C) at (7.3,1.7) {};
 			\filldraw[white] (A) circle (0.05); % fixes the text.
-			\filldraw[white] (B) circle (0.05); % fixes the text.
-			\filldraw[white] (C) circle (0.05); % fixes the text.
+				\filldraw[white] (B) circle (0.05); % fixes the text.
+				\filldraw[white] (C) circle (0.05); % fixes the text.
 
-			\coordinate (P1) at (4.1,-0.6) {};
+				\coordinate (P1) at (4.1,-0.6) {};
 			\coordinate (P2) at (0,0) {};
 			\coordinate (P3) at (-3,-3.4) {};
 			\coordinate (P4) at (-2,-4) {};
 			\coordinate (P5) at (-1,-2) {};
-			\only<4->
+			\only<all:4->
 			{
 				\filldraw (P1) circle (0.05);
 				\filldraw (P2) circle (0.05);
@@ -1069,7 +987,7 @@
 				\filldraw (B) circle (0.05);
 				\filldraw (C) circle (0.05);
 			}	
-			\only<5->
+			\only<all:5->
 			{
 				\draw[dashed] (A) -- (B) -- (C) -- (A);
 			}
@@ -1082,20 +1000,18 @@
 	\frametitle{Graham's Scan}
 	\env{itemize}
 	{
-		\small
-			\item<1-> Við byrjum á að velja vendipunkt, yfirleitt látinn vera punkturinn neðst til vinstri.
-			\item<2-> Við látum hann fremst í safnið og röðum svo restin miðið við hornið sem þeir mynda við vendipunktinn.
-			\item<3-> Við gefum okkur svo hlaða og látum aftasta, fremsta og næst fremsta punktinn á hlaðann.
-			\item<4-> Við göngum síðan í gegnum raðaða punkta safnið okkur og fyrir hvert stak fjarlægjum við ofan af hlaðanum
+		\item<1-> Við byrjum á að velja vendipunkt, yfirleitt látinn vera punkturinn neðst til vinstri.
+		\item<2-> Við látum hann fremst í safnið og röðum svo restin miðið við hornið sem þeir mynda við vendipunktinn.
+		\item<3-> Við gefum okkur svo hlaða og látum aftasta, fremsta og næst fremsta punktinn á hlaðann.
+		\item<4-> Við göngum síðan í gegnum raðaða punkta safnið okkur og fyrir hvert stak fjarlægjum við ofan af hlaðanum
 			á meðan efstu tvö stökin á hlaðanum og stakið sem við erum á í listanum mynda hægri beygju. Þegar þau mynda
 			vinstri beygju bætum við stakinu úr safninu á hlaðan.
-			\item<5-> Þegar við erum búin að fara í gegnum allt safnið er hlaðinn kúpti hjúpurinn.
+		\item<5-> Þegar við erum búin að fara í gegnum allt safnið er hlaðinn kúpti hjúpurinn.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Kútpur hjúpur punktasafns}
 	\center
 		\scalebox{0.5}
 	{
@@ -1137,11 +1053,11 @@
 			\node[white] at (-2,4.3)  {$9$};
 			\node[white] at (-4,5.3)  {$10$};
 			\node[white] at (-6,2.3)  {$11$};
-			\only<2->
+			\only<all:2->
 			{
 				\node at (0,0.3)   {$0$};
 			}
-			\only<3->
+			\only<all:3->
 			{
 				\node at (10,1.3)  {$1$};
 				\node at (3,2.3)   {$2$};
@@ -1155,88 +1071,52 @@
 				\node at (-4,5.3)  {$10$};
 				\node at (-6,2.3)  {$11$};
 			}
-			\only<4-> { \draw (P11) -- (P0) -- (P1); }
-			\only<5> { \draw[dashed](P1) -- (P2); }
-			\only<6-7> { \draw(P1) -- (P2); }
-			\only<7> { \draw[dashed](P2) -- (P3); }
-			\only<8> { \draw[dashed](P1) -- (P3); }
-			\only<9-10> { \draw(P1) -- (P3); }
-			\only<10> { \draw[dashed](P3) -- (P4); }
-			\only<11> { \draw[dashed](P1) -- (P4); }
-			\only<12-> { \draw(P1) -- (P4); }
-			\only<13> { \draw[dashed](P4) -- (P5); }
-			\only<14-15> { \draw(P4) -- (P5); }
-			\only<15> { \draw[dashed](P5) -- (P6); }
-			\only<16> { \draw[dashed](P4) -- (P6); }
-			\only<17-> { \draw(P4) -- (P6); }
-			\only<18> { \draw[dashed](P6) -- (P7); }
-			\only<19-> { \draw(P6) -- (P7); }
-			\only<20> { \draw[dashed](P7) -- (P8); }
-			\only<21-25> { \draw(P7) -- (P8); }
-			\only<22> { \draw[dashed](P8) -- (P9); }
-			\only<23-24> { \draw(P8) -- (P9); }
-			\only<24> { \draw[dashed](P9) -- (P10); }
-			\only<25> { \draw[dashed](P8) -- (P10); }
-			\only<26> { \draw[dashed](P7) -- (P10); }
-			\only<27-28> { \draw(P7) -- (P10); }
-			\only<28> { \draw[dashed](P10) -- (P11); }
-			\only<29> { \draw[dashed](P7) -- (P11); }
-			\only<30-> { \draw(P7) -- (P11); }
+			\only<all:4-> { \draw (P11) -- (P0) -- (P1); }
+			\only<all:5> { \draw[dashed](P1) -- (P2); }
+			\only<all:6-7> { \draw(P1) -- (P2); }
+			\only<all:7> { \draw[dashed](P2) -- (P3); }
+			\only<all:8> { \draw[dashed](P1) -- (P3); }
+			\only<all:9-10> { \draw(P1) -- (P3); }
+			\only<all:10> { \draw[dashed](P3) -- (P4); }
+			\only<all:11> { \draw[dashed](P1) -- (P4); }
+			\only<all:12-> { \draw(P1) -- (P4); }
+			\only<all:13> { \draw[dashed](P4) -- (P5); }
+			\only<all:14-15> { \draw(P4) -- (P5); }
+			\only<all:15> { \draw[dashed](P5) -- (P6); }
+			\only<all:16> { \draw[dashed](P4) -- (P6); }
+			\only<all:17-> { \draw(P4) -- (P6); }
+			\only<all:18> { \draw[dashed](P6) -- (P7); }
+			\only<all:19-> { \draw(P6) -- (P7); }
+			\only<all:20> { \draw[dashed](P7) -- (P8); }
+			\only<all:21-25> { \draw(P7) -- (P8); }
+			\only<all:22> { \draw[dashed](P8) -- (P9); }
+			\only<all:23-24> { \draw(P8) -- (P9); }
+			\only<all:24> { \draw[dashed](P9) -- (P10); }
+			\only<all:25> { \draw[dashed](P8) -- (P10); }
+			\only<all:26> { \draw[dashed](P7) -- (P10); }
+			\only<all:27-28> { \draw(P7) -- (P10); }
+			\only<all:28> { \draw[dashed](P10) -- (P11); }
+			\only<all:29> { \draw[dashed](P7) -- (P11); }
+			\only<all:30-> { \draw(P7) -- (P11); }
 		}
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Graham's Scan}
 	\env{itemize}
 	{
 		\item<1-> Það er ljóst að í lok reikniritsins lýsir hlaðinn kúptum marghyrningi.
 		\item<2-> Það er þó aðeins meira mál að sýna að þetta sé í raun kúpti hjúpur punktasafnsins.
 		\item<3-> Við látum það ógert í þessum fyrirlestri.
-		\item<4-> Ef punktasafnið inniheldur $n$ punkta þá er reikniritið $\mathcal{O}(n \log n)$ út af því við þurfum að 
-			raða punktunum. Eftir röðun er reikniritið $\mathcal{O}(n)$ því hver punktur fer inn á hlaðan einu sinni.
+		\item<4-> Ef punktasafnið inniheldur $n$ punkta þá er reikniritið $\mathcal{O}($\onslide<5->{$n \log n$}$)$ út af því við þurfum að 
+			raða punktunum.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Graham's Scan}
-	\selectcode{code/convexhull.c}{17}{47}
-}
-
-\env{frame}
-{
-	\frametitle{Snúa og hliðra}
-	\env{itemize}
-	{
-		\item<1-> Við getum oft nýtt okkur óbreytur í dæmum til að einfalda útrekininga.
-		\item<2-> Augljósasta dæmið um slíkar óbreytur er að fjarlægð milli tveggja punkta breytist ekki við hliðrun eða snúning.
-		\item<3-> Við getum nýtt okkur þetta til að finna fjarlægð frá punkti í línu, með
-		\item<4->[] \code{code/p2l-alt.h}
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Snúa og hliðra}
-	\env{itemize}
-	{
-		\item<1->[] \code{code/p2l-alt.h}
-		\item<2-> Það sem við gerum er að hliðra öllu þannig að línan skeri $(0, 0)$ og snúum svo þannig að línan sé $x$-ásinn.
-		\item<3-> Fjarlægð punkts frá $x$-ásnum er einfaldlega $y$-hnit punktsins.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Snúa og hliðra}
-	\env{itemize}
-	{
-		\item<1-> Þegar maður venst þessu er þetta mjög þægileg leið til að forrita. 
-		\item<2-> {\bf Gáta:} Hvað gerir, til dæmis, eftirfarandi bútur?
-		\item<3->[] \code{code/gata.h}
-	}
+	\selectcode{code/kuptur-hjupur.c}{17}{47}
 }
 
 \env{frame}

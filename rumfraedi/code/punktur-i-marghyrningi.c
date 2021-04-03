@@ -9,13 +9,13 @@ int get_int();
 typedef double complex pt;
 
 double angle(pt a, pt o, pt b)
-{ // alpha i glaerunum.
+{ // Fallid alpha(a, b, c) i glaerunum.
 	double r = fabs(carg(a - o) - carg(b - o));
 	return r < M_PI ? r : 2*M_PI - r;
 }
 
 int ccw(pt a, pt b, pt c)
-{ // beta i glaerunum.
+{ // Fallid beta(a, b, c) i glaerunum.
 	if (cabs(a - b) < EPS || fabs(cimag((c - a)/(b - a))) < EPS)
 		return 0;
 	return cimag((c - a)/(b - a)) > 0.0 ? 1 : -1;

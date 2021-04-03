@@ -26,7 +26,7 @@ void matpow(ll* a, ll p, ll n)
 }
 
 int main()
-{ // reiknar |n|-ta Fibonacci toluna.
+{
 	ll i, j, n, r = 0, a[8][8] =
 	{
 		{1, 1, 1, 0, 1, 1, 0, 0},
