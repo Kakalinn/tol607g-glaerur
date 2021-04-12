@@ -1,0 +1,3080 @@
+\title{Samansóp}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Lokakeppnin}
+	\env{itemize}
+	{
+		\item<1-> Í næstu viku verður lokakeppnin, og þar með síðasti tíminn í þessu námskeiði.
+		\item<2-> Mér lýst best á að hafa keppnina í miðvikudagstímanum okkur.
+		\item<3-> Við höfum þá stoðtíma í mánudagstímanum.
+		\item<4-> Í keppninni verða fimm dæmi.
+		\item<5-> Skil fást fyrir að leysa eitt dæmi.
+		\item<6-> Ef þið leysið þrjú þeirra fáið þið aukaskil.
+	}
+}
+
+\env{frame}
+{
+}
+
+\env{frame}
+{
+	\frametitle{Strengjaleit}
+	\env{itemize}
+	{
+		\item<1-> Gefum okkur langan streng \texttt{s} og styttri streng \texttt{p}.
+		\item<2-> Hvernig getum við fundið alla hlutstrengi \texttt{s} sem eru jafnir \texttt{p}.
+		\item<3-> Fyrsta sem manni dettur í hug er að bera \texttt{p} saman við alla hlutstrengi \texttt{s} af sömu lengd og \texttt{p}.
+	}
+}
+
+\env{frame}
+{
+	\code{code/naive-strengjaleit.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að \texttt{s} sé af lengd $n$ og \texttt{p} sé af lengd $m$.
+		\item<2-> Fjöldi hlutstrengja í \texttt{s} að lengd $m$ er $n - m + 1$.
+		\item<3-> Strengja samanburðurinn tekur línulegan tíma.
+		\item<4-> Svo tímaflækja leitarinnar er $\mathcal{O}($\onslide<5->{$nm - m^2$}$)$.
+		\item<6-> Ef $m = n/2$ þá er $nm - m^2 = n^2/2 - n^2/4 = n^2/4$ tímaflækjan er í raun $\mathcal{O}($\onslide<7->{$n^2$}$)$.
+		\item<8-> Dæmi um leiðinlega strengi væri \texttt{s = ``aaaaaaaaaaaaaaaa''} og \texttt{p = ``aaaaaaab''}.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þó þessi aðferð sé ekki góð þá er hún stundum nógu góð.
+		\item<2-> Það er þó óþarfi að útfæra hana því hún fylgir með flestum forritunarmálum, til dæmis:
+		\env{itemize}
+		{
+			\item<3-> Í \text{string.h} í \texttt{C} er \texttt{strstr(..)}.
+			\item<4-> Í \text{string} í \texttt{C++} er \texttt{find(..)}.
+			\item<5-> Í \text{String} í \texttt{Java} er \texttt{indexOf(..)}.
+		}
+		\item<6-> Munið bara að ef $n > 10^4$ er þetta yfirleitt of hægt.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Reiknirit Knuth, Morrisar og Pratts (\texttt{KMP}) strengjaleit ($1970$)}
+	\env{itemize}
+	{
+		\item<1-> Er einhver leið til að bæta strengjaleitina úr fyrri glærum?
+		\item<2-> Skoðum betur sértilfellið \texttt{p = ``aaaabbbb''}.
+		\item<3-> Ef strengja samanburðurinn misheppnast í \texttt{p[3]} þá myndi einfalda strengjaleitin okkar hliðra \texttt{p} um einn og reyna aftur.
+		\item<4-> En við vitum að fyrstu þrír stafnirnir í næsta hlutstreng stemma, svo við getum byrjað í \texttt{p[2]}.
+		\item<5-> Reiknirit Knuths, Morrisar og Pratts notar sér þessa hugmynd til að framkvæma strengjaleit.
+		\item<6-> Reikniritið byrjar á að forreiknað hversu mikið maður veit eftir misheppnaðan samanburð.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/kmp.c}{12}{21}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Svo þurfum við einfaldlega að labba í gegnum $s$ og hliðra eins og á við.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/kmp.c}{23}{32}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Takið eftir að hver ítrun innri lykkjanna svarar til einnar ítrunar ytri lykkjanna.
+		\item<2-> Svo innri lykkjan keyrir, í heildina, ekki oftar en ytri lykkjan.
+		\item<3-> Því fæst að tímaflækja forreikninganna $\mathcal{O}($\onslide<4->{$\,m\,$}$)$.
+		\item<5-> Eins er tímaflækja strengjaleitarinnar $\mathcal{O}($\onslide<6->{$\,n\,$}$)$.
+		\item<7-> Sama er því tímaflækjan $\mathcal{O}($\onslide<8->{$n + m$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Reiknirit Ahos og Corasicks ($1975$)}
+	\env{itemize}
+	{
+		\item<1-> Til er önnur aðferð, svipuð og \texttt{KMP}, sem finnur staðsetningar margra orða í einu í streng.
+		\item<2-> Hún er kennd við Aho og Corasick.
+		\item<3-> Ég fer ekki í hana hér en hún byggir á því að gera stöðuvél.
+		\item<4-> Reikniritið keyrir í línulegum tíma í lengd allra strengjanna, ásamt fjölda heppnaðra samanburða.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hlaupabil}
+	\env{itemize}
+	{
+		\item<1-> Aðferð hlaupabila (e. sliding window) er stundum hægt að nota til að taka
+				dæmi sem hafa augljósa $\mathcal{O}(n^2)$ og gera þau $\mathcal{O}(n)$ eða $\mathcal{O}(n\log n)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skoðum dæmi:
+		\item<2-> Gefið $n$, $k$ og svo $n$ tölur $a_i$, þ.a. $a_i \in \{0, 1\}$ finndu
+			lengd lengsta bils í rununni $(a_n)_{n \in \mathbb{N}}$ sem inniheldur bara $1$ ef þú mátt breyta allt að $k$ tölum.
+		\item<3-> Sjáum strax að maður vill alltaf breyta $0$ í $1$ og aldrei öfugt.
+		\item<4-> Sjáum því að við erum að leita að lengsta bili í $(a_n)_{n \in \mathbb{N}}$ sem hefur mesta $k$ stök jöfn $0$.
+		\item<5-> Gefum okkur nú hlaupabil. Það byrjar tómt.
+		\item<6-> Við löbbum svo í gegnum $(a_n)_{n \in \mathbb{N}}$ og lengjum bilið að aftan.
+		\item<7-> Ef það eru einhvern tímann fleiri en $k$ stök í bilinu sem eru $0$ þá minnkum við bilið að framan þar til svo er ekki lengur.
+	}
+}
+
+\defverbatim{\hbilA}
+{ \begin{verbatim}
+        k = 2
+        l = 0
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        |
+\end{verbatim} }
+
+\defverbatim{\hbilB}
+{ \begin{verbatim}
+        k = 2
+        l = 1
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        | |
+\end{verbatim} }
+
+\defverbatim{\hbilC}
+{ \begin{verbatim}
+        k = 2
+        l = 2
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        |   |
+\end{verbatim} }
+
+\defverbatim{\hbilD}
+{ \begin{verbatim}
+        k = 2
+        l = 3
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        |     |
+\end{verbatim} }
+
+\defverbatim{\hbilE}
+{ \begin{verbatim}
+        k = 2
+        l = 4
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        |       |
+\end{verbatim} }
+
+\defverbatim{\hbilF}
+{ \begin{verbatim}
+        k = 2
+        l = 5
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+        |         |
+\end{verbatim} }
+
+\defverbatim{\hbilG}
+{ \begin{verbatim}
+        k = 2
+        l = 4
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+          |       |
+\end{verbatim} }
+
+\defverbatim{\hbilH}
+{ \begin{verbatim}
+        k = 2
+        l = 5
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+          |         |
+\end{verbatim} }
+
+\defverbatim{\hbilI}
+{ \begin{verbatim}
+        k = 2
+        l = 4
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+            |       |
+\end{verbatim} }
+
+\defverbatim{\hbilJ}
+{ \begin{verbatim}
+        k = 2
+        l = 3
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+              |     |
+\end{verbatim} }
+
+\defverbatim{\hbilK}
+{ \begin{verbatim}
+        k = 2
+        l = 2
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                |   |
+\end{verbatim} }
+
+\defverbatim{\hbilL}
+{ \begin{verbatim}
+        k = 2
+        l = 3
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                |     |
+\end{verbatim} }
+
+\defverbatim{\hbilM}
+{ \begin{verbatim}
+        k = 2
+        l = 2
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                  |   |
+\end{verbatim} }
+
+\defverbatim{\hbilN}
+{ \begin{verbatim}
+        k = 2
+        l = 1
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    | |
+\end{verbatim} }
+
+\defverbatim{\hbilO}
+{ \begin{verbatim}
+        k = 2
+        l = 2
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    |   |
+\end{verbatim} }
+
+\defverbatim{\hbilP}
+{ \begin{verbatim}
+        k = 2
+        l = 3
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    |     |
+\end{verbatim} }
+
+\defverbatim{\hbilQ}
+{ \begin{verbatim}
+        k = 2
+        l = 4
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    |       |
+\end{verbatim} }
+
+\defverbatim{\hbilR}
+{ \begin{verbatim}
+        k = 2
+        l = 5
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    |         |
+\end{verbatim} }
+
+\defverbatim{\hbilS}
+{ \begin{verbatim}
+        k = 2
+        l = 6
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                    |           |
+\end{verbatim} }
+
+\defverbatim{\hbilT}
+{ \begin{verbatim}
+        k = 2
+        l = 5
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                      |         |
+\end{verbatim} }
+
+\defverbatim{\hbilU}
+{ \begin{verbatim}
+        k = 2
+        l = 6
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                      |           |
+\end{verbatim} }
+
+\defverbatim{\hbilV}
+{ \begin{verbatim}
+        k = 2
+        l = 5
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                        |         |
+\end{verbatim} }
+
+\defverbatim{\hbilW}
+{ \begin{verbatim}
+        k = 2
+        l = 6
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                        |           |
+\end{verbatim} }
+
+\defverbatim{\hbilX}
+{ \begin{verbatim}
+        k = 2
+        l = 7
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                        |             |
+\end{verbatim} }
+
+\defverbatim{\hbilY}
+{ \begin{verbatim}
+        k = 2
+        l = 8
+        [0 1 1 0 1 0 0 0 1 1 1 1 0 0 1 1]
+                        |               |
+\end{verbatim} }
+
+\env{frame}
+{
+	\only<all:1>{\hbilA}
+	\only<all:2>{\hbilB}
+	\only<all:3>{\hbilC}
+	\only<all:4>{\hbilD}
+	\only<all:5>{\hbilE}
+	\only<all:6>{\hbilF}
+	\only<all:7>{\hbilG}
+	\only<all:8>{\hbilH}
+	\only<all:9>{\hbilI}
+	\only<all:10>{\hbilJ}
+	\only<all:11>{\hbilK}
+	\only<all:12>{\hbilL}
+	\only<all:13>{\hbilM}
+	\only<all:14>{\hbilN}
+	\only<all:15>{\hbilO}
+	\only<all:16>{\hbilP}
+	\only<all:17>{\hbilQ}
+	\only<all:18>{\hbilR}
+	\only<all:19>{\hbilS}
+	\only<all:20>{\hbilT}
+	\only<all:21>{\hbilU}
+	\only<all:22>{\hbilV}
+	\only<all:23>{\hbilW}
+	\only<all:24>{\hbilX}
+	\only<all:25>{\hbilY}
+}
+
+\env{frame}
+{
+	\code{code/hlaupabil-daemi1.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hver tala í rununni er sett einu sinni í hlaupabilið og mögulega fjarlægð úr því.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þetta dæmi er nú í auðveldari kantinum.
+		\item<2-> Skoðum annað dæmi:
+		\item<3-> Byjrum á nokkrum undirstöðu atriðum.
+		\item<4-> Tvö bil kallast \emph{næstum sundurlæg} ef sniðmengi þeirra er tómt eða bara einn punktur.
+		\item<5-> Sammengi bila má skrifa sem sammengi næstu sundurlægra bila.
+		\item<6-> \emph{Lengd bilsins} $[a, b]$ er $b - a$.
+		\item<7-> Til að finna \emph{lengd sammengis bila} skrifum við sammengið sem sammengi næstum sundurlægra bila
+			og tökum summu lengda þeirra.
+		\item<8-> Til dæmis eru bilin $[1, 2]$ og $[2, 3]$ næstum sundurlæg (en þó ekki sundurlæg) en 
+			$[1, 3]$ og $[2, 4]$ eru það ekki. Nú $[1, 3] \cup [2, 4] = [1, 4]$ svo lengd 
+			$[1, 3] \cup [2, 4]$ er $3$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gefið $n$ bil hver er lengd sammengis þeirra.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Geymum í lista tvenndir þar sem fyrra stakið er endapunktur bils og seinna stakið segir hvaða bili punkturinn tilleyrir.
+		\item<2-> Röðum þessum punktum svo í vaxandi röð.
+		\item<3-> Við löbbum í gegnum þennan raðaða lista og höldum utan um hlaupabil þannig að
+			við bætum við bili í hlaupabilið þegar við rekumst á vinstri endapunkt þess og fjarlægjum það 
+			þegar við rekumst á hægri endapunkt þess. 
+		\item<4-> Við skoðum svo sérstaklega tilfellin þegar við erum ekki með nein bil í hlaupabilinu okkur.
+		\item<5-> Sammengi þeirra bila sem við höfum farið í gegnum þá síðan hlaupabilið var síðast tómt er nú
+			sundurlægt öllum öðrum bilum sem okkur var gefið í byrjun.
+		\item<6-> Við skilum því summu lengda þessara sammengja.
+	}
+}
+
+\defverbatim{\lineAA}
+{ \begin{verbatim}
+   |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+   |                    
+[]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAB}
+{ \begin{verbatim}
+     |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+     |                    
+[]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAC}
+{ \begin{verbatim}
+     |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+     |                    
+[1]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAD}
+{ \begin{verbatim}
+     |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+     |                    
+[1, 3]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAE}
+{ \begin{verbatim}
+        |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+        |                    
+[1, 3]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAF}
+{ \begin{verbatim}
+        |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+        |                    
+[1, 2, 3]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAG}
+{ \begin{verbatim}
+          |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+          |                    
+[1, 2, 3]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAH}
+{ \begin{verbatim}
+          |                                  
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+          |                    
+[1, 2]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAI}
+{ \begin{verbatim}
+             |                                      
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+             |                        
+[1, 2]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAJ}
+{ \begin{verbatim}
+             |                                      
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+             |                        
+[1, 2, 4]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAK}
+{ \begin{verbatim}
+             |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+             |
+[1, 4]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAL}
+{ \begin{verbatim}
+                  |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                  |
+[1, 4]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAM}
+{ \begin{verbatim}
+                  |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                  |
+[4]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAN}
+{ \begin{verbatim}
+                        |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                        |
+[4]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAO}
+{ \begin{verbatim}
+                        |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                        |
+[]
+r = 0
+\end{verbatim} }
+
+\defverbatim{\lineAP}
+{ \begin{verbatim}
+                        |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                        |
+[]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAQ}
+{ \begin{verbatim}
+                            |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                            |
+[]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAR}
+{ \begin{verbatim}
+                            |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                            |
+[5]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAS}
+{ \begin{verbatim}
+                            |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                            |
+[5, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAU}
+{ \begin{verbatim}
+                              |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                              |
+[5, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAV}
+{ \begin{verbatim}
+                              |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                              |
+[5, 8, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAW}
+{ \begin{verbatim}
+                                 |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                 |
+[5, 8, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAX}
+{ \begin{verbatim}
+                                 |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                 |
+[5, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAY}
+{ \begin{verbatim}
+                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                   |
+[5, 10]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineAZ}
+{ \begin{verbatim}
+                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                   |
+[5]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineBA}
+{ \begin{verbatim}
+                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                   |
+[]
+r = 20
+\end{verbatim} }
+
+\defverbatim{\lineBB}
+{ \begin{verbatim}
+                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                   |
+[]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBC}
+{ \begin{verbatim}
+                                         |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                         |
+[]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBD}
+{ \begin{verbatim}
+                                         |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                         |
+[9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBDD}
+{ \begin{verbatim}
+                                               |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                               |
+[9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBE}
+{ \begin{verbatim}
+                                               |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                               |
+[7, 9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBF}
+{ \begin{verbatim}
+                                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                   |
+[7, 9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBG}
+{ \begin{verbatim}
+                                                   |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                   |
+[6, 7, 9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBH}
+{ \begin{verbatim}
+                                                      |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                      |
+[6, 7, 9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBI}
+{ \begin{verbatim}
+                                                      |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                      |
+[7, 9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBJ}
+{ \begin{verbatim}
+                                                      |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                      |
+[9]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBK}
+{ \begin{verbatim}
+                                                      |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                      |
+[]
+r = 28
+\end{verbatim} }
+
+\defverbatim{\lineBL}
+{ \begin{verbatim}
+                                                      |
+ 1:  x------------x
+ 2:     x----x
+ 3:  x----x                    
+ 4:          x----------x
+ 5:                         x------x
+ 6:                                                x--x
+ 7:                                            x------x
+ 8:                           x--x
+ 9:                                      x------------x
+10:                         x------x
+                                                      |
+[]
+r = 42
+\end{verbatim} }
+
+\env{frame}
+{
+	\only<all:1>{\lineAA}
+	\only<all:2>{\lineAB}
+	\only<all:3>{\lineAC}
+	\only<all:4>{\lineAD}
+	\only<all:5>{\lineAE}
+	\only<all:6>{\lineAF}
+	\only<all:7>{\lineAG}
+	\only<all:8>{\lineAH}
+	\only<all:9>{\lineAI}
+	\only<all:10>{\lineAJ}
+	\only<all:11>{\lineAK}
+	\only<all:12>{\lineAL}
+	\only<all:13>{\lineAM}
+	\only<all:14>{\lineAN}
+	\only<all:15>{\lineAO}
+	\only<all:16>{\lineAP}
+	\only<all:17>{\lineAQ}
+	\only<all:18>{\lineAR}
+	\only<all:19>{\lineAS}
+	\only<all:20>{\lineAU}
+	\only<all:21>{\lineAV}
+	\only<all:22>{\lineAW}
+	\only<all:23>{\lineAX}
+	\only<all:24>{\lineAY}
+	\only<all:25>{\lineAZ}
+	\only<all:26>{\lineBA}
+	\only<all:27>{\lineBB}
+	\only<all:28>{\lineBC}
+	\only<all:29>{\lineBD}
+	\only<all:30>{\lineBDD}
+	\only<all:31>{\lineBE}
+	\only<all:32>{\lineBF}
+	\only<all:33>{\lineBG}
+	\only<all:34>{\lineBH}
+	\only<all:35>{\lineBI}
+	\only<all:36>{\lineBJ}
+	\only<all:37>{\lineBK}
+	\only<all:38>{\lineBL}
+}
+
+\env{frame}
+{
+	\code{code/hlaupabil-daemi2.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við byrjum á að raða í $\mathcal{O}($\onslide<2->{$n \log n$}$)$ tíma.
+		\item<3-> Síðan ítrum við í gegnum alla endapunktana sem tekur $\mathcal{O}($\onslide<4->{$\,n\,$}$)$ tíma.
+		\item<5-> Svo lausnin hefur tímaflækjuna $\mathcal{O}($\onslide<6->{$n \log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lengsta vaxandi hlutruna (\texttt{LIS})}
+	\env{itemize}
+	{
+		\item<1-> Hlutruna í talnarunu er runa af tölum, allar úr upprunalegu rununni, sem eru í sömu röð og í upprunalegu rununni.
+		\item<2-> Hvernig getum við fundið \emph{lengtsu vaxandi hlutrunu} (e. \emph{longest increasing subsequence} (\texttt{LIS})) í gefinni runu?
+		\item<3-> Sem dæmi er \texttt{[2 3 5 9]} ein ef lengstu vaxandi hlutrunum \texttt{[2 3 1 5 9 8 7]}.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gerum ráð fyrir að við höfum talnarunu af lengd $1 \leq n \leq 15$.
+		\item<2-> Við getum þá prófað allar hlutrunur, skoðað hvort þær séu vaxandi og geymt þá lengstu.
+	}
+}
+
+\env{frame}
+{
+	\code{code/lis-bf.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við þurfum að skoða öll hlutmengi vísamengis rununnar og fyrir hvert þeirra þarf að ítra í gegnum allt vísamengið.
+		\item<2-> Þar sem vísamengið inniheldur $n$ stök hefur þessi lausn tímaflækjuna $\mathcal{O}($\onslide<3->{$n \cdot 2^n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Það má þó gera þetta hraðar.
+		\item<2-> Við getum notað kvika bestun!
+		\item<3-> Látum \texttt{a} vera runu af $n$ tölum.
+		\item<4-> Látum $f(k)$ vera lengd lengstu hlutrunu sem endar í $k$-ta staki $a$.
+		\item<5-> Við höfum þá að
+		\[
+			f(x) = \left \{
+			\env{array}
+			{ {l l}
+				1, & \text{ef $x = 1$} \\
+				\displaystyle \max_{\substack{1 \leq k < x\\a_k \leq a_x}} f(k) + 1 & \text{annars.}
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/lis-dp.c}{6}{15}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við höfum $n$ stöður og hverja stöðu má reikna í $\mathcal{O}($\onslide<2->{$\,n\,$}$)$ tíma.
+		\item<3-> Svo þessi lausn hefur tímaflækjuna $\mathcal{O}($\onslide<4->{$n^2$}$)$ tíma.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> En er hægt að gera þetta ennþá hraðar?
+		\item<2-> Heldur betur!
+		\item<3-> Við getum notað helmingunarleit.
+		\item<4-> Skoðum first reiknirit sem er ekki hentugt að útfæra.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Höfum lista af listum.
+		\item<2-> Skilgreinum röðun þannig að listar eru bornir saman eftir síðasta staki.
+		\item<3-> Listalistinn okkar byrjar tómur.
+		\item<4-> Löbbum í gegnum \texttt{a} í réttri röð og fyrir hvert stak \texttt{a[i]} finnum við
+			þann lista sem hefur stærsta aftasta stakið sem er minna en \texttt{a[i]}.
+		\item<5-> Við afritum nú listann sem við fundum, setjum hann fyrir aftan, bætum stakinu okkar við hann
+			og fjarlægjum listann fyrir aftann nýja listann (ef það er einhver).
+		\item<6-> Að þessu loknu er aftasti listinn í listalistanum einn af lengstu vaxandi hlutrununum.
+		\item<7-> Rúllum í gegnum þetta fyrir listann \texttt{[0 8 4 12 2 10 6 14 1 9 5 13 3 11 7 15]}.
+	}
+}
+
+\defverbatim{\lisAA}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+ |
+
+   []
+
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAB}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+ |
+
+-> []
+
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAC}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+ |
+
+   []
+   []
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAD}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+ |
+
+   []
+   [0]
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAE}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+    |
+
+   []
+   [0]
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAF}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+    |
+
+   []
+-> [0]
+
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAG}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+    |
+
+   []
+   [0]
+   [0]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAH}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+    |
+
+   []
+   [0]
+   [0, 8]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAI}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+       |
+
+   []
+   [0]
+   [0, 8]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAJ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+       |
+
+   []
+-> [0]
+   [0, 8]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAK}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+       |
+
+   []
+   [0]
+   [0]
+   [0, 8]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAL}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+       |
+
+   []
+   [0]
+   [0, 4]
+   [0, 8]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAM}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+       |
+
+   []
+   [0]
+   [0, 4]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAN}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+           |
+
+   []
+   [0]
+   [0, 4]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAO}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+           |
+
+   []
+   [0]
+-> [0, 4]
+
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAP}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+           |
+
+   []
+   [0]
+   [0, 4]
+   [0, 4]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAQ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+           |
+
+   []
+   [0]
+   [0, 4]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAR}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+              |
+
+   []
+   [0]
+   [0, 4]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAS}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+              |
+
+   []
+-> [0]
+   [0, 4]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAT}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+              |
+
+   []
+   [0]
+   [0]
+   [0, 4]
+   [0, 4, 12]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAU}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+              |
+
+   []
+   [0]
+   [0, 2]
+   [0, 4]
+   [0, 4, 12]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAV}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+              |
+
+   []
+   [0]
+   [0, 2]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAW}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                  |
+
+   []
+   [0]
+   [0, 2]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAX}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                  |
+
+   []
+   [0]
+-> [0, 2]
+   [0, 4, 12]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAY}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                  |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2]
+   [0, 4, 12]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisAZ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                  |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 10]
+   [0, 4, 12]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBA}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                  |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 10]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBB}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                     |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 10]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBC}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                     |
+
+   []
+   [0]
+-> [0, 2]
+   [0, 2, 10]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBD}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                     |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2]
+   [0, 2, 10]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBE}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                     |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 10]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBF}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                     |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBG}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                         |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBH}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                         |
+
+   []
+   [0]
+   [0, 2]
+-> [0, 2, 6]
+
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBI}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                         |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBJ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                         |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBK}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                            |
+
+   []
+   [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBL}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                            |
+
+   []
+-> [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBM}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                            |
+
+   []
+   [0]
+   [0]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisBN}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                            |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisBO}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                            |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBP}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                               |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBQ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                               |
+
+   []
+   [0]
+   [0, 1]
+-> [0, 2, 6]
+   [0, 2, 6, 14]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBR}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                               |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6]
+   [0, 2, 6, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisBS}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                               |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+   [0, 2, 6, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisBT}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                               |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBU}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                  |
+
+   []
+   [0]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBV}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                  |
+
+   []
+   [0]
+-> [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBW}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                  |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+
+\end{verbatim} }
+
+\defverbatim{\lisBX}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                  |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6]
+   [0, 2, 6, 9]
+
+\end{verbatim} }
+
+\defverbatim{\lisBY}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                  |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBZ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                      |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisBZ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                      |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+-> [0, 2, 6, 9]
+
+
+\end{verbatim} }
+
+\defverbatim{\lisCA}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                      |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9]
+
+\end{verbatim} }
+
+\defverbatim{\lisCB}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                      |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCC}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                         |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCD}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                         |
+
+   []
+   [0]
+-> [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCE}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                         |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+\end{verbatim} }
+
+\defverbatim{\lisCF}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                         |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 5]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+\end{verbatim} }
+
+\defverbatim{\lisCG}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                         |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCH}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                             |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCI}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                             |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+-> [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+
+\end{verbatim} }
+
+\defverbatim{\lisCJ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                             |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 14]
+\end{verbatim} }
+
+\defverbatim{\lisCK}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                             |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+   [0, 2, 6, 9, 14]
+\end{verbatim} }
+
+\defverbatim{\lisCL}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                             |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCM}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCN}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                |
+
+   []
+   [0]
+   [0, 1]
+-> [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCO}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+\end{verbatim} }
+
+\defverbatim{\lisCP}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9]
+   [0, 2, 6, 9, 11]
+\end{verbatim} }
+
+\defverbatim{\lisCQ}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCR}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                    |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCS}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                    |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+-> [0, 2, 6, 9, 11]
+
+\end{verbatim} }
+
+\defverbatim{\lisCT}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                    |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9, 11]
+   [0, 2, 6, 9, 11]
+\end{verbatim} }
+
+\defverbatim{\lisCU}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+                                                    |
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9, 11]
+   [0, 2, 6, 9, 11, 15]
+\end{verbatim} }
+
+\defverbatim{\lisCV}
+{ \begin{verbatim}
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+
+
+   []
+   [0]
+   [0, 1]
+   [0, 1, 3]
+   [0, 1, 3, 7]
+   [0, 2, 6, 9, 11]
+   [0, 2, 6, 9, 11, 15]
+\end{verbatim} }
+
+% find, dupe, add, dump, bump
+\env{frame}
+{
+	\only<all:1>{\lisAA}
+	\only<all:2>{\lisAB}
+	\only<all:3>{\lisAC}
+	\only<all:4>{\lisAD}
+	\only<all:5>{\lisAE}
+	\only<all:6>{\lisAF}
+	\only<all:7>{\lisAG}
+	\only<all:8>{\lisAH}
+	\only<all:9>{\lisAI}
+	\only<all:10>{\lisAJ}
+	\only<all:11>{\lisAK}
+	\only<all:12>{\lisAL}
+	\only<all:13>{\lisAM}
+	\only<all:14>{\lisAN}
+	\only<all:15>{\lisAO}
+	\only<all:16>{\lisAP}
+	\only<all:17>{\lisAQ}
+	\only<all:18>{\lisAR}
+	\only<all:19>{\lisAS}
+	\only<all:20>{\lisAT}
+	\only<all:21>{\lisAU}
+	\only<all:22>{\lisAV}
+	\only<all:23>{\lisAW}
+	\only<all:24>{\lisAX}
+	\only<all:25>{\lisAY}
+	\only<all:26>{\lisAZ}
+	\only<all:27>{\lisBA}
+	\only<all:28>{\lisBB}
+	\only<all:29>{\lisBC}
+	\only<all:30>{\lisBD}
+	\only<all:31>{\lisBE}
+	\only<all:32>{\lisBF}
+	\only<all:33>{\lisBG}
+	\only<all:34>{\lisBH}
+	\only<all:35>{\lisBI}
+	\only<all:36>{\lisBJ}
+	\only<all:37>{\lisBK}
+	\only<all:38>{\lisBL}
+	\only<all:39>{\lisBM}
+	\only<all:40>{\lisBN}
+	\only<all:41>{\lisBO}
+	\only<all:42>{\lisBP}
+	\only<all:43>{\lisBQ}
+	\only<all:44>{\lisBR}
+	\only<all:45>{\lisBS}
+	\only<all:46>{\lisBT}
+	\only<all:47>{\lisBU}
+	\only<all:48>{\lisBV}
+	\only<all:49>{\lisBW}
+	\only<all:50>{\lisBX}
+	\only<all:51>{\lisBY}
+	\only<all:52>{\lisBZ}
+	\only<all:53>{\lisCA}
+	\only<all:54>{\lisCB}
+	\only<all:55>{\lisCC}
+	\only<all:56>{\lisCD}
+	\only<all:57>{\lisCE}
+	\only<all:58>{\lisCF}
+	\only<all:59>{\lisCG}
+	\only<all:60>{\lisCH}
+	\only<all:61>{\lisCI}
+	\only<all:62>{\lisCJ}
+	\only<all:63>{\lisCK}
+	\only<all:64>{\lisCL}
+	\only<all:65>{\lisCM}
+	\only<all:66>{\lisCN}
+	\only<all:67>{\lisCO}
+	\only<all:68>{\lisCP}
+	\only<all:69>{\lisCQ}
+	\only<all:70>{\lisCR}
+	\only<all:71>{\lisCS}
+	\only<all:72>{\lisCT}
+	\only<all:73>{\lisCU}
+	\only<all:74>{\lisCV}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvernig útfærum við þetta?
+		\item<2-> Við nýtum okkur það að listarnir sem við vorum með eru að mestu óþarfir því við þurfum bara aftasta stakið í hverjum þeirra.
+		\item<3-> Við erum þá með lista af tölum, sem gerir allt mun auðveldara.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/lis.c}{12}{21}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Takið eftir að í hverju skrefi notum við helmingunarleit.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n \log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Næsta stærra stak (\texttt{NGE})}
+	\env{itemize}
+	{
+		\item<1-> Látum \texttt{a} vera lista af $n$ tölum.
+		\item<2-> Við segjum að \emph{næsta stak stærra en \texttt{a[i]}} (e. \emph{next greater element} (\texttt{NGE}))
+			sé minnsta stak \texttt{a[j]} þ.a. $j > i$.
+		\item<3-> Sem dæmi er \texttt{NGE} miðju stakins $4$ í listanum \texttt{[2, 3, 4, 8, 5]} talan $8$.
+		\item<4-> Til þæginda segjum við að \texttt{NGE} tölunnar $8$ í listanum \texttt{[2, 3, 4, 8, 5]} sé $-1$.
+		\item<5-> Það er auðséð að við getum reiknað \texttt{NGE} allra talnanna með tvöfaldri \texttt{for}-lykkju.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/slow-nge.c}{4}{12}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þar sem þessi lausnir er tvöföld \texttt{for}-lykkja, hvor af lengd $n$, þá er lausnin $\mathcal{O}($\onslide<2->{$n^2$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> En þetta má bæta.
+		\item<2-> Gefum okkur hlaða \texttt{h}. 
+		\item<3-> Löbbum í gegnum \texttt{a} í réttri röð.
+		\item<4-> Tökum nú tölur úr hlaðan og setjum \texttt{NGE} þeirra talna sem \texttt{a[i]} á meðan \texttt{a[i]} er stærri en toppurinn á hlaðanum.
+		\item<5-> Þegar toppurinn á hlaðanum er stærri en \texttt{a[i]} þá látum við \texttt{a[i]} á hlaðann og höldum svo áfram.
+		\item<6-> Bersýnilega er hlaðinn ávallt raðaður, svo þú færð allar tölur sem eiga að hafa \texttt{a[i]} sem \texttt{NGE}.
+		\item<7-> Þegar búið er að fara í gegnum \texttt{a} látum við \texttt{NGE} þeirra staka sem eftir eru í \texttt{h} vera $-1$.
+	}
+}
+
+\defverbatim{\ngeAA}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+|
+
+ 0 1 2 3 4 5 6 7
+[x x x x x x x x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeAB}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+ |
+
+ 0 1 2 3 4 5 6 7
+[x x x x x x x x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeAC}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+ |
+
+ 0 1 2 3 4 5 6 7
+[x x x x x x x x]
+
+
+h: [0]
+\end{verbatim} }
+
+\defverbatim{\ngeAD}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   |
+
+ 0 1 2 3 4 5 6 7
+[x x x x x x x x]
+
+
+h: [0]
+\end{verbatim} }
+
+\defverbatim{\ngeAE}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+ ^ |
+
+ 0 1 2 3 4 5 6 7
+[x x x x x x x x]
+
+
+h: [0]
+\end{verbatim} }
+
+\defverbatim{\ngeAF}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+ ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [0]
+\end{verbatim} }
+
+\defverbatim{\ngeAG}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeAH}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAI}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+     |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAJ}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAK}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+     |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAL}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+     |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1 2]
+\end{verbatim} }
+
+\defverbatim{\ngeAM}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+       |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1 2]
+\end{verbatim} }
+
+\defverbatim{\ngeAN}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+     ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 x x x x x x x]
+
+
+h: [1 2]
+\end{verbatim} }
+
+\defverbatim{\ngeAO}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+     ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 x 3 x x x x x]
+
+
+h: [1 2]
+\end{verbatim} }
+
+\defverbatim{\ngeAP}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   ^   |
+
+ 0 1 2 3 4 5 6 7
+[1 x 3 x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAQ}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+   ^   |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 x x x x x]
+
+
+h: [1]
+\end{verbatim} }
+
+\defverbatim{\ngeAR}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+       |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 x x x x x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeAS}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+       |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 x x x x x]
+
+
+h: [3]
+\end{verbatim} }
+
+\defverbatim{\ngeAT}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 x x x x x]
+
+
+h: [3]
+\end{verbatim} }
+
+\defverbatim{\ngeAU}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+       ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 x x x x x]
+
+
+h: [3]
+\end{verbatim} }
+
+\defverbatim{\ngeAV}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+       ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [3]
+\end{verbatim} }
+
+\defverbatim{\ngeAW}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeAX}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeAY}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeAZ}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeBA}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeBB}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBC}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+             |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBD}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBE}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+             |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBF}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+             |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5 6]
+\end{verbatim} }
+
+\defverbatim{\ngeBG}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+               |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5 6]
+\end{verbatim} }
+
+\defverbatim{\ngeBH}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+             ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x x x]
+
+
+h: [4 5 6]
+\end{verbatim} }
+
+\defverbatim{\ngeBI}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+             ^ |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x 7 x]
+
+
+h: [4 5 6]
+\end{verbatim} }
+
+\defverbatim{\ngeBJ}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           ^   |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x x 7 x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBK}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+           ^   |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x 7 7 x]
+
+
+h: [4 5]
+\end{verbatim} }
+
+\defverbatim{\ngeBL}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         ^     |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 x 7 7 x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeBM}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+         ^     |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 7 7 7 x]
+
+
+h: [4]
+\end{verbatim} }
+
+\defverbatim{\ngeBN}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+               |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 7 7 7 x]
+
+
+h: []
+\end{verbatim} }
+
+\defverbatim{\ngeBO}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+               |
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 7 7 7 x]
+
+
+h: [8]
+\end{verbatim} }
+
+\defverbatim{\ngeBP}
+{ \begin{verbatim}
+ 0 1 2 3 4 5 6 7
+[2 3 1 5 7 6 4 8]
+
+
+ 0 1 2 3 4 5 6 7
+[1 3 3 4 7 7 7 x]
+
+
+h: [8]
+\end{verbatim} }
+
+\env{frame}
+{
+	\only<all:1>{\ngeAA}
+	\only<all:2>{\ngeAB}
+	\only<all:3>{\ngeAC}
+	\only<all:4>{\ngeAD}
+	\only<all:5>{\ngeAE}
+	\only<all:6>{\ngeAF}
+	\only<all:7>{\ngeAG}
+	\only<all:8>{\ngeAH}
+	\only<all:9>{\ngeAI}
+	\only<all:10>{\ngeAJ}
+	\only<all:11>{\ngeAK}
+	\only<all:12>{\ngeAL}
+	\only<all:13>{\ngeAM}
+	\only<all:14>{\ngeAN}
+	\only<all:15>{\ngeAO}
+	\only<all:16>{\ngeAP}
+	\only<all:17>{\ngeAQ}
+	\only<all:18>{\ngeAR}
+	\only<all:19>{\ngeAS}
+	\only<all:20>{\ngeAT}
+	\only<all:21>{\ngeAU}
+	\only<all:22>{\ngeAV}
+	\only<all:23>{\ngeAW}
+	\only<all:24>{\ngeAX}
+	\only<all:25>{\ngeAY}
+	\only<all:26>{\ngeAZ}
+	\only<all:27>{\ngeBA}
+	\only<all:28>{\ngeBB}
+	\only<all:29>{\ngeBC}
+	\only<all:30>{\ngeBD}
+	\only<all:31>{\ngeBE}
+	\only<all:32>{\ngeBF}
+	\only<all:33>{\ngeBG}
+	\only<all:34>{\ngeBH}
+	\only<all:35>{\ngeBI}
+	\only<all:36>{\ngeBJ}
+	\only<all:37>{\ngeBK}
+	\only<all:38>{\ngeBL}
+	\only<all:39>{\ngeBM}
+	\only<all:40>{\ngeBN}
+	\only<all:41>{\ngeBO}
+	\only<all:42>{\ngeBP}
+}
+
+\env{frame}
+{
+	\selectcode{code/nge.c}{4}{13}
+}
+
+\env{frame}
+{
+
+	\env{itemize}
+	{
+		\item<1-> Við setjum hverja tölu í hlaðann að mestu einu sinni og tökum hana svo úr hlaðanum.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

@@ -46,3 +46,6 @@ talningarfraedi
 
 vika12
 rumfraedi
+
+vika13
+samansop
