@@ -4,6 +4,7 @@ then
 	echo "Argument required"
 	exit
 fi
+mkdir -p output
 pdflatex -output-directory output $1
 cd output
 gnuplot *.gnuplot

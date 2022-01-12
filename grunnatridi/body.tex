@@ -83,7 +83,7 @@
 			(ekki síðasta stakið)
 		\item<3-> Ef við erum með $n$ staka fylki \texttt{a} þá röðum við því með \texttt{sort(a, a + n)}.
 		\item<4-> Við getum raðað flest öllum ílátum með \texttt{sort}.
-		\item<5-> Ef við erum með eitthva ílát (til dæmis \texttt{vector}) \texttt{a} má raða með \texttt{sort(a.begin(), a.end())}.
+		\item<5-> Ef við erum með eitthvað ílát (til dæmis \texttt{vector}) \texttt{a} má raða með \texttt{sort(a.begin(), a.end())}.
 		\item<6-> Við getum líka bætt við okkar eigin samanburðarfalli sem þriðja inntak.
 		\item<7-> Það kemur þá í stað ``minna eða samasem'' samanburðarins sem er sjálfgefinn.
 	}
@@ -169,12 +169,10 @@
 	\frametitle{\texttt{long long}}
 	\env{itemize}
 	{
-		\item<1-> Þurfum við þó alltaf að skrifa \texttt{long long}?
-		\item<2-> Nei!
-		\item<3-> Við getum notað \texttt{typedef}.
-		\item<4-> Við notum einfaldlega \texttt{typedef <gamla> <nýja>;}.
-		\item<5-> Venjan í keppnisforritun er að nota \texttt{typedef long long ll;}.
-		\item<6-> Við munum nota \texttt{typedef} aftur.
+		\item<1-> Við getum notað \texttt{typedef} til að spara okkur skriftir.
+		\item<2-> Við bætum við \texttt{typedef <gamla> <nýja>;} ofarlega í skrána.
+		\item<3-> Venjan í keppnisforritun er að nota \texttt{typedef long long ll;}.
+		\item<4-> Við munum nota \texttt{typedef} aftur í námskeiðinu.
 	}
 }
 
@@ -194,7 +192,7 @@
 		\item<3-> Það myndi þó spara mikla vinnu ef við gætum svarað spurningunni án þess að útfæra.
 		\item<4-> Einnig gæti leynst önnur villa í útfærslunni okkar sem gefur okkur \texttt{Time Limit Exceeded} (\texttt{TLE}).
 		\item<5-> Til að ákvarða hvort lausn sé nógu hröð þá notum við \emph{tímaflækjur}.
-		\item<6-> Sum ykkar þekka tímaflækjur en önnur ekki.
+		\item<6-> Sum ykkar þekkja tímaflækjur en önnur kannski ekki.
 		\item<7-> Skoðum fyrst hvað tímaflækjur eru í grófum dráttum.
 	}
 }
@@ -205,10 +203,11 @@
 	\env{itemize}
 	{
 		\item<1-> Keyrslutími forrits er háður stærðinni á inntakinu.
-		\item<2-> Tímaflækjan lýsir hvernig keyrslutími forritsins skalast með inntakinu (í versta falli).
-		\item<3-> Ef forritið er með tímaflækju $\mathcal{O}(f(n))$ þýðir það að keyrslutíminn vex eins of $f$ þegar $n$ vex.
+		\item<2-> Tímaflækjan lýsir hvernig keyrslutími forritsins eykst þegar inntakið stækkar (í versta falli).
+		\item<3-> Ef forritið er með tímaflækju $\mathcal{O}(f(n))$ þýðir það að keyrslutíminn vex eins og $f$ þegar $n$ vex.
 		\item<4-> Til dæmis ef forritið hefur tímaflækju $\mathcal{O}(n)$ þá tvöfaldast keyrslutími þegar inntakið tvöfaldast.
-		\item<5-> Hér gerum við ráð fyrir að grunnaðgerðirnar okkar taki fastann tíma, eða séu með tímaflækju $\mathcal{O}(1)$.
+		\item<5-> Til annars dæmis ef forritið hefur tímaflækju $\mathcal{O}(n^2)$ þá \onslide<6->{fjór}faldast keyrslutími þegar inntakið tvöfaldast.
+		\item<7-> Við ráð fyrir að grunnaðgerðirnar okkar taki fastann tíma, eða séu með tímaflækju $\mathcal{O}(1)$.
 	}
 }
 
@@ -218,12 +217,13 @@
 	{
 		\item<1-> Ef forritið okkar þarf að framkvæma $\mathcal{O}(f(n))$ aðgerð $m$ sinnum þá er tímaflækjan $\mathcal{O}(m \cdot f(n))$.
 		\item<2-> Þetta er reglan sem við notum oftast í keppnisforritun.
-		\item<3-> Hún segir okkur til dæmis að tvöföld \texttt{for}-lykkja, þar sem hver \texttt{for}-lykkja er $n$ löng, er $\mathcal{O}(n^2)$.
-		\item<4-> Ef við erum með tvær einfaldar \texttt{for}-lykkjur, báðar af lenged $n$, þá er forritið 
-			$\mathcal{O}(n) + \mathcal{O}(n) = \mathcal{O}(n)$
-		\item<5-> Einnig gildir að tímaflækja forritsins okkar takmarkast af hægasta hluta forritsins.
-		\item<6-> Til dæmis er
-			$\mathcal{O}(n + n + n + n + n^2) = \mathcal{O}(n^2)$.
+		\item<3-> Hún segir okkur til dæmis að tvöföld \texttt{for}-lykkja, þar sem hver \texttt{for}-lykkja er $n$ löng, er
+			$\mathcal{O}($\onslide<4->{$n^2$}$)$.
+		\item<5-> Ef við erum með tvær einfaldar \texttt{for}-lykkjur, báðar af lenged $n$, þá er forritið 
+			$\mathcal{O}(n + n) = \mathcal{O}($\onslide<6->{$n$}$)$
+		\item<7-> Einnig gildir að tímaflækja forritsins okkar takmarkast af hægasta hluta forritsins.
+		\item<8-> Til dæmis er
+			$\mathcal{O}(n + n + n + n + n^2) = \mathcal{O}($\onslide<9->{$n^2$}$)$.
 	}
 }
 
@@ -269,7 +269,7 @@
 	\frametitle{$10^8$ reglan}
 	\env{itemize}
 	{
-		\item<1-> Þegar við ræðum tímaflækjur er ``tími'' er ekki endilega rétt orðið.
+		\item<1-> Þegar við ræðum tímaflækjur er ,,tími'' ekki endilega rétt orðið.
 		\item<2-> Við erum frekar að lýsa fjölda aðgerða sem forritið framkvæmir.
 		\item<3-> Í keppnisforritun notum við \emph{$10^8$ regluna}:
 		\env{itemize}
@@ -292,17 +292,17 @@
 		{l | l | l}
 		Stærð $n$ & Versta tímaflækja & Dæmi\\
 		\hline
-		$\leq 10$ & $\mathcal{O}(n!)$ & TSP með tæmandi leit\\
+		$\leq 10$ & $\mathcal{O}((n + 1)!)$ & TSP með tæmandi leit\\
 		$\leq 15$ & $\mathcal{O}(n^22^n)$ & TSP með kvikri bestun\\
 		$\leq 20$ & $\mathcal{O}(n2^n)$ & Kvik bestun yfir hlutmengi\\
 		$\leq 100$ & $\mathcal{O}(n^4)$ & Almenn spyrðing\\
 		$\leq 400$ & $\mathcal{O}(n^3)$ & Floyd-Warshall\\
 		$\leq 10^4$ & $\mathcal{O}(n^2)$ & Lengsti sameiginlegi hlutstrengur\\
 		$\leq 10^5$ & $\mathcal{O}(n \sqrt{n})$ & Reiknirit sem byggja á rótarþáttun\\
-		$\leq 10^6$ & $\mathcal{O}(n \log n)$ & Of mikið til að þora að taka dæmi\\
-		$\leq 10^7$ & $\mathcal{O}(n)$ & Næsta tala sem er stærri (\texttt{NGE})\\
-		$\leq 2^{10^7}$ & $\mathcal{O}(\log n)$ & Helmingunarleit\\
-		$> 2^{10^7}$ & $\mathcal{O}(1)$ & Ad hoc
+		$\leq 10^6$ & $\mathcal{O}(n \log n)$ & Röðun (og margt fleira)\\
+		$\leq 10^8$ & $\mathcal{O}(n)$ & Næsta tala sem er stærri (\texttt{NGE})\\
+		$\leq 2^{10^8}$ & $\mathcal{O}(\log n)$ & Helmingunarleit\\
+		$> 2^{10^8}$ & $\mathcal{O}(1)$ & Ad hoc
 	}
 }
 
@@ -313,9 +313,10 @@
 	{
 		\item<1-> Stundum fær maður \texttt{TLE} þótt maður sé viss um að lausnin sé nógu hröð.
 		\item<2-> Ef forritið þarf að lesa eða skrifa mikið gæti það verið að hægja nóg á forritun til að gefa \texttt{TLE}.
-		\item<3-> Þetta stafar af því að til að lesa eða skrifa þarf forritið að tala við stýrikerfið.
-		\item<4-> Til að leysa þetta skrifa sum forrit í \emph{biðminni} (e. \emph{buffer}) og prenta bara þegar það fyllist.
-		\item<5-> Svona er þetta gert í \texttt{C}.
+		\item<3-> Þegar við lesum af staðalinntaki eða skrifum á staðalúttak þarf forritið að tala við stýrikerfið.
+		\item<4-> Slíkar að gerðir eru mjög hægar.
+		\item<5-> Til að leysa þetta skrifa föll oft í \emph{biðminni} (e. \emph{buffer}) og prenta bara þegar það fyllist.
+		\item<6-> Svona er þetta gert í \texttt{C}.
 	}
 }
 
@@ -335,7 +336,7 @@
 
 \env{frame}
 {
-	\frametitle{Innbyggðar gagnagrindur í \texttt{C+}}
+	\frametitle{Innbyggðar gagnagrindur í \texttt{C++}}
 	\env{itemize}
 	{
 		\item<1-> Grunnur \texttt{C++} býr yfir mörgum sterkum gagnagrindum.
