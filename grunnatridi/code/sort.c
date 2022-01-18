@@ -22,9 +22,9 @@ int main()
 	scanf("%d", &n);
 	int a[n];
 	for (i = 0; i < n; i++) scanf("%d", &a[i]);
-	qsort(a, n, sizeof(a[0]), cmp);
+	qsort(a, n, sizeof *a, cmp);
 	for (i = 0; i < n; i++) printf("%d ", a[i]); printf("\n");
-	qsort(a, n, sizeof(a[0]), rcmp);
+	qsort(a, n, sizeof *a, rcmp);
 	for (i = 0; i < n; i++) printf("%d ", a[i]); printf("\n");
 	return 0;
 }
