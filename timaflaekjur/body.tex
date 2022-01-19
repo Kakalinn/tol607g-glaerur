@@ -87,6 +87,31 @@
 
 \env{frame}
 {
+	\code{code/daemi4.c}
+	\env{itemize}
+	{
+		\item<1-> Sjáum fyrst að lykkja í \texttt{main} keyrir $n - 1$ sinnum.
+		\item<2-> Hún kallar síðan á fallið \texttt{len(...)}.
+		\item<3-> Það fall hefur eina \texttt{while}-lykkju sem deilir tölunni $n$ með $k$, án afgangs, þar til $n$ er orðin núll.
+		\item<4-> Þetta fall hefur því tímaflækjuna $\mathcal{O}($\onslide<5->{$\log n$}$)$.
+		\item<6-> Í heildina hefur forritið því tímaflækjuna $\mathcal{O}($\onslide<7->{$n \log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\code{code/daemi5.c}
+	\env{itemize}
+	{
+		\item<1-> Hér erum við með endurkvæmt fall.
+		\item<2-> Við sjáum að ef $n \geq 2$ þá kallar \texttt{fib(n)} tvisvar á sjálft sig.
+		\item<3-> Svo þetta forrit er $\mathcal{O}($\onslide<4->{$2^n$}$)$.
+		\item<5-> Það er hægt að fá betra mat (við getum minnkað veldisstofninn).
+	}
+}
+
+\env{frame}
+{
 	\env{itemize}
 	{
 		\item<1-> Skoðum skiladæmið \emph{Reiknirit}.
