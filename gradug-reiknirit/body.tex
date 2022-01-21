@@ -64,16 +64,15 @@
 				þannig að hver bílstjóri fær mest einn bíl,
 				hver bíll er með mest einn bílstjóra og
 				enginn bílstjóri fær bíl sem hann ræður ekki við.
+			Gerum ráð fyrir að bílarnir og bílstjórarnir séu gefnir í vaxandi röð.
 		\item<2-> Tökum eftir að við viljum að bíll sé keyrður af þeim bílstjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
-		\item<3-> Byrjum á að raða bílunum og bílstjórunum í vaxandi röð.
-		\item<4-> Við getum núna í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bíl.
+		\item<4-> Við getum því í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bíl.
 		\item<5-> Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Gráðug reiknirit, annað (hefðbundnara dæmi)}
 	Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
 		Næstu $n$ tölur lýsa getu bílstjóranna.
 		Síðustu $m$ tölurnar eru hestöfl bílanna.
@@ -93,7 +92,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er of gráðug lausn.
+		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
 		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
 		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélag í liðakeppnum).
 		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \texttt{WA}
@@ -103,13 +102,56 @@
 
 \env{frame}
 {
+	\env{itemize}
+	{
+		\item<1-> Áðan röðuðum við tölum með tæmandi leit.
+		\item<2-> Endurtökum nú leikinn með gráðugri nálgun.
+		\item<3-> Ef við ætlum að raða í vaxandi röð þá vitum við að minnsta talan fer fremst.
+		\item<4-> Við getum því raðað listanum gráðugt með því að setja ítrekað minnstu töluna sem er eftir fremst.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/slow-sort.cpp}{4}{13}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan á þessu röðunar reikniriti er $\mathcal{O}($\onslide<2->{$n^2$}$)$.
+		\item<3-> Við getum þó bætt tímaflækjun þegar við leitum að minnsta stakinu.
+		\item<4-> Það eru ýmsar gagnagrindir sem geta gert þetta fyrir okkur.
+		\item<5-> Af sögulegum ástæðum notum við forgangsbiðröð, en það mætti, til dæmis, líka nota ýmis röðunartré.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/sort.cpp}{4}{10}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Núna finnum við minnsta stakið í $\mathcal{O}($\onslide<2->{$\log n$}$)$.
+		\item<3-> Svo tímaflækjan á fallinu er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
+		\item<5-> Við getum í rauninni ekki raðað með betri tímaflækju.
+		\item<6-> Þessi röðun kallast \emph{hrúguröðun} (e. \emph{heap sort}), þekkt röðunar reiknirit sem er oft kennt í inngangsnámskeiðum.
+	}
+}
+
+\env{frame}
+{
 	\frametitle{Samantekt}
 	\env{itemize}
 	{
 		\item<1-> Tæmandi leit er oft auðvelta að bera kennsl á, en á það til að vera of hæg. 
-			Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
-		\item<2-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
-			Gráðug reiknirit eiga ekki að fá TLE, en algengt er að fá WA.
+		\item<2-> Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
+		\item<3-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
+		\item<4-> Gráðug reiknirit eiga ekki að fá TLE, en algengt er að þau fái WA.
 	}
 }
 

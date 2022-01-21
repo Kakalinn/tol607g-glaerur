@@ -22,7 +22,6 @@
 		}
 		\item<7-> Í síðustu viku fjölluðum við um Ad hoc dæmi.
 		\item<8-> Í þessari viku fjöllum við um tæmandi leit og gráðug reiknirit.
-		\item<9-> Við styttum oft ,,tæmandi leit'' í \texttt{CS} (fyrir ,,Complete search'') og ,,kvik bestun'' í \texttt{DP}.
 	}
 }
 
@@ -33,7 +32,8 @@
 	{
 		\item<1-> Safn allra lausna dæmis kallast \emph{lausnarrúm} dæmisins.
 		\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið.
-		\item<3-> Tökum dæmi.
+		\item<3-> Takið eftir að lausnarrúmið inniheldur líka rangar lausnir.
+		\item<4-> Tökum dæmi.
 	}
 }
 
@@ -70,7 +70,7 @@
 	\frametitle{Tæmandi leit, öll hlutmengi}
 	\env{itemize}
 	{
-		\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé alltaf einföld.
+		\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé einföld.
 		\item<2-> Svo er ekki alltaf.
 		\item<3-> Tökum annað dæmi.
 		\item<4-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
@@ -84,7 +84,7 @@
 	\env{itemize}
 	{
 		\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
-		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $1, 2, ..., n$.
+		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $\{1, 2, ..., n\}$.
 		\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
 	}
 }
@@ -99,7 +99,7 @@
 		\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
 		\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
 		\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
-		\item<5-> Kennir tómamengisins er alltaf $0$ og kennir $A$ er $2^n - 1$.
+		\item<5-> Kennir tómamengisins er alltaf $0 = 00\! \dots\! 00_2$ og kennir $A$ er $2^n - 1 = 11\! \dots\! 11_2$.
 	}
 }
 
@@ -254,6 +254,10 @@
 		\item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
 		\item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
 	}
+}
+
+\env{frame}
+{
 }
 
 \end{document}

@@ -8,8 +8,6 @@ int main()
 	vector<int> a(n), b(m);
 	for (i = 0; i < n; i++) cin >> a[i];
 	for (i = 0; i < m; i++) cin >> b[i];
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());
 	r = j = 0;
 	for (i = 0; i < m; i++)
 	{
