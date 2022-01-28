@@ -1724,7 +1724,53 @@
 	\env{itemize}
 	{
 		\item<1-> Hlutmengjadæmið er í raun sértilfelli af \emph{bakpokadæminu} (e. \emph{Knapsack Problem}).
-		\item<2-> ...
+		\item<2-> Gerum ráð fyrir að við séum með $n$ hluti sem allir hafa einhverja vigt og verðgildi.
+		\item<3-> Við erum einnig með bakpoka sem þolir tiltekna samtals vigt.
+		\item<4-> Verkefnið snýst þá um að hámarka heildar verðgildi hluta sem hægt er að setja í bakpokann.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Nánar, við höfum tölur $v_1, \dots, v_n$, $w_1, \dots, w_n$ og $c$.
+		\item<2-> Við viljum ákvarða tölur $b_1, \dots, b_n \in \{0, 1\}$ þannig að
+		\[
+			\sum_{i = 1}^n b_i \cdot w_i \leq c
+			\quad \text{ og } \quad
+			\sum_{i = 1}^n b_i \cdot v_i \text{ sé hámarkað}.
+		\]
+		\item<3-> Látum $f(i, j)$ tákna hámarks verðgildi sem má fá úr fyrst $i$ hlutunum og bakpoka sem þolir þyngd $j$.
+		\item<4-> Við höfum þá
+		\[
+			f(i, j) =
+			\left \{
+			\env{array}
+			{
+				{l l}
+				-\infty, & \text{ef $j < 0$},\\
+				0, & \text{annars, ef $i = 0$},\\
+				\max(f(i - 1, j) \\
+						\quad + f(i - 1, j - w_i) + w_i), & \text{annars}.
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/knapsack.c}{8}{31}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við þurfum að reikna $n \cdot (c + 1)$ fallgildi fallsins $f$.
+		\item<2-> Hvert fallgildi er reiknað í $\mathcal{O}($\onslide<3->{$\,1\,$}$)$.
+		\item<4-> Í heildina er þetta því $\mathcal{O}($\onslide<5->{$n \cdot c$}$)$.
 	}
 }
 
