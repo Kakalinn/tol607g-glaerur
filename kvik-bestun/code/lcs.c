@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define MAXN 10001
+#define MAXN 1001
 int max(int a, int b) { if (a < b) return b; return a; }
 
 char s[10001], t[10001];

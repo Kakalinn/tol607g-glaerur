@@ -44,15 +44,17 @@
 			Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
 			Hver er minnsti fjöldi af klinki sem þú getur gefið?
 		\item<2-> Tökum til dæmis $n = 24$. Þá myndum aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
-		\item<3-> En þetta er ekki besta leiðin. Betra væri að gefa $8, 8, 8$.
-		\item<4-> Svo gráðuga aðferðin virkar bara stundum.
-		\item<5-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+		\item<3-> En þetta er ekki besta leiðin.
+		\item<4-> Betra væri að gefa $8, 8, 8$.
+		\item<5-> Svo gráðuga aðferðin virkar bara stundum.
+		\item<6-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+		\item<7-> Til að leysa þetta dæmi almennt notum við \emph{kvika bestun}.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Dæmi}
+	\frametitle{Annað dæmi}
 	\env{itemize}
 	{
 		\item<1-> 
@@ -66,7 +68,7 @@
 				enginn bílstjóri fær bíl sem hann ræður ekki við.
 			Gerum ráð fyrir að bílarnir og bílstjórarnir séu gefnir í vaxandi röð.
 		\item<2-> Tökum eftir að við viljum að bíll sé keyrður af þeim bílstjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
-		\item<3-> Við getum því í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bíl.
+		\item<3-> Við getum því í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bílinn.
 		\item<4-> Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
 	}
 }
@@ -90,30 +92,19 @@
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
-		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
-		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélaga í liðakeppnum).
-		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \texttt{WA}
-					getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
-	}
-}
-
-\env{frame}
-{
+	\frametitle{Gráðuga röðun}
 	\env{itemize}
 	{
 		\item<1-> Áðan röðuðum við tölum með tæmandi leit.
 		\item<2-> Endurtökum nú leikinn með gráðugri nálgun.
 		\item<3-> Ef við ætlum að raða í vaxandi röð þá vitum við að minnsta talan fer fremst.
-		\item<4-> Við getum því raðað listanum gráðugt með því að setja ítrekað minnstu töluna sem er eftir fremst.
+		\item<4-> Við getum því raðað listanum gráðugt með því að setja ítrekað fremst minnstu töluna sem er eftir.
 	}
 }
 
 \env{frame}
 {
-	\selectcode{code/slow-sort.cpp}{4}{13}
+	\selectcode{code/slow-sort.cpp}{4}{12}
 }
 
 \env{frame}
@@ -139,13 +130,26 @@
 		\item<1-> Núna finnum við minnsta stakið í $\mathcal{O}($\onslide<2->{$\log n$}$)$.
 		\item<3-> Svo tímaflækjan á fallinu er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
 		\item<5-> Við getum í rauninni ekki raðað með betri tímaflækju.
-		\item<6-> Þessi röðun kallast \emph{hrúguröðun} (e. \emph{heap sort}), þekkt röðunarreiknirit sem er oft kennt í inngangsnámskeiðum.
+		\item<6-> Þessi röðun kallast \emph{hrúguröðun} (e. \emph{heap sort}) og er þekkt röðunarreiknirit sem er oft kennt í inngangsnámskeiðum.
 	}
 }
 
 \env{frame}
 {
 	\frametitle{Samantekt}
+	\env{itemize}
+	{
+		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
+		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
+		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélaga í liðakeppnum).
+		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \texttt{WA}
+					getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Samanburður}
 	\env{itemize}
 	{
 		\item<1-> Tæmandi leit er oft auðvelt að bera kennsl á, en á það til að vera of hæg. 

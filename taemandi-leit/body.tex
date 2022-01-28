@@ -1,4 +1,4 @@
-\title{Tæmandi leit og gráðug reiknirit}
+\title{Tæmandi leit}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -47,7 +47,7 @@
 		\item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
 		\item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
 		\item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í $a$.
-		\item<6-> Við getum athugað hvort tala sé í $a$ með því að ítra í gegnum $a$, sem tekur $\mathcal{O}($\onslide<7->{$\,n\,$}$)$ tíma.
+		\item<6-> Við getum athugað hvort tiltekin tala sé í $a$ með því að ítra í gegnum $a$, sem tekur $\mathcal{O}($\onslide<7->{$\,n\,$}$)$ tíma.
 		\item<8-> Þessi aðferð er því $\mathcal{O}($\onslide<9->{$nm$}$)$.
 		\item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
 	}
@@ -85,7 +85,7 @@
 	{
 		\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
 		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $\{1, 2, ..., n\}$.
-		\item<3-> Við fáum þá að fjöldi hlutmengja í $A$ er $2^n$.
+		\item<3-> Við fáum því að fjöldi hlutmengja í $A$ er $2^n$.
 	}
 }
 
@@ -107,13 +107,13 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Þegar kemur að því að not bitakenni í forritun notum við okkur eftirfarandi:
+		\item<1-> Þegar kemur að því að nota bitakenni í forritun notum við okkur eftirfarandi:
 		\item<2->[]
 			\env{tabular}
 			{
 				{| l | l |}
 				\hline
-				Kennir $k$-ta einstökungs & \quad \texttt{1 << k}\\
+				Kennir $k$-ta einstökungs & \quad \texttt{1 <\!< k}\\
 				Kennir fyllimengis kennis & \quad \texttt{\textasciitilde{A}}\\
 				Kennir samengis tveggja kenna & \quad \texttt{A|B}\\
 				Kennir sniðmengis tveggja kenna & \quad \texttt{A\&B}\\
@@ -124,6 +124,9 @@
 		\item<3-> NB: Vegna forgang aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
 		\item<4-> Til dæmis er \texttt{A\&B == 0} jafngilt \texttt{A\&(B == 0)} í \texttt{C/C++},
 			þó við viljum yfirleitt \texttt{(A\&B) == 0}.
+		\item<5-> Takið eftir að kennir fyllimengisins bætir við bitum utan þeirra sem við höfum áhuga því við erum í rauninni að taka fyllimengi
+					með stærra óðal.
+		\item<6-> Til að allt sé rétt þarf notum við \texttt{(\textasciitilde{A})\&((1 <\!< n) - 1)}.
 	}
 }
 
@@ -160,7 +163,7 @@
 		\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
 		\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1$ vegu.
 		\item<3-> Tökum mjög einfalt dæmi:
-		\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hver á sinni línu.
+		\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hverja á sinni línu.
 		\item<5-> Við getum notað okkur innbyggða fallið \texttt{next\_permutation(...)} í \texttt{C++}.
 	}
 }
@@ -217,7 +220,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölrunar séu \texttt{3 2 5 4 1}.
+		\item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölurnar séu \texttt{3 2 5 4 1}.
 		\item<2-> Við byrjum með tómann hlaða, táknum hann með \texttt{x x x x x}.
 		\item<3-> Við bætum fyrst við \texttt{3} og fáum \texttt{3 x x x x}.
 		\item<4-> Síðan bætum við \texttt{2} við og fáum \texttt{3 2 x x x}.
@@ -237,9 +240,10 @@
 	\env{itemize}
 	{
 		\item<1-> Tímaflækjan eftir þessa breytingu er ekki augljós.
-		\item<2-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
-		\item<3-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
-		\item<4-> Svo tímaflækjan er $\mathcal{O}($\onslide<5->{$2^n$}$)$.
+		\item<2-> Munið að tölurnar eru allar ólíkar.
+		\item<3-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
+		\item<4-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
+		\item<5-> Svo tímaflækjan er $\mathcal{O}($\onslide<6->{$2^n$}$)$.
 	}
 }
 

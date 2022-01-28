@@ -96,11 +96,21 @@
 
 \env{frame}
 {
+	\env{itemize}
+	{
+		\item<1-> Neðansækin kvik bestun hefur sýna kosti.
+		\item<2-> Það er stundum hægt að bæta tímaflækjuna með til dæmis sniðugri gagnagrind.
+		\item<3-> Sumar þessara bætinga krefjast þess að útfærsla sé neðan sækin.
+	}
+}
+
+\env{frame}
+{
 	\frametitle{Lengsta sameiginlega hlutruna}
 	\env{itemize}
 	{
 		\item<1-> Tökum annað dæmi.
-		\item<2-> Látum $S = s_1s_2...s_n$ og $T = t_1t_2...t_m$ vera strengi af lengd $n$ og $m$, þannig að $1 \leq n, m \leq 10^4$.
+		\item<2-> Látum $S = s_1s_2...s_n$ og $T = t_1t_2...t_m$ vera strengi af lengd $n$ og $m$, þannig að $1 \leq n, m \leq 10^3$.
 		\item<3-> Hver er lengd lengsta strengs $X$ þannig að hann sé hlutruna í bæði $S$ og $T$?
 		\item<4-> Takið eftir að \texttt{"12"} og \texttt{"13"} eru hlutrunur í \texttt{"123"} en \texttt{"21"} er það ekki.
 	}
@@ -1389,17 +1399,6 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Þessi dæmi eru oft kölluð \emph{hlutmengjasummudæmi} (e. \emph{Subset Sum Problem}).
-		\item<2-> Í sinni einföldustu mynd eru þau: ``Er hægt að finna hlutrunu í gefinni talnarunu þannig að hlutrunan summast upp í $t$?''.
-		\item<3-> Eins og við sáum, er bæði hægt að skoða dæmið með og án endurtekninga, ásamt öðrum kröfum.
-		\item<4-> Fræga \emph{bakpokadæmið} (e. \emph{Knapsack Problem}) er dæmi um hlutmengjasummu dæmi.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
 		\item<1-> Hvað gerum við ef við viljum vita \emph{hvaða} klink á að gefa til baka, ekki bara hversu mikið?
 		\item<2-> Það er yfirleitt farið aðra af tveimur leiðum.
 		\item<3-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
@@ -1453,6 +1452,280 @@
 \env{frame}
 {
 	\code{code/lcs-traverse.c}
+}
+
+\defverbatim{\sssA}
+{ \begin{verbatim}
+                             c = 15
+                             b = 0
+       a: 1   2   7   9
+
+       s: 0
+\end{verbatim} }
+
+\defverbatim{\sssB}
+{ \begin{verbatim}
+                             c = 15
+                             b = 1
+       a: 1   2   7   9
+          ^
+       s: 1
+\end{verbatim} }
+
+\defverbatim{\sssC}
+{ \begin{verbatim}
+                             c = 15
+                             b = 2
+       a: 1   2   7   9
+              ^
+       s: 2
+\end{verbatim} }
+
+\defverbatim{\sssD}
+{ \begin{verbatim}
+                             c = 15
+                             b = 7
+       a: 1   2   7   9
+                  ^
+       s: 7
+\end{verbatim} }
+
+\defverbatim{\sssE}
+{ \begin{verbatim}
+                             c = 15
+                             b = 9
+       a: 1   2   7   9
+                      ^
+       s: 9
+\end{verbatim} }
+
+\defverbatim{\sssF}
+{ \begin{verbatim}
+                             c = 15
+                             b = 9
+       a: 1   2   7   9
+          ^   ^            
+       s: 3
+\end{verbatim} }
+
+\defverbatim{\sssG}
+{ \begin{verbatim}
+                             c = 15
+                             b = 9
+       a: 1   2   7   9
+          ^       ^        
+       s: 8
+\end{verbatim} }
+
+\defverbatim{\sssHA}
+{ \begin{verbatim}
+                             c = 15
+                             b = 10
+       a: 1   2   7   9
+          ^           ^    
+       s: 10
+\end{verbatim} }
+
+\defverbatim{\sssHB}
+{ \begin{verbatim}
+                             c = 15
+                             b = 10
+       a: 1   2   7   9
+              ^   ^        
+       s: 9
+\end{verbatim} }
+
+\defverbatim{\sssHC}
+{ \begin{verbatim}
+                             c = 15
+                             b = 11
+       a: 1   2   7   9
+              ^       ^    
+       s: 11
+\end{verbatim} }
+
+\defverbatim{\sssHD}
+{ \begin{verbatim}
+                             c = 15
+                             b = 11
+       a: 1   2   7   9
+                  ^   ^    
+       s: 16
+\end{verbatim} }
+
+\defverbatim{\sssI}
+{ \begin{verbatim}
+                             c = 15
+                             b = 11
+       a: 1   2   7   9
+          ^   ^   ^        
+       s: 10
+\end{verbatim} }
+
+\defverbatim{\sssJ}
+{ \begin{verbatim}
+                             c = 15
+                             b = 12
+       a: 1   2   7   9
+          ^   ^       ^    
+       s: 12
+\end{verbatim} }
+
+\defverbatim{\sssK}
+{ \begin{verbatim}
+                             c = 15
+                             b = 12
+       a: 1   2   7   9
+          ^       ^   ^    
+       s: 17
+\end{verbatim} }
+
+\defverbatim{\sssL}
+{ \begin{verbatim}
+                             c = 15
+                             b = 12
+       a: 1   2   7   9
+              ^   ^   ^    
+       s: 18
+\end{verbatim} }
+
+\defverbatim{\sssM}
+{ \begin{verbatim}
+                             c = 15
+                             b = 12
+       a: 1   2   7   9
+          ^   ^   ^   ^    
+       s: 19
+\end{verbatim} }
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Seinni skiptadæmið er náskylt \emph{hlutmengjasummudæminu} (e. \emph{Subset Sum Problem}).
+		\item<2-> Dæmið er einfalt.
+		\item<3-> Gefnar eru $n$ tölur $a_1, \dots, a_n$ ásamt tölu $c$.
+		\item<4-> Hvaða hlutruna af tölu gefur hæstu summun án þess að fara yfir $c$.
+	}
+}
+
+\env{frame}
+{
+	\only<all:1>{\sssA}
+	\only<all:2>{\sssB}
+	\only<all:3>{\sssC}
+	\only<all:4>{\sssD}
+	\only<all:5>{\sssE}
+	\only<all:6>{\sssF}
+	\only<all:7>{\sssG}
+	\only<all:8>{\sssHA}
+	\only<all:9>{\sssHB}
+	\only<all:10>{\sssHC}
+	\only<all:11>{\sssHD}
+	\only<all:12>{\sssI}
+	\only<all:13>{\sssJ}
+	\only<all:14>{\sssK}
+	\only<all:15>{\sssL}
+	\only<all:16>{\sssM}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum
+		\[
+			f(i, j) =
+			\left \{
+			\env{array}
+			{
+				{l l}
+				1, & \text{ef til er hlutruna af $a_1, \dots, a_i$ sem hefur summu $j$},\\
+				0, & \text{annars}.
+			}
+			\right .
+		\]
+		\item<2-> Við getum nú umritað
+		\[
+			f(i, j) =
+			\left \{
+			\env{array}
+			{
+				{l l}
+				1, & \text{ef $i = 0$ og $j = 0$},\\
+				0, & \text{ef $i = 0$ og $j \neq 0$, eða $j < 0$},\\
+				\min(1, f(i - 1, j) \\
+						\quad + f(i - 1, j - a_i)), & \text{ef $i \neq 0$}.
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/subsetsum.c}{7}{23}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við reiknum hvert gildi á $f(i, j)$ í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$.
+		\item<3-> Við þurfum í versta falli að reinka $n \cdot (c + 1)$ slíka gildi.
+		\item<4-> Svo það tekur okkur $\mathcal{O}($\onslide<5->{$n \cdot c$}$)$ tíma að reikna $f(i, j)$.
+		\item<6-> En sökum minnunar tekura það $\mathcal{O}(q + n \cdot c)$ tíma að reikna $f(i, j)$ $q$ sinnum.
+		\item<7-> Við þurfum að reikna það, í versta falli, $c$ sinnum, svo forritið er $\mathcal{O}($\onslide<8->{$n \cdot c$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ein algeng hagnýting á þessu er tvískipting talna.
+		\item<2-> Látum $a_1, \dots, a_n$ vera heiltölur.
+		\item<3-> Hvernig er best að skipta þeim í tvo hópa þannig að mismunur summa hvors hóps sé sem minnstur.
+		\item<4-> Ef tölurnar eru $(10, 2, 10, 30, 15, 2, 30, 10)$ þá skiptum við í $(2, 2, 10, 10, 30)$ og $(10, 15, 30)$.
+		\item<5-> Summurnar eru $54$ og $55$, og mismunur þeirra er $1$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvernig getum við leyst þetta?
+		\item<2-> Látum $T$ vera summu allra talnanna.
+		\item<3-> Við getum nú notað \texttt{subsetsum(...)} með $c = \lfloor T/2 \rfloor$.
+		\item<4-> Það gefur okkur annan hópinn og hinn hópurinn verður afgangurinn.
+		\item<5-> Okkur vantar þó að finna hvaða tölur eiga að vera í hvorum hóp.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/partition.c}{7}{38}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum $T$ vera summu allra talnanna.
+		\item<2-> Þá er tímalfækjan $\mathcal{O}($\onslide<3->{$n \cdot T$}$)$.
+		\item<4-> Það er til skemmtileg leið til að fá tímaflækuna $\mathcal{O}(n \cdot w)$, þar sem $w$ er stærsta talan í inntakinu.
+		\item<5-> Við skoðum hana kannski í næstu viku.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hlutmengjadæmið er í raun sértilfelli af \emph{bakpokadæminu} (e. \emph{Knapsack Problem}).
+		\item<2-> ...
+	}
 }
 
 \env{frame}

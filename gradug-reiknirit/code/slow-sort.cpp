@@ -6,8 +6,7 @@ void sort(int *a, int n)
 	int i, j, mn;
 	for (i = 0; i < n; i++)
 	{
-		mn = i;
-		for (j = i; j < n; j++) if (a[mn] > a[j]) mn = j;
+		for (j = mn = i; j < n; j++) if (a[mn] > a[j]) mn = j;
 		swap(a[i], a[mn]);
 	}
 }

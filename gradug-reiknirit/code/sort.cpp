@@ -3,7 +3,7 @@ using namespace std;
 
 void sort(int *a, int n)
 {
-	int i, j, mn;
+	int i;
 	priority_queue<int> q;
 	for (i = 0; i < n; i++) q.push(-a[i]);
 	for (i = 0; i < n; i++) a[i] = -q.top(), q.pop();

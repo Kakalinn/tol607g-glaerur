@@ -20,7 +20,7 @@ int cmp(const void* p1, const void* p2)
 	if (fabs(carg(a - piv) - carg(b - piv)) > EPS)
 		return carg(a - piv) < carg(b - piv) ? -1 : 1;
 	if (fabs(cabs(a - piv) - cabs(b - piv)) < EPS) return 0;
-		return cabs(a - piv) < cabs(b - piv) ? -1 : 1;
+	return cabs(a - piv) < cabs(b - piv) ? -1 : 1;
 }
 
 int convex_hull(pt* p, pt* h, int n)
