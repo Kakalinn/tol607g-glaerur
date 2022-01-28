@@ -21,7 +21,8 @@ int dp_traverse(int x)
 	int i, mn = INF, mni;
 	for (i = 0; i < m; i++) if (mn > dp_lookup(x - a[i]) + 1)
 		mn = dp_lookup(x - a[i]) + 1, mni = i;
-	printf("%d ", a[mni]), dp_traverse(x - a[mni]);
+	printf("%d ", a[mni]);
+	dp_traverse(x - a[mni]);
 	return mn;
 }
 int main()

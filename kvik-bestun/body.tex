@@ -20,12 +20,8 @@
 		\item<2-> Frægasta dæmið um rakningarvensl er \emph{Fibonacci runan}.
 		\item<3-> Hún er \onslide<4->{annars} stigs rakningarvensl gefin með fallinu $f(x, y) = x + y$.
 		\item<5-> Reikna má upp úr þessum venslum endurkvæmt.
+		\item<6->[] \selectcode{code/fib2n.c}{3}{7}
 	}
-}
-
-\env{frame}
-{
-	\code{code/fib2n.c}
 }
 
 \env{frame}
@@ -89,8 +85,7 @@
 	\env{itemize}
 	{
 		\item<1-> Annar kostur ofansækinnar kvikrar bestunar er að lausnirnar geta verið nokkuð einsleitar.
-		\item<2->[]
-			\code{code/tddp-template.c}
+		\item<2->[] \code{code/tddp-template.c}
 	}
 }
 
@@ -227,7 +222,7 @@
 
 \env{frame}
 {
-	\code{code/coin-td.c}
+	\selectcode{code/coin-td.c}{7}{18}
 }
 
 \env{frame}
@@ -1360,7 +1355,7 @@
 
 \env{frame}
 {
-	\code{code/altcoin-td.c}
+	\selectcode{code/altcoin-td.c}{7}{16}
 }
 
 \env{frame}
@@ -1434,7 +1429,7 @@
 
 \env{frame}
 {
-	\code{code/coin-td-traverse.c}
+	\selectcode{code/coin-td-traverse.c}{6}{27}
 }
 
 \env{frame}
@@ -1451,7 +1446,7 @@
 
 \env{frame}
 {
-	\code{code/lcs-traverse.c}
+	\selectcode{code/lcs-traverse.c}{6}{25}
 }
 
 \defverbatim{\sssA}
@@ -1674,7 +1669,7 @@
 		\item<1-> Við reiknum hvert gildi á $f(i, j)$ í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$.
 		\item<3-> Við þurfum í versta falli að reinka $n \cdot (c + 1)$ slíka gildi.
 		\item<4-> Svo það tekur okkur $\mathcal{O}($\onslide<5->{$n \cdot c$}$)$ tíma að reikna $f(i, j)$.
-		\item<6-> En sökum minnunar tekura það $\mathcal{O}(q + n \cdot c)$ tíma að reikna $f(i, j)$ $q$ sinnum.
+		\item<6-> En sökum minnunar tekur það $\mathcal{O}(q + n \cdot c)$ tíma að reikna $q$ sinnum fallgildi fallsins $f$.
 		\item<7-> Við þurfum að reikna það, í versta falli, $c$ sinnum, svo forritið er $\mathcal{O}($\onslide<8->{$n \cdot c$}$)$.
 	}
 }
@@ -1705,7 +1700,7 @@
 
 \env{frame}
 {
-	\selectcode{code/partition.c}{7}{38}
+	\selectcode{code/partition.c}{7}{29}
 }
 
 \env{frame}
@@ -1761,7 +1756,7 @@
 
 \env{frame}
 {
-	\selectcode{code/knapsack.c}{8}{31}
+	\selectcode{code/knapsack.c}{8}{27}
 }
 
 \env{frame}

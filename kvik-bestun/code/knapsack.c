@@ -15,28 +15,28 @@ int dp_lookup(int x, int y)
 							dp_lookup(x - 1, y - b[x]) + a[x]);
 }
 
-void knapsack(int *v, int *w, int n, int c)
+void knapsack(int *v, int *w, int *r, int n, int c)
 {
 	int i, j, s[MAXN], ss;
 	for (i = 0; i < n; i++) for (j = 0; j <= c; j++) d[i][j] = -1;
-	for (i = 0; i < n; i++) a[i] = v[i], b[i] = w[i];
+	for (i = 0; i < n; i++) a[i] = v[i], b[i] = w[i], r[i] = 0;
 	j = c;
-	ss = 0;
 	for (i = n - 1; i >= 0; i--)
 		if (dp_lookup(i - 1, j) < dp_lookup(i - 1, j - w[i]) + v[i])
-			j -= w[i], s[ss++] = i;
-	printf("%d\n", ss);
-	for (i = 0; i < ss; i++) printf("%d ", s[i]);
-	printf("\n");
+			j -= w[i], r[i] = 1;
 }
 
 int main()
 {
-	int n, c, i, j, v[MAXN], w[MAXN];
+	int k, n, c, i, j, v[MAXN], w[MAXN], r[MAXN];
 	while (scanf("%d%d", &c, &n) != EOF)
 	{
 		for (i = 0; i < n; i++) scanf("%d%d", &v[i], &w[i]);
-		knapsack(v, w, n, c);
+		knapsack(v, w, r, n, c);
+		for (k = i = 0; i < n; i++) k += r[i];
+		printf("%d\n", k);
+		for (i = 0; i < n; i++) if (r[i]) printf("%d ", i);
+		printf("\n");
 	}
 	return 0;
 }
