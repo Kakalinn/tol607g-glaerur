@@ -46,8 +46,8 @@
 		\item<1-> Mergesort.
 		\item<2-> Helmingunarleit (e. \emph{binary search}).
 		\item<3-> Þriðjungaleit (e. \emph{ternary search}).
-		\item<4-> Margföldunar reiknirit Karatsuba.
-		\item<5-> Margföldunar reiknirit Strassen.
+		\item<4-> Margföldunarreiknirit Karatsuba.
+		\item<5-> Margföldunarreiknirit Strassen.
 		\item<6-> Nálægustu punktar í plani.
 		\item<7-> Fourier ummyndun (e. \emph{fast Fourier transform} (\texttt{FFT})).
 	}
@@ -230,8 +230,8 @@
 	\env{itemize}
 	{
 		\item<1-> Helmingunarleit er $\mathcal{O}($\onslide<2->{$\log n$}$)$, þar sem við helmingum stærð listans í hverri ítrun.
-		\item<3-> Góð æfing í helmingurleit er að útfæra leitina þannig að hún skili vísi á fyrstu (eða síðustu)  endurtekningu staksins.
-		\item<4-> Slíkar útgáfur að helmingunarleit nýtast þegar við förum að nota helmingurleit í almennari mynd.
+		\item<3-> Góð æfing í helmingunarleit er að útfæra leitina þannig að hún skili vísi á fyrstu (eða síðustu)  endurtekningu staksins.
+		\item<4-> Slíkar útgáfur að helmingunarleit nýtast þegar við förum að nota helmingunarleit í almennari mynd.
 	}
 }
 
@@ -243,7 +243,7 @@
 		\item<2-> Getum við fundið $x \in [a, b]$ þannig að $f(x) = y$?
 		\item<3-> Slíkt $x$ þarf ekki að vera til, en ef $f$ er samfellt er það til ef $y \in [f(a), f(b)]$.
 		\item<4-> En hvernig finnum við slíkt $x$?
-		\item<5-> Við getum notað nákvæmlega sömu hugmynd og í helmingurleit í lista.
+		\item<5-> Við getum notað nákvæmlega sömu hugmynd og í helmingunarleit í lista.
 		\item<6-> Látum $m = (a + b)/2$.
 		\item<7-> Ef $f(m) > t$ þá þarf $x \in [a, m]$.
 		\item<8-> Ef $f(m) < t$ þá þarf $x \in [m, b]$.
@@ -417,7 +417,7 @@
 		\item<1-> Það sem við gerðum í raun var að breyta dæminu úr ``finnið minnsta/stærsta gildið þannig að...''
 					yfir í ``tökum ákveðið gildi og athugum hvort að...''.
 		\item<2-> Þetta er algengasta notkunin á helmingunarleit í keppnisforritun.
-		\item<3-> Algengt er helmingurleit af þessum toga sé hluti af erfiðum dæmum.
+		\item<3-> Algengt er að helmingunarleit af þessum toga sé hluti af erfiðum dæmum.
 	}
 }
 
@@ -538,7 +538,7 @@
 	{
 		\item<1-> Við notum okkur oft að tvídiffranlegt fall er kúpt ef og aðeins ef önnur afleiðan er jákvæð.
 		\item<2-> Umfjöllunin okkar heimfærist á eðlilegan hátt yfir á hvelf föll.
-		\item<3-> Þriðjungaleit er algeng í rúmfræði því Evklíðska firðinni er kúpt.
+		\item<3-> Þriðjungaleit er algeng í rúmfræði því Evklíðska firðin er kúpt.
 	}
 }
 
@@ -596,7 +596,7 @@
 	\env{itemize}
 	{
 		\item<1-> Til að nota deila og drottna þurfum við að taka eftir einu.
-		\item<2-> Gerum ráð fyrir að engin lánakostnaður sé greiddur síðasta.
+		\item<2-> Gerum ráð fyrir að engin lánakostnaður sé greiddur síðasta daginn.
 		\item<3-> Það einfaldar reikninga og við getum alltaf bætt honum við eftir á.
 		\item<4-> Táknum með $f(i, j)$ þann gróða (eða tap) sem fæst með því að taka lánið á $i$-ta degi og borga það á $j$-degi degi,
 					og $g(i)$ vera gengið á $i$-ta degi.
