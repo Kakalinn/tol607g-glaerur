@@ -241,7 +241,7 @@
 	{
 		\item<1-> Gerum ráð fyrir að við séum með vaxandi fall $f \colon [a, b] \rightarrow \mathbb{R}$ og $y \in \mathbb{R}$.
 		\item<2-> Getum við fundið $x \in [a, b]$ þannig að $f(x) = y$?
-		\item<3-> Slíkt $x$ þarf ekki að vera til, en ef $f$ er samfellt er það til ef $y \in [f(a), f(b)]$.
+		\item<3-> Slíkt $x$ þarf ekki að vera til, en ef $f$ er samfellt og $y \in [f(a), f(b)]$ þá er það til.
 		\item<4-> En hvernig finnum við slíkt $x$?
 		\item<5-> Við getum notað nákvæmlega sömu hugmynd og í helmingunarleit í lista.
 		\item<6-> Látum $m = (a + b)/2$.
@@ -309,7 +309,7 @@
 	{
 		\item<1-> Við getum alhæft frekar.
 		\item<2-> Tökum dæmi.
-		\item<3-> Þú átt $k$ ketti og $n$ bæli fyrir kettina þína, með $k \leq n$.
+		\item<3-> Þú átt $k$ ketti og $n$ bæli fyrir kettina þína, með $2 \leq k \leq n$.
 		\item<4-> Öll bælin eru staðsett á gangi í íbúðinni þinni.
 		\item<5-> Ganginum má lýsa sem talnalínu og staðsetningar kattabælanna eru þá tölurnar 
 					$0 < x_1 < x_2 < ... < x_n < 10^9$ á talnalínunni.
@@ -419,6 +419,11 @@
 		\item<2-> Þetta er algengasta notkunin á helmingunarleit í keppnisforritun.
 		\item<3-> Algengt er að helmingunarleit af þessum toga sé hluti af erfiðum dæmum.
 	}
+}
+
+\env{frame}
+{
+	\selectcode{code/kisur.c}{3}{25}
 }
 
 \env{frame}

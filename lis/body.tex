@@ -1,0 +1,3178 @@
+\title{Lengstu vaxandi hlutrunur (\texttt{LIS})}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við höfum nú þegar skoðað hvernig finna megi legstu sameiginlegu hlutrunu með tæmandi leit.
+		\item<2-> Sjáum núna hvernig við getum gert það með kvikri betun.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Hlutrunur}
+	\env{itemize}
+	{
+		\item<1-> Látum $(a_1, \dots, a_n)$ vera runu af tölum.
+		\item<2-> Runa $(b_1, \dots, b_k)$ er \emph{hlutruna} rununnar ef til eru heiltölur $j_1 < \dots < j_k$ þannig að $a_{j_m} = b_m$.
+		\item<3-> Til dæmis hefur runan $(1, 2, 3, 4, 5)$ hlutrunurnar $(1, 2, 5)$ og $(1, 3, 5)$.
+		\item<4-> En aftur á móti eru $(2, 1)$ og $(1, 6)$ ekki hlutrunur.
+		\item<5-> Við viljum nú fyrir gefna runu finna lengdina á lengu vaxandi hlutrunum rununnar.
+		\item<6-> Það er oft talað um að finna ,,lengstu vaxandi hlutrununa'' þó það geti verið margar jafna langar ,,lengstu vaxandi hlutrunur''.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum $(a_1, \dots, a_n)$ vera $n$ talna runu.
+		\item<2-> Látum $f(x)$ tákna lengd lengstu vaxandi hlutruna $(a_1, \dots, a_x)$.
+		\item<3-> Þá fáum við
+		\[
+			f(x) = \left \{
+			\env{array}
+			{ {l l}
+				1, & \text{ef $x = 1$,} \\
+				\displaystyle \max_{\substack{1 \leq k < x\\a_k \leq a_x}} f(k) + 1, & \text{annars.}
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/lis-n2.c}{6}{22}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við erum með einvítt stöðurúm af stærð $n$ og hver uppfærsla er í $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
+		\item<3-> Heildar tímaflækjan er því $\mathcal{O}($\onslide<4->{$n^2$}$)$.
+		\item<5-> Við getum bætt þetta, en fyrst þurfum við að leysa þetta aftur með kvikri bestun.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Látum nú $f(x, y)$ tákna minnsta mögulega aftasta stak hlutrunu $(a_1, \dots, a_x)$ af lengd $y$.
+		\item<2-> Við fáum því
+		\[
+			f(x, y) = \left \{
+			\env{array}
+			{ {l l}
+				-\infty, & \text{ef $x = 0$ og $y = 0$,} \\
+				\infty, & \text{annars, ef $x = 0$,} \\
+				f(x - 1, y), & \text{ef $a_x < f(x - 1, y - 1)$,} \\
+				\min(f(x - 1, y), a_x), & \text{annars.}
+			}
+			\right .
+		\]
+		\item<3-> Grunntilvikin eru til að auðvelda útfærlsu.
+		\item<4-> Lengd lengstu vaxandi hlutrunanna er þá stærst $\ell$ þannig að $f(n, \ell)$ er ekki $\infty$. 
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/lis2-n2-td.c}{6}{22}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við erum með tvívítt stöðurúm af stærð $(n + 1) \cdot (n + 1)$ og hver uppfærsla er í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$.
+		\item<3-> Heildar tímaflækjan er því $\mathcal{O}($\onslide<4->{$n^2$}$)$.
+		\item<5-> En þetta er sama tímaflækja og við fengum áðan.
+		\item<6-> Prófum að útfæra þetta neðansækið og sjáum hvað við fáum.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Rifjum upp að
+		\[
+			f(x, y) = \left \{
+			\env{array}
+			{ {l l}
+				-\infty, & \text{ef $x = 0$ og $y = 0$,} \\
+				\infty, & \text{annars, ef $x = 0$,} \\
+				f(x - 1, y), & \text{ef $a_x < f(x - 1, y - 1)$,} \\
+				\min(f(x - 1, y), a_x), & \text{annars.}
+			}
+			\right .
+		\]
+		\item<2-> Sjáum að fallgildi $f(x, y)$ ákvarðast af $f(x - 1, y)$ og $f(x - 1, y - 1)$.
+		\item<3-> Svo við getum fyllt í töfluna í lestrarröð.
+	}
+}
+
+\env{frame}
+{
+	\code{code/lis2-n2-bu.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Heildar tímaflækjan er sú sama og áðan, svo hún er $\mathcal{O}($\onslide<2->{$n^2$}$)$.
+		\item<3-> Skoðum núna hvernig uppfærslan á töflunni fer fram og sjáum hvort við getum bætt tímaflækjuna.
+	}
+}
+
+\defverbatim{\lisbuAA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+
+
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAR}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAS}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAT}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuAZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+   ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+> -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBR}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBS}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBT}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuBZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+      ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCR}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCS}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCT}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+         ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuCZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+            ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDR}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5                                   
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDS}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDT}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8                              
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF                         
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF                    
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuDZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuED}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+               ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+> -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8                              
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8                              
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF                         
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF                         
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF                    
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF                    
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuER}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF               
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuES}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuET}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF  INF          
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF  INF  INF     
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                  ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF                                             
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuEZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7                              
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7                              
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF                         
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF                         
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF                    
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF                    
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFI}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF               
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFJ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF               
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFK}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF  INF          
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFL}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF  INF          
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFM}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF  INF  INF     
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFN}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF  INF  INF     
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFO}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                     ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7  INF  INF  INF  INF  INF  INF
+  -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFP}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF                                             
+\end{verbatim} }
+
+\defverbatim{\lisbuFQ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+          |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+\end{verbatim} }
+
+\defverbatim{\lisbuFR}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1                                        
+\end{verbatim} }
+
+\defverbatim{\lisbuFS}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+               |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+\end{verbatim} }
+
+\defverbatim{\lisbuFT}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4                                   
+\end{verbatim} }
+
+\defverbatim{\lisbuFU}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                    |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7                              
+\end{verbatim} }
+
+\defverbatim{\lisbuFV}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7                              
+\end{verbatim} }
+
+\defverbatim{\lisbuFW}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                         |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9                         
+\end{verbatim} }
+
+\defverbatim{\lisbuFX}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9                         
+\end{verbatim} }
+
+\defverbatim{\lisbuFY}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                              |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF                    
+\end{verbatim} }
+
+\defverbatim{\lisbuFZ}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF                    
+\end{verbatim} }
+
+\defverbatim{\lisbuGA}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                   |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF               
+\end{verbatim} }
+
+\defverbatim{\lisbuGB}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF               
+\end{verbatim} }
+
+\defverbatim{\lisbuGC}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                        |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF  INF          
+\end{verbatim} }
+
+\defverbatim{\lisbuGD}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF  INF          
+\end{verbatim} }
+
+\defverbatim{\lisbuGE}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                             |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF  INF  INF     
+\end{verbatim} }
+
+\defverbatim{\lisbuGF}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF  INF  INF     
+\end{verbatim} }
+
+\defverbatim{\lisbuGG}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+                        ^
+                                                  |
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+> -INF    1    4    7    9  INF  INF  INF  INF  INF
+\end{verbatim} }
+
+\defverbatim{\lisbuGH}
+{ \begin{verbatim}
+3, 6, 2, 1, 5, 8, 4, 7, 9
+
+
+  -INF  INF  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3  INF  INF  INF  INF  INF  INF  INF  INF
+  -INF    3    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    2    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    6  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5  INF  INF  INF  INF  INF  INF  INF
+  -INF    1    5    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    8  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7  INF  INF  INF  INF  INF  INF
+  -INF    1    4    7    9  INF  INF  INF  INF  INF
+\end{verbatim} }
+
+\env{frame}
+{
+	\only<all:1> \lisbuAA
+	\only<all:2> \lisbuAB
+	\only<all:3> \lisbuAC
+	\only<all:4> \lisbuAD
+	\only<all:5> \lisbuAE
+	\only<all:6> \lisbuAF
+	\only<all:7> \lisbuAG
+	\only<all:8> \lisbuAH
+	\only<all:9> \lisbuAI
+	\only<all:10> \lisbuAJ
+	\only<all:11> \lisbuAK
+	\only<all:12> \lisbuAL
+	\only<all:13> \lisbuAM
+	\only<all:14> \lisbuAN
+	\only<all:15> \lisbuAO
+	\only<all:16> \lisbuAP
+	\only<all:17> \lisbuAQ
+	\only<all:18> \lisbuAR
+	\only<all:19> \lisbuAS
+	\only<all:20> \lisbuAT
+	\only<all:21> \lisbuAU
+	\only<all:22> \lisbuAV
+	\only<all:23> \lisbuAW
+	\only<all:24> \lisbuAX
+	\only<all:25> \lisbuAY
+	\only<all:26> \lisbuAZ
+	\only<all:27> \lisbuAZ
+	\only<all:28> \lisbuBA
+	\only<all:29> \lisbuBB
+	\only<all:30> \lisbuBC
+	\only<all:31> \lisbuBD
+	\only<all:32> \lisbuBE
+	\only<all:33> \lisbuBF
+	\only<all:34> \lisbuBG
+	\only<all:35> \lisbuBH
+	\only<all:36> \lisbuBI
+	\only<all:37> \lisbuBJ
+	\only<all:38> \lisbuBK
+	\only<all:39> \lisbuBL
+	\only<all:40> \lisbuBM
+	\only<all:41> \lisbuBN
+	\only<all:42> \lisbuBO
+	\only<all:43> \lisbuBP
+	\only<all:44> \lisbuBQ
+	\only<all:45> \lisbuBR
+	\only<all:46> \lisbuBS
+	\only<all:47> \lisbuBT
+	\only<all:48> \lisbuBU
+	\only<all:49> \lisbuBV
+	\only<all:50> \lisbuBW
+	\only<all:51> \lisbuBX
+	\only<all:52> \lisbuBY
+	\only<all:53> \lisbuBZ
+	\only<all:54> \lisbuCA
+	\only<all:55> \lisbuCB
+	\only<all:56> \lisbuCC
+	\only<all:57> \lisbuCD
+	\only<all:58> \lisbuCE
+	\only<all:59> \lisbuCF
+	\only<all:60> \lisbuCG
+	\only<all:61> \lisbuCH
+	\only<all:62> \lisbuCI
+	\only<all:63> \lisbuCJ
+	\only<all:64> \lisbuCK
+	\only<all:65> \lisbuCL
+	\only<all:66> \lisbuCM
+	\only<all:67> \lisbuCN
+	\only<all:68> \lisbuCO
+	\only<all:69> \lisbuCP
+	\only<all:70> \lisbuCQ
+	\only<all:71> \lisbuCR
+	\only<all:72> \lisbuCS
+	\only<all:73> \lisbuCT
+	\only<all:74> \lisbuCU
+	\only<all:75> \lisbuCV
+	\only<all:76> \lisbuCW
+	\only<all:77> \lisbuCX
+	\only<all:78> \lisbuCY
+	\only<all:79> \lisbuCZ
+	\only<all:80> \lisbuDA
+	\only<all:81> \lisbuDB
+	\only<all:82> \lisbuDC
+	\only<all:83> \lisbuDD
+	\only<all:84> \lisbuDE
+	\only<all:85> \lisbuDF
+	\only<all:86> \lisbuDG
+	\only<all:87> \lisbuDH
+	\only<all:88> \lisbuDI
+	\only<all:89> \lisbuDJ
+	\only<all:90> \lisbuDK
+	\only<all:91> \lisbuDL
+	\only<all:92> \lisbuDM
+	\only<all:93> \lisbuDN
+	\only<all:94> \lisbuDO
+	\only<all:95> \lisbuDP
+	\only<all:96> \lisbuDQ
+	\only<all:97> \lisbuDR
+	\only<all:98> \lisbuDS
+	\only<all:99> \lisbuDT
+	\only<all:100> \lisbuDU
+	\only<all:101> \lisbuDV
+	\only<all:102> \lisbuDW
+	\only<all:103> \lisbuDX
+	\only<all:104> \lisbuDY
+	\only<all:105> \lisbuDZ
+	\only<all:106> \lisbuEA
+	\only<all:107> \lisbuEB
+	\only<all:108> \lisbuEC
+	\only<all:109> \lisbuED
+	\only<all:110> \lisbuEE
+	\only<all:111> \lisbuEF
+	\only<all:112> \lisbuEG
+	\only<all:113> \lisbuEH
+	\only<all:114> \lisbuEI
+	\only<all:115> \lisbuEJ
+	\only<all:116> \lisbuEK
+	\only<all:117> \lisbuEL
+	\only<all:118> \lisbuEM
+	\only<all:119> \lisbuEN
+	\only<all:120> \lisbuEO
+	\only<all:121> \lisbuEP
+	\only<all:122> \lisbuEQ
+	\only<all:123> \lisbuER
+	\only<all:124> \lisbuES
+	\only<all:125> \lisbuET
+	\only<all:126> \lisbuEU
+	\only<all:127> \lisbuEV
+	\only<all:128> \lisbuEW
+	\only<all:129> \lisbuEX
+	\only<all:130> \lisbuEY
+	\only<all:131> \lisbuEZ
+	\only<all:132> \lisbuFA
+	\only<all:133> \lisbuFB
+	\only<all:134> \lisbuFC
+	\only<all:135> \lisbuFD
+	\only<all:136> \lisbuFE
+	\only<all:137> \lisbuFF
+	\only<all:138> \lisbuFG
+	\only<all:139> \lisbuFH
+	\only<all:140> \lisbuFI
+	\only<all:141> \lisbuFJ
+	\only<all:142> \lisbuFK
+	\only<all:143> \lisbuFL
+	\only<all:144> \lisbuFM
+	\only<all:145> \lisbuFN
+	\only<all:146> \lisbuFO
+	\only<all:147> \lisbuFP
+	\only<all:148> \lisbuFQ
+	\only<all:149> \lisbuFR
+	\only<all:150> \lisbuFS
+	\only<all:151> \lisbuFT
+	\only<all:152> \lisbuFU
+	\only<all:153> \lisbuFV
+	\only<all:154> \lisbuFW
+	\only<all:155> \lisbuFX
+	\only<all:156> \lisbuFY
+	\only<all:157> \lisbuFZ
+	\only<all:158> \lisbuGA
+	\only<all:159> \lisbuGB
+	\only<all:160> \lisbuGC
+	\only<all:161> \lisbuGD
+	\only<all:162> \lisbuGE
+	\only<all:163> \lisbuGF
+	\only<all:164> \lisbuGG
+	\only<all:165> \lisbuGH
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum eftir að við þurfum í raun alltaf bara að geyma síðustu línuna sem við kláruðum.
+		\item<2-> Annað sem við sjáum er  að línurnar eru allar vaxandi.
+		\item<3-> Að lokum sjáum við að hver lína er aðeins uppfærð einu sinni í hverri ítrun.
+		\item<4-> En afhverju gildir þetta?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afhverju er allar línurnar raðaðar}
+	\env{itemize}
+	{
+		\item<1-> Rifjum upp að
+		\[
+			f(x, y) = \left \{
+			\env{array}
+			{ {l l}
+				-\infty, & \text{ef $x = 0$ og $y = 0$,} \\
+				\infty, & \text{annars, ef $x = 0$,} \\
+				f(x - 1, y), & \text{ef $a_x < f(x - 1, y - 1)$,} \\
+				\min(f(x - 1, y), a_x), & \text{annars.}
+			}
+			\right .
+		\]
+		\item<2-> Þetta fæst með einfaldri þrepun.
+		\item<3-> Fyrst línan er alltaf $-\infty, \infty, \dots, \infty$, sem er röðuð.
+		\item<4-> Gerum nú ráð fyrir að við séum í línu $x$ og við þurfum að uppfæra $y$.
+		\item<5-> Þá þarf $a_x \geq f(x - 1, y - 1)$ því uppfærlsa á sér aðeins stað í síðasta tilfellinu.
+		\item<6-> En einnig þarf $a_x < f(x - 1, y)$.
+		\item<7-> Svo $f(x - 1, y - 1) \leq f(x, y) < f(x - 1, y)$.
+		\item<8-> En þá fæst líka að $f(x, y) < f(x - 1,y) \leq f(x, y + 1)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afhverju uppfærum við bara einu sinni í hverri ítrun?}
+	\env{itemize}
+	{
+		\item<1-> Rifjum upp að
+		\[
+			f(x, y) = \left \{
+			\env{array}
+			{ {l l}
+				-\infty, & \text{ef $x = 0$ og $y = 0$,} \\
+				\infty, & \text{annars, ef $x = 0$,} \\
+				f(x - 1, y), & \text{ef $a_x < f(x - 1, y - 1)$,} \\
+				\min(f(x - 1, y), a_x), & \text{annars.}
+			}
+			\right .
+		\]
+		\item<2-> Gerum ráð fyrir að við séum í línu $x$ og við þurfum að uppfæra $y$.
+		\item<3-> Eins og við sáum áðan þá er $f(x - 1, y - 1) \leq a_x < f(x - 1, y)$ nauðsynlegt skilyrði fyrir uppfærslu.
+		\item<4-> Þetta getur þó bara átt sér stað, í mesta lagi, einu sinni í röðuðum lista.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Afhverju uppfærum við bara einu sinni í hverri ítrun?}
+	\env{itemize}
+	{
+		\item<1-> Við getum því lýst uppfærslu $y$-tu línunnar með:
+		\env{itemize}
+		{
+			\item<2-> Finnum $x$ þannig að $f(x - 1, y - 1) \leq a_x < f(x - 1, y)$.
+			\item<3-> Látum $f(x, y) = a_x$.
+			\item<4-> Uppfærum næstu línu.
+		}
+		\item<5-> Í neðansæknu útfærslunniframkvæmum við línulega leit í fyrst skrefinu.
+		\item<6-> En þar sem línurnar eru allar raðaðar getum við í staðinn framkvæmt helmingunarleit.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
