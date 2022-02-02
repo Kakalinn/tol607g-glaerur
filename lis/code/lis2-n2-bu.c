@@ -19,7 +19,7 @@ int lis(int *a, int *b, int n)
 		for (int ii = 0; ii < n + 1; ii++) { for (int jj = 0; jj < n + 1; jj++) printf("%10d ", d[ii][jj]); printf("\n"); }
 		printf("\n\n");
 	}
-	for (x = n; d[n][x] > n; x--);
+	for (x = n; d[n][x] == (1 << 30); x--);
 	for (i = 0; i < x; i++) b[i] = d[n - x + i + 1][i + 1];
 	return x;
 }

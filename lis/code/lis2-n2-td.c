@@ -17,7 +17,7 @@ int lis(int *a, int n)
 	int i, j, x;
 	for (i = 0; i < n; i++) v[i] = a[i];
 	for (i = 0; i < n; i++) for (j = 0; j < n + 1; j++) d[i][j] = -1;
-	for (x = n; dp_lookup(n - 1, x) > n; x--);
+	for (x = n; dp_lookup(n - 1, x) == (1 << 30); x--);
 	return x;
 }
 

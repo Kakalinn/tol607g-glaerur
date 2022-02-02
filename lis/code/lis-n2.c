@@ -16,9 +16,10 @@ int dp_lookup(int x)
 
 int lis(int *a, int n)
 {
-	int i;
+	int i, r = 1;
 	for (i = 0; i < n; i++) d[i] = -1, v[i] = a[i];
-	return dp_lookup(n - 1);
+	for (i = 0; i < n; i++) r = max(r, dp_lookup(i));
+	return r;
 }
 
 int main()
