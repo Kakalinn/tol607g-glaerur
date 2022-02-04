@@ -23,8 +23,8 @@ int lis(int *a, int *b, int n)
 		d[r] = a[i], e[i] = d[r - 1];
 	}
 	for (x = n; d[x] == (1 << 30); x--);
-	for (i = n - 1, j = x - 1, y = d[x]; j >= 0; i--)
-		if (a[i] == y) y = e[i], b[j--] = a[i];
+	for (i = n - 1, j = x - 1, y = d[x]; j >= 0; i--) if (a[i] == y)
+		y = e[i], b[j--] = a[i];
 	return x;
 }
 

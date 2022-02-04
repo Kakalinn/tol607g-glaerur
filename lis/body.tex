@@ -10,7 +10,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við höfum nú þegar skoðað hvernig finna megi lengstu sameiginlegu hlutrunu með tæmandi leit.
+		\item<1-> Við höfum nú þegar skoðað hvernig finna megi lengstu vaxandi hlutrunur með tæmandi leit.
 		\item<2-> Sjáum núna hvernig við getum gert það með kvikri bestun.
 	}
 }
@@ -22,9 +22,9 @@
 	{
 		\item<1-> Látum $(a_1, \dots, a_n)$ vera runu af tölum.
 		\item<2-> Runa $(b_1, \dots, b_k)$ er \emph{hlutruna} rununnar ef til eru heiltölur $j_1 < \dots < j_k$ þannig að $a_{j_m} = b_m$.
-		\item<3-> Til dæmis hefur runan $(1, 2, 3, 4, 5)$ hlutrunurnar $(1, 2, 5)$ og $(1, 3, 5)$.
+		\item<3-> Runan $(1, 2, 3, 4, 5)$ hefur, til dæmis, hlutrunurnar $(1, 2, 5)$, $(1, 3, 5)$ og $(4)$.
 		\item<4-> En aftur á móti eru $(2, 1)$ og $(1, 6)$ ekki hlutrunur.
-		\item<5-> Við viljum nú fyrir gefna runu finna lengdina á lengstu vaxandi hlutrunum rununnar.
+		\item<5-> Við viljum nú, fyrir gefna runu, finna lengdina á lengstu vaxandi hlutrunum rununnar.
 		\item<6-> Það er oft talað um að finna ,,lengstu vaxandi hlutrununa'' þó það geti verið margar jafn langar ,,lengstu vaxandi hlutrunur''.
 	}
 }
@@ -34,7 +34,7 @@
 	\env{itemize}
 	{
 		\item<1-> Látum $(a_1, \dots, a_n)$ vera $n$ talna runu.
-		\item<2-> Látum $f(x)$ tákna lengd lengstu vaxandi hlutrunu $(a_1, \dots, a_x)$.
+		\item<2-> Látum $f(x)$ tákna lengd lengstu vaxandi hlutrunu $(a_1, \dots, a_x)$, sem endar í $a_x$.
 		\item<3-> Þá fáum við
 		\[
 			f(x) = \left \{
@@ -50,7 +50,7 @@
 
 \env{frame}
 {
-	\selectcode{code/lis-n2.c}{6}{22}
+	\selectcode{code/lis-n2.c}{6}{23}
 }
 
 \env{frame}
@@ -59,7 +59,7 @@
 	{
 		\item<1-> Við erum með einvítt stöðurúm af stærð $n$ og hver uppfærsla er í $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
 		\item<3-> Heildartímaflækjan er því $\mathcal{O}($\onslide<4->{$n^2$}$)$.
-		\item<5-> Við getum bætt þetta, en fyrst þurfum við að leysa þetta aftur með kvikri bestun.
+		\item<5-> Við getum bætt þetta, en fyrst þurfum við að leysa þetta aftur með kvikri bestun, en annarri rakningarformúlu.
 	}
 }
 
@@ -81,7 +81,7 @@
 			\right .
 		\]
 		\item<3-> Grunntilvikin eru til að auðvelda útfærlsu.
-		\item<4-> Lengd lengstu vaxandi hlutrunu er þá gildi stærsta $\ell$ þannig að $f(n, \ell)$ er ekki $\infty$. 
+		\item<4-> Lengd lengstu vaxandi hlutrunanna er þá stærsta $\ell$ þannig að $f(n, \ell) < \infty$.
 	}
 }
 
@@ -124,7 +124,7 @@
 
 \env{frame}
 {
-	\code{code/lis2-n2-bu.c}
+	\selectcode{code/lis2-n2-bu.c}{6}{20}
 }
 
 \env{frame}
@@ -3173,7 +3173,17 @@
 
 \env{frame}
 {
-	\code{code/lis3-n.c}
+	\selectcode{code/lis3-n.c}{9}{29}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Nú er forritið einföld \texttt{for}-lykkja af lengd $n$ sem framkvæmir helmingunarleit í hverri ítrun.
+		\item<2-> Helmingunarleitin er $\mathcal{O}($\onslide<3->{$\log n$}$)$.
+		\item<4-> Heildartímaflækan er því $\mathcal{O}($\onslide<5->{$n \log n$}$)$.
+	}
 }
 
 \env{frame}
