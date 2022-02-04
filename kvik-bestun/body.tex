@@ -63,7 +63,7 @@
 		\item<2-> Eina sem við þurfum að passa er að reikna gildin í vaxandi röð.
 		\item<3->[]
 			\code{code/fibn-iter.c}
-		\item<4-> Þegar ofansækin kvik bestunar lausn er útfærð með ítrun köllum við það \emph{neðansækin kvik bestun} 
+		\item<4-> Þegar ofansækin kvik bestunar lausn er útfærð með ítrun köllum við það \emph{neðansækna kvika bestun} 
 					(e. \emph{bottom up dymanic programming}).
 	}
 }
@@ -73,7 +73,7 @@
 	\env{itemize}
 	{
 		\item<1-> Í neðansækinni kvikri bestun byrjum við með grunntilfellin og smíðum flóknari lausnirnar út frá þeim.
-		\item<2-> Í ofansækinni kvikri bestun brjótum við fyrst flóknu dæmin niður í smærri dæmi sem við vitum svarið við og reiknum svo út úr því.
+		\item<2-> Í ofansækinni kvikri bestun brjótum við fyrst niður flóknu dæmin í smærri dæmi sem við vitum svarið við og reiknum svo út úr því.
 		\item<3-> Ef endurkvæmnafallið okkar er háð $k$ breytum þá segjum við að lausnin okkar sé \emph{$k$ víð kvik bestun}.
 		\item<4-> Ofansækin kvik bestun hentar þegar við erum að vinna með fleiri en eina vídd.
 		\item<5-> Þá getur verið erfitt að ítra í gegnum stöðurnar í ``réttri röð''.
@@ -192,8 +192,9 @@
 	{
 		\item<1-> Skoðum aftur Skiptimyntadæmið úr síðustu viku.
 		\item<2-> Þú ert með ótakmarkað magn af $m$ mismunandi myntum.
-		\item<3-> Þær eru virði  $x_1, x_2, ..., x_m$. Til þæginda gerum við ráð fyrir því að $x_1 = 1$.
-		\item<4-> Hver er minnsti nauðsynlegi fjöldi af klinki ef þú vilt gefa $n$ krónur til baka.
+		\item<3-> Þær eru virði $x_1, x_2, ..., x_m$.
+		\item<4-> Til þæginda gerum við ráð fyrir því að $x_1 = 1$.
+		\item<5-> Hver er minnsti nauðsynlegi fjöldi af klinki sem þú þarft ef þú vilt gefa $n$ krónur til baka.
 	}
 }
 
@@ -1355,7 +1356,7 @@
 
 \env{frame}
 {
-	\selectcode{code/altcoin-td.c}{7}{16}
+	\selectcode{code/altcoin-td.c}{8}{16}
 }
 
 \env{frame}
