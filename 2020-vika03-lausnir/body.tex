@@ -26,7 +26,7 @@
 	\env{itemize}
 	{
 		\item<1-> Okkur er gefin tala $1 \leq n < 10^6$.
-		\item<2-> Hver er missta tala stærri en $n$ sem inniheldur nákvæmlega sömu tölustafi.
+		\item<2-> Hver er minnsta talan stærri en $n$ sem inniheldur nákvæmlega sömu tölustafi?
 		\item<3-> Ef engin slík tala er til er svarið \texttt{0}.
 		\item<4-> \texttt{156 -> 165}.
 		\item<5-> \texttt{330 -> 0}.
@@ -71,7 +71,7 @@
 	\frametitle{Veci}
 	\env{itemize}
 	{
-		\item<1-> Við þurfum nú bara að ýtra í gegnum heiltölurnar á $[n + 1, 10^6]$.
+		\item<1-> Við þurfum nú bara að ítra í gegnum heiltölurnar á $[n + 1, 10^6]$.
 	}
 }
 
@@ -101,10 +101,25 @@
 	\frametitle{Veci}
 	\env{itemize}
 	{
-		\item<1-> Tökum eftir að við ýtrum í gegnum $\mathcal{O}($\onslide<2->{$\,n\,$}$)$ tölur.
-		\item<3-> Tímaflækjan á samanburðinum er línulegur í lengd tölustafan, það er að segja $\mathcal{O}($\onslide<4->{$\log n$}$)$.
+		\item<1-> Tökum eftir að við ítrum í gegnum $\mathcal{O}($\onslide<2->{$\,n\,$}$)$ tölur.
+		\item<3-> Tímaflækjan á samanburðinum er línulegur í lengd tölustafanna, það er að segja $\mathcal{O}($\onslide<4->{$\log n$}$)$.
 		\item<5-> Svo tímaflækjan í heildina er $\mathcal{O}($\onslide<6->{$n \log n$}$)$.
 	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Þetta dæmi má útfæra á eftirfarandi hátt í \texttt{Python}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\code{code/veci.py}
 }
 
 \env{frame}
@@ -128,9 +143,9 @@
 		\env{align*}
 		{
 				\operatorname{avg}(a_j, a_{j + 1}, \dots, a_k)
-				&= \frac{a_j + a_{j + 1} + \dots + a_k}{j - k + 1}\\
-				&\leq \frac{a_m + a_m + \dots + a_m}{j - k + 1}\\
-				&= \frac{(j - k + 1) \cdot a_m}{j - k + 1}\\
+				&= \frac{a_j + a_{j + 1} + \dots + a_k}{k - j + 1}\\
+				&\leq \frac{a_m + a_m + \dots + a_m}{k - j + 1}\\
+				&= \frac{(k - j + 1) \cdot a_m}{k - j + 1}\\
 				&= a_m.
 		}
 		\item<3-> Svo meðaltalið verður aldrei stærra en $a_m$.
@@ -152,7 +167,7 @@
 	{
 		\item<1-> Atli og Finnur eru að spila tölvuleik sem snýst um að fanga sólkerfi.
 		\item<2-> Í leiknum eru $1 \leq n \leq 10^5$ sólkerfi.
-		\item<3-> Atli og Fannar senda einhvern fjölda skipa sinna á hvert sólkerfi.
+		\item<3-> Atli og Finnur senda einhvern fjölda skipa sinna á hvert sólkerfi.
 		\item<4-> Atli fangar tiltekið sólkerfi ef hann sendir strangt fleiri skip þangað.
 		\item<5-> Atli hefur $a$ skip og veit að Finnur mun senda $e_i$ skip á $i$-ta skólkerfið.
 		\item<6-> Hver er mesti fjöldi sólkerfa sem Atli getur fangað?
@@ -191,8 +206,8 @@
 
 \env{frame}
 {
-	\frametitle{Planetaris}
-	\code{code/planetaris1.c}
+	\frametitle{Planetaris, röng lausn}
+	\selectcode{code/planetaris1.c}{10}{23}
 }
 
 \env{frame}
