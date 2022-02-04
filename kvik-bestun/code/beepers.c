@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 #define MAXN 18
 #define INF (1 << 30)
 int min(int a, int b) { if (a < b) return a; return b; }
 
-int d[MAXN][1 << MAXN], g[MAXN][MAXN], n;
+int g[MAXN][MAXN], d[MAXN][1 << MAXN], m;
 int dp_lookup(int x, int y)
 {
 	int i;
@@ -25,9 +26,17 @@ int tsp(int *a, int n)
 
 int main()
 {
-	int i, j, a[MAXN][MAXN];
-	scanf("%d", &n);
-	for (i = 0; i < n; i++) for (j = 0; j < n; j++) scanf("%d", &a[i][j]);
-	printf("%d\n", tsp(*a, n));
+	int i, j, t, n, xx, yy, x[MAXN], y[MAXN], a[MAXN][MAXN];
+	scanf("%d", &t);
+	while (t--)
+	{
+		scanf("%d%d", &xx, &yy);
+		scanf("%d%d", &x[0], &y[0]);
+		scanf("%d", &n);
+		n++;
+		for (i = 1; i < n; i++) scanf("%d%d", &x[i], &y[i]);
+		for (i = 0; i < n; i++) for (j = 0; j < n; j++) a[i][j] = abs(x[i] - x[j]) + abs(y[i] - y[j]);
+		printf("%d\n", tsp(*a, n));
+	}
 	return 0;
 }

@@ -151,7 +151,7 @@
 
 \env{frame}
 {
-	\code{code/lcs.c}
+	\selectcode{code/lcs.c}{6}{22}
 }
 
 \env{frame}
@@ -1364,7 +1364,7 @@
 	\env{itemize}
 	{
 		\item<1-> Það er nokkuð létt að meta tímaflækjurnar á neðansæknu lausnunum.
-		\item<2-> Þær eru báðar tvöfaldar \texttt{for}-lykkjur, sú ytri af lengd $m$ og innri af lengd $\mathcal{O}(n)$.
+		\item<2-> Þær eru báðar tvöfaldar \texttt{for}-lykkjur, sú ytri af lengd $m$ og innri af lengd $\mathcal{O}(\,n\,)$.
 		\item<3-> Svo tímaflækjurnar eru $\mathcal{O}($\onslide<4->{$n \cdot m$}$)$.
 	}
 }
@@ -1396,12 +1396,11 @@
 	\env{itemize}
 	{
 		\item<1-> Hvað gerum við ef við viljum vita \emph{hvaða} klink á að gefa til baka, ekki bara hversu mikið?
-		\item<2-> Það er yfirleitt farið aðra af tveimur leiðum.
-		\item<3-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
+		\item<2-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
 					þá erum við í raun að velja hvort er betra: \texttt{dp(x, y + 1)} eða \texttt{dp(x - a[y], y + 1) + 1}.
-		\item<4-> Fyrri aðferðin felur í sér að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
-		\item<5-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
-		\item<6-> Síðan er eftir á hægt að þræða sig í gegn og finna klinkið sem þarf.
+		\item<3-> Okkur nægir því að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
+		\item<4-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
+		\item<5-> Síðan er eftir á hægt að þræða sig í gegn og finna klinkið sem þarf.
 	}
 }
 
@@ -1421,16 +1420,14 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Hin aðferðin hentar oft betur ef við erum með ofansækina kvika bestun.
-		\item<2-> Þá búum við til annað endurkvæmt fall sem notar \texttt{dp\_lookup(...)} til að finna besta skrefið.
-		\item<3-> Þetta fall er auðvelt að smíða því það mun vera næstum eins og \texttt{dp\_lookup(...)}.
-		\item<4-> Þegar það er búið að finna besta gildið prentar það hvert gildið er, og heldur svo áfram endurkvæmt.
+		\item<1-> Í stað þess að geyma besta skrefið getum við skoðað öll skrefin og valið það besta.
 	}
 }
 
+% TODO: breyta heitinu á fallinu
 \env{frame}
 {
-	\selectcode{code/coin-td-traverse.c}{6}{27}
+	\selectcode{code/coin-td-traverse.c}{7}{29}
 }
 
 \env{frame}
@@ -1439,15 +1436,15 @@
 	{
 		\item<1-> Helsti kostur fyrri aðferðarinnar er að besta skrefið er ákvarðað í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$ tíma.
 		\item<3-> Í seinni aðferðinni tekur það jafnalangan tíma og \texttt{dp\_lookup(...)} tekur að meta hverja stöðu.
-		\item<4-> Þetta má þó bæta með minnun.
-		\item<5-> Þetta kemur bara til með að gera nógu góða lausn hæga ef það þarf að reikna fyrir mörg $n$.
-		\item<6-> Skoðum nú hvernig við gætum nýtt þetta til að finna lengsta sameiginlega hlutstreng.
+		\item<4-> Þetta kemur bara til með að gera nógu góða lausn hæga ef það þarf að reikna fyrir mörg gildi.
+		\item<5-> Skoðum nú hvernig við gætum nýtt þetta til að finna lengsta sameiginlega hlutstreng.
 	}
 }
 
+% TODO: testa
 \env{frame}
 {
-	\selectcode{code/lcs-traverse.c}{6}{25}
+	\selectcode{code/lcs-traverse.c}{5}{27}
 }
 
 \defverbatim{\sssA}
@@ -1711,7 +1708,8 @@
 		\item<1-> Látum $T$ vera summu allra talnanna.
 		\item<2-> Þá er tímaflækjan $\mathcal{O}($\onslide<3->{$n \cdot T$}$)$.
 		\item<4-> Það er til skemmtileg leið til að fá tímaflækjuna $\mathcal{O}(n \cdot w)$, þar sem $w$ er stærsta talan í inntakinu.
-		\item<5-> Við skoðum hana kannski í næstu viku.
+		\item<5-> Takið eftir að tímaflækjan $\mathcal{O}(n \cdot T)$ er í raun sú sama og $\mathcal{O}(n^2 \cdot w)$.
+		\item<6-> Við skoðum hana kannski seinna.
 	}
 }
 
@@ -1723,6 +1721,7 @@
 		\item<2-> Gerum ráð fyrir að við séum með $n$ hluti sem allir hafa einhverja vigt og verðgildi.
 		\item<3-> Við erum einnig með bakpoka sem þolir tiltekna samtals vigt.
 		\item<4-> Verkefnið snýst þá um að hámarka heildar verðgildi hluta sem hægt er að setja í bakpokann.
+		\item<5-> Ef sérhver hlutur hefur sömu vigt og verðgildi þá erum við komin með hlutmengjasummudæmið.
 	}
 }
 
@@ -1737,7 +1736,7 @@
 			\quad \text{ og } \quad
 			\sum_{i = 1}^n b_i \cdot v_i \text{ sé hámarkað}.
 		\]
-		\item<3-> Látum $f(i, j)$ tákna hámarks verðgildi sem má fá úr fyrst $i$ hlutunum og bakpoka sem þolir þyngd $j$.
+		\item<3-> Látum $f(i, j)$ tákna hámarks verðgildi sem má fá úr fyrst $i$ hlutunum með bakpoka sem þolir þyngd $j$.
 		\item<4-> Við höfum þá
 		\[
 			f(i, j) =
@@ -1825,9 +1824,130 @@
 	}
 }
 
+% TODO: gera kannski betur
 \env{frame}
 {
-	\code{code/tsp.c}
+	\selectcode{code/tsp.c}{7}{24}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum nú dæmi sem er ekki jafn staðlað.
+		\item<2-> Gerum ráð fyrir að við séum með $n$ reiti fyrir framan okkur, hver merktur með tölu $a_i$.
+		\item<3-> Reitirnir liggja jafndreift á beinni línu og þú byrjar á reit númer eitt.
+		\item<4-> Þú vilt síðan ferðast á reit $n$ með því að hoppa á milli reitanna.
+		\item<5-> Þú færð $a_i$ stig ef þú lendir á $i$-ta reitnum og heildarstigafjöldinn er summa stiganna fyrir öll hoppin.
+		\item<6-> Hvert stökk má þó ekki vera lengra en stökkið á undan.
+		\item<7-> Hver er mesti fjöldi stiga sem þú getur fengið.
+		\item<8-> Takið eftir að $1 \leq n \leq 3 \cdot 10^3$ og $-10^9 \leq a_i \leq 10^9$.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Finnum rakningarformúlu sem lýsir svarinu.
+		\item<2-> Látum $f(i, j)$ vera mesta stigafjöldan sem má fá með því að stökkva frá $i$-ta reitnum með stökkum sem eru ekki lengri en $j$.
+		\item<3-> Við fáum þá
+		\[
+			f(i, j) = 
+			\left \{
+			\env{array}
+			{
+				{l l}
+				a_n, & \text{ef $i = n$},\\
+				\max\limits_{1 \leq k \leq \min(j, n - i)} f(i + k, k) + a_i, & \text{annars}.
+			}
+			\right .
+		\]
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/deceleratingjump-td-slow.c}{8}{17}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við þurfum að reikna $n \cdot n$ fallgildi og hvert fallgildi er reiknað í $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
+		\item<3-> Svo heildartímaflækjan er $\mathcal{O}($\onslide<4->{$n^3$}$)$.
+		\item<5-> En nú má $n$ vera, allt að, $3 \cdot 10^3$ og $(3 \cdot 10^3)^3 = 27 \cdot 10^9$.
+		\item<6-> Svo þessi lausn er of hæg.
+		\item<7->[] \includegraphics[scale = 0.25]{fig/tle1.png}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Útfærum nú lausnina neðansækið í von um að geta bætt hana síðan.
+		\item<2-> Munum að
+		\[
+			f(i, j) = 
+			\left \{
+			\env{array}
+			{
+				{l l}
+				a_n, & \text{ef $i = n$},\\
+				\max\limits_{1 \leq k \leq \min(j, n - i)} f(i + k, k) + a_i, & \text{annars}.
+			}
+			\right .
+		\]
+		\item<3-> Nú er $f(i, j)$ bara háð styttri stökkum eða jafn löngum stökkum sem byrja aftar.
+		\item<4-> Svo við getum reiknað út $f(i, j)$ í vaxandi stökk röð, og minnkandi upphafsstöðum.
+		\item<5-> Með öðrum orðum látum við $j$ vaxa, og $i$ minnka.
+	}
+}
+
+\env{frame}
+{
+	\code{code/deceleratingjump-bu-slow.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Nú er þetta forrit lítið annað en þreföld \texttt{for}-lykkja, hver af lengd $\mathcal{O}(\,n\,)$.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n^3$}$)$.
+		\item<4-> Þetta ætti því einnig að vera of hægt.
+		\item<5->[] \includegraphics[scale = 0.25]{fig/tle2.png}
+		\item<6-> Tökum þó eftir einu.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þegar við reiknum fallgildið $f(i, j)$ þá tökum við stærsta gildið á skálínunni $f(i + 1, 1), f(i + 2, 2), \dots, f(i + k, k)$.
+		\item<2-> Eftir að hafa reiknað fallgildin fyrir tiltekna stökklengd hefur eitt stak bæst við hverja skálínu.
+		\item<3-> Það er lítið mál að halda utan um stærsta stakið á hverri skálínu með því að uppfæra eftir að nýtt fallgildi er reiknað.
+		\item<4-> Þá getum við líka reiknað hvert fallgildi í föstum tíma.
+	}
+}
+
+\env{frame}
+{
+	\code{code/deceleratingjump.c}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Nú er þetta forrit lítið annað en tvöföld \texttt{for}-lykkja, hvor af lengd $\mathcal{O}(\,n\,)$.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n^2$}$)$.
+		\item<4-> Þetta ætti sleppa, því $(3 \cdot 10^3)^2 = 9 \cdot 10^6 < 10^8$.
+		\item<5->[] \includegraphics[scale = 0.25]{fig/ac.png}
+	}
 }
 
 \env{frame}

@@ -12,25 +12,26 @@ int dp_lookup(int x, int y)
 	return d[x][y] = max(dp_lookup(x - 1, y), dp_lookup(x, y - 1));
 }
 
-void dp_traverse(int x, int y)
+int lcs(char *a, char *b, char *r)
 {
-	if (x == 0 || y == 0) return;
-	if (s[x - 1] == t[y - 1])
+	int i, j, k, n = strlen(a) - 1, m = strlen(b) - 1, x, y;
+	strcpy(s, a), strcpy(t, b), memset(r, '\0', MAXN);
+	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;
+	for (k = dp_lookup(n, m), x = n, y = m; x > 0 && y > 0; )
 	{
-		dp_traverse(x - 1, y - 1);
-		printf("%c", s[x - 1]);
+		if (s[x - 1] == t[y - 1]) r[--k] = s[x - 1], x--, y--;
+		else if (dp_lookup(x, y - 1) > dp_lookup(x - 1, y)) y--;
+		else x--;
 	}
-	else if (dp_lookup(x - 1, y) > dp_lookup(x, y - 1)) dp_traverse(x - 1, y);
-	else dp_traverse(x, y - 1);
+	return dp_lookup(n, m);
 }
 
 int main()
 {
-	int n, m, i, j;
-	fgets(s, MAXN, stdin), fgets(t, MAXN, stdin);
-	n = strlen(s) - 1, m = strlen(t) - 1;
-	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;
-	dp_traverse(n, m);
-	printf("\n");
+	int n, m, k, i;
+	char a[MAXN], b[MAXN], r[MAXN];
+	fgets(a, MAXN, stdin), fgets(b, MAXN, stdin);
+	k = lcs(a, b, r);
+	printf("%s\n", r);
 	return 0;
 }

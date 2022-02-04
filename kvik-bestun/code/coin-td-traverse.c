@@ -14,25 +14,30 @@ int dp_lookup(int x)
 	for (i = 0; i < m; i++) d[x] = min(d[x], dp_lookup(x - a[i]) + 1);
 	return d[x];
 }
-int dp_traverse(int x)
+
+int dp_traverse(int n, int *r)
 {
-	if (x < 0) return INF;
-	if (x == 0) return 0;
-	int i, mn = INF, mni;
-	for (i = 0; i < m; i++) if (mn > dp_lookup(x - a[i]) + 1)
-		mn = dp_lookup(x - a[i]) + 1, mni = i;
-	printf("%d ", a[mni]);
-	dp_traverse(x - a[mni]);
-	return mn;
+	int i = 0, mn, mni, j;
+	while (n > 0)
+	{
+		for (mn = INF, j = 0; j < m; j++) if (mn > dp_lookup(n - a[j]) + 1)
+			mn = dp_lookup(n - a[j]) + 1, mni = j;
+		r[i++] = a[mni];
+		n -= a[mni];
+	}
+	return i;
 }
+
 int main()
 {
-	int i;
+	int i, r[MAXN];
 	scanf("%d%d", &n, &m);
 	for (i = 0; i < n + 1; i++) d[i] = -1;
 	for (i = 0; i < m; i++) scanf("%d", &a[i]);
 	printf("%d\n", dp_lookup(n));
-	dp_traverse(n);
+	int k = dp_traverse(n, r);
+	printf("%d\n", k);
+	for (i = 0; i < k; i++) printf("%d ", r[i]);
 	printf("\n");
 	return 0;
 }

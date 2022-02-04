@@ -3,7 +3,7 @@
 #define MAXN 1001
 int max(int a, int b) { if (a < b) return b; return a; }
 
-char s[10001], t[10001];
+char s[MAXN], t[MAXN];
 int d[MAXN][MAXN];
 int dp_lookup(int x, int y)
 {
@@ -13,14 +13,19 @@ int dp_lookup(int x, int y)
 	return d[x][y] = max(dp_lookup(x - 1, y), dp_lookup(x, y - 1));
 }
 
+int lcs(char *a, char *b)
+{
+	int i, j, n = strlen(a) - 1, m = strlen(b) - 1;
+	strcpy(s, a), strcpy(t, b);
+	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;
+	return dp_lookup(n, m);
+}
+
 int main()
 {
 	int n, m, i, j;
-	fgets(s, MAXN, stdin);
-	fgets(t, MAXN, stdin);
-	n = strlen(s) - 1;
-	m = strlen(t) - 1;
-	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;
-	printf("%d\n", dp_lookup(n, m));
+	char a[MAXN], b[MAXN];
+	fgets(a, MAXN, stdin), fgets(b, MAXN, stdin);
+	printf("%d\n", lcs(a, b));
 	return 0;
 }
