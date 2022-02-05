@@ -158,7 +158,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Það er þessi virði að bera saman \texttt{dp\_lookup(...)} fallið í forritinu og $f(i, j)$ af glærunni í framan.
+		\item<1-> Það er þessi virði að bera saman \texttt{dp\_lookup(...)} fallið í forritinu og $f(i, j)$ af glærunni að framan.
 	}
 	\[
 		f(i, j) =
@@ -187,10 +187,10 @@
 
 \env{frame}
 {
-	\frametitle{Skiptimyndadæmið}
+	\frametitle{Skiptimyntadæmið}
 	\env{itemize}
 	{
-		\item<1-> Skoðum aftur Skiptimyntadæmið úr síðustu viku.
+		\item<1-> Skoðum aftur Skiptimyntadæmið úr þarsíðustu viku.
 		\item<2-> Þú ert með ótakmarkað magn af $m$ mismunandi myntum.
 		\item<3-> Þær eru virði $x_1, x_2, ..., x_m$.
 		\item<4-> Til þæginda gerum við ráð fyrir því að $x_1 = 1$.
@@ -1347,7 +1347,7 @@
 				\infty, & \text{ef $i \neq 0$ og $j = m + 1$}\\
 				0, & \text{ef $i = 0$ og $j = m + 1$}\\
 				\text{min}(f(i, j + 1), &\\
-				f(i - x_j, j + 1) + 1), & \text{annars.}\\
+					\quad f(i - x_j, j + 1) + 1), & \text{annars.}\\
 			}
 			\right .
 		\]
@@ -1400,7 +1400,7 @@
 					þá erum við í raun að velja hvort er betra: \texttt{dp(x, y + 1)} eða \texttt{dp(x - a[y], y + 1) + 1}.
 		\item<3-> Okkur nægir því að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
 		\item<4-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
-		\item<5-> Síðan er eftir á hægt að þræða sig í gegn og finna klinkið sem þarf.
+		\item<5-> Síðan er hægt að þræða sig í gegn eftir á og finna klinkið sem þarf.
 	}
 }
 
@@ -1595,7 +1595,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Seinni skiptadæmið er náskylt \emph{hlutmengjasummudæminu} (e. \emph{Subset Sum Problem}).
+		\item<1-> Seinni skiptimyntadæmið er náskylt \emph{hlutmengjasummudæminu} (e. \emph{Subset Sum Problem}).
 		\item<2-> Dæmið er einfalt.
 		\item<3-> Gefnar eru $n$ tölur $a_1, \dots, a_n$ ásamt tölu $c$.
 		\item<4-> Hvaða hlutruna af tölum gefur hæstu summuna án þess að fara yfir $c$.
@@ -1652,6 +1652,7 @@
 			}
 			\right .
 		\]
+		\item<3-> Svarið er þá stærsta $\ell \leq c$ þannig að $f(n, \ell)$ er einn.
 	}
 }
 
@@ -1736,7 +1737,7 @@
 			\quad \text{ og } \quad
 			\sum_{i = 1}^n b_i \cdot v_i \text{ sé hámarkað}.
 		\]
-		\item<3-> Látum $f(i, j)$ tákna hámarks verðgildi sem má fá úr fyrst $i$ hlutunum með bakpoka sem þolir þyngd $j$.
+		\item<3-> Látum $f(i, j)$ tákna hámarks verðgildi sem má fá úr fyrstu $i$ hlutunum með bakpoka sem þolir þyngd $j$.
 		\item<4-> Við höfum þá
 		\[
 			f(i, j) =
@@ -1747,7 +1748,7 @@
 				-\infty, & \text{ef $j < 0$},\\
 				0, & \text{annars, ef $i = 0$},\\
 				\max(f(i - 1, j) \\
-						\quad + f(i - 1, j - w_i) + w_i), & \text{annars}.
+						\quad + f(i - 1, j - w_i) + v_i), & \text{annars}.
 			}
 			\right .
 		\]
@@ -1793,21 +1794,22 @@
 		\item<1-> Tökum fyrst eftir að það skiptir ekki máli í hvaða stöðu við byrjum.
 		\item<2-> Við getum því gert ráð fyrir að við byrjum í fyrstu stöðunni.
 		\item<3-> Látum $P$ tákna mengi alla staða, $A$ vera eiginlegt hlutmengi þar í og $s$ vera stak utan $A$.
-		\item<4-> Við getum þá látið $f(s, A)$ vera stysta leiðin til að fara í allar stöður $A$ nákvæmlega einu sinni frá $s$ og enda í fyrstu stöðunni.
-		\item<5-> Tökum eftir að $f(s, \emptyset) = d_{s1}$.
-		\item<6-> Við getum nú sett fallið $f$ fram endurkvæmt með
+		\item<4-> Við getum þá látið $f(s, A)$ vera stystu leiðina til að fara í allar stöður $P \setminus A$ nákvæmlega einu sinni frá $s$
+					og enda í fyrstu stöðunni.
+		\item<5-> Rakningarformúla fyrir $f$ fæst því með
 		\[
 			f(s, A) = 
 			\left \{
 			\env{array}
 			{
 				{l l}
-				d_{s1}, & \text{ef $A = \emptyset$}\\
+				0, & \text{ef $s = 1$ og $A = P$}\\
+				\infty, & \text{annars, ef $s = 1$ og $A \neq \emptyset$}\\
 				\text{min}_{e \in A} (d_{se} + f(e, A \setminus e)), & \text{annars}.
 			}
 			\right .
 		\]
-		\item<7-> Svarið við dæminu fæst svo með $f($\onslide<8->{$1, P \setminus \{1\}$}$)$.
+		\item<6-> Svarið við dæminu fæst svo með $f($\onslide<7->{$1, \emptyset$}$)$.
 	}
 }
 
@@ -1816,7 +1818,7 @@
 	\env{itemize}
 	{
 		\item<1-> Wikipedia kennir þessa aðferð við Held og Karp ($1962$) og segir að þetta sé með fyrstu hagnýtingum kvikrar bestunar.
-		\item<2-> Í versta falli þurfum við að reikna \onslide<3->{$n \cdot 2^{n - 1}$} falligildi á $f$, ef við erum með $n$ stöður.
+		\item<2-> Í versta falli þurfum við að reikna \onslide<3->{$n \cdot 2^n$} falligildi á $f$, ef við erum með $n$ stöður.
 		\item<4-> Hvert fallgildi er reiknað í $\mathcal{O}($\onslide<5->{$\,n\,$}$)$ tíma.
 		\item<6-> Svo í heildina er forritið $\mathcal{O}($\onslide<7->{$n^2 \cdot 2^n$}$)$.
 		\item<8-> Samkvæmt $10^8$ reglunni náum við að leysa dæmi með $n \leq$ \onslide<9->{$18$}.

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <assert.h>
+#define INF (1 << 30)
 #define MAXN 1001
 int max(int a, int b) { return a < b ? b : a; }
 
@@ -10,7 +11,7 @@ int lis(int *a, int *b, int n)
 {
 	int i, j, x, y;
 	int d[n + 1], e[n];
-	for (i = 0; i < n + 1; i++) d[i] = i == 0 ? -(1 << 30) : (1 << 30);
+	for (i = 0; i < n + 1; i++) d[i] = i == 0 ? -INF : INF;
 	for (i = 0; i < n; i++)
 	{
 		int r = 0, s = n + 1;
@@ -22,7 +23,7 @@ int lis(int *a, int *b, int n)
 		}
 		d[r] = a[i], e[i] = d[r - 1];
 	}
-	for (x = n; d[x] == (1 << 30); x--);
+	for (x = n; d[x] == INF; x--);
 	for (i = n - 1, j = x - 1, y = d[x]; j >= 0; i--) if (a[i] == y)
 		y = e[i], b[j--] = a[i];
 	return x;
