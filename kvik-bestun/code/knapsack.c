@@ -29,14 +29,12 @@ void knapsack(int *v, int *w, int *r, int n, int c)
 int main()
 {
 	int k, n, c, i, j, v[MAXN], w[MAXN], r[MAXN];
-	while (scanf("%d%d", &c, &n) != EOF)
-	{
-		for (i = 0; i < n; i++) scanf("%d%d", &v[i], &w[i]);
-		knapsack(v, w, r, n, c);
-		for (k = i = 0; i < n; i++) k += r[i];
-		printf("%d\n", k);
-		for (i = 0; i < n; i++) if (r[i]) printf("%d ", i);
-		printf("\n");
-	}
+	scanf("%d%d", &c, &n);
+	for (i = 0; i < n; i++) scanf("%d%d", &v[i], &w[i]);
+	knapsack(v, w, r, n, c);
+	for (k = i = 0; i < n; i++) k += r[i];
+	printf("%d\n", k);
+	for (i = 0; i < n; i++) if (r[i]) printf("%d ", i + 1);
+	printf("\n");
 	return 0;
 }
