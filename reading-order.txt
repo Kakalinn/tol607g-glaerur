@@ -12,11 +12,12 @@ gradug-reiknirit
 vika04 og vika05
 deila-og-drottna
 kvik-bestun
+lis
 
 vika06
-heap
-union-find
-segment-tree
+hrugur
+sammengisleit
+biltre
 square-root-decomposition
 
 vika07

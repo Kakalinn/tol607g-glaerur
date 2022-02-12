@@ -35,10 +35,10 @@
 	{
 		\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
 		\item<2-> Rótin geymir svar við fyrirspurninni \texttt{1 n} 
-					og ef nóða geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m}
+					og ef hnútur geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m}
 					og \texttt{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
-		\item<3-> Þær nóður sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
-		\item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrar nóður geyma summu barna sinna.
+		\item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
+		\item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna.
 		\item<5-> Þegar við útfærum tréð geymum við það eins og hrúgu.
 	}
 }
@@ -46,18 +46,67 @@
 \env{frame}
 {
 	\frametitle{Mynd af biltré, $n = 4$}
-	\env{figure}
+	\env{center}
 	{
-		\includegraphics[scale=0.5]{fig/mynd2.png}
+		\env{tikzpicture}
+		{
+			\node[draw, circle, thick] (1) at (0,4) {$[1, 4]$};
+
+			\node[draw, circle, thick] (2) at (-2,2) {$[1, 2]$};
+			\node[draw, circle, thick] (3) at (2,2) {$[3, 4]$};
+
+			\node[draw, circle, thick] (4) at (-3,0) {$[1, 1]$};
+			\node[draw, circle, thick] (5) at (-1,0) {$[2, 2]$};
+			\node[draw, circle, thick] (6) at (1,0) {$[3, 3]$};
+			\node[draw, circle, thick] (7) at (3,0) {$[4, 4]$};
+
+			\path[draw, thick] (1) -- (2);
+			\path[draw, thick] (1) -- (3);
+			\path[draw, thick] (2) -- (4);
+			\path[draw, thick] (2) -- (5);
+			\path[draw, thick] (3) -- (6);
+			\path[draw, thick] (3) -- (7);
+		}
 	}
 }
 
 \env{frame}
 {
 	\frametitle{Mynd af biltré, $n = 7$}
-	\env{figure}
+	\env{center}
 	{
-		\includegraphics[scale=0.3]{fig/mynd3.png}
+		\env{tikzpicture}
+		{
+			\node[draw, circle, thick] (1) at (0,6) {$[1, 7]$};
+
+			\node[draw, circle, thick] (2) at (-3,4) {$[1, 4]$};
+			\node[draw, circle, thick] (3) at (3,4) {$[5, 7]$};
+
+			\node[draw, circle, thick] (4) at (-4,2) {$[1, 2]$};
+			\node[draw, circle, thick] (5) at (-2,2) {$[3, 4]$};
+			\node[draw, circle, thick] (6) at (2,2) {$[5, 6]$};
+			\node[draw, circle, thick] (7) at (4,2) {$[7, 7]$};
+
+			\node[draw, circle, thick] (8) at (-5,0) {$[1, 1]$};
+			\node[draw, circle, thick] (9) at (-3.5,0) {$[2, 2]$};
+			\node[draw, circle, thick] (10) at (-2,0) {$[3, 3]$};
+			\node[draw, circle, thick] (11) at (-0.5,0) {$[4, 4]$};
+			\node[draw, circle, thick] (12) at (1,0) {$[5, 5]$};
+			\node[draw, circle, thick] (13) at (2.5,0) {$[6, 6]$};
+
+			\path[draw, thick] (1) -- (2);
+			\path[draw, thick] (1) -- (3);
+			\path[draw, thick] (2) -- (4);
+			\path[draw, thick] (2) -- (5);
+			\path[draw, thick] (3) -- (6);
+			\path[draw, thick] (3) -- (7);
+			\path[draw, thick] (4) -- (8);
+			\path[draw, thick] (4) -- (9);
+			\path[draw, thick] (5) -- (10);
+			\path[draw, thick] (5) -- (11);
+			\path[draw, thick] (6) -- (12);
+			\path[draw, thick] (6) -- (13);
+		}
 	}
 }
 
@@ -69,9 +118,104 @@
 		\item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
 		\item<3-> Fyrri fyrirspurnin er einföld.
 		\item<4-> Ef við eigum að bæta $k$ við $i$-ta stakið finnum við fyrst laufið sem svarar til fyrirspurnar \texttt{i i},
-					bætum $k$ við gildið þar og förum svo upp í rót í gegnum foreldrin og uppfærum á leiðinni gildin í þeim nóðu sem við lendum í.
-		\item<5-> Þar sem við heimsækjum bara þær nóður sem eru á veginum frá rót til laufs (mest $H$ nóður)
+					bætum $k$ við gildið þar og förum svo upp í rót í gegnum foreldrin og uppfærum á leiðinni gildin í þeim hnútum sem við lendum í.
+		\item<5-> Þar sem við heimsækjum bara þá hnúta sem eru á veginum frá rót til laufs (mest $H$ hnútar)
 					er tímaflækjan á fyrri fyrirspurninni $\mathcal{O}($\onslide<6->{$\,H\,$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\only<all:1-2, 14-15, 24-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
+			\only<all:3-13, 16-23> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
+
+
+			\only<all:1-3, 12-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
+			\only<all:4-11> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
+
+			\only<all:1-16, 22-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
+			\only<all:17-21> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
+
+
+			\only<all:1-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
+
+			\only<all:1-4, 10-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
+			\only<all:5-9> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
+
+			\only<all:1-17, 20-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
+			\only<all:18-19> { \node[draw, circle, thick, red] (7) at (4,2) {\phantom{xxx}}; }
+
+
+			\only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
+
+			\only<all:1-5, 8-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
+			\only<all:6-7> { \node[draw, circle, thick, red] (11) at (-0.5,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
+
+			\path[draw, thick] (1) -- (2);
+			\path[draw, thick] (1) -- (3);
+			\path[draw, thick] (2) -- (4);
+			\path[draw, thick] (2) -- (5);
+			\path[draw, thick] (3) -- (6);
+			\path[draw, thick] (3) -- (7);
+			\path[draw, thick] (4) -- (8);
+			\path[draw, thick] (4) -- (9);
+			\path[draw, thick] (5) -- (10);
+			\path[draw, thick] (5) -- (11);
+			\path[draw, thick] (6) -- (12);
+			\path[draw, thick] (6) -- (13);
+
+		
+			\only<all:2-14> { \node at (-3,6) {\texttt{update(3, 7)}}; }
+			\only<all:15-24> { \node at (-3,6) {\texttt{update(6, -12)}}; }
+			\only<all:25-> { \node at (-3,6) {}; }
+
+			\only<all:1-12> { \node at (0,6) {$40$}; }
+			\only<all:13-22> { \node at (0,6) {$47$}; }
+			\only<all:23-> { \node at (0,6) {$35$}; }
+
+			\only<all:1-10> { \node at (-3,4) {$16$}; }
+			\only<all:11-> { \node at (-3,4) {$23$}; }
+
+			\only<all:1-20> { \node at (3,4) {$24$}; }
+			\only<all:21-> { \node at (3,4) {$12$}; }
+
+			\only<all:1-> { \node at (-4,2) {$5$}; }
+
+			\only<all:1-8> { \node at (-2,2) {$11$}; }
+			\only<all:9-> { \node at (-2,2) {$18$}; }
+
+			\only<all:1-> { \node at (2,2) {$17$}; }
+
+			\only<all:1-18> { \node at (4,2) {$7$}; }
+			\only<all:19-> { \node at (4,2) {$-5$}; }
+
+			\only<all:1-> { \node at (-5,0) {$3$}; }
+
+			\only<all:1-> { \node at (-3.5,0) {$2$}; }
+
+			\only<all:1-> { \node at (-2,0) {$9$}; }
+
+			\only<all:1-6> { \node at (-0.5,0) {$2$}; }
+			\only<all:7-> { \node at (-0.5,0) {$9$}; }
+
+			\only<all:1-> { \node at (1,0) {$9$}; }
+
+			\only<all:1-> { \node at (2.5,0) {$8$}; }
+		}
 	}
 }
 
@@ -87,7 +231,7 @@
 		\item<1-> Seinni fyrirspurnin er ögn flóknari.
 		\item<2-> Auðveldast er að ímynda sér að við förum niður tréð og leitum að hvorum endapunktinum fyrir sig.
 		\item<3-> Á leiðinni upp getum við svo pússlað saman svarinu, eftir því hvort við erum að skoða hægri eða vinstri endapunktinn.
-		\item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í nóðu
+		\item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í hnút
 			$[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er hægri endapunkturinn).
 		\item<5-> Við göngum svona upp þar til við lendum í bili sem inniheldur hinn endapunktinn.
 		\item<6-> Með sömu rökum og áðan er tímaflækjan $\mathcal{O}($\onslide<7->{$\,H\,$}$)$.
@@ -96,19 +240,86 @@
 
 \env{frame}
 {
-	\env{figure}
+	\env{center}
 	{
-		\includegraphics[scale=0.3]{fig/mynd3.png}
-		\env{itemize}
+		\env{tikzpicture}
 		{
-			\item<1-> Látum $f(i, j)$ tákna svar við fyrirspurninni \texttt{i j} og skoðum nokkur dæmi.
-			\env{itemize}
-			{
-				\item<2-> $f(1, 3) = f(1, 2) + f(3, 3)$.
-				\item<3-> $f(2, 5) = f(2, 2) + f(3, 4) + f(5, 5)$.
-				\item<4-> $f(1, 6) = f(1, 4) + f(5, 6)$.
-				\item<5-> $f(3, 6) = f(3, 4) + f(5, 6)$.
-			}
+			\only<all:2-9> { \node at (-3,6) {\texttt{query(1, 7)}}; }
+			\only<all:10-17> { \node at (-3,6) {\texttt{query(1, 2)}}; }
+
+			\only<all:8> { \node at (-3,5.5) {\texttt{= 2 + 18 + 12}}; }
+			\only<all:9> { \node at (-3,5.5) {\texttt{= 32}}; }
+			\only<all:16> { \node at (-3,5.5) {\texttt{= 2 + 9}}; }
+			\only<all:17> { \node at (-3,5.5) {\texttt{= 11}}; }
+
+
+
+			\only<all:1-2, 4-10, 12-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
+			\only<all:3, 11> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
+
+
+			\only<all:1-3, 5-11, 13-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
+			\only<all:4, 12> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
+
+			\only<all:1-3, 10-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
+			\only<all:4> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
+			\only<all:5-9> { \node[draw, circle, thick, blue] (3) at (3,4) {\phantom{xxx}}; }
+
+
+			\only<all:1-4, 6-12, 14-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
+			\only<all:5, 13> { \node[draw, circle, thick, red] (4) at (-4,2) {\phantom{xxx}}; }
+
+			\only<all:1-4, 10-12, 14-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
+			\only<all:5, 13> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
+			\only<all:6-9> { \node[draw, circle, thick, blue] (5) at (-2,2) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
+
+
+			\only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
+
+			\only<all:1-5, 10-13, 18-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
+			\only<all:6, 14> { \node[draw, circle, thick, red] (9) at (-3.5,0) {\phantom{xxx}}; }
+			\only<all:7-9, 15-17> { \node[draw, circle, thick, blue] (9) at (-3.5,0) {\phantom{xxx}}; }
+
+			\only<all:1-13, 18-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
+			\only<all:14> { \node[draw, circle, thick, red] (10) at (-2,0) {\phantom{xxx}}; }
+			\only<all:15-17> { \node[draw, circle, thick, blue] (10) at (-2,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
+
+			\only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
+
+			\path[draw, thick] (1) -- (2);
+			\path[draw, thick] (1) -- (3);
+			\path[draw, thick] (2) -- (4);
+			\path[draw, thick] (2) -- (5);
+			\path[draw, thick] (3) -- (6);
+			\path[draw, thick] (3) -- (7);
+			\path[draw, thick] (4) -- (8);
+			\path[draw, thick] (4) -- (9);
+			\path[draw, thick] (5) -- (10);
+			\path[draw, thick] (5) -- (11);
+			\path[draw, thick] (6) -- (12);
+			\path[draw, thick] (6) -- (13);
+
+			\node at (0,6) {$35$};
+			\node at (-3,4) {$23$};
+			\node at (3,4) {$12$};
+			\node at (-4,2) {$5$};
+			\node at (-2,2) {$18$};
+			\node at (2,2) {$17$};
+			\node at (4,2) {$-5$};
+			\node at (-5,0) {$3$};
+			\node at (-3.5,0) {$2$};
+			\node at (-2,0) {$9$};
+			\node at (-0.5,0) {$9$};
+			\node at (1,0) {$9$};
+			\node at (2.5,0) {$8$};
 		}
 	}
 }
@@ -124,7 +335,7 @@
 	\frametitle{Tímaflækja biltrjáa}
 	\env{itemize}
 	{
-		\item<1-> Þar sem lengd hvers bils sem nóða svarar til helmingast þegar farið er niður tréð er
+		\item<1-> Þar sem lengd hvers bils sem hnútur svarar til helmingast þegar farið er niður tréð er
 					$\mathcal{O}(H) = \mathcal{O}($\onslide<2->{$\log n$}$)$.
 		\item<3-> Við erum því komin með lausn á upprunalega dæminu sem er $\mathcal{O}($\onslide<4->{$q \cdot \log n$}$)$.
 		\item<5-> Þetta væri nógu hratt ef, til dæmis, $n = q = 10^6$.
@@ -152,7 +363,7 @@
 	\env{itemize}
 	{
 		\item<1-> Við getum leyst þetta með biltrjám.
-		\item<2-> Í stað þess að láta nóður (sem eru ekki lauf) geyma summu barna sinna, þá geyma þær stærra stak barna sinna.
+		\item<2-> Í stað þess að láta hnúta (sem eru ekki lauf) geyma summu barna sinna, þá geyma þær stærra stak barna sinna.
 	}
 }
 
@@ -186,7 +397,7 @@
 		\item<2-> Við munum nú láta fyrri fyrirspurnina, \texttt{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
 		\item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
 		\item<4-> Við geymum í öðrum tréi þær uppfærslur sem við eigum eftir að framkvæma.
-		\item<5-> Í hverri endurkvæmni (bæði uppfærlum og fyrirspurnum) dreifum við uppfærslunum í nóðunni niður á við.
+		\item<5-> Í hverri endurkvæmni (bæði uppfærlum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
 		\item<6-> Þetta kallast \emph{lygn drefing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
 		\item<7-> Ef biltré hefur lygna dreifingu köllum við það \emph{lygnt biltré} (e. \emph{segment tree with lazy propagation}).
 	}
@@ -196,7 +407,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til nóðu í biltréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
+		\item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til hnúts í biltréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
 		\item<2-> Gerum ráð fyrir að við eigum eftir að framkvæma uppfærslu \texttt{i j k}.
 		\item<3-> Næst þegar við köllum á \texttt{query\_rec(i, j, ...)} eða \texttt{update\_rec(i, j, ...)}
 					þá munum við dreifa uppfærslunni \texttt{i j k}.
@@ -210,9 +421,9 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrar nóður geyma summu barna sinna''.
+		\item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna''.
 		\item<2-> Þetta gildir ekki fyrir lygn biltré.
-		\item<3-> Nóður lygna biltrjáa þurfa að geyma summu barna sinna,
+		\item<3-> Hnútar lygna biltrjáa þurfa að geyma summu barna sinna,
 					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hennar.
 		\item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
 		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \texttt{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
@@ -222,7 +433,7 @@
 
 \env{frame}
 {
-	\selectcode{code/daemi3-segmenttree-le.c}{10}{42}
+	\selectcode{code/daemi3-segmenttree-le.c}{10}{44}
 }
 
 \env{frame}

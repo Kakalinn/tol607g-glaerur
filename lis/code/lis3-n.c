@@ -87,7 +87,7 @@ int main()
 {
 	srand(time(NULL));
 	int q = 1000000, n, m, i, j, x, l;
-#if 0
+#if 1
 	scanf("%d", &n);
 	int a[n], b[n];
 	for (i = 0; i < n; i++) scanf("%d", &a[i]);

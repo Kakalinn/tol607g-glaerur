@@ -54,7 +54,7 @@
 
 \env{frame}
 {
-	\code{code/heap.c}
+	\selectcode{code/heap.c}{8}{39}
 }
 
 \env{frame}
@@ -63,12 +63,9 @@
 	{
 		\item<1-> Gerum ráð fyrir að við séum með $n$ stök í hrúgunni.
 		\item<2-> Þá er hæð trésins $\mathcal{O}($\onslide<3->{$\log n$}$)$.
-		\item<4-> Þar sem \texttt{pop()} þarf aðeins að ferðast einu sinni niður að laufi er tímaflækjan
-					$\mathcal{O}($\onslide<5->{$\log n$}$)$.
-		\item<6-> Þar sem \texttt{push(...)} þarf aðeins að ferðast einu sinni upp að rót er tímaflækjan
-					$\mathcal{O}($\onslide<7->{$\log n$}$)$.
-		\item<8-> Nú þarf \texttt{peek()} ekki að gera annað en að lesa fremsta stakið í fylki svo tímaflækjan er
-					$\mathcal{O}($\onslide<9->{$\,1\,$}$)$.
+		\item<4-> Þar sem \texttt{pop()} þarf aðeins að ferðast einu sinni niður að laufi er tímaflækjan $\mathcal{O}($\onslide<5->{$\log n$}$)$.
+		\item<6-> Þar sem \texttt{push(...)} þarf aðeins að ferðast einu sinni upp að rót er tímaflækjan $\mathcal{O}($\onslide<7->{$\log n$}$)$.
+		\item<8-> Nú þarf \texttt{peek()} ekki að gera annað en að lesa fremsta stakið í fylki svo tímaflækjan er $\mathcal{O}($\onslide<9->{$\,1\,$}$)$.
 	}
 }
 

@@ -13,6 +13,7 @@ void prop(int x, int y, int e) //Hjálparfall
 	if (x != y) o[LEFT(e)] += o[e], o[RIGHT(e)] += o[e];
 	o[e] = 0;
 }
+
 int qrec(int i, int j, int x, int y, int e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);
@@ -26,6 +27,7 @@ int query(int x, int y)
 { // Finnum summuna yfir [x, y].
 	return qrec(0, n - 1, x, y, 1);
 }
+
 void urec(int i, int j, int x, int y, int z, int e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	prop(i, j, e);

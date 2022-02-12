@@ -25,7 +25,7 @@
 	\env{itemize}
 	{
 		\item<1-> Við erum með litla kassa sem við viljum stafla við vegg sem er með takmarkaða breidd.
-		\item<2-> Hver kassi hefur lit og kassar af mismunandi lit mega ekki staflast ofan á hvorn annan.
+		\item<2-> Hver kassi hefur lit og kassar af mismunandi litum mega ekki staflast ofan á hvorn annan.
 		\item<3-> Við viljum lágmarka svæðið á veggnum sem sést fyrir aftan stöfluðu kassana.
 		\item<4->[] \includegraphics[scale = 0.5]{fig/kaffi.png}
 	}
@@ -53,10 +53,10 @@
 	{
 		\item<1-> Hvernig athugum við hvort gefin hæð $h$ sé nógu há.
 		\item<2-> Gerum ráð fyrir kassarnir hafi $n$ mismunandi liti og $a_i$ kassar séu af $i$-ta litnum.
-		\item<3-> Við þurfum þá $\lfloor a_i/h \rfloor$ stafla fyrir kassa af lit $i$.
+		\item<3-> Við þurfum þá $\lceil a_i/h \rceil$ stafla fyrir kassa af lit $i$.
 		\item<4-> Svo $h$ er nógu stórt ef
 		\[
-			\sum_{i = 1}^n \lfloor a_i/h \rfloor \leq w.
+			\sum_{i = 1}^n \lceil a_i/h \rceil \leq w.
 		\]
 	}
 }

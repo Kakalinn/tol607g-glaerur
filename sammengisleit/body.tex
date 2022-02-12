@@ -81,7 +81,11 @@
 \env{frame}
 {
 	\frametitle{Frumstæð sammengisleit}
-	\code{code/lst1.c}
+	\selectcode{code/lst1.c}{4}{14}
+	\env{itemize}
+	{
+		\item<0|handout:1> { Ekki nota þennan kóða. Hann er hægari en það sem á eftir kemur. }
+	}
 }
 
 \env{frame}
@@ -127,7 +131,7 @@
 \env{frame}
 {
 	\frametitle{Keðjuþjöppað sammengisleit}
-	\code{code/lst2.c}
+	\selectcode{code/lst2.c}{4}{14}
 }
 
 \env{frame}
@@ -149,9 +153,9 @@
 	{
 		\item<1-> Þegar við sameinum keðjur þarf að velja hvor ráðherrann verður ennþá ráðherra.
 		\item<2-> Við getum þá valið ráðherrann sem hefur fleiri stök í sinni keðju.
-		\item<3->[] \selectcode{code/union-find.c}{2}{13}
+		\item<3->[] \selectcode{code/union-find.c}{4}{16}
 		\item<4-> Í þessari út færlsu geymir ráðherrann neikvæða tölu, en önnur stök vísa ennþá upp keðjuna.
-		\item<5-> Þessi tala svarar til fjölda staka í þeim keðjum sem enda í ráðherranum.
+		\item<5-> Þessi neikvæða tala svarar til fjölda staka í þeim keðjum sem enda í ráðherranum.
 		\item<6-> Svo \texttt{-p[find(x)]} er fjöldi staka í jafngildisflokki \texttt{x}.
 	}
 }

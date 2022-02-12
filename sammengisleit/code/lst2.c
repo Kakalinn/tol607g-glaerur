@@ -1,6 +1,7 @@
+#include <stdio.h>
 #define MAXN 1000000
-int p[MAXN];
 
+int p[MAXN]; // = [0, 1, ..., n - 1]
 int find(int x)
 {
 	if (p[x] == x) return x;
@@ -16,5 +17,6 @@ int main()
 {
 	int i, n = MAXN;
 	for (i = 0; i < n; i++) p[i] = i;
-	...
+	//...
+	return 0;
 }
