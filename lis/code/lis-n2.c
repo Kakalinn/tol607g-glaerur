@@ -5,7 +5,7 @@ int max(int a, int b) { return a < b ? b : a; }
 
 int v[MAXN], d[MAXN];
 int dp_lookup(int x)
-{
+{ // Finnur lengd lengstu vaxandi hlutruna a sem enda í staki x.
 	if (d[x] != -1) return d[x];
 	if (x == 0) return 1;
 	int i;
@@ -15,7 +15,7 @@ int dp_lookup(int x)
 }
 
 int lis(int *a, int n)
-{
+{ // Finnur lengd lengstu vaxandi hlutruna a.
 	int i, r = 1;
 	for (i = 0; i < n; i++) d[i] = -1, v[i] = a[i];
 	for (i = 0; i < n; i++) r = max(r, dp_lookup(i));

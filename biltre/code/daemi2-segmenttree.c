@@ -5,7 +5,7 @@
 #define MAXN 5000000
 #define LEFT(x) ((x)*2)
 #define RIGHT(x) ((x)*2 + 1)
-int p[MAXN*5], n;
+int p[MAXN*5];
 int max(int a, int b) { return a > b ? a : b; }
 
 int qrec(int i, int j, int x, int y, int e) // Hjálparfall.
@@ -18,7 +18,7 @@ int qrec(int i, int j, int x, int y, int e) // Hjálparfall.
 }
 int query(int x, int y)
 { // Finnum stærsta gildið á [x, y].
-	return qrec(0, n - 1, x, y, 1);
+	return qrec(0, p[0] - 1, x, y, 1);
 }
 
 void urec(int i, int j, int x, int y, int e) // Hjálparfall.
@@ -34,7 +34,14 @@ void urec(int i, int j, int x, int y, int e) // Hjálparfall.
 }
 void update(int x, int y)
 { // Látum x-ta stakið vera y.
-	return urec(0, n - 1, x, y, 1);
+	return urec(0, p[0] - 1, x, y, 1);
+}
+
+void init(int n)
+{
+	int i;
+	for (i = 0; i < 5*n; i++) p[i] = 0;
+	p[0] = n;
 }
 
 int slow(int* a, int x, int y)
@@ -50,11 +57,10 @@ int slow(int* a, int x, int y)
 int main()
 {
 	srand(time(NULL));
-	n = 10000;
-	int i, j, x, y, z, q = 1000000, m = 100;
+	int i, j, x, y, z, n = 400, q = 400, m = 100;
 	int a[n];
 	for (i = 0; i < n; i++) a[i] = 0;
-	for (i = 0; i < 5*n; i++) p[i] = 0;
+	init(n);
 	while (q-- != 0)
 	{
 		x = rand()%n, y = x + rand()%(n - x), z = rand()%(2*m + 1) - m;

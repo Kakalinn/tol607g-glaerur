@@ -6,7 +6,7 @@ int max(int a, int b) { if (a < b) return b; return a; }
 
 int d[MAXN][MAXC], b[MAXN];
 int dp_lookup(int x, int y)
-{
+{ // Er hægt að skrifa y sem summu talnanna a[0:x].
 	if (x < 0 && y == 0) return 1;
 	if (y < 0 || x < 0) return 0;
 	if (d[x][y] != -1) return d[x][y];
@@ -14,7 +14,7 @@ int dp_lookup(int x, int y)
 }
 
 void partition(int *a, int *r, int n)
-{
+{ // Finnur jöfnustu skiptingu talnanna í a.
 	int i, j, t = 0, c;
 	for (i = 0; i < n; i++) t += a[i], r[i] = 0, b[i] = a[i];
 	c = t/2;

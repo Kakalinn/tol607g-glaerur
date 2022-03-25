@@ -107,7 +107,7 @@
 	\frametitle{Keðjuþjöppuð sammengisleit}
 	\env{itemize}
 	{
-		\item<1-> Lykilatriðið í bætingunni er að smækka keðjurnar.
+		\item<1-> Lykilatriðið í bætingunni er að stytta keðjurnar.
 		\item<2-> Í hvert sinn sem við köllum á \texttt{find(...)} þá fletjum við keðjun sem við heimsækjum.
 		\item<3-> Þetta er gert með því að setja \texttt{p[x]} sem ráðherra flokks \texttt{x}, í hverju skrefi endurkvæmninnar.
 		\item<4-> Þetta köllum við \emph{keðjuþjöppun} (e. \emph{path compression}).
@@ -139,10 +139,10 @@
 	\env{itemize}
 	{
 		\item<1-> Það er flóknara að lýsa tímaflækju keðjuþjappaðrar sammengisleitar.
-		\item<2-> \emph{Á heildina litið} (e. \emph{amortized}) er tímaflækjan er $\mathcal{O}(\alpha(n))$,
+		\item<2-> \emph{Á heildina litið} (e. \emph{amortized}) er tímaflækja hverrar aðgerðar $\mathcal{O}(\alpha(n))$,
 					þar sem $\alpha$ er andhverfa \emph{Ackermann} fallsins.
 		\item<3-> Fyrir þau $n$ sem við fáumst við er $\alpha(n)$ nánast fast.
-		\item<4-> Við ímyndum okkur því alltaf að sammengisleit hafi tímaflækju $\mathcal{O}(\,n\,)$.
+		\item<4-> Við ímyndum okkur því alltaf að hver aðgerð sammengisleitar sé $\mathcal{O}(\,1\,)$.
 	}
 }
 

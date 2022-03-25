@@ -8,7 +8,7 @@
 int max(int a, int b) { return a < b ? b : a; }
 
 int lis(int *a, int *b, int n)
-{
+{ // Finnur eina af lengstu vaxandi hlutrunum a.
 	int i, j, x, y;
 	int d[n + 1], e[n];
 	for (i = 0; i < n + 1; i++) d[i] = i == 0 ? -INF : INF;
@@ -49,7 +49,7 @@ int dp_lis(int *a, int n)
 }
 
 void shuffle(int *a, int m, int n)
-{
+{ // Stokkar m af stökum í a og setur fremst.
 	int i, j, s;
 	for (i = 0; i < m; i++)
 	{
@@ -59,7 +59,7 @@ void shuffle(int *a, int m, int n)
 }
 
 int issubseq(int* a, int n, int* b, int m)
-{ // Is |b| a subsequence of |a|?
+{ // Er b hlutruna í a?
 	if (n < m) return 0;
 	int i, j = 0;
 	for (i = 0; i < n; i++) if (j < m && a[i] == b[j]) j++;
@@ -67,14 +67,14 @@ int issubseq(int* a, int n, int* b, int m)
 }
 
 int isinc(int* a, int n)
-{ // Is |a| increasing?
+{ // Er a vaxandi?
 	int i;
 	for (i = 0; i < n - 1; i++) if (a[i] > a[i + 1]) return 0;
 	return 1;
 }
 
 void check_random(int n)
-{
+{ // Ber saman tvær útfærslur á LIS.
 	int i, l, a[n], b[n];
 	for (i = 0; i < n; i++) a[i] = (i/2)*4;
 	shuffle(a, n, n);

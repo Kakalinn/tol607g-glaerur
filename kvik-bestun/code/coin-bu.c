@@ -3,7 +3,7 @@
 int min(int a, int b) { if (a < b) return a; return b; }
 
 int main()
-{
+{ // Skiptimyntadæmið með endurtekningu.
 	int i, j, n, m;
 	scanf("%d%d", &n, &m);
 	int d[n + 1], a[m];

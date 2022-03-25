@@ -16,7 +16,7 @@ int dp_lookup(int x, int y)
 }
 
 int tsp(int *a, int n)
-{
+{ // Finnur stystu rásina sem heimsækir allar stöðurnar.
 	int i, j;
 	for (i = 0; i < n; i++) for (j = 0; j < (1 << n); j++) d[i][j] = -1;
 	for (i = 0; i < n; i++) for (j = 0; j < n; j++) g[i][j] = a[i*MAXN + j];

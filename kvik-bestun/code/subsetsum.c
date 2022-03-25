@@ -6,7 +6,7 @@ int max(int a, int b) { if (a < b) return b; return a; }
 
 int d[MAXN][MAXC], b[MAXN];
 int dp_lookup(int x, int y)
-{
+{ // Er hægt að skrifa y sem summu talnanna a[0:x].
 	if (x < 0 && y == 0) return 1;
 	if (y < 0 || x < 0) return 0;
 	if (d[x][y] != -1) return d[x][y];
@@ -14,7 +14,7 @@ int dp_lookup(int x, int y)
 }
 
 int subsetsum(int *a, int n, int c)
-{
+{ // Hver er stærsta talan á [0, c] sem má skrifa sem summu talnanna í a.
 	int i, j;
 	for (i = 0; i < n; i++) for (j = 0; j < c + 1; j++) d[i][j] = -1;
 	for (i = 0; i < n; i++) b[i] = a[i];

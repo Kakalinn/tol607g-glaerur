@@ -5,7 +5,7 @@ int max(int a, int b) { if (a < b) return b; return a; }
 char s[MAXN], t[MAXN];
 int d[MAXN][MAXN];
 int dp_lookup(int x, int y)
-{
+{ // Lengd lengstu sameiginlegu hlutrurn s[0:x] og t[0:y].
 	if (d[x][y] != -1) return d[x][y];
 	if (x == 0 || y == 0) return 0;
 	if (s[x - 1] == t[y - 1]) return d[x][y] = dp_lookup(x - 1, y - 1) + 1;
@@ -13,7 +13,7 @@ int dp_lookup(int x, int y)
 }
 
 int lcs(char *a, char *b, char *r)
-{
+{ // Finnur einn af lengstu sameiginlegu hlutrunu strengjanna a og b.
 	int i, j, k, n = strlen(a) - 1, m = strlen(b) - 1, x, y;
 	strcpy(s, a), strcpy(t, b), memset(r, '\0', MAXN);
 	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;

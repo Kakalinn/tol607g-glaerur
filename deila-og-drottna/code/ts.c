@@ -7,7 +7,7 @@ double f(double x)
 }
 
 int main()
-{
+{ // Finnur lággildi kúpta fallsins f á bilinu [a, b].
 	double a = 1.0, b = 10.0, m1, m2;
 	while (b - a > EPS)
 	{

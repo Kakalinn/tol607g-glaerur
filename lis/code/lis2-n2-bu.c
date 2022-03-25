@@ -5,7 +5,7 @@
 int min(int a, int b) { return a > b ? b : a; }
 
 int lis(int *a, int *b, int n)
-{
+{ // Finnur eina af lengstu vaxandi hlutrunum a.
 	int i, j, x, y;
 	int d[n + 1][n + 1];
 	for (i = 0; i < n + 1; i++) d[0][i] = INF;

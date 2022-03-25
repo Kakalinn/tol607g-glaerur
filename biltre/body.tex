@@ -21,7 +21,7 @@
 		\item<5-> Einföld útfærlsa á þessum fyrirspurnum gefur okkur
 					$\mathcal{O}($\onslide<6->{$\,1\,$}$)$ fyrir þá fyrri og
 					$\mathcal{O}($\onslide<7->{$\,n\,$}$)$ fyrir þá seinni.
-		\item<8-> Þar sem allar (eða langflestar) fyrirspurnir gætu verið af seinni gerðin yrði lausnin í heildin 
+		\item<8-> Þar sem allar (eða langflestar) fyrirspurnir gætu verið af seinni gerðin yrði lausnin í heildina
 					$\mathcal{O}($\onslide<9->{$qn$}$)$.
 		\item<10-> Það er þó hægt að leysa þetta dæmi hraðar.
 		\item<11-> Algengt er að nota til þess \emph{biltré} (e. \emph{segment tree}).
@@ -35,7 +35,7 @@
 	{
 		\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
 		\item<2-> Rótin geymir svar við fyrirspurninni \texttt{1 n} 
-					og ef hnútur geymir svarið við \texttt{i j} þá geyma börn hennar svör við \texttt{i m}
+					og ef hnútur geymir svarið við \texttt{i j} þá geyma börn hans svör við \texttt{i m}
 					og \texttt{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
 		\item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
 		\item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna.
@@ -378,13 +378,13 @@
 	\env{itemize}
 	{
 		\item<1-> Leysa má ýmis dæmi af þessari gerð, með biltrjám.
-		\item<2-> Þessi dæmi eru yfirleitt kölluð \emph{punkt-uppfærlsur, bil-fyrirspurnir} (e. \emph{point-update, range-query}).
+		\item<2-> Þessi dæmi eru yfirleitt kölluð \emph{punkt-uppfærslur, bil-fyrirspurnir} (e. \emph{point-update, range-query}).
 		\item<3-> Algengt er að sýna næst hvernig nota megi biltré til að leysa \emph{bil-uppfærslur, punkt-fyrirspurnir}
 					(e. \emph{range-update, point-query}).
 		\item<4-> Þetta er, í grófum dráttum, gert með því að snúa trjánum við.
 		\item<5-> Við munum ekki skoða þetta.
 		\item<6-> Við tökum frekar fyrir \emph{lygn biltré}.
-		\item<7-> Þau leyfa okkur að leysa \emph{bil-uppfærlsur, bil-fyrirspurnir} (e. \emph{range-update, range-query}).
+		\item<7-> Þau leyfa okkur að leysa \emph{bil-uppfærslur, bil-fyrirspurnir} (e. \emph{range-update, range-query}).
 	}
 }
 
@@ -397,8 +397,8 @@
 		\item<2-> Við munum nú láta fyrri fyrirspurnina, \texttt{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
 		\item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
 		\item<4-> Við geymum í öðrum tréi þær uppfærslur sem við eigum eftir að framkvæma.
-		\item<5-> Í hverri endurkvæmni (bæði uppfærlum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
-		\item<6-> Þetta kallast \emph{lygn drefing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
+		\item<5-> Í hverri endurkvæmni (bæði uppfærslum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
+		\item<6-> Þetta kallast \emph{lygn dreifing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
 		\item<7-> Ef biltré hefur lygna dreifingu köllum við það \emph{lygnt biltré} (e. \emph{segment tree with lazy propagation}).
 	}
 }
@@ -424,7 +424,7 @@
 		\item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna''.
 		\item<2-> Þetta gildir ekki fyrir lygn biltré.
 		\item<3-> Hnútar lygna biltrjáa þurfa að geyma summu barna sinna,
-					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hennar.
+					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hans.
 		\item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
 		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \texttt{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
 					því rótin geymir summu allra stakana.

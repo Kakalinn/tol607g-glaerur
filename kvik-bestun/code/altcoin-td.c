@@ -7,7 +7,7 @@ int min(int a, int b) { if (a < b) return a; return b; }
 int n, m, a[MAXM];
 int d[MAXN][MAXM];
 int dp_lookup(int x, int y)
-{
+{ // Minnsta klink til að gefa x kr. með klinki y, y + 1, ..., n.
 	if (x < 0) return INF;
 	if (d[x][y] != -1) return d[x][y];
 	if (y == m) return x == 0 ? 0 : INF;
@@ -16,7 +16,7 @@ int dp_lookup(int x, int y)
 }
 
 int main()
-{
+{ // Skiptimyntadæmið án endurtekningar.
 	int i, j;
 	scanf("%d%d", &n, &m);
 	for (i = 0; i < n + 1; i++) for (j = 0; j < m + 1; j++) d[i][j] = -1;

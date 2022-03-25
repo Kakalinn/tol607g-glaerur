@@ -7,7 +7,7 @@ int min(int a, int b) { if (a < b) return a; return b; }
 int n, m, a[MAXM];
 int d[MAXN];
 int dp_lookup(int x)
-{
+{ // Hver er minnsti fjöldi af klinki til að gefa til baka x kr?
 	int i;
 	if (x < 0) return INF; // Þessi lína þarf að vera fremst!
 	if (d[x] != -1) return d[x];
@@ -18,7 +18,7 @@ int dp_lookup(int x)
 }
 
 int main()
-{
+{ // Skiptimyntadæmið með endurtekningu.
 	int i;
 	scanf("%d%d", &n, &m);
 	for (i = 0; i < n + 1; i++) d[i] = -1;

@@ -5,7 +5,7 @@
 #define LEFT(x) ((x)*2)
 #define RIGHT(x) ((x)*2 + 1)
 typedef long long ll;
-ll p[5*MAXN], o[5*MAXN], n;
+ll p[5*MAXN], o[5*MAXN];
 
 void prop(int x, int y, int e) //Hjálparfall
 { // Fall sem dreifir lygnum uppfærslum niður um eina hæð.
@@ -24,7 +24,7 @@ int qrec(int i, int j, int x, int y, int e) // Hjálparfall
 }
 int query(int x, int y)
 { // Finnum summuna yfir [x, y].
-	return qrec(0, n - 1, x, y, 1);
+	return qrec(0, p[0] - 1, x, y, 1);
 }
 void urec(int i, int j, int x, int y, int z, int e) // Hjálparfall
 { // Við erum að leita að bili [x, y] og erum í [i, j].
@@ -38,15 +38,21 @@ void urec(int i, int j, int x, int y, int z, int e) // Hjálparfall
 }
 void update(int x, int y, int z)
 { // Bætum z við stökin á bilinu [x, y]
-	urec(0, n - 1, x, y, z, 1);
+	urec(0, p[0] - 1, x, y, z, 1);
+}
+
+void init(int n)
+{
+	int i;
+	for (i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	p[0] = n;
 }
 
 int main()
 {
 	srand(time(NULL));
-	ll i, q = 100000, x, w, y, z;
-	n = 1000000;
-	for (i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	ll i, q = 100000, n = 1000000, x, w, y, z;
+	init(n);
 	while (q-- != 0)
 	{
 		x = rand()%(n - 1), w = x + rand()%(n - x), y = rand()%(n*10), z = rand()%2;

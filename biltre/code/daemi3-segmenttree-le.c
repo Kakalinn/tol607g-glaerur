@@ -5,7 +5,7 @@
 #define MAXN 1000000
 #define LEFT(x) ((x)*2)
 #define RIGHT(x) ((x)*2 + 1)
-int p[5*MAXN], o[5*MAXN], n;
+int p[5*MAXN], o[5*MAXN];
 
 void prop(int x, int y, int e) //Hjálparfall
 { // Fall sem dreifir lygnum uppfærslum niður um eina hæð.
@@ -25,7 +25,7 @@ int qrec(int i, int j, int x, int y, int e) // Hjálparfall
 }
 int query(int x, int y)
 { // Finnum summuna yfir [x, y].
-	return qrec(0, n - 1, x, y, 1);
+	return qrec(0, p[0] - 1, x, y, 1);
 }
 
 void urec(int i, int j, int x, int y, int z, int e) // Hjálparfall
@@ -40,7 +40,14 @@ void urec(int i, int j, int x, int y, int z, int e) // Hjálparfall
 }
 void update(int x, int y, int z)
 { // Bætum z við stökin á bilinu [x, y]
-	urec(0, n - 1, x, y, z, 1);
+	urec(0, p[0] - 1, x, y, z, 1);
+}
+
+void init(int n)
+{
+	int i;
+	for (i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	p[0] = n;
 }
 
 int slow(int* a, int l, int r)
@@ -53,11 +60,10 @@ int slow(int* a, int l, int r)
 int main()
 {
 	srand(time(NULL));
-	int i, j, q = 1000000, x, w, y;
-	n = 100;
+	int i, j, x, y, z, w, n = 400, q = 400;
 	int a[n];
 	for (i = 0; i < n; i++) a[i] = 0;
-	for (i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	init(n);
 	while (q-- != 0)
 	{
 		x = rand()%(n - 1), w = x + rand()%(n - x), y = rand()%(n*10);

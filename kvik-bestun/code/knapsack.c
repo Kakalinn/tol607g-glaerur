@@ -7,7 +7,7 @@ int max(int a, int b) { if (a > b) return a; return b; }
 
 int d[MAXN][MAXC], a[MAXN], b[MAXN];
 int dp_lookup(int x, int y)
-{
+{ // Hæsta verðgildi sem má fá með pakpokastærð y og hluti 1, 2, ..., x.
 	if (y < 0) return -INF;
 	if (x < 0) return 0;
 	if (d[x][y] != -1) return d[x][y];
@@ -16,7 +16,7 @@ int dp_lookup(int x, int y)
 }
 
 void knapsack(int *v, int *w, int *r, int n, int c)
-{
+{ // Leysir bakpokadæmið. Fylkið r segir hvaða hluti á að taka.
 	int i, j, s[MAXN], ss;
 	for (i = 0; i < n; i++) for (j = 0; j <= c; j++) d[i][j] = -1;
 	for (i = 0; i < n; i++) a[i] = v[i], b[i] = w[i], r[i] = 0;
