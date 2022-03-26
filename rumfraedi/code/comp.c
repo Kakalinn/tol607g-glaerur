@@ -3,12 +3,12 @@
 #define EPS 1e-9
 
 int eq(double a, double b)
-{ // Eru |a| og |b| nogu likar?
+{ // Eru |a| og |b| nógu líkar?
 	return fabs(a - b) < EPS;
 }
 
 int neq(double a, double b)
-{ // Eru |a| og |b| nogu olikar?
+{ // Eru |a| og |b| nógu ólíkar?
 	return fabs(a - b) >= EPS;
 }
 

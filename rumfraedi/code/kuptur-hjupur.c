@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
 #define EPS 1e-9
 
 typedef double complex pt;
@@ -24,14 +23,13 @@ int cmp(const void* p1, const void* p2)
 }
 
 int convex_hull(pt* p, pt* h, int n)
-{
-	int j = 0, i, mn = 0;
+{ // Eftir á er h kúpti hjúpur p. Skilar stærð h.
+	int i, j = 0, mn = 0;
 	for (i = 1; i < n; i++)
-		if (cimag(p[i]) < cimag(p[mn]) || cimag(p[i]) == cimag(p[mn])
-				&& creal(p[i]) < creal(p[mn])) mn = i;
-	pt t = p[mn]; p[mn] = p[0]; p[0] = t;
-	piv = p[0]; 
-	qsort(p + 1, n - 1, sizeof(p[1]), cmp);
+		if (cimag(p[i] - p[mn]) < 0.0 || fabs(cimag(p[i] - p[mn])) < EPS
+				&& creal(p[i] - p[mn]) < 0.0) mn = i;
+	pt t = p[mn]; p[mn] = p[0]; p[0] = t; piv = p[0]; 
+	qsort(p + 1, n - 1, sizeof *p, cmp);
 	for (i = 1; i < n && cabs(p[0] - p[i]) < EPS; i++);
 	if (i == n) h[j++] = p[0];
 	else if (i == n - 1) h[j++] = p[0], h[j++] = p[n - 1];
@@ -44,7 +42,6 @@ int convex_hull(pt* p, pt* h, int n)
 			? (h[j++] = p[i++]) : j--;
 	return --j;
 }
-
 
 #if 0
 9
@@ -63,13 +60,18 @@ int main()
 {
 	int i, n, m, x, y;
 	scanf("%d", &n);
-	pt a[n], h[n];
-	rep(i, n)
+	while (n != 0)
 	{
-		scanf("%d%d", &x, &y);
-		a[i] = x + y*I;
+		pt a[n], h[n];
+		for (i = 0; i < n; i++)
+		{
+			scanf("%d%d", &x, &y);
+			a[i] = x + y*I;
+		}
+		m = convex_hull(a, h, n);
+		printf("%d\n", m);
+		for (i = 0; i < m; i++) printf("%d %d\n", (int)creal(h[i]), (int)cimag(h[i]));
+		scanf("%d", &n);
 	}
-	m = convex_hull(a, h, n);
-	printf("%d\n", m);
-	rep(i, m) printf("%.2f %.2f\n", creal(h[i]), cimag(h[i]));
+	return 0;
 }

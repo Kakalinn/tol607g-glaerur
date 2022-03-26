@@ -3,7 +3,6 @@
 #include <math.h>
 #include <complex.h>
 #include <assert.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
 #define EPS 1e-9
 
 typedef double complex pt;
@@ -12,7 +11,7 @@ double flatarmal(pt* p, int n)
 { // p[0] == p[n - 1]
 	int i;
 	double r = 0.0;
-	rep(i, n - 1)
+	for (i = 0; i < n - 1; i++)
 		r += creal(p[i])*cimag(p[i + 1]) - creal(p[i + 1])*cimag(p[i]);
 	return fabs(0.5*r);
 }
@@ -21,7 +20,7 @@ double ummal(pt* p, int n)
 { // p[0] == p[n - 1]
 	int i;
 	double r = 0.0;
-	rep(i, n - 1) r += cabs(p[i] - p[i + 1]);
+	for (i = 0; i < n - 1; i++) r += cabs(p[i] - p[i + 1]);
 	return r;
 }
 
@@ -30,7 +29,7 @@ int main()
 	int i, n, x, y;
 	scanf("%d", &n);
 	pt a[n];
-	rep(i, n)
+	for (i = 0; i < n; i++)
 	{
 		scanf("%d%d", &x, &y);
 		a[i] = x + y*I;

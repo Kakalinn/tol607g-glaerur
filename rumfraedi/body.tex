@@ -355,8 +355,7 @@
 		\item<3-> Fallið \texttt{cabs(p)} skilar fjarlægð $p$ frá $(0, 0)$.
 		\item<4-> Fallið \texttt{cabs(p - q)} skilar fjarlægð milli $p$ og $q$.
 		\item<5-> Fallið \texttt{carg(p)} skilar stefnuhorninu $p$.
-		\item<6-> Fallið \texttt{cnorm(p)} skilar sama og \texttt{abs(p)*abs(p)}.
-		\item<7-> Fallið \texttt{cconj(p)} speglar $p$ um $x$-ás.
+		\item<6-> Fallið \texttt{conj(p)} speglar $p$ um $x$-ás.
 	}
 }
 
@@ -408,9 +407,9 @@
 	\frametitle{Línur}
 	\env{itemize}
 	{
-		\item<1-> Samkvæmt fyrstu frumsendu rúmfræðinnar skilgreina tveir ólíkir punktar nákvæmlega eina línu.
+		\item<1-> Tveir ólíkir punktar skilgreina nákvæmlega eina línu.
 		\item<2-> Svo við getum einfaldlega sagt að lína sé tveir ólíkir punktar.
-		\item<3-> Helsti ókostur þessa aðferðar er að sama línan getur verið skilgreint með mismunandi pörum af punktum.
+		\item<3-> Helsti ókostur þessa aðferðar er að sama línan getur verið skilgreind með mismunandi pörum af punktum.
 		\item<4-> Stundum hentar betur að skilgreina línu með skurðpunkt við $y$-ás og hallatölu. 
 		\item<5-> Þá er einfaldara að bera saman línur en það þarf að höndla sérstaklega línur samsíða $y$-ás.
 	}
@@ -581,7 +580,7 @@
 	\env{itemize}
 	{
 		\item<1-> Þegar við viljum skoða skurð tveggja bila nægir okkur að skoða hvort annar endapunktur bils er í hinu bilinu.
-		\item<2->[] \selectcode{code/fjarlaegd-milli-linustrika.c}{9}{14}
+		\item<2->[] \selectcode{code/fjarlaegd-milli-linustrika.c}{8}{13}
 	}
 }
 
@@ -591,7 +590,7 @@
 	\env{itemize}
 	{
 		\item<1-> Látum $a, b, c, d$ vera endapunkta línustrikanna.
-		\item<2-> Við viljum vita hvort punktarnir $c$ og $d$ séu sinn hvoru megin við línuna $\langle a, b \rangle$.
+		\item<2-> Við viljum vita hvort punktarnir $c$ og $d$ séu hvor sínum megin við línuna $\langle a, b \rangle$.
 		\item<3-> Við getum gert þetta með því að skoða í hvora áttina við beygjum ef göngum frá $a$ til $b$ og svo til $c$,
 					og síðan frá $a$ til $b$ og svo til $d$.
 	}
@@ -610,7 +609,7 @@
 
 \env{frame}
 {
-	\selectcode{code/fjarlaegd-milli-linustrika.c}{16}{32}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{15}{30}
 }
 
 \env{frame}
@@ -628,7 +627,7 @@
 
 \env{frame}
 {
-	\selectcode{code/fjarlaegd-milli-linustrika.c}{34}{40}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{32}{38}
 }
 
 \env{frame}
@@ -664,7 +663,7 @@
 
 \env{frame}
 {
-	\selectcode{code/fjarlaegd-milli-linustrika.c}{42}{51}
+	\selectcode{code/fjarlaegd-milli-linustrika.c}{40}{49}
 }
 
 \env{frame}
@@ -743,8 +742,8 @@
 	\env{itemize}
 	{
 		\item<1-> Ummála marghyrnings er einfalt að reikna í línulegum tíma.
-		\item<2-> Maður leggur einfaldlega saman allar hliðarlengdirnar.
-		\item<3->[] \selectcode{code/flatarmal-og-ummal.c}{20}{26}
+		\item<2-> Við leggjum bara saman allar hliðarlengdirnar.
+		\item<3->[] \selectcode{code/flatarmal-og-ummal.c}{19}{25}
 	}
 }
 
@@ -757,7 +756,7 @@
 		\item<2-> Það er einnig auðvelt að reikna flatarmálið í línulegum tíma, þó það sé ekki
 			endilega augljóst að þetta skili flatarmálinu.
 		\item<3-> Fyrir áhugasama er hægt að nota setningu Green til að leiða út eftirfarandi forritsbút.
-		\item<4->[] \selectcode{code/flatarmal-og-ummal.c}{11}{18}
+		\item<4->[] \selectcode{code/flatarmal-og-ummal.c}{10}{17}
 	}
 }
 
@@ -783,6 +782,8 @@
 		\item<1-> Að ákvarða hvort punktur sé inni í marghyrning er algent undirvandamál í rúmfræði dæmum.
 		\item<2-> Aðallega er gengist við tvær aðferðir til að leysa slík dæmi, sú fyrri er að nota \emph{geislarakningu}
 			(e. \emph{raytracing}) og hin er að reikna summu aðliggjandi horna marghyrningsins miðað við punktinn.
+		\item<3-> Það er svo til þriðja, hraðari, aðferð sem virkar bara ef marghynrningurinn er kúptur
+		\item<4-> Hún byggist á að helmingunarleita stefnuhornið punktsins.
 	}
 }
 
@@ -796,7 +797,7 @@
 		\item<2-> Ef við erum fyrir utan marghyrninginn og skerum jaðarinn erum við inni í honum,
 			en ef við erum fyrir innan og skerum jaðarinn erum við fyrir utan (þetta er í raun skilgreining
 			á því hvenær geislinn \emph{sker} marghyrninginn).
-		\item<3-> Svo ef við skerum jaðarinn slétt tölu sinnum er punkturinn fyrir innan, og annars fyrir utan (Setning Jordan).
+		\item<3-> Svo ef við skerum jaðarinn slétt tölu sinnum er punkturinn fyrir innan, og annars fyrir utan (setning Jordan).
 		\item<4-> Við getum látið geislann vera línustrik, nógu langt til að vera út fyrir marghyrninginn, og
 			notað síðan \texttt{lxl(...)} til að ákvarða í $\mathcal{O}($\onslide<5->{$\,n\,$}$)$ hversu oft geislinn sker marghyrninginn.
 	}
@@ -945,7 +946,7 @@
 
 \env{frame}
 {
-	\selectcode{code/punktur-i-marghyrningi.c}{11}{30}
+	\selectcode{code/punktur-i-marghyrningi.c}{10}{29}
 }
 
 \env{frame}
@@ -1003,9 +1004,9 @@
 		\item<1-> Við byrjum á að velja vendipunkt, yfirleitt látinn vera punkturinn neðst til vinstri.
 		\item<2-> Við látum hann fremst í safnið og röðum svo restin miðið við hornið sem þeir mynda við vendipunktinn.
 		\item<3-> Við gefum okkur svo hlaða og látum aftasta, fremsta og næst fremsta punktinn á hlaðann.
-		\item<4-> Við göngum síðan í gegnum raðaða punkta safnið okkur og fyrir hvert stak fjarlægjum við ofan af hlaðanum
+		\item<4-> Við göngum síðan í gegnum raðaða punkta safnið okkar og fyrir hvert stak fjarlægjum við ofan af hlaðanum
 			á meðan efstu tvö stökin á hlaðanum og stakið sem við erum á í listanum mynda hægri beygju. Þegar þau mynda
-			vinstri beygju bætum við stakinu úr safninu á hlaðan.
+			vinstri beygju bætum við stakinu úr safninu á hlaðann.
 		\item<5-> Þegar við erum búin að fara í gegnum allt safnið er hlaðinn kúpti hjúpurinn.
 	}
 }
@@ -1104,6 +1105,11 @@
 
 \env{frame}
 {
+	\selectcode{code/kuptur-hjupur.c}{15}{44}
+}
+
+\env{frame}
+{
 	\env{itemize}
 	{
 		\item<1-> Það er ljóst að í lok reikniritsins lýsir hlaðinn kúptum marghyrningi.
@@ -1112,11 +1118,6 @@
 		\item<4-> Ef punktasafnið inniheldur $n$ punkta þá er reikniritið $\mathcal{O}($\onslide<5->{$n \log n$}$)$ út af því við þurfum að 
 			raða punktunum.
 	}
-}
-
-\env{frame}
-{
-	\selectcode{code/kuptur-hjupur.c}{17}{47}
 }
 
 \env{frame}

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
 #define EPS 1e-9
 typedef double complex pt;
 
@@ -14,11 +13,10 @@ int bxb(double a, double b, double c, double d)
 }
 
 int ccw(pt a, pt b, pt c)
-{ // I hvora attina er verid ad beygja?
+{ // Í hvora áttina er verið að beygja?
     double f = cimag((c - a)/(b - a));
     if (fabs(f) < EPS) return 0;
-    if (f < EPS) return -1;
-    return 1;
+	return f < EPF ? -1 : 1;
 }
 
 int lxl(pt a, pt b, pt c, pt d)
@@ -59,7 +57,7 @@ int main()
 {
 	pt p[4];
 	int i, x, y;
-	rep(i, 4)
+	for (i = 0; i < 4; i++)
 	{
 		scanf("%d%d", &x, &y);
 		p[i] = x + I*y;
