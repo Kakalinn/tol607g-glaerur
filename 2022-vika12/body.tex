@@ -171,12 +171,12 @@
 
 \env{frame}
 {
-	\selectcode{code/maxcolinear.c}{6}{26}
+	\selectcode{code/maxcolinear1.c}{6}{26}
 }
 
 \env{frame}
 {
-	\selectcode{code/maxcolinear.c}{28}{50}
+	\selectcode{code/maxcolinear1.c}{28}{50}
 }
 
 \env{frame}
@@ -188,6 +188,38 @@
 		\item<3-> Svo tímaflækjan á hverjum sóp er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
 		\item<5-> Svo tímaflækjan í heildina er $\mathcal{O}($\onslide<6->{$n^2 \log n$}$)$.
 	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Skoðum aðra aðferð.
+		\item<2-> Látum $L_{jk}$ tákna línuna gegnum $j$-ta og $k$-ta punktinn, $j < k$.
+		\item<3-> Látum svo $S_{jk}$, $j < k$, tákna fjöld tvennda $(j_0, k_0)$ þannig að $j_0 < k_0$ og $L_{j_0k_0} = L_{jk}$.
+		\item<4-> Með öðrum orðum táknar $S_{jk}$ hversu mörg eintök eru af línunni $L_{jk}$.
+		\item<5-> Línan sem flestir punktar liggja er einnig línan sem kemur oftast fyrir.
+		\item<6-> Við getum fundið þá línu með því að raða línunum of telja.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum eftir að ef $k$ punktar liggja á línunni $L_{jk}$ þá er $S_{jk} = k(k - 1)/2$.
+		\item<2-> Svo ef við leysum þessa jöfnu fæst að svarið er $(1 + \sqrt{1 - 8M})/2$ þar sem $M$ er stærsta gildið á $S_{jk}$ sem við getum fengið.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/maxcolinear2.c}{7}{15}
+}
+
+\env{frame}
+{
+	\selectcode{code/maxcolinear2.c}{17}{100}
 }
 
 \env{frame}
