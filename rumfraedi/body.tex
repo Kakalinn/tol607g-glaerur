@@ -25,7 +25,7 @@
 					\item<5-> $\dfrac{M}{L} = \sin\theta$.
 					\item<6-> $\dfrac{M}{A} = \dfrac{M}{L}\dfrac{L}{A} = \dfrac{\sin\theta}{\cos\theta} = \tan\theta$.
 				}
-				\item<7-> Einnig gildir regla Pýthagorasar, $L^2 = A^2 + M^2$.
+				\item<7-> Einnig gildir regla Pýþagorasar, $L^2 = A^2 + M^2$.
 			}
 		}
 		\env{column}
@@ -99,7 +99,7 @@
 	\frametitle{Sýnidæmi: NN and the Optical Illusion - Codeforces}
 	\env{itemize}
 	{
-		\item<1-> Þér eru gefnar heiltölu $n$ og rauntölu $r$.
+		\item<1-> Þér eru gefið heiltölu $n$ og rauntölu $r$.
 		\item<2-> Þú teiknar hring á blað með geilsa $r$.
 		\item<3-> Síðan vilt þú teikna $n$ jafn stóra hringi í kringum hringinn þinn þannig að þeir skeri hringinn þinn og aðlæga hringi
 					í nákvæmlega einum punkti.
@@ -293,7 +293,7 @@
 			\item<3-> ...er \emph{lengd} $z$ gefin með $|z| = \sqrt{x^2 + y^2}$.
 			\item<4-> ...köllum við $x - yi$ \emph{samoka} $z$, táknað $\overline{z}$.
 			\item<5-> ...köllum hornið sem $(x, y)$ myndar við jákvæða hluta x-ás í $(0, 0)$ \emph{stefnuhorn} $z$
-				og táknum það með $\text{Arg } z$.
+				og táknum það með $\operatorname{Arg} z$.
 		}
 	}
 }
@@ -304,8 +304,8 @@
 	{
 		\item<1-> Látum nú $z, w \in \mathbb{C}$.
 		\item<2-> Þá er rúmfræðileg túlkun $z + w$ einfaldlega hliðrun á $z$ um $w$ (eða öfugt).
-		\item<3-> Einnig, ef $|w| = 1$ þá er rúmfræðileg túlkun $z \cdot w$ snúningur á $z$ í kringum $(0, 0)$ um $\text{Arg } w$ gráður.
-		\item<4-> Ef $|z| = r$ og $\text{Arg } z = \theta$ þá skrifum við oft $z = re^{i\theta}$.
+		\item<3-> Einnig, ef $|w| = 1$ þá er rúmfræðileg túlkun $z \cdot w$ snúningur á $z$ í kringum $0$ um $\operatorname{Arg} w$ gráður.
+		\item<4-> Ef $|z| = r$ og $\operatorname{Arg} z = \theta$ þá skrifum við oft $z = re^{i\theta}$.
 		\item<5-> Ef $z = r_1e^{i\theta_1}$ og $w = r_2e^{i\theta_2}$ þá er $z \cdot w = r_1r_2e^{i(\theta_1 + \theta_2)}$.
 		\item<6-> Þetta eru dæmi um hvernig við getum stytt okkur leiðir í rúmfræði með því að nota tvinntölur.
 		\item<7-> Fleiri (minna augljós) dæmi koma á eftir.
@@ -322,7 +322,7 @@
 			á að leysa dæmin í tveimur víddum (ef unnt er) og reyna svo að yfirfæra
 			tvívíðu lausnina í þriðju víddina.  \item<3-> Hingað til í námskeiðinu höfum við að mestu fengist við heiltölur
 			og stöku sinnum þurft að vinna með fleytitölur.
-		\item<4-> Í rúmfræði er þetta þó öfugt, við vinnum aðallega með fleytitölur og stöku sinnum heiltölur.
+		\item<4-> Í rúmfræði þurfum við þó oft að vinna með fleytitölur.
 		\item<5-> Þegar við notum fleytitölur er mikilvægt að passa að samanburðir er ekki fullkomnir.
 		\item<6-> Við látum því duga að tvær tölur sé \emph{nógu} líkar, í vissum skilningi, til að þær séu jafnar.
 	}
@@ -350,8 +350,8 @@
 	\frametitle{Notkun á \texttt{complex.h} úr \texttt{C} í rúmfræði}
 	\env{itemize}
 	{
-		\item<1-> Fallið \texttt{creal(p)} skilar ofanvarpi $p$ á $x$-ás.
-		\item<2-> Fallið \texttt{cimag(p)} skilar ofanvarpi $p$ á $y$-ás.
+		\item<1-> Fallið \texttt{creal(p)} skilar $x$-hniti $p$.
+		\item<2-> Fallið \texttt{cimag(p)} skilar $y$-hniti $p$.
 		\item<3-> Fallið \texttt{cabs(p)} skilar fjarlægð $p$ frá $(0, 0)$.
 		\item<4-> Fallið \texttt{cabs(p - q)} skilar fjarlægð milli $p$ og $q$.
 		\item<5-> Fallið \texttt{carg(p)} skilar stefnuhorninu $p$.
@@ -374,17 +374,18 @@
 	\frametitle{Sýnidæmi}
 	\env{itemize}
 	{
-		\item<1-> Þú byrjar í $(0, 0)$ og færð gefnar skipanir.
-		\item<2-> Skipanirnar eru allar einn bókstafur og ein tala.
-		\item<3-> Ef skipunin er...
+		\item<1-> Skoðum dæmi.
+		\item<2-> Þú byrjar í $(0, 0)$ og færð gefnar skipanir.
+		\item<3-> Skipanirnar eru allar einn bókstafur og ein tala.
+		\item<4-> Ef skipunin er...
 		\env{itemize}
 		{
-			\item<4-> ...\texttt{f x} gengur þú áfram um $x$ metra.
-			\item<5-> ...\texttt{b x} gengur þú aftur á bak um $x$ metra.
-			\item<6-> ...\texttt{r x} snýrð þú þér um $x$ radíana til hægri.
-			\item<7-> ...\texttt{l x} snýrð þú þér um $x$ radíana til vinstri.
+			\item<5-> ...\texttt{f x} gengur þú áfram um $x$ metra.
+			\item<6-> ...\texttt{b x} gengur þú aftur á bak um $x$ metra.
+			\item<7-> ...\texttt{r x} snýrð þú þér um $x$ radíana til hægri.
+			\item<8-> ...\texttt{l x} snýrð þú þér um $x$ radíana til vinstri.
 		}
-		\item<8-> Hversu langt ertu frá $(0, 0)$, eftir að hafa fylgt öllum skipunum.
+		\item<9-> Hversu langt ertu frá $(0, 0)$, eftir að hafa fylgt öllum skipununum.
 	}
 }
 
@@ -410,7 +411,7 @@
 		\item<1-> Tveir ólíkir punktar skilgreina nákvæmlega eina línu.
 		\item<2-> Svo við getum einfaldlega sagt að lína sé tveir ólíkir punktar.
 		\item<3-> Helsti ókostur þessa aðferðar er að sama línan getur verið skilgreind með mismunandi pörum af punktum.
-		\item<4-> Stundum hentar betur að skilgreina línu með skurðpunkt við $y$-ás og hallatölu. 
+		\item<4-> Stundum hentar betur að skilgreina línu sem skurðpunkt við $y$-ás og hallatölu. 
 		\item<5-> Þá er einfaldara að bera saman línur en það þarf að höndla sérstaklega línur samsíða $y$-ás.
 	}
 }
@@ -552,7 +553,7 @@
 	\frametitle{Línustrik}
 	\env{itemize}
 	{
-		\item<1-> Af augljósum ástæðum sést að best er að skilgreina línustrik sem par punkta, nánar tiltekið endapunkta línustriksins.
+		\item<1-> Venjan er að skilgreina línustrik sem par punkta, nánar tiltekið endapunkta línustriksins.
 		\item<2-> Markmið okkar í þessum hluta af fyrirlestrinu verður að útfæra fall sem finnur fjarlægð milli línustrika.
 		\item<3-> Við munum byrja á að útfæra góð hjálparföll sem nýtast meðal annars í að finna þessa fjarlægð, en eru einnig
 			hentug í öðrum dæmum.
@@ -590,7 +591,7 @@
 	\env{itemize}
 	{
 		\item<1-> Látum $a, b, c, d$ vera endapunkta línustrikanna.
-		\item<2-> Við viljum vita hvort punktarnir $c$ og $d$ séu hvor sínum megin við línuna $\langle a, b \rangle$.
+		\item<2-> Við viljum vita hvort punktarnir $c$ og $d$ séu hvor sínum megin við línuna gegnum punktanna $a$ og $b$.
 		\item<3-> Við getum gert þetta með því að skoða í hvora áttina við beygjum ef göngum frá $a$ til $b$ og svo til $c$,
 					og síðan frá $a$ til $b$ og svo til $d$.
 	}

@@ -1,0 +1,197 @@
+\title{Lausnir á dæmum tengd viku tólf}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ég mun leysa eftirfarandi dæmi:
+		\env{itemize}
+		{
+			\item<2-> \emph{Maximum Number of Colinear Points},
+			\item<3-> \emph{...}.
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Maximum Number of Colinear Points}
+	\env{itemize}
+	{
+		\item<1-> Gefnir eru $n$ punktar í plani.
+		\item<2-> Þú vilt velja hlutmengi af þessum punktum þannig að allir punktarnir í hlutmenginu liggi á sömu línunni.
+		\item<3-> Hvert er stærðin á stærstu hlutmengjunum sem þú getur valið.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Hvert par af punktum skilgreinir línu.
+		\item<2-> Við getum því fyrir sérhvert par af punktum ítrað í gegnum alla punktanna og séð hvað margir liggja á línunni.
+		\item<3-> Þessi lausn er $\mathcal{O}(n^3)$.
+		\item<4-> Reynum að bæta þetta.
+	}
+}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Veljum einn punkt sem vendipunkt og röðum öðrum punktum miðað við stenfhornið sem þeir mynda við vendipuktinn.
+		\item<2-> Þá eru allir punktar sem liggja á sama geisla sem byrjar í vendipunktinum aðlægir.
+		\item<3-> Við getum því gengið einu sinni í gegnum punktanna og fundið besta svarið að því gefnum að vendipunkturinn liggi á línunni.
+		\item<4-> Við getum endurtekið þetta $n$ sinnum, þannig að hver punktur fær að vera vendipunktur.
+		\item<5-> Tökum sýnidæmi.
+	}
+}
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\clip (-5, -5) rectangle (5, 5);
+			%\draw[dotted] (-0.2, 0) -- (0.2, 0);
+			%\draw[dotted] (0, -0.2) -- (0, 0.2);
+
+			\node[draw, fill, circle, inner sep = 0.5pt] at (0, 0) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (1, 2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (2, 4) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (4, 2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-3, -1) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-1, 2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-1, -2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (1, 0) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (4, 0) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-2, 4) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-4, 3) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-4, -3) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (1, -2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (2, -4) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (2, -1) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (4, -2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (3, -3) {};
+
+			\only<all:2-14> { \node[draw, fill, circle, inner sep = 1.0pt] at (0, 0) {}; }
+			\only<all:3> { \draw[dotted] (0, 0) -- (-30, -10); }
+			\only<all:4> { \draw[dotted] (0, 0) -- (-40, -30); }
+			\only<all:5> { \draw[dotted] (0, 0) -- (-10, -20); }
+			\only<all:6> { \draw[dotted] (0, 0) -- (10, -20); }
+			\only<all:7> { \draw[dotted] (0, 0) -- (10, -10); }
+			\only<all:8> { \draw[dotted] (0, 0) -- (20, -10); }
+			\only<all:9> { \draw[dotted] (0, 0) -- (20, 0); }
+			\only<all:10> { \draw[dotted] (0, 0) -- (20, 10); }
+			\only<all:11> { \draw[dotted] (0, 0) -- (10, 20); }
+			\only<all:12> { \draw[dotted] (0, 0) -- (-10, 20); }
+			\only<all:13> { \draw[dotted] (0, 0) -- (-40, 30); }
+
+			\only<all:16-30> { \node[draw, fill, circle, inner sep = 1.0pt] at (-1, -2) {}; }
+			\only<all:17> { \draw[dotted] (-1, -2) -- (-10, -5); }
+			\only<all:18> { \draw[dotted] (-1, -2) -- (5, -6); }
+			\only<all:19> { \draw[dotted] (-1, -2) -- (11, -5); }
+			\only<all:20> { \draw[dotted] (-1, -2) -- (11, -2); }
+			\only<all:21> { \draw[dotted] (-1, -2) -- (11, 2); }
+			\only<all:22> { \draw[dotted] (-1, -2) -- (14, 4); }
+			\only<all:23> { \draw[dotted] (-1, -2) -- (9, 6); }
+			\only<all:24> { \draw[dotted] (-1, -2) -- (7, 6); }
+			\only<all:25> { \draw[dotted] (-1, -2) -- (4, 8); }
+			\only<all:26> { \draw[dotted] (-1, -2) -- (-1, 10); }
+			\only<all:27> { \draw[dotted] (-1, -2) -- (-3, 10); }
+			\only<all:28> { \draw[dotted] (-1, -2) -- (-7, 8); }
+			\only<all:29> { \draw[dotted] (-1, -2) -- (-9, 2); }
+
+			\only<all:32-44> { \node[draw, fill, circle, inner sep = 1.0pt] at (2, -4) {}; }
+			\only<all:33> { \draw[dotted] (2, -4) -- (7, 1); }
+			\only<all:34> { \draw[dotted] (2, -4) -- (6, 4); }
+			\only<all:35> { \draw[dotted] (2, -4) -- (6, 8); }
+			\only<all:36> { \draw[dotted] (2, -4) -- (2, 8); }
+			\only<all:37> { \draw[dotted] (2, -4) -- (0, 8); }
+			\only<all:38> { \draw[dotted] (2, -4) -- (-1, 8); }
+			\only<all:39> { \draw[dotted] (2, -4) -- (-4, 8); }
+			\only<all:40> { \draw[dotted] (2, -4) -- (-10, 10); }
+			\only<all:41> { \draw[dotted] (2, -4) -- (-7, 2); }
+			\only<all:42> { \draw[dotted] (2, -4) -- (-8, 2); }
+			\only<all:43> { \draw[dotted] (2, -4) -- (-10, -2); }
+
+			\only<all:45> { \node[draw, fill, circle, white] at (10, -10) {}; } % lifespan
+		}
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við köllum þessa aðferð \emph{sópinn} (e. \emph{sweep line}).
+		\item<2-> Dæmi sem má leysa með sópnum:
+		\env{itemize}
+		{
+			\item<3-> Finna nálægustu tvo punkta í punktasafni.
+			\item<4-> Finna Delaunay net punktasafns (reiknirit Fortunes).
+			\item<5-> Athuga hvort safn línustrika skerist (reiknirit Shamos og Hoeys).
+		}
+		\item<6-> Þessi dæmi eiga það öll sameiginlegt að við drögum beina línu (yfirleitt samsíða $y$-ásnum) í gegnum punktasafnið okkar.
+		\item<7-> Dæmið sem við erum að skoða snýr línu með fasta miðju, svo kallaður \emph{snúningssópur}.
+		\item<8-> Snúningssópurinn er algengari í dæmum.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Nýtum okkur þetta tækifæri og skoðum hvernig við getum útfært rúmfræði í heiltölum.
+		\item<2-> Heilsti kosturinn við þessa aðferð er að við getum leyst dæmið án fleytitöluskekkju.
+		\item<3-> Við geymum þá punkt sem tvennd af heiltölum.
+		\item<4-> Við þurfum að geta raðað punktunum eftir stefnuhorni.
+		\item<5-> Við getum gert þetta án þess að reiknastefnu hornið.
+		\item<6-> Köllum vendipunktinn $P$ og punktanna sem við viljum bera saman $X$ og $Y$.
+		\item<7-> Berum fyrst saman $X$ og $Y$ eftir því hvort þeir séu fyrir ofan eða neðan vendipunktinn.
+		\item<8-> Punktar fyrir ofan fá minni forgang.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Til að bera saman punktana $X$ og $Y$ ef þeir eru báðir fyrir ofan eða neðan vendipunktinn þá athugum við í hvaða átt við beygjum
+					þegar við löbbum frá $X$ til $Y$ í gegnum punktinn $P$.
+		\item<2-> Punkturinn $X$ hefur þá meiri forgang ef beygjan er til hægri.
+	}
+}
+
+\env{frame}
+{
+	\selectcode{code/maxcolinear.c}{6}{26}
+}
+
+\env{frame}
+{
+	\selectcode{code/maxcolinear.c}{28}{50}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við framkvæmum $n$ sópa, einn fyrir hvern punkt.
+		\item<2-> Í hverjum sóp röðum við punktasafninu, og löbbu svo í gegnum það einu sinni.
+		\item<3-> Svo tímaflækjan á hverjum sóp er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
+		\item<5-> Svo tímaflækjan í heildina er $\mathcal{O}($\onslide<6->{$n^2 \log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

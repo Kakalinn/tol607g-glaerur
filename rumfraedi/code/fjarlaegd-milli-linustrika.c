@@ -9,21 +9,21 @@ int bxb(double a, double b, double c, double d)
 { // Skerast [a, b] og [c, d]?
     if (a > b) return bxb(b, a, c, d);
     if (c > d) return bxb(a, b, d, c);
-    return fmax(a, c) <= fmin(b, d);
+    return fmax(a, c) < fmin(b, d) + EPS;
 }
 
 int ccw(pt a, pt b, pt c)
 { // Í hvora áttina er verið að beygja?
     double f = cimag((c - a)/(b - a));
     if (fabs(f) < EPS) return 0;
-	return f < EPF ? -1 : 1;
+	return f < EPS ? -1 : 1;
 }
 
 int lxl(pt a, pt b, pt c, pt d)
 { // Skerast <a, b> og <c, d>?
     int a1 = ccw(a, b, c), a2 = ccw(a, b, d),
 		a3 = ccw(c, d, a), a4 = ccw(c, d, b);
-    if (a1*a2*a3*a4 == 0) return 0; // Taeknilega sed ekki rett.
+    if (a1*a2*a3*a4 == 0) return 0; // Tæknilega séð ekki rétt.
     if (a1*a2 != -1 || a3*a4 != -1) return 0;
     return bxb(creal(a), creal(b), creal(c), creal(d))
 		&& bxb(cimag(a), cimag(b), cimag(c), cimag(d));
@@ -56,15 +56,19 @@ double l2l(pt a1, pt a2, pt b1, pt b2)
 int main()
 {
 	pt p[4];
-	int i, x, y;
-	for (i = 0; i < 4; i++)
+	int i, x, y, t;
+	scanf("%d", &t);
+	while (t--)
 	{
-		scanf("%d%d", &x, &y);
-		p[i] = x + I*y;
+		for (i = 0; i < 4; i++)
+		{
+			scanf("%d%d", &x, &y);
+			p[i] = x + I*y;
+		}
+		double r = l2l(p[0], p[1], p[2], p[3]);
+		if (r == 0.0) r = 0.0; // Passar ad prenta ekki "-0.000000"
+		printf("%.2f\n", r);
 	}
-	double r = l2l(p[0], p[1], p[2], p[3]);
-	if (r == 0.0) r = 0.0; // Passar ad prenta ekki "-0.000000"
-	printf("%.6f\n", r);
 	return 0;
 }
 
