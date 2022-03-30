@@ -1,4 +1,4 @@
-\title{Lausnir á dæmum tengd viku tólf}
+\title{Lausnir á rúmfræðidæmi}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -10,12 +10,8 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Ég mun leysa eftirfarandi dæmi:
-		\env{itemize}
-		{
-			\item<2-> \emph{Maximum Number of Colinear Points},
-			\item<3-> \emph{...}.
-		}
+		\item<1-> Ég mun leysa dæmið \emph{Maximum Number of Colinear Points} með aferð sem nýtist í önnur dæmi.
+		\item<2-> Ég leysi það svo aftur með annari aðferð.
 	}
 }
 
@@ -26,7 +22,7 @@
 	{
 		\item<1-> Gefnir eru $n$ punktar í plani.
 		\item<2-> Þú vilt velja hlutmengi af þessum punktum þannig að allir punktarnir í hlutmenginu liggi á sömu línunni.
-		\item<3-> Hvert er stærðin á stærstu hlutmengjunum sem þú getur valið.
+		\item<3-> Hver er stærðin á stærstu hlutmengjunum sem þú getur valið.
 	}
 }
 
@@ -35,7 +31,7 @@
 	\env{itemize}
 	{
 		\item<1-> Hvert par af punktum skilgreinir línu.
-		\item<2-> Við getum því fyrir sérhvert par af punktum ítrað í gegnum alla punktanna og séð hvað margir liggja á línunni.
+		\item<2-> Við getum því fyrir sérhvert par af punktum ítrað í gegnum alla punktanna og séð hversu margir liggja á línunni.
 		\item<3-> Þessi lausn er $\mathcal{O}(n^3)$.
 		\item<4-> Reynum að bæta þetta.
 	}
@@ -44,7 +40,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Veljum einn punkt sem vendipunkt og röðum öðrum punktum miðað við stenfhornið sem þeir mynda við vendipuktinn.
+		\item<1-> Veljum einn punkt sem vendipunkt og röðum öðrum punktum miðað við stefnuhornið sem þeir mynda við vendipuktinn.
 		\item<2-> Þá eru allir punktar sem liggja á sama geisla sem byrjar í vendipunktinum aðlægir.
 		\item<3-> Við getum því gengið einu sinni í gegnum punktanna og fundið besta svarið að því gefnum að vendipunkturinn liggi á línunni.
 		\item<4-> Við getum endurtekið þetta $n$ sinnum, þannig að hver punktur fær að vera vendipunktur.
@@ -136,7 +132,7 @@
 		{
 			\item<3-> Finna nálægustu tvo punkta í punktasafni.
 			\item<4-> Finna Delaunay net punktasafns (reiknirit Fortunes).
-			\item<5-> Athuga hvort safn línustrika skerist (reiknirit Shamos og Hoeys).
+			\item<5-> Athuga hvort safn línustrika skerist (reiknirit Shamosar og Hoeys).
 		}
 		\item<6-> Þessi dæmi eiga það öll sameiginlegt að við drögum beina línu (yfirleitt samsíða $y$-ásnum) í gegnum punktasafnið okkar.
 		\item<7-> Dæmið sem við erum að skoða snýr línu með fasta miðju, svo kallaður \emph{snúningssópur}.
@@ -149,10 +145,10 @@
 	\env{itemize}
 	{
 		\item<1-> Nýtum okkur þetta tækifæri og skoðum hvernig við getum útfært rúmfræði í heiltölum.
-		\item<2-> Heilsti kosturinn við þessa aðferð er að við getum leyst dæmið án fleytitöluskekkju.
+		\item<2-> Helsti kosturinn við þessa aðferð er að við getum leyst dæmið án fleytitöluskekkju.
 		\item<3-> Við geymum þá punkt sem tvennd af heiltölum.
 		\item<4-> Við þurfum að geta raðað punktunum eftir stefnuhorni.
-		\item<5-> Við getum gert þetta án þess að reikna stefnu hornið.
+		\item<5-> Við getum gert þetta án þess að reikna stefnuhornið.
 		\item<6-> Köllum vendipunktinn $P$ og punktanna sem við viljum bera saman $X$ og $Y$.
 		\item<7-> Berum fyrst saman $X$ og $Y$ eftir því hvort þeir séu fyrir ofan eða neðan vendipunktinn.
 		\item<8-> Punktar fyrir ofan fá minni forgang.
@@ -165,9 +161,32 @@
 	{
 		\item<1-> Til að bera saman punktana $X$ og $Y$ ef þeir eru báðir fyrir ofan eða neðan vendipunktinn þá athugum við í hvaða átt við beygjum
 					þegar við löbbum frá $X$ til $Y$ í gegnum punktinn $P$.
-		\item<2-> Punkturinn $X$ hefur þá meiri forgang ef beygjan er til hægri.
+		\item<2-> Punkturinn $X$ hefur þá minni forgang ef beygjan er til hægri.
 	}
 }
+
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\clip (-5, -5) rectangle (5, 5);
+			\draw[dotted] (-4, 0) -- (4, 0);
+			%\draw[dotted] (0, -4) -- (0, 4);
+			\node[draw, fill, circle, inner sep = 0.5pt] at (2, 2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (2, -2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-2, -2) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-2, 2) {};
+			\node[draw, fill, circle, inner sep = 1.0pt] at (0, 0) {};
+			\only<2-> { \node at (-1.9, -1.9) {\tiny $1$}; }
+			\only<3-> { \node at (2.1, -1.9) {\tiny $2$}; }
+			\only<4-> { \node at (2.1, 2.1) {\tiny $3$}; }
+			\only<5-> { \node at (-1.9, 2.1) {\tiny $4$}; }
+		}
+	}
+}
+
 
 \env{frame}
 {
@@ -196,10 +215,10 @@
 	{
 		\item<1-> Skoðum aðra aðferð.
 		\item<2-> Látum $L_{jk}$ tákna línuna gegnum $j$-ta og $k$-ta punktinn, $j < k$.
-		\item<3-> Látum svo $S_{jk}$, $j < k$, tákna fjöld tvennda $(j_0, k_0)$ þannig að $j_0 < k_0$ og $L_{j_0k_0} = L_{jk}$.
+		\item<3-> Látum svo $S_{jk}$, $j < k$, tákna fjölda tvennda $(j_0, k_0)$ þannig að $j_0 < k_0$ og $L_{j_0k_0} = L_{jk}$.
 		\item<4-> Með öðrum orðum táknar $S_{jk}$ hversu mörg eintök eru af línunni $L_{jk}$.
 		\item<5-> Línan sem flestir punktar liggja er einnig línan sem kemur oftast fyrir.
-		\item<6-> Við getum fundið þá línu með því að raða línunum of telja.
+		\item<6-> Við getum fundið þá línu með því að raða línunum og telja.
 	}
 }
 
@@ -220,6 +239,15 @@
 \env{frame}
 {
 	\selectcode{code/maxcolinear2.c}{17}{100}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við höfum $\mathcal{O}(n^2)$ línur sem við þurfum að raða.
+		\item<2-> Svo tímaflækjan á þessari lausn er $\mathcal{O}($\onslide<3->{$n^2 \log n$}$)$.
+	}
 }
 
 \env{frame}
