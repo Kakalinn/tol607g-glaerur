@@ -1,7 +1,7 @@
 #include <stdio.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
+#include <string.h>
 
-int get_string(char* b, char t)
+int get_string(char *b, char t)
 { // Les inn i |b| streng af stadalinntaki fram að stafnum |t|.
 	int i = 0, c = getchar();
 	while (c != t) { b[i++] = c; c = getchar(); }
@@ -9,25 +9,23 @@ int get_string(char* b, char t)
 	return i;
 }
 
-void bkmp(char* p, int* b, int m)
-{
-	int i = 0, j = -1;
-	b[0] = -1;
-	while (i < m)
-	{
+void prefix_function(char *p, int *b)
+{ // Reiknar forstrengsfall p og geymir gildin í b.
+	int i, j, m = strlen(p);
+	for (i = 0, j = b[0] = -1; i < m; b[++i] = ++j)
 		while (j >= 0 && p[i] != p[j]) j = b[j];
-		b[i++] = j++;
-	}
 }
 
-void kmp(char* s, int n, char* p, int m, int* b)
-{
-	int i = 0, j = 0;
-	while (i < n)
+void kmp(char *s, char *p, int *r)
+{ // r[i] segir hvort i-ta hlutstrengur s sé sá sami og p.
+	int i, j, n = strlen(s), m = strlen(p), b[m + 1];
+	prefix_function(p, b);
+	for (i = 0; i < n; i++) r[i] = 0;
+	for (i = j = 0; i < n; )
 	{
 		while (j >= 0 && s[i] != p[j]) j = b[j];
 		i++, j++;
-		if (j == m) printf("%d\n", i - j), j = b[j];
+		if (j == m) r[i - j] = 1, j = b[j];
 	}
 }
 
@@ -39,10 +37,13 @@ int main()
 	int n = get_string(s, 10);
 	printf("Stutti strengur: "); fflush(stdout);
 	int m = get_string(p, 10);
-	int b[m];
-	bkmp(p, b, m);
-	rep(i, m) printf("%4d ", b[i]); printf("\n");
-	rep(i, m) printf("   %c ", p[i]); printf("\n");
-	kmp(s, n, p, m, b);
+	int b[m + 1], r[n];
+	prefix_function(p, b);
+	for (i = 0; i <= m; i++) printf("%4d ", b[i]); printf("\n");
+	for (i = 0; i < m; i++) printf("   %c ", p[i]); printf("\n");
+	kmp(s, p, r);
+	printf("%s\n", s);
+	for (i = 0; i < n; i++) printf("%c", r[i] ? 'x' : ' ');
+	printf("\n");
 	return 0;
 }

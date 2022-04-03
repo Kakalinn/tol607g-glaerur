@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
 typedef struct { int x, y; } ii;
 int cmp(const void* p1, const void* p2) { return ((ii*)p1)->x - ((ii*)p2)->x; }
 
@@ -8,8 +7,9 @@ int main()
 {
 	int n, r, i, j, k;
 	scanf("%d", &n);
-	ii a[2*n]; int b[n];
-	rep(i, n)
+	ii a[2*n];
+	int b[n];
+	for (i = 0; i < n; i++)
 	{
 		scanf("%d%d", &(a[2*i].x), &(a[2*i + 1].x));
 		a[2*i].y = i; a[2*i + 1].y = i; b[i] = 0;

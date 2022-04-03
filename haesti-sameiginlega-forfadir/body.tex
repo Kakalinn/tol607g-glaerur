@@ -13,7 +13,7 @@
 		\item<1-> Gerum ráð fyrir að við séum með tré.
 		\item<2-> Látum einn hnút tákna rót trésins.
 		\item<3-> Við getum þá talað um \emph{hæð} hnúts í trénu.
-		\item<4-> Hæðin er þá fjarlægðin frá hnútnum í rótina.
+		\item<4-> Hæð hnútsins er þá fjarlægðin frá hnútnum í rótina.
 		\item<5-> Þar sem við erum í tréi er aðeins einn einfaldur vegur í rótina.
 		\item<6-> Ein leið til að finna hæð allra hnúta er með einni dýptarleit.
 		\item<7-> Látum hæð hnútsins $u$ vera $h(u)$.
@@ -148,7 +148,7 @@
 		\item<5-> Svo við getum ferðast niður tréð frá $u$ þar til við erum komin í sömu hæð og $v$.
 		\item<6-> Við getum svo ferðast eftir foreldrum beggja á sama tíma þangað til við lendum í sama hnútnum.
 		\item<7-> Sá hnútur er $x$.
-		\item<8-> Sjáum hvernig þessi aðferð leysir sýnidæmið á undan.
+		\item<8-> Sjáum hvernig þessi aðferð leysir sýnidæmin sem við sáum áðan.
 	}
 }
 
@@ -242,9 +242,9 @@
 					heldur alla hnúta sem eru $2^k$ fyrir neðan hnútinn í trénu.
 		\item<8-> Við þurfum því að geyma $\mathcal{O}($\onslide<9->{$\log n$}$)$ stökk fyrir hvern hnút.
 		\item<10-> Táknum með $p(u, k)$ þann hnút sem þú endar í ef þú ferðast $2^k$ sinnum niður tréð frá $u$ gegnum foreldrin.
-		\item<11-> Til dæmis er $p(u, 1)$ foreldri $u$.
+		\item<11-> Til dæmis er $p(u, 0)$ foreldri $u$.
 		\item<12-> Til þæginda segjum við að foreldri rótarinnar sé rótin sjálf.
-		\item<13-> Við finnum þessi gildi með $p(u, i) = p(p(u, i - 1), i - 1)$.
+		\item<13-> Við finnum þessi gildi með rakningunni $p(u, i) = p(p(u, i - 1), i - 1)$.
 	}
 }
 
@@ -253,7 +253,7 @@
 	\env{itemize}
 	{
 		\item<1-> Við tökum því eins löng stökk og við getum án þess að $d(u) < d(v)$ þangað til $d(u) = d(v)$.
-		\item<2-> Við getum þú núna gert ráð fyrir að $d(u) = d(v)$.
+		\item<2-> Við getum því núna gert ráð fyrir að $d(u) = d(v)$.
 		\item<3-> Þá viljum við taka eins löng stökk og við getum þannig að $u \neq v$.
 		\item<4-> Að því loknu munu $u$ og $v$ hafa sama foreldri.
 	}
@@ -269,7 +269,7 @@
 	\env{itemize}
 	{
 		\item<1-> Í hverju skrefi þurfum við bara að taka $\mathcal{O}($\onslide<2->{$\log n$}$)$.
-		\item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$\log n$}$)$.
+		\item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$\log n$}$)$ fyrir hverja fyrirspurn.
 	}
 }
 
