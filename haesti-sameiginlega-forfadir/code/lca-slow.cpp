@@ -15,7 +15,6 @@ void lca_dfs(vvi& g, int x, int q, int w)
 
 void lca_init(vvi& g, int x)
 { // Upphafstillir fyrir netið g með rót x.
-	int i, n = g.size();
 	lca_dfs(g, 0, x, x);
 }
 

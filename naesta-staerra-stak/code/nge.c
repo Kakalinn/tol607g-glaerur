@@ -3,11 +3,8 @@
 void nge(int* a, int* b, int n)
 {
 	int s[n], c = 0, i;
-	for (i = 0; i < n; i++)
-	{
+	for (i = 0; i < n; s[c++] = i++)
 		while (c > 0 && a[s[c - 1]] < a[i]) b[s[--c]] = i;
-		s[c++] = i;
-	}
 	while (c > 0) b[s[--c]] = -1;
 }
 

@@ -15,7 +15,6 @@ trienode->e : indext of the nodes exit link.
 trienode->p : index of parent.
 trienode->c : character of the incoming edge.
 trienode->d : memoization table for suffix links.
-trienode->g : memoization table for transitions.
 trienode->t : transition table of the trie.
 
 trie->s : total number of used nodes.
@@ -25,7 +24,7 @@ trie->r : the index of the root of the trie.
 #define ALPHABET 128
 #define MAXN 1000000
 typedef struct { int v, n; } listnode;
-typedef struct { int t[ALPHABET], g[ALPHABET], l, e, p, c, d; } trienode;
+typedef struct { int t[ALPHABET], l, e, p, c, d; } trienode;
 typedef struct { int s, r, l; trienode m[MAXN]; listnode w[MAXN];} trie;
 int val(char c) { return c; }
 int list_node(trie *t, int v, int n)
@@ -37,7 +36,7 @@ int trie_node(trie *t, int p, int c)
 {
 	int i;
 	for (i = 0; i < ALPHABET; i++)
-		t->m[t->s].t[i] = t->m[t->s].g[i] = -1;
+		t->m[t->s].t[i] = -1;
 	t->m[t->s].l = -1, t->m[t->s].e = -1, t->m[t->s].p = p,
 		t->m[t->s].c = c, t->m[t->s].d = -1;
 	return t->s++;
@@ -63,9 +62,8 @@ int trie_suffix(trie *t, int h)
 
 int trie_step(trie *t, int h, int c)
 { // dp-lookup hjálparfall til að ítra
-	if (t->m[h].g[c] != -1) return t->m[h].g[c];
-	if (t->m[h].t[c] != -1) return t->m[h].g[c] = t->m[h].t[c];
-	return t->m[h].g[c] = h == t->r ? t->r :
+	if (t->m[h].t[c] != -1) return t->m[h].t[c];
+	return t->m[h].t[c] = h == t->r ? t->r :
 		trie_step(t, trie_suffix(t, h), c);
 }
 

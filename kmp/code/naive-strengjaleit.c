@@ -9,7 +9,7 @@ void naive(char* s, int n, char* p, int m, int *r)
 	for (i = 0; i < n - m + 1; i++)
 	{
 		for (j = 0; j < m; j++)  if (s[i + j] != p[j]) break;
-		if (j >= m) r[i - j + 1] = 1;
+		if (j >= m) r[i] = 1;
 	}
 }
 

@@ -17,7 +17,7 @@ void prefix_function(char *p, int *b)
 }
 
 void kmp(char *s, char *p, int *r)
-{ // r[i] segir hvort i-ta hlutstrengur s sé sá sami og p.
+{ // Eftir á segir r[i] hvort i-ta hlutstrengur s sé sá sami og p.
 	int i, j, n = strlen(s), m = strlen(p), b[m + 1];
 	prefix_function(p, b);
 	for (i = 0; i < n; i++) r[i] = 0;

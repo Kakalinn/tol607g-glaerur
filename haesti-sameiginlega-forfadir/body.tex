@@ -86,7 +86,7 @@
 		\item<2-> Við getum þá fundið veginn að rótinni með því að ferðast eftir foreldrum.
 		\item<3-> Þeir hnútar sem eru á veginum niður að rótinni kallast \emph{forfeður} hnúts.
 		\item<4-> Það er kannski skrýtið, en allir hnútar er forfeður sínir.
-		\item<5-> Oft nýtist okkur að vitað hvaða sameiginlegi forfaðir tveggja hnúta er hæstur í trénu.
+		\item<5-> Oft nýtist okkur að vita hvaða sameiginlegi forfaðir tveggja hnúta er hæstur í trénu.
 	}
 }
 
@@ -144,7 +144,7 @@
 		\item<1-> Hvernig finnum þennan forföður?
 		\item<2-> Látum $u$ og $v$ tákna hnútana og $x$ hæsta sameiginlega forföður þeirra.
 		\item<3-> Við getum gert ráð fyrir að $u$ sé ofar í trénu, það er að segja $h(u) \geq h(v)$.
-		\item<4-> Við vitum að allir forfeður $u$ sem hafa hæð stærri en $d(v)$ eru ekki $x$.
+		\item<4-> Við vitum að allir forfeður $u$ sem hafa hæð stærri en $h(v)$ eru ekki $x$.
 		\item<5-> Svo við getum ferðast niður tréð frá $u$ þar til við erum komin í sömu hæð og $v$.
 		\item<6-> Við getum svo ferðast eftir foreldrum beggja á sama tíma þangað til við lendum í sama hnútnum.
 		\item<7-> Sá hnútur er $x$.
@@ -210,7 +210,7 @@
 
 \env{frame}
 {
-	\selectcode{code/lca-slow.cpp}{7}{28}
+	\selectcode{code/lca-slow.cpp}{7}{27}
 }
 
 \env{frame}
@@ -236,8 +236,8 @@
 			\item<3-> Löbbum saman niður þangað til við finnum svarið.
 		}
 		\item<4-> Fyrra skrefinu má lýsa nánar.
-		\item<5-> Látum hnútana okkar vera $u$ og $v$, þannig að $d(u) \geq d(v)$.
-		\item<6-> Við viljum því ferðast niður nákvæmlega $d(v) - d(u)$ sinnum.
+		\item<5-> Látum hnútana okkar vera $u$ og $v$, þannig að $h(u) \geq h(v)$.
+		\item<6-> Við viljum því ferðast niður nákvæmlega $h(v) - h(u)$ sinnum.
 		\item<7-> Ein leið til að gera þetta hratt er að geyma ekki bara foreldri hvers hnúts,
 					heldur alla hnúta sem eru $2^k$ fyrir neðan hnútinn í trénu.
 		\item<8-> Við þurfum því að geyma $\mathcal{O}($\onslide<9->{$\log n$}$)$ stökk fyrir hvern hnút.
@@ -252,8 +252,8 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Við tökum því eins löng stökk og við getum án þess að $d(u) < d(v)$ þangað til $d(u) = d(v)$.
-		\item<2-> Við getum því núna gert ráð fyrir að $d(u) = d(v)$.
+		\item<1-> Við tökum því eins löng stökk og við getum án þess að $h(u) < h(v)$ þangað til $h(u) = h(v)$.
+		\item<2-> Við getum því núna gert ráð fyrir að $h(u) = h(v)$.
 		\item<3-> Þá viljum við taka eins löng stökk og við getum þannig að $u \neq v$.
 		\item<4-> Að því loknu munu $u$ og $v$ hafa sama foreldri.
 	}
