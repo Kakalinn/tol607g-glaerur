@@ -35,8 +35,7 @@ int list_node(trie *t, int v, int n)
 int trie_node(trie *t, int p, int c)
 {
 	int i;
-	for (i = 0; i < ALPHABET; i++)
-		t->m[t->s].t[i] = -1;
+	for (i = 0; i < ALPHABET; i++) t->m[t->s].t[i] = -1;
 	t->m[t->s].l = -1, t->m[t->s].e = -1, t->m[t->s].p = p,
 		t->m[t->s].c = c, t->m[t->s].d = -1;
 	return t->s++;

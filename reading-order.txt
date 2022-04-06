@@ -53,4 +53,6 @@ naesta-staerra-stak
 hlaupabil
 kmp
 haesti-sameiginlegi-forfadir
+forstrengstre
+aho-corasick
 
