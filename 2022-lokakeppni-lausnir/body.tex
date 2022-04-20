@@ -84,7 +84,7 @@
 		\item<1-> Frumþáttum þannig að $n = p_1^{e_1} \dots p_m^{e_m}$.
 		\item<2-> Tökum eftir að ef $e_1 = \dots = e_m = 1$ þá er þetta ekki hægt.
 		\item<3-> Ef $m = 1$ og $e_1 = 2$ þá er þetta heldur ekki hægt.
-		\item<4-> Annar er þetta hægt.
+		\item<4-> Annars er þetta hægt.
 		\item<5-> Þá er til $j$ þannig að $e_j \geq 2$ svo við getum látið $b = p_j$.
 		\item<6-> Við þurfum að passa að $n$ er stór, svo við þurfum reiknirit Pollards til að lausnin verði nógu hröð.
         \item<7-> Reiknirit Pollards er of hægt fyrir stóra frumtölu þar að auki, svo byrja þarf á að nota reiknirit Miller-Rabin.
@@ -165,6 +165,7 @@
         \item<2-> Veljum þá einn vendipunkt í einu og styttum út stærsta samdeili hnita allra punkta til að fá punktasafn, höldum utan um hvað
             það eru mörg af hverjum punkti því við fáum mögulega endurtekningar.
         \item<3-> Svo fyrir hvern punkt skoðum við bara hvað það eru margir af honum og af honum snúið um $\pi/2$, leggjum það við niðurstöðu.
+        \item<4-> Þessi lausn er $\mathcal{O}(n^2 \log(w))$ þar sem $w$ er stærsta leyfilega hnit talnanna, sem gengur einnig.
     }
 }
 
@@ -205,8 +206,8 @@
             lista fyrir allar breyttar stöðvar. Við reiknum fjarlægðirnar í þær allar til viðbótar með LCA og tökum besta gildið. Þessi
             listi verður aldrei lengri en $\sqrt{q}$ því hann getur aðeins breyst um eitt stak í hverri fyrirspurn.
         \item<3-> Reiknum Dijkstra $\sqrt{q}$ sinnum, það tekur samtals $\mathcal{O}(\sqrt{q}n\log(n))$ tíma. Reiknum LCA töflu í byrjun
-            í $\mathcal{O}(n\log(n))$ tíma. Flettum upp í henni fyrir hvert stak listans og í hverri fyrirspurn, það tekur +
-            $\mathcal{O}(\sqrt{q}q\log(n))$. Ef við reiknum upp úr þessu sést að þetta allt saman er undir tímamörkum.
+            í $\mathcal{O}(n\log(n))$ tíma. Flettum upp í henni fyrir hvert stak listans og í hverri fyrirspurn, það tekur 
+            $\mathcal{O}(q\sqrt{q}\log(n))$. Ef við reiknum upp úr þessu sést að þetta allt saman er undir tímamörkum.
     }
 }
 
