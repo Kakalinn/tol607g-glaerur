@@ -122,8 +122,12 @@
 	\env{itemize}
 	{
 		\item<1-> Það er lítið mál að skoða allar þrenndir punkta, en sú lausn er $\mathcal{O}(n^3)$ sem er of hægt.
-		\item<2-> 
-
+		\item<2-> Veljum einhver punkt sem vendipunkt og skoðum allar línur sem liggja gegnum vendi punktinn og einhvern annan punkt í safninu.
+		\item<3-> Ef tvær línur skerast í réttu horni þá svara þær til þrenndar í punktasafninu sem myndar rétthyrning.
+		\item<4-> Við getum fundið, fyrir tiltekna línu, hversu margar línur hún sker undir réttu horni með helmingunarleit (tveimur leitum reyndar)
+					eða gagngrindum á borða við leitartré (\texttt{set<...>}) eða hakkatöflu (\texttt{unordered\_map<...>}).
+		\item<5-> Endurtökum svo þannig að allir punktar verði vendipunktar og styttum svo út endurtekningar.
+		\item<6-> Þessi lausn er $\mathcal{O}(n^2 \log n)$.
 	}
 }
 
