@@ -1,0 +1,143 @@
+\title{Lausnir á rúmfræðidæmi}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Skálagerð}
+	\env{itemize}
+	{
+		\item<1-> Þér er gefinn hringur með geisla $r$ og þú átt að dreifa fjórum punktum jafnt á hringinn.
+		\item<2-> Hver verður fjarlægðin milli aðliggjandi punkta?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Skálagerð}
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+
+			\node at (0.8, 0) {$x$};
+			\node at (0, -0.8) {$x$};
+			\node at (-0.4, 0) {$2r$};
+			\draw[dotted] (1, 1) -- (-1, -1);
+			\draw[dotted] (1, -1) -- (-1, -1);
+			\draw[dotted] (1, 1) -- (1, -1);
+			\draw (0, 0) circle (1.4142135623730951);
+			\node[draw, fill, circle, inner sep = 0.5pt] at (0, 0) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (1, 1) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (1, -1) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-1, -1) {};
+			\node[draw, fill, circle, inner sep = 0.5pt] at (-1, 1) {};
+		}
+	}
+	\env{itemize}
+	{
+		\item<2-> Við vitum að þríhyrningurinn merktur með punktalínum er rétthyrndur (setning Þalesar).
+		\item<3-> Svo $2x^2 = 4r^2$ (setning Pýþagorasar).
+		\item<4-> Svarið er því $x = r\sqrt{2}$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{DCC líkur}
+	\env{itemize}
+	{
+		\item<1-> 
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Vatnskubbur}
+	\env{itemize}
+	{
+		\item<1-> Gefin heiltala $n \leq 10^{18}$, eru til heiltölur $a, b > 1$ þannig að $n = ab^2$?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Vatnskubbur}
+	\env{itemize}
+	{
+		\item<1-> Frumþáttum þannig að $n = p_1^{e_1} \dots p_m^{e_m}$.
+		\item<2-> Tökum eftir að ef $e_1 = \dots = e_m = 1$ þá er þetta ekki hægt.
+		\item<3-> Ef $m = 1$ og $e_1 = 2$ þá er þetta heldur ekki hægt.
+		\item<4-> Annar er þetta hægt.
+		\item<5-> Þá er til $j$ þannig að $e_j \geq 2$ svo við getum látið $b = p_j$.
+		\item<6-> Við þurfum að passa að $n$ er stór, svo við þurfum reiknirit Pollards til að lausnin verði nógu hröð.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Bíórugl}
+	\env{itemize}
+	{
+		\item<1-> Það eru $n \leq 10^{18}$ einstaklingar í bíó og þeir sitja allar í sömu röð og fylla akkúrat röðina.
+		\item<2-> Í hlé fara allir á klóið og vilja svo sæti sem er í mesta lagi tveimur sætum frá upprunalega sætinu sínu.
+		\item<3-> Á hversu marga vegu geta þeir sest aftur?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Bíórugl}
+	\env{itemize}
+	{
+		\item<1-> Við leysum þetta með því að finna rakningarvensl sem lýsa dæminu.
+		\item<2-> Með því að skoða hvernig dæmið skiptist í smærri tilfelli (og handreikna grunntilfellin) fæst að
+		\[
+			c_n = 14c_{n - 1} + 2c_{n - 3} - c_{n - 5},
+		\]
+		ef $n > 4$ og $c_0 = 1, c_1 = 1, c_2 = 2, c_3 = 6$ og $c_4 = 14$.
+		\item<3-> Við getum síðan notað fylkjamargföldun til að reikna $c_n$ í logratíma.
+		\item<4-> Ef við viljum ekki reikna grunntilfellin í höndunum getum við notað tæmandi leit til þessa að finna þau.
+		\item<5-> Við getum líka fundið stuðlana með Gauss-Jordan eyðingu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Réttur krappi er rangur}
+	\env{itemize}
+	{
+		\item<1-> Gefnir eru $n \leq 3\, 000$ punktar í plani.
+		\item<2-> Hversu margar þrenndir í punkta safninu mynda rétthyrndan þríhyrning?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Réttur krappi er rangur}
+	\env{itemize}
+	{
+		\item<1-> Það er lítið mál að skoða allar þrenndir punkta, en sú lausn er $\mathcal{O}(n^3)$ sem er of hægt.
+		\item<2-> 
+
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Leiðinda rigning}
+	\env{itemize}
+	{
+		\item<1-> 
+	}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
