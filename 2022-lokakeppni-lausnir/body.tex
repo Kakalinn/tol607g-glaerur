@@ -1,5 +1,5 @@
-\title{Lausnir á rúmfræðidæmi}
-\author{Bergur Snorrason}
+\title{Lausnir á lokakeppnisdæmum}
+\author{Bergur Snorrason, Atli FF}
 \date{\today}
 
 \begin{document}
@@ -48,10 +48,22 @@
 
 \env{frame}
 {
+    \frametitle{DCC líkur}
+    \env{itemize}
+    {
+        \item<1-> Gefna teninga í DCC kerfinu og líkur $p$, hvað þarf að hækka annan teninginn mikið svo hann hafi $p\%$ vinningslíkur?
+    }
+}
+
+\env{frame}
+{
 	\frametitle{DCC líkur}
 	\env{itemize}
 	{
-		\item<1-> 
+		\item<1-> Líkurnar á að $n$ hliða teningur sigri $m$ hliða tening má hér einfaldlega reikna með tvöfaldri for-lykkju því tölurnar eru svo smáar.
+        \item<2-> Ytri lykkjan fer frá $1$ til $n$, hin frá $1$ til $m$ og þegar ytri breytan er stærri (strangt!) hækkum við teljara um $1$. Deilum með $nm$ í lokin og fáum líkurnar. 
+        \item<3-> Þá er bara að gera þetta aftur og aftur þar til líkurnar eru stærri en eða jöfn (ekki strangt!) $p\%$, hækka tening um einn í keðjunni í einu.
+        \item<4-> Passa nákvæmni, betra jafnvel að nota almenn brot heldur en fleytitölur. Passa að ekki sé hægt að fara uppfyrir $30$ hliðar.
 	}
 }
 
@@ -75,7 +87,19 @@
 		\item<4-> Annar er þetta hægt.
 		\item<5-> Þá er til $j$ þannig að $e_j \geq 2$ svo við getum látið $b = p_j$.
 		\item<6-> Við þurfum að passa að $n$ er stór, svo við þurfum reiknirit Pollards til að lausnin verði nógu hröð.
+        \item<7-> Reiknirit Pollards er of hægt fyrir stóra frumtölu þar að auki, svo byrja þarf á að nota reiknirit Miller-Rabin.
 	}
+}
+
+\env{frame}
+{
+    \frametitle{Önnur lausn}
+    \env{itemize}
+    {
+        \item<1-> Einnig má vera aðeins sniðugur og sleppa öllu flottu reikniritunum.
+        \item<2-> Það þarf aðeins að fjarlægja þættina úr $n$ sem eru $\leq \sqrt[3]{n}$.
+        \item<3-> Eftirlátum restina af þessarri lausn sem æfingu fyrir lesanda.
+    }
 }
 
 \env{frame}
