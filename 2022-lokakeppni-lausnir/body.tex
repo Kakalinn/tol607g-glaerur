@@ -173,12 +173,41 @@
 	\frametitle{Leiðinda rigning}
 	\env{itemize}
 	{
-		\item<1-> Finna á leiðina heim fyrir Atla sem bleytir hann sem minnst.
+		\item<1-> Finna á leiðina heim fyrir Atla sem bleytir hann sem minnst. Höfum net með $n \leq 5 \cdot 10^4$ hnúta, $m \leq 10^5$ leggi
+            og svo $q \leq 5 \cdot 10^4$ fyrirspurnar. Þær biðja annað hvort um að breyta hvort hnútur sé strætóstöð eða að finna hvaða stöð
+            er næst gefnum hnút.
 	}
 }
 
 \env{frame}
 {
+    \frametitle{Drög að lausn}
+    \env{itemize}
+    {
+        \item<1-> Fjarlægðin er ekki summa vigtanna, heldur bara hæsta vigtin sem kemur fyrir á leiðinni. Við getum því hent öllum leggjum
+            sem eru ekki í minnsta spannandi tré netsins. 
+        \item<2-> Þá erum við með tré. Ímyndum okkur að við viljum reikna fjarlægð í næstu stöð fyrir alla hnúta í byrjun. Getum gert þetta
+            með reikniriti Dijkstra, setjum allar strætóstöðvar sem fjarlægð $0$ í byrjun.
+        \item<3-> En við getum ekki uppfært þetta nógu hratt. Hvað ef við viljum skoða fjarlægð í eina tiltekna stöð hratt?
+        \item<4-> Setjum upp LCA töflu fyrir tréð! Þá getum við fundið hámarksvigtina milli upphafspunkts og að strætóstöð í logratíma.
+        \item<5-> Hvernig má nú sameina þetta tvennt til að fá skikkanlega tímaflkju?
+    }
+}
+
+\env{frame}
+{
+    \frametitle{Rótarþáttun}
+    \env{itemize}
+    {
+        \item<1-> Við skiptum fyrirspurnunum í $\sqrt{q}$ fötur. Í byrjuninni á hverri fötu reiknum við allar fjarlægðir í stöðvar sem munu
+            ekki breytast í þessarri fötu með því að nota Dijkstra.
+        \item<2-> Löbbum svo í gegnum fötuna. Flettum upp gildi í Dijkstra niðurstöðum fyrir hverja fyrirspurn, en höldum einnig utan um
+            lista fyrir allar breyttar stöðvar. Við reiknum fjarlægðirnar í þær allar til viðbótar með LCA og tökum besta gildið. Þessi
+            listi verður aldrei lengri en $\sqrt{q}$ því hann getur aðeins breyst um eitt stak í hverri fyrirspurn.
+        \item<3-> Reiknum Dijkstra $\sqrt{q}$ sinnum, það tekur samtals $\mathcal{O}(\sqrt{q}n\log(n))$ tíma. Reiknum LCA töflu í byrjun
+            í $\mathcal{O}(n\log(n))$ tíma. Flettum upp í henni fyrir hvert stak listans og í hverri fyrirspurn, það tekur +
+            $\mathcal{O}(\sqrt{q}q\log(n))$. Ef við reiknum upp úr þessu sést að þetta allt saman er undir tímamörkum.
+    }
 }
 
 \end{document}
