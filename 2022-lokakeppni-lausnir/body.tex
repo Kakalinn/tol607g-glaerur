@@ -107,7 +107,7 @@
 	\frametitle{Bíórugl}
 	\env{itemize}
 	{
-		\item<1-> Það eru $n \leq 10^{18}$ einstaklingar í bíó og þeir sitja allar í sömu röð og fylla akkúrat röðina.
+		\item<1-> Það eru $n \leq 10^{18}$ einstaklingar í bíó og þeir sitja allir í sömu röð og fylla akkúrat röðina.
 		\item<2-> Í hlé fara allir á klóið og vilja svo sæti sem er í mesta lagi tveimur sætum frá upprunalega sætinu sínu.
 		\item<3-> Á hversu marga vegu geta þeir sest aftur?
 	}
@@ -136,7 +136,7 @@
 	\env{itemize}
 	{
 		\item<1-> Gefnir eru $n \leq 3\, 000$ punktar í plani.
-		\item<2-> Hversu margar þrenndir í punkta safninu mynda rétthyrndan þríhyrning?
+		\item<2-> Hversu margar þrenndir í punktasafninu mynda rétthyrndan þríhyrning?
 	}
 }
 
@@ -146,11 +146,11 @@
 	\env{itemize}
 	{
 		\item<1-> Það er lítið mál að skoða allar þrenndir punkta, en sú lausn er $\mathcal{O}(n^3)$ sem er of hægt.
-		\item<2-> Veljum einhver punkt sem vendipunkt og skoðum allar línur sem liggja gegnum vendi punktinn og einhvern annan punkt í safninu.
-		\item<3-> Ef tvær línur skerast í réttu horni þá svara þær til þrenndar í punktasafninu sem myndar rétthyrning.
+		\item<2-> Veljum einhvern punkt sem vendipunkt og skoðum allar línur sem liggja gegnum vendipunktinn og einhvern annan punkt í safninu.
+		\item<3-> Ef tvær línur skerast í réttu horni þá svara þær til þrenndar í punktasafninu sem myndar rétthyrndan þríhyrning.
 		\item<4-> Við getum fundið, fyrir tiltekna línu, hversu margar línur hún sker undir réttu horni með helmingunarleit (tveimur leitum reyndar)
-					eða gagngrindum á borða við leitartré (\texttt{set<...>}) eða hakkatöflu (\texttt{unordered\_map<...>}).
-		\item<5-> Endurtökum svo þannig að allir punktar verði vendipunktar og styttum svo út endurtekningar.
+					eða gagngrindum á borða við leitartré (\texttt{multiset<...>}) eða hakkatöflu (\texttt{unordered\_map<...>}).
+		\item<5-> Endurtökum svo þannig að allir punktar verði vendipunktar og styttum út endurtekningar.
 		\item<6-> Þessi lausn er $\mathcal{O}(n^2 \log n)$.
 	}
 }
@@ -191,7 +191,7 @@
             með reikniriti Dijkstra, setjum allar strætóstöðvar sem fjarlægð $0$ í byrjun.
         \item<3-> En við getum ekki uppfært þetta nógu hratt. Hvað ef við viljum skoða fjarlægð í eina tiltekna stöð hratt?
         \item<4-> Setjum upp LCA töflu fyrir tréð! Þá getum við fundið hámarksvigtina milli upphafspunkts og að strætóstöð í logratíma.
-        \item<5-> Hvernig má nú sameina þetta tvennt til að fá skikkanlega tímaflkju?
+        \item<5-> Hvernig má nú sameina þetta tvennt til að fá skikkanlega tímaflækju?
     }
 }
 
@@ -209,6 +209,10 @@
             í $\mathcal{O}(n\log(n))$ tíma. Flettum upp í henni fyrir hvert stak listans og í hverri fyrirspurn, það tekur 
             $\mathcal{O}(q\sqrt{q}\log(n))$. Ef við reiknum upp úr þessu sést að þetta allt saman er undir tímamörkum.
     }
+}
+
+\env{frame}
+{
 }
 
 \end{document}
