@@ -1,45 +1,29 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./glaerur.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18>
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-04-10>
 (/usr/share/texmf-dist/tex/latex/beamer/beamer.cls
-Document Class: beamer 2021/03/19 v3.62 A class for typesetting presentations
+Document Class: beamer 2022/02/08 v3.66 A class for typesetting presentations
 (/usr/share/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
 (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
 (/usr/share/texmf-dist/tex/latex/beamer/beamerbasedecode.sty))
-(/usr/share/texmf-dist/tex/generic/iftex/ifpdf.sty
-(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty))
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty)
 (/usr/share/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
 (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty))
 (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty))
-(/usr/share/texmf-dist/tex/latex/base/size11.clo)
-(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex))
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def)))
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex)
-(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex))
-(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex)))
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
@@ -55,7 +39,26 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
 .code.tex))) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
-) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+)) (/usr/share/texmf-dist/tex/latex/base/size11.clo)
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def)))
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex))
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg))
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex)
@@ -88,7 +91,6 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex)
 (/usr/share/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty)
 (/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
 (/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
 (/usr/share/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -148,8 +150,7 @@ For additional information on amsmath, use the `?' option.
 (../preamble.tex (/usr/share/texmf-dist/tex/latex/base/fontenc.sty)
 (/usr/share/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texmf-dist/tex/generic/babel/babel.sty
-(/usr/share/texmf-dist/tex/generic/babel/babel.def
-(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def))
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 (/usr/share/texmf-dist/tex/generic/babel-english/english.ldf)
 (/usr/share/texmf-dist/tex/generic/babel-icelandic/icelandic.ldf))
 (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
@@ -165,10 +166,6 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty)
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty))
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
@@ -232,250 +229,25 @@ map}] (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd) [2]
 [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
-[19] [20] [21] [22] [23] [24] [25] [26] [27] [28]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[29]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[30]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[31]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[32]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[33]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[34]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[35]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[36]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[37]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[38]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[39]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[40]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[41]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[42]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[43]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[44]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[45]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[46]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[47]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[48]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[49]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[50]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[51]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[52]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[53]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[54]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[55]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[56]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[57]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[58]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[59]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[60]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[61]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[62]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[63]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[64]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[65]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[66]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[67]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[68]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[69]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[70]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[71]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[72]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[73]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[74]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[75]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[76]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[77]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[78]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[79]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[80]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[81]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[82]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[83]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[84]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[85]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[86]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[87]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[88]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[89]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[90]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[91]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[92]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[93]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[94]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[95]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[96]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[97]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[98]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[99]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[100]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[101]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[102]
-Overfull \hbox (13.03326pt too wide) in paragraph at lines 453--453
-[][] 
-[103] [104] [105] [106] [107] [108]
+[19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33]
+(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd) [34] [35] [36] [37] [38]
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53]
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./code/trie.c
-consecutive:
-(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [109] [110] [111] [112]
-(output/glaerur.aux) ) )
-(see the transcript file for additional information){/usr/share/texmf-dist/font
-s/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm
--super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
-am10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/
-share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-dis
-t/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/
-sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></
-usr/share/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb>
-Output written on output/glaerur.pdf (112 pages, 494773 bytes).
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty) (./code/r2.c
+(/usr/share/texmf-dist/tex/latex/base/ts1cmss.fd)) [54] (./code/r2.cpp)
+[55] (./code/r2.py) [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66]
+[67] [68] [69] [70] (output/glaerur.aux) ) ){/usr/share/texmf-dist/fonts/enc/dv
+ips/cm-super/cm-super-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/c
+m-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
+super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.
+pfb>
+Output written on output/glaerur.pdf (70 pages, 285025 bytes).
 Transcript written on output/glaerur.log.

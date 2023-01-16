@@ -11,15 +11,17 @@
 	\env{itemize}
 	{
 		\item<1-> Við segjum að ekki tómt rótartré $T = (V, E)$ ásamt vörpun $\tau \colon E \rightarrow \Sigma$,
-					þar sem $\Sigma$ er eitthvað stafróf, sé \emph{forstrengstré} (e. \emph{prefix tree}).
-		\item<2-> Forstrengstré eru oft kölluð \emph{Trie}.
-		\item<3-> Við segjum að strengur $s$ sé í trénu ef það er til hnútur $v$ í trénu þannig að
+					þar sem $\Sigma$ er eitthvað stafróf, sé \emph{forstrengstré} (e. \emph{prefix tree})
+					ef fyrir leggi $e_1$ og $e_2$ gildir $\tau(e_1) \neq \tau(e_2)$ ef leggirnir liggja úr sama hnút.
+		\item<2-> Með orðum er $\tau$ átæk úr hverjum hnút, eða engir leggir úr sama hnút geta verið merktir með sama bókstak.
+		\item<3-> Forstrengstré eru oft kölluð \emph{Trie}.
+		\item<4-> Við segjum að strengur $s$ sé í trénu ef það er til hnútur $v$ í trénu þannig að
 						\[
 							s = \tau(e_1) \dots \tau(e_k)
 						\]
 					þar sem $e_1, \dots e_k$ eru leggirnir á einfalda veginum frá rót til $v$, í réttri röð.
-		\item<4-> Það er mjög algengt að geyma aukagögn í hnútunum í trénu.
-		\item<5-> Skoðum dæmi um forstrengstré sem hefur engin aukagögn í hnútunum.
+		\item<5-> Það er mjög algengt að geyma aukagögn í hnútunum í trénu.
+		\item<6-> Skoðum dæmi um forstrengstré sem hefur engin aukagögn í hnútunum.
 	}
 }
 
@@ -423,17 +425,17 @@
 		\only<all:42> { \node at (6,3) {,,il''}; }
 		\only<all:43> { \node at (6,3) {,,l''}; }
 		\only<all:44> { \node at (6,3) {,,''}; }
-		\only<all:46-47> { \node at (6,3) {,,altarisganga''}; }
-		\only<all:48> { \node at (6,3) {,,ltarisganga''}; }
-		\only<all:49> { \node at (6,3) {,,tarisganga''}; }
-		\only<all:50> { \node at (6,3) {,,arisganga''}; }
-		\only<all:51> { \node at (6,3) {,,risganga''}; }
-		\only<all:52> { \node at (6,3) {,,isganga''}; }
-		\only<all:53> { \node at (6,3) {,,sganga''}; }
-		\only<all:54> { \node at (6,3) {,,ganga''}; }
-		\only<all:55> { \node at (6,3) {,,anga''}; }
-		\only<all:56> { \node at (6,3) {,,nga''}; }
-		\only<all:57> { \node at (6,3) {,,ga''}; }
+		\only<all:46-47> { \node at (6,3) {,,altaristafla''}; }
+		\only<all:48> { \node at (6,3) {,,ltaristafla''}; }
+		\only<all:49> { \node at (6,3) {,,taristafla''}; }
+		\only<all:50> { \node at (6,3) {,,aristafla''}; }
+		\only<all:51> { \node at (6,3) {,,ristafla''}; }
+		\only<all:52> { \node at (6,3) {,,istafla''}; }
+		\only<all:53> { \node at (6,3) {,,stafla''}; }
+		\only<all:54> { \node at (6,3) {,,tafla''}; }
+		\only<all:55> { \node at (6,3) {,,afla''}; }
+		\only<all:56> { \node at (6,3) {,,fal''}; }
+		\only<all:57> { \node at (6,3) {,,la''}; }
 		\only<all:58> { \node at (6,3) {,,a''}; }
 		\only<all:59> { \node at (6,3) {,,''}; }
 		\only<all:61-62> { \node at (6,3) {,,altarisganga''}; }

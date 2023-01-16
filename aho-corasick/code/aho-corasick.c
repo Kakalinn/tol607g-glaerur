@@ -2,30 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-#if 0
-listnode->n : index of the next node.
-listnode->v : value of the current node.
-
-trienode->l : index of the pattern that ends here, -1 if no pattern ends here.
-trienode->e : indext of the nodes exit link.
-				The exit link is the first leaf that is reached by following suffix links.
-				If there is no leaf reachable by suffix links the exit link is the root (which is never a leaf).
-				Note that the exit link of a leaf is the node itself.
-trienode->p : index of parent.
-trienode->c : character of the incoming edge.
-trienode->d : memoization table for suffix links.
-trienode->t : transition table of the trie.
-
-trie->s : total number of used nodes.
-trie->r : the index of the root of the trie.
-#endif
-
 #define ALPHABET 128
 #define MAXN 1000000
 typedef struct { int v, n; } listnode;
 typedef struct { int t[ALPHABET], l, e, p, c, d; } trienode;
-typedef struct { int s, r, l; trienode m[MAXN]; listnode w[MAXN];} trie;
+typedef struct { int s, r, l; trienode m[MAXN + 1]; listnode w[MAXN];} trie;
 int val(char c) { return c; }
 int list_node(trie *t, int v, int n)
 {
@@ -53,27 +34,27 @@ void trie_insert(trie *t, char *s, int x)
 
 int trie_step(trie*, int, int);
 int trie_suffix(trie *t, int h)
-{ // dp-lookup hjálparfall fyrir suffix link
+{
 	if (t->m[h].d != -1) return t->m[h].d;
 	if (h == t->r || t->m[h].p == t->r) return t->m[h].d = t->r;
 	return t->m[h].d = trie_step(t, trie_suffix(t, t->m[h].p), t->m[h].c);
 }
 
 int trie_step(trie *t, int h, int c)
-{ // dp-lookup hjálparfall til að ítra
+{
 	if (t->m[h].t[c] != -1) return t->m[h].t[c];
 	return t->m[h].t[c] = h == t->r ? t->r :
 		trie_step(t, trie_suffix(t, h), c);
 }
 
 int trie_exit(trie *t, int h)
-{ // dp-lookup hjálparfall fyrir exit link
+{
 	if (t->m[h].e != -1) return t->m[h].e;
 	if (h == 0 || t->m[h].l != -1) return t->m[h].e = h;
 	return t->m[h].e = trie_exit(t, trie_suffix(t, h));
 }
 
-trie t; // global svo það keyri locally.
+trie t;
 int aho_corasick(char *s, char **p, int m)
 {
 	trie_init(&t);

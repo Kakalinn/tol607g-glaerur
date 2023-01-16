@@ -6,23 +6,23 @@
 #define ALPHABET 26
 #define MAXN 1000000
 typedef struct { int t[ALPHABET], v; } trienode;
-typedef struct { int s, r; trienode m[MAXN]; listnode w[MAXN];} trie;
-int val(char c) { return c - 'a'; }
+typedef struct { int s, r; trienode m[MAXN + 1]; } trie;
+int trie_val(char c) { return c - 'a'; }
 int trie_node(trie *t, int v)
 {
 	int i;
 	for (i = 0; i < ALPHABET; i++) t->m[t->s].t[i] = -1;
-	t->m[t->s].v = -1;
+	t->m[t->s].v = v;
 	return t->s++;
 }
-void trie_init(trie *t) { t->s = 0, t->r = trie_node(t, -1, -1); }
+void trie_init(trie *t) { t->s = 0, t->r = trie_node(t, 0); }
 
 void trie_insert(trie *t, char *s, int x)
 {
 	int h;
-	for (h = t->r; *s; h = t->m[h].t[val(*s++)])
-		if (t->m[h].t[val(*s)] == -1)
-			t->m[h].t[val(*s)] = trie_node(t, h, val(*s));
+	for (h = t->r; *s; h = t->m[h].t[trie_val(*s++)])
+		if (t->m[h].t[trie_val(*s)] == -1)
+			t->m[h].t[trie_val(*s)] = trie_node(t, 0);
 	t->m[h].v = 1;
 }
 
