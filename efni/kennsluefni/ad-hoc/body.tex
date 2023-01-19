@@ -1,0 +1,123 @@
+\title{Ad hoc}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Lausnar aðferðir}
+	\env{itemize}
+	{
+		\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
+		\env{itemize}
+		{
+			\item<2-> \emph{Ad hoc},
+			\item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
+			\item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
+			\item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
+			\item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
+		}
+		\item<7-> Þessi skipting er ekki fullkomin, en hún hjálpar okkur að ræða dæmi.
+		\item<8-> Við munum byrja á því að fjalla almennt um þessar aðferðir og fara svo í sértækara efni.
+		\item<9-> Þá er oft gott að hafa í huga hvernig flokka megi reikniritin.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Ad hoc}
+	\env{itemize}
+	{
+		\item<1-> Ef lausn dæmisins byggir ekki á sérþekkingu flokkast dæmið sem \emph{Ad hoc}.
+		\item<2-> Þessi dæmi eru stundum flokkuð undir \emph{útfærsludæmi} (e. \emph{implementation}).
+		\item<3-> Þetta er gert því flest Ad hoc dæmi snúast um að fylgja beint leiðbeiningum.
+		\item<4-> Það eru þó undantekningar.
+		\item<5-> Í NCPC $2020$ var Ad hoc dæmi sem mætti ekki flokkast sem útfærsludæmi.
+		\item<6-> Léttari dæmin í keppnum eru oft Ad hoc dæmi.
+		\item<7-> Áðurnefnt NCPC dæmi er þó aftur undanteking, því engin keppandi náði að leysa það í keppninni.
+		\item<8-> Samkvæmt skilgreiningu getum við ekki rætt Ad hoc dæmi ítarlega. Tökum því nokkur dæmi.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Blandað brot}
+	\env{itemize}
+	{
+		\item<1-> Þú átt að breyta almennu broti í blandað brot.
+		\item<2-> Munið að almenna brotið $p/q$, og blandaða brotið $a\ b/c$ tákna sömu töluna ef $p/q = a + b/c$.
+		\item<3-> Munið einnig að ef $a\ b/c$ er almennt brot þá gildir $b < c$.
+		\item<4-> Blandaða brotið ykkar á að hafa sama nefnara og upprunarlega brotið.
+		\item<5-> Inntakið inniheldur tvær heiltölur $1 \leq p, q \leq 10^9$.
+		\item<6-> Úttakið skal innihalda blandaða brotið sem svarar til $p/q$.
+		\item<7->[]
+		\env{tabular}
+		{
+			{l | l | l}
+			& Inntak & Úttak\\
+			\hline
+			Sýnidæmi 1 & \ilcode{27 12} & \ilcode{2 3 / 12}\\
+			Sýnidæmi 2 & \ilcode{2460000 98400} & \ilcode{25 0 / 98400}\\
+			Sýnidæmi 3 & \ilcode{3 4000} & \ilcode{0 3 / 4000}\\
+		}
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn á blandað brot}
+	\env{itemize}
+	{
+		\item<1-> Hér nægir okkur að reikna.
+		\item<2-> Við getum aðeins stytt okkur leið með því að nota heiltöludeilingu.
+		\item<3-> Við fáum þá að $a$ er heiltalan sem fæst með deilingunni $p/q$ og $b$ er afgangurinn.
+	}
+}
+
+\env{frame}
+{
+	\onslide<1->{\code{code/mixedfractions1.c}}
+	\onslide<2->{\code{code/mixedfractions2.c}}
+}
+
+\env{frame}
+{
+	\frametitle{Barnahjal}
+	\env{itemize}
+	{
+		\item<1-> Þið eruð að reyna að kenna barni að telja.
+		\item<2-> Það er þó ekki alltaf hægt að heyra hvað barnið segir.
+		\item<3-> Þið viljið ákvarða hvort það sem barnið er að segja gæti mögulega verið rétt.
+		\item<4-> Fyrsta lína inntaksins inniheldur heiltölu $1 \leq n \leq 10^3$.
+		\item<5-> Síðan fylgir ein lína með $n$ strengjum.
+		\item<6-> Hver strengur er annaðhvort heiltala á bilinu $[0, 10^4]$ eða strengurinn ``mumble''.
+		\item<7-> Ef það er hægt að skipta út öllum ``mumble'' fyrir tölu þannig að talningin sé rétt skal prenta ``jebb''.
+		\item<8-> Annars skal prenta ``neibb''.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Lausn á Barnahjal}
+	\env{itemize}
+	{
+		\item<1-> Ef $i$-ti strengurinn inniheldur strenginn sem svarar til tölurnnar $i$ eða ``mumble'', fyrir öll $i$,
+			þá er barnið kannski að telja rétt.
+		\item<2-> Annars er barnið að telja rangt.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Útfærsla í Python}
+	\code{code/babybites.py}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
