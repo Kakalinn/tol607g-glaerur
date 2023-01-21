@@ -11,7 +11,7 @@
 	\frametitle{Gráðug reiknirit}
 	\env{itemize}
 	{
-		\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tímapunkti kallast \emph{gráðugt}.
+		\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tímapunkti er sagt vera \emph{gráðugt}.
 		\item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
 		\item<3-> Tökum dæmi.
 	}
@@ -43,12 +43,13 @@
 			Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
 			Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
 			Hver er minnsti fjöldi af klinki sem þú getur gefið?
-		\item<2-> Tökum til dæmis $n = 24$. Þá myndum aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
-		\item<3-> En þetta er ekki besta leiðin.
-		\item<4-> Betra væri að gefa $8, 8, 8$.
-		\item<5-> Svo gráðuga aðferðin virkar bara stundum.
-		\item<6-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
-		\item<7-> Til að leysa þetta dæmi almennt notum við \emph{kvika bestun}.
+		\item<2-> Tökum til dæmis $n = 24$.
+		\item<3-> Þá myndi aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
+		\item<4-> En þetta er ekki besta leiðin.
+		\item<5-> Betra væri að gefa $8, 8, 8$.
+		\item<6-> Svo gráðuga aðferðin virkar bara stundum.
+		\item<7-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+		\item<8-> Til að leysa þetta dæmi almennt notum við \emph{kvika bestun}.
 	}
 }
 
@@ -75,10 +76,13 @@
 
 \env{frame}
 {
-	Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
-		Næstu $n$ tölur lýsa getu bílstjóranna.
-		Síðustu $m$ tölurnar eru hestöfl bílanna.
-		\code{code/loowater.cpp}
+	\env{itemize}
+	{
+		\item<1-> Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
+					Næstu $n$ tölur lýsa getu bílstjóranna.
+					Síðustu $m$ tölurnar eru hestöfl bílanna.
+		\item<2->[] \code{code/taxis.c}
+	}
 }
 
 \env{frame}
@@ -142,7 +146,7 @@
 		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
 		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
 		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélaga í liðakeppnum).
-		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \texttt{WA}
+		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \ilcode{Wrong Answer}
 					getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
 	}
 }
@@ -153,9 +157,9 @@
 	\env{itemize}
 	{
 		\item<1-> Tæmandi leit er oft auðvelt að bera kennsl á, en á það til að vera of hæg. 
-		\item<2-> Hér má búast við TLE, en eitthvað furðulegt hefur gerst ef maður fær WA.
+		\item<2-> Hér má búast við \ilcode{Time Limit Exceeded}, en eitthvað furðulegt hefur gerst ef maður fær \ilcode{Wrong Answer}.
 		\item<3-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
-		\item<4-> Gráðug reiknirit eiga ekki að fá TLE, en algengt er að þau fái WA.
+		\item<4-> Gráðug reiknirit eiga ekki að fá \ilcode{Time Limit Exceeded}, en algengt er að þau fái \ilcode{Wrong Answer}.
 	}
 }
 
