@@ -45,7 +45,7 @@
 		\item<1-> Látum því $h_1 \geq h_2 \geq \dots \geq h_k$ þannig að algengast talan kemur $h_1$ sinni fyrir,
 					næst algengasta talan kemur $h_2$ sinnum fyrir
 					og svo framvegis.
-		\item<2-> Svarið er því
+		\item<2-> Svarið er þá
 		\[
 			\sum_{i = 1}^k i \cdot h_i.
 		\]
@@ -54,18 +54,23 @@
 		\[
 			\sum_{i = 1}^k i \cdot h_i
 			=
-			\sum_{i = 1}^k i
+			\sum_{i = 1}^n i
 			=
 			\frac{n \cdot (n + 1)}{2}.
 		\]
-		\item<5-> Svo, þar sem $n$ getur verið allt að $10^6$, getur svarið okkar orðið of stórt fyrir \texttt{int}.
-		\item<6-> Við þurfum því að nota \texttt{long long}.
+		\item<5-> Svo, þar sem $n$ getur verið allt að $10^6$, getur svarið okkar orðið of stórt fyrir \ilcode{int}.
+		\item<6-> Við þurfum því að nota \ilcode{long long}.
 	}
 }
 
 \env{frame}
 {
-	\code{code/reiknirit.c}
+	\code{code/reiknirit1.c}
+}
+
+\env{frame}
+{
+	\code{code/reiknirit2.c}
 }
 
 \env{frame}
@@ -73,14 +78,13 @@
 	\env{itemize}
 	{
 		\item<1-> Sjáum við byrjum á að raða, sem er $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
-		\item<3-> Við teljum síðan hvað hver tala kemur oft fyrir, sem er $\mathcal{O}($\onslide<4->{$\ n\ $}$)$.
+		\item<3-> Við teljum síðan hvað hver tala kemur oft fyrir, sem er $\mathcal{O}($\onslide<4->{$\,n\,$}$)$.
 		\item<5-> Síðan röðum við aftur.
-		\item<6-> Að lokum reiknum við summuna í $\mathcal{O}($\onslide<7->{$\ n\ $}$)$.
+		\item<6-> Að lokum reiknum við summuna í $\mathcal{O}($\onslide<7->{$\,n\,$}$)$.
 		\item<8-> Tímaflækjan er því í heildina $\mathcal{O}($\onslide<9->{$n \log n$}$)$.
 		\item<10-> Nú er $10^{-8} \cdot 10^6 \cdot \log 10^6 \sim 0,2$, svo þessi lausn er nógu hröð.
 	}
 }
-
 
 \env{frame}
 {
