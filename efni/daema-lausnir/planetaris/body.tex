@@ -1,0 +1,69 @@
+\title{Lausn á \emph{Planetaris}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Planetaris}
+	\env{itemize}
+	{
+		\item<1-> Atli og Finnur eru að spila tölvuleik sem snýst um að fanga sólkerfi.
+		\item<2-> Í leiknum eru $1 \leq n \leq 10^5$ sólkerfi.
+		\item<3-> Atli og Finnur senda einhvern fjölda skipa sinna á hvert sólkerfi.
+		\item<4-> Atli fangar tiltekið sólkerfi ef hann sendir strangt fleiri skip þangað.
+		\item<5-> Atli hefur $a$ skip og veit að Finnur mun senda $e_i$ skip á $i$-ta skólkerfið.
+		\item<6-> Hver er mesti fjöldi sólkerfa sem Atli getur fangað?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Planetaris}
+	\env{itemize}
+	{
+		\item<1-> Við græðum jafn mikið að fanga hvert sólkerfi, svo það er best að fanga þau sólkerfi sem Finnur sendir fá skip á.
+		\item<2-> Við föngum því einfaldlega sólkerfin í röð, byrjum á því sem Finnur sendir fæst skip á,
+					svo næst það sem hann sendir næst fæst skip á, og svo framvegis.
+		\item<3-> Þegar við föngum $i$-ta sólkerfið verðum við að passa að senda $e_i + 1$ skip, til að það verði ekki jafntefli.
+		\item<4-> Við verðum líka að passa að hætta að fanga sólkerfi þegar við höfum ekki nóg af skipum.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Planetaris}
+	\selectcode{code/planetaris.c}{10}{23}
+}
+
+\env{frame}
+{
+	\frametitle{Planetaris}
+	\env{itemize}
+	{
+		\item<1-> Tímaflækjan á þessari lausn er $\mathcal{O}($\onslide<2->{$n \log n$}$)$ \onslide<2->{sökum röðunar.}
+		\item<3-> Takið eftir að það er mjög auðvelt að gera litlar villur sem gera lausnin ranga.
+		\item<4-> Til dæmis fær eftirfarandi lausn rétt í sýnidæmum en rangt á fyrsta huldudæminu.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Planetaris, röng lausn}
+	\selectcode{code/planetaris1.c}{10}{23}
+}
+
+\env{frame}
+{
+	\frametitle{Planetaris, rétt lausn aftur, til samanburðar}
+	\selectcode{code/planetaris.c}{10}{23}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

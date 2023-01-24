@@ -1,0 +1,100 @@
+\title{Lausn á \emph{Veci}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Okkur er gefin tala $1 \leq n < 10^6$.
+		\item<2-> Hver er minnsta talan stærri en $n$ sem inniheldur nákvæmlega sömu tölustafi?
+		\item<3-> Ef engin slík tala er til er svarið \texttt{0}.
+		\item<4-> \texttt{156 -> 165}.
+		\item<5-> \texttt{330 -> 0}.
+		\item<6-> \texttt{27711 -> 71127}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Það er freystandi að reyna að útfæra gráðuga lausn.
+		\item<2-> En þess er ekki þörf.
+		\item<3-> Tökum eftir að svarið hefur aldrei fleiri tölustafi en inntakið.
+		\item<4-> Svo svarið er minna en $10^6$.
+		\item<5-> Okkur nægir því að skoða allar heiltölur á bilinu $[n + 1, 10^6]$.
+		\item<6-> En hvernig gáum við hvort tvær tölur hafi sömu tölustafi?
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Látum \texttt{x} vera heiltölu.
+		\item<2-> Þá getum við fundið aftasta tölustafinn í \texttt{x} með \texttt{x\%10}.
+		\item<3-> Við getum svo fjarlægt aftasta stafinn í \texttt{x} með \texttt{x/10}.
+		\item<4-> Við fáum því eftirfarandi.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\selectcode{code/veci.c}{3}{11}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Við þurfum nú bara að ítra í gegnum heiltölurnar á $[n + 1, 10^6]$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\selectcode{code/veci.c}{3}{26}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Tökum eftir að við ítrum í gegnum $\mathcal{O}($\onslide<2->{$\,n\,$}$)$ tölur.
+		\item<3-> Tímaflækjan á samanburðinum er línulegur í lengd tölustafanna, það er að segja $\mathcal{O}($\onslide<4->{$\log n$}$)$.
+		\item<5-> Svo tímaflækjan í heildina er $\mathcal{O}($\onslide<6->{$n \log n$}$)$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\env{itemize}
+	{
+		\item<1-> Þetta dæmi má útfæra á eftirfarandi hátt í \texttt{Python}.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{Veci}
+	\code{code/veci.py}
+}
+
+\env{frame}
+{
+}
+
+\end{document}

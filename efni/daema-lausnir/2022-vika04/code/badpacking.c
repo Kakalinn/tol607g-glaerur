@@ -9,11 +9,11 @@ int cmp(const void *p1, const void *p2)
 }
 
 int d[MAXN][MAXC], a[MAXN];
-int foo(int x, int y)
+int dp_lookup(int x, int y)
 {
 	if (x < 0 || y < 0) return !y;
 	if (d[x][y] != -1) return d[x][y];
-	return d[x][y] = foo(x - 1, y) || foo(x - 1, y - a[x]);
+	return d[x][y] = dp_lookup(x - 1, y) || dp_lookup(x - 1, y - a[x]);
 }
 
 int main()
@@ -30,7 +30,7 @@ int main()
 			if (a[j] > c - i) break;
 			t += a[j];
 		}
-		if (t <= i && foo(j, i - t)) break;
+		if (t <= i && dp_lookup(j, i - t)) break;
 	}
 	printf("%d\n", i);
 	return 0;

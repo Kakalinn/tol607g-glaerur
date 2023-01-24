@@ -1,0 +1,51 @@
+\title{Lausn á \emph{HKIO}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\env{frame}
+{
+	\frametitle{HKIO}
+	\env{itemize}
+	{
+		\item<1-> Gefnar eru $n$ heiltölur $a_1, \dots, a_n$.
+		\item<2-> Finnið $j \leq k$ þannig að meðaltalið $\operatorname{avg}(a_j, a_{j + 1}, \dots, a_k)$ sé hámarkað.
+		\item<3-> Gefið er að $1 \leq n \leq 10^5$.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{HKIO}
+	\env{itemize}
+	{
+		\item<1-> Látum $m$ vera heiltölu þannig að $a_m = \max(a_1, \dots, a_n)$.
+		\item<2-> Takið þá eftir að 
+		\env{align*}
+		{
+				\operatorname{avg}(a_j, a_{j + 1}, \dots, a_k)
+				&= \frac{a_j + a_{j + 1} + \dots + a_k}{k - j + 1}\\
+				&\leq \frac{a_m + a_m + \dots + a_m}{k - j + 1}\\
+				&= \frac{(k - j + 1) \cdot a_m}{k - j + 1}\\
+				&= a_m.
+		}
+		\item<3-> Svo meðaltalið verður aldrei stærra en $a_m$.
+		\item<4-> En einnig gildir að $\operatorname{avg}(a_m) = a_m$.
+		\item<5-> Svo okkur nægir að finna stærstu töluna í listanum.
+	}
+}
+
+\env{frame}
+{
+	\frametitle{HKIO}
+	\code{code/hkio.c}
+}
+
+\env{frame}
+{
+}
+
+\end{document}
