@@ -57,7 +57,7 @@
 	\code{code/daemi1.c}
 	\env{itemize}
 	{
-		\item<2-> Hér er ekkert inntak svo forritið hefur tímaflækjuna $\mathcal{O}($\onslide<all:2->{$\,1\,$}$)$.
+		\item<2-> Hér er ekkert inntak svo forritið hefur tímaflækjuna $\mathcal{O}(\onslide<all:2->{\,1\,})$.
 	}
 }
 
@@ -69,7 +69,7 @@
 		\item<2-> Forritið les inn töluna $n$ og reiknar svo summuna $1 + 2 + \dots + n$.
 		\item<3-> Þetta er gert með forlykkju sem keyrir $n$ sinnum.
 		\item<4-> Hvert skipti eru tvær tölur lagðar saman.
-		\item<5-> Svo þetta forrit er $\mathcal{O}($\onslide<6- | handout:2->{$\,n\,$}$)$.
+		\item<5-> Svo þetta forrit er $\mathcal{O}(\onslide<6- | handout:2->{\,n\,})$.
 	}
 }
 
@@ -81,7 +81,7 @@
 		\item<2-> Forritið les inn töluna $n$ og reiknar svo summu.
 		\item<3-> Summan er reiknuð með tvöfaldri forlykkju.
 		\item<4-> Ytri forlykkjan keyrir $n$ sinnum og seinni keyrir aldrei oftar en $n/2$ sinnum.
-		\item<5-> Svo tímaflækja forritsins er $\mathcal{O}($\onslide<6- | handout:2->{$n^2$}$)$.
+		\item<5-> Svo tímaflækja forritsins er $\mathcal{O}(\onslide<6- | handout:2->{n^2})$.
 	}
 }
 
@@ -93,8 +93,8 @@
 		\item<2-> Sjáum fyrst að lykkjan í \ilcode{main(...)} keyrir $n - 1$ sinnum.
 		\item<3-> Hún kallar síðan á fallið \ilcode{len(...)}.
 		\item<4-> Það fall hefur eina \ilcode{while}-lykkju sem deilir tölunni $n$ með $k$, án afgangs, þar til $n$ er orðin núll.
-		\item<5-> Þetta fallið \ilcode{len(...)} hefur því tímaflækjuna $\mathcal{O}($\onslide<6- | handout:2->{$\log n$}$)$.
-		\item<7-> Í heildina hefur forritið því tímaflækjuna $\mathcal{O}($\onslide<8- | handout:3->{$n \log n$}$)$.
+		\item<5-> Þetta fallið \ilcode{len(...)} hefur því tímaflækjuna $\mathcal{O}(\onslide<6- | handout:2->{\log n})$.
+		\item<7-> Í heildina hefur forritið því tímaflækjuna $\mathcal{O}(\onslide<8- | handout:3->{n \log n})$.
 	}
 }
 
@@ -105,7 +105,7 @@
 	{
 		\item<2-> Hér erum við með endurkvæmt fall.
 		\item<3-> Við sjáum að ef $n \geq 2$ þá kallar \ilcode{fib(n)} tvisvar á sjálft sig.
-		\item<4-> Svo þetta forrit er $\mathcal{O}($\onslide<5- | handout:2->{$2^n$}$)$.
+		\item<4-> Svo þetta forrit er $\mathcal{O}(\onslide<5- | handout:2->{2^n})$.
 		\item<6-> Það er hægt að fá betra mat (við getum minnkað veldisstofninn).
 	}
 }
@@ -175,13 +175,13 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Í fyrsta lagi röðum við listanum, sem er $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
+		\item<1-> Í fyrsta lagi röðum við listanum, sem er $\mathcal{O}(\onslide<2->{n \log n})$.
 		\item<3-> Síðan erum við með \ilcode{while}-lykkju, sem gerir ekkert annað en að kalla á fallið \ilcode{fjarlaegja\_algengasta\_stakid(...)}.
 		\item<4-> Í versta falli fjarlægjum við eitt stak í einu, svo þessi \ilcode{while}-lykkja keyrir allt að $n$ sinnum.
 		\item<5-> Í fallinu \ilcode{fjarlaegja\_algengasta\_stakid(...)} eru tvær lykkjur, hvor um sig keyrir $n$ sinnum.
 		\item<6-> Takið eftir að $n$ er þá lengd listans á þeim tímapunkti.
-		\item<7-> Fallið \ilcode{fjarlaegja\_algengasta\_stakid(...)} hefur því tímaflækjuna $\mathcal{O}($\onslide<8->{$\,n\,$}$)$.
-		\item<9-> Forritið í heild sinni hefur því tímaflækjuna $\mathcal{O}($\onslide<10->{$n^2$}$)$.
+		\item<7-> Fallið \ilcode{fjarlaegja\_algengasta\_stakid(...)} hefur því tímaflækjuna $\mathcal{O}(\onslide<8->{\,n\,})$.
+		\item<9-> Forritið í heild sinni hefur því tímaflækjuna $\mathcal{O}(\onslide<10->{n^2})$.
 	}
 }
 

@@ -28,25 +28,25 @@ int bs(int *a, int t, int n)                                                    
 	return r + 1;
 }
 
-int count(int x)                                                                // Reiknar hversu margir ásar eru í bitaframsetningu x.
-{
-	return __builtin_popcount(x);
-}
-
-int solve(int *a, int *b, int n, int m, int x, int t)                           // Leysum eftir skiptingu, a er fyrri skiptingin og b sú seinni.
-{
+int solve_internal(int *a, int *b, int n, int m, int x, int t)                  // Leysum eftir skiptingu, a er fyrri skiptingin og b sú seinni.
+{                                                                               //   __builtin_popcount(x) telur fjölda ása í bitaframsetningu x.
 	int r = 0, i, j, z, u[1 << n], v[1 << m], e, l[m + 1], h[m + 1][1 << m];
-	for (i = 0; i < m + 1; i++) l[i] = 0;
+	for (i = z = 0; i < m + 1; i++) l[i] = 0;
 	bf(a, n, u), bf(b, m, v);                                                   // Reiknum summu allra hlutmengja hvorrar skiptingar.
-	for (i = z = 0; i < 1 << m; z = count(++i)) h[z][l[z]++] = v[i];            // Ítrum í gegnum seinni skiptinguna og flokkum hlutmengin eftir stærðum.
+	for (i = 0; i < (1 << m); z = __builtin_popcount(++i)) h[z][l[z]++] = v[i]; // Ítrum í gegnum seinni skiptinguna og flokkum hlutmengin eftir stærðum.
 	for (i = 0; i < m + 1; i++) qsort(h[i], l[i], sizeof *h[i], cmp);           // Röðum skiptingunum til að geta notað helmingunarleit.
-	for (i = z = 0; i < (1 << n); z = count(++i))                               // Ítrum í gegnum öll hlutmengin í seinni skiptingunni.
+	for (i = z = 0; i < (1 << n); z = __builtin_popcount(++i))                  // Ítrum í gegnum öll hlutmengin í seinni skiptingunni.
 	{
 		if (x - z < 0 || x - z > m || t < u[i]) continue;                       // Skoðum hvort það sé mögulega hlutmengi sem passar.
 		r += bs(h[x - z], t - u[i] + 1, l[x - z]);                              // Teljum hlutmengin í seinni skiptingunni sem passa við tiltekið
 		r -= bs(h[x - z], t - u[i], l[x - z]);                                  //   hlutmengi með tveimur helmingunarleitum.
 	}
 	return r;
+}
+
+int solve(int *a, int n, int x, int t)                                          // Reiknar hversu mörg hlutmengi a af stærð x hafa summu t.
+{
+	return solve_internal(a, a + n/2, n/2, (n + 1)/2, x, t);                    // Skiptir tölunum í tvennt.
 }
 
 int main()
@@ -56,6 +56,6 @@ int main()
 	int a[n];
 	for (i = 0; i < n; i++) scanf("%d", &a[i]);
 	scanf("%d%d", &x, &y);                                                      // Innlestri lokið.
-	printf("%d\n", solve(a, a + n/2, n/2, (n + 1)/2, x, y));                    // Reiknum og prentum svarið.
+	printf("%d\n", solve(a, n, x, y));                                          // Reiknum og prentum svarið.
 	return 0;
 }

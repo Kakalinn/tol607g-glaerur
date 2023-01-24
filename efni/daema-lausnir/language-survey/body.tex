@@ -1,4 +1,4 @@
-\title{Lausnir á völdum dæmum úr viku tvö}
+\title{Lausn á \emph{Language Survey}}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -10,195 +10,17 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Ég mun leysa eftirfarandi dæmi:
-		\env{itemize}
-		{
-			\item<2-> \emph{Reiknirit},
-			\item<3-> \emph{Pipe Rotation},
-			\item<4-> \emph{Language Survey}.
-		}
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Skoðum aftur skiladæmið \emph{Reiknirit}.
-		\item<2-> Fyrsta lína inntaksins inniheldur heiltölu $n$.
-		\item<3-> Síðan koma $n$ heiltölur $a_1, a_2, \dots, a_n$.
-		\item<4-> Gerum ráð fyrir að við séum með forrit sem gerir eftirfarandi:
-		\env{itemize}
-		{
-			\item<5-> Prentar tölurnar.
-			\item<6-> Fjarlægir öll eintök af algengustu tölunni í listan.
-			\item<7-> Endurtekur skrefin að ofan þar til listinn er tómur.
-		}
-		\item<8-> Dæmið snýst um að finna hversu margar tölur eru prentaðar í heildina.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Síðast leystum við þetta dæmi með því að útfæra forritið sem er lýst í dæminu.
-		\item<2-> Við komumst þó að því að sú lausn var $\mathcal{O}(n^2)$ sem reyndist of hæg.
-		\item<3-> Tökum eftir að við getum notað svipaða hugmynd og í hægu útfærslunni til að telja hversu oft hver tala kemur fyrir.
-		\item<4-> Tökum einnig eftir að hvert eintak af algengustu tölunni er prentað einu sinni,
-					hvert eintak af næst algengustu tölunni er prentað tvisvar
-					og svo framvegis.
-		\item<5-> Einnig skiptir talan sjálf ekki máli, heldur eingöngu hversu oft hún kemur fyrir.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Látum því $h_1 \geq h_2 \geq \dots \geq h_k$ þannig að algengast talan kemur $h_1$ sinni fyrir,
-					næst algengasta talan kemur $h_2$ sinnum fyrir
-					og svo framvegis.
-		\item<2-> Svarið er því
-		\[
-			\sum_{i = 1}^k i \cdot h_i.
-		\]
-		\item<3-> Við þurfum þó að passa okkur aðeins.
-		\item<4-> Ef $h_1 = h_2 = \dots h_k = 1$ (þá er einnig $k = n$) fæst að svarið er
-		\[
-			\sum_{i = 1}^k i \cdot h_i
-			=
-			\sum_{i = 1}^k i
-			=
-			\frac{n \cdot (n + 1)}{2}.
-		\]
-		\item<5-> Svo, þar sem $n$ getur verið allt að $10^6$, getur svarið okkar orðið of stórt fyrir \texttt{int}.
-		\item<6-> Við þurfum því að nota \texttt{long long}.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Reiknirit}
-	\code{code/reiknirit.c}
-}
-
-\env{frame}
-{
-	\frametitle{Reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Sjáum við byrjum á að raða, sem er $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
-		\item<3-> Við teljum síðan hvað hver tala kemur oft fyrir, sem er $\mathcal{O}($\onslide<4->{$\ n\ $}$)$.
-		\item<5-> Síðan röðum við aftur.
-		\item<6-> Að lokum reiknum við summuna í $\mathcal{O}($\onslide<7->{$\ n\ $}$)$.
-		\item<8-> Tímaflækjan er því í heildina $\mathcal{O}($\onslide<9->{$n \log n$}$)$.
-		\item<10-> Nú er $10^{-8} \cdot 10^6 \cdot \log 10^6 \sim 0,2$, svo þessi lausn er nógu hröð.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Pipe Rotation}
-	\env{itemize}
-	{
-		\item<1-> Okkur er gefið $n \times m$ ($1 \leq n, m \leq 100$) borð af spilum af eftirfarandi gerðum:
-		\item<2->[] \includegraphics[scale = 0.25]{fig/pr1}
-		\item<3-> Við eigum að ákvarða hvort hægt sé að snúa spilunum þannig að allar hliðar sem eru grænar eru gagnstæðar hliðum sem eru einnig grænar.
-		\item<4-> Takið eftir að við megum ekki endurraða spilunum og að hliðar sem snúa út mega ekki vera grænar.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Pipe Rotation}
-	\env{itemize}
-	{
-		\item<1-> Sjáum dæmi.
-		\item<2->[] \includegraphics[scale = 0.25]{fig/pr2}
-		\item<3-> Efra dæmið er ekki löglegt en neðra er löglegt.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Pipe Rotation}
-	\env{columns}
-	{
-		\env{column}
-		{
-			{0.8\textwidth}
-			\env{itemize}
-			{
-				\item<1-> Sjáum fyrst að ef við vitum hvað er vinstra megin og fyrir ofan spil þá vitum við hvernig það þarf að snúa.
-				\item<2-> Ef hliðin fyrir ofan er auð og hliðin til vinstri er auð þá þarf spilið að vera af gerð \texttt{A}
-							eða af gerð \texttt{C} í öðrum snúning.
-				\item<3-> Ef hliðin fyrir ofan er auð og hliðin til vinstri er græn þá þarf spilið að vera af gerð \texttt{B} í seinni snúning
-							eða af gerð \texttt{C} í þriðja snúning.
-				\item<4-> Ef hliðin fyrir ofan er græn og hliðin til vinstri er auð þá þarf spilið að vera af gerð \texttt{B} í fyrri snúning
-							eða af gerð \texttt{C} í fyrsta snúning.
-				\item<5-> Ef hliðin fyrir ofan er græn og hliðin til vinstri er græn þá þarf spilið að vera af gerð \texttt{C} í fjórða snúning
-							eða af gerð \texttt{D}.
-			}
-		}
-		\env{column}
-		{
-			{0.2\textwidth}
-			\includegraphics[scale = 0.3]{fig/pr1}
-		}
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Pipe Rotation}
-	\env{itemize}
-	{
-		\item<1-> Nú getum við labbað í gegnum öll spilin og ákvarðað hvernig hvert spil snýr ef við byrjum á efstu línunni og vinnum okkur niður,
-					og skoðum hverja línu frá vinstri til hægri.
-		\item<2-> Það er pínu vinna að útfæra þetta útaf öllum tilfellunum sem þarf að hafa í huga.
-	}
-}
-
-\env{frame}
-{
-	\selectcode{code/piperotation.c}{4}{8}
-}
-
-\env{frame}
-{
-	\selectcode{code/piperotation.c}{10}{47}
-}
-
-\env{frame}
-{
-	\frametitle{Pipe Rotation}
-	\env{itemize}
-	{
-		\item<1-> Þessi lausn er lítið annað en tvöföld \texttt{for}-lykkja sú ytri af lengd $n$ og sú innri af lengd $m$.
-		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n \cdot m$}$)$.
-	}
-}
-
-\env{frame}
-{
-	\frametitle{Language Survey}
-	\env{itemize}
-	{
 		\item<1-> Þér er gefið land sem er skipt í grind eftir hvaða tungumál eru töluð hvar.
 		\item<2-> Þú veist að í heildina eru þrjú tungumál töluð.
-		\item<3-> Þér er einnig sagt, fyrir sérhvern reit, hvort eitt tungumál er talað þar eða fleiri.
+		\item<3-> Þér er einnig sagt, fyrir sérhvern reit, hvort eitt tungumál sé talað þar eða fleiri.
 		\item<4-> Einnig er gefið að hvert tungumál er talað á samanhangandi svæði reita.
 		\item<5-> Með öðrum orðum getur þú labbað milli allra reita sem tala sama tungumál án þess að þurfa að heimsækja reit sem talar ekki tungumálið.
+		\item<6-> Þú átt ákvarða hvar hvert tungumál er talað, ef það er á annað borð hægt.
 	}
 }
 
 \env{frame}
 {
-	\frametitle{Language Survey}
 	\env{itemize}
 	{
 		\item<1-> Fyrra sýniinntakið er
@@ -210,7 +32,6 @@
 
 \env{frame}
 {
-	\frametitle{Language Survey}
 	\env{itemize}
 	{
 		\item<1-> Gerum ráð fyrir að við getum raðað tungumálunum þannig að eitt tungumál er talað í hverjum reit,
@@ -224,7 +45,6 @@
 
 \env{frame}
 {
-	\frametitle{Language Survey}
 	\env{itemize}
 	{
 		\item<1-> Byrjum á að láta dálkinn lengst til vinstri fá tungumál \texttt{A}.
@@ -1295,10 +1115,9 @@
 
 \env{frame}
 {
-	\frametitle{Language Survey}
 	\env{itemize}
 	{
-		\item<1-> Þetta virkar alltaf ef önnur víddin er stærri en tveir.
+		\item<1-> Þetta virkar alltaf ef báðar víddirnar eru stærri en tveir.
 		\item<2-> Ef önnur víddin er tveir má nota
 		\item<3->[] \caseA
 		\item<4-> Ef önnur víddin er einn þarf að leysa dæmið gráðugt.
@@ -1309,31 +1128,27 @@
 \env{frame}
 {
 	\frametitle{Sértilfellið}
-	\selectcode{code/languagesurvey.c}{8}{32}
+	\selectcode{code/languagesurvey.c}{5}{30}
 }
 
 \env{frame}
 {
 	\frametitle{Köllum á sértilfellið}
-	\selectcode{code/languagesurvey.c}{39}{60}
+	\selectcode{code/languagesurvey.c}{42}{71}
 }
 
 \env{frame}
 {
-	\frametitle{Grunnskiptingin}
-	\selectcode{code/languagesurvey.c}{63}{78}
-}
-
-\env{frame}
-{
-	\frametitle{Finna nágrannann með annað tungamál}
-	\selectcode{code/languagesurvey.c}{79}{86}
+	\frametitle{Búum til grunnskiptingin og finnum nágranna með annað tungamál}
+	\selectcode{code/languagesurvey.c}{34}{34}
+	\selectcode{code/languagesurvey.c}{72}{76}
+	\selectcode{code/languagesurvey.c}{77}{84}
 }
 
 \env{frame}
 {
 	\frametitle{Prenta lausn}
-	\selectcode{code/languagesurvey.c}{91}{101}
+	\selectcode{code/languagesurvey.c}{85}{96}
 }
 
 \env{frame}
