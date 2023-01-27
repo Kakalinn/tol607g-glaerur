@@ -94,7 +94,7 @@
 	\env{itemize}
 	{
 		\item<1-> Neðansækin kvik bestun hefur sýna kosti.
-		\item<2-> Það er stundum hægt að bæta tímaflækjuna með til dæmis sniðugri gagnagrind.
+		\item<2-> Það er stundum hægt að bæta tímaflækjuna, til dæmis með sniðugri gagnagrind.
 		\item<3-> Sumar þessara bætinga krefjast þess að útfærsla sé neðansækin.
 	}
 }
@@ -107,7 +107,7 @@
 		\item<1-> Tökum annað dæmi.
 		\item<2-> Látum $S = s_1s_2...s_n$ og $T = t_1t_2...t_m$ vera strengi af lengd $n$ og $m$, þannig að $1 \leq n, m \leq 10^3$.
 		\item<3-> Hver er lengd lengsta strengs $X$ þannig að hann sé hlutruna í bæði $S$ og $T$?
-		\item<4-> Takið eftir að \texttt{"12"} og \texttt{"13"} eru hlutrunur í \texttt{"123"} en \texttt{"21"} er það ekki.
+		\item<4-> Takið eftir að \ilcode{"12"} og \ilcode{"13"} eru hlutrunur í \ilcode{"123"} en \ilcode{"21"} er það ekki.
 	}
 }
 
@@ -158,7 +158,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Það er þessi virði að bera saman \texttt{dp\_lookup(...)} fallið í forritinu og $f(i, j)$ af glærunni að framan.
+		\item<1-> Það er þessi virði að bera saman \ilcode{dp\_lookup(...)} fallið í forritinu og $f(i, j)$ af glærunni að framan.
 	}
 	\[
 		f(i, j) =
@@ -190,7 +190,7 @@
 	\frametitle{Skiptimyntadæmið}
 	\env{itemize}
 	{
-		\item<1-> Skoðum aftur Skiptimyntadæmið úr þarsíðustu viku.
+		\item<1-> Skoðum aftur Skiptimyntadæmið.
 		\item<2-> Þú ert með ótakmarkað magn af $m$ mismunandi myntum.
 		\item<3-> Þær eru virði $x_1, x_2, ..., x_m$.
 		\item<4-> Til þæginda gerum við ráð fyrir því að $x_1 = 1$.
@@ -256,13 +256,13 @@
 \env{frame}
 {
 	\frametitle{Hefðbundna skiptimyntadæmið}
-	\code{code/coin-bu.c}
+	\selectcode{code/coin-bu.c}{5}{18}
 }
 
 \env{frame}
 {
 	\frametitle{Nýja dæmið}
-	\code{code/altcoin-bu.c}
+	\selectcode{code/altcoin-bu.c}{5}{18}
 }
 
 \env{frame}
@@ -1363,8 +1363,8 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Það er nokkuð létt að meta tímaflækjurnar á neðansæknu lausnunum.
-		\item<2-> Þær eru báðar tvöfaldar \texttt{for}-lykkjur, sú ytri af lengd $m$ og innri af lengd $\mathcal{O}(\,n\,)$.
+		\item<1-> Það er léttara að ákvarða tímaflækjurnar á neðansæknu lausnunum.
+		\item<2-> Þær eru báðar tvöfaldar \ilcode{for}-lykkjur, sú ytri af lengd $m$ og innri af lengd $\mathcal{O}(\,n\,)$.
 		\item<3-> Svo tímaflækjurnar eru $\mathcal{O}($\onslide<4->{$n \cdot m$}$)$.
 	}
 }
@@ -1396,9 +1396,9 @@
 	\env{itemize}
 	{
 		\item<1-> Hvað gerum við ef við viljum vita \emph{hvaða} klink á að gefa til baka, ekki bara hversu mikið?
-		\item<2-> Takið eftir að þegar við reiknum, til dæmis, \texttt{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
-					þá erum við í raun að velja hvort er betra: \texttt{dp(x, y + 1)} eða \texttt{dp(x - a[y], y + 1) + 1}.
-		\item<3-> Okkur nægir því að geyma fyrir hvert inntak í \texttt{dp\_lookup(...)} hver besta leiðin er.
+		\item<2-> Takið eftir að þegar við reiknum, til dæmis, \ilcode{min(dp(x, y + 1), dp(x - a[y], y + 1) + 1)}
+					þá erum við í raun að velja hvort er betra: \ilcode{dp(x, y + 1)} eða \ilcode{dp(x - a[y], y + 1) + 1}.
+		\item<3-> Okkur nægir því að geyma fyrir hvert inntak í \ilcode{dp\_lookup(...)} hver besta leiðin er.
 		\item<4-> Kvik bestun byggir á því að besta leiðin sé alltaf sú sama.
 		\item<5-> Síðan er hægt að þræða sig í gegn eftir á og finna klinkið sem þarf.
 	}
@@ -1435,7 +1435,7 @@
 	\env{itemize}
 	{
 		\item<1-> Helsti kostur fyrri aðferðarinnar er að besta skrefið er ákvarðað í $\mathcal{O}($\onslide<2->{$\,1\,$}$)$ tíma.
-		\item<3-> Í seinni aðferðinni tekur það jafnalangan tíma og \texttt{dp\_lookup(...)} tekur að meta hverja stöðu.
+		\item<3-> Í seinni aðferðinni tekur það jafnalangan tíma og \ilcode{dp\_lookup(...)} tekur að meta hverja stöðu.
 		\item<4-> Þetta kemur bara til með að gera nógu góða lausn hæga ef það þarf að reikna fyrir mörg gildi.
 		\item<5-> Skoðum nú hvernig við getum nýtt þetta til að finna eina af lengstu sameiginlegu hlutrunum tveggja strengja.
 	}
@@ -1444,7 +1444,7 @@
 % TODO: testa
 \env{frame}
 {
-	\selectcode{code/lcs-traverse.c}{5}{27}
+	\selectcode{code/lcs-traverse.c}{5}{26}
 }
 
 \defverbatim{\sssA}
@@ -1691,7 +1691,7 @@
 	{
 		\item<1-> Hvernig getum við leyst þetta?
 		\item<2-> Látum $T$ vera summu allra talnanna.
-		\item<3-> Við getum nú notað \texttt{subsetsum(...)} með $c = \lfloor T/2 \rfloor$.
+		\item<3-> Við getum nú notað \ilcode{subsetsum(...)} með $c = \lfloor T/2 \rfloor$.
 		\item<4-> Það gefur okkur annan hópinn og hinn hópurinn verður afgangurinn.
 		\item<5-> Okkur vantar þó að finna hvaða tölur eiga að vera í hvorum hóp.
 	}
@@ -1699,7 +1699,7 @@
 
 \env{frame}
 {
-	\selectcode{code/partition.c}{7}{29}
+	\selectcode{code/partition.c}{7}{26}
 }
 
 \env{frame}
@@ -1757,7 +1757,7 @@
 
 \env{frame}
 {
-	\selectcode{code/knapsack.c}{8}{27}
+	\selectcode{code/knapsack.c}{8}{26}
 }
 
 \env{frame}
@@ -1917,7 +1917,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Nú er þetta forrit lítið annað en þreföld \texttt{for}-lykkja, hver af lengd $\mathcal{O}(\,n\,)$.
+		\item<1-> Nú er þetta forrit lítið annað en þreföld \ilcode{for}-lykkja, hver af lengd $\mathcal{O}(\,n\,)$.
 		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n^3$}$)$.
 		\item<4-> Þetta ætti því einnig að vera of hægt.
 		\item<5->[] \includegraphics[scale = 0.25]{fig/tle2.png}
@@ -1945,7 +1945,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Nú er þetta forrit lítið annað en tvöföld \texttt{for}-lykkja, hvor af lengd $\mathcal{O}(\,n\,)$.
+		\item<1-> Nú er þetta forrit lítið annað en tvöföld \ilcode{for}-lykkja, hvor af lengd $\mathcal{O}(\,n\,)$.
 		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$n^2$}$)$.
 		\item<4-> Þetta ætti sleppa, því $(3 \cdot 10^3)^2 = 9 \cdot 10^6 < 10^8$.
 		\item<5->[] \includegraphics[scale = 0.25]{fig/ac.png}
