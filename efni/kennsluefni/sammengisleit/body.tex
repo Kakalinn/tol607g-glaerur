@@ -6,44 +6,48 @@
 
 \frame{\titlepage}
 
+\section{Inngangur}
 \env{frame}
 {
 	\frametitle{Sammengisleit}
 	\env{itemize}
 	{
-		\item<1-> \emph{Sammengisleit} (e. \emph{union-find}) er öflug leið til að halda utan um jafngildisflokka tiltekna vensla,
-				eða m.ö.o. halda utan um \emph{sundurlæg} mengi.
+		\item<1-> \emph{Sammengisleit} (e. \emph{union-find}) er öflug leið til að halda utan um jafngildisflokka tiltekna vensla 
+				eða, með öðrum orðum, halda utan um \emph{sundurlæg} mengi.
 		\item<2-> Við viljum:
 		\env{itemize}
 		{
 			\item<3-> Bera saman jafngildisflokka mismunandi staka.
 			\item<4-> Sameina jafngildisflokka.
 		}
-		\item<5-> Við tölum um aðgerðirnar \texttt{find(x)} og \texttt{join(x, y)}.
+		\item<5-> Við tölum um aðgerðirnar \ilcode{find(x)} og \ilcode{join(x, y)}.
 	}
 }
 
+\section{Almenn umræða um útfærslu og frumstæð útfærsla}
+\subsection{Dæmi um hegðun}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Tökum sem dæmi einstökungasafnið
 			$\{\{1\}, \{2\}, \{3\}, \{4\}, \{5\}\}$. 
-		\item<2-> \texttt{join(1, 3)} gefur okkur
+		\item<2-> \ilcode{join(1, 3)} gefur okkur
 			$\{\{1, 3\}, \{2\}, \{4\}, \{5\}\}$. 
-		\item<3-> \texttt{join(2, 5)} gefur okkur
+		\item<3-> \ilcode{join(2, 5)} gefur okkur
 			$\{\{1, 3\}, \{2, 5\}, \{4\}\}$. 
-		\item<4-> \texttt{join(2, 4)} gefur okkur
+		\item<4-> \ilcode{join(2, 4)} gefur okkur
 			$\{\{1, 3\}, \{2, 4, 5\}\}$. 
-		\item<5-> \texttt{join(1, 4)} gefur okkur
+		\item<5-> \ilcode{join(1, 4)} gefur okkur
 			$\{\{1, 2, 3, 4, 5\}\}$. 
-		\item<6-> Á sérhverjum tímapunkti myndi \texttt{find(x)} skila einhverju staki sem er í sama mengi og \texttt{x}.
-		\item<7-> Mikilvægt er að \texttt{find(...)} skilar sama stakinu fyrir sérhvert stak í sérhverjum jafngildisflokki.
-		\item<8-> Til dæmis, í þriðja punktinum myndi \texttt{find(1)} og \texttt{find(3)} þurfa að skila sama stakinu.
-		\item<9-> Við köllum þetta stak \emph{ráðherra} (e. \emph{representative}) jafngildisflokksins.
+		\item<6-> Á sérhverjum tímapunkti myndi \ilcode{find(x)} skila einhverju staki sem er í sama mengi og \ilcode{x}.
+		\item<7-> Mikilvægt er að \ilcode{find(...)} skilar sama stakinu fyrir sérhvert stak í sérhverjum jafngildisflokki.
+		\item<8-> Til dæmis, í þriðja punktinum myndi \ilcode{find(1)} og \ilcode{find(3)} þurfa að skila sama stakinu.
+		\item<9-> Við köllum þetta stak \emph{oddvita} (e. \emph{representative}) jafngildisflokksins.
 	}
 }
 
+\subsection{Almenn atriði um útfærslur á sammengisleit}
 \env{frame}
 {
 	\env{itemize}
@@ -51,12 +55,12 @@
 		\item<1-> Gerum ráð fyrir að tölurnar sem við munum vinna með séu jákvæðar og minni en $n$.
 		\item<2-> Við munum þá gefa okkur $n$ staka fylki $p$, þar sem $i$-ta stakið í fylkinu er upphafstillt sem $i$.
 		\item<3-> Fylkið $p$ mun nú geyma \emph{foreldri} sérhvers stak.
-		\item<4-> Foreldrin mynda keðjur.
-		\item<5-> Keðjurnar eru jafngildisflokkarnir.
-		\item<6-> Sérhver keðja endar í einhverju staki, sem munu vera ráðherra jafngildisflokksins.
+		\item<4-> Foreldrin mynda keðjur, sem svara til jafngildisflokkanna.
+		\item<5-> Sérhver keðja endar í einhverju staki, sem munu vera oddvitar jafngildisflokkanna.
 	}
 }
 
+\subsection{Dæmi um keðjur}
 \env{frame}
 {
 	\env{itemize}
@@ -67,78 +71,118 @@
 	}
 }
 
+\subsection{Almenn atriði um útfærslur aðgerðanna í sammengisleit}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Til að fá ráðherra flokks tiltekins staks er hægt að fara endurkvæmt upp keðjuna.
-		\item<2-> Til að sameina flokka nægir að breyta foreldri ráðherra annars flokksins yfir í
-			eitthvert stak hins flokksins (sér í lagi ráðherrann).
+		\item<1-> Til að fá oddvita flokks tiltekins staks er hægt að fara endurkvæmt upp keðjuna.
+		\item<2-> Til að sameina flokka nægir að breyta foreldri oddvita annars flokksins yfir í
+			eitthvert stak hins flokksins.
 		\item<3-> Báðar þessar aðgerðir er auðvelt að útfæra.
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
 	\frametitle{Frumstæð sammengisleit}
-	\selectcode{code/lst1.c}{4}{14}
+	\selectcode{code/lst1.c}{4}{19}
 	\env{itemize}
 	{
 		\item<0|handout:1> { Ekki nota þennan kóða. Hann er hægari en það sem á eftir kemur. }
 	}
 }
 
+\subsection{Umræða um tímaflækjur}
 \env{frame}
 {
 	\frametitle{Ekki nota frumstæða sammengisleit}
 	\env{itemize}
 	{
-		\item<1-> Við sjáum nú að tímaflækja \texttt{find} er línuleg í lengd keðjunnar, svo 
-			þar sem lengd keðjunnar getur verið í versta falli $n$ þá er \texttt{find} með tímaflækjuna $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
-		\item<3-> Fallið \texttt{join} gerir lítið annað en að kalla tvisvar á \texttt{find} svo það er $\mathcal{O}($\onslide<4->{$\,n\,$}$)$.
+		\item<1-> Við sjáum nú að tímaflækja \ilcode{find(...)} er línuleg í lengd keðjunnar, svo 
+			þar sem lengd keðjunnar getur verið í versta falli $n$ þá er \ilcode{find(...)} með tímaflækjuna $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
+		\item<3-> Fallið \ilcode{join(...)} gerir lítið annað en að kalla tvisvar á \ilcode{find(...)} svo það er $\mathcal{O}($\onslide<4->{$\,n\,$}$)$.
 		\item<5-> Við myndum því aðeins ná að svara $n$ fyrirpsurnum ef $n \leq 10^4$.
 		\item<6-> Því er ekki ráðlagt að nota þessa frumstæðu útfærslu.
 		\item<7-> Hana má þó bæta.
 	}
 }
 
+\section{Keðjuþjöppuð sammengisleit}
+\subsection{Almenn atriði}
 \env{frame}
 {
 	\frametitle{Keðjuþjöppuð sammengisleit}
 	\env{itemize}
 	{
 		\item<1-> Lykilatriðið í bætingunni er að stytta keðjurnar.
-		\item<2-> Í hvert sinn sem við köllum á \texttt{find(...)} þá fletjum við keðjun sem við heimsækjum.
-		\item<3-> Þetta er gert með því að setja \texttt{p[x]} sem ráðherra flokks \texttt{x}, í hverju skrefi endurkvæmninnar.
+		\item<2-> Í hvert sinn sem við köllum á \ilcode{find(...)} þá fletjum við keðjun sem við heimsækjum.
+		\item<3-> Þetta er gert með því að setja \ilcode{p[x]} sem oddvita flokks \ilcode{x}, í hverju skrefi endurkvæmninnar.
 		\item<4-> Þetta köllum við \emph{keðjuþjöppun} (e. \emph{path compression}).
 	}
 }
 
+\subsection{Dæmi um hegðun}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Gefum okkur
 			$p = [0, 0, 1, 2, 3, 4, 5, 6, 7]$.
-		\item<2-> Ljóst er að \texttt{find(5)} skilar $0$.
-		\item<3-> Ef við notum frumstæða sammengisleit breytist $p$ ekki neitt þegar kallað er á \texttt{find}
+		\item<2-> Ljóst er að \ilcode{find(5)} skilar $0$.
+		\item<3-> Ef við notum frumstæða sammengisleit breytist $p$ ekki neitt þegar kallað er á \ilcode{find(...)}
 			en með keðjuþjappaðri sammengisleit þjappast keðjan frá og með $5$ og því fæst
 			$p = [0, 0, 0, 0, 0, 0, 5, 6, 7]$.
-		\item<4-> Takið eftir að nú er líka styttra í ráðherrann fyrir stök $6$, $7$ og $8$, þó við heimsóttum þau ekki í endurkvæmninni.
+		\item<4-> Takið eftir að nú er líka styttra í oddvitann fyrir stök $6$, $7$ og $8$, þó við heimsóttum þau ekki í endurkvæmninni.
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
 	\frametitle{Keðjuþjöppað sammengisleit}
-	\selectcode{code/lst2.c}{4}{14}
+	\selectcode{code/lst2.c}{4}{19}
 }
 
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Það er flóknara að lýsa tímaflækju keðjuþjappaðrar sammengisleitar.
+		\item<1-> Þetta er þó ekki eina bætingin sem er í boði.
+		\item<2-> Við getum einnig sameinað á skilvirkari máta með \emph{stærðarmiðaðri sameiningu}.
+	}
+}
+
+\section{Stærðarmiðuð sameining}
+\subsection{Almenn atriði}
+\env{frame}
+{
+	\frametitle{\emph{Stærðarmiðuð sameining} (e. \emph{union by size})}
+	\env{itemize}
+	{
+		\item<1-> Þegar við sameinum keðjur þarf að velja hvor odvitinn verður ennþá odviti.
+		\item<2-> Við getum valið oddvitann sem hefur fleiri stök í sinni keðju.
+		\item<3->[] \selectcode{code/union-find.c}{4}{16}
+		\item<4-> Í þessari út færlsu geymir oddvitinn neikvæða tölu, en önnur stök vísa ennþá upp keðjuna.
+		\item<5-> Þessi neikvæða tala svarar til fjölda staka í þeim keðjum sem enda í oddvitanum.
+		\item<6-> Svo \ilcode{-p[find(x)]} er fjöldi staka í jafngildisflokki \ilcode{x}.
+	}
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+	\frametitle{Keðjuþjöppað og stærðarmiðuð sammengisleit}
+	\selectcode{code/union-find.c}{4}{26}
+}
+
+\subsection{Umræða um tímaflækjur}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Það er flóknara að lýsa tímaflækju keðjuþjappaðrar sammengisleitar með stærðarmiðaðri sameiningu.
 		\item<2-> \emph{Á heildina litið} (e. \emph{amortized}) er tímaflækja hverrar aðgerðar $\mathcal{O}(\alpha(n))$,
 					þar sem $\alpha$ er andhverfa \emph{Ackermann} fallsins.
 		\item<3-> Fyrir þau $n$ sem við fáumst við er $\alpha(n)$ nánast fast.
@@ -146,20 +190,7 @@
 	}
 }
 
-\env{frame}
-{
-	\frametitle{\emph{Stærðarmiðuð sameining} (e. \emph{union by size})}
-	\env{itemize}
-	{
-		\item<1-> Þegar við sameinum keðjur þarf að velja hvor ráðherrann verður ennþá ráðherra.
-		\item<2-> Við getum þá valið ráðherrann sem hefur fleiri stök í sinni keðju.
-		\item<3->[] \selectcode{code/union-find.c}{4}{16}
-		\item<4-> Í þessari út færlsu geymir ráðherrann neikvæða tölu, en önnur stök vísa ennþá upp keðjuna.
-		\item<5-> Þessi neikvæða tala svarar til fjölda staka í þeim keðjum sem enda í ráðherranum.
-		\item<6-> Svo \texttt{-p[find(x)]} er fjöldi staka í jafngildisflokki \texttt{x}.
-	}
-}
-
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

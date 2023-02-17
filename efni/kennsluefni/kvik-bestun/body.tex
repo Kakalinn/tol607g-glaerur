@@ -62,7 +62,7 @@
 		\item<1-> Það er þó lítið mál að breyta endurkvæmnu lausninni okkar í ítraða lausn.
 		\item<2-> Eina sem við þurfum að passa er að reikna gildin í vaxandi röð.
 		\item<3->[]
-			\code{code/fibn-iter.c}
+			\selectcode{code/fibn-iter.c}{3}{12}
 		\item<4-> Þegar ofansækin kvik bestunar lausn er útfærð með ítrun köllum við það \emph{neðansækna kvika bestun} 
 					(e. \emph{bottom up dymanic programming}).
 	}
@@ -85,7 +85,7 @@
 	\env{itemize}
 	{
 		\item<1-> Annar kostur ofansækinnar kvikrar bestunar er að lausnirnar geta verið nokkuð einsleitar.
-		\item<2->[] \code{code/tddp-template.c}
+		\item<2->[] \selectcode{code/tddp-template.c}{4}{23}
 	}
 }
 
@@ -236,7 +236,7 @@
 
 \env{frame}
 {
-	\code{code/coin-bu.c}
+	\selectcode{code/coin-bu.c}{5}{18}
 }
 
 \env{frame}
@@ -1407,13 +1407,13 @@
 \env{frame}
 {
 	\frametitle{Finnur bara fjöldann}
-	\code{code/coin-bu-pre-traverse.c}
+	\selectcode{code/coin-bu-pre-traverse.c}{5}{30}
 }
 
 \env{frame}
 {
 	\frametitle{Finnur hvaða klink}
-	\code{code/coin-bu-traverse.c}
+	\selectcode{code/coin-bu-traverse.c}{5}{30}
 }
 
 \env{frame}
@@ -1597,7 +1597,7 @@
 	{
 		\item<1-> Seinni skiptimyntadæmið er náskylt \emph{hlutmengjasummudæminu} (e. \emph{Subset Sum Problem}).
 		\item<2-> Dæmið er einfalt.
-		\item<3-> Gefnar eru $n$ tölur $a_1, \dots, a_n$ ásamt tölu $c$.
+		\item<3-> Gefnar eru $n$ jákvæðar heiltölur $a_1, \dots, a_n$ ásamt heiltölu $c$.
 		\item<4-> Hvaða hlutruna af tölum gefur hæstu summuna án þess að fara yfir $c$.
 	}
 }
@@ -1678,7 +1678,7 @@
 	\env{itemize}
 	{
 		\item<1-> Ein algeng hagnýting á þessu er tvískipting talna.
-		\item<2-> Látum $a_1, \dots, a_n$ vera heiltölur.
+		\item<2-> Látum $a_1, \dots, a_n$ vera jákvæðar heiltölur.
 		\item<3-> Hvernig er best að skipta þeim í tvo hópa þannig að mismunur summa hvors hóps sé sem minnstur.
 		\item<4-> Ef tölurnar eru $(10, 2, 10, 30, 15, 2, 30, 10)$ þá skiptum við í $(2, 2, 10, 10, 30)$ og $(10, 15, 30)$.
 		\item<5-> Summurnar eru $54$ og $55$, og mismunur þeirra er $1$.
@@ -1699,7 +1699,7 @@
 
 \env{frame}
 {
-	\selectcode{code/partition.c}{7}{26}
+	\selectcode{code/partition.c}{7}{24}
 }
 
 \env{frame}
@@ -1730,7 +1730,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Nánar, við höfum tölur $v_1, \dots, v_n$, $w_1, \dots, w_n$ og $c$.
+		\item<1-> Nánar, við höfum jákvæðar heiltölur $v_1, \dots, v_n$, $w_1, \dots, w_n$ og $c$.
 		\item<2-> Við viljum ákvarða tölur $b_1, \dots, b_n \in \{0, 1\}$ þannig að
 		\[
 			\sum_{i = 1}^n b_i \cdot w_i \leq c
@@ -1747,8 +1747,8 @@
 				{l l}
 				-\infty, & \text{ef $j < 0$},\\
 				0, & \text{annars, ef $i = 0$},\\
-				\max(f(i - 1, j) \\
-						\quad + f(i - 1, j - w_i) + v_i), & \text{annars}.
+				\max(f(i - 1, j), \\
+						\quad f(i - 1, j - w_i) + v_i), & \text{annars}.
 			}
 			\right .
 		\]
@@ -1837,7 +1837,7 @@
 	\env{itemize}
 	{
 		\item<1-> Tökum nú dæmi sem er ekki jafn staðlað.
-		\item<2-> Gerum ráð fyrir að við séum með $n$ reiti fyrir framan okkur, hver merktur með tölu $a_i$.
+		\item<2-> Gerum ráð fyrir að við séum með $n$ reiti fyrir framan okkur, hver merktur með heiltölu $a_i$.
 		\item<3-> Reitirnir liggja jafndreift á beinni línu og þú byrjar á reit númer eitt.
 		\item<4-> Þú vilt síðan ferðast á reit $n$ með því að hoppa á milli reitanna.
 		\item<5-> Þú færð $a_i$ stig ef þú lendir á $i$-ta reitnum og heildarstigafjöldinn er summa stiganna fyrir öll hoppin.
@@ -1910,7 +1910,7 @@
 
 \env{frame}
 {
-	\code{code/minnkandistokk-bu-slow.c}
+	\selectcode{code/minnkandistokk-bu-slow.c}{9}{25}
 }
 
 \env{frame}
@@ -1929,7 +1929,7 @@
 {
 	\env{itemize}
 	{
-		\item<1-> Þegar við reiknum fallgildið $f(i, j)$ þá tökum við stærsta gildið á skálínunni $f(i + 1, 1), f(i + 2, 2), \dots, f(i + k, k)$.
+		\item<1-> Þegar við reiknum fallgildið $f(i, j)$ þá tökum við stærsta gildið á skálínunni $f(i + 1, 1), f(i + 2, 2), \dots, f(i + j, j)$.
 		\item<2-> Eftir að hafa reiknað fallgildin fyrir tiltekna stökklengd hefur eitt stak bæst við hverja skálínu.
 		\item<3-> Það er lítið mál að halda utan um stærsta stakið á hverri skálínu með því að uppfæra eftir að nýtt fallgildi er reiknað.
 		\item<4-> Þá getum við líka reiknað hvert fallgildi í föstum tíma.
@@ -1938,7 +1938,7 @@
 
 \env{frame}
 {
-	\code{code/minnkandistokk.c}
+	\selectcode{code/minnkandistokk.c}{9}{29}
 }
 
 \env{frame}

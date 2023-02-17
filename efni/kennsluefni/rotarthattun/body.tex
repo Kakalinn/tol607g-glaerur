@@ -6,6 +6,7 @@
 
 \frame{\titlepage}
 
+\section{Inngangur}
 \env{frame}
 {
 	\frametitle{Dæmi}
@@ -21,6 +22,8 @@
 	}
 }
 
+\section{Hefðbundin rótarþáttun}
+\subsection{Yfirlit}
 \env{frame}
 {
 	\frametitle{Almenn $k$-þáttun}
@@ -34,22 +37,23 @@
 			\[
 				p = [0\ 1\ 4\ |\ 3\ 4\ 5\ |\ 0\ 1\ 8\ 9].
 			\]
-		\item<5-> Köllum fylkið sem geymir summu hvers hólfs \texttt{s}, sem verður þá
+		\item<5-> Köllum fylkið sem geymir summu hvers hólfs \ilcode{s}, sem verður þá
 			\[
 				s = [5\ 12\ 18].
 			\]
 	}
 }
 
+\subsection{Yfirlit yfir uppfærslur}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Ef við viljum uppfæra, til dæmis bæta $5$ við stak $2$, þá þurfum við að sjálfsögðu að uppfæra
-			\texttt{p}, en það þarf líka breyta \texttt{s}.
-		\item<2-> Til að breyta \texttt{p} gerum við einfaldlega \texttt{p[2] += 5}.
-		\item<3-> Til að uppfæra $s$ þurfum við að finna hólfið sem stak \texttt{2} tilheyrir. Þar sem það er í hólfi \texttt{0}
-			notum við \texttt{s[0] += 5}.
+			\ilcode{p}, en það þarf líka breyta \ilcode{s}.
+		\item<2-> Til að breyta \ilcode{p} gerum við einfaldlega \ilcode{p[2] += 5}.
+		\item<3-> Til að uppfæra $s$ þurfum við að finna hólfið sem stak \ilcode{2} tilheyrir. Þar sem það er í hólfi \ilcode{0}
+			notum við \ilcode{s[0] += 5}.
 		\item<4-> Svona líta svo fylkin út, fyrir og eftir uppfærslu.
 			\[
 			\begin {array}{c c}
@@ -61,16 +65,17 @@
 	}
 }
 
+\subsection{Yfirlit yfir fyrirspurnir}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Ég fór mjög losaralega í hvernig ætti að framkvæma seinni aðgerðina.
-		\item<2-> Skoðum, sem dæmi, hverju eigi að skila fyrir \texttt{2 1 8}.
-		\item<3-> Það er aðeins eitt hólf á milli staks \texttt{1} og staks \texttt{8}, hólf \texttt{1}.
-		\item<4-> ,,Afgangurinn'', eins og ég kallaði hann áðan, eru þau stök sem ekki eru í hólfi \texttt{1}
-			en eru þó á bilinu frá \texttt{1} til \texttt{8}.
-		\item<5-> Þetta eru stök \texttt{1}, \texttt{2}, \texttt{6}, \texttt{7} og \texttt{8} (samtals summan er þá $31$).
+		\item<2-> Skoðum, sem dæmi, hverju eigi að skila fyrir \ilcode{2 1 8}.
+		\item<3-> Það er aðeins eitt hólf á milli staks \ilcode{1} og staks \ilcode{8}, hólf \ilcode{1}.
+		\item<4-> ,,Afgangurinn'', eins og ég kallaði hann áðan, eru þau stök sem ekki eru í hólfi \ilcode{1}
+			en eru þó á bilinu frá \ilcode{1} til \ilcode{8}.
+		\item<5-> Þetta eru stök \ilcode{1}, \ilcode{2}, \ilcode{6}, \ilcode{7} og \ilcode{8} (samtals summan er þá $31$).
 		\item<6-> Við erum því að leggja saman rauðu stökin á myndinni fyrir neðan,
 			\[
 			\begin {array}{c}
@@ -81,6 +86,7 @@
 	}
 }
 
+\subsection{Besta val stærða hólfanna}
 \env{frame}
 {
 	\env{itemize}
@@ -118,6 +124,7 @@
 }
 }
 
+\subsection{Umræða um tímaflækjur}
 \env{frame}
 {
 	\env{itemize}
@@ -132,14 +139,17 @@
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/sq.c}{6}{23}
+	\selectcode{code/sq.c}{6}{31}
 }
 
+\section{Rótarþáttun með uppfærslum yfir bil}
+\subsection{Lygnar uppfærslur}
 \env{frame}
 {
-	\frametitle{Lygn uppfærlsa}
+	\frametitle{Lygnar uppfærlsur}
 	\env{itemize}
 	{
 		\item<1-> Við getum einnig framkvæmt lygnar uppfærlsur þegar við notum rótarþáttun (líkt og með biltré).
@@ -148,11 +158,13 @@
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/sq-le.c}{6}{35}
+	\selectcode{code/sq-le.c}{9}{43}
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

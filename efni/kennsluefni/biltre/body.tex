@@ -6,6 +6,7 @@
 
 \frame{\titlepage}
 
+\section{Inngangur}
 \env{frame}
 {
 	\frametitle{Dæmi}
@@ -28,21 +29,24 @@
 	}
 }
 
+\section{Sýnidæmi 1: Leggja við eitt stak og summa yfir bil}
+\subsection{Yfirlit}
 \env{frame}
 {
 	\frametitle{Biltré}
 	\env{itemize}
 	{
 		\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
-		\item<2-> Rótin geymir svar við fyrirspurninni \texttt{1 n} 
-					og ef hnútur geymir svarið við \texttt{i j} þá geyma börn hans svör við \texttt{i m}
-					og \texttt{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
-		\item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \texttt{i i} eru lauf trésins.
+		\item<2-> Rótin geymir svar við fyrirspurninni \ilcode{1 n} 
+					og ef hnútur geymir svarið við \ilcode{i j} þá geyma börn hans svör við \ilcode{i m}
+					og \ilcode{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
+		\item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \ilcode{i i} eru lauf trésins.
 		\item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna.
 		\item<5-> Þegar við útfærum tréð geymum við það eins og hrúgu.
 	}
 }
 
+\subsection{Mynd af biltréi með fjögur lauf}
 \env{frame}
 {
 	\frametitle{Mynd af biltré, $n = 4$}
@@ -70,6 +74,7 @@
 	}
 }
 
+\subsection{Mynd af biltréi með sjö lauf}
 \env{frame}
 {
 	\frametitle{Mynd af biltré, $n = 7$}
@@ -110,6 +115,7 @@
 	}
 }
 
+\subsection{Yfirlit yfir uppfærslur}
 \env{frame}
 {
 	\env{itemize}
@@ -117,13 +123,14 @@
 		\item<1-> Gerum ráð fyrir að við höfum biltré eins og lýst er að ofan og látum $H$ tákna hæð trésins.
 		\item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
 		\item<3-> Fyrri fyrirspurnin er einföld.
-		\item<4-> Ef við eigum að bæta $k$ við $i$-ta stakið finnum við fyrst laufið sem svarar til fyrirspurnar \texttt{i i},
+		\item<4-> Ef við eigum að bæta $k$ við $i$-ta stakið finnum við fyrst laufið sem svarar til fyrirspurnar \ilcode{i i},
 					bætum $k$ við gildið þar og förum svo upp í rót í gegnum foreldrin og uppfærum á leiðinni gildin í þeim hnútum sem við lendum í.
 		\item<5-> Þar sem við heimsækjum bara þá hnúta sem eru á veginum frá rót til laufs (mest $H$ hnútar)
 					er tímaflækjan á fyrri fyrirspurninni $\mathcal{O}($\onslide<6->{$\,H\,$}$)$.
 	}
 }
 
+\subsection{Dæmi um uppfærslur}
 \env{frame}
 {
 	\env{center}
@@ -179,8 +186,8 @@
 			\path[draw, thick] (6) -- (13);
 
 		
-			\only<all:2-14> { \node at (-3,6) {\texttt{update(3, 7)}}; }
-			\only<all:15-24> { \node at (-3,6) {\texttt{update(6, -12)}}; }
+			\only<all:2-14> { \node at (-3,6) {\ilcode{update(3, 7)}}; }
+			\only<all:15-24> { \node at (-3,6) {\ilcode{update(6, -12)}}; }
 			\only<all:25-> { \node at (-3,6) {}; }
 
 			\only<all:1-12> { \node at (0,6) {$40$}; }
@@ -219,11 +226,13 @@
 	}
 }
 
+\subsection{Útfærsla á uppfærslum}
 \env{frame}
 {
 	\selectcode{code/daemi1-segmenttree.c}{23}{37}
 }
 
+\subsection{Yfirlit yfir fyrirspurnir}
 \env{frame}
 {
 	\env{itemize}
@@ -238,19 +247,20 @@
 	}
 }
 
+\subsection{Dæmi um fyrirspurnir}
 \env{frame}
 {
 	\env{center}
 	{
 		\env{tikzpicture}
 		{
-			\only<all:2-9> { \node at (-3,6) {\texttt{query(1, 7)}}; }
-			\only<all:10-17> { \node at (-3,6) {\texttt{query(1, 2)}}; }
+			\only<all:2-9> { \node at (-3,6) {\ilcode{query(1, 7)}}; }
+			\only<all:10-17> { \node at (-3,6) {\ilcode{query(1, 2)}}; }
 
-			\only<all:8> { \node at (-3,5.5) {\texttt{= 2 + 18 + 12}}; }
-			\only<all:9> { \node at (-3,5.5) {\texttt{= 32}}; }
-			\only<all:16> { \node at (-3,5.5) {\texttt{= 2 + 9}}; }
-			\only<all:17> { \node at (-3,5.5) {\texttt{= 11}}; }
+			\only<all:8> { \node at (-3,5.5) {\ilcode{= 2 + 18 + 12}}; }
+			\only<all:9> { \node at (-3,5.5) {\ilcode{= 32}}; }
+			\only<all:16> { \node at (-3,5.5) {\ilcode{= 2 + 9}}; }
+			\only<all:17> { \node at (-3,5.5) {\ilcode{= 11}}; }
 
 
 
@@ -324,12 +334,14 @@
 	}
 }
 
+\subsection{Útfærsla á fyrirspurnum}
 \env{frame}
 {
-	\frametitle{Biltré í \texttt{C}}
+	\frametitle{Biltré í \ilcode{C}}
 	\selectcode{code/daemi1-segmenttree.c}{10}{21}
 }
 
+\subsection{Umræða um tímaflækjur}
 \env{frame}
 {
 	\frametitle{Tímaflækja biltrjáa}
@@ -343,6 +355,8 @@
 	}
 }
 
+\section{Sýnidæmi 2: Breyta einu staki og finna stærsta stak á bili}
+\subsection{Yfirlit}
 \env{frame}
 {
 	\frametitle{Annað dæmi}
@@ -351,8 +365,8 @@
 		\item<1-> Fyrsta lína inntaksins inniheldur tvær jákvæðar heiltölur, $n$ og $m$, minni en $10^5$.
 		\item<2-> Næsta lína inniheldur $n$ heiltölur, á milli $-10^9$ og $10^9$.
 		\item<3-> Næstu $m$ línur innihalda fyrirspurnir, af tveimur gerðum. 
-		\item<4-> Fyrri gerðin hefst á \texttt{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $x$-tu töluna sem $y$.
-		\item<5-> Seinni gerðin hefst á \texttt{2} og inniheldur svo tvær tölu,
+		\item<4-> Fyrri gerðin hefst á \ilcode{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $x$-tu töluna sem $y$.
+		\item<5-> Seinni gerðin hefst á \ilcode{2} og inniheldur svo tvær tölu,
 			$x$ og $y$. Hér á að prenta út stærstu töluna á hlutbilinu $[x, y]$ í talnalistanum.
 		\item<6-> Hvernig leysum við þetta?
 	}
@@ -363,16 +377,18 @@
 	\env{itemize}
 	{
 		\item<1-> Við getum leyst þetta með biltrjám.
-		\item<2-> Í stað þess að láta hnúta (sem eru ekki lauf) geyma summu barna sinna, þá geyma þær stærra stak barna sinna.
+		\item<2-> Í stað þess að láta hnúta (sem eru ekki lauf) geyma summu barna sinna, þá geyma þeir stærra stak barna sinna.
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
 	\frametitle{Lausn}
 	\selectcode{code/daemi2-segmenttree.c}{11}{38}
 }
 
+\section{Biltré með uppfærslum yfir bil}
 \env{frame}
 {
 	\env{itemize}
@@ -388,13 +404,15 @@
 	}
 }
 
+\section{Sýnidæmi 3: Leggja við öll stök á bili og finna stærsta stak á bili}
+\subsection{Yfirlit}
 \env{frame}
 {
 	\frametitle{Lygn dreifing}
 	\env{itemize}
 	{
 		\item<1-> Sem beinagrind munum við nota biltrjáa útfærsluna sem við notuðum til að leysa fyrsta dæmið.
-		\item<2-> Við munum nú láta fyrri fyrirspurnina, \texttt{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
+		\item<2-> Við munum nú láta fyrri fyrirspurnina, \ilcode{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
 		\item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
 		\item<4-> Við geymum í öðrum tréi þær uppfærslur sem við eigum eftir að framkvæma.
 		\item<5-> Í hverri endurkvæmni (bæði uppfærslum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
@@ -403,20 +421,22 @@
 	}
 }
 
+\subsection{Skipting uppfærslanna}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til hnúts í biltréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
-		\item<2-> Gerum ráð fyrir að við eigum eftir að framkvæma uppfærslu \texttt{i j k}.
-		\item<3-> Næst þegar við köllum á \texttt{query\_rec(i, j, ...)} eða \texttt{update\_rec(i, j, ...)}
-					þá munum við dreifa uppfærslunni \texttt{i j k}.
+		\item<2-> Gerum ráð fyrir að við eigum eftir að framkvæma uppfærslu \ilcode{i j k}.
+		\item<3-> Næst þegar við köllum á \ilcode{qrec(i, j, ...)} eða \ilcode{urec(i, j, ...)}
+					þá munum við dreifa uppfærslunni \ilcode{i j k}.
 		\item<4-> Eftir dreifinguna munum við ekki eiga eftir uppfærslu á bilinu $[i, j]$, en við munum eiga eftir uppfærslurnar
-					\texttt{i m k} og \texttt{(m + 1) j k}.
-		\item<5-> Þegar við dreifum uppfærslunni \texttt{i i k} þá nægir að uppfæra tilheyrandi lauf í biltrénu.
+					\ilcode{i m k} og \ilcode{(m + 1) j k}.
+		\item<5-> Þegar við dreifum uppfærslunni \ilcode{i i k} þá nægir að uppfæra tilheyrandi lauf í biltrénu.
 	}
 }
 
+\subsection{Gildin geymd í innrihnútum}
 \env{frame}
 {
 	\env{itemize}
@@ -426,26 +446,164 @@
 		\item<3-> Hnútar lygna biltrjáa þurfa að geyma summu barna sinna,
 					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hans.
 		\item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
-		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \texttt{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
+		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \ilcode{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
 					því rótin geymir summu allra stakana.
 	}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
 	\selectcode{code/daemi3-segmenttree-le.c}{10}{44}
 }
 
+\subsection{Umræða um tímaflækjur}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Nú hefur \texttt{query(...)} sömu tímaflækju og í hefðbundnum biltrjám, það er að segja $\mathcal{O}($\onslide<2->{$\log n$}$)$.
-		\item<3-> Loks fæst (með sömu rökum og gefa tímaflækju \texttt{query(...)}) að \texttt{update(...)} er
+		\item<1-> Nú hefur \ilcode{query(...)} sömu tímaflækju og í hefðbundnum biltrjám, það er að segja $\mathcal{O}($\onslide<2->{$\log n$}$)$.
+		\item<3-> Loks fæst (með sömu rökum og gefa tímaflækju \ilcode{query(...)}) að \ilcode{update(...)} er
 					$\mathcal{O}($\onslide<4->{$\log n$}$)$.
 	}
 }
 
+\section{Sýnidæmi 4: Leggja mismikið við stök á bili og finna summu yfir bil}
+\subsection{Yfirlit}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Til að geta útfært lygnt biltré þurfum við geta skipt uppfærslum í tvennt.
+		\item<2-> Við þurfum líka að geta sameinað uppfærslur.
+		\item<3-> Í dæminu á undan skiptist \ilcode{i j k} í \ilcode{i m k} og \ilcode{m + 1 j k}.
+		\item<4-> Í dæminu á undan sameinast fyrirspurnir \ilcode{i j x} og \ilcode {i j y} í \ilcode{i j x + y}.
+		\item<5-> Tökum annað dæmi.
+		\item<6-> Við viljum aftur geta reiknað summuna yfir bil.
+		\item<7-> Við viljum einnig geta bætt núll við stak $x$, einum við stak $x + 1$, tveimur við stak $x + 2$, ..., $y - x$ við stak $y$.
+		\item<8-> Þessu uppfærsla svarar til að framkvæma \ilcode{a[x + i] += i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+	}
+}
+
+\subsection{Skipting á uppfærslunni}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Er hægt að skipta uppfærslunni \ilcode{x y} í tvennt?
+		\item<2-> Nei.
+		\item<3-> En við getum bætt við viðfangi sem lýsir hvar summan á að byrja.
+		\item<4-> Uppfærslan \ilcode{x y r} svarar þá til \ilcode{a[x + i] += r + i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+		\item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0}.
+		\item<6-> Við getum þá skipt \ilcode{x y r} í tvennt í \ilcode{x m r} og \ilcode{m + 1 y r + m - x + 1}
+	}
+}
+
+\subsection{Sameining uppfærsla}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Er hægt að sameina uppfærslurnar \ilcode{x y r} og \ilcode{x y w}?
+		\item<2-> Nei.
+		\item<3-> En við getum bætt við öðru viðfangi sem lýsir hversu mikið summan breytist í hverju skrefi.
+		\item<4-> Uppfærslan \ilcode{x y r k} svarar þá til \ilcode{a[x + i] += r + i*k;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+		\item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0 1}.
+		\item<6-> Við getum nú sameinað tvær fyrirspurnir \ilcode{x y r k} og \ilcode{x y z w} í \ilcode{x y r + z k + w}.
+		\item<7-> Við getum einnig skipt \ilcode{x y r k} í \ilcode{x m r k} og \ilcode{m + 1 y r + k*(m - x + 1) k}.
+	}
+}
+
+\subsection{Uppfærsla á innri hnútum}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Til að uppfæra gildin í hverjum hnút nýtum við okkur að uppfærsla \ilcode{x y r k} bætir í heildina 
+\[
+					r \cdot (y - x + 1) + k \cdot (y - x + 1) \cdot (y - x) / 2
+\]
+					við laufin.
+	}
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+	\selectcode{code/daemi4-segmenttree-le.c}{9}{20}
+}
+
+\env{frame}
+{
+	\selectcode{code/daemi4-segmenttree-le.c}{22}{56}
+}
+
+\section{Sýnidæmi 5: Finna lengda sammengis bila}
+\subsection{Yfirlit}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum nú dæmi sem er aðeins flóknara.
+		\item<2-> Við höfum safn af bilum með heiltölu endapunkta sem byrjar tómt.
+		\item<3-> Við getum annað hvort bætt við bili í safnið eða fjarlægt það.
+		\item<4-> Við viljum síðan geta fundið lengd sammengis allra bilana í safninu.
+	}
+}
+
+\subsection{Lausn með biltrjám}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum leyst þetta dæmi með biltréi sem styður aðgerðirnar:
+		\env{itemize}
+		{
+			\item<2-> Leggja tölu við bil.
+			\item<3-> Finna hversu mörg stök á bilinu eru núll.
+		}
+		\item<4-> Við munum þurfa að gera ráð fyrir því að það séu aldrei neikvæðar tölur í trénu.
+		\item<5-> Þá getum við útfært þetta með biltréi sem geymir minnsta stakið (sem við sáum áðan),
+					ásamt því að geyma hversu oft minnsta stakið kemur fyrir.
+		\item<6-> Fjöldi núlla á bili er þá annaðhvort fjöldi minnstu stakanna á bilinu ef minnsta stakið er núll, en núll annars.
+		\item<7-> Þetta virkar aðeins ef minnsta stakið er aldrei minna núll.
+	}
+}
+
+\subsection{Aðferð til að höndla bil með stórum endapunktum}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Lauf biltrésins munu nú svara til mögulegra gilda endapunkta bilanna
+		\item<2-> Ef endapunktarnir geta verið stórir (til dæmis $10^9$) verður þessi lausn of hæg.
+		\item<3-> Ef við vitum öll bilin fyrirfram getum við komist hjá því með því að geyma í trénu bara þá endapunkta við notum.
+		\item<4-> Gerum ráð fyrir að endapunktar bilanna séu alltaf einhver talnanna $x_1 < x_2 < \dots < x_m$.
+		\item<5-> Til að bæta bilinu $[x_i, x_j]$ í tréð notum við uppfærsluna \ilcode{i j 1}
+					og til að fjarlægja bilið notum við \ilcode{i j -1}.
+		\item<6-> Gildin í trénu verða aldrei neikvæð því við fjarlægju ekki bil nema að hafa sett það í tréð áður.
+		\item<7-> Til að fá rétta lengd geymir laufið sem svarar til vísi $i$ töluna $x_{i + 1} - x_i$.
+		\item<8-> Við svörum þá fyrirspurninni með \ilcode{i j - 1} ef minnsta gildið er núll (sem við reiknum með annarskonar fyrirspurn í biltrénu).
+	}
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+	\selectcode{code/daemi5-segmenttree-le.c}{12}{35}
+}
+
+\env{frame}
+{
+	\selectcode{code/daemi5-segmenttree-le.c}{37}{70}
+}
+
+\env{frame}
+{
+	\selectcode{code/daemi5-segmenttree-le.c}{72}{83}
+}
+
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

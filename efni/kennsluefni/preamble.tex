@@ -13,6 +13,15 @@
 \usetikzlibrary{angles, shapes}
 \usepackage{array}
 
+\setbeamertemplate{footline}{% 
+  \hfill% 
+  \usebeamercolor[fg]{page number in head/foot}% 
+  \usebeamerfont{page number in head/foot}% 
+  \insertframenumber%
+  %\,/\,\inserttotalframenumber
+  \kern2em\vskip4pt% 
+}
+
 \DeclareMathOperator{\lcm}{lcm}
 
 \newcommand\env[2]

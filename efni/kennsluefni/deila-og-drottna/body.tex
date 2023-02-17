@@ -49,7 +49,7 @@
 		\item<4-> Margföldunarreiknirit Karatsuba.
 		\item<5-> Margföldunarreiknirit Strassen.
 		\item<6-> Nálægustu punktar í plani.
-		\item<7-> Fourier ummyndun (e. \emph{fast Fourier transform} (\texttt{FFT})).
+		\item<7-> Fourier ummyndun (e. \emph{fast Fourier transform} (\ilcode{FFT})).
 	}
 }
 
@@ -189,7 +189,7 @@
 
 \env{frame}
 {
-	\selectcode{code/mergesort.c}{6}{25}
+	\selectcode{code/mergesort.c}{6}{20}
 }
 
 \env{frame}
@@ -298,7 +298,7 @@
 	\env{itemize}
 	{
 		\item<1-> Takið eftir við munum ekki beint finna $x \in [a, b]$ þannig að $f(x) = y$.
-		\item<2-> Það sem við finnum er $x \in [a, b]$ þannig að $|f(x) - y| < \varepsilon$, fyrir hvaða $\varepsilon$ sem vera skal.
+		\item<2-> Það sem við finnum er $x \in [a, b]$ þannig að $|f(x) - y| < \varepsilon$, fyrir hvaða $\varepsilon > 0$ sem vera skal.
 		\item<3-> Það er þó aldrei ætlast til annars í keppnisforritun og skekkjan er alltaf gefin í úttakslýsingu dæma.
 	}
 }
@@ -333,7 +333,7 @@
 		\item<6-> Við megum þá ekki setja kött á bæli sem liggja í $[x_1, x_1 + r]$.
 		\item<7-> Útilokum þau og veljum minnsta bælið sem er eftir, og endurtökum.
 		\item<8-> Ef við komum fyrir $k$, eða fleiri, köttum svona þá er svarið við nýju spurningunni ``já'', en annars ``nei''.
-		\item<9-> Þetta tekur $\mathcal{O}($\onslide<10->{$n + k$}$)$.
+		\item<9-> Þetta tekur $\mathcal{O}($\onslide<10->{$n$}$)$.
 	}
 }
 
@@ -404,7 +404,7 @@
 	\env{itemize}
 	{
 		\item<1-> Ef við látum $M = 10^9/\varepsilon$, þar sem $\varepsilon$ er leyfileg skekkja í dæminu, þá er lausnin
-			$\mathcal{O}($\onslide<2->{$(k + n) \log M$}$)$.
+			$\mathcal{O}($\onslide<2->{$n \log M$}$)$.
 		\item<3-> Hér gerum við ekki ráð fyrir að svarið sé heiltala.
 		\item<4-> Ef við gerum ráð fyrir því verður tímaflækjan eins, nema með $M = 10^9$.
 	}
@@ -549,7 +549,7 @@
 
 \env{frame}
 {
-	\code{code/ts.c}
+	\selectcode{code/ts.c}{3}{21}
 }
 
 \env{frame}
@@ -640,7 +640,7 @@
 
 \env{frame}
 {
-	\code{code/skortsala.c}
+	\selectcode{code/skortsala.c}{6}{35}
 }
 
 \env{frame}

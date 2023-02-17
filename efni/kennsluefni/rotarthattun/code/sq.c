@@ -3,27 +3,35 @@
 #include <stdlib.h>
 #include <time.h>
 #include <assert.h>
-#define MAXN 2000000
-int a[MAXN], s[MAXN], n, e; // n = e*e
+#define MAXN 1000000
+int a[MAXN], s[MAXN], n, e;                                                     // Við þurfum að n = e*e gildi.
 
-void update(int x, int y)
-{ // Bætir y við x-ta stakið.
-	s[x/e] += y;
-	a[x] += y;
+void update(int x, int y)                                                       // Bætir y við x-ta stakið.
+{ 
+	s[x/e] += y;                                                                // Uppfærum hólfið sem x tilheyrir.
+	a[x] += y;                                                                  // Uppfærum líka fylkið.
 }
 
-int query(int x, int y)
-{ // Finnum summuna yfir [x, y - 1].
+int query(int x, int y)                                                         // Finnum summuna yfir [x, y - 1].
+{
     int r = 0;
-	while (x%e != 0 && x < y) r += a[x++];
-	if (x == y) return r;
-	while (y%e != 0) r += a[--y];
-	while (x < y) r += s[x/e], x += e;
-    return r;
+	while (x%e != 0 && x < y) r += a[x++];                                      // Reiknum summun frá x út að y eða enda hólfsins sem x tilheyrir.
+	if (x == y) return r;                                                       // Við fórum ekki út í enda hólfsins svo við erum komin með svarið.
+	while (y%e != 0) r += a[--y];                                               // Reiknum summuna frá y að upphafi hólfsins sem y tilheyrir.
+	while (x < y) r += s[x/e], x += e;                                          // Reiknum summuna í öllum hólfinum á milli hólfanna sem x og y yilheyra.
+    return r;                                                                   // Skilum svarinu.
 }
 
-int slow(int* b, int l, int r)
-{ // Línulegt fall til að bera saman við.
+int init(int n)                                                                 // Upphafstillir fyrir n og skilar stærð hólfanna.
+{
+	int i, r = 0;
+	while (r*r < n) r++;
+	for (i = 0; i < r; i++) s[i] = 0;
+	return r;
+}
+
+int slow(int* b, int l, int r)                                                  // Línulegt fall til að bera saman við.
+{
 	int x = 0;
 	while (l < r) x += b[l++];
 	return x;
@@ -39,12 +47,10 @@ int main()
 {
 	srand(time(NULL));
 	int i, j, q = 1000000, x, w, y;
-	e = 1, n = 100;
-	while (e*e < n) e++;
-	n = e*e;
+	n = 200;
 	int b[n];
 	for (i = 0; i < n; i++) b[i] = a[i] = 0;
-	for (i = 0; i < e; i++) s[i] = 0;
+	e = init(n);
 	while (q-- != 0)
 	{
 		x = rand()%(n - 1), w = x + 1 + rand()%(n - x - 1), y = rand()%(n*10);

@@ -1,3 +1,4 @@
 fenwicktre
 breyta 'texttt' í 'ilcode'
 setja 'onslide' inn í mathmode
+gera index á allar glærur

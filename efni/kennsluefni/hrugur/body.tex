@@ -6,6 +6,7 @@
 
 \frame{\titlepage}
 
+\section{Inngangur}
 \env{frame}
 {
 	\frametitle{Hrúgur}
@@ -18,6 +19,7 @@
 	}
 }
 
+\section{Útskýring á útfærslu trésins}
 \env{frame}
 {
 	\env{itemize}
@@ -45,6 +47,7 @@
 	}
 }
 
+\section{Forgangsbiðraðir með hrúgum}
 \env{frame}
 {
 	\env{itemize}
@@ -55,23 +58,33 @@
 	}
 }
 
+\section{Útfærlsa á hrúgum}
 \env{frame}
 {
 	\selectcode{code/heap.c}{8}{41}
 }
 
+\section{Umræða um tímaflækjur}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Gerum ráð fyrir að við séum með $n$ stök í hrúgunni.
 		\item<2-> Þá er hæð trésins $\mathcal{O}($\onslide<3->{$\log n$}$)$.
-		\item<4-> Þar sem \texttt{pop()} þarf aðeins að ferðast einu sinni niður að laufi er tímaflækjan $\mathcal{O}($\onslide<5->{$\log n$}$)$.
-		\item<6-> Þar sem \texttt{push(...)} þarf aðeins að ferðast einu sinni upp að rót er tímaflækjan $\mathcal{O}($\onslide<7->{$\log n$}$)$.
-		\item<8-> Nú þarf \texttt{peek()} ekki að gera annað en að lesa fremsta stakið í fylki svo tímaflækjan er $\mathcal{O}($\onslide<9->{$\,1\,$}$)$.
+		\item<4-> Þar sem \ilcode{pop()} þarf aðeins að ferðast einu sinni niður að laufi er tímaflækjan $\mathcal{O}($\onslide<5->{$\log n$}$)$.
+		\item<6-> Þar sem \ilcode{push(...)} þarf aðeins að ferðast einu sinni upp að rót er tímaflækjan $\mathcal{O}($\onslide<7->{$\log n$}$)$.
+		\item<8-> Nú þarf \ilcode{peek()} ekki að gera annað en að lesa fremsta stakið í fylki svo tímaflækjan er $\mathcal{O}($\onslide<9->{$\,1\,$}$)$.
+		\item<10-> Við getum útfært þetta með ítrun, í stað þess að nota endurkvæmni.
 	}
 }
 
+\section{Ítruð útfærsla á hrúgum}
+\env{frame}
+{
+	\selectcode{code/heap-iter.c}{13}{33}
+}
+
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }
