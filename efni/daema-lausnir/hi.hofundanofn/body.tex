@@ -1,0 +1,44 @@
+\title{Lausn á \emph{Höfundanöfn}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Dæmalýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ykkur er gefið nafn.
+		\item<2-> Nafnið er strengur sem inniheldur bara bókstafi og bil.
+		\item<3-> Þið eigið að prenta út nafnið á höfundaformi.
+		\item<4-> Þá er síðasta orðið í nafninu skrifað fyrst,
+					og síðan fyrsti stafurinn í hinum nöfnunum í réttri röð með punkt á milli en kommu aftan við síðasta orðið.
+		\item<5-> Til dæmis verður ,,Bergur Snorrason'' að ,,Snorrason, B'' og
+					,,Atli Fannar Franklin'' verður ,,Franklin, A. F.''.
+	}
+}
+
+\section{Lausn}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við skiptum strengnum í inntakinu í minni strengi á bilum (til dæmis með \ilcode{split(...)} í \ilcode{Python}).
+		\item<2-> Þá getum við auðveldlega prentað eins og lýst er í dæmalýsingunni.
+		\item<3-> Gryfja:
+		\env{itemize}
+		{
+			\item<4-> Nafnið getur verið eitt orð, til dæmis ,,Bergur''. Þá á bara að prenta ,,Bergur'', án kommu.
+		}
+	}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

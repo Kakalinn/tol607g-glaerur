@@ -1,0 +1,72 @@
+\title{Lausn á \emph{Yet Another Query on Array Problem}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Dæmalýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gefnar eru $n$ heiltölur $a_1, \dots, a_n$.
+		\item<2-> Síðan eru gefnar eru $q$ fyrirspurnir $x_1, y_1, \dots, x_n, y_n$.
+		\item<3-> Fyrirspurnin $x, y$ svarar til þess að breyta öllum tölunum í listanum sem eru jafnar $a_x$ í $a_y$.
+		\item<4-> Fyrir hverja fyrirspurn skal prenta fjölda $a_x$ í listanum fyrir fyrirspurna og fjölda $a_y$ í listanum eftir fyrirspurnina.
+	}
+}
+
+\section{Sýniinntak}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Sýniinntakið er
+		\item<2->[] \code{code/sample.in}
+		\item<3-> Listinn er þá, á hverju tímapunkti:
+		\item<4->[] \ilcode{1 2 3 4 5 6}
+		\item<5->[] \ilcode{1 4 3 4 5 6}
+		\item<6->[] \ilcode{1 4 4 4 5 6}
+		\item<7->[] \ilcode{1 4 4 4 5 5}
+		\item<8->[] \ilcode{1 5 5 5 5 5}
+	}
+}
+
+\section{Lausn}
+\subsection{Lýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Lausnin byggir á \onslide<2->{sammengisleit}.
+		\item<3-> Fyrir fyrirspurnina $x, y$ prentum við \ilcode{size(x)} og \ilcode{size(x) + size(y)} ef $x$ og $y$ eru ekki í sama samhengisþætti.
+		\item<4-> Annars prentum við \ilcode{size(x)} tvisvar.
+		\item<5-> Síðan sameinum við $x$ og $y$ (með \ilcode{join(x, y)}).
+		\item<6-> \bf{ATH:} Tölurnar í inntakinu eru ekki nauðsynlega ólíkar.
+		\item<7-> Við þurfum að byrja á að sameina tölur sem eru eins.
+		\item<8-> Ein leið til að gera þetta er að raða tvenndunum $(a_i, i)$ eftir fyrra hnitinu.
+		\item<9-> Þá eru eins stök aðliggjandi.
+		\item<10-> Síðan fæst upprunalegi listinn aftur með því að raða eftir seinna hnitinu.
+		\item<11-> Einnig má nota \ilcode{map} til að geyma minnsta vísinn á tiltekna tölu, og svo alltaf sameina við þann vísi.
+	}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Röðun tekur $\mathcal{O}(\onslide<2->{n \log n})$ tíma.
+		\item<3-> Sammengisleitin tekur styttri tíma.
+		\item<4-> Heildartímaflækjan er því $\mathcal{O}(\onslide<5->{n \log n})$ tíma.
+	}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

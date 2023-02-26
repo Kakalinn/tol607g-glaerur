@@ -6,13 +6,14 @@
 
 \frame{\titlepage}
 
+\section{Skilgreining neta}
+\subsection{Hnútar, leggir, stefnd net, óstefnd net og nágrannar}
 \env{frame}
 {
-	\frametitle{Net}
 	\env{itemize}
 	{
 		\item<1-> Tvennd $(V, E)$, þar sem $V$ er endanlegt mengi og $E \subset V \times V$, kallast \emph{net} (e. \emph{graph}).
-		\item<2-> Stökin í $V$ köllum við \emph{hnúta} (e. \emph{node}) og stökin í $E$ köllum við \emph{leggi} (e. \emph{edge}).
+		\item<2-> Stökin í $V$ köllum við \emph{hnúta} (e. \emph{vertices}) og stökin í $E$ köllum við \emph{leggi} (e. \emph{edges}).
 		\item<3-> Ef venslin $E$ eru samhverf, það er að segja ef 
 					\[
 						(u, v) \in E \Rightarrow (v, u) \in E,
@@ -25,11 +26,12 @@
 	}
 }
 
+\subsection{Athugasemdir um fjöldatölur}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Takið eftir að netið $G = (V, E)$ hefur $|V|$ fjölda hnúta og $|E|$ fjölda leggja (ögn flóknara ef netið er óstefnt).
+		\item<1-> Takið eftir að stefnda netið $G = (V, E)$ hefur $|V|$ fjölda hnúta og $|E|$ fjölda leggja (ögn flóknara ef netið er óstefnt).
 		\item<2-> Tímaflækjur reinkirita í netafræði eru því iðulega gefnar sem föll af $|V|$ og $|E|$ (hingað til höfum við aðalega notað $n$).
 		\item<3-> Þegar ég forrita netafræði dæmi læt ég yfirleitt $n$ tákna fjölda hnúta og $m$ tákna fjölda leggja.
 		\item<4-> Því kemur fyrir að ég lýsa tímaflækjum reikniritana með þessum breytum.
@@ -38,6 +40,7 @@
 	}
 }
 
+\subsection{Teikning neta}
 \env{frame}
 {
 	\env{itemize}
@@ -50,6 +53,7 @@
 	}
 }
 
+\subsection{Dæmi um myndir af netum}
 \env{frame}
 {
 	\env{center}
@@ -96,6 +100,7 @@
 	}
 }
 
+\subsection{Lykkjur, endurteknir leggir og einföld net}
 \env{frame}
 {
 	\env{itemize}
@@ -103,27 +108,29 @@
 		\item<1-> Leggir af gerðinni $(u, u)$ kallast \emph{lykkjur} (e. \emph{loop}) (ástæða nafngiftarinnar sést af fyrri myndinni).
 		\item<2-> Net án leggja kallast \emph{einfalt} (e. \emph{simple}).
 		\item<3-> Í umfjöllun okkar gerum við ráð fyrir að öll net séu einföld nema annað sé tekið fram.
-		\item<4-> Yfirleitt eru net skilgreind á veg sem leyfa fleiri en einn legg milli hnúta.
+		\item<4-> Algengt eru að skilgreina net á mát sem leyfir fleiri en einn legg milli tveggja tiltekinna hnúta.
 		\item<5-> Einföld net þurfa þá líka að hafa í mesta lagi einn legg milli hnúta.
 	}
 }
 
+\subsection{Vegir, rásir, samanhangandi net og tré}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Runa hnúta $v_1, v_2, ..., v_n$ kallast \emph{vegur} (e. \emph{path}) ef $(v_j, v_{j + 1}) \in E$, fyrir $j = 1, 2, ..., n - 1$.
-		\item<2-> Vegur kallast \emph{rás} (e. \emph{cycle}) ef $v_1 = v_n$.
-		\item<3-> Vegur kallast \emph{einfaldur} (e. \emph{simple}) ef engir tveir hnútar í $v_1, v_2, ..., v_n$ eru eins.
+		\item<2-> Vegurinn kallast \emph{rás} (e. \emph{cycle}) ef $v_1 = v_n$.
+		\item<3-> Vegurinn kallast \emph{einfaldur} (e. \emph{simple}) ef engir tveir hnútar í $v_1, v_2, ..., v_n$ eru eins.
 		\item<4-> Rás kallast \emph{einföld} (e. \emph{simple}) ef engir tveir hnútar í $v_1, v_2, ..., v_{n - 1}$ eru eins.
 		\item<5-> Við segjum að vegurinn $v_1, v_2, ..., v_n$ \emph{liggi á milli hnútanna $v_1$ og $v_n$}.
 		\item<6-> Óstefnt net er sagt vera \emph{samanhangandi} (e. \emph{connected}) ef til er vegur milli sérhverja tveggja hnúta.
 		\item<7-> Óstefnt net er sagt vera \emph{tré} (e. \emph{tree}) ef það er samanhangandi og inniheldur enga rás.
 	}
 }
+
+\section{Framsetning neta í tölvum}
 \env{frame}
 {
-	\frametitle{Framsetning neta í tölvum}
 	\env{itemize}
 	{
 		\item<1-> Það er engin stöðluð leið til að geyma net í minni.
@@ -137,9 +144,9 @@
 	}
 }
 
+\subsection{Leggjalisti}
 \env{frame}
 {
-	\frametitle{Leggjalisti}
 	\env{itemize}
 	{
 		\item<1-> Látum $G = (V, E)$ tákna netið okkar.
@@ -147,11 +154,12 @@
 		\item<3-> Látum $m$ vera fjölda leggja í $G$.
 		\item<4-> Listi af tvenndum sem inniheldur nákvæmlega sömu stök og $E$ kallast \emph{leggjalisti} netsins $G$.
 		\item<5-> Við notum leggjalist sjaldan, en það kemur fyrir (til dæmis í reikniriti Kruskals).
-		\item<6-> Net í dæmum í keppnisforritun eru þó oftast gefin með leggja lista.
+		\item<6-> Net í dæmum í keppnisforritun eru þó oftast gefin með leggjalista.
 		\item<7-> Í óstefndum netum er hver leggur tvítekinn í $E$ og við leyfum okkur að sleppa annari endurtekningunni í listanum.
 	}
 }
 
+\subsection{Dæmi um leggjalista}
 \env{frame}
 {
 	\env{center}
@@ -189,21 +197,22 @@
 	}
 }
 
+\subsection{Nágrannafylki}
 \env{frame}
 {
-	\frametitle{Nágrannafylki}
 	\env{itemize}
 	{
-		\item<1-> Látum $A$ vera $n \times n$ fylki þannig að $A_{uv} = 1$ ef $(u, v)$ er í $E$, en $A_{uv} = 0$ annars.
+		\item<1-> Látum $A$ vera $V \times V$ fylki þannig að $A_{uv} = 1$ ef $(u, v)$ er í $E$, en $A_{uv} = 0$ annars.
 		\item<2-> Við köllum $A$ \emph{nágrannafylki} netsins $G$.
-		\item<3-> Takið eftir að það tekur $\mathcal{O}($\onslide<4->{$n^2$}$)$ tíma að upphafsstilla $A$.
-		\item<5-> Svo þessi aðferð er alferið of hæg ef, til dæmis, $n = 10^5$ (sem er oft raunin).
-		\item<6-> Þegar $n$ er nógu lítið eru nágrannafylki nytsamleg því við getum ákvarðað hvort tveir hnútar séu nágrannar í
+		\item<3-> Takið eftir að það tekur $\mathcal{O}($\onslide<4->{$V^2$}$)$ tíma að upphafsstilla $A$.
+		\item<5-> Svo þessi aðferð er oft of hæg ef, til dæmis ef $V = 10^5$ (sem er oft raunin).
+		\item<6-> Þegar $V$ er nógu lítið eru nágrannafylki nytsamleg því við getum ákvarðað hvort tveir hnútar séu nágrannar í
 					$\mathcal{O}($\onslide<7->{$\,1\,$}$)$ tíma.
-		\item<8-> Einnig hefur $A^p$ (fylkjamargföldun) hefur einnig áhugaverða talningarfræðilega merkingu sem við skoðum síðar.
+		\item<8-> Einnig hefur $A^p$ (fylkjamargföldun) áhugaverða talningarfræðilega merkingu sem við skoðum síðar.
 	}
 }
 
+\subsection{Dæmi um nágrannafylki}
 \env{frame}
 {
 	\env{center}
@@ -235,15 +244,15 @@
 	\]
 }
 
+\subsection{Nágrannalistar}
 \env{frame}
 {
-	\frametitle{Nágrannalistar}
 	\env{itemize}
 	{
-		\item<1-> Látum nú $V$ tákna lista af $n$ listum.
-		\item<2-> Táknum $j$-ta lista $V$ með $V_j$.
-		\item<3-> Látum nú $V_u$ innihalda alla nágranna hnútsins $u$ í netinu $G$, án endurtekningar.
-		\item<4-> Við köllum $V$ \emph{nágrannalista} (fleirtölu) netsins $G$ og $V_u$ \emph{nágrannalista} (eintölu) hnútsins $u$ í netinu $G$.
+		\item<1-> Látum nú $L$ tákna lista af $n$ listum.
+		\item<2-> Táknum $j$-ta lista $L$ með $L_j$.
+		\item<3-> Látum nú $L_u$ innihalda alla nágranna hnútsins $u$ í netinu $G$, án endurtekningar.
+		\item<4-> Við köllum $L$ \emph{nágrannalista} (fleirtölu) netsins $G$ og $L_u$ \emph{nágrannalista} (eintölu) hnútsins $u$ í netinu $G$.
 		\item<5-> Helsti kostur nágrannalistanna er að við getum skoðað alla nágranna tiltekins hnúts án þess að skoða neitt annað.
 		\item<6-> Við getum því ítrað í gegnum alla nágranna allra hnúta í $\mathcal{O}($\onslide<7->{$E + V$}$)$ tíma,
 					óháð röð hnútanna.
@@ -251,6 +260,7 @@
 	}
 }
 
+\subsection{Dæmi um nágrannalista}
 \env{frame}
 {
 	\env{center}
@@ -279,12 +289,13 @@
 	}
 }
 
+\subsection{Gagnagrind til að geyma net}
 \env{frame}
 {
 	\env{itemize}
 	{
 		\item<1-> Eins og minnst var á áðan eru net oftast gefin með leggjalista, en við vinnum yfirleitt með nágrannalista.
-		\item<2-> Til að breyta á milli látum nágrannalistann okkar vera af tagi \texttt{vector<vector<int>\!\!\!\! >}.
+		\item<2-> Til að breyta á milli látum nágrannalistann okkar vera af tagi \ilcode{vector<vector<int>\!\!\!\! >}.
 		\item<3-> Við upphafsstillum hann með $n$ tómum listum.
 		\item<4-> Við lesum svo í gegnum alla leggina og bætum viðeigandi hnútum í tilheyrandi nágrannalista.
 		\item<5-> Ef leggur $(u, v)$ er í leggjalista stefnds nets þá bætum við $v$ við $V_u$.
@@ -292,14 +303,15 @@
 	}
 }
 
+\subsection{Útfærsla á innlestri liggjalist sem nágrannalista}
 \env{frame}
 {
 	\code{code/ll2nl.cpp}
 }
 
+\section{Vegin net}
 \env{frame}
 {
-	\frametitle{Vegin net}
 	\env{itemize}
 	{
 		\item<1-> Við segjum að þrenndin $(V, E, w)$, þar sem $(V, E)$ er net og $w \colon E \rightarrow \mathbb{R} \cup \{-\infty, \infty\}$, sé
@@ -311,9 +323,9 @@
 	}
 }
 
+\subsection{Útfærsla á vegnum netum}
 \env{frame}
 {
-	\frametitle{Vegin net}
 	\env{itemize}
 	{
 		\item<1-> Þegar við geymum vegin net í einhverri gagnagrind þá bætum við yfirleitt bara vigtinni við.
@@ -323,16 +335,18 @@
 					$A_{uv} = w(e)$ er leggurinn $e$ liggur frá hnút $u$ til hnúts $v$.
 		\item<5-> Nágrannalistar vegins nets eru listar af tvenndum, fyrra stak tvenndarinnar er nágranninn og seinna stakið er vigtin á leggnum
 					til nágrannans.
-		\item<6-> Nágrannalistarnir eru því geymdir með \texttt{vector<vector<pair<int, int>\!\!\!\! >\!\!\!\! >}.
-		\item<7-> Við notum \texttt{typedef} til að stytta þetta niður í \texttt{vvii}.
+		\item<6-> Nágrannalistarnir eru því geymdir með \ilcode{vector<vector<pair<int, int>\!\!\!\! >\!\!\!\! >}.
+		\item<7-> Við notum \ilcode{typedef} til að stytta þetta niður í \ilcode{vvii}.
 	}
 }
 
+\subsection{Útfærsla á innlestri vegins nets gefið með leggjalista og yfirfært í nágrannalista}
 \env{frame}
 {
 	\code{code/ll2nlw.cpp}
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

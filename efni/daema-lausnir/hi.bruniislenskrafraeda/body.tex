@@ -1,0 +1,71 @@
+\title{Lausn á \emph{Bruni íslenskra fræða}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Dæmalýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þú hefur eld sem getur logað í $t$ sekúndur.
+		\item<2-> Síðan hefur þú $n$ bækur, hverri lýst með tveimur heiltölum.
+		\item<3-> Bók lýst með tölunum $t_i$ og $f_i$ lengir líftíma eldsins um $f_i$ sekúndur, en það tekur $t_i$ sekúndur að sækja bókina.
+		\item<4-> Ef líftími eldsins er $t_0$ sekúndur getur þú notað bókina til að lengja líftímann ef $t_i \leq t_0$.
+		\item<5-> Eftir að nota þá bók verður líftími eldsins $t_0 + f_i - t_i$.
+	}
+}
+
+\section{Lausn}
+\subsection{Gráugi helmingurinn}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Tökum eftir að það borgar sig alltaf að taka bækur þannig að $t_i \leq f_i$, ef það er nægur tími til að sækja þær.
+		\item<2-> Skiptum því bókunum í tvennt.
+		\item<3-> Látum $j_1 < j_2 < \dots < j_m$ þannig að $t_i \leq f_i$ þá og því aðeins að $i = j_k$ fyrir eitthvert $k$.
+		\item<4-> Röðum svo tvenndunum $(t_{j_1}, f_{j_1}), \dots, (t_{j_m}, f_{j_m})$ í vaxandi röð eftir fyrra hnitinu.
+		\item<5-> Þá getum við gráðugt gengið á listann og tekið þær bækur sem við höfum tíma til að sækja.
+		\item<6-> Eftir þetta skoðum við bækurnar sem uppfylla að $t_i > f_i$.
+	}
+}
+
+\subsection{Kvik bestunar helmingurinn}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum núna ímyndað okkur að $t_i > f_i$ gildi alltaf.
+		\item<2-> Röðum tvenndunum $(t_1, f_1), \dots, (t_n, f_n)$ í vaxandi röð eftir seinna hnitinu.
+		\item<3-> Þá getum við gengið á tvenndirnar í öfugri röð og prófað bæði að taka tiltekna bók og ekki.
+		\item<4-> Við fáum þá rakningarformúluna
+\[
+	f(x, y)
+	=
+	\left \{
+	\begin{array}{c c}
+		-\infty, & y < 0,\\
+		0, & x = 0,\\
+		f(x - 1, y), & t_x > y\\
+		\max(f(x - 1, y), &\\
+			f_x + f(x - 1, y + f_x - t_x)), & \text{annars,}
+	\end{array}
+	\right .
+\]
+					þar sem $f(x, y)$ segir okkur hversu mikið við getum lengt líftíma eldsins ef hann hefur líftíma $y$ og 
+						við getum notað bækur $1, 2, \dots, x$ (eftir röðun).
+		\item<5-> Við getum svo reiknað upp úr þessum venslum með \onslide<6->{kvikri bestun}.
+		\item<7-> Svarið er þá $t + f(n - 1, t)$ (svo þarf að bæta við því sem við fengum í gráðuga hlutanum).
+	}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

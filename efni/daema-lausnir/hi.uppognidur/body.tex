@@ -1,0 +1,93 @@
+\title{Lausn á \emph{Upp og niður}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Dæmalýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Gefnar eru $n \leq 10^5$ ólíkar heiltölur $a_1, \dots, a_n$, $1 \leq a_j \leq 10^9$.
+		\item<2-> Finnið heiltölur $1 \leq i < j < k \leq n$ þannig að $x_i < x_k < x_j$.
+	}
+}
+
+\section{Lausn}
+\subsection{Smækkun talnanna}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Byrjum á að minnka $a_j$ þannig að $a_j \leq n$, án þess að breyta innbyrðis röðun talnanna.
+		\item<2-> Í grófum dráttum breytum við minnstu tölunni í $0$, næst minnstu tölunni í $1$ og svo framvegis.
+		\env{itemize}
+		{
+			\item<3-> Röðum $(a_i, i)$ eftir fyrra hnitinu.
+			\item<4-> Látum nú fyrra hnit $i$-ta staksins í tvenndunum (eftir röðun) vera $i$.
+			\item<5-> Röðum eftir seinna hnitinu.
+			\item<6-> Látum nú $a_i$ vera fyrra hnit $i$-ta staksins af tvenndunum (eftir að raða tvisvar).
+		}
+		\item<7-> Með þessari aðferð getum við gert ráð fyrir að $0 \leq a_j \leq 10^5$.
+		\selectcode{code/compress.py}{3}{7}
+	}
+}
+
+\subsection{Lýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Festum nú eitthvað $j$.
+		\item<2-> Við getum gráðugt valið $i < j$ sem vísinn á minnsta stakið af fyrstu $j - 1$ tölunum.
+		\item<3-> Við þurfum svo að geta athugað hvort til sé $k$ þannig að $x_i < x_k < x_j$.
+		\item<4-> Við getum gert þetta með biltréi sem styður...
+		\env{itemize}
+		{
+			\item<5-> ...punktuppfærsluna ,,bætum $k$ við $i$-ta stakið í trénu''.
+			\item<6-> ...bilfyrirspurnina ,,hver er summan yfir bil $[i, j]$''.
+		}
+		\item<7-> Þetta biltré er eins og fyrsta dæmið í glærunum um biltré.
+	}
+}
+
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við byrjum á að láta allar tölurnar $a_i$ í biltréð (með \ilcode{update(a[i], 1)}).
+		\item<2-> Við gefum okkur einnig breytu \ilcode{mn} sem er upphafstillt sem $\infty$.
+		\item<3-> Við ítrum síðan í gegnum $j = 2, 3, \dots, n - 1$ og ...
+		\env{itemize}
+		{
+			\item<4-> ...breytum \ilcode{mn} í $a_{j - 1}$ ef það er minna en \ilcode{mn}.
+			\item<5-> ...fjarlægjum $a_j$ úr biltrénu (með \ilcode{update(a[j], -1)}).
+			\item<6-> ...athugum hvort \ilcode{mn} er minna en $a_j$ og summan yfir bilið \ilcode{mn + 1} og $a_j - 1$ er stærra en núll.
+							Ef svo er erum við komin með vísanna.
+		}
+		\item<7-> Við getum nú fundið $i$ og $k$ með því að leita línulega.
+	}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Þegar við upphafstillum biltréð köllum við $n$ sinnum á \ilcode{update(...)}.
+		\item<2-> Þetta tekur $\mathcal{O}(\onslide<3->{n \log n})$ tíma.
+		\item<4-> Síðan ítrum við í gegnum öll stökin, nema tvö, og fyrir hvert stak köllum við á \ilcode{update(...)} og \ilcode{query(...)}.
+		\item<5-> Þetta tekur $\mathcal{O}(\onslide<6->{n \log n})$ tíma.
+		\item<7-> Svo heildar tímaflækjan er $\mathcal{O}(\onslide<8->{n \log n})$ tíma.
+	}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

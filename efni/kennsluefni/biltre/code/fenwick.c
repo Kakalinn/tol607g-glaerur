@@ -7,7 +7,8 @@ typedef long long ll;
 #define LEFT(x) ((x)*2)
 #define RIGHT(x) ((x)*2 + 1)
 
-#if 1
+#define CASE 4
+#if CASE == 1
 ll query(ll *p, ll x, ll y)
 { // Finnum summuna yfir [x, y].
 	if (y < x) return 0;
@@ -41,7 +42,7 @@ void init(ll *p, ll n)
 	for (i = 0; i < 5*n; i++) p[i] = 0;
 	p[0] = n;
 }
-#else
+#elif CASE == 2
 ll qrec(ll *p, ll i, ll j, ll x, ll y, ll e) // Hjálparfall.
 { // Við erum að leita að bili [x, y] og erum í [i, j].
 	if (x == i && y == j) return p[e];
@@ -52,6 +53,7 @@ ll qrec(ll *p, ll i, ll j, ll x, ll y, ll e) // Hjálparfall.
 }
 ll query(ll *p, ll x, ll y)
 { // Finnum summuna yfir [x, y].
+	if (y < x) return 0;
 	return qrec(p, 0, p[0] - 1, x, y, 1);
 }
 
@@ -77,6 +79,66 @@ void init(ll *p, ll n)
 	for (i = 0; i < 5*n; i++) p[i] = 0;
 	p[0] = n;
 }
+#elif CASE == 3
+ll qrec(ll *p, ll i, ll j, ll x, ll y, ll e) // Hjálparfall.
+{ // Við erum að leita að bili [x, y] og erum í [i, j].
+	if (x == i && y == j) return p[e];
+	ll m = (i + j)/2;
+	if (y <= m) return qrec(p, i, m, x, y, e + 1);
+	if (x > m) return qrec(p, m + 1, j, x, y, e + 2*(m - i + 1));
+	return qrec(p, i, m, x, m, e + 1) + qrec(p, m + 1, j, m + 1, y, e + 2*(m - i + 1));
+}
+ll query(ll *p, ll x, ll y)
+{ // Finnum summuna yfir [x, y].
+	if (y < x) return 0;
+	return qrec(p, 0, p[0] - 1, x, y, 1);
+}
+
+void urec(ll *p, ll i, ll j, ll x, ll y, ll e) // Hjálparfall.
+{ // Við erum að leita að laufinu [x, x] og erum í [i, j].
+	if (i == j) p[e] += y;
+	else
+	{
+		ll m = (i + j)/2;
+		if (x <= m) urec(p, i, m, x, y, e + 1);
+		else urec(p, m + 1, j, x, y, e + 2*(m - i + 1));
+		p[e] = p[e + 1] + p[e + 2*(m - i + 1)];
+	}
+}
+void update(ll *p, ll x, ll y)
+{ // Bætum y við x-ta stakið.
+	return urec(p, 0, p[0] - 1, x, y, 1);
+}
+
+void init(ll *p, ll n)
+{
+	ll i;
+	for (i = 0; i < 2*n; i++) p[i] = 0;
+	p[0] = n;
+}
+#elif CASE == 4
+void init(ll *p, ll n)
+{
+	ll i;
+	for (i = 0; i < 2*n; i++) p[i] = 0;
+	p[0] = n;
+}
+
+void update(ll *p, ll w, ll value) {  // set value at position p
+  for (p[w += p[0] + 1] += value; w > 1; w >>= 1) p[w>>1] = p[w] + p[w^1];
+}
+
+ll query(ll *p, ll l, ll r) {  // sum on interval [l, r)
+	r++;
+  ll res = 0;
+  for (l += p[0] + 1, r += p[0] + 1; l < r; l >>= 1, r >>= 1) {
+    if (l&1) res += p[l++];
+    if (r&1) res += p[--r];
+  }
+  return res;
+}
+#else
+#error("wrong case number")
 #endif
 
 ll get_int()
@@ -90,7 +152,14 @@ ll get_int()
 
 int main()
 {
-	ll n = get_int(), q = get_int(), p[5*(n + 1)];
+	ll n = get_int(), q = get_int(),
+#if CASE == 3 
+	   p[2*(n + 1)];
+#elif CASE == 4
+	   p[2*(n + 1)];
+#else
+	   p[5*(n + 1)];
+#endif
 	init(p, n + 1);
 	while (q--)
 	{
