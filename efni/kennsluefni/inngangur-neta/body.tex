@@ -60,42 +60,39 @@
 	{
 		\env{tikzpicture}
 		{
-			\node[draw, circle, thick] (1) at (0, 0) {$1$};
-			\node[draw, circle, thick] (2) at (2, 0) {$2$};
-			\node[draw, circle, thick] (3) at (2, 2) {$3$};
-			\node[draw, circle, thick] (4) at (4, 0) {$4$};
+			\onslide<all:1> { \node[draw, circle, thick] (1) at (0, 0) {$1$}; }
+			\onslide<all:1> { \node[draw, circle, thick] (2) at (2, 0) {$2$}; }
+			\onslide<all:1> { \node[draw, circle, thick] (3) at (2, 2) {$3$}; }
+			\onslide<all:1> { \node[draw, circle, thick] (4) at (4, 0) {$4$}; }
 
-			\path[draw] (1) -- (2) -- (3);
-			\path[draw] (1) edge[in=45, out=135, looseness=10] (1);
-			%\path[draw] (2) edge[bend left=30] (6);
-			%\path[draw] (2) edge[bend right=30] (6);
-			%\path[draw] (7) -- (8);
-		}
-		\env{itemize}
-		{
-			\item<1-> Hér má sjá teikningu sem svarar til $V = \{1, 2, 3, 4\}$ og $E = \{(1, 1), (1, 2), (2, 1), (2, 3), (3, 2)\}$.
+			\onslide<all:1> { \path[draw] (1) -- (2) -- (3); }
+			\onslide<all:1> { \path[draw] (1) edge[in=45, out=135, looseness=10] (1); }
+
+
+
+
+			\onslide<all:2> { \node[draw, circle, thick] (1) at (0, 0) {$1$}; }
+			\onslide<all:2> { \node[draw, circle, thick] (2) at (2, 0) {$2$}; }
+			\onslide<all:2> { \node[draw, circle, thick] (3) at (2, 2) {$3$}; }
+			\onslide<all:2> { \node[draw, circle, thick] (4) at (4, 0) {$4$}; }
+
+			\onslide<all:2> { \path[draw, ->] (1) -- (2); }
+			\onslide<all:2> { \path[draw, ->] (2) -- (1); }
+			\onslide<all:2> { \path[draw, ->] (3) -- (2); }
 		}
 	}
-}
-
-\env{frame}
-{
-	\env{center}
+	\only<all:1>
 	{
-		\env{tikzpicture}
-		{
-			\node[draw, circle, thick] (1) at (0, 0) {$1$};
-			\node[draw, circle, thick] (2) at (2, 0) {$2$};
-			\node[draw, circle, thick] (3) at (2, 2) {$3$};
-			\node[draw, circle, thick] (4) at (4, 0) {$4$};
-
-			\path[draw, ->] (1) -- (2);
-			\path[draw, ->] (2) -- (1);
-			\path[draw, ->] (3) -- (2);
-		}
 		\env{itemize}
 		{
-			\item<1-> Hér má sjá teikningu sem svarar til $V = \{1, 2, 3, 4\}$ og $E = \{(1, 2), (2, 1), (3, 2)\}$.
+			\item Hér má sjá teikningu sem svarar til $V = \{1, 2, 3, 4\}$ og $E = \{(1, 1), (1, 2), (2, 1), (2, 3), (3, 2)\}$.
+		}
+	}
+	\only<all:2>
+	{
+		\env{itemize}
+		{
+			\item Hér má sjá teikningu sem svarar til $V = \{1, 2, 3, 4\}$ og $E = \{(1, 2), (2, 1), (3, 2)\}$.
 		}
 	}
 }
@@ -106,7 +103,7 @@
 	\env{itemize}
 	{
 		\item<1-> Leggir af gerðinni $(u, u)$ kallast \emph{lykkjur} (e. \emph{loop}) (ástæða nafngiftarinnar sést af fyrri myndinni).
-		\item<2-> Net án leggja kallast \emph{einfalt} (e. \emph{simple}).
+		\item<2-> Net án lykkja kallast \emph{einfalt} (e. \emph{simple}).
 		\item<3-> Í umfjöllun okkar gerum við ráð fyrir að öll net séu einföld nema annað sé tekið fram.
 		\item<4-> Algengt eru að skilgreina net á mát sem leyfir fleiri en einn legg milli tveggja tiltekinna hnúta.
 		\item<5-> Einföld net þurfa þá líka að hafa í mesta lagi einn legg milli hnúta.
@@ -306,7 +303,7 @@
 \subsection{Útfærsla á innlestri liggjalist sem nágrannalista}
 \env{frame}
 {
-	\code{code/ll2nl.cpp}
+	\code{code/leggjalist-inn-nagrannalisti-ut.cpp}
 }
 
 \section{Vegin net}
@@ -343,7 +340,7 @@
 \subsection{Útfærsla á innlestri vegins nets gefið með leggjalista og yfirfært í nágrannalista}
 \env{frame}
 {
-	\code{code/ll2nlw.cpp}
+	\code{code/leggjalist-inn-nagrannalisti-ut-vegid.cpp}
 }
 
 \section{Þessi glæra er viljandi auð}

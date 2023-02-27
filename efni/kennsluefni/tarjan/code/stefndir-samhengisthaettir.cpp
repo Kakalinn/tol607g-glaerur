@@ -14,7 +14,7 @@ int dfs(vvi &g, int u, int d)                                                   
 	for (i = 0; i < g[u].size(); i++)                                           // Ítrum í gegnum alla nágranna u.
 	{
 		x = g[u][i];
-		if (l[x] == -1) d = dfs(g, x, u, d + 1);                                // Heimsækjum nágrannann.
+		if (l[x] == -1) d = dfs(g, x, d + 1);                                   // Heimsækjum nágrannann.
 		if (a[x] == -1) l[u] = min(l[u], l[x]);                                 // Uppfærum frá nágrannanum ef hann er ekki úr fyrri umferð.
 	}
 	if (l[u] == z) while (a[u] == -1) a[s[--sn]] = u;                           // Nýr samhengisþáttur. Merkjum hnútana í honum.
@@ -25,7 +25,7 @@ void scc(vvi &g)
 {
 	sn = 0;
 	for (int i = 0; i < g.size(); i++) l[i] = a[i] = -1;                        // Upphafstillum a og l með -1.
-	for (int i = 0; i < g.size(); i++) if (l[i] == -1) dfs(g, i, -1, 0);        // Leitum með dýptarleit í öllu netinu.
+	for (int i = 0; i < g.size(); i++) if (l[i] == -1) dfs(g, i, 0);            // Leitum með dýptarleit í öllu netinu.
 }
 
 // Hæg útfærsla til að bera saman
@@ -98,7 +98,7 @@ int main()
 		x = rand()%n, y = rand()%n;
 		while (x == y || d[x][y]) x = rand()%n, y = rand()%n;
 		d[x][y] = 1;
-		printf("test passed %d\n", q);
+		printf("test passed %d\n", q < 0 ? -q : q);
 	}
 	return 0;
 }

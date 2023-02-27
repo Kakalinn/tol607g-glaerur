@@ -141,7 +141,7 @@ int main()
 		x = rand()%n, y = rand()%n;
 		while (x == y || d[x][y]) x = rand()%n, y = rand()%n;
 		d[y][x] = d[x][y] = 1;
-		printf("test passed %d\n", q);
+		printf("test passed %d\n", q < 0 ? -q : q);
 	}
 	return 0;
 }

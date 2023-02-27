@@ -9,8 +9,8 @@ void dfs(vvi& g, int x)                                                         
 	int i;
 	printf("Vid erum i nodu %d\n", x + 1);
 	v[x] = 1;                                                                   // Merkjum hnút x 'heimsóttan'.
-	rep(i, g[x].size())
-	for (i = 0; i < g[x].size(); i++) if (v[g[x][i]] == 0) dfs(g, g[x][i]);     // Heimsækjum alla nágranna x sem eru ekki 'heimsóttir'.
+	for (i = 0; i < g[x].size(); i++) if (v[g[x][i]] == 0)
+		dfs(g, g[x][i]);                                                        // Heimsækjum alla nágranna x sem eru ekki 'heimsóttir'.
 }
 
 int main()

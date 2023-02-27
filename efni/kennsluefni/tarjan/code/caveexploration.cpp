@@ -7,36 +7,34 @@ typedef pair<int,int> ii;
 typedef vector<ii> vii;
 typedef set<ii> sii;
 #define MAXN 200000
-int low[MAXN], num[MAXN];
-vi cp; sii bri;
+
+int a[MAXN], v[MAXN], curnum;                                                   // v[u] svara til u_{num} á glærunum.
+vi cp; vii bri;
 int dfs(const vvi &g, int u, int p, int d)
 {
-	int i;
-	low[u] = num[u] = d;
-	for (i = 0; i < g[u].size(); i++)
+	int i, x, c = 0, z = d, y; v[u] = d;                                        // z svarar til u_{low} og y svara til v_{low}.
+	for (i = 0; i < g[u].size(); i++) if (g[u][i] != p)                         // Ítrum í gegnum alla nágranna u nema þann sem við komum frá.
 	{
-		int v = g[u][i];
-		if (num[v] == -1)
+		x = g[u][i];                                                            // x er nágranni u.
+		if (v[x] == -1)
 		{
-			dfs(g, v, u, d + 1);
-			low[u] = min(low[u], low[v]);
-			if (low[v] > num[u]) bri.insert(ii(u, v));
+			y = dfs(g, x, u, d + 1), c++;                                       // Heimsækjum x og lögum teljarann.
+			z = min(z, y);                                                      // Uppfærum z ef þörf er á.
+			if (y > v[u]) bri.push_back(ii(u, x));                              // Brú fundin, sjá glærur.
+			if (p != -1 && y >= v[u]) a[u] = 1;                                 // Liðhnútur fundinn, sjá glærur.
 		}
-		else if (p != v) low[u] = min(low[u], num[v]);
+		else z = min(z, v[x]);                                                  // Það er búið að heimækja v, svo við gætum þurft að uppfæra z.
 	}
-	for (i = 0; i < g[u].size(); i++) if (low[g[u][i]] <= num[u]) break;
-	if (i < g[u].size()) cp.push_back(u);
-	if (p == -1 && g[u].size() > 1) cp.push_back(u);
-	return d;
+	if (p == -1 && c > 1) a[u] = 1;                                             // Sértilfelli fyrir upphafshnútinn.
+	return z;
 }
 
 void cpb(const vvi &g)
 {
-	int i, n = g.size();
-	bri.clear();
-	cp.clear();
-	for (i = 0; i < g.size(); i++) num[i] = -1;                                     // Upphafstillum num með -1.
-	for (i = 0; i < g.size(); i++) if (num[i] == -1) dfs(g, i, -1, 0);                    // Framkvæmum dýptarleitina fyrir hvern samhengisþátt.
+	cp.clear(), bri.clear();                                                    // Tæmum fyrri svör ef á er þörf.
+	for (int i = 0; i < g.size(); i++) v[i] = -1, a[i] = 0;                     // Upphafstillum v með -1.
+	for (int i = 0; i < g.size(); i++) if (v[i] == -1) dfs(g, i, -1, 0);        // Framkvæmum dýptarleitina fyrir hvern samhengisþátt.
+	for (int i = 0; i < g.size(); i++) if (a[i]) cp.push_back(i);               // Setjum liðhnútana í cp.
 }
 
 void rem(vvi& g, ii p)
@@ -50,7 +48,7 @@ void rem(vvi& g, ii p)
 
 int main()
 {
-	int n, m, i, j, x, y;
+	int n, m, i, j, x, y, r = 1;
 	cin >> n >> m;
 	vvi g(n);
 	sii e;
@@ -58,47 +56,20 @@ int main()
 	rep(i, m)
 	{
 		cin >> x >> y;
-		x--, y--;
 		g[x].push_back(y);
 		g[y].push_back(x);
-		e.insert(ii(x, y));
 	}
 	cpb(g);
-	if (bri.size() > 0)
+	for (i = 0; i < bri.size(); i++) e.insert(bri[i]), e.insert(ii(bri[i].second, bri[i].first));
+	int d[n], q[n], qe = 0, qs = 0;
+	for (i = 0; i < n; i++) d[i] = -1;
+	d[0] = 0;
+	q[qe++] = 0;
+	while (qe != qs)
 	{
-		printf("NO\n");
-		return 0;
+		int z = q[qs++];
+		for (i = 0; i < g[z].size(); i++) if (d[g[z][i]] == -1 && e.find(ii(z, g[z][i])) == e.end()) q[qe++] = g[z][i], d[g[z][i]] = d[z] + 1, r++;
 	}
-	printf("YES\n");
-	while (e.size() > 0)
-	{
-		ii p = *e.begin();
-		printf("%d %d\n", p.first + 1, p.second + 1);
-		e.erase(p);
-		rem(g, p);
-		queue<ii> q;
-		q.push(p);
-		while (q.size() > 0)
-		{
-			cpb(g);
-			vii h;
-			p = q.front(); q.pop();
-			for (ii v : bri)
-			{
-				if (v.second == p.first) h.push_back(v);
-				if (v.first == p.first) h.push_back(ii(v.second, v.first));
-				if (v.first == p.second) h.push_back(v);
-				if (v.second == p.second) h.push_back(ii(v.second, v.first));
-			}
-			rep(i, h.size())
-			{
-				printf("%d %d\n", h[i].first + 1, h[i].second + 1);
-				rem(g, h[i]);
-				e.erase(ii(h[i].second, h[i].first));
-				e.erase(h[i]);
-				q.push(h[i]);
-			}
-		}
-	}
+	printf("%d\n", r);
 	return 0;
 }
