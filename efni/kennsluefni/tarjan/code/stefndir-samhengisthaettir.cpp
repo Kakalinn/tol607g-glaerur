@@ -58,17 +58,10 @@ void compare(vvi &d, int n, int m)
 {
 	int i, j;
 	vvi g(n);
-	//printf("edges: \n");
 	for (i = 0; i < n; i++) for (j = 0; j < n; j++) if (d[i][j])
-		//printf("  %d %d\n", i, j),
 		g[i].push_back(j);
 	slow(g);
 	scc(g);
-
-	//for (i = 0; i < n; i++) { for (j = 0; j < n; j++) printf("%2d ", ans[i][j]); printf("\n"); }
-	//printf("ssc: "); for (i = 0; i < n; i++) printf("%2d ", a[i]); printf("\n");
-	//for (i = 0; i < n; i++) { for (j = 0; j < n; j++) printf("%2d ", a[i] == a[j]); printf("\n"); } printf("\n");
-
 	for (i = 0; i < n; i++) for (j = 0; j < n; j++)
 		assert(ans[i][j] && a[i] == a[j] || !ans[i][j] && a[i] != a[j]);
 }
@@ -76,7 +69,6 @@ void compare(vvi &d, int n, int m)
 int main()
 {
 	srand(time(NULL));
-	//srand(11);
 	int i, j, n = 100, m = 300, q = -1, x, y;
 	vvi d(n, vi(n));
 	j = 0;

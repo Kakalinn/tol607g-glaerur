@@ -6,6 +6,7 @@
 
 \frame{\titlepage}
 
+\section{Skilgreining}
 \env{frame}
 {
 	\env{itemize}
@@ -18,130 +19,85 @@
 	}
 }
 
+\section{Útskýring á lausn}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Sjáum fyrst að stefnt órásað net hefur alltaf hnút með engan legg inn í sig.
-		\item<2-> Einnig gildir að ef við fjarlægjum hnút úr stefndu órásuðu neti þá er netið ennþá órásað.
-		\item<3-> Ef hnútur hefur engan legg nn í sig má hann alltaf fara fremst í grannröðunina.
-		\item<4-> Við finnum því grannröðun með því að:
+		\item<1-> Fjöldi leggja afgerðinni $(u, v)$, fyrir fast $v$, kallast \emph{innstig} hnútsins $v$.
+		\item<2-> Tökum eftir að stefnt órásað net hefur alltaf hnút með innstig núll.
+		\item<3-> Einnig gildir að ef við fjarlægjum hnút úr stefndu órásuðu neti þá er netið ennþá órásað.
+		\item<4-> Ef hnútur hefur innstig núll má hann alltaf fara fremst í grannröðunina.
+		\item<5-> Við finnum því grannröðun með því að:
 		\env{itemize}
 		{
-			\item<5-> Finna hnút með engan legg inn í sig.
-			\item<6-> Setja hann fremst í grannröðinan.
-			\item<7-> Fjarlægja hann úr netinu.
-			\item<8-> Endurtaka þangað til enginn hnútur er eftir.
+			\item<6-> Finna hnút með innstig núll.
+			\item<7-> Setja hann fremst í grannröðinan.
+			\item<8-> Fjarlægja hann úr netinu.
+			\item<9-> Endurtökum þangað til enginn hnútur er eftir.
 		}
 	}
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
 	\env{center}
 	{
 		\env{tikzpicture}
 		{
-			\only<all:1-2> { \node[draw, circle, thick] (1) at (-1, -1) {$1$}; }
-			\only<all:3-> { \node[draw, circle, thick, white] (1) at (-1, -1) {$1$}; }
-
-			\only<all:1-5> { \node[draw, circle, thick] (2) at (1, 1) {$2$}; }
-			\only<all:6-> { \node[draw, circle, thick, white] (2) at (1, 1) {$2$}; }
-
-			\only<all:1-7> { \node[draw, circle, thick] (3) at (-1, 1) {$3$}; }
-			\only<all:8-> { \node[draw, circle, thick, white] (3) at (-1, 1) {$3$}; }
-
-			\only<all:1-8> { \node[draw, circle, thick] (4) at (0, 1) {$4$}; }
-			\only<all:9-> { \node[draw, circle, thick, white] (4) at (0, 1) {$4$}; }
-
-			\only<all:1-4> { \node[draw, circle, thick] (5) at (0, 0) {$5$}; }
-			\only<all:5-> { \node[draw, circle, thick, white] (5) at (0, 0) {$5$}; }
-
-			\only<all:1-3> { \node[draw, circle, thick] (6) at (0, -1) {$6$}; }
-			\only<all:4-> { \node[draw, circle, thick, white] (6) at (0, -1) {$6$}; }
-
-			\only<all:1-1> { \node[draw, circle, thick] (7) at (1, -1) {$7$}; }
-			\only<all:2-> { \node[draw, circle, thick, white] (7) at (1, -1) {$7$}; }
-
-			\only<all:1-6> { \node[draw, circle, thick] (8) at (-1, 0) {$8$}; }
-			\only<all:7-> { \node[draw, circle, thick, white] (8) at (-1, 0) {$8$}; }
+			\onslide<all:1-2> { \node[draw, circle, thick] (1) at (-1, -1) {$1$}; }
+			\onslide<all:1-5> { \node[draw, circle, thick] (2) at (1, 1) {$2$}; }
+			\onslide<all:1-7> { \node[draw, circle, thick] (3) at (-1, 1) {$3$}; }
+			\onslide<all:1-8> { \node[draw, circle, thick] (4) at (0, 1) {$4$}; }
+			\onslide<all:1-4> { \node[draw, circle, thick] (5) at (0, 0) {$5$}; }
+			\onslide<all:1-3> { \node[draw, circle, thick] (6) at (0, -1) {$6$}; }
+			\onslide<all:1-1> { \node[draw, circle, thick] (7) at (1, -1) {$7$}; }
+			\onslide<all:1-6> { \node[draw, circle, thick] (8) at (-1, 0) {$8$}; }
 
 
-			\only<all:1-6> { \path[draw, ->] (8) -- (3); }
-			\only<all:1-4> { \path[draw, ->] (5) -- (4); }
-			\only<all:1-6> { \path[draw, ->] (8) -- (4); }
-			\only<all:1-1> { \path[draw, ->] (7) -- (2); }
-			\only<all:1-4> { \path[draw, ->] (5) -- (2); }
-			\only<all:1-3> { \path[draw, ->] (6) -- (5); }
-			\only<all:1-2> { \path[draw, ->] (1) -- (8); }
-			\only<all:1-3> { \path[draw, ->] (6) -- (8); }
-			\only<all:1-1> { \path[draw, ->] (7) -- (8); }
+			\onslide<all:1-6> { \path[draw, ->] (8) -- (3); }
+			\onslide<all:1-4> { \path[draw, ->] (5) -- (4); }
+			\onslide<all:1-6> { \path[draw, ->] (8) -- (4); }
+			\onslide<all:1-1> { \path[draw, ->] (7) -- (2); }
+			\onslide<all:1-4> { \path[draw, ->] (5) -- (2); }
+			\onslide<all:1-3> { \path[draw, ->] (6) -- (5); }
+			\onslide<all:1-2> { \path[draw, ->] (1) -- (8); }
+			\onslide<all:1-3> { \path[draw, ->] (6) -- (8); }
+			\onslide<all:1-1> { \path[draw, ->] (7) -- (8); }
 		}
 	}
 	\env{center}
 	{
-		\only<all:1>
-		{
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:2>
-		{
-			$7$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:3>
-		{
-			$7$, $1$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:4>
-		{
-			$7$, $1$, $6$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:5>
-		{
-			$7$, $1$, $6$, $5$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:6>
-		{
-			$7$, $1$, $6$, $5$, $2$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:7>
-		{
-			$7$, $1$, $6$, $5$, $2$, $8$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:8>
-		{
-			$7$, $1$, $6$, $5$, $2$, $8$, $3$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
-		\only<all:9>
-		{
-			$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$
-			\phantom{$7$, $1$, $6$, $5$, $2$, $8$, $3$, $4$}
-		}
+		\onslide<all:2-> { $7$ }
+		\onslide<all:3-> { $1$ }
+		\onslide<all:4-> { $6$ }
+		\onslide<all:5-> { $5$ }
+		\onslide<all:6-> { $2$ }
+		\onslide<all:7-> { $8$ }
+		\onslide<all:8-> { $3$ }
+		\onslide<all:9-> { $4$ }
 	}
 }
 
+\section{Lausn}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Þegar við útfærum þetta byrjum við á að setja alla hnút með engan legg inn í sig í biðröð.
+		\item<1-> Þegar við útfærum þetta byrjum við á að setja alla hnúta með innstig núll í biðröð.
 		\item<2-> Tökum svo hnút úr biðröðinni og bætum við þeim hnútum sem hafa bara legg í sig frá þeim hnút.
 		\item<3-> Við fáum einnig að grannröðunin er ótvírætt ákvörðuð þá og því aðeins að biðröðin innihaldi aldrei fleiri en eitt stak.
 	}
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/tsort.cpp}{7}{22}
+	\selectcode{code/tsort.cpp}{6}{23}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
 	\env{itemize}
@@ -151,6 +107,7 @@
 	}
 }
 
+\section{Dæmi um hagnýtingu}
 \env{frame}
 {
 	\env{itemize}
@@ -166,6 +123,7 @@
 	}
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

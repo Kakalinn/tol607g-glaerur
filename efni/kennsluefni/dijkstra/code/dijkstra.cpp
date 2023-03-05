@@ -1,7 +1,6 @@
-#include <bits/stdc++.h>
-#define rep(E, F) for (E = 0; E < (F); E++)
-#define INF (1 << 30)
-using namespace std;
+#include <bits/stdc++.h>                                                        // Fyrsta lína inntaksins eru tvær heiltölur,
+#define INF (1 << 30)                                                           //   fjöldi hnúta og fjöldi leggja.
+using namespace std;                                                            // Síðan koma m línur sem svara til leggjalistans.
 typedef pair<int, int> ii;
 typedef vector<ii> vii;
 typedef vector<vii> vvii;
@@ -9,39 +8,37 @@ typedef vector<int> vi;
 
 vi dijkstra(vvii& g, int s)
 {
-	int i, x, w, n = g.size();
-	vi d(n, INF); // Bestu gildin hingad til
-	priority_queue<ii> q; // Geymir tvenndirnar (gildi, hnutur)
-	q.push(ii(-0, s)); // Upphafshnutur
-	d[s] = 0;
-	while (q.size() > 0)
-	{
-		w = -q.top().first, x = q.top().second; q.pop();
-		if (w > d[x]) continue; // thetta er urelt gildi
-		rep(i, g[x].size()) if (d[g[x][i].first] > w + g[x][i].second)
-		{
-			q.push(ii(-(w + g[x][i].second), g[x][i].first));
-			d[g[x][i].first] = w + g[x][i].second;
-		}
-	}
-	return d;
+    int i, x, w, n = g.size();
+    vi d(n, INF);                                                               // Upphastillum stystu lengdirnar sem við höfum fundið.
+    priority_queue<ii> q;                                                       // Forgangsbiðröð fyrir tvenndirnar (gildi, hnútur).
+    q.push(ii(-0, s)), d[s] = 0;                                                // Setjum upphafshnútinn í forgangsbiðröðina og upphastillum gildið.
+    while (q.size() > 0)
+    {
+        w = -q.top().first, x = q.top().second, q.pop();                        // Veljum 'ókláraða' hnútinn með minnsta gildið.
+        if (w > d[x]) continue;                                                 // Þetta er úrelt gildi.
+        for (i = 0; i < g[x].size(); i++)                                       // Ítrum í gegnum alla nágranna x.
+        {
+            if (d[g[x][i].first] <= w + g[x][i].second) continue;               // Það borgar sig ekki að ferðast frá x í g[x][i].
+            q.push(ii(-(w + g[x][i].second), g[x][i].first));                   // Það borgar sig. Bætum g[x][i] í forgangsbiðröðina með nýju (minna)
+            d[g[x][i].first] = w + g[x][i].second;                              //   gildi og stillum gildið.
+        }
+    }
+    return d;
 }
 
-// Fyrsta lína inntaksins eru tvær heiltölur, fjöldi hnúta og fjöldi leggja.
-// Síðan koma m línur sem svara til leggjalistans.
 int main()
 {
-	int i, j, n, m, x, y, w;
-	cin >> n >> m;
-	vvii g(n);
-	rep(i, m)
-	{
-		cin >> x >> y >> w;
-		x--, y--;
-		g[x].push_back(ii(y, w));
-		g[y].push_back(ii(x, w)); // Sleppa þesari línu ef netið er stefnt.
-	}
-	vi d = dijkstra(g, 0);
-	rep(i, n) printf("d[%d] = %d\n", i, d[i]);
-	return 0;
+    int i, j, n, m, x, y, w;
+    cin >> n >> m;                                                              // Lesum inn fjölda hnúta og fjölda leggja.
+    vvii g(n);
+    for (i = 0; i < m; i++)                                                     // Lesum inn leggina.
+    {
+        cin >> x >> y >> w;                                                     // Tiltekinn leggur frá x til y með bigt w.
+        x--, y--;                                                               // Algengt er að hnútar séu 1, ..., n, en við viljum 0, ..., n - 1.
+        g[x].push_back(ii(y, w));                                               // Bætum við legg frá x til y með vigt w.
+        g[y].push_back(ii(x, w));                                               // Ef netið er óstefnt þarf að bæta við eins legg frá y to x, annars ekki.
+    }
+    vi d = dijkstra(g, 0);                                                      // Reiknum svarið.
+    for (i = 0; i < n; i++) printf("d[%d] = %d\n", i, d[i]);                    // Prentum fjarlægðina frá 0 í alla hnúta.
+    return 0;
 }

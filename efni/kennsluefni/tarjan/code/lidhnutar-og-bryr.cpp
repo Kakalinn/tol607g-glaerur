@@ -74,10 +74,7 @@ vi cp_correct; vii bri_correct;
 void slow(int *x, int *y, int n, int m)
 {
 	int i, c = cc_cnt(x, y, -1, -1, n, m);
-	//printf("ccccc = %d\n", cc_cnt(x, y, -1, -1, n, m));
-	//printf("ccccc = %d\n", cc_cnt(x, y, -1, 0, n, m));
 	cp_correct.clear(), bri_correct.clear();
-	//for (i = 0; i < cp_correct.size(); i++) printf(">> this sohuld def not print >> %d\n", cp_correct[i]);
 	for (i = 0; i < n; i++) if (c < cc_cnt(x, y, i, -1, n, m)) cp_correct.push_back(i);
 	for (i = 0; i < m; i++) if (c < cc_cnt(x, y, -1, i, n, m)) bri_correct.push_back(ii(x[i], y[i]));
 }
@@ -91,27 +88,18 @@ void compare(vvi &d, int n, int m)
 		g[i].push_back(j);
 		if (i < j) x[k] = i, y[k] = j, k++;
 	}
-	//printf("edges:\n");
-	//for (i = 0; i < m; i++) printf("  %d %d\n", x[i], y[i]);
 	assert(k == m);
-	printf("running test...\n");
 	slow(x, y, n, m);
 	cpb(g);
-	//printf(">>>>>> %d %d, %d %d\n", bri.size(), cp.size(), bri_correct.size(), cp_correct.size());
 	for (i = 0; i < bri.size(); i++) if (bri[i].first > bri[i].second) swap(bri[i].first, bri[i].second);
 	sort(bri.begin(), bri.end());
 	sort(bri_correct.begin(), bri_correct.end());
 	sort(cp.begin(), cp.end());
 	sort(cp_correct.begin(), cp_correct.end());
-	//for (i = 0; i < cp.size(); i++) printf(">> >> %d\n", cp[i]); printf("\n");
-	//for (i = 0; i < cp_correct.size(); i++) printf(">> >> %d\n", cp_correct[i]); printf("\n");
-	//for (i = 0; i < bri.size(); i++) printf(">> >> %d %d\n", bri[i].first, bri[i].second); printf("\n");
-	//for (i = 0; i < bri_correct.size(); i++) printf(">> >> %d %d\n", bri_correct[i].first, bri_correct[i].second); printf("\n");
 	assert(bri.size() == bri_correct.size());
 	assert(cp.size() == cp_correct.size());
 	for (i = 0; i < bri.size(); i++) assert(bri[i] == bri_correct[i]);
 	for (i = 0; i < cp.size(); i++) assert(cp[i] == cp_correct[i]);
-	//printf(">>>>>> %d %d\n", bri.size(), cp.size());
 }
 
 
@@ -119,17 +107,16 @@ void compare(vvi &d, int n, int m)
 int main()
 {
 	srand(time(NULL));
-	//srand(11);
-	int i, j, n = 100, m = 100, q = -1, x, y;
+	int i, n = 100, m = 100, q = -1, x, y;
 	vvi d(n, vi(n));
-	j = 0;
+	i = 0;
 	printf("generating graph\n");
-	while (j < m)
+	while (i < m)
 	{
 		x = rand()%n, y = rand()%n;
 		if (x == y || d[x][y]) continue;
 		d[y][x] = d[x][y] = 1;
-		j++;
+		i++;
 	}
 	printf("graph generated\n");
 	while (q--)

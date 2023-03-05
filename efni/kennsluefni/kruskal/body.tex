@@ -6,22 +6,22 @@
 
 \frame{\titlepage}
 
+\section{Skilgreining á spannandi tré}
 \env{frame}
 {
-	\frametitle{Spannandi tré}
 	\env{itemize}
 	{
 		\item<1-> Gerum ráð fyrir að við séum með samanhangandi óstenft net $G = (V, E)$.
 		\item<2-> Munið að net kallast tré ef það er samanhanhandi og órásað.
-		\item<3-> Auðvelt er að sýna óbeint að við getum gert $G$ að tréi með því að fjarlægja leggi.
+		\item<3-> Auðvelt er að sýna með þrepun að við getum gert $G$ að tréi með því að fjarlægja leggi.
 		\item<4-> Einnig má sýna að tré uppfyllir alltaf $|E| = |V| - 1$.
 		\item<5-> Ef $G'$ er tré sem fæst með því að fjarlægja leggi úr $G$ þá köllum við $G'$ \emph{spannandi tré $G$} (e. \emph{spanning tree}).
 	}
 }
 
+\section{Stærðir spannandi trjáa}
 \env{frame}
 {
-	\frametitle{Minnsta spannandi tré}
 	\env{itemize}
 	{
 		\item<1-> Ef $G = (V, E, w)$ er vegið net og $G' = (V', E')$ er spannandi tré netsins $(V, E)$ þá segjum við að \emph{stærðin}
@@ -36,9 +36,9 @@
 	}
 }
 
+\section{Lausn}
 \env{frame}
 {
-	\frametitle{Kruskal}
 	\env{itemize}
 	{
 		\item<1-> Við getum lýst aðferðinni í einni málgrein.
@@ -52,6 +52,7 @@
 	}
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
 	\env{center}
@@ -68,64 +69,65 @@
 			\node[draw, circle, thick] (8) at (6,-2) {};
 			\node[draw, circle, thick] (9) at (8,0) {};
 
-			\only<all:1> { \path[draw, thick] (1) -- (2); }
-			\only<all:2> { \path[draw, thick, red] (1) -- (2); }
-			\only<all:3-24> { \path[draw, thick, blue] (1) -- (2); }
+			\onslide<all:1> { \path[draw, thick] (1) -- (2); }
+			\onslide<all:2> { \path[draw, thick, red] (1) -- (2); }
+			\onslide<all:3-24> { \path[draw, thick, blue] (1) -- (2); }
 			\node[fill = white] at (2,1) {$1$};
 
-			\only<all:1-9> { \path[draw, thick] (2) -- (4); }
-			\only<all:10> { \path[draw, thick, red] (2) -- (4); }
-			\only<all:11-> { \path[draw, thick, blue] (2) -- (4); }
+			\onslide<all:1-9> { \path[draw, thick] (2) -- (4); }
+			\onslide<all:10> { \path[draw, thick, red] (2) -- (4); }
+			\onslide<all:11-> { \path[draw, thick, blue] (2) -- (4); }
 			\node[fill = white] at (3,1.5) {$3$};
 
-			\only<all:1-3> { \path[draw, thick] (4) -- (5); }
-			\only<all:4> { \path[draw, thick, red] (4) -- (5); }
-			\only<all:5-> { \path[draw, thick, blue] (4) -- (5); }
+			\onslide<all:1-3> { \path[draw, thick] (4) -- (5); }
+			\onslide<all:4> { \path[draw, thick, red] (4) -- (5); }
+			\onslide<all:5-> { \path[draw, thick, blue] (4) -- (5); }
 			\node[fill = white] at (4,0) {$1$};
 
-			\only<all:1-7> { \path[draw, thick] (3) -- (5); }
-			\only<all:8> { \path[draw, thick, red] (3) -- (5); }
-			\only<all:9-> { \path[draw, thick, blue] (3) -- (5); }
+			\onslide<all:1-7> { \path[draw, thick] (3) -- (5); }
+			\onslide<all:8> { \path[draw, thick, red] (3) -- (5); }
+			\onslide<all:9-> { \path[draw, thick, blue] (3) -- (5); }
 			\node[fill = white] at (3,-1.5) {$2$};
 
-			\only<all:1-13> { \path[draw, thick] (1) -- (3); }
-			\only<all:14> { \path[draw, thick, red] (1) -- (3); }
-			\only<all:15-23> { \path[draw, thick, yellow] (1) -- (3); }
-			\only<all:1-23> { \node[fill = white] at (2,-1) {$4$}; }
+			\onslide<all:1-13> { \path[draw, thick] (1) -- (3); }
+			\onslide<all:14> { \path[draw, thick, red] (1) -- (3); }
+			\onslide<all:15-23> { \path[draw, thick, yellow] (1) -- (3); }
+			\onslide<all:1-23> { \node[fill = white] at (2,-1) {$4$}; }
 
-			\only<all:1-21> { \path[draw, thick] (4) -- (6); }
-			\only<all:22> { \path[draw, thick, red] (4) -- (6); }
-			\only<all:23-> { \path[draw, thick, blue] (4) -- (6); }
+			\onslide<all:1-21> { \path[draw, thick] (4) -- (6); }
+			\onslide<all:22> { \path[draw, thick, red] (4) -- (6); }
+			\onslide<all:23-> { \path[draw, thick, blue] (4) -- (6); }
 			\node[fill = white] at (5,0.5) {$9$};
 
-			\only<all:1-15> { \path[draw, thick] (6) -- (8); }
-			\only<all:16> { \path[draw, thick, red] (6) -- (8); }
-			\only<all:17-> { \path[draw, thick, blue] (6) -- (8); }
+			\onslide<all:1-15> { \path[draw, thick] (6) -- (8); }
+			\onslide<all:16> { \path[draw, thick, red] (6) -- (8); }
+			\onslide<all:17-> { \path[draw, thick, blue] (6) -- (8); }
 			\node[fill = white] at (6,-1) {$5$};
 
-			\only<all:1-5> { \path[draw, thick] (8) -- (9); }
-			\only<all:6> { \path[draw, thick, red] (8) -- (9); }
-			\only<all:7-> { \path[draw, thick, blue] (8) -- (9); }
+			\onslide<all:1-5> { \path[draw, thick] (8) -- (9); }
+			\onslide<all:6> { \path[draw, thick, red] (8) -- (9); }
+			\onslide<all:7-> { \path[draw, thick, blue] (8) -- (9); }
 			\node[fill = white] at (7,-1) {$1$};
 
-			\only<all:1-17> { \path[draw, thick] (7) -- (9); }
-			\only<all:18> { \path[draw, thick, red] (7) -- (9); }
-			\only<all:19-> { \path[draw, thick, blue] (7) -- (9); }
+			\onslide<all:1-17> { \path[draw, thick] (7) -- (9); }
+			\onslide<all:18> { \path[draw, thick, red] (7) -- (9); }
+			\onslide<all:19-> { \path[draw, thick, blue] (7) -- (9); }
 			\node[fill = white] at (7,1) {$5$};
 
-			\only<all:1-19> { \path[draw, thick] (6) -- (9); }
-			\only<all:20> { \path[draw, thick, red] (6) -- (9); }
-			\only<all:21-23> { \path[draw, thick, yellow] (6) -- (9); }
-			\only<all:1-23> { \node[fill = white] at (7,0) {$7$}; }
+			\onslide<all:1-19> { \path[draw, thick] (6) -- (9); }
+			\onslide<all:20> { \path[draw, thick, red] (6) -- (9); }
+			\onslide<all:21-23> { \path[draw, thick, yellow] (6) -- (9); }
+			\onslide<all:1-23> { \node[fill = white] at (7,0) {$7$}; }
 
-			\only<all:1-11> { \path[draw, thick] (1) -- (5); }
-			\only<all:12> { \path[draw, thick, red] (1) -- (5); }
-			\only<all:13-23> { \path[draw, thick, yellow] (1) -- (5); }
-			\only<all:1-23> { \node[fill = white] at (3,-0.5) {$3$}; }
+			\onslide<all:1-11> { \path[draw, thick] (1) -- (5); }
+			\onslide<all:12> { \path[draw, thick, red] (1) -- (5); }
+			\onslide<all:13-23> { \path[draw, thick, yellow] (1) -- (5); }
+			\onslide<all:1-23> { \node[fill = white] at (3,-0.5) {$3$}; }
 		}
 	}
 }
 
+\section{Atriði um útfærslu}
 \env{frame}
 {
 	\env{itemize}
@@ -135,8 +137,8 @@
 		\item<3-> Við göngum síðan á leggina og:
 		\env{itemize}
 		{
-			\item<4-> Gerum ekkert ef leggurinn myndar rás (\texttt{find(u) == find(v)}).
-			\item<5-> Bætum leggnum í spannandi tréð ef hann myndar ekki rás og sameinum í sammengisleitinn (\texttt{join(u, v)}).
+			\item<4-> Gerum ekkert ef leggurinn myndar rás (\ilcode{find(u) == find(v)}).
+			\item<5-> Bætum leggnum í spannandi tréð ef hann myndar ekki rás og sameinum í sammengisleitinn (\ilcode{join(u, v)}).
 		}
 	}
 }
@@ -150,22 +152,26 @@
 	}
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/kruskal.c}{23}{35}
+	\selectcode{code/kruskal.c}{3}{4}
+	\selectcode{code/kruskal.c}{24}{37}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
 	\env{itemize}
 	{
-		\item<1-> Það fyrsta sem við gerum er að raða leggjunum, sem við gerum í $\mathcal{O}($\onslide<2->{$E \log E$}$)$ tíma.
+		\item<1-> Það fyrsta sem við gerum er að raða leggjunum, sem við gerum í $\mathcal{O}(\onslide<2->{E \log E})$ tíma.
 		\item<3-> Síðan ítrum við í gegn leggina og framkvæmum fastann fjölda af sammengisleitaraðgerðum fyrir hvern legg, sem tekur
-					$\mathcal{O}($\onslide<4->{$E \alpha(V)$}$)$ tíma.
-		\item<5-> Saman er þetta því $\mathcal{O}($\onslide<6->{$E \log E + E \alpha(V)$}$) = \mathcal{O}($\onslide<7->{$E \log E$}$)$.
+					$\mathcal{O}(\onslide<4->{E \alpha(V)})$ tíma.
+		\item<5-> Saman er þetta því $\mathcal{O}(E \log E + E \alpha(V)) = \mathcal{O}(\onslide<6->{E \log E})$.
 	}
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

@@ -1,0 +1,226 @@
+\title{Lausn á \emph{Joint Excavation}}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Dæmalýsing}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Ykkur er gefið samanhangandi net með $n \leq 2 \cdot 10^5$ hnúta og $m \leq 2 \cdot 10^5$ leggi.
+		\item<2-> Þið eigið að finna einfaldan veg í netinu þannig að ef hnútarnir á veginum eru fjarlægðir úr netinu þá 
+					er hægt að skipta samhengisþáttunum í tvennt þannig að hvor hluti skiptingunnar inniheldur jafn marga hnúta.
+	}
+}
+
+\section{Dæmi um lausnir}
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\onslide<1>
+			{
+				\node[draw, circle, thick] (1) at (2, 2) {$1$};
+				\node[draw, circle, thick] (2) at (2, 4) {$2$};
+				\node[draw, circle, thick] (3) at (2, 0) {$3$};
+				\node[draw, circle, thick] (4) at (4, 3) {$4$};
+				\node[draw, circle, thick] (5) at (4, 1) {$5$};
+				\node[draw, circle, thick] (6) at (6, 2) {$6$};
+				\node[draw, circle, thick] (7) at (6, 4) {$7$};
+				\node[draw, circle, thick] (8) at (6, 0) {$8$};
+				\node[draw, circle, thick] (9) at (8, 2) {$9$};
+
+				\path[draw] (1) -- (2);
+				\path[draw] (1) -- (3);
+				\path[draw] (1) -- (5);
+				\path[draw] (2) -- (4);
+				\path[draw] (3) -- (5);
+				\path[draw] (4) -- (5);
+				\path[draw] (4) -- (6);
+				\path[draw] (6) -- (8);
+				\path[draw] (6) -- (9);
+				\path[draw] (8) -- (9);
+				\path[draw] (7) -- (9);
+			}
+			\onslide<2>
+			{
+				\node[draw, circle, thick, blue] (1) at (2, 2) {$1$};
+				\node[draw, circle, thick, green] (2) at (2, 4) {$2$};
+				\node[draw, circle, thick, green] (3) at (2, 0) {$3$};
+				\node[draw, circle, thick, blue] (4) at (4, 3) {$4$};
+				\node[draw, circle, thick, blue] (5) at (4, 1) {$5$};
+				\node[draw, circle, thick, blue] (6) at (6, 2) {$6$};
+				\node[draw, circle, thick, red] (7) at (6, 4) {$7$};
+				\node[draw, circle, thick, red] (8) at (6, 0) {$8$};
+				\node[draw, circle, thick, blue] (9) at (8, 2) {$9$};
+
+				\path[draw] (1) -- (2);
+				\path[draw] (1) -- (3);
+				\path[draw, blue] (1) -- (5);
+				\path[draw] (2) -- (4);
+				\path[draw] (3) -- (5);
+				\path[draw, blue] (4) -- (5);
+				\path[draw, blue] (4) -- (6);
+				\path[draw] (6) -- (8);
+				\path[draw, blue] (6) -- (9);
+				\path[draw] (8) -- (9);
+				\path[draw] (7) -- (9);
+			}
+			\onslide<3>
+			{
+				\node[draw, circle, thick, blue] (1) at (2, 2) {$1$};
+				\node[draw, circle, thick, blue] (2) at (2, 4) {$2$};
+				\node[draw, circle, thick, blue] (3) at (2, 0) {$3$};
+				\node[draw, circle, thick, blue] (4) at (4, 3) {$4$};
+				\node[draw, circle, thick, blue] (5) at (4, 1) {$5$};
+				\node[draw, circle, thick, blue] (6) at (6, 2) {$6$};
+				\node[draw, circle, thick, green] (7) at (6, 4) {$7$};
+				\node[draw, circle, thick, red] (8) at (6, 0) {$8$};
+				\node[draw, circle, thick, blue] (9) at (8, 2) {$9$};
+
+				\path[draw, blue] (1) -- (2);
+				\path[draw, blue] (1) -- (3);
+				\path[draw] (1) -- (5);
+				\path[draw] (2) -- (4);
+				\path[draw, blue] (3) -- (5);
+				\path[draw, blue] (4) -- (5);
+				\path[draw, blue] (4) -- (6);
+				\path[draw] (6) -- (8);
+				\path[draw, blue] (6) -- (9);
+				\path[draw] (8) -- (9);
+				\path[draw] (7) -- (9);
+			}
+			\onslide<4>
+			{
+				\node[draw, circle, thick, red] (1) at (2, 2) {$1$};
+				\node[draw, circle, thick, red] (2) at (2, 4) {$2$};
+				\node[draw, circle, thick, red] (3) at (2, 0) {$3$};
+				\node[draw, circle, thick, blue] (4) at (4, 3) {$4$};
+				\node[draw, circle, thick, red] (5) at (4, 1) {$5$};
+				\node[draw, circle, thick, green] (6) at (6, 2) {$6$};
+				\node[draw, circle, thick, green] (7) at (6, 4) {$7$};
+				\node[draw, circle, thick, green] (8) at (6, 0) {$8$};
+				\node[draw, circle, thick, green] (9) at (8, 2) {$9$};
+
+				\path[draw] (1) -- (2);
+				\path[draw] (1) -- (3);
+				\path[draw] (1) -- (5);
+				\path[draw] (2) -- (4);
+				\path[draw] (3) -- (5);
+				\path[draw] (4) -- (5);
+				\path[draw] (4) -- (6);
+				\path[draw] (6) -- (8);
+				\path[draw] (6) -- (9);
+				\path[draw] (8) -- (9);
+				\path[draw] (7) -- (9);
+			}
+		}
+	}
+}
+
+\section{Lausn}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við getum getum leyst þetta dæmi með einni dýptarleit.
+		\item<2-> Við byrjum á að lita alla hnútana rauða.
+		\item<3-> Á leiðinni niður í dýptarleitinni litum við hnútana sem við heimsækjum bláa.
+		\item<4-> Á leiðinni upp úr dýptaleitinni litum við hnútana græna.
+		\item<5-> Þegar það eru jafnmargir rauðir hnútar og grænir þá erum við búin að finna lausn og getum gætt.
+		\item<6-> En afhverju virkar þetta?
+		\item<7-> Tökum fyrst eftir að bláu hnútarnir mynda veg.
+		\item<8-> Einnig gildir að ef hnútur er grænn þá er dýptarleitin búin að heimsækja hann og all nágranna hans.
+		\item<9-> Svo grænn hnútur getur bara haft græna eða bláa nágranna.
+	}
+}
+
+\section{Sýnidæmi}
+\env{frame}
+{
+	\env{center}
+	{
+		\env{tikzpicture}
+		{
+			\onslide<1-18> { \node[draw, circle, thick, red] (1) at (2, 2) {$1$}; }
+			\onslide<19> { \node[draw, circle, thick, blue, fill] (1) at (2, 2) {$1$}; }
+			\onslide<20-> { \node[draw, circle, thick, blue] (1) at (2, 2) {$1$}; }
+
+			\onslide<1-17> { \node[draw, circle, thick, red] (2) at (2, 4) {$2$}; }
+			\onslide<18> { \node[draw, circle, thick, blue, fill] (2) at (2, 4) {$2$}; }
+			\onslide<19-> { \node[draw, circle, thick, blue] (2) at (2, 4) {$2$}; }
+
+			\onslide<1-19> { \node[draw, circle, thick, red] (3) at (2, 0) {$3$}; }
+			\onslide<20> { \node[draw, circle, thick, blue, fill] (3) at (2, 0) {$3$}; }
+			\onslide<21-> { \node[draw, circle, thick, blue] (3) at (2, 0) {$3$}; }
+
+			\onslide<1-2, 12-16> { \node[draw, circle, thick, red] (4) at (4, 3) {$4$}; }
+			\onslide<3, 17> { \node[draw, circle, thick, blue, fill] (4) at (4, 3) {$4$}; }
+			\onslide<4-11, 18-> { \node[draw, circle, thick, blue] (4) at (4, 3) {$4$}; }
+
+			\onslide<1, 12-20> { \node[draw, circle, thick, red] (5) at (4, 1) {$5$}; }
+			\onslide<2, 21> { \node[draw, circle, thick, blue, fill] (5) at (4, 1) {$5$}; }
+			\onslide<3-11, 22-> { \node[draw, circle, thick, blue] (5) at (4, 1) {$5$}; }
+
+			\onslide<1-3, 12-15> { \node[draw, circle, thick, red] (6) at (6, 2) {$6$}; }
+			\onslide<4, 10, 16> { \node[draw, circle, thick, blue, fill] (6) at (6, 2) {$6$}; }
+			\onslide<5-9, 11, 17-> { \node[draw, circle, thick, blue] (6) at (6, 2) {$6$}; }
+
+			\onslide<1-5, 12-13> { \node[draw, circle, thick, red] (7) at (6, 4) {$7$}; }
+			\onslide<6, 14> { \node[draw, circle, thick, blue, fill] (7) at (6, 4) {$7$}; }
+			\onslide<7-11, 15-> { \node[draw, circle, thick, green] (7) at (6, 4) {$7$}; }
+
+			\onslide<1-7, 12-> { \node[draw, circle, thick, red] (8) at (6, 0) {$8$}; }
+			\onslide<8> { \node[draw, circle, thick, blue, fill] (8) at (6, 0) {$8$}; }
+			\onslide<9-11> { \node[draw, circle, thick, green] (8) at (6, 0) {$8$}; }
+
+			\onslide<1-4, 12> { \node[draw, circle, thick, red] (9) at (8, 2) {$9$}; }
+			\onslide<5, 7, 9, 13, 15> { \node[draw, circle, thick, blue, fill] (9) at (8, 2) {$9$}; }
+			\onslide<6, 8, 14, 16-> { \node[draw, circle, thick, blue] (9) at (8, 2) {$9$}; }
+			\onslide<10-11> { \node[draw, circle, thick, green] (9) at (8, 2) {$9$}; }
+
+			\path[draw] (1) -- (2);
+			\path[draw] (1) -- (3);
+			\path[draw] (1) -- (5);
+			\path[draw] (2) -- (4);
+			\path[draw] (3) -- (5);
+			\path[draw] (4) -- (5);
+			\path[draw] (4) -- (6);
+			\path[draw] (6) -- (8);
+			\path[draw] (6) -- (9);
+			\path[draw] (8) -- (9);
+			\path[draw] (7) -- (9);
+		}
+	}
+}
+
+\section{Útfærsla}
+\env{frame}
+{
+	\only<1> { \selectcode{code/jointexcavation.cpp}{6}{29} }
+	\only<2> { \selectcode{code/jointexcavation.cpp}{31}{47} }
+}
+
+\section{Tímaflækja}
+\env{frame}
+{
+	\env{itemize}
+	{
+		\item<1-> Við framkvæmum eina dýptarleit.
+		\item<2-> Svo tímaflækjan er $\mathcal{O}(\onslide<3->{n + m})$.
+		\item<4-> Áhugavert er að það er alltaf til lausn, og það skiptir ekki máli í hvaða hnút leitin byrjar.
+	}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

@@ -123,7 +123,7 @@
 		\item<1-> Gerum ráð fyrir að leitin okkar fari úr hnút $u$ í hnút $v$ með legg $e$.
 		\item<2-> Ef $v_{low} > u_{num}$ þá er $e$ brú.
 		\item<3-> Þetta þýðir að eina leiðin frá $v$ til $u$ er í gegnum legginn $e$.
-		\item<4-> Ef $v_{low} \geq u_{num}$ þá er $u$ liðhnútur.
+		\item<4-> Ef $v_{low} \geq u_{num}$ gildir fyrir einhvern nágranna $u$ þá er $u$ liðhnútur.
 		\item<5-> Þetta þýðir að eina leiðin frá $v$ í fyrri hnúta leitarinnar er í gegnum hnútinn $u$.
 		\item<6-> Við þurfum þó að afgreiða sérstaklega upphafshnútinn í leitinni.
 		\item<7-> Ef upphafshnúturinn þarf að heimsækja fleiri en einn nágranna sinna er hann liðhnútur.
@@ -364,8 +364,8 @@
 			\onslide<handout:10-|12-> { \path[draw, ->, very thick, black] (2) -> (3); }
 			%\item<0|handout:1> { Ekki nota þennan kóða. Hann er hægari en það sem á eftir kemur. }
 		}
-		\item<12-> Hverjr eru ströngu samhengisþættir netsins?
-		\item<13-> Hverjr verða ströngu samhengisþættir netsins samkvæmt glærunni á undan?
+		\item<12-> Hverjir eru ströngu samhengisþættir netsins?
+		\item<13-> Hverjir verða ströngu samhengisþættir netsins samkvæmt glærunni á undan?
 		\item<14-> Afhverju gerðist þetta ekki þegar við vorum að finna liðhnúta og brýr?
 		\item<15-> Einföld leið til að laga þetta er að uppfæra bara $u_{low}$ með nágrönnum sem við höfum ekki fundið stranga samhángisáttinn fyrir.
 	}

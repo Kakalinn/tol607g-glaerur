@@ -93,10 +93,35 @@
 			\onslide<all:12, 15, 17->{\node[draw, circle, thick, blue] (9) at (8,0) {\phantom{x}};}
 			\onslide<all:13-14, 16>{\node[draw, circle, thick, blue] (9) at (8,0) {x};}
 
-			\path[draw] (1) -- (2) -- (4) -- (5) -- (3) -- (1);
-			\path[draw] (4) -- (6) -- (8) -- (9) -- (7);
-			\path[draw] (6) -- (9);
-			\path[draw] (1) -- (5);
+			\onslide<all:1-3> { \path[draw] (1) -- (2); } %4
+			\onslide<all:4-> { \path[draw, blue] (1) -- (2); } %4
+
+			\onslide<all:1-5> { \path[draw] (2) -- (4); } %6
+			\onslide<all:6-> { \path[draw, blue] (2) -- (4); } %6
+
+			\onslide<all:1-19> { \path[draw] (4) -- (5); } %20
+			\onslide<all:20-> { \path[draw, blue] (4) -- (5); } %20
+
+			\onslide<all:1-21> { \path[draw] (5) -- (3); } %22
+			\onslide<all:22-> { \path[draw, blue] (5) -- (3); } %22
+
+			\onslide<all:1-> { \path[draw] (3) -- (1); }
+
+			\onslide<all:1-7> { \path[draw] (4) -- (6); } %8
+			\onslide<all:8-> { \path[draw, blue] (4) -- (6); } %8
+
+			\onslide<all:1-> { \path[draw] (6) -- (8); }
+
+			\onslide<all:1-14> { \path[draw] (8) -- (9); } %15
+			\onslide<all:15-> { \path[draw, blue] (8) -- (9); } %15
+
+			\onslide<all:1-11> { \path[draw] (9) -- (7); } %12
+			\onslide<all:12-> { \path[draw, blue] (9) -- (7); } %12
+
+			\onslide<all:1-9> { \path[draw] (6) -- (9); } %10
+			\onslide<all:10-> { \path[draw, blue] (6) -- (9); } %10
+
+			\onslide<all:1-> { \path[draw] (1) -- (5); }
 		}
 	}
 }

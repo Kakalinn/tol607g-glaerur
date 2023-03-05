@@ -3,7 +3,6 @@
 #include <time.h>
 #include <assert.h>
 #define MAXN 1000000
-#define LOGN 20
 #define LEFT(x) ((x) + 1)
 #define RIGHT(x, m, i) ((x) + 2*(m - i + 1))
 int p[2*MAXN], o[2*MAXN];
@@ -48,7 +47,7 @@ void update(int x, int y, int z)                                                
 
 void init(int n)                                                                // Upphafstillum tréð. Fylkin o og p þurfa að rúma 5*n stök!
 {
-	for (int i = 0; i < 5*n; i++) p[i] = o[i] = 0;
+	for (int i = 0; i < 2*n; i++) p[i] = o[i] = 0;
 	p[0] = n;                                                                   // Til þæginda geymum við stærðina í stakinu sem er ekki notað í trénu.
 }
 
