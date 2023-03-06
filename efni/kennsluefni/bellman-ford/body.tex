@@ -40,15 +40,15 @@
     {
         \[
             f(v, k) = \left \{
-                \env{array}
-        { {l l}
-            0, & \text{ef $u = v$ og $k = 0$}\\
+            \env{array}
+            { {l l}
+                0, & \text{ef $u = v$ og $k = 0$}\\
                 \infty, & \text{ef $u \neq v$ og $k = 0$}\\
                 \min(f(v, k - 1), & \\
-                        \ \min_{u \in E^v} w((u, v)) + f(u, k - 1)), & \text{ef $u \neq v$ og $k = 0$}\\
-        }
-        \right .
-            \]
+                        \ \min_{u \in E^v} w((u, v)) + f(u, k - 1)), & \text{annars.}
+            }
+            \right .
+        \]
     }
 }
 

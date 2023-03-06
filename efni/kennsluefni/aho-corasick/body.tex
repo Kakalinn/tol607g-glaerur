@@ -8,284 +8,285 @@
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að við séum með stafróð $\Sigma$, streng $s$ og lista af $n$ strengjum $p$, þar sem $j$-ti strengurinn kallast $p_j$.
-		\item<2-> Látum $|s|$ tákna lengd strengsins $s$ og $|p| = |p_1| + \dots + |p_n|$.
-		\item<3-> Við viljum finna alla hlutstrengi $s$ sem eru í listanum $p$.
-		\item<4-> Við getum notað reiknirit Knuths, Morrisar og Pratts $n$ sinnum.
-		\item<5-> Þessi aðferð hefur tímaflækjuna $\mathcal{O}(n \cdot |s| + |p|)$.
-		\item<6-> Reiknirit Ahos og Corasicks bætir þetta.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum með stafróf $\Sigma$, streng $s$ og lista af $n$ strengjum $p$, þar sem $j$-ti strengurinn kallast $p_j$.
+        \item<2-> Látum $|s|$ tákna lengd strengsins $s$ og $|p| = |p_1| + \dots + |p_n|$.
+        \item<3-> Við viljum finna alla hlutstrengi $s$ sem eru í listanum $p$.
+        \item<4-> Við getum notað reiknirit Knuths, Morrisar og Pratts $n$ sinnum.
+        \item<5-> Þessi aðferð hefur tímaflækjuna $\mathcal{O}(n \cdot |s| + |p|)$.
+        \item<6-> Reiknirit Ahos og Corasicks bætir þetta.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Byrjum á að setja all strengina í $p$ inn í forstrengstré $T$.
-		\item<2-> Við viljum síðan búa til stöðuvél úr $T$.
-		\item<3-> Hnútarnir í trénu eru stöðurnar, en okkur vantar að finna færslur fyrir hverja stöðu og bókstaf í $\Sigma$.
-		\item<4-> Gerum ráð fyrir að við séum í hnút $v$ í $T$ og viljum færast fyrir staf $c$ í $\Sigma$.
-		\item<5-> Ef það er leggur í $T$ úr $v$ merktur með $c$ þá ferðumst við eftir honum.
-		\item<6-> Annars þurfum við að fara aftur í hnút $w$ þannig að strengurinn sem svarar til $w$ er bakstrengur strengsins sem svarar til $v$.
-		\item<7-> Við viljum hafa strenginn $w$ sem lengstan (með öðrum orðum viljum við fara sem styst aftur).
-		\item<8-> Í hvern hnút bætum við við legg sem svarar til slíkrar færslu.
-		\item<9-> Við köllum þessa leggi \emph{bakstrengsleggi} (e. \emph{suffix links}).
-		\item<10-> Takið eftir að þeir eru í raun óháðir bókstafnum $c$.
-		\item<11-> Við látum bakstrengslegg rótarinn benda á sjálfa sig.
-	}
+    \env{itemize}
+    {
+        \item<1-> Byrjum á að setja all strengina í $p$ inn í forstrengstré $T$.
+        \item<2-> Við viljum síðan búa til stöðuvél úr $T$.
+        \item<3-> Hnútarnir í trénu eru stöðurnar, en okkur vantar að finna færslur fyrir hverja stöðu og bókstaf í $\Sigma$.
+        \item<4-> Gerum ráð fyrir að við séum í hnút $v$ í $T$ og viljum færast fyrir staf $c$ í $\Sigma$.
+        \item<5-> Ef það er leggur í $T$ úr $v$ merktur með $c$ þá ferðumst við eftir honum.
+        \item<6-> Annars þurfum við að fara aftur í hnút $w$ þannig að strengurinn sem svarar til $w$ er bakstrengur strengsins sem svarar til $v$.
+        \item<7-> Við viljum hafa strenginn $w$ sem lengstan (með öðrum orðum viljum við fara sem styst aftur).
+        \item<8-> Í hvern hnút bætum við við legg sem svarar til slíkrar færslu.
+        \item<9-> Við köllum þessa leggi \emph{bakstrengsleggi} (e. \emph{suffix links}).
+        \item<10-> Takið eftir að þeir eru í raun óháðir bókstafnum $c$.
+        \item<11-> Við látum bakstrengslegg rótarinn benda á sjálfa sig.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvernig finnum við alla bakstrengsleggina?
-		\item<2-> Við notum kvika bestun.
-		\item<3-> Látum $f(w, c)$ tákna færslu úr stöðu $w$ með staf $c$ og $g(w)$ tákna bakstrengslegg $w$.
-		\item<4-> Gerum einnig ráð fyrir að foreldri $v$ sé $p$ og $f(p, a) = v$.
-		\item<5-> Við sjáum þá að $g(v) = f(g(p), a)$.
-		\item<6-> Með öðrum orðum förum við upp í foreldrið, ferðumst eftir bakstrenglegg þaðan og færum okkur í stöðuvélinni eftir $a$.
-		\item<7-> Við höfum þá rakningarformúlu sem við getum notað til að reikna bakstrengshlekkina.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvernig finnum við alla bakstrengsleggina?
+        \item<2-> Við notum kvika bestun.
+        \item<3-> Látum $f(w, c)$ tákna færslu úr stöðu $w$ með staf $c$ og $g(w)$ tákna bakstrengslegg $w$.
+        \item<4-> Gerum einnig ráð fyrir að foreldri $v$ sé $p$ og $f(p, a) = v$.
+        \item<5-> Við sjáum þá að $g(v) = f(g(p), a)$.
+        \item<6-> Með öðrum orðum förum við upp í foreldrið, ferðumst eftir bakstrenglegg þaðan og færum okkur í stöðuvélinni eftir $a$.
+        \item<7-> Við höfum þá rakningarformúlu sem við getum notað til að reikna bakstrengshlekkina.
+    }
 }
 
 \env{frame}
 {
-	\env{tikzpicture}
-	{
-		\node[draw, circle, thick, white] (0) at (-1, 0) {};
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick, white] (0) at (-1, 0) {};
 
-		\only<all:2, 3> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, -1) {}; }
-		\only<all:4, 5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
-		\only<all:6, 7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, -1) {}; }
-		\only<all:8, 9> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
-		\only<all:10, 11> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
-		\only<all:12, 13> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
+        \onslide<all:2, 3> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, -1) {}; }
+        \onslide<all:4, 5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
+        \onslide<all:6, 7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, -1) {}; }
+        \onslide<all:8, 9> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+        \onslide<all:10, 11> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
+        \onslide<all:12, 13> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
 
-		\node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (5) at (4, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (6) at (1, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (7) at (2, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (8) at (3, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (9) at (4, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (5) at (4, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (6) at (1, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (7) at (2, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (8) at (3, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (9) at (4, -1) {};
 
-		\path[draw, thick, ->] (0) -- (1);
-		\path[draw, thick] (1) -- (2);
-		\path[draw, thick] (2) -- (3);
-		\path[draw, thick] (3) -- (4);
-		\path[draw, thick] (4) -- (5);
-		\path[draw, thick] (1) -- (6);
-		\path[draw, thick] (6) -- (7);
-		\path[draw, thick] (7) -- (8);
-		\path[draw, thick] (8) -- (9);
-		\only<all:1-> { \path[draw, thick, white, dotted] (9) edge[bend left = 90] node {} (1); } %alignment
-		\only<all:3-> { \path[draw, thick, green, dotted] (7) edge[bend left = 90] node {} (1); }
-		\only<all:5-> { \path[draw, thick, green, dotted] (8) edge[bend left = 90] node {} (1); }
-		\only<all:7-> { \path[draw, thick, green, dotted] (9) edge[bend left = 90] node {} (1); }
-		\only<all:9-> { \path[draw, thick, green, dotted] (3) -- (6); }
-		\only<all:11-> { \path[draw, thick, green, dotted] (4) -- (7); }
-		\only<all:13-> { \path[draw, thick, green, dotted] (5) -- (8); }
+        \path[draw, thick, ->] (0) -- (1);
+        \path[draw, thick] (1) -- (2);
+        \path[draw, thick] (2) -- (3);
+        \path[draw, thick] (3) -- (4);
+        \path[draw, thick] (4) -- (5);
+        \path[draw, thick] (1) -- (6);
+        \path[draw, thick] (6) -- (7);
+        \path[draw, thick] (7) -- (8);
+        \path[draw, thick] (8) -- (9);
+        \onslide<all:1-> { \path[draw, thick, white, dotted] (9) edge[bend left = 90] node {} (1); } %alignment
+        \onslide<all:3-> { \path[draw, thick, green, dotted] (7) edge[bend left = 90] node {} (1); }
+        \onslide<all:5-> { \path[draw, thick, green, dotted] (8) edge[bend left = 90] node {} (1); }
+        \onslide<all:7-> { \path[draw, thick, green, dotted] (9) edge[bend left = 90] node {} (1); }
+        \onslide<all:9-> { \path[draw, thick, green, dotted] (3) -- (6); }
+        \onslide<all:11-> { \path[draw, thick, green, dotted] (4) -- (7); }
+        \onslide<all:13-> { \path[draw, thick, green, dotted] (5) -- (8); }
 
-		\node at (0.5, 0.8) {a};
-		\node at (1.5, 1.2) {b};
-		\node at (2.5, 1.2) {c};
-		\node at (3.5, 1.2) {d};
-		\node at (0.6, -0.4) {b};
-		\node at (1.5, -0.8) {c};
-		\node at (2.5, -0.8) {d};
-		\node at (3.5, -0.8) {e};
-	}
+        \node at (0.5, 0.8) {a};
+        \node at (1.5, 1.2) {b};
+        \node at (2.5, 1.2) {c};
+        \node at (3.5, 1.2) {d};
+        \node at (0.6, -0.4) {b};
+        \node at (1.5, -0.8) {c};
+        \node at (2.5, -0.8) {d};
+        \node at (3.5, -0.8) {e};
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Í $T$ merkjum við lokastöður þar sem strengir enda.
-		\item<2-> Við ferðumst svo í gegnum strenginn $s$ og hliðrum stöðvélinni miðað við stafina í $s$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Í $T$ merkjum við lokastöður þar sem strengir enda.
+        \item<2-> Við ferðumst svo í gegnum strenginn $s$ og hliðrum stöðvélinni miðað við stafina í $s$.
+    }
 }
 
 \env{frame}
 {
-	\env{tikzpicture}
-	{
-		\node[draw, circle, thick, white] (0) at (-1, 0) {};
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick, white] (0) at (-1, 0) {};
 
-		\only<all:1-2> { \node at (3, 2) {,,abcdcdeaaabcdeabcxab''}; }
-		\only<all:3> { \node at (3, 2)    {,,bcdcdeaaabcdeabcxab''}; }
-		\only<all:4> { \node at (3, 2)     {,,cdcdeaaabcdeabcxab''}; }
-		\only<all:5> { \node at (3, 2)      {,,dcdeaaabcdeabcxab''}; }
-		\only<all:6-8> { \node at (3, 2)     {,,cdeaaabcdeabcxab''}; }
-		\only<all:9> { \node at (3, 2)        {,,deaaabcdeabcxab''}; }
-		\only<all:10> { \node at (3, 2)        {,,eaaabcdeabcxab''}; }
-		\only<all:11> { \node at (3, 2)         {,,aaabcdeabcxab''}; }
-		\only<all:12-13> { \node at (3, 2)       {,,aabcdeabcxab''}; }
-		\only<all:14-15> { \node at (3, 2)        {,,abcdeabcxab''}; }
-		\only<all:16> { \node at (3, 2)            {,,bcdeabcxab''}; }
-		\only<all:17> { \node at (3, 2)             {,,cdeabcxab''}; }
-		\only<all:18> { \node at (3, 2)              {,,deabcxab''}; }
-		\only<all:19-20> { \node at (3, 2)            {,,eabcxab''}; }
-		\only<all:21-22> { \node at (3, 2)             {,,abcxab''}; }
-		\only<all:23> { \node at (3, 2)                 {,,bcxab''}; }
-		\only<all:24> { \node at (3, 2)                  {,,cxab''}; }
-		\only<all:25-27> { \node at (3, 2)                {,,xab''}; }
-		\only<all:28> { \node at (3, 2)                    {,,ab''}; }
-		\only<all:29> { \node at (3, 2)                     {,,b''}; }
-		\only<all:30-31> { \node at (3, 2)                   {,,''}; }
+        \onslide<all:1-2> { \node at (3, 2) {,,abcdcdeaaabcdeabcxab''}; }
+        \onslide<all:3> { \node at (3, 2)    {,,bcdcdeaaabcdeabcxab''}; }
+        \onslide<all:4> { \node at (3, 2)     {,,cdcdeaaabcdeabcxab''}; }
+        \onslide<all:5> { \node at (3, 2)      {,,dcdeaaabcdeabcxab''}; }
+        \onslide<all:6-8> { \node at (3, 2)     {,,cdeaaabcdeabcxab''}; }
+        \onslide<all:9> { \node at (3, 2)        {,,deaaabcdeabcxab''}; }
+        \onslide<all:10> { \node at (3, 2)        {,,eaaabcdeabcxab''}; }
+        \onslide<all:11> { \node at (3, 2)         {,,aaabcdeabcxab''}; }
+        \onslide<all:12-13> { \node at (3, 2)       {,,aabcdeabcxab''}; }
+        \onslide<all:14-15> { \node at (3, 2)        {,,abcdeabcxab''}; }
+        \onslide<all:16> { \node at (3, 2)            {,,bcdeabcxab''}; }
+        \onslide<all:17> { \node at (3, 2)             {,,cdeabcxab''}; }
+        \onslide<all:18> { \node at (3, 2)              {,,deabcxab''}; }
+        \onslide<all:19-20> { \node at (3, 2)            {,,eabcxab''}; }
+        \onslide<all:21-22> { \node at (3, 2)             {,,abcxab''}; }
+        \onslide<all:23> { \node at (3, 2)                 {,,bcxab''}; }
+        \onslide<all:24> { \node at (3, 2)                  {,,cxab''}; }
+        \onslide<all:25-27> { \node at (3, 2)                {,,xab''}; }
+        \onslide<all:28> { \node at (3, 2)                    {,,ab''}; }
+        \onslide<all:29> { \node at (3, 2)                     {,,b''}; }
+        \onslide<all:30-31> { \node at (3, 2)                   {,,''}; }
 
-		\only<all:2> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
-		\only<all:3> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
-		\only<all:4> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
-		\only<all:5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
-		\only<all:6> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
-		\only<all:7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
-		\only<all:8-11, 13, 15> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
-		\only<all:12, 14, 16> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
-		\only<all:17> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
-		\only<all:18> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
-		\only<all:19> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
-		\only<all:20> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
-		\only<all:21> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, -1) {}; }
-		\only<all:22> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
-		\only<all:23> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
-		\only<all:24> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
-		\only<all:25> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
-		\only<all:26> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, -1) {}; }
-		\only<all:27-28> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
-		\only<all:29> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
-		\only<all:30> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+        \onslide<all:2> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
+        \onslide<all:3> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
+        \onslide<all:4> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+        \onslide<all:5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
+        \onslide<all:6> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
+        \onslide<all:7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
+        \onslide<all:8-11, 13, 15> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
+        \onslide<all:12, 14, 16> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
+        \onslide<all:17> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+        \onslide<all:18> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
+        \onslide<all:19> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, 1) {}; }
+        \onslide<all:20> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, -1) {}; }
+        \onslide<all:21> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (4, -1) {}; }
+        \onslide<all:22> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
+        \onslide<all:23> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
+        \onslide<all:24> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+        \onslide<all:25> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
+        \onslide<all:26> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, -1) {}; }
+        \onslide<all:27-28> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
+        \onslide<all:29> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
+        \onslide<all:30> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
 
-		\node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (5) at (4, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (6) at (1, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (7) at (2, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (8) at (3, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (9) at (4, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (5) at (4, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (6) at (1, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (7) at (2, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (8) at (3, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (9) at (4, -1) {};
 
-		\path[draw, thick, ->] (0) -- (1);
-		\path[draw, thick] (1) -- (2);
-		\path[draw, thick] (2) -- (3);
-		\path[draw, thick] (3) -- (4);
-		\path[draw, thick] (4) -- (5);
-		\path[draw, thick] (1) -- (6);
-		\path[draw, thick] (6) -- (7);
-		\path[draw, thick] (7) -- (8);
-		\path[draw, thick] (8) -- (9);
-		\path[draw, thick, green, dotted] (2) edge[bend left = 40] node {} (1);
-		\path[draw, thick, green, dotted] (3) -- (6);
-		\path[draw, thick, green, dotted] (4) -- (7);
-		\path[draw, thick, green, dotted] (5) -- (8);
-		\path[draw, thick, green, dotted] (6) edge[bend left = 40] node {} (1);
-		\path[draw, thick, green, dotted] (7) edge[bend left = 90] node {} (1);
-		\path[draw, thick, green, dotted] (8) edge[bend left = 90] node {} (1);
-		\path[draw, thick, green, dotted] (9) edge[bend left = 90] node {} (1);
+        \path[draw, thick, ->] (0) -- (1);
+        \path[draw, thick] (1) -- (2);
+        \path[draw, thick] (2) -- (3);
+        \path[draw, thick] (3) -- (4);
+        \path[draw, thick] (4) -- (5);
+        \path[draw, thick] (1) -- (6);
+        \path[draw, thick] (6) -- (7);
+        \path[draw, thick] (7) -- (8);
+        \path[draw, thick] (8) -- (9);
+        \path[draw, thick, green, dotted] (2) edge[bend left = 40] node {} (1);
+        \path[draw, thick, green, dotted] (3) -- (6);
+        \path[draw, thick, green, dotted] (4) -- (7);
+        \path[draw, thick, green, dotted] (5) -- (8);
+        \path[draw, thick, green, dotted] (6) edge[bend left = 40] node {} (1);
+        \path[draw, thick, green, dotted] (7) edge[bend left = 90] node {} (1);
+        \path[draw, thick, green, dotted] (8) edge[bend left = 90] node {} (1);
+        \path[draw, thick, green, dotted] (9) edge[bend left = 90] node {} (1);
 
-		\node at (0.5, 0.8) {a};
-		\node at (1.5, 1.2) {b};
-		\node at (2.5, 1.2) {c};
-		\node at (3.5, 1.2) {d};
-		\node at (0.6, -0.4) {b};
-		\node at (1.5, -0.8) {c};
-		\node at (2.5, -0.8) {d};
-		\node at (3.5, -0.8) {e};
-	}
+        \node at (0.5, 0.8) {a};
+        \node at (1.5, 1.2) {b};
+        \node at (2.5, 1.2) {c};
+        \node at (3.5, 1.2) {d};
+        \node at (0.6, -0.4) {b};
+        \node at (1.5, -0.8) {c};
+        \node at (2.5, -0.8) {d};
+        \node at (3.5, -0.8) {e};
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1- | handout:1-> Ljóst er að alltaf þegar við erum í lokastöðu þá erum við með hlutstreng í $s$ sem er í $p$.
-		\item<2- | handout:1-> En eru þetta einu slíku hlutstrengirnir?
-		\item<3- | handout:2->[]
-		\env{tikzpicture}
-		{
-			\node[draw, circle, thick, white] (0) at (-1, 0) {};
-			\onslide<4, 5 | handout:3, 4> { \node at (3, 2) {,,bcb''}; }
-			\onslide<6 | handout:5> { \node at (3, 2)     {,,cb''}; }
-			\onslide<7 | handout:6> { \node at (3, 2)      {,,b''}; }
-			\onslide<8 | handout:7> { \node at (3, 2)       {,,''}; }
+    \env{itemize}
+    {
+        \item<1- | handout:1-> Ljóst er að alltaf þegar við erum í lokastöðu þá erum við með hlutstreng í $s$ sem er í $p$.
+        \item<2- | handout:1-> En eru þetta einu slíku hlutstrengirnir?
+        \item<3- | handout:2->[]
+        \env{tikzpicture}
+        {
+            \node[draw, circle, thick, white] (0) at (-1, 0) {};
+            \onslide<4, 5 | handout:3, 4> { \node at (3, 2) {,,bcb''}; }
+            \onslide<6 | handout:5> { \node at (3, 2)     {,,cb''}; }
+            \onslide<7 | handout:6> { \node at (3, 2)      {,,b''}; }
+            \onslide<8 | handout:7> { \node at (3, 2)       {,,''}; }
 
-			\onslide<5 | handout:4> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
-			\onslide<6 | handout:5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
-			\onslide<7 | handout:6> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
-			\onslide<8 | handout:7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
+            \onslide<5 | handout:4> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (0, 0) {}; }
+            \onslide<6 | handout:5> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (1, 1) {}; }
+            \onslide<7 | handout:6> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (2, 1) {}; }
+            \onslide<8 | handout:7> { \node[draw, circle, fill, blue, thick, inner sep = 1.0pt] at (3, 1) {}; }
 
-			\node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
-			\node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
-			\node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
-			\node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
-			\node[draw, circle, thick, inner sep = 1.0pt] (5) at (1, -1) {};
+            \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
+            \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
+            \node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 1) {};
+            \node[draw, circle, thick, inner sep = 1.0pt] (4) at (3, 1) {};
+            \node[draw, circle, thick, inner sep = 1.0pt] (5) at (1, -1) {};
 
-			\path[draw, thick, ->] (0) -- (1);
-			\path[draw, thick] (1) -- (2);
-			\path[draw, thick] (2) -- (3);
-			\path[draw, thick] (3) -- (4);
-			\path[draw, thick] (1) -- (5);
-			\path[draw, thick, green, dotted] (2) edge[bend left = 40] node {} (1);
-			\path[draw, thick, green, dotted] (3) -- (5);
-			%\path[draw, thick, green, dotted] (4) -- (6);
-			\path[draw, thick, green, dotted] (4) edge[bend right = 90] node {} (1);
-			\path[draw, thick, green, dotted] (5) edge[bend left = 40] node {} (1);
+            \path[draw, thick, ->] (0) -- (1);
+            \path[draw, thick] (1) -- (2);
+            \path[draw, thick] (2) -- (3);
+            \path[draw, thick] (3) -- (4);
+            \path[draw, thick] (1) -- (5);
+            \path[draw, thick, green, dotted] (2) edge[bend left = 40] node {} (1);
+            \path[draw, thick, green, dotted] (3) -- (5);
+            %\path[draw, thick, green, dotted] (4) -- (6);
+            \path[draw, thick, green, dotted] (4) edge[bend right = 90] node {} (1);
+            \path[draw, thick, green, dotted] (5) edge[bend left = 40] node {} (1);
 
-			\node at (0.5, 0.8) {b};
-			\node at (1.5, 1.2) {c};
-			\node at (2.5, 1.2) {b};
-			\node at (0.6, -0.4) {c};
-		}
-		\item<10- | handout:9-> Nei, við þurfum líka, í hverju skrefi, að athuga hvort við getum komist í lokastöðu ef við ferðumst eftir bakstrengsleggjum.
-		\item<11- | handout:9-> Til að koma í vega fyrir að tímaflækjan verði of slæm þá notum við aftur kvika bestun.
-		\item<12- | handout:9-> Við bætum í raun leggjum inn í tréð, sem við köllum \emph{lokaleggi} (e. \emph{exit link}).
-	}
+            \node at (0.5, 0.8) {b};
+            \node at (1.5, 1.2) {c};
+            \node at (2.5, 1.2) {b};
+            \node at (0.6, -0.4) {c};
+        }
+        \item<10- | handout:9-> Nei, við þurfum líka, í hverju skrefi,
+                    að athuga hvort við getum komist í lokastöðu ef við ferðumst eftir bakstrengsleggjum.
+        \item<11- | handout:9-> Til að koma í vega fyrir að tímaflækjan verði of slæm þá notum við aftur kvika bestun.
+        \item<12- | handout:9-> Við bætum í raun leggjum inn í tréð, sem við köllum \emph{lokaleggi} (e. \emph{exit link}).
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Í útfærslunni munum við notast við þrjú hjálparföll.
-		\item<2-> Fyrsta heitir \texttt{trie\_step(...)} sem er notað til að ferðast um stöðuvélina.
-		\item<3-> Annað heitir \texttt{trie\_suffix(...)} sem er notað til að finna bakstrengsleggi.
-		\item<4-> Þriðja heitir \texttt{trie\_exit(...)} sem er notað til að finna lokaleggina.
-		\item<5-> Öll þessi föll eru endurkvæm og notast við minnun.
-	}
+    \env{itemize}
+    {
+        \item<1-> Í útfærslunni munum við notast við þrjú hjálparföll.
+        \item<2-> Fyrsta heitir \texttt{trie\_step(...)} sem er notað til að ferðast um stöðuvélina.
+        \item<3-> Annað heitir \texttt{trie\_suffix(...)} sem er notað til að finna bakstrengsleggi.
+        \item<4-> Þriðja heitir \texttt{trie\_exit(...)} sem er notað til að finna lokaleggina.
+        \item<5-> Öll þessi föll eru endurkvæm og notast við minnun.
+    }
 }
 
 \env{frame}
 {
-	\selectcode{code/aho-corasick.c}{5}{33}
+    \selectcode{code/aho-corasick.c}{5}{33}
 }
 
 \env{frame}
 {
-	\selectcode{code/aho-corasick.c}{35}{55}
+    \selectcode{code/aho-corasick.c}{35}{55}
 }
 
 \env{frame}
 {
-	\selectcode{code/aho-corasick.c}{57}{83}
+    \selectcode{code/aho-corasick.c}{57}{83}
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að strengirnar í $p$ komi fyrir $k$ sinnum í $s$.
-		\item<2-> Þá er tímaflækjan $\mathcal{O}($\onslide<3->{$|s| + |\Sigma| \cdot |p| + k$}$)$.
-		\item<4-> Ef við höfum bara áhuga á að finna töluna $k$ getum við breytt \texttt{trie\_exit(...)}
-					þannig að það reikni fjölda lokastaða á leiðinni að rót eftir bakstrengsleggjum.
-		\item<5-> Þá verður tímaflækjan $\mathcal{O}($\onslide<6->{$|s| + |\Sigma| \cdot |p|$}$)$.
-		\item<7-> Takið eftir að ef stafrófið er takmarkað þá er seinni tímaflækjan línuleg.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að strengirnar í $p$ komi fyrir $k$ sinnum í $s$.
+        \item<2-> Þá er tímaflækjan $\mathcal{O}($\onslide<3->{$|s| + |\Sigma| \cdot |p| + k$}$)$.
+        \item<4-> Ef við höfum bara áhuga á að finna töluna $k$ getum við breytt \texttt{trie\_exit(...)}
+                    þannig að það reikni fjölda lokastaða á leiðinni að rót eftir bakstrengsleggjum.
+        \item<5-> Þá verður tímaflækjan $\mathcal{O}($\onslide<6->{$|s| + |\Sigma| \cdot |p|$}$)$.
+        \item<7-> Takið eftir að ef stafrófið er takmarkað þá er seinni tímaflækjan línuleg.
+    }
 }
 
 \env{frame}
