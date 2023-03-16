@@ -8,21 +8,16 @@ typedef vector<int> vi;
 
 vi bellman_ford(vvii& g, int s)
 {
-    int i, j, k, n = g.size(), x, w, q[n];
+    int i, j, k, f = 1, n = g.size(), x, w, q[n];
     vi d(n);
     for (i = 0; i < n; i++) d[i] = i == s ? 0 : INF, q[i] = i == s ? 0 : -1;    // Upphafstillum minnistölfuna með mjög stórri tölu.
-    for (i = 0; i < n - 1; i++) for (j = 0; j < n; j++) if (q[j] == i)          // Ítrum í gegnum alla hnútanna nema þá sem við þurfum ekki að uppfæra.
+    for (i = 0; f ; i++) for (j = f = 0; j < n; j++) if (q[j] == i)             // Ítrum í gegnum alla hnútanna nema þá sem við þurfum ekki að uppfæra.
         for (k = 0; k < g[j].size(); k++)                                       // Ítrum í gegnum alla nágranna tiltekins hnúts sem þarf að uppfæra.
-        {
-            x = g[j][k].first, w = g[j][k].second;
-            if (d[j] + w < d[x]) d[x] = d[j] + w, q[x] = i + 1;                 // Uppfærum ef við erum með betra gildi.
-        }
-    for (i = 0; i < n - 1; i++) for (j = 0; j < n; j++) if (q[j] == n + i - 1)  // Ítrum aftur í gegn til að finna áhrif neikvæðra rása.
-        for (k = 0; k < g[j].size(); k++)
-        {
-            x = g[j][k].first, w = g[j][k].second;
-            if (d[x] != -INF && d[j] + w < d[x]) d[x] = -INF, q[x] = n + i;     // Ef við getum ennþá stytt vegin er neikvæð rás á leiðinni.
-        }
+    {
+        x = g[j][k].first, w = g[j][k].second;
+        if (d[x] != -INF && d[j] + w < d[x])
+            d[x] = i < n ? d[j] + w : -INF, q[x] = i + 1, f = 1;                // Uppfærum ef við erum með betra gildi eða -INF.
+    }
     return d;                                                                   // Skilum fjarlægðunum.
 }
 

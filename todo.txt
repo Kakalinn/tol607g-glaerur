@@ -3,3 +3,5 @@ breyta 'texttt' í 'ilcode'
 setja 'onslide' inn í mathmode
 gera index á allar glærur
 breyta kannski öllum "only" í "onslide"
+gera kannski yfir/undirkafla á allar glærur
+þýði nöfnin á öllum föllunum á íslensku (það er ekki púkó!)

@@ -9,214 +9,214 @@
 \section{Lengdir vega í vegnum netum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að við séum með vegið net $G = (V, E, w)$.
-		\item<2-> Látum $u_1, u_2, ..., u_n$ vera vega í netinu $(V, E)$.
-		\item<3-> Við segjum þá að \emph{lengdin} á veginum sé
-					\[
-						\sum_{j = 1}^{n - 1} w((u_j, u_{j + 1})).
-					\]
-		\item<4-> Við höfum nú áhuga á að vita hvernig við finnum stysta veg milli tiltekinna hnúta.
-		\item<5-> Tökum þó eftir einu.
-		\item<6-> Þó svo að til sé vegur á milli hnúta þá þarf ekki að vera til stysti vegur.
-		\item<7-> Tökum dæmi.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum með vegið net $G = (V, E, w)$.
+        \item<2-> Látum $u_1, u_2, ..., u_n$ vera vega í netinu $(V, E)$.
+        \item<3-> Við segjum þá að \emph{lengdin} á veginum sé
+        \[
+            \sum_{j = 1}^{n - 1} w((u_j, u_{j + 1})).
+        \]
+        \item<4-> Við höfum nú áhuga á að vita hvernig við finnum stysta veg milli tiltekinna hnúta.
+        \item<5-> Tökum þó eftir einu.
+        \item<6-> Þó svo að til sé vegur á milli hnúta þá þarf ekki að vera til stysti vegur.
+        \item<7-> Tökum dæmi.
+    }
 }
 
 \section{Dæmi um net með neikvæðri rás}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\node[draw, circle, thick] (1) at (2,0) {};
-			\node[draw, circle, thick] (2) at (2,2) {};
-			\node[draw, circle, thick] (3) at (2,-2) {};
-			\node[draw, circle, thick] (4) at (4,1) {};
-			\node[draw, circle, thick] (5) at (4,-1) {};
-			\node at (1,1) {$1\ 000\ 000$};
-			\node at (1.5,-1) {$-1$};
-			\node at (3,-0.2) {$-1$};
-			\node at (3,-1.8) {$-1$};
-			\node at (3,2) {$1$};
-			\node at (4.5,0) {$1$};
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \node[draw, circle, thick] (1) at (2,0) {};
+            \node[draw, circle, thick] (2) at (2,2) {};
+            \node[draw, circle, thick] (3) at (2,-2) {};
+            \node[draw, circle, thick] (4) at (4,1) {};
+            \node[draw, circle, thick] (5) at (4,-1) {};
+            \node at (1,1) {$1\ 000\ 000$};
+            \node at (1.5,-1) {$-1$};
+            \node at (3,-0.2) {$-1$};
+            \node at (3,-1.8) {$-1$};
+            \node at (3,2) {$1$};
+            \node at (4.5,0) {$1$};
 
-			\path[draw] (1) -- (2);
-			\path[draw] (2) -- (4);
-			\path[draw] (4) -- (5);
-			\path[draw] (3) -- (5);
-			\path[draw] (1) -- (3);
-			\path[draw] (1) -- (5);
-		}
-	}
+            \path[draw] (1) -- (2);
+            \path[draw] (2) -- (4);
+            \path[draw] (4) -- (5);
+            \path[draw] (3) -- (5);
+            \path[draw] (1) -- (3);
+            \path[draw] (1) -- (5);
+        }
+    }
 }
 
 \section{Neikvæðar rásir}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Vandamálin myndast þegar við getum gert rásir af neikvæðri lengd.
-		\item<2-> Við munum sníða tímabundið framhjá þessu með því að gera ráð fyrir að $w(e) > 0$ gildi fyrir öll $e$ í $E$.
-		\item<3-> Algengasta leiðin til að leysa þetta vandamál er með reikniriti Dijkstras.
-		\item<4-> Það er ekki ósvipað breiddarleit.
-	}
+    \env{itemize}
+    {
+        \item<1-> Vandamálin myndast þegar við getum gert rásir af neikvæðri lengd.
+        \item<2-> Við munum sníða tímabundið framhjá þessu með því að gera ráð fyrir að $w(e) > 0$ gildi fyrir öll $e$ í $E$.
+        \item<3-> Algengasta leiðin til að leysa þetta vandamál er með reikniriti Dijkstras.
+        \item<4-> Það er ekki ósvipað breiddarleit.
+    }
 }
 
 \section{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við merkjum alla hnúta ,,óséða'', nema einn sem við merkjum ,,séðan''.
-		\item<2-> Sá hnútur er kallaður \emph{upphafsnúturinn}.
-		\item<3-> Við gefum svo öllum hnútum gildi sem upphafstillt er sem $\infty$, nema upphafshnúturinn hefur gildi $0$.
-		\item<4-> Þetta gildi svara í raun til stysta vegur sem við höfum fundið hingað til.
-		\item<5-> Við endurtökum svo eftirfarandi skref þangað til engir hnútar eru ,,séðir'':
-		\env{itemize}
-		{
-			\item<6-> Tökum þann ,,séða'' hnút $u$ sem hefur minnsta gildi.
-			\item<7-> Táknum gildi $u$ með $g$.
-			\item<8-> Fyrir alla leggi af geðinni $e_v = (u, v)$ þá uppfærum við gildið hjá $v$ ef það er stærra en $g + w(e_v)$.
-			\item<9-> Þetta þýðir í raun að til sé styttri vegur til $v$ í gegnum $u$.
-			\item<10-> Síðan merkjum við $u$ sem ,,kláraðann''.
-		}
-	}
+    \env{itemize}
+    {
+        \item<1-> Við merkjum alla hnúta ,,óséða'', nema einn sem við merkjum ,,séðan''.
+        \item<2-> Sá hnútur er kallaður \emph{upphafsnúturinn}.
+        \item<3-> Við gefum svo öllum hnútum gildi sem upphafstillt er sem $\infty$, nema upphafshnúturinn hefur gildi $0$.
+        \item<4-> Þetta gildi svara í raun til stysta vegur sem við höfum fundið hingað til.
+        \item<5-> Við endurtökum svo eftirfarandi skref þangað til engir hnútar eru ,,séðir'':
+        \env{itemize}
+        {
+            \item<6-> Tökum þann ,,séða'' hnút $u$ sem hefur minnsta gildi.
+            \item<7-> Táknum gildi $u$ með $g$.
+            \item<8-> Fyrir alla leggi af geðinni $e_v = (u, v)$ þá uppfærum við gildið hjá $v$ ef það er stærra en $g + w(e_v)$.
+            \item<9-> Þetta þýðir í raun að til sé styttri vegur til $v$ í gegnum $u$.
+            \item<10-> Síðan merkjum við $u$ sem ,,kláraðann''.
+        }
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum eftir að ef $w(e) = 1$ fyrir alla leggi $e \in E$ þá er þetta breiddarleit.
-		\item<2-> Þetta reiknirit er gráðugt og við munum ekki sanna að það skili alltaf réttum gildum.
-		\item<3-> Reikniritið skilar í raun stysta veg frá upphafshnútnum í alla hnúta.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum eftir að ef $w(e) = 1$ fyrir alla leggi $e \in E$ þá er þetta breiddarleit.
+        \item<2-> Þetta reiknirit er gráðugt og við munum ekki sanna að það skili alltaf réttum gildum.
+        \item<3-> Reikniritið skilar í raun stysta veg frá upphafshnútnum í alla hnúta.
+    }
 }
 
 \section{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\onslide<all:1>{\node[draw, circle, thick, minimum size = 1cm] (1) at (2,0) {$\infty$};}
-			\onslide<all:2>{\node[draw, circle, thick, minimum size = 1cm, yellow] (1) at (2,0) {$0$};}
-			\onslide<all:3-8>{\node[draw, circle, thick, minimum size = 1cm, red] (1) at (2,0) {$0$};}
-			\onslide<all:9->{\node[draw, circle, thick, minimum size = 1cm, blue] (1) at (2,0) {$0$};}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \onslide<all:1>{\node[draw, circle, thick, minimum size = 1cm] (1) at (2,0) {$\infty$};}
+            \onslide<all:2>{\node[draw, circle, thick, minimum size = 1cm, yellow] (1) at (2,0) {$0$};}
+            \onslide<all:3-8>{\node[draw, circle, thick, minimum size = 1cm, red] (1) at (2,0) {$0$};}
+            \onslide<all:9->{\node[draw, circle, thick, minimum size = 1cm, blue] (1) at (2,0) {$0$};}
 
-			\onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (2) at (2,2) {$\infty$};}
-			\onslide<all:4>{\node[draw, circle, thick, minimum size = 1cm, green] (2) at (2,2) {$\infty$};}
-			\onslide<all:5-7>{\node[draw, circle, thick, minimum size = 1cm, green] (2) at (2,2) {$1$};}
-			\onslide<all:8-9>{\node[draw, circle, thick, minimum size = 1cm, yellow] (2) at (2,2) {$1$};}
-			\onslide<all:10-13>{\node[draw, circle, thick, minimum size = 1cm, red] (2) at (2,2) {$1$};}
-			\onslide<all:14->{\node[draw, circle, thick, minimum size = 1cm, blue] (2) at (2,2) {$1$};}
+            \onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (2) at (2,2) {$\infty$};}
+            \onslide<all:4>{\node[draw, circle, thick, minimum size = 1cm, green] (2) at (2,2) {$\infty$};}
+            \onslide<all:5-7>{\node[draw, circle, thick, minimum size = 1cm, green] (2) at (2,2) {$1$};}
+            \onslide<all:8-9>{\node[draw, circle, thick, minimum size = 1cm, yellow] (2) at (2,2) {$1$};}
+            \onslide<all:10-13>{\node[draw, circle, thick, minimum size = 1cm, red] (2) at (2,2) {$1$};}
+            \onslide<all:14->{\node[draw, circle, thick, minimum size = 1cm, blue] (2) at (2,2) {$1$};}
 
-			\onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (3) at (2,-2) {$\infty$};}
-			\onslide<all:4-6>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$\infty$};}
-			\onslide<all:7>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$4$};}
-			\onslide<all:8-15>{\node[draw, circle, thick, minimum size = 1cm, yellow] (3) at (2,-2) {$4$};}
-			\onslide<all:16-17>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$4$};}
-			\onslide<all:18-24>{\node[draw, circle, thick, minimum size = 1cm, yellow] (3) at (2,-2) {$4$};}
-			\onslide<all:25>{\node[draw, circle, thick, minimum size = 1cm, red] (3) at (2,-2) {$4$};}
-			\onslide<all:26->{\node[draw, circle, thick, minimum size = 1cm, blue] (3) at (2,-2) {$4$};}
+            \onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (3) at (2,-2) {$\infty$};}
+            \onslide<all:4-6>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$\infty$};}
+            \onslide<all:7>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$4$};}
+            \onslide<all:8-15>{\node[draw, circle, thick, minimum size = 1cm, yellow] (3) at (2,-2) {$4$};}
+            \onslide<all:16-17>{\node[draw, circle, thick, minimum size = 1cm, green] (3) at (2,-2) {$4$};}
+            \onslide<all:18-24>{\node[draw, circle, thick, minimum size = 1cm, yellow] (3) at (2,-2) {$4$};}
+            \onslide<all:25>{\node[draw, circle, thick, minimum size = 1cm, red] (3) at (2,-2) {$4$};}
+            \onslide<all:26->{\node[draw, circle, thick, minimum size = 1cm, blue] (3) at (2,-2) {$4$};}
 
-			\onslide<all:1-10>{\node[draw, circle, thick, minimum size = 1cm] (4) at (4,1) {$\infty$};}
-			\onslide<all:11>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$\infty$};}
-			\onslide<all:12>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$10$};}
-			\onslide<all:13-15>{\node[draw, circle, thick, minimum size = 1cm, yellow] (4) at (4,1) {$10$};}
-			\onslide<all:16>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$10$};}
-			\onslide<all:17>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$4$};}
-			\onslide<all:18-19>{\node[draw, circle, thick, minimum size = 1cm, yellow] (4) at (4,1) {$4$};}
-			\onslide<all:20-23>{\node[draw, circle, thick, minimum size = 1cm, red] (4) at (4,1) {$4$};}
-			\onslide<all:24->{\node[draw, circle, thick, minimum size = 1cm, blue] (4) at (4,1) {$4$};}
+            \onslide<all:1-10>{\node[draw, circle, thick, minimum size = 1cm] (4) at (4,1) {$\infty$};}
+            \onslide<all:11>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$\infty$};}
+            \onslide<all:12>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$10$};}
+            \onslide<all:13-15>{\node[draw, circle, thick, minimum size = 1cm, yellow] (4) at (4,1) {$10$};}
+            \onslide<all:16>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$10$};}
+            \onslide<all:17>{\node[draw, circle, thick, minimum size = 1cm, green] (4) at (4,1) {$4$};}
+            \onslide<all:18-19>{\node[draw, circle, thick, minimum size = 1cm, yellow] (4) at (4,1) {$4$};}
+            \onslide<all:20-23>{\node[draw, circle, thick, minimum size = 1cm, red] (4) at (4,1) {$4$};}
+            \onslide<all:24->{\node[draw, circle, thick, minimum size = 1cm, blue] (4) at (4,1) {$4$};}
 
-			\onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (5) at (4,-1) {$\infty$};}
-			\onslide<all:4-5>{\node[draw, circle, thick, minimum size = 1cm, green] (5) at (4,-1) {$\infty$};}
-			\onslide<all:6-7>{\node[draw, circle, thick, minimum size = 1cm, green] (5) at (4,-1) {$3$};}
-			\onslide<all:8-14>{\node[draw, circle, thick, minimum size = 1cm, yellow] (5) at (4,-1) {$3$};}
-			\onslide<all:15-18>{\node[draw, circle, thick, minimum size = 1cm, red] (5) at (4,-1) {$3$};}
-			\onslide<all:19->{\node[draw, circle, thick, minimum size = 1cm, blue] (5) at (4,-1) {$3$};}
+            \onslide<all:1-3>{\node[draw, circle, thick, minimum size = 1cm] (5) at (4,-1) {$\infty$};}
+            \onslide<all:4-5>{\node[draw, circle, thick, minimum size = 1cm, green] (5) at (4,-1) {$\infty$};}
+            \onslide<all:6-7>{\node[draw, circle, thick, minimum size = 1cm, green] (5) at (4,-1) {$3$};}
+            \onslide<all:8-14>{\node[draw, circle, thick, minimum size = 1cm, yellow] (5) at (4,-1) {$3$};}
+            \onslide<all:15-18>{\node[draw, circle, thick, minimum size = 1cm, red] (5) at (4,-1) {$3$};}
+            \onslide<all:19->{\node[draw, circle, thick, minimum size = 1cm, blue] (5) at (4,-1) {$3$};}
 
-			\onslide<all:1-20>{\node[draw, circle, thick, minimum size = 1cm] (6) at (6,0) {$\infty$};}
-			\onslide<all:21>{\node[draw, circle, thick, minimum size = 1cm, green] (6) at (6,0) {$\infty$};}
-			\onslide<all:22>{\node[draw, circle, thick, minimum size = 1cm, green] (6) at (6,0) {$7$};}
-			\onslide<all:23-26>{\node[draw, circle, thick, minimum size = 1cm, yellow] (6) at (6,0) {$7$};}
-			\onslide<all:27-31>{\node[draw, circle, thick, minimum size = 1cm, red] (6) at (6,0) {$7$};}
-			\onslide<all:32->{\node[draw, circle, thick, minimum size = 1cm, blue] (6) at (6,0) {$7$};}
+            \onslide<all:1-20>{\node[draw, circle, thick, minimum size = 1cm] (6) at (6,0) {$\infty$};}
+            \onslide<all:21>{\node[draw, circle, thick, minimum size = 1cm, green] (6) at (6,0) {$\infty$};}
+            \onslide<all:22>{\node[draw, circle, thick, minimum size = 1cm, green] (6) at (6,0) {$7$};}
+            \onslide<all:23-26>{\node[draw, circle, thick, minimum size = 1cm, yellow] (6) at (6,0) {$7$};}
+            \onslide<all:27-31>{\node[draw, circle, thick, minimum size = 1cm, red] (6) at (6,0) {$7$};}
+            \onslide<all:32->{\node[draw, circle, thick, minimum size = 1cm, blue] (6) at (6,0) {$7$};}
 
-			\onslide<all:1-38>{\node[draw, circle, thick, minimum size = 1cm] (7) at (6,2) {$\infty$};}
-			\onslide<all:39>{\node[draw, circle, thick, minimum size = 1cm, green] (7) at (6,2) {$\infty$};}
-			\onslide<all:40>{\node[draw, circle, thick, minimum size = 1cm, green] (7) at (6,2) {$14$};}
-			\onslide<all:41-42>{\node[draw, circle, thick, minimum size = 1cm, yellow] (7) at (6,2) {$14$};}
-			\onslide<all:43>{\node[draw, circle, thick, minimum size = 1cm, red] (7) at (6,2) {$14$};}
-			\onslide<all:44->{\node[draw, circle, thick, minimum size = 1cm, blue] (7) at (6,2) {$14$};}
+            \onslide<all:1-38>{\node[draw, circle, thick, minimum size = 1cm] (7) at (6,2) {$\infty$};}
+            \onslide<all:39>{\node[draw, circle, thick, minimum size = 1cm, green] (7) at (6,2) {$\infty$};}
+            \onslide<all:40>{\node[draw, circle, thick, minimum size = 1cm, green] (7) at (6,2) {$14$};}
+            \onslide<all:41-42>{\node[draw, circle, thick, minimum size = 1cm, yellow] (7) at (6,2) {$14$};}
+            \onslide<all:43>{\node[draw, circle, thick, minimum size = 1cm, red] (7) at (6,2) {$14$};}
+            \onslide<all:44->{\node[draw, circle, thick, minimum size = 1cm, blue] (7) at (6,2) {$14$};}
 
-			\onslide<all:1-27>{\node[draw, circle, thick, minimum size = 1cm] (8) at (6,-2) {$\infty$};}
-			\onslide<all:28>{\node[draw, circle, thick, minimum size = 1cm, green] (8) at (6,-2) {$\infty$};}
-			\onslide<all:29-30>{\node[draw, circle, thick, minimum size = 1cm, green] (8) at (6,-2) {$12$};}
-			\onslide<all:31-32>{\node[draw, circle, thick, minimum size = 1cm, yellow] (8) at (6,-2) {$12$};}
-			\onslide<all:33-36>{\node[draw, circle, thick, minimum size = 1cm, red] (8) at (6,-2) {$12$};}
-			\onslide<all:37->{\node[draw, circle, thick, minimum size = 1cm, blue] (8) at (6,-2) {$12$};}
+            \onslide<all:1-27>{\node[draw, circle, thick, minimum size = 1cm] (8) at (6,-2) {$\infty$};}
+            \onslide<all:28>{\node[draw, circle, thick, minimum size = 1cm, green] (8) at (6,-2) {$\infty$};}
+            \onslide<all:29-30>{\node[draw, circle, thick, minimum size = 1cm, green] (8) at (6,-2) {$12$};}
+            \onslide<all:31-32>{\node[draw, circle, thick, minimum size = 1cm, yellow] (8) at (6,-2) {$12$};}
+            \onslide<all:33-36>{\node[draw, circle, thick, minimum size = 1cm, red] (8) at (6,-2) {$12$};}
+            \onslide<all:37->{\node[draw, circle, thick, minimum size = 1cm, blue] (8) at (6,-2) {$12$};}
 
-			\onslide<all:1-27>{\node[draw, circle, thick, minimum size = 1cm] (9) at (8,0) {$\infty$};}
-			\onslide<all:28-29>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$\infty$};}
-			\onslide<all:30>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$14$};}
-			\onslide<all:31-33>{\node[draw, circle, thick, minimum size = 1cm, yellow] (9) at (8,0) {$14$};}
-			\onslide<all:34>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$14$};}
-			\onslide<all:35>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$13$};}
-			\onslide<all:36-37>{\node[draw, circle, thick, minimum size = 1cm, yellow] (9) at (8,0) {$13$};}
-			\onslide<all:38-41>{\node[draw, circle, thick, minimum size = 1cm, red] (9) at (8,0) {$13$};}
-			\onslide<all:42->{\node[draw, circle, thick, minimum size = 1cm, blue] (9) at (8,0) {$13$};}
+            \onslide<all:1-27>{\node[draw, circle, thick, minimum size = 1cm] (9) at (8,0) {$\infty$};}
+            \onslide<all:28-29>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$\infty$};}
+            \onslide<all:30>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$14$};}
+            \onslide<all:31-33>{\node[draw, circle, thick, minimum size = 1cm, yellow] (9) at (8,0) {$14$};}
+            \onslide<all:34>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$14$};}
+            \onslide<all:35>{\node[draw, circle, thick, minimum size = 1cm, green] (9) at (8,0) {$13$};}
+            \onslide<all:36-37>{\node[draw, circle, thick, minimum size = 1cm, yellow] (9) at (8,0) {$13$};}
+            \onslide<all:38-41>{\node[draw, circle, thick, minimum size = 1cm, red] (9) at (8,0) {$13$};}
+            \onslide<all:42->{\node[draw, circle, thick, minimum size = 1cm, blue] (9) at (8,0) {$13$};}
 
-			\path[draw] (1) -- (2); \node[fill = white] at (2,1) {$1$};
-			\path[draw] (2) -- (4); \node[fill = white] at (3,1.5) {$9$};
-			\path[draw] (4) -- (5); \node[fill = white] at (4,0) {$1$};
-			\path[draw] (3) -- (5); \node[fill = white] at (3,-1.5) {$2$};
-			\path[draw] (1) -- (3); \node[fill = white] at (2,-1) {$4$};
-			\path[draw] (4) -- (6); \node[fill = white] at (5,0.5) {$3$};
-			\path[draw] (6) -- (8); \node[fill = white] at (6,-1) {$5$};
-			\path[draw] (8) -- (9); \node[fill = white] at (7,-1) {$1$};
-			\path[draw] (7) -- (9); \node[fill = white] at (7,1) {$1$};
-			\path[draw] (6) -- (9); \node[fill = white] at (7,0) {$7$};
-			\path[draw] (1) -- (5); \node[fill = white] at (3,-0.5) {$3$};
-		}
-	}
+            \path[draw] (1) -- (2); \node[fill = white] at (2,1) {$1$};
+            \path[draw] (2) -- (4); \node[fill = white] at (3,1.5) {$9$};
+            \path[draw] (4) -- (5); \node[fill = white] at (4,0) {$1$};
+            \path[draw] (3) -- (5); \node[fill = white] at (3,-1.5) {$2$};
+            \path[draw] (1) -- (3); \node[fill = white] at (2,-1) {$4$};
+            \path[draw] (4) -- (6); \node[fill = white] at (5,0.5) {$3$};
+            \path[draw] (6) -- (8); \node[fill = white] at (6,-1) {$5$};
+            \path[draw] (8) -- (9); \node[fill = white] at (7,-1) {$1$};
+            \path[draw] (7) -- (9); \node[fill = white] at (7,1) {$1$};
+            \path[draw] (6) -- (9); \node[fill = white] at (7,0) {$7$};
+            \path[draw] (1) -- (5); \node[fill = white] at (3,-0.5) {$3$};
+        }
+    }
 }
 
 \section{Atriði um útfærslu}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við útfærum þetta líkt og breiddarleit, nema í stað biðraðar notum við forgangsbiðröð.
-		\item<2-> Við þurfum þó að passa okkur á einu.
-		\item<3-> Þegar við uppfærum gildið á hnút $v$ bætum við nýja gildinu í forgangsbiðröð.
-		\item<4-> Gamla gildið er þó ennþá í biðröðinni svo við þurfum að passa okkur á ítra þá ekki í gegnum alla nágranna $v$ aftur.
-		\item<5-> Við gerum þetta með því að bera saman gildið sem er í forgangsbiðröðinni og besta gildið sem við höfum núþegar fundið.
-		\item<6-> Forgangsbiðraðir í \texttt{C++} skila líka alltaf stærsta gildinu.
-		\item<7-> Við höfum þó áhuga a minnsta gildinu, svo við skiptum um formerki á tölunum sem við látum inn í forgangsbiðröðina.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við útfærum þetta líkt og breiddarleit, nema í stað biðraðar notum við forgangsbiðröð.
+        \item<2-> Við þurfum þó að passa okkur á einu.
+        \item<3-> Þegar við uppfærum gildið á hnút $v$ bætum við nýja gildinu í forgangsbiðröð.
+        \item<4-> Gamla gildið er þó ennþá í biðröðinni svo við þurfum að passa okkur á ítra þá ekki í gegnum alla nágranna $v$ aftur.
+        \item<5-> Við gerum þetta með því að bera saman gildið sem er í forgangsbiðröðinni og besta gildið sem við höfum núþegar fundið.
+        \item<6-> Forgangsbiðraðir í \texttt{C++} skila líka alltaf stærsta gildinu.
+        \item<7-> Við höfum þó áhuga a minnsta gildinu, svo við skiptum um formerki á tölunum sem við látum inn í forgangsbiðröðina.
+    }
 }
 
 \section{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/dijkstra.cpp}{9}{27}
+    \selectcode{code/dijkstra.cpp}{9}{27}
 }
 
 \section{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Fyrir hvern legg í netinu gætum við þurft að bæta í forgangsbiðröðina.
-		\item<2-> Við heimsækjum hver hnút að mestu einu sinni.
-		\item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$(V + E) \log E$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Fyrir hvern legg í netinu gætum við þurft að bæta í forgangsbiðröðina.
+        \item<2-> Við heimsækjum hver hnút að mestu einu sinni.
+        \item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$(V + E) \log E$}$)$.
+    }
 }
 
 \section{Þessi glæra er viljandi auð}

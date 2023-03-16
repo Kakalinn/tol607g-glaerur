@@ -7,93 +7,98 @@
 
 \frame{\titlepage}
 
+\section{Skilgreining leifar}
 \env{frame}
 {
-	\frametitle{Leifareikningur}
-	\env{itemize}
-	{
-		\item<1-> Látum $a$ og $m$ vera jákvæðar heiltölur.
-		\item<2-> Alltaf eru til jákvæðar heiltölur $r < m$ og $q$ þannig $a = q \cdot m + r$.
-		\item<3-> Við segjum þá að $r$ sé \emph{leif $a$ með tilliti til $m$}.
-		\item<4-> Við skrifum svo $b = a \mod m$ ef $a$ og $b$ hafa sömu leif með tilliti til $m$.
-		\item<5-> Flest forritunarmál reikna þessa leif með \texttt{a\%m}.
-		\item<6-> Gerum nú ráð fyrir að við séum með jákvæðar heiltölur $a_1$, $a_2$, $m$, og $r_1 = a_1 \mod m$ og $r_2 = a_2 \mod m$.
-		\item<7-> Þá gildir að
-		\[
-			r_1 + r_2 = a_1 + a_2 \mod m
-		\]
-		 og
-		\[
-			r_1 \cdot r_2 = a_1 \cdot a_2 \mod m.
-		\]
-	}
+    \env{itemize}
+    {
+        \item<1-> Látum $a$ og $m$ vera jákvæðar heiltölur.
+        \item<2-> Alltaf eru til ótvírætt ákvarðaðar jákvæðar heiltölur $r < m$ og $q$ þannig $a = q \cdot m + r$.
+        \item<3-> Við segjum þá að $r$ sé \emph{leif $a$ með tilliti til $m$}.
+        \item<4-> Við skrifum svo $b = a \mod m$ ef $a$ og $b$ hafa sömu leif með tilliti til $m$.
+        \item<5-> Flest forritunarmál reikna þessa leif með \ilcode{a\%m}.
+        \item<6-> Gerum nú ráð fyrir að við séum með jákvæðar heiltölur $a_1$, $a_2$, $m$, og $r_1 = a_1 \mod m$ og $r_2 = a_2 \mod m$.
+        \item<7-> Þá gildir að
+        \[
+            r_1 + r_2 = a_1 + a_2 \mod m
+        \]
+                og
+        \[
+            r_1 \cdot r_2 = a_1 \cdot a_2 \mod m.
+        \]
+    }
+}
+
+\section{Leif neikvæðra talna í forritun}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Þið þurfið að passa ykkur ef þið eruð með neikvæðar tölur.
+        \item<2-> Til dæmis er ekki skilgreint hverju \ilcode{(-10)\%3} skilar í \ilcode{C}.
+        \item<3-> Við vitum ekki hvort það skili \ilcode{-1} eða \ilcode{2}.
+        \item<4-> Til að komast í kringum þessa óvissu notum við frekar \ilcode{(a\%m + m)\%m} ef \ilcode{a} getur verið neikvæð.
+        \item<5-> Þetta virkar því \ilcode{a\%m + m} verður alltaf jákvæð.
+    }
+}
+
+\section{Margföldunarnákvæmni}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Einnig þarf að passa sig að tölurnar verði ekki of stórar.
+        \item<2-> Til dæmis er algengt í keppnisforritun að reikna leif með tilliti til $m = 10^9 + 7$.
+        \item<3-> Takið eftir að $m$ er ekki of stór fyrir \ilcode{int}.
+        \item<4-> Ef við erum með tvær \ilcode{int} tölur, \ilcode{a} og \ilcode{b}, og viljum reikna \ilcode{(a*b)\%m}
+                    þá gæti \ilcode{a*b} orðið of stór fyrir \ilcode{int}.
+        \item<5-> Til að komast hjá þessu þurfum við að nota \ilcode{long long}.
+        \item<6-> Ef tölurnar \ilcode{a} og \ilcode{b} eru \ilcode{long long} í stað \ilcode{int} þurfum við að nota \ilcode{\_\_int128}.
+        \item<7->[] \selectcode{code/bigprod.c}{2}{8}
+    }
+}
+
+\section{Margföldunarandhverfur í leifareikningi}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Stundum þurfum við að geta deilt í leifareikningi.
+        \item<2-> Þetta er ekki hægt að gera með hefðbundinni deilingu.
+        \item<3-> Við látum $b^{-1}$ tákna þá tölu sem uppfyllir að $1 = b \cdot b^{-1} \mod m$.
+        \item<4-> Þessi tala er ekki alltaf til.
+        \item<5-> Hún er þó alltaf til ef $m$ er frumtala.
+        \item<6-> Við köllum $b^{-1}$ \emph{margföldunarandhverfu $b$ með tilliti til $m$}.
+        \item<7-> Við skrifum svo stundum $a/b$ í stað $ab^{-1}$.
+        \item<8-> En hvernig finnum við þessa tölu?
+    }
+}
+
+\section{Litla setning Fermats}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Látum $p$ vera frumtölu.
+        \item<2-> Litla setning Fermats segir okkur að $a^p = a \mod p$.
+        \item<3-> Ef við margföldum báðum megin með $a^{-2}$ fæst að $a^{p - 2} = a^{-1} \mod p$.
+        \item<4-> Svo eina sem við þurfum að gera er að reikna $a^{p - 2} \mod p$.
+        \item<5-> Gerum ráð fyrir að við séum með fall \ilcode{modpow(x, n, m)} sem reiknar $x^n \mod m$ (við útfærum það á eftir).
+        \item<6->[] \selectcode{code/mulinv.c}{16}{19}
+        \item<7-> Tímaflækjan á þessari aðferð verður síðan sú sama og tímaflækjan á \ilcode{modpow(...)}.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þið þurfið að passa ykkur ef þið eruð með neikvæðar tölur.
-		\item<2-> Til dæmis er ekki skilgreint hverju \texttt{(-10)\%3} skilar í \texttt{C}.
-		\item<3-> Við vitum ekki hvort það skili \texttt{-1} eða \texttt{2}.
-		\item<4-> Til að komast í kringum þessa óvissu notum við frekar \texttt{(a\%m + m)\%m} ef \texttt{a} getur verið neikvæð.
-		\item<5-> Þetta virkar því \texttt{a\%m + m} verður alltaf jákvæð.
-	}
+    \env{itemize}
+    {
+        \item<1-> Til að finna $a^{-1} \mod m$ ef $m$ er ekki frumtala er ögn flóknara.
+        \item<2-> Við skoðum það á eftir þegar við skoðum reiknirit Evklíðs.
+    }
 }
 
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Einnig þarf að passa sig að tölurnar verði ekki of stórar.
-		\item<2-> Til dæmis er algengt í keppnisforritun að reikna leif með tilliti til $m = 10^9 + 7$.
-		\item<3-> Takið eftir að $m$ er ekki of stór fyrir \texttt{int}.
-		\item<4-> Ef við erum með tvær \texttt{int} tölur, \texttt{a} og \texttt{b}, og viljum reikna \texttt{(a*b)\%m}
-					þá gæti \texttt{a*b} orðið of stór fyrir \texttt{int}.
-		\item<5-> Til að komast hjá þessu þurfum við að nota \texttt{long long}.
-		\item<6-> Ef tölurnar eru \texttt{long long} í stað \texttt{int} þurfum við að nota \texttt{\_\_int128}.
-		\item<7->[] \selectcode{code/bigprod.c}{2}{8}
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Stundum þurfum við að geta deilt í leifareikningi.
-		\item<2-> Þetta er ekki hægt að gera með hefðbundinni deilingu.
-		\item<3-> Við látum $b^{-1}$ tákna þá tölu sem uppfyllir að $1 = b \cdot b^{-1} \mod m$.
-		\item<4-> Þessi tala er ekki alltaf til.
-		\item<5-> Hún er þó alltaf til ef $m$ er frumtala.
-		\item<6-> Við köllum $b^{-1}$ \emph{margföldunar andhverfu $b$ með tilliti til $m$}.
-		\item<7-> Við skrifum svo stundum $a/b$ í stað $ab^{-1}$.
-		\item<8-> En hvernig finnum við þessa tölu?
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Látum $p$ vera frumtölu.
-		\item<2-> Litla setning Fermats segir okkur að $a^p = a \mod p$.
-		\item<3-> Ef við margföldum báðum megin með $a^{-2}$ fæst að $a^{p - 2} = a^{-1} \mod p$.
-		\item<4-> Svo eina sem við þurfum að gera er að reikna $a^{p - 2} \mod p$.
-		\item<5-> Gerum ráð fyrir að við séum með fall \texttt{modpow(x, n, m)} sem reiknar $x^n \mod m$ (við útfærum það á eftir).
-		\item<6->[] \selectcode{code/mulinv.c}{16}{19}
-		\item<7-> Tímaflækjan á þessari aðferð verður síðan sú sama og tímaflækjan á \texttt{modpow(...)}.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Til að finna $a^{-1} \mod m$ ef $m$ er ekki frumtala er ögn flóknara.
-		\item<2-> Við skoðum það á eftir þegar við skoðum reiknirit Evklíðs.
-	}
-}
-
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

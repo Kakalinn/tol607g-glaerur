@@ -7,486 +7,494 @@
 
 \frame{\titlepage}
 
+\section{Skilgreiningar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Heiltala $a$ kallast \emph{samsett} ef til eru heiltölur $x$ og $y$, báðar stærri en $1$, þannig að $a = x \cdot y$.
-		\item<2-> Heiltala kallast \emph{frumtala} ef hún er ekki samsett.
-		\item<3-> Við segjum að talna runa $(a_n)_{n \in \mathbb{N}}$ sé \emph{á endanum núll} ef til er jákvæð heiltala $N$ þannig að
-					$a_n = 0$ fyrir öll $n > N$.
-		\item<4-> Látum $p_n$ tákna $n$-tu minnstu jákvæðu frumtöluna.
-		\item<5-> Þá er til, fyrir sérhverja jákvæða heiltölu $a$, nákvæmlega eina runa af jákvæðum heiltölum, $(e_n)_{n \in \mathbb{N}}$,
-					sem er á endanum núll, þannig að
-		\[
-			a = \prod_{n \in \mathbb{N}} p_n^{e_n}.
-		\]
-		\item<6-> Við köllum þessa þáttun \emph{frumþáttun} tölunnar $a$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Heiltala $a$ kallast \emph{samsett} ef til eru heiltölur $x$ og $y$, báðar stærri en $1$, þannig að $a = x \cdot y$.
+        \item<2-> Heiltala kallast \emph{frumtala} ef hún er ekki samsett.
+        \item<3-> Við segjum að talnaruna $(a_n)_{n \in \mathbb{N}}$ sé \emph{á endanum núll} ef til er jákvæð heiltala $N$ þannig að
+            $a_n = 0$ fyrir öll $n > N$.
+        \item<4-> Látum $p_n$ tákna $n$-tu minnstu jákvæðu frumtöluna.
+        \item<5-> Þá er til, fyrir sérhverja jákvæða heiltölu $a$, nákvæmlega ein runa af jákvæðum heiltölum, $(e_n)_{n \in \mathbb{N}}$,
+            sem er á endanum núll, þannig að
+        \[
+            a = \prod_{n \in \mathbb{N}} p_n^{e_n}.
+        \]
+        \item<6-> Við köllum þessa þáttun \emph{frumþáttun} tölunnar $a$.
+    }
+}
+
+\section{Aðferðir til að ákvarða hvort gefin tala sé frumtala}
+\subsection{Yfirlit}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við þurfum oft að ákvarða hvort tala sé frumtala.
+        \item<2-> Oft þurfum við líka að frumþátta tölur.
+        \item<3-> Til að ákvarða hvort tala sé frumtala er yfirleitt farið eina af þremur leiðum.
+        \item<4-> Fyrst skoðum við hvernig þetta er gert með tæmandi leit.
+        \item<5-> Síðan skoðum við sigti Eratosþenesar.
+        \item<6-> Að lokum skoðum við slembið reiknirit.
+    }
+}
+
+\subsection{Útfærsla með tæmandi leit}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Ef $n$ er samsett þá er til tala á milli núll og $n$ sem deilir $n$.
+        \item<2-> Köllum þá tölu $a$.
+        \item<3-> Þá deilir $n/a$ líka $n$.
+        \item<4-> Einnig höfum við að $\min(a, n/a) \leq \sqrt{n}$.
+        \item<5-> Við getum því umorðað fyrsta punkt þessara glæru sem ,,Ef $n$ er samsett þá er til tala á milli núll og $\sqrt{n}$ sem deilir $n$''.
+        \item<6->[] \selectcode{code/isp.c}{4}{10}
+    }
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Þetta reiknirit er $\mathcal{O}($\onslide<2->{$\sqrt{n}$}$)$ því við þurfum bara að skoða jákvæðar heiltölur minni en $\sqrt{n}$.
+        \item<3-> Ef við viljum finna allar frumtölur minni en $n$ með þessari aðferð þarf $\mathcal{O}($\onslide<4->{$n\sqrt{n}$}$)$ tíma.
+        \item<5-> Við getum bætt þetta með sigti Eratosþenesar.
+    }
+}
+
+\subsection{Sigti Eratosþenesar}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við byrjum á að merkja allar tölur sem ,,óséðar''.
+        \item<2-> Við merkjum síðan $0$ og $1$ sem ,,samsettar''.
+        \item<3-> Við endurtökum svo eftirfarandi skref þangað til engin óséð tala er eftir:
+        \env{itemize}
+        {
+            \item<4-> Látum $x$ vera minnstu ,,óséðu'' töluna.
+            \item<5-> Merkjum $x$ sem ,,frumtölu''.
+            \item<6-> Merkjum svo allar tölur á forminu $n \cdot x$, fyrir $n \geq x$ sem ,,samsettar''.
+        }
+    }
+}
+
+\subsection{Sýnidæmi}
+\env{frame}
+{
+    \only<all:1>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            \color{black}  $0$ & \color{black}  $1$ & \color{black}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
+                \color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
+                \color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
+                \color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
+                \color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
+                \color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
+                \color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
+                \color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
+                \color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
+                \color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:2>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
+                \color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
+                \color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
+                \color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
+                \color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
+                \color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
+                \color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
+                \color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
+                \color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
+                \color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:3>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{ blue}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
+                \color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
+                \color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
+                \color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
+                \color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
+                \color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
+                \color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
+                \color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
+                \color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
+                \color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:4>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{ blue}  $2$ & \color{black}  $3$ & \color{  red}  $4$ & \color{black}  $5$ & \color{  red}  $6$ & \color{black}  $7$ & \color{  red}  $8$ & \color{black}  $9$\\
+                \color{  red} $10$ & \color{black} $11$ & \color{  red} $12$ & \color{black} $13$ & \color{  red} $14$ & \color{black} $15$ & \color{  red} $16$ & \color{black} $17$ & \color{  red} $18$ & \color{black} $19$\\
+                \color{  red} $20$ & \color{black} $21$ & \color{  red} $22$ & \color{black} $23$ & \color{  red} $24$ & \color{black} $25$ & \color{  red} $26$ & \color{black} $27$ & \color{  red} $28$ & \color{black} $29$\\
+                \color{  red} $30$ & \color{black} $31$ & \color{  red} $32$ & \color{black} $33$ & \color{  red} $34$ & \color{black} $35$ & \color{  red} $36$ & \color{black} $37$ & \color{  red} $38$ & \color{black} $39$\\
+                \color{  red} $40$ & \color{black} $41$ & \color{  red} $42$ & \color{black} $43$ & \color{  red} $44$ & \color{black} $45$ & \color{  red} $46$ & \color{black} $47$ & \color{  red} $48$ & \color{black} $49$\\
+                \color{  red} $50$ & \color{black} $51$ & \color{  red} $52$ & \color{black} $53$ & \color{  red} $54$ & \color{black} $55$ & \color{  red} $56$ & \color{black} $57$ & \color{  red} $58$ & \color{black} $59$\\
+                \color{  red} $60$ & \color{black} $61$ & \color{  red} $62$ & \color{black} $63$ & \color{  red} $64$ & \color{black} $65$ & \color{  red} $66$ & \color{black} $67$ & \color{  red} $68$ & \color{black} $69$\\
+                \color{  red} $70$ & \color{black} $71$ & \color{  red} $72$ & \color{black} $73$ & \color{  red} $74$ & \color{black} $75$ & \color{  red} $76$ & \color{black} $77$ & \color{  red} $78$ & \color{black} $79$\\
+                \color{  red} $80$ & \color{black} $81$ & \color{  red} $82$ & \color{black} $83$ & \color{  red} $84$ & \color{black} $85$ & \color{  red} $86$ & \color{black} $87$ & \color{  red} $88$ & \color{black} $89$\\
+                \color{  red} $90$ & \color{black} $91$ & \color{  red} $92$ & \color{black} $93$ & \color{  red} $94$ & \color{black} $95$ & \color{  red} $96$ & \color{black} $97$ & \color{  red} $98$ & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:5>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{ blue}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{black}  $9$\\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{black} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                & \color{black} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{black} $27$ &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    & \color{black} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{black} $39$\\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{black} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                & \color{black} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{black} $57$ &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    & \color{black} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{black} $69$\\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{black} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                & \color{black} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{black} $87$ &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    & \color{black} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:6>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{black}  $9$\\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{black} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                & \color{black} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{black} $27$ &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    & \color{black} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{black} $39$\\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{black} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                & \color{black} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{black} $57$ &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    & \color{black} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{black} $69$\\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{black} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                & \color{black} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{black} $87$ &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    & \color{black} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{black} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:7>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{  red}  $9$\\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{  red} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                & \color{  red} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{  red} $27$ &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    & \color{  red} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{  red} $39$\\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{  red} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                & \color{  red} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{  red} $57$ &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    & \color{  red} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{  red} $69$\\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{  red} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                & \color{  red} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{  red} $87$ &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    & \color{  red} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{  red} $99$\\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:8>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    & \color{black} $25$ &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    & \color{black} $35$ &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                &                    &                    & \color{black} $53$ &                    & \color{black} $55$ &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    & \color{black} $65$ &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    & \color{black} $85$ &                    &                    &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    &                    &                    & \color{black} $95$ &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:9>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    & \color{black} $25$ &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    & \color{black} $35$ &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                &                    &                    & \color{black} $53$ &                    & \color{black} $55$ &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    & \color{black} $65$ &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    & \color{black} $85$ &                    &                    &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    &                    &                    & \color{black} $95$ &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:10>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    & \color{  red} $25$ &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    & \color{  red} $35$ &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                &                    &                    & \color{black} $53$ &                    & \color{  red} $55$ &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    & \color{  red} $65$ &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    & \color{  red} $85$ &                    &                    &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    &                    &                    & \color{  red} $95$ &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:11>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:12>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
+                &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
+                & \color{black} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:13>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{  red} $49$\\
+                &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{  red} $77$ &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
+                & \color{  red} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:14>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    &                   \\
+                &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    &                    &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
+                &                    &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+    \only<all:15>
+    {
+        \env{tabular}
+        { {r r r r r r r r r r}
+            &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    &                   \\
+                & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
+                &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
+                & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
+                & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    &                   \\
+                &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
+                & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
+                & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    &                    &                    & \color{black} $79$\\
+                &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
+                &                    &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
+                \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
+        }
+    }
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/eratosthenes.c}{5}{18}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Það tekur $\mathcal{O}($\onslide<2->{$n \log \log n$}$)$ tíma að forreikna sigtið.
+        \item<3-> Hver fyrirspurn er síðan afgreidd í $\mathcal{O}($\onslide<4->{$\,1\,$}$)$ tíma.
+    }
+}
+
+\subsection{Slembin reiknirit}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Hingað til hafa reikniritin okkar verið annað hvort rétt eða röng.
+        \item<2-> Það er þó til flokkur reiknirit þar á milli.
+        \item<3-> \emph{Slembin reiknirit} eru reiknirit sem skilar réttu svar með líkum $p > 0$.
+        \item<4-> Við getum þá keyrt reikniritið $s$ sinnum, og þá er það rétt með líkum $1 - (1 - p)^s$ (ef við gerum ráð fyrir óhæði).
+        \item<5-> Ef reikniritið hefur tímaflækju $\mathcal{O}(f(n))$ þá tekur það $\mathcal{O}(s \cdot f(n))$ að keyra það $s$ sinnum.
+        \item<6-> Ef $p = 1/2$, til dæmis, þá fæst fyrir $s = 20$ að líkurnar eru betri en $1 - 10^{-6}$.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við þurfum oft að ákvarða hvort tala sé frumtala.
-		\item<2-> Oft þurfum við líka að frumþátta tölur.
-		\item<3-> Til að ákvarða hvort tala sé frumtala er yfirleitt farið eina af þremur leiðum.
-		\item<4-> Fyrst skoðum við hvernig þetta er gert með tæmandi leit.
-		\item<5-> Síðan skoðum við sigti Eratosþenesar.
-		\item<6-> Að lokum skoðum við slembið reinkirit.
-	}
+    \env{itemize}
+    {
+        \item<1-> Til er slembið reiknirit, kennt við Miller og Rabin, sem ákvarðar hvort tala sé samsett.
+        \item<2-> Í því eru líkur á röngu svar minni eða jafnar $1/4$.
+        \item<3-> Tímaflækjan á reikniritinu er $\mathcal{O}(s \cdot \log^3 n)$ og það er rétt með líkum betri en $1/4^s$.
+        \item<4-> Ég mun ekki fara í það afhverju reikniritið virkar.
+        \item<5-> Það er þó gott að þekkja það nógu vel til að geta notað það.
+        \item<6-> Útfærslan sem er gefin notar niðurstöðu Jiang og Deng ($2014$) til að virka alltaf fyrir nógu litlar tölur.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Ef $n$ er samsett þá er til tala á milli núll og $n$ sem deilir $n$.
-		\item<2-> Köllum þá tölu $a$.
-		\item<3-> Þá deilir $n/a$ líka $n$.
-		\item<4-> Einnig höfum við að $\min(a, n/a) \leq \sqrt{n}$.
-		\item<5-> Við getum því umorðað fyrsta punkt þessara glæru sem ,,Ef $n$ er samsett þá er til tala á milli núll og $\sqrt{n}$ sem deilir $n$''.
-		\item<6->[] \selectcode{code/isp.c}{4}{10}
-	}
+    \selectcode{code/miller-rabin.c}{26}{42}
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þetta reiknirit er $\mathcal{O}($\onslide<2->{$\sqrt{n}$}$)$ því við þurfum bara að skoða jákvæðar heiltölur minni en $\sqrt{n}$.
-		\item<3-> Ef við viljum finna allar frumtölur minni en $n$ með þessari aðferð þarf $\mathcal{O}($\onslide<4->{$n\sqrt{n}$}$)$ tíma.
-		\item<5-> Við getum bætt þetta með sigti Eratosþenesar.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þegar kemur að því að frumþátta tölur hafa þessar þrjár aðferðir sér hliðstæðu.
+        \item<2-> Skoðum aftur fyrstu aðferðina.
+        \item<3->[] \selectcode{code/isp.c}{4}{10}
+        \item<4-> Þegar þetta fall skilar núll er \texttt{i} minnsti frumþáttur \texttt{x}.
+        \item<5-> Við getum nú stytt \texttt{x} með \texttt{i} þar til \texttt{i} gengur ekki lengur upp í \texttt{x}.
+        \item<6-> Svo höldum við áfram.
+    }
 }
 
 \env{frame}
 {
-	\frametitle{Sigti Eratosþenesar}
-	\env{itemize}
-	{
-		\item<1-> Við byrjum á að merkja allar tölur sem ,,óséðar''.
-		\item<2-> Við merkjum síðan $0$ og $1$ sem ,,samsettar''.
-		\item<3-> Við endurtökum svo eftirfarandi skref þangað til engin óséð tala er eftir:
-		\env{itemize}
-		{
-			\item<4-> Látum $x$ vera minnstu ,,óséðu'' töluna.
-			\item<5-> Merkjum $x$ sem ,,frumtölu''.
-			\item<6-> Merkjum svo allar tölur á forminu $n \cdot x$, fyrir $n > 1$ sem ,,samsettar''.
-		}
-	}
+    \env{itemize}
+    {
+        \item<1->[] \selectcode{code/isp-factor.c}{4}{12}
+        \item<2-> Tímaflækja þessarar aðferðar er $\mathcal{O}($\onslide<3->{$\sqrt{n}$}$)$.
+    }
 }
 
 \env{frame}
 {
-	\only<all:1>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			\color{black}  $0$ & \color{black}  $1$ & \color{black}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
-			\color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
-			\color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
-			\color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
-			\color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
-			\color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
-			\color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
-			\color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
-			\color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
-			\color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:2>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
-			\color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
-			\color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
-			\color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
-			\color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
-			\color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
-			\color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
-			\color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
-			\color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
-			\color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:3>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{ blue}  $2$ & \color{black}  $3$ & \color{black}  $4$ & \color{black}  $5$ & \color{black}  $6$ & \color{black}  $7$ & \color{black}  $8$ & \color{black}  $9$\\
-			\color{black} $10$ & \color{black} $11$ & \color{black} $12$ & \color{black} $13$ & \color{black} $14$ & \color{black} $15$ & \color{black} $16$ & \color{black} $17$ & \color{black} $18$ & \color{black} $19$\\
-			\color{black} $20$ & \color{black} $21$ & \color{black} $22$ & \color{black} $23$ & \color{black} $24$ & \color{black} $25$ & \color{black} $26$ & \color{black} $27$ & \color{black} $28$ & \color{black} $29$\\
-			\color{black} $30$ & \color{black} $31$ & \color{black} $32$ & \color{black} $33$ & \color{black} $34$ & \color{black} $35$ & \color{black} $36$ & \color{black} $37$ & \color{black} $38$ & \color{black} $39$\\
-			\color{black} $40$ & \color{black} $41$ & \color{black} $42$ & \color{black} $43$ & \color{black} $44$ & \color{black} $45$ & \color{black} $46$ & \color{black} $47$ & \color{black} $48$ & \color{black} $49$\\
-			\color{black} $50$ & \color{black} $51$ & \color{black} $52$ & \color{black} $53$ & \color{black} $54$ & \color{black} $55$ & \color{black} $56$ & \color{black} $57$ & \color{black} $58$ & \color{black} $59$\\
-			\color{black} $60$ & \color{black} $61$ & \color{black} $62$ & \color{black} $63$ & \color{black} $64$ & \color{black} $65$ & \color{black} $66$ & \color{black} $67$ & \color{black} $68$ & \color{black} $69$\\
-			\color{black} $70$ & \color{black} $71$ & \color{black} $72$ & \color{black} $73$ & \color{black} $74$ & \color{black} $75$ & \color{black} $76$ & \color{black} $77$ & \color{black} $78$ & \color{black} $79$\\
-			\color{black} $80$ & \color{black} $81$ & \color{black} $82$ & \color{black} $83$ & \color{black} $84$ & \color{black} $85$ & \color{black} $86$ & \color{black} $87$ & \color{black} $88$ & \color{black} $89$\\
-			\color{black} $90$ & \color{black} $91$ & \color{black} $92$ & \color{black} $93$ & \color{black} $94$ & \color{black} $95$ & \color{black} $96$ & \color{black} $97$ & \color{black} $98$ & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:4>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{ blue}  $2$ & \color{black}  $3$ & \color{  red}  $4$ & \color{black}  $5$ & \color{  red}  $6$ & \color{black}  $7$ & \color{  red}  $8$ & \color{black}  $9$\\
-			\color{  red} $10$ & \color{black} $11$ & \color{  red} $12$ & \color{black} $13$ & \color{  red} $14$ & \color{black} $15$ & \color{  red} $16$ & \color{black} $17$ & \color{  red} $18$ & \color{black} $19$\\
-			\color{  red} $20$ & \color{black} $21$ & \color{  red} $22$ & \color{black} $23$ & \color{  red} $24$ & \color{black} $25$ & \color{  red} $26$ & \color{black} $27$ & \color{  red} $28$ & \color{black} $29$\\
-			\color{  red} $30$ & \color{black} $31$ & \color{  red} $32$ & \color{black} $33$ & \color{  red} $34$ & \color{black} $35$ & \color{  red} $36$ & \color{black} $37$ & \color{  red} $38$ & \color{black} $39$\\
-			\color{  red} $40$ & \color{black} $41$ & \color{  red} $42$ & \color{black} $43$ & \color{  red} $44$ & \color{black} $45$ & \color{  red} $46$ & \color{black} $47$ & \color{  red} $48$ & \color{black} $49$\\
-			\color{  red} $50$ & \color{black} $51$ & \color{  red} $52$ & \color{black} $53$ & \color{  red} $54$ & \color{black} $55$ & \color{  red} $56$ & \color{black} $57$ & \color{  red} $58$ & \color{black} $59$\\
-			\color{  red} $60$ & \color{black} $61$ & \color{  red} $62$ & \color{black} $63$ & \color{  red} $64$ & \color{black} $65$ & \color{  red} $66$ & \color{black} $67$ & \color{  red} $68$ & \color{black} $69$\\
-			\color{  red} $70$ & \color{black} $71$ & \color{  red} $72$ & \color{black} $73$ & \color{  red} $74$ & \color{black} $75$ & \color{  red} $76$ & \color{black} $77$ & \color{  red} $78$ & \color{black} $79$\\
-			\color{  red} $80$ & \color{black} $81$ & \color{  red} $82$ & \color{black} $83$ & \color{  red} $84$ & \color{black} $85$ & \color{  red} $86$ & \color{black} $87$ & \color{  red} $88$ & \color{black} $89$\\
-			\color{  red} $90$ & \color{black} $91$ & \color{  red} $92$ & \color{black} $93$ & \color{  red} $94$ & \color{black} $95$ & \color{  red} $96$ & \color{black} $97$ & \color{  red} $98$ & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:5>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{ blue}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{black}  $9$\\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{black} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   & \color{black} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{black} $27$ &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    & \color{black} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{black} $39$\\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{black} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   & \color{black} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{black} $57$ &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    & \color{black} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{black} $69$\\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{black} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   & \color{black} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{black} $87$ &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    & \color{black} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:6>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{black}  $9$\\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{black} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   & \color{black} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{black} $27$ &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    & \color{black} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{black} $39$\\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{black} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   & \color{black} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{black} $57$ &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    & \color{black} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{black} $69$\\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{black} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   & \color{black} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{black} $87$ &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    & \color{black} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{black} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:7>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    & \color{  red}  $9$\\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    & \color{  red} $15$ &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   & \color{  red} $21$ &                    & \color{black} $23$ &                    & \color{black} $25$ &                    & \color{  red} $27$ &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    & \color{  red} $33$ &                    & \color{black} $35$ &                    & \color{black} $37$ &                    & \color{  red} $39$\\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    & \color{  red} $45$ &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   & \color{  red} $51$ &                    & \color{black} $53$ &                    & \color{black} $55$ &                    & \color{  red} $57$ &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    & \color{  red} $63$ &                    & \color{black} $65$ &                    & \color{black} $67$ &                    & \color{  red} $69$\\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    & \color{  red} $75$ &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   & \color{  red} $81$ &                    & \color{black} $83$ &                    & \color{black} $85$ &                    & \color{  red} $87$ &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    & \color{  red} $93$ &                    & \color{black} $95$ &                    & \color{black} $97$ &                    & \color{  red} $99$\\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:8>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{ blue}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    & \color{black} $25$ &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    & \color{black} $35$ &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    & \color{black} $55$ &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    & \color{black} $65$ &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    & \color{black} $85$ &                    &                    &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    &                    &                    & \color{black} $95$ &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:9>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    & \color{black} $25$ &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    & \color{black} $35$ &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    & \color{black} $55$ &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    & \color{black} $65$ &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    & \color{black} $85$ &                    &                    &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    &                    &                    & \color{black} $95$ &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:10>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    & \color{  red} $25$ &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    & \color{  red} $35$ &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    & \color{  red} $55$ &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    & \color{  red} $65$ &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    & \color{  red} $85$ &                    &                    &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    &                    &                    & \color{  red} $95$ &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:11>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{ blue}  $5$ &                    & \color{black}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:12>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{black} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{black} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
-			                   & \color{black} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:13>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    & \color{  red} $49$\\
-			                   &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    & \color{  red} $77$ &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
-			                   & \color{  red} $91$ &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:14>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{ blue}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    &                   \\
-			                   &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    &                    &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
-			                   &                    &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
-	\only<all:15>
-	{
-		\env{tabular}
-		{ {r r r r r r r r r r}
-			                   &                    & \color{black}  $2$ & \color{black}  $3$ &                    & \color{black}  $5$ &                    & \color{black}  $7$ &                    &                   \\
-			                   & \color{black} $11$ &                    & \color{black} $13$ &                    &                    &                    & \color{black} $17$ &                    & \color{black} $19$\\
-			                   &                    &                    & \color{black} $23$ &                    &                    &                    &                    &                    & \color{black} $29$\\
-			                   & \color{black} $31$ &                    &                    &                    &                    &                    & \color{black} $37$ &                    &                   \\
-			                   & \color{black} $41$ &                    & \color{black} $43$ &                    &                    &                    & \color{black} $47$ &                    &                   \\
-			                   &                    &                    & \color{black} $53$ &                    &                    &                    &                    &                    & \color{black} $59$\\
-			                   & \color{black} $61$ &                    &                    &                    &                    &                    & \color{black} $67$ &                    &                   \\
-			                   & \color{black} $71$ &                    & \color{black} $73$ &                    &                    &                    &                    &                    & \color{black} $79$\\
-			                   &                    &                    & \color{black} $83$ &                    &                    &                    &                    &                    & \color{black} $89$\\
-			                   &                    &                    &                    &                    &                    &                    & \color{black} $97$ &                    &                   \\
-			\phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$} & \phantom{$888$}
-		}
-	}
+    \env{itemize}
+    {
+        \item<1-> Í stað þess að láta sigti Eratosþenesar geyma hvort tala sé samsett eða ekki getum við látið það geyma minnsta frumþátt tölunnar.
+        \item<2-> Takið eftir að $n$ er frumtala þá og því aðeins að minnsti frumþáttur hennar sé $n$.
+        \item<3-> Til að þátta tölur förum við endurkvæmt í gegn líkt og þegar við útfærðum sammengisleit.
+    }
 }
 
 \env{frame}
 {
-	\selectcode{code/eratosthenes.c}{5}{18}
+    \selectcode{code/eratosthenes-factor.c}{5}{24}
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Það tekur $\mathcal{O}($\onslide<2->{$n \log \log n$}$)$ tíma að forreikna sigtið.
-		\item<3-> Hver fyrirspurn er síðan afgreidd í $\mathcal{O}($\onslide<4->{$\,1\,$}$)$ tíma.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þessi útgáfa er ekki verri en hin á neinn veg, og því er sniðugt að nota hana alltaf.
+        \item<2-> Hún hefur sömu tímaflækjur: $\mathcal{O}($\onslide<3->{$n \log \log n$}$)$ tíma að forreikna 
+            og \texttt{isp(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<4->{$\,1\,$}$)$ tíma.
+        \item<5-> Nýja \texttt{factor(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<6->{$\log n$}$)$
+            tíma því hún þarf að heimsækja hvern frumþátt tölunnar.
+    }
 }
 
 \env{frame}
 {
-	\frametitle{Slembin reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Hingað til hafa reinkiritin okkar verið annað hvort rétt eða röng.
-		\item<2-> Það er þó til flokkur reinkirit þar á milli.
-		\item<3-> \emph{Slembið reiknirit} er reiknirit sem skilar réttu svar með líkum $p$.
-		\item<4-> Við getum þá keyrt reikniritið $s$ sinnum, og þá er það rétt með líkum $p^s$ (gerum ráð fyrir óhæði).
-		\item<5-> Ef reikniritið hefur tímaflækju $\mathcal{O}(f(n))$ þá tekur það $\mathcal{O}(s \cdot f(n))$ að keyra það $s$ sinnum.
-		\item<6-> Ef $p = 1/2$, til dæmis, þá fæst fyrir $s = 20$ að líkurnar eru betri en $10^{-6}$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Reiknirit Pollards er slembið reiknirit sem byggir á rásaleit til að finna þátt í samsettri tölu.
+        \item<2-> Reikniritið finnur þátt í samsettri tölu $n$ í $\mathcal{O}(\sqrt{a})$ tíma, þar sem $a$ er minnsti frumþáttur $n$.
+        \item<3-> Nú gildir að $a \leq \sqrt{n}$ og því tekur reikniritið $\mathcal{O}(\sqrt[4]{n})$ tíma.
+        \item<4-> Þetta er því töluverð bæting.
+        \item<5-> Við þurfum samt fyrst úr skugga um að $n$ sé frumtala.
+        \item<6-> Við megum þó ekki nota tæmandi leit til þess því þá bætist tímaflækjan ekkert.
+        \item<7-> Líkt og með reiknirit Millers og Rabins þá mun ég ekki fara í smáatriði hér.
+    }
 }
 
 \env{frame}
 {
-	\frametitle{Reiknirit Millers og Rabins}
-	\env{itemize}
-	{
-		\item<1-> Til er slembið reiknirit, kennt við Miller og Rabin, sem ákvarðar hvort tala sé samsett.
-		\item<2-> Í því eru líkur á röngu svar minni eða jafnar $1/4$.
-		\item<3-> Tímaflækjan á reikniritinu er $\mathcal{O}(s \cdot \log^3 n)$ og það er rétt með líkum betri en $1/4^s$.
-		\item<4-> Ég mun ekki fara í það afhverju reikniritið virkar.
-		\item<5-> Það er þó gott að þekkja það nógu vel til að geta notað það.
-		\item<6-> Útfærslan sem er gefin notar niðurstöðu Jiang og Deng ($2014$) til að virka alltaf fyrir nógu litlar tölur.
-	}
+    \selectcode{code/pollard-rho.c}{48}{63}
 }
 
 \env{frame}
 {
-	\selectcode{code/miller-rabin.c}{27}{43}
+    \selectcode{code/pollard-rho.c}{76}{89}
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þegar kemur að því að frumþátta tölur hafa þessar þrjár aðferðir sér hliðstæðu.
-		\item<2-> Skoðum aftur fyrstu aðferðina.
-		\item<3->[] \selectcode{code/isp.c}{4}{10}
-		\item<4-> Þegar þetta fall skilar núll er \texttt{i} minnsti frumþáttur \texttt{x}.
-		\item<5-> Við getum nú stytt \texttt{x} með \texttt{i} þar til \texttt{i} gengur ekki lengur upp í \texttt{x}.
-		\item<6-> Svo höldum við áfram.
-	}
+    \env{itemize}
+    {
+        \item<1-> Eftirfarandi jöfnur eru merkilegar hagnýtingar á frumþáttun.
+        \item<2-> Látum $n = p_1^{e_1} \cdot ... \cdot p_m^{e_m}$, þar sem $p_1, ..., p_m$ eru frumtölur og $e_1, ..., e_m$ eru heiltölur stærri en $1$.
+        \item<3-> Við fáum þá eftirfarandi föll:
+        \env{itemize}
+        {
+            \item<4-> Fjöldi deila $n$:
+            \[
+                d(n) = \prod_{k = 1}^r (e_k + 1).
+            \]
+            \item<5-> Summa deila $n$:
+            \[
+                \sigma(n) = \prod_{k = 1}^r \frac{p_k^{e_k + 1} - 1}{p_k - 1}.
+            \]
+            \item<6-> Fjöldi jákvæðra heiltalna $k < n$, þannig að $\gcd(n, k) = 1$:
+            \[
+                \phi(n) = n\prod_{k = 1}^r (1 - 1/p_k).
+            \]
+        }
+        \item<7-> Einnig gefur setning kennd við Euler alhæfingu á litlu setningu Fermats:
+        \[
+            a^{\phi(m)} = 1 \mod m.
+        \]
+            ef $\gcd(a, m) = 1$.
+    }
 }
 
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1->[] \selectcode{code/isp-factor.c}{4}{15}
-		\item<2-> Tímaflækja þessarar aðferðar er $\mathcal{O}($\onslide<3->{$\sqrt{n}$}$)$.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Í stað þess að láta sigti Eratosþenesar geyma hvort tala sé samsett eða ekki getum við látið það geyma minnsta frumþátt tölunnar.
-		\item<2-> Takið eftir að $n$ er frumtala þá og því aðeins að minnsti frumþáttur hennar sé $n$.
-		\item<3-> Til að þátta tölur förum við endurkvæmt í gegn líkt og þegar við útfærðum sammengisleit.
-	}
-}
-
-\env{frame}
-{
-	\selectcode{code/eratosthenes-factor.c}{5}{25}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Þessi útgáfa er ekki verri en hin á neinn veg, og því er sniðugt að nota hana alltaf.
-		\item<2-> Hún hefur sömu tímaflækjur: $\mathcal{O}($\onslide<3->{$n \log \log n$}$)$ tíma að forreikna 
-					og \texttt{isp(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<4->{$\,1\,$}$)$ tíma.
-		\item<5-> Nýja \texttt{factor(...)} fyrirspurnin tekur $\mathcal{O}($\onslide<6->{$\log n$}$)$
-					tíma því hún þarf að heimsækja hvern frumþátt tölunnar.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Reiknirit Pollards er slembið reiknirit sem byggir á rásaleit til að finna þátt í samsettri tölu.
-		\item<2-> Reikniritið finnur þátt í samsettri tölu $n$ í $\mathcal{O}(\sqrt{a})$ tíma, þar sem $a$ er minnsti frumþáttur $n$.
-		\item<3-> Nú gildir að $a \leq \sqrt{n}$ og því tekur reikniritið $\mathcal{O}(\sqrt[4]{n})$ tíma.
-		\item<4-> Þetta er því töluverð bæting.
-		\item<5-> Við þurfum samt fyrst úr skugga um að $n$ sé frumtala.
-		\item<6-> Við megum þó ekki nota tæmandi leit til þess því þá bætist tímaflækjan ekkert.
-		\item<7-> Líkt og með reiknirit Millers og Rabins þá mun ég ekki fara í smáatriði hér.
-	}
-}
-
-\env{frame}
-{
-	\selectcode{code/pollard-rho.c}{49}{64}
-}
-
-\env{frame}
-{
-	\selectcode{code/pollard-rho.c}{78}{96}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Eftirfarandi jöfnur eru merkilegar hagnýtingar á frumþáttun.
-		\item<2-> Látum $n = p_1^{e_1} \cdot ... \cdot p_m^{e_m}$, þar sem $p_1, ..., p_m$ eru frumtölur og $e_1, ..., e_m$ eru heiltölur stærri en $1$.
-		\item<3-> Við fáum þá eftirfarandi föll:
-		\env{itemize}
-		{
-			\item<4-> Fjöldi deila $n$:
-			\[
-				d(n) = \prod_{k = 1}^r (e_k + 1).
-			\]
-			\item<5-> Summa deila $n$:
-			\[
-				\sigma(n) = \prod_{k = 1}^r \frac{p_k^{e_k + 1} - 1}{p_k - 1}.
-			\]
-			\item<6-> Fjöldi jákvæðra heiltalna $k < n$, þannig að $\gcd(n, k) = 1$:
-			\[
-				\phi(n) = n\prod_{k = 1}^r (1 - 1/p_k).
-			\]
-		}
-		\item<7-> Einnig gefur setning kennd við Euler alhæfingu á litlu setningu Fermats:
-		\[
-			a^{\phi(m)} = 1 \mod m.
-		\]
-		ef $\gcd(a, m) = 1$.
-	}
-}
-
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

@@ -184,7 +184,7 @@
 \section{Útfærsla}
 \env{frame}
 {
-    \selectcode{code/bellman-ford-faster.cpp}{9}{27}
+    \selectcode{code/bellman-ford-faster.cpp}{9}{22}
 }
 
 \section{Bæting}
@@ -194,6 +194,26 @@
     {
         \includegraphics[scale = 0.35]{fig/ex.png}
     }
+}
+
+\section{Frekari bætingar}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Það ber að nefna að ef við notum forgangsbiðröð í stað þess að nota biðröð fáum við reiknirit Dijkstras.
+        \item<2-> Ein lítil bæting í viðbót er að geyma hnútanna sem við eigum eftir að uppfæra á hlaða.
+        \item<3-> Þetta getur sparað vinna, þá aðallega þegar forgangsbiðröðin er nærri tóm.
+        \item<4-> Það þarf þó að passa að setja aldrei hnút í biðröðina tvisvar.
+        \item<5-> Í versta falli er þessi ,,bæting'' jafn hröð og fyrri bætingin, og mögulega aðeins hægari.
+        \item<6-> Hún virkar þó sérstaklega vel á slembin net.
+    }
+}
+
+\section{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/bellman-ford-sometimes-faster.cpp}{9}{29}
 }
 
 \section{Þessi glæra er viljandi auð}

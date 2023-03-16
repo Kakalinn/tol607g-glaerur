@@ -7,574 +7,585 @@
 
 \frame{\titlepage}
 
+\section{Skilgreininar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Látum $a$, $b$, $g$ og $h$ vera jákvæðar heiltölur.
-		\item<2-> Við segjum að talan $g$ sé \emph{samdeilir} $a$ og $b$ ef $g$ deilir bæði $a$ og $b$.
-		\item<3-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $g$ verið annað hvort $1$ eða $2$.
-		\item<4-> Við segjum að talan $h$ sé \emph{samfeldi} $a$ og $b$ ef bæði $a$ og $b$ deila $h$.
-		\item<5-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $h$ verið $4$, $8$ eða margar aðrar tölur.
-		\item<6-> \emph{Stærsta samdeili} $a$ og $b$ táknum við með $\gcd(a, b)$.
-		\item<7-> \emph{Minnsta samfeldi} $a$ og $b$ táknum við með $\lcm(a, b)$.
-		\item<8-> Við munum einblína á að reikna stærsta samdeili því $\lcm(a, b) \cdot \gcd(a, b) = a \cdot b$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Látum $a$, $b$, $g$ og $h$ vera jákvæðar heiltölur.
+        \item<2-> Við segjum að talan $g$ sé \emph{samdeilir} $a$ og $b$ ef $g$ deilir bæði $a$ og $b$.
+        \item<3-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $g$ verið annað hvort $1$ eða $2$.
+        \item<4-> Við segjum að talan $h$ sé \emph{samfeldi} $a$ og $b$ ef bæði $a$ og $b$ deila $h$.
+        \item<5-> Til dæmis ef $a = 2$ og $b = 4$ þá gæti $h$ verið $4$, $8$ eða margar aðrar tölur.
+        \item<6-> \emph{Stærsta samdeili} $a$ og $b$ táknum við með $\gcd(a, b)$.
+        \item<7-> \emph{Minnsta samfeldi} $a$ og $b$ táknum við með $\lcm(a, b)$.
+        \item<8-> Við munum einblína á að reikna stærsta samdeili því $\lcm(a, b) \cdot \gcd(a, b) = a \cdot b$.
+    }
 }
 
+\section{Stærsti samdeilir}
+\subsection{Frumstæð aðferð}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvernig finnum við stærsta samdeili tveggja talna?
-		\item<2-> Látum $a$ og $b$ vera jákvæðar heiltölur og $g$ vera stærsta samdeilir þeirra.
-		\item<3-> Gerum einnig ráð fyrir að $a < b$ (ef $a = b$ þá er $g = a$).
-		\item<4-> Tökum eftir að $g$ deilir líka $b - a$.
-		\item<5-> Svo okkur nægir að finna stærsta samdeili $a$ og $b - a$.
-		\item<6->[] \selectcode{code/gcd.c}{12}{17}
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvernig finnum við stærsta samdeili tveggja talna?
+        \item<2-> Látum $a$ og $b$ vera jákvæðar heiltölur og $g$ vera stærsta samdeilir þeirra.
+        \item<3-> Gerum einnig ráð fyrir að $a < b$ (ef $a = b$ þá er $g = a$).
+        \item<4-> Tökum eftir að $g$ deilir líka $b - a$.
+        \item<5-> Svo okkur nægir að finna stærsta samdeili $a$ og $b - a$.
+        \item<6->[] \selectcode{code/gcd.c}{12}{17}
+    }
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum eftir að ef $a = 2$ hefur þetta fall tímaflækjuna $\mathcal{O}($\onslide<2->{$\,b\,$}$)$.
-		\item<3-> Svo þetta verður almennt aldrei betra en $\mathcal{O}($\onslide<4->{$\max(a, b)$}$)$.
-		\item<5-> En við getum bætt þetta.
-		\item<6-> Skoðum eitt einfalt dæmi.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum eftir að ef $a = 2$ hefur þetta fall tímaflækjuna $\mathcal{O}($\onslide<2->{$\,b\,$}$)$.
+        \item<3-> Svo tímaflækjan er $\mathcal{O}($\onslide<4->{$\max(a, b)$}$)$.
+        \item<5-> En við getum bætt þetta.
+        \item<6-> Skoðum eitt einfalt dæmi.
+    }
 }
 
 \defverbatim{\slowgcdA}
 { \begin{verbatim}
-                 26 101
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdB}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdC}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdD}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdE}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdF}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdG}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdH}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdI}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdJ}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdK}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdL}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdM}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdN}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              ->  3   2
-              
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdO}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              ->  3   2
-              ->  2   3
-              
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdP}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              ->  3   2
-              ->  2   3
-              ->  2   1
-              
-              
-\end{verbatim}}
-\defverbatim{\slowgcdQ}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              ->  3   2
-              ->  2   3
-              ->  2   1
-              ->  1   2
-              
-\end{verbatim}}
-\defverbatim{\slowgcdR}
-{ \begin{verbatim}
-                 26 101
-              -> 26  75
-              -> 26  49
-              -> 26  23
-              -> 23  26
-              -> 23   3
-              ->  3  23
-              ->  3  20
-              ->  3  17
-              ->  3  14
-              ->  3  11
-              ->  3   8
-              ->  3   5
-              ->  3   2
-              ->  2   3
-              ->  2   1
-              ->  1   2
-              ->  1   1
-\end{verbatim}}
+    26 101
 
-\env{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdB}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdC}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdD}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdE}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdF}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdG}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdH}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdI}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdJ}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdK}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdL}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdM}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdN}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+        ->  3   2
+
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdO}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+        ->  3   2
+        ->  2   3
+
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdP}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+        ->  3   2
+        ->  2   3
+        ->  2   1
+
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdQ}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+        ->  3   2
+        ->  2   3
+        ->  2   1
+        ->  1   2
+
+        \end{verbatim}}
+        \defverbatim{\slowgcdR}
+{ \begin{verbatim}
+    26 101
+        -> 26  75
+        -> 26  49
+        -> 26  23
+        -> 23  26
+        -> 23   3
+        ->  3  23
+        ->  3  20
+        ->  3  17
+        ->  3  14
+        ->  3  11
+        ->  3   8
+        ->  3   5
+        ->  3   2
+        ->  2   3
+        ->  2   1
+        ->  1   2
+        ->  1   1
+        \end{verbatim}}
+
+\subsection{Sýnidæmi}
+        \env{frame}
 {
-	\only<all:1>{\slowgcdA}
-	\only<all:2>{\slowgcdB}
-	\only<all:3>{\slowgcdC}
-	\only<all:4>{\slowgcdD}
-	\only<all:5>{\slowgcdE}
-	\only<all:6>{\slowgcdF}
-	\only<all:7>{\slowgcdG}
-	\only<all:8>{\slowgcdH}
-	\only<all:9>{\slowgcdI}
-	\only<all:10>{\slowgcdJ}
-	\only<all:11>{\slowgcdK}
-	\only<all:12>{\slowgcdL}
-	\only<all:13>{\slowgcdM}
-	\only<all:14>{\slowgcdN}
-	\only<all:15>{\slowgcdO}
-	\only<all:16>{\slowgcdP}
-	\only<all:17>{\slowgcdQ}
-	\only<all:18>{\slowgcdR}
+    \only<all:1>{\slowgcdA}
+    \only<all:2>{\slowgcdB}
+    \only<all:3>{\slowgcdC}
+    \only<all:4>{\slowgcdD}
+    \only<all:5>{\slowgcdE}
+    \only<all:6>{\slowgcdF}
+    \only<all:7>{\slowgcdG}
+    \only<all:8>{\slowgcdH}
+    \only<all:9>{\slowgcdI}
+    \only<all:10>{\slowgcdJ}
+    \only<all:11>{\slowgcdK}
+    \only<all:12>{\slowgcdL}
+    \only<all:13>{\slowgcdM}
+    \only<all:14>{\slowgcdN}
+    \only<all:15>{\slowgcdO}
+    \only<all:16>{\slowgcdP}
+    \only<all:17>{\slowgcdQ}
+    \only<all:18>{\slowgcdR}
 }
 
+\subsection{Bæting}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við getum tekið saman þau skref sem eiga sér stað þangað til $a > b$.
-		\item<2-> Við finnum $q$ þannig að $b - a \cdot q$ sé jákvætt og minna en $a$.
-		\item<4-> En við getum fundið þessa tölu með \onslide<4->{leifareikningi}.
-		\item<5-> Við notum því $\gcd(a, b) = \gcd(r, a)$ í staðinn fyrir $\gcd(a, b) = \gcd(a, b - a)$, þar sem $r$ er leif $b$ með tilliti til $a$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum tekið saman þau skref sem eiga sér stað þangað til $a > b$.
+        \item<2-> Við finnum $q$ þannig að $b - a \cdot q$ sé jákvætt og minna en $a$.
+        \item<4-> En við getum fundið þessa tölu með \onslide<4->{leifareikningi}.
+        \item<5-> Við notum því $\gcd(a, b) = \gcd(r, a)$ í staðinn fyrir $\gcd(a, b) = \gcd(a, b - a)$, þar sem $r$ er leif $b$ með tilliti til $a$.
+    }
 }
 
 \defverbatim{\gcdA}
 { \begin{verbatim}
-                 26 101
+    26 101
 
 
 
 
 
-\end{verbatim}}
-\defverbatim{\gcdB}
+        \end{verbatim}}
+        \defverbatim{\gcdB}
 { \begin{verbatim}
-                 26 101
-              -> 23  26
+    26 101
+        -> 23  26
 
 
 
 
-\end{verbatim}}
-\defverbatim{\gcdC}
+        \end{verbatim}}
+        \defverbatim{\gcdC}
 { \begin{verbatim}
-                 26 101
-              -> 23  26
-              ->  3  23
+    26 101
+        -> 23  26
+        ->  3  23
 
 
 
-\end{verbatim}}
-\defverbatim{\gcdD}
+        \end{verbatim}}
+        \defverbatim{\gcdD}
 { \begin{verbatim}
-                 26 101
-              -> 23  26
-              ->  3  23
-              ->  2   3
+    26 101
+        -> 23  26
+        ->  3  23
+        ->  2   3
 
 
-\end{verbatim}}
-\defverbatim{\gcdE}
+        \end{verbatim}}
+        \defverbatim{\gcdE}
 { \begin{verbatim}
-                 26 101
-              -> 23  26
-              ->  3  23
-              ->  2   3
-              ->  1   2
+    26 101
+        -> 23  26
+        ->  3  23
+        ->  2   3
+        ->  1   2
 
-\end{verbatim}}
-\defverbatim{\gcdF}
+        \end{verbatim}}
+        \defverbatim{\gcdF}
 { \begin{verbatim}
-                 26 101
-              -> 23  26
-              ->  3  23
-              ->  2   3
-              ->  1   2
-              ->  0   1
-\end{verbatim}}
+    26 101
+        -> 23  26
+        ->  3  23
+        ->  2   3
+        ->  1   2
+        ->  0   1
+        \end{verbatim}}
 
+\subsection{Sýnidæmi}
+        \env{frame}
+{
+    \only<all:1>{\gcdA}
+    \only<all:2>{\gcdB}
+    \only<all:3>{\gcdC}
+    \only<all:4>{\gcdD}
+    \only<all:5>{\gcdE}
+    \only<all:6>{\gcdF}
+}
+
+\subsection{Útfærsla og tímaflækja}
 \env{frame}
 {
-	\only<all:1>{\gcdA}
-	\only<all:2>{\gcdB}
-	\only<all:3>{\gcdC}
-	\only<all:4>{\gcdD}
-	\only<all:5>{\gcdE}
-	\only<all:6>{\gcdF}
+    \env{itemize}
+    {
+        \item<1-> Útfærslan einfaldast töluvert með þessari bætingu.
+        \item<2->[] \selectcode{code/gcd.c}{7}{10}
+        \item<3-> Þessi útfærsla verður $\mathcal{O}($\onslide<4->{$\log \max(a, b)$}$)$.
+        \item<5-> Ástæðan fyrir þessari bætingu er að ef \ilcode{a} minnkar lítið eftir eitt skref
+            þá verður lítill munur á \ilcode{a} og \ilcode{b}, svo næst minnkar \ilcode{a} meira.
+        \item<6-> Við kennum þetta reiknirit við Evklíð.
+        \item<7-> Þetta ferli er einnig kallað \emph{keðjudeiling}.
+    }
+}
+
+\section{Jafna Bézouts}
+\subsection{Inngangur og útfærsla}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Algengt er að nota keðjudeilingu til að leysa jöfnu Bézouts.
+        \item<2-> Látum $a$ og $b$ vera jákvæðar heiltölur.
+        \item<3-> Þá eru til heiltölur $x$ og $y$ þannig að $a \cdot x + b \cdot y = \gcd(a, b)$.
+        \item<4-> Þessi jafna kallast \emph{jafna Bézouts}.
+        \item<5-> Við notum svo kallaða \emph{útvíkkaða keðjudeilingu} til að finna tölurnar $x$ og $y$.
+        \item<6->[] \selectcode{code/egcd.c}{7}{19}
+    }
+}
+
+\subsection{Margföldunarandhverfur}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Algeng hagnýting jöfn Bézouts er til að finna margföldunarandhverfur.
+        \item<2-> Við höfum áður gert það með litlu setningu Fermats.
+        \item<3-> Gerum ráð fyrir að $a$ og $m$ séu jákvæðar heiltölur þannig að $\gcd(a, m) = 1$.
+        \item<4-> Látum svo heiltölurnar $x$ og $y$ leysa Bézout jöfnuna $a \cdot x + m \cdot y = 1$.
+        \item<5-> Þá fæst að $x$ er margföldunarandhverfa $a$ með tilliti til $m$.
+        \item<6-> Ef $\gcd(a, m) \neq 1$ þá er margföldunarandhverfa $a$ ekki til.
+        \item<7->[] \selectcode{code/mulinv.c}{19}{25}
+        \item<8-> Takið eftir að $x$ getur verið neikvæð.
+        \item<9-> Til að koma í veg fyrir það má breyta skilagildinu í \ilcode{(x\%m + m)\%m}.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Útfærslan einfaldast töluvert með þessari bætingu.
-		\item<2->[] \selectcode{code/gcd.c}{7}{10}
-		\item<3-> Þessi útfærsla verður $\mathcal{O}($\onslide<4->{$\log \max(a, b)$}$)$.
-		\item<5-> Ástæðan fyrir þessari bætingu er að ef \texttt{a} minnkar lítið eftir eitt skref
-					þá verður lítill munur á \texttt{a} og \texttt{b}, svo næst minnkar \texttt{a} meira.
-		\item<6-> Við kennum þetta reiknirit við Evklíð.
-		\item<7-> Þetta ferli er einnig kallað \emph{keðjudeiling}.
-	}
+    \env{itemize}
+    {
+        \item<1-> Takið eftir að þetta reiknirit virkar stundum þegar $m$ er ekki frumtala en litla setning Fermats virkar bara þegar $m$ er frumtala.
+    }
 }
 
-\env{frame}
-{
-	\frametitle{Jafna Bézouts}
-	\env{itemize}
-	{
-		\item<1-> Algengt er að nota keðjudeilingu til að leysa jöfnu Bézouts.
-		\item<2-> Látum $a$ og $b$ vera jákvæðar heiltölur.
-		\item<3-> Þá eru til heiltölur $x$ og $y$ þannig að $a \cdot x + b \cdot y = \gcd(a, b)$.
-		\item<4-> Þessi jafna kallast \emph{jafna Bézouts}.
-		\item<5-> Við notum svo kallaða \emph{útvíkkaða keðjudeilingu} til að finna tölurnar $x$ og $y$.
-		\item<6->[] \selectcode{code/egcd.c}{7}{19}
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Algengasta hagnýting jöfn Bézouts er til að finna margföldunarandhverfur.
-		\item<2-> Við höfum áður gert það með litlu setningu Fermats.
-		\item<3-> Gerum ráð fyrir að $a$ og $m$ séu jákvæðar heiltölur þannig að $\gcd(a, m) = 1$.
-		\item<4-> Látum svo heiltölurnar $x$ og $y$ leysa Bézout jöfnuna $a \cdot x + m \cdot y = 1$.
-		\item<5-> Þá fæst að $x$ er margföldunarandhverfa $a$ með tilliti til $m$.
-		\item<6-> Ef $\gcd(a, m) \neq 1$ þá er margföldunarandhverfa $a$ ekki til.
-		\item<7->[] \selectcode{code/mulinv.c}{19}{25}
-		\item<8-> Takið eftir að $x$ getur verið neikvæð.
-		\item<9-> Til að koma í veg fyrir það má breyta skilagildinu í \texttt{(x\%m + m)\%m}.
-	}
-}
-
-\env{frame}
-{
-	\env{itemize}
-	{
-		\item<1-> Takið eftir að þetta reiknirit virkar stundum þegar $m$ er ekki frumtala en litla setning Fermats virkar bara þegar $m$ er frumtala.
-	}
-}
-
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

@@ -1,0 +1,219 @@
+\title{Reiknirit Johnsons ($1977$)}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Inngangur}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við höfum séð hvernig það má finna fjarlægðir milli alla hnúta í neti í $\mathcal{O}(V^3)$ tíma með reikniriti Floyds og Warshalls.
+        \item<2-> Það má þá bæta þetta lítilega fyrir net sem hafa ekki marga leggi.
+        \item<3-> Ef netið okkar er með jákvæða leggi getum við nota Dijkstra úr hverjum hnút og fengið tímaflækjuna $\mathcal{O}(V(E + V) \log E)$.
+        \item<4-> En hvað gerum við ef við erum með neikvæða leggi?
+    }
+}
+
+\section{...}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Hugmyndin er að breyta vigtinni á leggjum þannig að vigtirnar verði jákvæðar, en án þess að breyta hvaða vegir eru stystir.
+        \item<2-> Eðlilegt er að spyrja sig hvort það nægi ekki að bæta nógu stórri tölu við alla leggina þannig að allir leggir sé jákvæðir.
+        \item<3-> Þetta virkar ekki, því þetta lengir vegi með fleiri leggi meira en vegi með fáa leggi.
+        \item<4->[] \env{center}
+        {
+            \env{tikzpicture}
+            {
+                \node[draw, circle, thick] (4) at (4, 2) {$s$};
+                \node[draw, circle, thick] (5) at (6, 1) {$t$};
+                \node[draw, circle, thick] (6) at (4, 0) {\phantom{$s$}};
+                \node at (3.6, 1) {$0$};
+                \node at (5, 1.8) {$3$};
+                \node at (5, 0.2) {$4$};
+
+                \path[draw, thick, ->] (4) -- (5);
+                \path[draw, thick, ->] (6) -- (5);
+                \path[draw, thick, ->] (4) -- (6);
+
+                \node[draw, circle, thick] (1) at (0, 2) {$s$};
+                \node[draw, circle, thick] (2) at (2, 1) {$t$};
+                \node[draw, circle, thick] (3) at (0, 0) {\phantom{$s$}};
+                \node at (-0.4, 1) {$-2$};
+                \node at (1, 1.8) {$1$};
+                \node at (1, 0.2) {$2$};
+
+                \path[draw, thick, ->] (1) -- (2);
+                \path[draw, thick, ->] (3) -- (2);
+                \path[draw, thick, ->] (1) -- (3);
+            }
+        }
+        \item<5-> Reiknirit Johnsons breytir vigtinni á leggjunum þannig að stystu vegirnir breytast ekki en allir leggirnir verða jákvæðir.
+    }
+}
+
+\section{Yfirlit}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Látum $G = (E, V, w)$ vera vegið stefnt net og $f \colon V \rightarrow \mathbb{Z}$.
+        \item<2-> Við getum þá búið til nýtt net $G' = (E, V, w')$ þannig að $w'(e) = w(e) + f(u) - f(v)$.
+        \item<3-> Ef $v_1, v_2, \dots, v_k$ er vegur þá er
+        \env{align*}
+        {
+            \sum_{j = 1}^{k - 1} w'(v_j, v_{j + 1})
+            &=
+            \sum_{j = 1}^{k - 1} w(v_j, v_{j + 1}) + f(v_j) - f(v_{j + 1})\\
+            &=
+            \sum_{j = 1}^{k - 1} w(v_j, v_{j + 1}) + f(v_1) - f(v_k)\\
+        }
+        \item<4-> Svo stysti vegurinn milli hnúta $u$ og $v$ í $G$ er líka stysti vegurinn milli $u$ og $v$ í $G'$.
+        \item<5-> Spurningin er þá: Er hægt að velja $f$ þannig að $w' \geq 0$?
+    }
+}
+
+\section{Breyting leggjanna}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að það sé engin neikvæð rás í $G$.
+        \item<2-> Við getum þá notað reinkirit Bellmans og Fords til að finna stysta veginn sem endar í $u$, fyrir öll $u$.
+        \item<3-> Táknum lengdina á þessum vegi með $h(u)$.
+        \item<4-> Tökum nú eftir að ef $e$ er leggur úr $u$ í $v$ þá er $w(e) + h(u) \geq h(v)$.
+        \item<5-> Svo ef $f$, á glærunni á undan, er látið vera $h$ þá er $G'$ ekki með neinn neikvæðann legg.
+        \item<6-> Við getum því notað reiknirit Dijkstras fyrir hvern hnút til að finna stystu fjarlægðina milli $u$ og $v$ í $G'$.
+        \item<7-> Við höfum svo að ef fjarlægðin milli $u$ og $v$ í $G'$ er $\mu$, þá er fjarlægðin milli $u$ og $v$ í $G$ gefin með $\mu - h(u) + h(v)$.
+    }
+}
+
+\section{Neikvæðar rásir}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Ef það er neikvæð rás í netinu fáum við að $h(u) = -\infty$ fyrir einhverja hnúta $u$.
+        \item<2-> Við leysum þetta með því finna all hnúta sem eru hluti af einhverri rás,
+                    fjarlægja þá úr netinu og reikna svo $h$ fyrir hnútana sem eru ekki hluti af neikvæðri rás.
+        \item<3-> Við getum notað þetta net til að finna allar fjarlægðir sem eiga ekki að vera $-\infty$.
+        \item<4-> En hvernig finnum við alla hnúta sem eru hluti af neikvæðri rás?
+        %\item<2-> Nánar fæst að $h(u) = -\infty$ þá og því aðeins að $u$ sé í einhverri neikvæðri rás.
+        %\item<3-> Við höfum einnig að fjarlægðin frá $u$ til $v$ í $G$ er $-\infty$ þá og því aðeins að það sé neikvæð rás
+                    %þannig að það sé vegur úr $u$ í neikvæðu rásina og vegur úr neikvæðu rásinni í $v$.
+        %\item<4-> Við búum því til aðeins flóknara $G'$ net.
+    }
+}
+
+\section{Allir hnútar sem eru í einhverri neikvæðri rás}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Rifjum upp að net er stranglega samanhangandi ef fyrir alla hnúta $u$ og $v$ er til vegur frá $u$ til $v$ og vegur frá $v$ til $u$.
+        \item<2-> Ef netið okkar er stranglega samanhangandi og inniheldur neikvæða rás þá eru allir hnútar hluti af neikvæðri rás.
+        \item<3-> Svo við getum notað reiknirit Bellmans og Fords til að finna stysta veg sem endar í hverjum hnút,
+                    og þá vitum við hvort það sé neikvæð rás í stranga samhengisþættinum.
+        \item<4-> Fyrir almennt net eru þó allar rásir alfarið í einum ströngum samhengisþætti.
+        \item<5-> Svo okkur nægir að skoða hvern stranga samhengisþátt fyrir sig.
+    }
+}
+
+\section{Útfærsla á reiknirit Tarjans til að finna stranga samhengisþætti}
+\env{frame}
+{
+    \selectcode{code/johnson.cpp}{31}{50}
+}
+
+\section{Útfærsla á reiknirit Bellmans og Fords fyrir hlutnet}
+\env{frame}
+{
+    \selectcode{code/johnson.cpp}{52}{71}
+}
+
+\section{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/johnson.cpp}{73}{87}
+}
+
+\section{Lausn með neikvæðum rásum}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Búum nú til nýtt net, sem er ekki með neina neikvæða leggi.
+        \item<2-> Táknum með $R \subset V$ mengi þeirra hnúta sem eru hluti af einhverri neikvæðri rás.
+        \item<3-> Við látum $G' = (\{1, 2\} \times V, E', w')$ þannig að:
+        \env{itemize}
+        {
+            \item<4-> leggur úr $(1, u)$ í $(1, v)$ er í $E'$ ef $(u, v)$ er í $E$ og $u \not \in R$ og $v \not \in R$.
+            \item<5-> leggur úr $(1, u)$ í $(2, v)$ er í $E'$ ef $(u, v)$ er í $E$ og $v \in R$.
+            \item<6-> leggur úr $(2, u)$ í $(2, v)$ er í $E'$ ef $(u, v)$ er í $E$,
+            \item<7-> leggur úr $(1, u)$ í $(1, v)$ hefur vigt $w(u, v) + h(u) - h(v)$,
+            \item<8-> leggur úr $(j, u)$ í $(2, v)$ hefur vigt $0$, fyrir bæði $j = 1$ og $j = 2$.
+        }
+        \item<9-> Ein leið til að ímynda sér netið $G'$ er að við séum með tvö eintök af netinu $G$, annað ofan á hinu.
+        \item<10-> Við byrjum í neðra netinu og alltaf þegar við lendum á hnút í $R$ (hnút sem er í neikvæðri rás) þá förum við upp í efra netið.
+        \item<11-> Fjarlægðin úr $u$ til $v$ í $G$ er þá $-\infty$ ef það er vegur úr $(1, u)$ í $(2, v)$ í $G'$,
+                    og $\mu - h(u) + h(v)$ annars, þar sem $\mu$ er fjarlægðin milli $(1, u)$ og $(1, v)$ í $G'$.
+    }
+}
+
+\section{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/johnson.cpp}{89}{111}
+}
+
+\section{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við framkvæmum reiknirit Bellmans og Fords tvisvar og reiknirit Dijkstras $V$ sinnum.
+        \item<2-> Tímaflækja reiknirit Bellmans og Fords er tímaflækuna $\mathcal{O}(\onslide<3->{E \cdot V})$.
+        \item<4-> Tímaflækja reiknirit Dijkstras er tímaflækuna $\mathcal{O}(\onslide<5->{(E + V) \log E})$.
+        \item<6-> Svo tímaflækjan er $\mathcal{O}(\onslide<7->{E \cdot V + V \cdot (E + V) \log E})$.
+        \item<8-> Þetta bætir bara reiknirit Floyds og Warshalls ef við erum með fáa leggi í netinu.
+    }
+}
+
+\section{Samanburður reiknirita sem reikna fjarlægðir}
+\env{frame}
+{
+    \resizebox{\textwidth}{!}
+    {
+        \env{tabular}
+        {
+            {p{2.4cm} | p{1.6cm} | p{2.4cm} | p{4.1cm} | p{2.0cm}}
+            Reiknirit & Útskýring & Skilyrði & Tímaflækja & Tímaflækja á þétt net \\
+            \hline
+            BFS            & Einn í alla & Óvegið & $\mathcal{O}(E + V)$ & $\mathcal{O}(V^2)$ \\
+            \hline
+            Dijkstra       & Einn í alla & Jákvæðir leggir & $\mathcal{O}((E + V) \log E)$ & $\mathcal{O}(V^2 \log V)$ \\
+            \hline
+            Bellman-Ford   & Einn í alla & & $\mathcal{O}(E \cdot V)$ & $\mathcal{O}(V^3)$ \\
+            \hline
+            Dijkstra       & Allir í alla & Jákvæðir leggir & $\mathcal{O}(V(E + V) \log E)$ & $\mathcal{O}(V^3 \log V)$ \\
+            \hline
+            Bellman-Ford   & Allir í alla & & $\mathcal{O}(V^2 \cdot E)$ & $\mathcal{O}(V^4)$ \\
+            \hline
+            Floyd-Warshall & Allir í alla & & $\mathcal{O}(V^3)$ & $\mathcal{O}(V^3)$ \\
+            \hline
+            Johnson        & Allir í alla & & $\mathcal{O}(E \cdot V + V(E + V) \log E)$ & $\mathcal{O}(V^3 \log V)$ \\
+        }
+    }
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

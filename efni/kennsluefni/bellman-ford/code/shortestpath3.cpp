@@ -6,7 +6,7 @@ typedef vector<ii> vii;
 typedef vector<vii> vvii;
 typedef vector<int> vi;
 
-#if 1
+#if 0
 vi bellman_ford(vvii& g, int s)
 {
     int i, j, k, n = g.size(), x, w;
@@ -23,24 +23,43 @@ vi bellman_ford(vvii& g, int s)
         }
     return d;                                                                   // Skilum fjarlægðunum.
 }
-#else
+#endif
+#if 0
 vi bellman_ford(vvii& g, int s)
 {
-    int i, j, k, n = g.size(), x, w, q[n];
+    int i, j, k, f = 1, n = g.size(), x, w, q[n];
     vi d(n);
     for (i = 0; i < n; i++) d[i] = i == s ? 0 : INF, q[i] = i == s ? 0 : -1;    // Upphafstillum minnistölfuna með mjög stórri tölu.
-    for (i = 0; i < n - 1; i++) for (j = 0; j < n; j++) if (q[j] == i)          // Ítrum í gegnum alla hnútanna nema þá sem við þurfum ekki að uppfæra.
+    for (i = 0; f ; i++) for (j = f = 0; j < n; j++) if (q[j] == i)             // Ítrum í gegnum alla hnútanna nema þá sem við þurfum ekki að uppfæra.
         for (k = 0; k < g[j].size(); k++)                                       // Ítrum í gegnum alla nágranna tiltekins hnúts sem þarf að uppfæra.
+    {
+        x = g[j][k].first, w = g[j][k].second;
+        if (d[x] != -INF && d[j] + w < d[x])
+            d[x] = i < n ? d[j] + w : -INF, q[x] = i + 1, f = 1;                // Uppfærum ef við erum með betra gildi.
+    }
+    return d;                                                                   // Skilum fjarlægðunum.
+}
+#endif
+#if 1
+vi bellman_ford(vvii& g, int s)
+{
+    int i, j = 0, k, n = g.size(), x, w, q[2*n*n], p[n], a[n], qs = 0, qe = 0;
+    vi d(n);
+    q[qe] = s, p[qe++] = 0;
+    for (i = 0; i < n; i++) d[i] = i == s ? 0 : INF, a[i] = i == s ? 1 : 0;     // Upphafstillum minnistölfuna með mjög stórri tölu.
+    while (qe != qs)
+    {
+        i = q[qs], j = p[qs++], a[i] = 0;
+        for (k = 0; k < g[i].size(); k++)                                       // Ítrum í gegnum alla nágranna tiltekins hnúts sem þarf að uppfæra.
         {
-            x = g[j][k].first, w = g[j][k].second;
-            if (d[j] + w < d[x]) d[x] = d[j] + w, q[x] = i + 1;                 // Uppfærum ef við erum með betra gildi.
+            x = g[i][k].first, w = g[i][k].second;
+            if (d[x] != -INF && d[i] + w < d[x])
+            {
+                d[x] = j < n ? d[i] + w : -INF;
+                if (!a[x]) a[x] = 1, q[qe] = x, p[qe++] = j + 1;                // Uppfærum ef við erum með betra gildi.
+            }
         }
-    for (i = 0; i < n - 1; i++) for (j = 0; j < n; j++) if (q[j] == n + i - 1)  // Ítrum aftur í gegn til að finna áhrif neikvæðra rása.
-        for (k = 0; k < g[j].size(); k++)
-        {
-            x = g[j][k].first, w = g[j][k].second;
-            if (d[x] != -INF && d[j] + w < d[x]) d[x] = -INF, q[x] = n + i;     // Ef við getum ennþá stytt vegin er neikvæð rás á leiðinni.
-        }
+    }
     return d;                                                                   // Skilum fjarlægðunum.
 }
 #endif
