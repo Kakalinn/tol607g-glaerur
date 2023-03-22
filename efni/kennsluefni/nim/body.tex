@@ -1,0 +1,188 @@
+\title{Nim}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Einfaldur Nim leikur}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Skoðum einfaldan leik.
+        \item<2-> Þú og einn andstæðingur eruð með hrúgu af $n$ steinum.
+        \item<3-> Þið skiptist á að taka einn eða tvo steina úr hrúgunni þar til hrúgan er tóm.
+        \item<4-> Sá sem á að gera þegar hrúgan er tóm tapar.
+        \item<5-> Hver vinnur?
+        \env{itemize}
+        {
+            \item<5-> Sá sem byrjar?
+            \item<5-> Sá sem byrjar ekki?
+            \item<5-> Fer eftir öðrum aðstæðum?
+        }
+    }
+}
+
+\section{Lausn}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við samasömum stöður í leiknum við fjölda steina í hrúgunni.
+        \item<2-> Við segjum því að $0$ sé \emph{tapstaða}.
+        \item<3-> Staða er sögð \emph{vinningsstaða} ef það er leikur sem breytir henni í tapstöðu.
+        \item<4-> Almennt er staða er sögð tapstaða ef það er enginn leikur sem breytir henni í tapstöðu.
+        \item<5-> Munið að við getum annaðhvort fjarlægt einn eða tvo steina, svo stöðurnar $1$ og $2$ eru vinningsstöður.
+        \item<6-> Almennt fæst að staða $n$ er tapstaða þá og því aðeins að $n$ gangi upp í þrjá.
+    }
+}
+
+\section{Sönnun}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Almennt fæst að staða $n$ er tapstaða þá og því aðeins að $n$ gangi upp í þrjá.
+        \item<2-> Þetta fæst með þrepun.
+        \item<3-> Gerum ráð fyrir að $3 \cdot k$ sé tapstaða.
+        \item<4-> Þá eru stöður $3 \cdot k + 1$ og $3 \cdot k + 2$ vinningsstöður.
+        \item<5-> Þetta eru líka einu stöðurnar sem maður kemst í frá stöðunni $3 \cdot (k + 1)$, svo hún er tapstaða.
+    }
+}
+
+\section{Margir Nim leikir í einu}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Tökum aðeins flóknara dæmi.
+        \item<2-> Gerum ráð fyrir að við séum með $m$ hrúgur með $n_1, \dots, n_m$ steinum í hverri hrúgu.
+        \item<3-> Nú skiptast keppendur á að velja hrúgu og taka eins marga steina úr henni og þeir vilja (að minnsta kosti einn).
+        \item<4-> Aftur tapar sá sem getur ekki gert.
+        \item<5-> Hvernig getum við lýst vinningsstöðunum og tapstöðunum?
+        \item<6-> Þessi spurning er flóknari.
+        \item<7-> Hér samsömum við $m$-dir við stöður.
+        \item<8-> Staðan $(k_1, \dots, k_m)$ er tapstaða þá og því aðeins að $k_1 \oplus \dots \oplus k_m = 0$.
+    }
+}
+
+\section{Sönnun}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum í stöðu $(k_1, \dots, k_m)$,
+                    látum $X = k_1 \oplus \dots \oplus k_m$ og
+                    gerum ráð fyrir að $X > 0$.
+        \item<2-> Nú er $X \neq 0$ svo til er $\ell$ þannig að $X \oplus K_{\ell} < X$.
+        %TODO
+        \item<3-> ........., sanna rétta hlutinn.
+    }
+}
+
+\section{Grundy tölur á einföldum leikjum}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum með leik þar sem:
+        \env{itemize}
+        {
+            %TODO
+            \item<1-> Engar huldar upplýsingar.
+            \item<1-> Leikurinn klárast eftir endanlegan fjölda leikja.
+            \item<1-> Fyrir tiltekna stöðu geta báðir spilarar gert það sama.
+            \item<1-> Leikurinn klárast þegar það er enginn löglegur leikur og sá sem á að gera tapar.
+        }
+        \item<2-> Þá getum við úthlutað hverjum leik heiltölu endurkvæmt.
+        \item<3-> Ef engin löglegur leikur er í boði fær staðan heiltöluna $0$.
+        \item<4-> Annars fær staðan minnstu jákvæðu heiltöluna sem er ekki hægt að komst í úr stöðunni.
+        \item<5-> Við höfum þá að staða er tapstaða þá og því aðeins að henni sé úthlutað töluna $0$.
+        \item<6-> Þessar tölur kallast Grundy tölur staðanna.
+    }
+}
+
+\section{Grundy tölur á samsettum leikjum}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum að spila marga leiki í einu, þar sem hver leikur er eins og lýst var að ofan.
+        \item<2-> Hver aðgerð felur þá í sér að velja einn af leikjunum sem er verið að spila og framkvæm leik í honum.
+        \item<3-> Sá tapar sem lendir í því að eiga engan löglegan leik.
+        \item<4-> Ef við gerum ráð fyrir að undirleikirnir hafi Grundy tölurnar $k_1, \dots, k_m$ þá er Grundy tala sameinaða leiksins
+                    $k_1 \oplus \dots \oplus k_m$.
+    }
+}
+
+\section{Slide}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Útfærum núna nokkur dæmi.
+        %TODO
+        \item<2-> Gerum ráð fyrir að við séum ....
+    }
+}
+
+\section{Dæmi X}
+\subsection{Lýsing}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Tökum nýtt dæmi.
+        \item<2-> Gerum ráð fyrir að við teiknum $n$ kassa á blað í línu, nema það er búið að krota yfir kassann í miðjunni.
+        \item<4-> Hver leikur felur í sér að krota yfir eins marga aðliggjandi kassa og manni lystir (að minnsta kosti einn).
+        \item<5-> Sá sem getur ekki leikið tapar.
+    }
+}
+
+\subsection{Lausn}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Þegar við kortum yfir aðliggjandi reiti erum við í rauninni að skipta einum leik í tvo.
+        \item<2-> Gerum ráð fyrir að það séu $n$ reitir (númeraðir $1, 2, \dots, n$) og að Grundy tala leiks fyrir $k$ reiti sé $g_k$.
+        \item<3-> Ef við krotum yfir reiti $i, i + 1, \dots, j - 1, j$ skiptist leikurinn í tvennt,
+                    annar undirleikurinn með $i - 1$ kassa og hinn með $n - j$ kassa.
+        \item<4-> Grundy talan fyrir þennan nýja yfirleik er $g_{i - 1} \oplus g_{n - j}$ ef $i > 1$,
+                    og $g_{n - j}$ ef $i = 1$.
+    }
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/daemi3.c}{5}{23}
+}
+
+\env{frame}
+{
+    \selectcode{code/daemi3.c}{14}{43}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Til að finna Grundy tölu á stöðu í einfalda leiknum þurfum við að reikna $n$ gildi,
+                    og hvert gildi er reiknað í $\mathcal{O}(\onslide<2->{\,n\,})$ tíma.
+        \item<3-> Svo það tekur $\mathcal{O}(\onslide<4->{n^2})$ tíma að reikna allar Grundy tölurnar.
+        \item<5-> Til að finna best leikinn í hverri stöðu prófum við alla mögulega leiki, svo það tekur
+                    $\mathcal{O}(\onslide<6->{n^2})$ tíma.
+        \item<7-> Í heildina tekur þetta því $\mathcal{O}(\onslide<8->{n^2})$ tíma.
+    }
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}
