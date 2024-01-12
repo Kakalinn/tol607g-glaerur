@@ -6,163 +6,180 @@
 
 \frame{\titlepage}
 
+\section{Gráðug reiknirit}
 \env{frame}
 {
-	\frametitle{Gráðug reiknirit}
-	\env{itemize}
-	{
-		\item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tímapunkti er sagt vera \emph{gráðugt}.
-		\item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
-		\item<3-> Tökum dæmi.
-	}
+    \frametitle{Gráðug reiknirit}
+    \env{itemize}
+    {
+        \item<1-> Reiknirit sem tekur í hverju skrefi ákvörðun byggða á því hvað lítur best út á þeim tímapunkti er sagt vera \emph{gráðugt}.
+        \item<2-> Höfum í huga að það er alls ekki sjálfsagt að gráðugt reiknirit skili réttri lausn.
+        \item<3-> Tökum dæmi.
+    }
 }
 
+\section{Dæmi: Sjoppan}
+\subsection{Lýsing}
 \env{frame}
 {
-	\frametitle{Dæmi}
-	\env{itemize}
-	{
-		\item<1-> 
-			Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
-			Í boði er ótakmarkað magn af $1$ krónum, $5$ krónum og $10$ krónum.
-			Hver er minnsti fjöldi af klinki sem þú getur gefið?
-		\item<2-> Dæmi um lausn er:
-		\item<3-> Látum $k$ tákna dýrasta klinkið sem er ekki dýrara en $n$. Gefum til baka $k$ og endurtökum fyrir $n - k$ þangað til $n$ er $0$.
-		\item<4-> Tökum til dæmis $n = 24$. Þá myndum við gefa $10, 10, 1, 1, 1, 1$ til baka.
-		\item<5-> Það vill svo skemmtilega til að þessi gráðuga lausn virkar fyrir öll $n$.
-		\item<6-> En hvað ef við breytum aðeins dæminu?
-	}
+    \frametitle{Sjoppan}
+    \env{itemize}
+    {
+        \item<1-> 
+            Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+            Í boði er ótakmarkað magn af $1$ krónum, $5$ krónum og $10$ krónum.
+            Hver er minnsti fjöldi af klinki sem þú getur gefið?
+        \item<2-> Dæmi um lausn er:
+        \item<3-> Látum $k$ tákna dýrasta klinkið sem er ekki dýrara en $n$. Gefum til baka $k$ og endurtökum fyrir $n - k$ þangað til $n$ er $0$.
+        \item<4-> Tökum til dæmis $n = 24$. Þá myndum við gefa $10, 10, 1, 1, 1, 1$ til baka.
+        \item<5-> Það vill svo skemmtilega til að þessi gráðuga lausn virkar fyrir öll $n$.
+        \item<6-> En hvað ef við breytum aðeins dæminu?
+    }
 }
 
+\subsection{Breytt lýsing}
 \env{frame}
 {
-	\frametitle{Dæmi}
-	\env{itemize}
-	{
-		\item<1-> 
-			Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
-			Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
-			Hver er minnsti fjöldi af klinki sem þú getur gefið?
-		\item<2-> Tökum til dæmis $n = 24$.
-		\item<3-> Þá myndi aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
-		\item<4-> En þetta er ekki besta leiðin.
-		\item<5-> Betra væri að gefa $8, 8, 8$.
-		\item<6-> Svo gráðuga aðferðin virkar bara stundum.
-		\item<7-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
-		\item<8-> Til að leysa þetta dæmi almennt notum við \emph{kvika bestun}.
-	}
+    \frametitle{Sjoppan}
+    \env{itemize}
+    {
+        \item<1-> 
+            Þú vinnur í sjoppu of þarft að gefa $n$ krónur í afgang. 
+            Í boði er ótakmarkað magn af $1$ krónum, $8$ krónum og $20$ krónum.
+            Hver er minnsti fjöldi af klinki sem þú getur gefið?
+        \item<2-> Tökum til dæmis $n = 24$.
+        \item<3-> Þá myndi aðferðin í glærunni á undan gefa $20, 1, 1, 1, 1$ til baka.
+        \item<4-> En þetta er ekki besta leiðin.
+        \item<5-> Betra væri að gefa $8, 8, 8$.
+        \item<6-> Svo gráðuga aðferðin virkar bara stundum.
+        \item<7-> Þetta dæmi er þekkt sem Skiptimyntadæmið (e. \emph{The Coin Change Problem}) og það er ekki augljóst hvenær gráðuga lausnin virkar.
+        \item<8-> Til að leysa þetta dæmi almennt notum við \emph{kvika bestun}.
+    }
 }
 
+\section{Dæmi: Leigurbílaúthlutun}
+\subsection{Lýsing}
 \env{frame}
 {
-	\frametitle{Annað dæmi}
-	\env{itemize}
-	{
-		\item<1-> 
-			Þú ert yfirmaður hjá leigubílafyrirtæki.
-			Í dag mættu $n$ bílstjórar í vinnuna og það eru $m$ leigubílar til að skipa bílstjóra á.
-			Ekki eru þó allir bílstjórar og leigubílar skapaðir jafnir.
-			Bíll $i$ er $h_i$ hestöfl og bílstjóri $j$ getur keyrt bíla sem eru $g_j$ hestöfl eða minna.
-			Hver er mesti fjöldi bíla sem þú getur skipað á bílstjóra
-				þannig að hver bílstjóri fær mest einn bíl,
-				hver bíll er með mest einn bílstjóra og
-				enginn bílstjóri fær bíl sem hann ræður ekki við.
-			Gerum ráð fyrir að bílarnir og bílstjórarnir séu gefnir í vaxandi röð.
-		\item<2-> Tökum eftir að við viljum að bíll sé keyrður af þeim bílstjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
-		\item<3-> Við getum því í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bílinn.
-		\item<4-> Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
-	}
+    \frametitle{Leigubílaúthlutun}
+    \env{itemize}
+    {
+        \item<1-> 
+            Þú ert yfirmaður hjá leigubílafyrirtæki.
+            Í dag mættu $n$ bílstjórar í vinnuna og það eru $m$ leigubílar til að skipa bílstjóra á.
+            Ekki eru þó allir bílstjórar og leigubílar skapaðir jafnir.
+            Bíll $i$ er $h_i$ hestöfl og bílstjóri $j$ getur keyrt bíla sem eru $g_j$ hestöfl eða minna.
+            Hver er mesti fjöldi bíla sem þú getur skipað á bílstjóra
+            þannig að hver bílstjóri fær mest einn bíl,
+            hver bíll er með mest einn bílstjóra og
+            enginn bílstjóri fær bíl sem hann ræður ekki við.
+            Gerum ráð fyrir að bílarnir og bílstjórarnir séu gefnir í vaxandi röð.
+        \item<2-> Tökum eftir að við viljum að bíll sé keyrður af þeim bílstjóra sem er óreyndastur (en þó nógu hæfur til að keyra hann).
+        \item<3-> Við getum því í línulegum tíma fundið þann bílstjóra sem getur keyrt fyrsta bílinn.
+        \item<4-> Til að finna bílstjóra fyrir næstu bíla leitum við aftur línulega, en höldum áfram þaðan sem við hættum áðan.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
-					Næstu $n$ tölur lýsa getu bílstjóranna.
-					Síðustu $m$ tölurnar eru hestöfl bílanna.
-		\item<2->[] \code{code/taxis.c}
-	}
+    \env{itemize}
+    {
+        \item<1-> Að neðan er útfærsla á lausninni á glærunum hér á undan. Fyrstu tvær tölurnar á inntakinu eru $n$ og $m$. 
+            Næstu $n$ tölur lýsa getu bílstjóranna.
+            Síðustu $m$ tölurnar eru hestöfl bílanna.
+        \item<2->[] \code{code/taxis.c}
+    }
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\frametitle{Lausn}
-	\env{itemize}
-	{
-		\item<1-> Þessi lausn er $\mathcal{O}(\onslide<2->{n + m})$.
-	}
+    \frametitle{Lausn}
+    \env{itemize}
+    {
+        \item<1-> Þessi lausn er $\mathcal{O}(\onslide<2->{n + m})$.
+    }
 }
 
+\section{Dæmi: Röðun}
+\subsection{Lýsing}
 \env{frame}
 {
-	\frametitle{Gráðuga röðun}
-	\env{itemize}
-	{
-		\item<1-> Áðan röðuðum við tölum með tæmandi leit.
-		\item<2-> Endurtökum nú leikinn með gráðugri nálgun.
-		\item<3-> Ef við ætlum að raða í vaxandi röð þá vitum við að minnsta talan fer fremst.
-		\item<4-> Við getum því raðað listanum gráðugt með því að setja ítrekað fremst minnstu töluna sem er eftir.
-	}
+    \frametitle{Gráðuga röðun}
+    \env{itemize}
+    {
+        \item<1-> Áðan röðuðum við tölum með tæmandi leit.
+        \item<2-> Endurtökum nú leikinn með gráðugri nálgun.
+        \item<3-> Ef við ætlum að raða í vaxandi röð þá vitum við að minnsta talan fer fremst.
+        \item<4-> Við getum því raðað listanum gráðugt með því að setja ítrekað fremst minnstu töluna sem er eftir.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/slow-sort.cpp}{4}{12}
+    \selectcode{code/slow-sort.cpp}{4}{12}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tímaflækjan á þessu röðunarreikniriti er $\mathcal{O}(\onslide<2->{n^2})$.
-		\item<3-> Við getum þó bætt tímaflækjuna þegar við leitum að minnsta stakinu.
-		\item<4-> Það eru ýmsar gagnagrindir sem geta gert þetta fyrir okkur.
-		\item<5-> Af sögulegum ástæðum notum við forgangsbiðröð, en það mætti, til dæmis, líka nota ýmis röðunartré.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tímaflækjan á þessu röðunarreikniriti er $\mathcal{O}(\onslide<2->{n^2})$.
+        \item<3-> Við getum þó bætt tímaflækjuna þegar við leitum að minnsta stakinu.
+        \item<4-> Það eru ýmsar gagnagrindir sem geta gert þetta fyrir okkur.
+        \item<5-> Af sögulegum ástæðum notum við forgangsbiðröð, en það mætti, til dæmis, líka nota ýmis röðunartré.
+    }
 }
 
+\subsection{Hraðari lausn}
 \env{frame}
 {
-	\selectcode{code/sort.cpp}{4}{10}
+    \selectcode{code/sort.cpp}{4}{10}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Núna finnum við minnsta stakið í $\mathcal{O}(\onslide<2->{\log n})$.
-		\item<3-> Svo tímaflækjan á fallinu er $\mathcal{O}(\onslide<4->{n \log n})$.
-		\item<5-> Við getum í rauninni ekki raðað með betri tímaflækju.
-		\item<6-> Þessi röðun kallast \emph{hrúguröðun} (e. \emph{heap sort}) og er þekkt röðunarreiknirit sem er oft kennt í inngangsnámskeiðum.
-	}
+    \env{itemize}
+    {
+        \item<1-> Núna finnum við minnsta stakið í $\mathcal{O}(\onslide<2->{\log n})$.
+        \item<3-> Svo tímaflækjan á fallinu er $\mathcal{O}(\onslide<4->{n \log n})$.
+        \item<5-> Við getum í rauninni ekki raðað með betri tímaflækju.
+        \item<6-> Þessi röðun kallast \emph{hrúguröðun} (e. \emph{heap sort}) og er þekkt röðunarreiknirit sem er oft kennt í inngangsnámskeiðum.
+    }
 }
 
+\section{Samantekt}
 \env{frame}
 {
-	\frametitle{Samantekt}
-	\env{itemize}
-	{
-		\item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
-		\item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
-		\item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélaga í liðakeppnum).
-		\item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \ilcode{Wrong Answer}
-					getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
-	}
+    \frametitle{Samantekt}
+    \env{itemize}
+    {
+        \item<1-> Það fyrsta sem manni dettur í hug þegar maður les dæmi er oft gráðug lausn.
+        \item<2-> Það getur samt verið erfitt að sanna að gráðug lausn sé rétt.
+        \item<3-> Það dugar þó að sannfæra sjálfan sig (og liðsfélaga í liðakeppnum).
+        \item<4-> Ef maður útfærir og sendir inn gráðuga lausn og fær \ilcode{Wrong Answer}
+            getur verið erfitt að átta sig á því hvort maður hafi gert villu eða hvort gráðuga lausnin sé röng.
+    }
 }
 
+\section{Samanburður við tæmandi leit}
 \env{frame}
 {
-	\frametitle{Samanburður}
-	\env{itemize}
-	{
-		\item<1-> Tæmandi leit er oft auðvelt að bera kennsl á, en á það til að vera of hæg. 
-		\item<2-> Hér má búast við \ilcode{Time Limit Exceeded}, en eitthvað furðulegt hefur gerst ef maður fær \ilcode{Wrong Answer}.
-		\item<3-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
-		\item<4-> Gráðug reiknirit eiga ekki að fá \ilcode{Time Limit Exceeded}, en algengt er að þau fái \ilcode{Wrong Answer}.
-	}
+    \frametitle{Samanburður}
+    \env{itemize}
+    {
+        \item<1-> Tæmandi leit er oft auðvelt að bera kennsl á, en á það til að vera of hæg. 
+        \item<2-> Hér má búast við \ilcode{Time Limit Exceeded}, en eitthvað furðulegt hefur gerst ef maður fær \ilcode{Wrong Answer}.
+        \item<3-> Það er oft létt að semja gráðug reiknirit, en það getur verið mikil vinna að sanna að lausnin sem maður fær sé alltaf rétt.
+        \item<4-> Gráðug reiknirit eiga ekki að fá \ilcode{Time Limit Exceeded}, en algengt er að þau fái \ilcode{Wrong Answer}.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

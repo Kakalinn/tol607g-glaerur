@@ -3,6 +3,7 @@ inngangur
 
 vika02
 grunnatidi
+timaflaekjur
 ad-hoc
 
 vika03

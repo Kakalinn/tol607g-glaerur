@@ -6,320 +6,353 @@
 
 \frame{\titlepage}
 
+\section{Yfirlit yfir lausnaraðferðir}
 \env{frame}
 {
-	\frametitle{Almennar nálganir lausna}
-	\env{itemize}
-	{
-		\item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
-		\env{itemize}
-		{
-			\item<2-> \emph{Ad hoc},
-			\item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
-			\item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
-			\item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
-			\item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
-		}
-		\item<7-> Í síðustu viku fjölluðum við um Ad hoc dæmi.
-		\item<8-> Í þessari viku fjöllum við um tæmandi leit og gráðug reiknirit.
-	}
+    \frametitle{Lausnaraðferðir}
+    \env{itemize}
+    {
+        \item<1-> Þegar við leysum dæmi í keppnisforritun notumst við oftast við eina af eftirfarandi aðferðum:
+        \env{itemize}
+        {
+            \item<2-> \emph{Ad hoc},
+            \item<3-> \emph{Tæmandi leit} eða \emph{ofbeldis aðferðin} (e. \emph{complete search, brute force}),
+            \item<4-> \emph{Gráðug reiknirit} (e. \emph{greedy algorithms}),
+            \item<5-> \emph{Deila og drottna} (e. \emph{divide and conquer}),
+            \item<6-> \emph{Kvik bestun} (e. \emph{dynamic programming}).
+        }
+        \item<7-> Í síðustu viku fjölluðum við um Ad hoc dæmi.
+        \item<8-> Í þessari viku fjöllum við um tæmandi leit og gráðug reiknirit.
+    }
 }
 
+\section{Tæmandi leit}
 \env{frame}
 {
-	\frametitle{Tæmandi leit}
-	\env{itemize}
-	{
-		\item<1-> Safn allra lausna tiltekis dæmis kallast \emph{lausnarrúm} dæmisins.
-		\item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið að bestu lausninni.
-		\item<3-> Takið eftir að lausnarrúmið inniheldur líka rangar lausnir.
-		\item<4-> Tökum dæmi.
-	}
+    \frametitle{Tæmandi leit}
+    \env{itemize}
+    {
+        \item<1-> Safn allra lausna tiltekis dæmis kallast \emph{lausnarrúm} dæmisins.
+        \item<2-> \emph{Tæmandi leit} felur í sér að leita í gegnum allt lausnarrúmið að bestu lausninni.
+        \item<3-> Takið eftir að lausnarrúmið inniheldur líka rangar lausnir.
+        \item<4-> Tökum dæmi.
+    }
 }
 
+\section{Dæmi: Finna stærstu tölu}
+\subsection{Lýsing}
 \env{frame}
 {
-	\frametitle{Dæmi}
-	\env{itemize}
-	{
-		\item<1-> Gefinn er listi \ilcode{a} af $n$ mismunandi heiltölum á bilinu $[0, m]$.
-		\item<2-> Hver þeirra er stærst?
-		\item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
-		\item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
-		\item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í \ilcode{a}.
-		\item<6-> Við getum athugað hvort tiltekin tala sé í $a$ með því að ítra í gegnum \ilcode{a},
-					sem tekur $\mathcal{O}(\onslide<7->{\,n\,})$ tíma.
-		\item<8-> Þessi aðferð er því $\mathcal{O}(\onslide<9->{n \cdot m})$.
-		\item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
-	}
+    \frametitle{Dæmi}
+    \env{itemize}
+    {
+        \item<1-> Gefinn er listi \ilcode{a} af $n$ mismunandi heiltölum á bilinu $[0, m]$.
+        \item<2-> Hver þeirra er stærst?
+        \item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
+        \item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
+        \item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í \ilcode{a}.
+        \item<6-> Við getum athugað hvort tiltekin tala sé í $a$ með því að ítra í gegnum \ilcode{a},
+            sem tekur $\mathcal{O}(\onslide<7->{\,n\,})$ tíma.
+        \item<8-> Þessi aðferð er því $\mathcal{O}(\onslide<9->{n \cdot m})$.
+        \item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
+    }
 }
 
+\subsection{Almenn aðferð til að áætla tímaflækjuna}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Almennt fáum við að ef lausnarrúmið er af stærð $S$ og við getum athugað hverja lausn í $\mathcal{O}(T(k))$
-			þá er tæmandi leit $\mathcal{O}(S \cdot T(k))$.
-		\item<2-> Gildin $n!$ og $2^n$ eru algengar stærðir á lausnarrúmum.
-		\item<3-> Þar af leiðandi eru $\mathcal{O}(n \cdot n!) = \mathcal{O}((n + 1)!)$ og $\mathcal{O}(n 2^n)$ algengar tímaflækjur.
-		\item<4-> Oft má á þægilegan hátt breyta slíkum lausnum í $\mathcal{O}(n!)$ og $\mathcal{O}(2^n)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Almennt fáum við að ef lausnarrúmið er af stærð $S$ og við getum athugað hverja lausn í $\mathcal{O}(T(k))$
+            þá er tæmandi leit $\mathcal{O}(S \cdot T(k))$.
+        \item<2-> Gildin $n!$ og $2^n$ eru algengar stærðir á lausnarrúmum.
+        \item<3-> Þar af leiðandi eru $\mathcal{O}(n \cdot n!) = \mathcal{O}((n + 1)!)$ og $\mathcal{O}(n 2^n)$ algengar tímaflækjur.
+        \item<4-> Oft má á þægilegan hátt breyta slíkum lausnum í $\mathcal{O}(n!)$ og $\mathcal{O}(2^n)$.
+    }
 }
 
+\section{Dæmi: Finna öll hlutmengi}
+\subsection{Lausn}
 \env{frame}
 {
-	\frametitle{Tæmandi leit, öll hlutmengi}
-	\env{itemize}
-	{
-		\item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé einföld.
-		\item<2-> Svo er ekki alltaf.
-		\item<3-> Tökum annað dæmi.
-		\item<4-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
-		\item<5-> Ef við viljum leysa þetta dæmi með tæmandi leit þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
-	}
+    \frametitle{Tæmandi leit, öll hlutmengi}
+    \env{itemize}
+    {
+        \item<1-> Dæmið hér á undan gæti leitt ykkur til að halda að tæmandi leit sé einföld.
+        \item<2-> Svo er ekki alltaf.
+        \item<3-> Tökum annað dæmi.
+        \item<4-> Gefin er runa af $n$ tölum. Hver er lengsta vaxandi hlutruna gefnu rununnar?
+        \item<5-> Ef við viljum leysa þetta dæmi með tæmandi leit þá þurfum við að skoða sérhvert hlutmengi gefnu rununnar.
+    }
 }
 
+\subsection{Útúrdúr un hlutmengi}
 \env{frame}
 {
-	\frametitle{Útúrdúr um hlutmengi}
-	\env{itemize}
-	{
-		\item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
-		\item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $\{1, 2, ..., n\}$.
-		\item<3-> Við fáum því gagntæka samsvörun milli mengi allra hlutmengja $A$ og mengisins $\{0, 1\}^n$.
- 		\item<4-> Svo fjöldi hlutmengja í $A$ er $2^n$.
-	}
+    \frametitle{Útúrdúr um hlutmengi}
+    \env{itemize}
+    {
+        \item<1-> Ef við erum með endanlegt mengi $A$ af stærð $n$ getum við númerað öll stökin með tölunum $1, 2, ..., n$.
+        \item<2-> Sérhvert hlutmengi einkennist af því hvort stak $k$ sé í hlutmenginu eða ekki, fyrir öll $k$ í $\{1, 2, ..., n\}$.
+        \item<3-> Við fáum því gagntæka samsvörun milli mengi allra hlutmengja $A$ og mengisins $\{0, 1\}^n$.
+        \item<4-> Svo fjöldi hlutmengja í $A$ er $2^n$.
+    }
 }
 
+\subsection{Útúrdúr um bitaframsetningu talna}
 \env{frame}
 {
-	\frametitle{Útúrdúr um bitaframsetingu talna}
-	\env{itemize}
-	{
-		\item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvírætt ákvörðuð tala $b$ sem hefur $1$ í
-			$k$-ta sæti bitaframsetningar sinnar þá og því aðeins að $k$-ta stak $A$ sé í $H$.
-		\item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
-		\item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
-		\item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
-		\item<5-> Kennir tómamengisins er alltaf $0 = 00\! \dots\! 00_2$ og kennir $A$ er $2^n - 1 = 11\! \dots\! 11_2$.
-	}
+    \frametitle{Útúrdúr um bitaframsetingu talna}
+    \env{itemize}
+    {
+        \item<1-> Fyrir hlutmengi $H$ í $A$ er til ótvírætt ákvörðuð tala $b$ sem hefur $1$ í
+            $k$-ta sæti bitaframsetningar sinnar þá og því aðeins að $k$-ta stak $A$ sé í $H$.
+        \item<2-> Þetta gefur okkur gagntæka samsvörun milli hlutmengja $A$ og talnanna $0, 1, ..., 2^n - 1$.
+        \item<3-> Talan $b$ er vanalega kölluð \emph{bitakennir} eða \emph{kennir} (e. \emph{bitmask}, \emph{mask}) hlutmengisins $H$.
+        \item<4-> Sem dæmi, ef $A = \{1, 2, 3, 4, 5, 6\}$ og $H = \{1, 3, 5, 6\}$ þá er $b = 110101_2 = 53$.
+        \item<5-> Kennir tómamengisins er alltaf $0 = 00\! \dots\! 00_2$ og kennir $A$ er $2^n - 1 = 11\! \dots\! 11_2$.
+    }
 }
 
+\subsection{Útreikingar bitkenna}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þegar kemur að því að nota bitakenni í forritun notum við okkur eftirfarandi:
-		\item<2->[]
-			\env{tabular}
-			{
-				{| l | l |}
-				\hline
-				Kennir $k$-ta einstökungs & \quad \ilcode{1 <\!< k}\\
-				Kennir fyllimengis kennis & \quad \ilcode{\textasciitilde{A}}\\
-				Kennir samengis tveggja kenna & \quad \ilcode{A|B}\\
-				Kennir sniðmengis tveggja kenna & \quad \ilcode{A\&B}\\
-				Kennir samhverfs mismunar tveggja kenna & \quad \ilcode{A\textasciicircum B}\\
-				Kennir mismunar tveggja kenna & \quad \ilcode{A\&(\textasciitilde{B})}\\
-				\hline
-			}
-		\item<3-> NB: Vegna forgangs aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
-		\item<4-> Til dæmis er \ilcode{A\&B == 0} jafngilt \ilcode{A\&(B == 0)} í \ilcode{C/C++},
-			þó við viljum yfirleitt \ilcode{(A\&B) == 0}.
-		\item<5-> Takið eftir að kennir fyllimengisins bætir við bitum utan þeirra sem við höfum áhuga því við erum í rauninni að taka fyllimengi
-					með stærra óðal.
-		\item<6-> Til að allt sé rétt þarf notum við \ilcode{(\textasciitilde{A})\&((1 <\!< n) - 1)}.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þegar kemur að því að nota bitakenni í forritun notum við okkur eftirfarandi:
+        \item<2->[]
+        \env{tabular}
+        {
+            {| l | l |}
+            \hline
+            Kennir $k$-ta einstökungs & \quad \ilcode{1 <\!< k}\\
+            Kennir fyllimengis kennis & \quad \ilcode{\textasciitilde{A}}\\
+            Kennir samengis tveggja kenna & \quad \ilcode{A|B}\\
+            Kennir sniðmengis tveggja kenna & \quad \ilcode{A\&B}\\
+            Kennir samhverfs mismunar tveggja kenna & \quad \ilcode{A\textasciicircum B}\\
+            Kennir mismunar tveggja kenna & \quad \ilcode{A\&(\textasciitilde{B})}\\
+            \hline
+        }
+        \item<3-> NB: Vegna forgangs aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
+        \item<4-> Til dæmis er \ilcode{A\&B == 0} jafngilt \ilcode{A\&(B == 0)} í \ilcode{C/C++},
+                    þó við viljum yfirleitt \ilcode{(A\&B) == 0}.
+        \item<5-> Takið eftir að kennir fyllimengisins bætir mögulega við bitum utan þeirra sem við höfum áhuga því við erum í rauninni að taka fyllimengi
+                    með stærra óðal.
+        \item<6-> Til að allt sé rétt þarf notum við \ilcode{(\textasciitilde{A})\&((1 <\!< n) - 1)}.
+    }
 }
 
+\subsection{Lausn}
 \env{frame}
 {
-	\frametitle{Lausn á dæminu}
-	\env{itemize}
-	{
-		\item<1-> Við getum nú leyst dæmið.
-		\item<2-> Til að ítra í gegnum öll hlutmengi ítrum við í gegnum alla bitakenni mengisins.
-	}
+    \frametitle{Lausn á dæminu}
+    \env{itemize}
+    {
+        \item<1-> Við getum nú leyst dæmið.
+        \item<2-> Til að ítra í gegnum öll hlutmengi ítrum við í gegnum alla bitakenni mengisins.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\frametitle{Lausn}
-	\code{code/lis.c}
+    \frametitle{Lausn}
+    \code{code/lis.c}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
-			svo reikniritið er $\mathcal{O}(\onslide<2->{n \cdot 2^n})$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
+            svo reikniritið er $\mathcal{O}(\onslide<2->{n \cdot 2^n})$.
+    }
 }
 
+\section{Dæmi: Finna allar umraðanir}
+\subsection{Lýsing}
 \env{frame}
 {
-	\frametitle{Tæmandi leit, allar umraðanir}
-	\env{itemize}
-	{
-		\item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
-		\item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1$ vegu.
-		\item<3-> Tökum mjög einfalt dæmi:
-		\item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hverja á sinni línu.
-		\item<5-> Við getum notað okkur innbyggða fallið \ilcode{next\_permutation(...)} í \ilcode{C++}.
-	}
+    \frametitle{Tæmandi leit, allar umraðanir}
+    \env{itemize}
+    {
+        \item<1-> Við höfum oft áhuga á að ítra í gegnum allar umraðanir á lista talna.
+        \item<2-> Munum að, ef við höfum $n$ ólíkar tölur þá getum við raðað þeim á $n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1$ vegu.
+        \item<3-> Tökum mjög einfalt dæmi:
+        \item<4-> Gefið er $n$. Prentið allar umraðanir á $1, 2, ..., n$ í vaxandi stafrófsröð, hverja á sinni línu.
+        \item<5-> Við getum notað okkur innbyggða fallið \ilcode{next\_permutation(...)} í \ilcode{C++}.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\code{code/perm.cpp}
+    \code{code/perm.cpp}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Mikilvægt er að \ilcode{p} sé vaxandi í upphafi því lykkjan hættir þegar hún lendir á síðustu umröðunni, í stafrófsröð.
-		\item<2-> Þessi lausn er $\mathcal{O}(\onslide<3->{(n + 1)!})$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Mikilvægt er að \ilcode{p} sé vaxandi í upphafi því lykkjan hættir þegar hún lendir á síðustu umröðunni, í stafrófsröð.
+        \item<2-> Þessi lausn er $\mathcal{O}(\onslide<3->{(n + 1)!})$.
+    }
 }
 
+\section{Dæmi: Röðun með tæmandi leit}
+\subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum nú annað dæmi.
-		\item<2-> Gefnar eru $n$ mismunandi heiltölur.
-		\item<3-> Raðið þeim.
-		\item<4-> Þetta má að sjálfsögðu leysa með innbyggðum röðunarföllum, en við viljum leysa þetta með tæmandi leit.
-		\item<5-> Við getum notað sama forrit og áðan, með smávægilegum breytingum.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum nú annað dæmi.
+        \item<2-> Gefnar eru $n$ mismunandi heiltölur.
+        \item<3-> Raðið þeim.
+        \item<4-> Þetta má að sjálfsögðu leysa með innbyggðum röðunarföllum, en við viljum leysa þetta með tæmandi leit.
+        \item<5-> Við getum notað sama forrit og áðan, með smávægilegum breytingum.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\code{code/sort.cpp}
+    \code{code/sort.cpp}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tímaflækjan á þessari lausn er $\mathcal{O}(\onslide<2->{(n + 1)!})$.
-		\item<3-> Við getum bætt hana.
-		\item<4-> Byrjum á að leysa dæmið án þess að nota \ilcode{next\_permutation(...)}.
-		\item<5-> Við getum gert það endurkvæmt.
-		\item<6-> Í hverju skrefi í endurkvæmninni veljum við stak sem við höfum ekki valið áður, setjum það á hlaða og höldum áfram.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tímaflækjan á þessari lausn er $\mathcal{O}(\onslide<2->{(n + 1)!})$.
+        \item<3-> Við getum bætt hana.
+        \item<4-> Byrjum á að leysa dæmið án þess að nota \ilcode{next\_permutation(...)}.
+        \item<5-> Við getum gert það endurkvæmt.
+        \item<6-> Í hverju skrefi í endurkvæmninni veljum við stak sem við höfum ekki valið áður, setjum það á hlaða og höldum áfram.
+    }
 }
 
+\subsection{Endurkvæm útfærsla}
 \env{frame}
 {
-	\code{code/sort.c}
+    \code{code/sort.c}
 }
 
+\subsection{Hvernig má bæta þessa útfærslu?}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölurnar séu \ilcode{3 2 5 4 1}.
-		\item<2-> Við byrjum með tómann hlaða, táknum hann með \ilcode{x x x x x}.
-		\item<3-> Við bætum fyrst við \ilcode{3} og fáum \ilcode{3 x x x x}.
-		\item<4-> Síðan bætum við \ilcode{2} við og fáum \ilcode{3 2 x x x}.
-		\item<5-> Næst prófum við allar umraðanir \ilcode{5 4 1} þar fyrir aftan.
-		\item<6-> En við sjáum strax að það mun aldrei verða raðað, því $3 > 2$.
-		\item<7-> Svo við getum sleppt því að skoða dýpra.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að $n = 5$ og gefnu tölurnar séu \ilcode{3 2 5 4 1}.
+        \item<2-> Við byrjum með tómann hlaða, táknum hann með \ilcode{x x x x x}.
+        \item<3-> Við bætum fyrst við \ilcode{3} og fáum \ilcode{3 x x x x}.
+        \item<4-> Síðan bætum við \ilcode{2} við og fáum \ilcode{3 2 x x x}.
+        \item<5-> Næst prófum við allar umraðanir \ilcode{5 4 1} þar fyrir aftan.
+        \item<6-> En við sjáum strax að það mun aldrei verða raðað, því $3 > 2$.
+        \item<7-> Svo við getum sleppt því að skoða dýpra.
+    }
 }
 
+\subsection{Hraðari útfærsla}
 \env{frame}
 {
-	\code{code/sort-pruned.c}
+    \code{code/sort-pruned.c}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tímaflækjan eftir þessa breytingu er ekki augljós.
-		\item<2-> Munið að tölurnar eru allar ólíkar.
-		\item<3-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
-		\item<4-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
-		\item<5-> Svo tímaflækjan er $\mathcal{O}(\onslide<6->{2^n})$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tímaflækjan eftir þessa breytingu er ekki augljós.
+        \item<2-> Munið að tölurnar eru allar ólíkar.
+        \item<3-> Takið eftir að sérhvert hlutmengi mun koma fyrir í hlaðanum okkar.
+        \item<4-> Hlaðinn er einnig alltaf raðaður, svo hann inniheldur aldrei sama mengið tvisvar.
+        \item<5-> Svo tímaflækjan er $\mathcal{O}(\onslide<6->{2^n})$.
+    }
 }
 
+\section{Hraðari leið til að leita yfir öll hlutmengi}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þegar við ítrum yfir öll hlutmengi endum við oft með tímaflækjuna $\mathcal{O}(2^n)$ eða $\mathcal{O}(n \cdot 2^n)$.
-		\item<2-> Svo slíkar lausnir virka fyrir $n \sim 20$ en verða of hægar fyrir $n \geq 30$.
-		\item<3-> Það er þó oft hægt að beita nokkuð almennri aðferð til að bæta tímaflækjuna.
-		\item<4-> Tökum lýsandi dæmi.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þegar við ítrum yfir öll hlutmengi endum við oft með tímaflækjuna $\mathcal{O}(2^n)$ eða $\mathcal{O}(n \cdot 2^n)$.
+        \item<2-> Svo slíkar lausnir virka fyrir $n \sim 20$ en verða of hægar fyrir $n \geq 30$.
+        \item<3-> Það er þó oft hægt að beita nokkuð almennri aðferð til að bæta tímaflækjuna.
+        \item<4-> Tökum lýsandi dæmi.
+    }
 }
 
+\section{Dæmi: Fjöldi leiða til að fá gefna summu}
+\subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Okkur eru gefnar $n$ heiltölur ásamt heiltölunum $m < n$ og $t$.
-		\item<2-> Á hversu marga vegu má velja nákvæmlega $m$ af tölunum þannig að summa þeirra sé nákvæmlega $t$?
-		\item<3-> Ef við beitum hefðbundinni tæmandi leit fáum við tímaflækjuna $\mathcal{O}(n \cdot 2^n)$.
-		\item<4-> En hvað ef $n = 30$?
-		\item<5-> Þá er hefðbundin tæmandi leit of hæg.
-	}
+    \env{itemize}
+    {
+        \item<1-> Okkur eru gefnar $n$ heiltölur ásamt heiltölunum $m < n$ og $t$.
+        \item<2-> Á hversu marga vegu má velja nákvæmlega $m$ af tölunum þannig að summa þeirra sé nákvæmlega $t$?
+        \item<3-> Ef við beitum hefðbundinni tæmandi leit fáum við tímaflækjuna $\mathcal{O}(n \cdot 2^n)$.
+        \item<4-> En hvað ef $n = 30$?
+        \item<5-> Þá er hefðbundin tæmandi leit of hæg.
+    }
 }
 
+\subsection{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Skiptum tölunum í tvennt og reiknum summur allra hlutmengja þeirra og geymum eftir því hversu margar tölur eru í hlutmenginu.
-		\item<2-> Ítrum síðan í gegnum öll hlutmengin í annari skiptingunni
-					og notum helmingunarleit til að telja hversu mörg hlutmengi í hinni skiptingunni hafa réttan fjölda talna og rétta summu.
-	}
+    \env{itemize}
+    {
+        \item<1-> Skiptum tölunum í tvennt og reiknum summur allra hlutmengja þeirra og geymum eftir því hversu margar tölur eru í hlutmenginu.
+        \item<2-> Ítrum síðan í gegnum öll hlutmengin í annari skiptingunni
+            og notum helmingunarleit til að telja hversu mörg hlutmengi í hinni skiptingunni hafa réttan fjölda talna og rétta summu.
+    }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/skipting.c}{14}{50}
+    \selectcode{code/skipting.c}{14}{50}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Með þessari aðferð erum við aðeins að framkvæma tæmandi leit á helming listans,
-					sem svarar til kvaratrótsminnkunar á stærð lausnarrúmsins.
-		\item<2-> Tæmandi leitin hefur tímaflækjuna $\mathcal{O}(\onslide<3->{n \cdot 2^{n/2}})$.
-		\item<4-> Sameining lausnanna hefur tímaflækjuna
-		\[
-					\mathcal{O}(
-					\onslide<5->{2^{n/2} \cdot \log 2^{n/2}}
-					)
-					\onslide<6->{ = \mathcal{O}(}
-					\onslide<7->{n \cdot 2^{n/2}}
-					\onslide<6->{).}
-		\]
-		\item<8-> Heildartímaflækjan er því $\mathcal{O}(\onslide<9->{n \cdot 2^{n/2}})$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Með þessari aðferð erum við aðeins að framkvæma tæmandi leit á helming listans,
+            sem svarar til kvarðatrótsminnkunar á stærð lausnarrúmsins.
+        \item<2-> Tæmandi leitin hefur tímaflækjuna $\mathcal{O}(\onslide<3->{n \cdot 2^{n/2}})$.
+        \item<4-> Sameining lausnanna hefur tímaflækjuna
+                    \[
+                        \mathcal{O}(
+                        \onslide<5->{2^{n/2} \cdot \log 2^{n/2}}
+                        )
+                        \onslide<6->{ = \mathcal{O}(}
+                        \onslide<7->{n \cdot 2^{n/2}}
+                        \onslide<6->{).}
+                    \]
+        \item<8-> Heildartímaflækjan er því $\mathcal{O}(\onslide<9->{n \cdot 2^{n/2}})$.
+    }
 }
 
+\section{Kostir og gallar tæmandi leitar}
 \env{frame}
 {
-	\frametitle{Tæmandi leit, kostir og gallar}
-	\env{itemize}
-	{
-		\item<1-> Það eru ýmsir kostir við tæmandi leit.
-		\item<2-> Til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum seinna aðferðir þar sem það gildir ekki)
-		\item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (þegar maður er kominn með smá æfingu).
-		\item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
-		\item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
-	}
+    \frametitle{Tæmandi leit, kostir og gallar}
+    \env{itemize}
+    {
+        \item<1-> Það eru ýmsir kostir við tæmandi leit.
+        \item<2-> Til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum seinna aðferðir þar sem það gildir ekki)
+        \item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (þegar maður er kominn með smá æfingu).
+        \item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
+        \item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }
