@@ -6,153 +6,152 @@
 
 \frame{\titlepage}
 
+\section{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gefnir eru $n$ punktar í plani.
-		\item<2-> Hvaða tveir punktar hafa minnstu fjarlægð sín á milli?
-		\item<3-> Við getum leyst þetta með tæmandi leit í $\mathcal{O}($\onslide<4->{$n^2$}$)$.
-		\item<5-> Við skoðum einfaldlega öll pör punkta.
-		\item<6-> Prófum að bæta þetta með því að deila og drottna.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gefnir eru $n$ punktar í plani.
+        \item<2-> Hvaða tveir punktar hafa minnstu fjarlægð sín á milli?
+        \item<3-> Við getum leyst þetta með tæmandi leit í $\mathcal{O}($\onslide<4->{$n^2$}$)$.
+        \item<5-> Við skoðum einfaldlega öll pör punkta.
+        \item<6-> Prófum að bæta þetta með því að deila og drottna.
+    }
 }
 
+\section{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Röðum punktunum eftir $x$-hniti og skiptum í helminga.
-		\item<2-> Látum $x_0$ vera þannig að hann liggi á milli $x$-hnita helminganna.
-		\item<3-> Leysum svo endurkvæmt fyrir hvorn helming fyrir sig.
-		\item<4-> Við þurfum nú að athuga hvort eitthvert par á milli helminganna sé betra en
-					bestu pörin í hvorum helmingnum.
-		\item<5-> Það er of hægt að skoða öll pörin sem liggja á milli, þá verður tímaflækjan $\mathcal{O}(n^2)$.
-		\item<6-> Látum $d$ vera minnstu fjarlægðina sem fannst í hvorum helmingnum fyrir sig.
-		\item<7-> Við getum því hunsað þá punkta sem hafa $x$-hnit utan bilsins $[x_0 - d, x_0 + d]$.
-		\item<8-> Röðum afgangnum eftir $y$-hniti.
-		\item<9-> Svo kemur trikkið.
-		\item<10-> Okkur nægir, fyrir hvern punkt, að skoða fastann fjölda af næstu punktum.
-	}
+    \env{itemize}
+    {
+        \item<1-> Röðum punktunum eftir $x$-hniti og skiptum í helminga.
+        \item<2-> Látum $x_0$ vera þannig að hann liggi á milli $x$-hnita helminganna.
+        \item<3-> Leysum svo endurkvæmt fyrir hvorn helming fyrir sig.
+        \item<4-> Við þurfum nú að athuga hvort eitthvert par á milli helminganna sé betra en
+                    bestu pörin í hvorum helmingnum.
+        \item<5-> Það er of hægt að skoða öll pörin sem liggja á milli, þá verður tímaflækjan $\mathcal{O}(n^2)$.
+        \item<6-> Látum $d$ vera minnstu fjarlægðina sem fannst í hvorum helmingnum fyrir sig.
+        \item<7-> Við getum því hunsað þá punkta sem hafa $x$-hnit utan bilsins $[x_0 - d, x_0 + d]$.
+        \item<8-> Röðum afgangnum eftir $y$-hniti.
+        \item<9-> Svo kemur trikkið.
+        \item<10-> Okkur nægir, fyrir hvern punkt, að skoða fastann fjölda af næstu punktum.
+    }
 }
 
+\section{Okkur nægir að skoða sjö punkta þegar við sameinum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Skiptum svæðinu fyrir ofan punktinn $x_i$ í átta ferninga, hver með hliðarlengdir $d/2$.
-		\item<2-> Ef fjarlægðin milli alla punktana í hvorum helming er ekki minni en $d$ þá getur mest einn punktur verið í hverjum ferningi
-					(þar með talið er $x_i$).
-		\item<3-> Allir punktar utan þessa svæðis eru meira en $d$ fjarlægð frá $i$-ta punktinum, svo við þurfum ekki að skoða þá.
-		\item<4-> Svo við þurfum bara að skoða fjarlægðina frá $x_i$ í $x_j$ þegar $j - i \leq 7$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Skiptum svæðinu fyrir ofan punktinn $x_i$ í átta ferninga, hver með hliðarlengdir $d/2$.
+        \item<2-> Ef fjarlægðin milli alla punktanna í hvorum helming er ekki minni en $d$ þá getur mest einn punktur verið í hverjum ferningi
+                    (þar með talið er $x_i$).
+        \item<3-> Allir punktar utan þessa svæðis eru meira en $d$ fjarlægð frá $i$-ta punktinum, svo við þurfum ekki að skoða þá.
+        \item<4-> Svo við þurfum bara að skoða fjarlægðina frá $x_i$ í $x_j$ þegar $j - i \leq 7$.
+    }
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\draw (-2, 0) -- (-2, 8);
-			\draw (-2, 8) -- (2, 8);
-			\draw (2, 8) -- (2, 0);
-			\draw (2, 0) -- (-2, 0);
-			\draw (0, 0) -- (0, 8);
-			\draw (-2, 3) -- (2, 3);
-			\draw (-2, 4) -- (2, 4);
-			\draw (-2, 5) -- (2, 5);
-			\draw (-1, 3) -- (-1, 5);
-			\draw (1, 3) -- (1, 5);
-			\node[draw, fill, circle, white] at (-3, 0) {}; %alignment
-			\node[draw, fill, circle, white] at (3, 0) {}; %alignment
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \draw (-2, 0) -- (-2, 8);
+            \draw (-2, 8) -- (2, 8);
+            \draw (2, 8) -- (2, 0);
+            \draw (2, 0) -- (-2, 0);
+            \draw (0, 0) -- (0, 8);
+            \draw (-2, 3) -- (2, 3);
+            \draw (-2, 4) -- (2, 4);
+            \draw (-2, 5) -- (2, 5);
+            \draw (-1, 3) -- (-1, 5);
+            \draw (1, 3) -- (1, 5);
+            \node[draw, fill, circle, white] at (-3, 0) {}; %alignment
+            \node[draw, fill, circle, white] at (3, 0) {}; %alignment
 
-			\node[draw, fill, circle, inner sep = 0.5pt] at (1, 0.3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 0.4) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 1.3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (1.3, 3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (0.5, 4.7) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.6, 4.4) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 3.1) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 6.2) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (0.6, 7.5) {};
-			\node at (1.4,3.1) {\tiny $i$};
-		}
-	}
+            \onslide<1>
+            {
+                \node[draw, fill, circle, inner sep = 0.5pt] at (1, 0.3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 0.4) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 1.3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (1.3, 3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (0.5, 4.7) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.6, 4.4) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 3.1) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 6.2) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (0.6, 7.5) {};
+                \node at (1.4,3.1) {\tiny $i$};
+            }
+
+            \onslide<2>
+            {
+                \node[draw, fill, circle, inner sep = 0.5pt] at (1, 0.3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 0.4) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 1.3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (2, 3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (0.05, 3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.05, 3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-2, 3) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (2, 5) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (0.05, 5) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.05, 5) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-2, 5) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 6.2) {};
+                \node[draw, fill, circle, inner sep = 0.5pt] at (0.6, 7.5) {};
+                \node at (1.9, 3.1) {\tiny $i$};
+                \node at (-0.2, 6.3) {\tiny $j$};
+            }
+        }
+    }
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\draw (-2, 0) -- (-2, 8);
-			\draw (-2, 8) -- (2, 8);
-			\draw (2, 8) -- (2, 0);
-			\draw (2, 0) -- (-2, 0);
-			\draw (0, 0) -- (0, 8);
-			\draw (-2, 3) -- (2, 3);
-			\draw (-2, 4) -- (2, 4);
-			\draw (-2, 5) -- (2, 5);
-			\draw (-1, 3) -- (-1, 5);
-			\draw (1, 3) -- (1, 5);
-			\node[draw, fill, circle, white] at (-3, 0) {}; %alignment
-			\node[draw, fill, circle, white] at (3, 0) {}; %alignment
-
-			\node[draw, fill, circle, inner sep = 0.5pt] at (1, 0.3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-1.9, 0.4) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 1.3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (2, 3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (0.05, 3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.05, 3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-2, 3) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (2, 5) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (0.05, 5) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.05, 5) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-2, 5) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (-0.3, 6.2) {};
-			\node[draw, fill, circle, inner sep = 0.5pt] at (0.6, 7.5) {};
-			\node at (1.9, 3.1) {\tiny $i$};
-			\node at (-0.2, 6.3) {\tiny $j$};
-		}
-	}
+    \selectcode{code/closest-slower.c}{23}{45}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
-	\selectcode{code/closest-slower.c}{23}{50}
+    \env{itemize}
+    {
+        \item<1-> Hvert endurkvæmt kall er $\mathcal{O}(\onslide<2->{n \log n})$.
+        \item<3-> Svo tímaflækjan á þessari útfærslu er $\mathcal{O}(\onslide<4->{n \log^2 n})$, sem er bæting.
+        \item<5-> Eina ástæðan fyrir því að hvert endurkvæmt kall sé $\mathcal{O}(n \log n)$ er að við röðum í hvert skipti.
+        \item<6-> Það er óþarfi því við erum alltaf að raða sömu punktunum aftur og aftur.
+        \item<7-> Það eru fleiri en ein leið til að þurfa ekki að raða oft.
+        \item<8-> Ein leið er að gera það sama og er gert í mergesort.
+        \item<9-> Þá erum við í raun að raða, en við gerum það í línulegum tíma.
+    }
 }
 
+\section{Ofansækin hraðari útfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvert endurkvæmt kall er $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
-		\item<3-> Svo tímaflækjan á þessari útfærslu er $\mathcal{O}($\onslide<4->{$n \log^2 n$}$)$, sem er bæting.
-		\item<5-> Eina ástæðan fyrir því að hvert endurkvæmt kall sé $\mathcal{O}(n \log n)$ er að við röðum í hvert skipti.
-		\item<6-> Það er óþarfi því við erum alltaf að raða sömu punktunum aftur og aftur.
-		\item<7-> Það eru fleiri en ein leið til að þurfa ekki að raða oft.
-		\item<8-> Ein leið er að gera það sama og er gert í mergesort.
-		\item<9-> Þá erum við í raun að raða, en við gerum það í línulegum tíma.
-	}
+    \selectcode{code/closest-td.c}{15}{46}
 }
 
+\section{Neðansækin hraðari útfærsla}
 \env{frame}
 {
-	\selectcode{code/closest.c}{15}{51}
+    \selectcode{code/closest-bu.c}{17}{41}
 }
 
+\section{Tímaflækjur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvert endurkvæmt kall er nú $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
-		\item<3-> Svo tímaflækjan á þessari útfærslu er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
-		\item<5-> Þetta má síðan bæta með slembnum reikniritum, en verður annars ekki betra.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvert endurkvæmt kall er nú $\mathcal{O}(\onslide<2->{\,n\,})$.
+        \item<3-> Svo tímaflækjan á þessari útfærslu er $\mathcal{O}(\onslide<4->{n \log n})$.
+        \item<5-> Þetta má síðan bæta með slembnum reikniritum, en verður annars ekki betra.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

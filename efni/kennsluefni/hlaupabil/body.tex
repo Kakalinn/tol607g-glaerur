@@ -6,29 +6,41 @@
 
 \frame{\titlepage}
 
+\section{Yfirlit}
 \env{frame}
 {
-	\frametitle{Hlaupabil}
-	\env{itemize}
-	{
-		\item<1-> Aðferð \emph{hlaupabila} (e. \emph{sliding window}) er stundum hægt að nota til að taka
-				dæmi sem hafa augljósa $\mathcal{O}(n^2)$ lausn og gera þau $\mathcal{O}(n)$ eða $\mathcal{O}(n\log n)$.
-	}
+    \frametitle{Hlaupabil}
+    \env{itemize}
+    {
+        \item<1-> Aðferð \emph{hlaupabila} (e. \emph{sliding window}) er stundum hægt að nota til að taka
+                    dæmi sem hafa augljósa $\mathcal{O}(n^2)$ lausn og gera þau $\mathcal{O}(n)$ eða $\mathcal{O}(n\log n)$.
+    }
 }
 
+\section{Dæmi 1: Talning ása með breytingum}
+\subsection{Yfirlit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Skoðum dæmi:
-		\item<2-> Gefið $n$, $k$ og svo $n$ tölur $a_i$, þ.a. $a_i \in \{0, 1\}$ finndu
-			lengd lengstu bilanna í rununni $(a_n)_{n \in \mathbb{N}}$ sem innihelda bara $1$ ef þú mátt breyta allt að $k$ tölum.
-		\item<3-> Sjáum strax að maður vill alltaf breyta $0$ í $1$ og aldrei öfugt.
-		\item<4-> Sjáum því að við erum að leita að lengstu bilunum í $(a_n)_{n \in \mathbb{N}}$ sem hefur í mesta lagi $k$ stök jöfn $0$.
-		\item<5-> Gefum okkur nú hlaupabil. Það byrjar tómt.
-		\item<6-> Við löbbum svo í gegnum $(a_n)_{n \in \mathbb{N}}$ og lengjum bilið að aftan.
-		\item<7-> Ef það eru einhvern tímann fleiri en $k$ stök í bilinu sem eru $0$ þá minnkum við bilið að framan þar til svo er ekki lengur.
-	}
+    \env{itemize}
+    {
+        \item<1-> Skoðum dæmi:
+        \item<2-> Gefið $n$, $k$ og svo $n$ tölur $a_i$, þ.a. $a_i \in \{0, 1\}$ finndu
+                    lengd lengstu aðliggjandi hlutbilanna í rununni $(a_j)_{j = 1}^n$
+                    sem innihalda bara $1$ ef þú mátt breyta allt að $k$ tölum.
+    }
+}
+
+\subsection{Lausn}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Sjáum strax að maður vill alltaf breyta $0$ í $1$ og aldrei öfugt.
+        \item<2-> Sjáum því að við erum að leita að lengstu bilunum í $(a_j)_{j = 1}^n$ sem hefur í mesta lagi $k$ stök jöfn $0$.
+        \item<3-> Gefum okkur nú hlaupabil. Það byrjar tómt.
+        \item<4-> Við löbbum svo í gegnum $(a_j)_{j = 1}^n$ og lengjum bilið að aftan.
+        \item<5-> Ef það eru einhvern tímann fleiri en $k$ stök í bilinu sem eru $0$ þá minnkum við bilið að framan þar til svo er ekki lengur.
+    }
 }
 
 \defverbatim{\hbilA}
@@ -231,89 +243,95 @@
                         |               |
 \end{verbatim} }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
-	\only<all:1>{\hbilA}
-	\only<all:2>{\hbilB}
-	\only<all:3>{\hbilC}
-	\only<all:4>{\hbilD}
-	\only<all:5>{\hbilE}
-	\only<all:6>{\hbilF}
-	\only<all:7>{\hbilG}
-	\only<all:8>{\hbilH}
-	\only<all:9>{\hbilI}
-	\only<all:10>{\hbilJ}
-	\only<all:11>{\hbilK}
-	\only<all:12>{\hbilL}
-	\only<all:13>{\hbilM}
-	\only<all:14>{\hbilN}
-	\only<all:15>{\hbilO}
-	\only<all:16>{\hbilP}
-	\only<all:17>{\hbilQ}
-	\only<all:18>{\hbilR}
-	\only<all:19>{\hbilS}
-	\only<all:20>{\hbilT}
-	\only<all:21>{\hbilU}
-	\only<all:22>{\hbilV}
-	\only<all:23>{\hbilW}
-	\only<all:24>{\hbilX}
-	\only<all:25>{\hbilY}
+    \only<all:1>{\hbilA}
+    \only<all:2>{\hbilB}
+    \only<all:3>{\hbilC}
+    \only<all:4>{\hbilD}
+    \only<all:5>{\hbilE}
+    \only<all:6>{\hbilF}
+    \only<all:7>{\hbilG}
+    \only<all:8>{\hbilH}
+    \only<all:9>{\hbilI}
+    \only<all:10>{\hbilJ}
+    \only<all:11>{\hbilK}
+    \only<all:12>{\hbilL}
+    \only<all:13>{\hbilM}
+    \only<all:14>{\hbilN}
+    \only<all:15>{\hbilO}
+    \only<all:16>{\hbilP}
+    \only<all:17>{\hbilQ}
+    \only<all:18>{\hbilR}
+    \only<all:19>{\hbilS}
+    \only<all:20>{\hbilT}
+    \only<all:21>{\hbilU}
+    \only<all:22>{\hbilV}
+    \only<all:23>{\hbilW}
+    \only<all:24>{\hbilX}
+    \only<all:25>{\hbilY}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/hlaupabil-daemi1.c}{3}{22}
+    \selectcode{code/hlaupabil-daemi1.c}{3}{22}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hver tala í rununni er sett einu sinni í hlaupabilið og mögulega fjarlægð úr því.
-		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hver tala í rununni er sett einu sinni í hlaupabilið og mögulega fjarlægð úr því.
+        \item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
+    }
 }
 
+\section{Dæmi 2: Lengd sammengis bila}
+\subsection{Undirbúningur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þetta dæmi var í auðveldari kantinum.
-		\item<2-> Skoðum annað dæmi:
-		\item<3-> Byjrum á nokkrum undirstöðu atriðum.
-		\item<4-> Tvö bil kallast \emph{næstum sundurlæg} ef sniðmengi þeirra er tómt eða bara einn punktur.
-		\item<5-> Sammengi bila má skrifa sem sammengi næstu sundurlægra bila.
-		\item<6-> \emph{Lengd bilsins} $[a, b]$ er $b - a$.
-		\item<7-> Til að finna \emph{lengd sammengis bila} skrifum við sammengið sem sammengi næstum sundurlægra bila
-			og tökum summu lengda þeirra.
-		\item<8-> Til dæmis eru bilin $[1, 2]$ og $[2, 3]$ næstum sundurlæg (en þó ekki sundurlæg) en 
-			$[1, 3]$ og $[2, 4]$ eru það ekki. Nú $[1, 3] \cup [2, 4] = [1, 4]$ svo lengd 
-			$[1, 3] \cup [2, 4]$ er $3$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Skoðum annað dæmi:
+        \item<2-> Byrjum á nokkrum undirstöðu atriðum.
+        \item<3-> Tvö bil kallast \emph{næstum sundurlæg} ef sniðmengi þeirra er tómt eða bara einn punktur.
+        \item<4-> Sammengi bila má skrifa sem sammengi næstu sundurlægra bila.
+        \item<5-> \emph{Lengd bilsins} $[a, b]$ er $b - a$.
+        \item<6-> Til að finna \emph{lengd sammengis bila} skrifum við sammengið sem sammengi næstum sundurlægra bila
+                    og tökum summu lengda þeirra.
+        \item<7-> Til dæmis eru bilin $[1, 2]$ og $[2, 3]$ næstum sundurlæg (en þó ekki sundurlæg) en 
+                    $[1, 3]$ og $[2, 4]$ eru það ekki. Nú $[1, 3] \cup [2, 4] = [1, 4]$ svo lengd $[1, 3] \cup [2, 4]$ er $3$.
+    }
 }
 
+\subsection{Yfirlit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gefið $n$ bil hver er lengd sammengis þeirra.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gefin eru $n$ bil
+        \item<2-> Hver er lengd sammengis þeirra.
+    }
 }
 
+\subsection{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Geymum í lista tvenndir þar sem fyrra stakið er endapunktur bils og seinna stakið segir hvaða bili punkturinn tilleyrir.
-		\item<2-> Röðum þessum punktum svo í vaxandi röð.
-		\item<3-> Við löbbum í gegnum þennan raðaða lista og höldum utan um hlaupabil þannig að
-			við bætum við bili í hlaupabilið þegar við rekumst á vinstri endapunkt þess og fjarlægjum það 
-			þegar við rekumst á hægri endapunkt þess. 
-		\item<4-> Við skoðum svo sérstaklega tilfellin þegar við erum ekki með nein bil í hlaupabilinu okkar.
-		\item<5-> Sammengi þeirra bila sem við höfum farið í gegnum þá síðan hlaupabilið var síðast tómt er nú næstum
-			sundurlægt öllum öðrum bilum sem okkur var gefið í byrjun.
-		\item<6-> Við skilum því summu lengda þessara sammengja.
-	}
+    \env{itemize}
+    {
+        \item<1-> Geymum í lista tvenndir þar sem fyrra stakið er endapunktur bils og seinna stakið segir hvaða bili punkturinn tilleyrir.
+        \item<2-> Röðum þessum punktum svo í vaxandi röð.
+        \item<3-> Við löbbum í gegnum þennan raðaða lista og höldum utan um hlaupabil þannig að
+                    við bætum við bili í hlaupabilið þegar við rekumst á vinstri endapunkt þess og fjarlægjum það 
+                    þegar við rekumst á hægri endapunkt þess. 
+        \item<4-> Við skoðum svo sérstaklega tilfellin þegar við erum ekki með nein bil í hlaupabilinu okkar.
+        \item<5-> Sammengi þeirra bila sem við höfum farið í gegnum þá síðan hlaupabilið var síðast tómt er nú næstum
+                    sundurlægt öllum öðrum bilum sem okkur var gefið í byrjun.
+        \item<6-> Við skilum því summu lengda þessara sammengja.
+    }
 }
 
 \defverbatim{\lineAA}
@@ -1000,63 +1018,67 @@ r = 28
 r = 42
 \end{verbatim} }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
-	\only<all:1>{\lineAA}
-	\only<all:2>{\lineAB}
-	\only<all:3>{\lineAC}
-	\only<all:4>{\lineAD}
-	\only<all:5>{\lineAE}
-	\only<all:6>{\lineAF}
-	\only<all:7>{\lineAG}
-	\only<all:8>{\lineAH}
-	\only<all:9>{\lineAI}
-	\only<all:10>{\lineAJ}
-	\only<all:11>{\lineAK}
-	\only<all:12>{\lineAL}
-	\only<all:13>{\lineAM}
-	\only<all:14>{\lineAN}
-	\only<all:15>{\lineAO}
-	\only<all:16>{\lineAP}
-	\only<all:17>{\lineAQ}
-	\only<all:18>{\lineAR}
-	\only<all:19>{\lineAS}
-	\only<all:20>{\lineAU}
-	\only<all:21>{\lineAV}
-	\only<all:22>{\lineAW}
-	\only<all:23>{\lineAX}
-	\only<all:24>{\lineAY}
-	\only<all:25>{\lineAZ}
-	\only<all:26>{\lineBA}
-	\only<all:27>{\lineBB}
-	\only<all:28>{\lineBC}
-	\only<all:29>{\lineBD}
-	\only<all:30>{\lineBDD}
-	\only<all:31>{\lineBE}
-	\only<all:32>{\lineBF}
-	\only<all:33>{\lineBG}
-	\only<all:34>{\lineBH}
-	\only<all:35>{\lineBI}
-	\only<all:36>{\lineBJ}
-	\only<all:37>{\lineBK}
-	\only<all:38>{\lineBL}
+    \only<all:1>{\lineAA}
+    \only<all:2>{\lineAB}
+    \only<all:3>{\lineAC}
+    \only<all:4>{\lineAD}
+    \only<all:5>{\lineAE}
+    \only<all:6>{\lineAF}
+    \only<all:7>{\lineAG}
+    \only<all:8>{\lineAH}
+    \only<all:9>{\lineAI}
+    \only<all:10>{\lineAJ}
+    \only<all:11>{\lineAK}
+    \only<all:12>{\lineAL}
+    \only<all:13>{\lineAM}
+    \only<all:14>{\lineAN}
+    \only<all:15>{\lineAO}
+    \only<all:16>{\lineAP}
+    \only<all:17>{\lineAQ}
+    \only<all:18>{\lineAR}
+    \only<all:19>{\lineAS}
+    \only<all:20>{\lineAU}
+    \only<all:21>{\lineAV}
+    \only<all:22>{\lineAW}
+    \only<all:23>{\lineAX}
+    \only<all:24>{\lineAY}
+    \only<all:25>{\lineAZ}
+    \only<all:26>{\lineBA}
+    \only<all:27>{\lineBB}
+    \only<all:28>{\lineBC}
+    \only<all:29>{\lineBD}
+    \only<all:30>{\lineBDD}
+    \only<all:31>{\lineBE}
+    \only<all:32>{\lineBF}
+    \only<all:33>{\lineBG}
+    \only<all:34>{\lineBH}
+    \only<all:35>{\lineBI}
+    \only<all:36>{\lineBJ}
+    \only<all:37>{\lineBK}
+    \only<all:38>{\lineBL}
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/hlaupabil-daemi2.c}{3}{32}
+    \selectcode{code/hlaupabil-daemi2.c}{3}{32}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við byrjum á að raða í $\mathcal{O}($\onslide<2->{$n \log n$}$)$ tíma.
-		\item<3-> Síðan ítrum við í gegnum alla endapunktana sem tekur $\mathcal{O}($\onslide<4->{$\,n\,$}$)$ tíma.
-		\item<5-> Svo lausnin hefur tímaflækjuna $\mathcal{O}($\onslide<6->{$n \log n$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við byrjum á að raða í $\mathcal{O}($\onslide<2->{$n \log n$}$)$ tíma.
+        \item<3-> Síðan ítrum við í gegnum alla endapunktana sem tekur $\mathcal{O}($\onslide<4->{$\,n\,$}$)$ tíma.
+        \item<5-> Svo lausnin hefur tímaflækjuna $\mathcal{O}($\onslide<6->{$n \log n$}$)$.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

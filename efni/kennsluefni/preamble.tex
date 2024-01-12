@@ -1,6 +1,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english, icelandic]{babel}
+%\usepackage[english]{babel}
 \usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -15,8 +15,6 @@
 
 \setbeamertemplate{footline}{% 
   \hfill% 
-  \usebeamercolor[fg]{page number in head/foot}% 
-  \usebeamerfont{page number in head/foot}% 
   \insertframenumber%
   %\,/\,\inserttotalframenumber
   \kern2em\vskip4pt% 
@@ -26,15 +24,19 @@
 
 \newcommand\env[2]
 {
-	\begin{#1}
-	#2
-	\end{#1}
+    \begin{#1}
+    #2
+    \end{#1}
 }
 \newcommand\varenv[3]
 {
-	\begin{#1}[#2]
-	#3
-	\end{#1}
+    \begin{#1}[#2]
+    #3
+    \end{#1}
+}
+\newcommand\slidewidth[1]
+{
+    \resizebox{\textwidth}{!}{#1}
 }
 
 % grá code blocks
@@ -48,16 +50,16 @@
 \definecolor{myorange}{rgb}{1.0,0.4,0}
 
 \lstset{
-	keepspaces,
-	breaklines       = false,
-	commentstyle     = \color{mygray},
-	numbersep        = 5pt,
-	numberstyle      = \tiny\color{mygray},
-	keywordstyle     = \color{mygreen},
-	showspaces       = false,
-	showstringspaces = false,
-	stringstyle      = \color{myorange},
-	tabsize          = 4
+    keepspaces,
+    breaklines       = false,
+    commentstyle     = \color{mygray},
+    numbersep        = 5pt,
+    numberstyle      = \tiny\color{mygray},
+    keywordstyle     = \color{mygreen},
+    showspaces       = false,
+    showstringspaces = false,
+    stringstyle      = \color{myorange},
+    tabsize          = 4
 }
 \lstset{literate=
 {æ}{{\ae}}1

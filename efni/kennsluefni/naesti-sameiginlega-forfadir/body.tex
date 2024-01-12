@@ -1,0 +1,446 @@
+\title{Næsti sameiginlegi forfaðir}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Yfirlit}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum með tré.
+        \item<2-> Látum einn hnút tákna rót trésins.
+        \item<3-> Við getum þá talað um \emph{metorð} (e. \emph{rank}) hnúts í trénu.
+        \item<4-> Metorð hnútsins er fjarlægðin frá hnútnum í rótina.
+        \item<5-> Þar sem við erum í tréi er aðeins einn einfaldur vegur í rótina.
+        \item<6-> Ein leið til að finna metorð allra hnúta er með einni dýptarleit.
+        \item<7-> Látum metorð hnútsins $u$ vera $r(u)$.
+        \item<8-> Við segjum líka að metorð trés sé $R$ ef hnúturinn með hæsta metorð er $R$.
+        \item<9-> Oft er notað önnuð orð en ,,metorð'', til dæmis ,,hæð'' (e. \emph{height}) eða ,,dýpt'' (e. \emph{depth}).
+    }
+}
+
+\section{Sýnidæmi um metorð}
+\env{frame}
+{
+    \center
+    \env{tikzpicture}
+    {
+        \only<all:1-4> { \node[draw, circle, thick] (1) at (0,0) {\phantom{xx}}; }
+        \only<all:5-> { \node[draw, circle, thick] (1) at (1,1) {\phantom{xx}}; }
+
+        \only<all:1-3> { \node[draw, circle, thick] (2) at (0,2) {\phantom{xx}}; }
+        \only<all:4-> { \node[draw, circle, thick] (2) at (1,-1) {\phantom{xx}}; }
+
+        \only<all:1-5> { \node[draw, circle, thick] (3) at (0,-2) {\phantom{xx}}; }
+        \only<all:6-> { \node[draw, circle, thick] (3) at (1,3) {\phantom{xx}}; }
+
+        \only<all:1> { \node[draw, circle, thick] (4) at (2,1) {\phantom{xx}}; }
+        \only<all:2> { \node[draw, circle, thick, blue] (4) at (2,1) {\phantom{xx}}; }
+        \only<all:3-> { \node[draw, circle, thick, blue] (4) at (3,-3) {\phantom{xx}}; }
+
+        \only<all:1-6> { \node[draw, circle, thick] (5) at (2,-1) {\phantom{xx}}; }
+        \only<all:7-> { \node[draw, circle, thick] (5) at (3,-1) {\phantom{xx}}; }
+
+        \only<all:1-7> { \node[draw, circle, thick] (6) at (4,0) {\phantom{xx}}; }
+        \only<all:8-> { \node[draw, circle, thick] (6) at (5,-1) {\phantom{xx}}; }
+
+        \only<all:1-9> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xx}}; }
+        \only<all:10-> { \node[draw, circle, thick] (7) at (4,3) {\phantom{xx}}; }
+
+        \only<all:1-10> { \node[draw, circle, thick] (8) at (6,-2) {\phantom{xx}}; }
+        \only<all:11-> { \node[draw, circle, thick] (8) at (6,3) {\phantom{xx}}; }
+
+        \only<all:1-8> { \node[draw, circle, thick] (9) at (6,0) {\phantom{xx}}; }
+        \only<all:9-> { \node[draw, circle, thick] (9) at (5,1) {\phantom{xx}}; }
+
+        \path[draw, thick] (4) -- (2);
+        \path[draw, thick] (4) -- (5);
+        \path[draw, thick] (4) -- (6);
+        \path[draw, thick] (2) -- (1);
+        \path[draw, thick] (1) -- (3);
+        \path[draw, thick] (6) -- (9);
+        \path[draw, thick] (9) -- (7);
+        \path[draw, thick] (9) -- (8);
+
+        \only<all:12-> { \node at (3,-3) {$0$}; }
+        \only<all:13-> { \node at (1,-1) {$1$}; }
+        \only<all:14-> { \node at (1,1) {$2$}; }
+        \only<all:15-> { \node at (1,3) {$3$}; }
+        \only<all:16-> { \node at (3,-1) {$1$}; }
+        \only<all:17-> { \node at (5,-1) {$1$}; }
+        \only<all:18-> { \node at (5,1) {$2$}; }
+        \only<all:19-> { \node at (4,3) {$3$}; }
+        \only<all:20-> { \node at (6,3) {$3$}; }
+    }
+}
+
+\section{Skilgreininar}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við köllum þann nágranna hnúts sem er nær rótinni \emph{foreldri} (e. \emph{parent}) hnútsins.
+        \item<2-> Við getum þá fundið veginn að rótinni með því að ferðast eftir foreldrum.
+        \item<3-> Þeir hnútar sem eru á veginum að rótinni kallast \emph{forfeður} (e. \emph{ancestors}) hnúts.
+        \item<4-> Það er kannski skrýtið, en allir hnútar er forfeður sínir.
+        \item<5-> Oft nýtist okkur að vita hvaða sameiginlegi forfaðir tveggja hnúta er með hæsta metorð.
+        \item<6-> Forfaðirinn sem er með hæsta metorð kallast \emph{næsti sameiginlegi forfaðir} hnútanna.
+    }
+}
+
+\section{Sýnidæmi um næstu sameiginlegu forfeður}
+\env{frame}
+{
+    \center
+    \env{tikzpicture}
+    {
+        \only<all:1-> { \node[draw, circle, thick] (1) at (1,1) {\phantom{xx}}; }
+
+        \only<all:1-8, 10> { \node[draw, circle, thick] (2) at (1,-1) {\phantom{xx}}; }
+        \only<all:9> { \node[draw, circle, thick, fill, green] (2) at (1,-1) {\phantom{xx}}; }
+
+        \only<all:1-> { \node[draw, circle, thick] (3) at (1,3) {\phantom{xx}}; }
+
+        \only<all:1-5, 7-> { \node[draw, circle, thick] (4) at (3,-3) {\phantom{xx}}; }
+        \only<all:6> { \node[draw, circle, thick, fill, green] (4) at (3,-3) {\phantom{xx}}; }
+
+        \only<all:1-> { \node[draw, circle, thick] (5) at (3,-1) {\phantom{xx}}; }
+
+        \only<all:1-> { \node[draw, circle, thick] (6) at (5,-1) {\phantom{xx}}; }
+
+        \only<all:1-> { \node[draw, circle, thick] (7) at (4,3) {\phantom{xx}}; }
+
+        \only<all:1-> { \node[draw, circle, thick] (8) at (6,3) {\phantom{xx}}; }
+
+        \only<all:1-2, 4-> { \node[draw, circle, thick] (9) at (5,1) {\phantom{xx}}; }
+        \only<all:3> { \node[draw, circle, thick, fill, green] (9) at (5,1) {\phantom{xx}}; }
+
+        \path[draw, thick] (4) -- (2);
+        \path[draw, thick] (4) -- (5);
+        \path[draw, thick] (4) -- (6);
+        \path[draw, thick] (2) -- (1);
+        \path[draw, thick] (1) -- (3);
+        \path[draw, thick] (6) -- (9);
+        \path[draw, thick] (9) -- (7);
+        \path[draw, thick] (9) -- (8);
+
+        \only<all:2-3> { \node at (4,3) {$u$}; }
+        \only<all:2-3> { \node at (6,3) {$v$}; }
+        \only<all:5-6> { \node at (6,3) {$v$}; }
+        \only<all:5-6> { \node at (1,-1) {$u$}; }
+        \only<all:8-9> { \node at (1,3) {$u$}; }
+        \only<all:8-9> { \node at (1,-1) {$v$}; }
+    }
+}
+
+\section{Aðferð 1: Frumstæð aðferð}
+\subsection{Lausn}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Hvernig finnum við næsta sameiginlega forföður tveggja hnúta?
+        \item<2-> Látum $u$ og $v$ tákna hnútana og $x$ næsta sameiginlega forföður þeirra.
+        \item<3-> Við getum gert ráð fyrir að $u$ sé lengra frá rótinni en $v$, það er að segja $r(u) \geq r(v)$.
+        \item<4-> Við vitum að allir forfeður $u$ sem hafa metorð stærra en $r(v)$ eru ekki $x$.
+        \item<5-> Svo við getum ferðast frá $u$ að rótinni (eftir foreldrum, það er að segja) þar til við erum komin með sama metorð og $v$.
+        \item<6-> Við getum svo ferðast eftir foreldrum beggja á sama tíma þangað til við lendum í sama hnútnum.
+        \item<7-> Sá hnútur er $x$.
+        \item<8-> Sjáum hvernig þessi aðferð leysir sýnidæmin sem við sáum áðan.
+    }
+}
+
+\subsection{Sýnidæmi}
+\env{frame}
+{
+    \center
+    \env{tikzpicture}
+    {
+        \only<all:1-> { \node[draw, circle, thick] (1) at (1,1) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (2) at (1,-1) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (3) at (1,3) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (4) at (3,-3) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (5) at (3,-1) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (6) at (5,-1) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (7) at (4,3) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (8) at (6,3) {\phantom{xx}}; }
+        \only<all:1-> { \node[draw, circle, thick] (9) at (5,1) {\phantom{xx}}; }
+
+        \path[draw, thick] (4) -- (2);
+        \path[draw, thick] (4) -- (5);
+        \path[draw, thick] (4) -- (6);
+        \path[draw, thick] (2) -- (1);
+        \path[draw, thick] (1) -- (3);
+        \path[draw, thick] (6) -- (9);
+        \path[draw, thick] (9) -- (7);
+        \path[draw, thick] (9) -- (8);
+
+        \only<all:2-3> { \node at (4,3) {$u$}; }
+        \only<all:2-3> { \node at (6,3) {$v$}; }
+        \only<all:3> { \node at (5,1) {$x$}; }
+
+        \only<all:5> { \node at (6,3) {$v$}; }
+        \only<all:5> { \node at (1,-1) {$u$}; }
+        \only<all:6-9> { \node at (6,3) {$u$}; }
+        \only<all:6-9> { \node at (1,-1) {$v$}; }
+        \only<all:7> { \node at (5,1) {$x$}; }
+        \only<all:8> { \node at (5,-1) {$x$}; }
+        \only<all:9> { \node at (3,-3) {$x$}; }
+
+
+
+        \only<all:11-13> { \node at (1,3) {$u$}; }
+        \only<all:11-12> { \node at (1,-1) {$v$}; }
+        \only<all:12> { \node at (1,1) {$x$}; }
+        \only<all:13> { \node at (1,-1) {$x$}; }
+
+        \only<all:15-18> { \node at (1,1) {$v$}; }
+        \only<all:15-18> { \node at (6,3) {$u$}; }
+        \only<all:16> { \node at (5,1) {$x$}; }
+        \only<all:17> { \node at (5,-1) {$x$}; }
+        \only<all:17> { \node at (1,-1) {$x$}; }
+        \only<all:18> { \node at (3,-3) {$x$}; }
+    }
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/lca-slow.cpp}{7}{27}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að metorð trésins sé $R$.
+        \item<2-> Þá er tímaflækjan á þessari aðferð $\mathcal{O}(\onslide<3->{\,R\,})$.
+        \item<4-> Í versta falli er metorð trés með $n$ hnúta \onslide<5->{$n - 1$}.
+        \item<6-> Svo tímaflækjan er í versta falli $\mathcal{O}(\onslide<7->{\,n\,})$.
+        \item<8-> Hvernig getum við bætt þetta?
+        \item<9-> Við getum þó bætt þetta með því að taka stærri stökk.
+    }
+}
+
+\section{Aðferð 2: Tvöföldun skrefalengda}
+\subsection{Lausn}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Aðferðin skiptist í tvö skref:
+        \env{itemize}
+        {
+            \item<2-> Jöfnum metorð hnútanna.
+            \item<3-> Löbbum saman að rótinni þangað til við finnum svarið.
+        }
+        \item<4-> Fyrra skrefinu má lýsa nánar.
+        \item<5-> Látum hnútana okkar vera $u$ og $v$, þannig að $r(u) \geq r(v)$.
+        \item<6-> Við viljum því ferðast nákvæmlega $r(v) - r(u)$ sinnum í áttina að rótinni.
+        \item<7-> Ein leið til að gera þetta hratt er að geyma ekki bara foreldri hvers hnúts,
+                    heldur alla hnúta sem eru $2^k$ fyrir neðan hnútinn í trénu.
+        \item<8-> Við þurfum því að geyma $\mathcal{O}($\onslide<9->{$\log R$}$)$ stökk fyrir hvern hnút.
+        \item<10-> Táknum með $p(u, k)$ þann hnút sem þú endar í ef þú ferðast $2^k$ sinnum frá $u$ gegnum foreldrin.
+        \item<11-> Til þæginda segjum við að foreldri rótarinnar sé rótin sjálf.
+        \item<12-> Til dæmis er $p(u, 0)$ foreldri $u$.
+        \item<13-> Við finnum þessi gildi með rakningunni $p(u, i) = p(p(u, i - 1), i - 1)$.
+    }
+}
+
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Við tökum því eins löng stökk og við getum án þess að $r(u) < r(v)$ þangað til $r(u) = r(v)$.
+        \item<2-> Við getum því núna gert ráð fyrir að $r(u) = r(v)$.
+        \item<3-> Þá viljum við taka eins löng stökk og við getum þannig að $u \neq v$.
+        \item<4-> Að því loknu munum við hafa þrjú tilvik:
+        \env{itemize}
+        {
+            \item<5-> $u$ og $v$ hafa sama foreldri.
+            \item<6-> $u$ er foreldri $v$.
+            \item<7-> $v$ er foreldri $u$.
+        }
+    }
+}
+
+\subsection{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/lca.cpp}{9}{34}
+}
+
+\subsection{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Í hverju skrefi þurfum við bara að taka $\mathcal{O}(\onslide<2->{\log R})$.
+        \item<3-> Svo tímaflækjan er $\mathcal{O}(\onslide<4->{\log R})$ fyrir hverja fyrirspurn.
+        \item<5-> Ef tréð hefur $n$ hnúta er þarf í versta falli $\mathcal{O}(\onslide<6->{\log n})$ tíma.
+    }
+}
+
+\section{Aðferð 3: Vegaþáttun}
+\subsection{Vegaþáttun}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Skoðum nú aðferð sem notar minna minni, en hefur sömu tímaflækju.
+        \item<2-> Hún byggir á að skipta trénu upp í sundurlæga vegi.
+        \item<3-> Úthlutum hverjum hnúti sem er ekki lauf nákvæmlega eitt barnið sitt.
+        \item<4-> Með öðrum orðum veljum við einn legg úr hverjum hnút sem er ekki lauf frá rótinni.
+        \item<5-> Tréð okkar þáttast þá í vegi af völdum leggjum.
+    }
+}
+
+\subsection{Sýnidæmi um vegaþáttun}
+\env{frame}
+{
+    \center
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick] (1) at (1,1) {\phantom{xx}};
+        \node[draw, circle, thick] (2) at (1,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (3) at (1,3) {\phantom{xx}};
+        \node[draw, circle, thick] (4) at (3,-3) {\phantom{xx}};
+        \node[draw, circle, thick] (5) at (3,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (6) at (5,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (7) at (4,3) {\phantom{xx}};
+        \node[draw, circle, thick] (8) at (6,3) {\phantom{xx}};
+        \node[draw, circle, thick] (9) at (5,1) {\phantom{xx}};
+
+        \onslide<all:1> { \path[draw, thick] (1) -- (2); }
+        \onslide<all:2-> { \path[draw, thick, blue] (1) -- (2); }
+
+        \onslide<all:1> { \path[draw, thick] (1) -- (3); }
+        \onslide<all:2-> { \path[draw, thick, blue] (1) -- (3); }
+
+        \onslide<all:1, 3-> { \path[draw, thick] (2) -- (4); }
+        \onslide<all:2> { \path[draw, thick, blue] (2) -- (4); }
+
+        \onslide<all:1-2> { \path[draw, thick] (4) -- (5); }
+        \onslide<all:3-> { \path[draw, thick, blue] (4) -- (5); }
+
+        \onslide<all:1-> { \path[draw, thick] (4) -- (6); }
+
+        \onslide<all:1> { \path[draw, thick] (6) -- (9); }
+        \onslide<all:2-> { \path[draw, thick, blue] (6) -- (9); }
+
+        \onslide<all:1-2> { \path[draw, thick] (7) -- (9); }
+        \onslide<all:3-> { \path[draw, thick, blue] (7) -- (9); }
+
+        \onslide<all:1, 3-> { \path[draw, thick] (8) -- (9); }
+        \onslide<all:2> { \path[draw, thick, blue] (8) -- (9); }
+    }
+}
+
+\subsection{Þungir leggir}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Spurningin er: Hvernig getum við valið leggina til að þetta hjálpi okkur?
+        \item<2-> Fyrir hvern hnút veljum við legginn sem fer í það undirtré sem er stærst.
+        \item<3-> Þá innihalda allir vegir frá rót til laufs í mesta lagi $\log_2 n$ leggi sem eru ekki valdir, þar sem $n$ er fjöldi hnúta í trénu.
+        \item<4-> Þetta fæst því ef við erum í tré með $n$ hnúta og ferðumst eftir óvöldum legg þá endum við í tréi með $m \leq n/2$ hnúta.
+        \item<5-> Við fáum því að ef við byrjum í einhverjum hnút tekur það mest $2 \cdot \log_2 n$ stökk að komast í rótina ef við stökkvum alltaf
+                    fremst í vegin af völdum leggjum sem við erum í.
+    }
+}
+
+\subsection{Sýnidæmi um vegaþáttun eftir þungum leggjum}
+\env{frame}
+{
+    \center
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick] (1) at (1,1) {\phantom{xx}};
+        \node[draw, circle, thick] (2) at (1,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (3) at (1,3) {\phantom{xx}};
+        \node[draw, circle, thick] (4) at (3,-3) {\phantom{xx}};
+        \node[draw, circle, thick] (5) at (3,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (6) at (5,-1) {\phantom{xx}};
+        \node[draw, circle, thick] (7) at (4,3) {\phantom{xx}};
+        \node[draw, circle, thick] (8) at (6,3) {\phantom{xx}};
+        \node[draw, circle, thick] (9) at (5,1) {\phantom{xx}};
+
+        \onslide<all:1-3> { \path[draw, thick] (1) -- (2); }
+        \onslide<all:4-> { \path[draw, thick, blue] (1) -- (2); }
+
+        \onslide<all:1-4> { \path[draw, thick] (1) -- (3); }
+        \onslide<all:5-> { \path[draw, thick, blue] (1) -- (3); }
+
+        \onslide<all:1, 3-> { \path[draw, thick] (2) -- (4); }
+        \onslide<all:2> { \path[draw, thick, red] (2) -- (4); }
+
+        \onslide<all:1, 3-> { \path[draw, thick] (4) -- (5); }
+        \onslide<all:2> { \path[draw, thick, red] (4) -- (5); }
+
+        \onslide<all:1> { \path[draw, thick] (4) -- (6); }
+        \onslide<all:2> { \path[draw, thick, red] (4) -- (6); }
+        \onslide<all:3-> { \path[draw, thick, blue] (4) -- (6); }
+
+        \onslide<all:1-5> { \path[draw, thick] (6) -- (9); }
+        \onslide<all:6-> { \path[draw, thick, blue] (6) -- (9); }
+
+        \onslide<all:1-6, 7-> { \path[draw, thick] (7) -- (9); }
+        \onslide<all:7> { \path[draw, thick, red] (7) -- (9); }
+
+        \onslide<all:1-6> { \path[draw, thick] (8) -- (9); }
+        \onslide<all:7> { \path[draw, thick, red] (8) -- (9); }
+        \onslide<all:8-> { \path[draw, thick, blue] (8) -- (9); }
+
+        \onslide<all:9-> { \path[draw, thick, green, dotted] (2) edge[bend left = 90] node {} (3); }
+        \onslide<all:10-> { \path[draw, thick, green, dotted] (8) edge[bend left = 90] node {} (4); }
+        \onslide<all:11-> { \path[draw, thick, green, dotted] (9) -- (4); }
+    }
+}
+
+\subsection{Næsti sameiginlegi forfaðir með vegaþáttun}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> En hvernig finnum við næsta sameiginlega forföður tveggja hnúta $u$ og $v$ með vegaþáttun.
+        \item<2-> Köllum næsta forföðurinn $x$.
+        \item<3-> Ef $u$ og $v$ eru á sama veg þá er $x$ sá hnútur $u$ og $v$ sem er nær rótinni.
+        \item<4-> Gerum því ráð fyrir að $u$ og $v$ séu ekki á sama veg og
+                    látum $h_u$ vera hnútinn fremst á veginum sem $u$ er á og $h_v$ vera hnútinn sem er fremst á veginum sem $v$ er á.
+        \item<5-> Gerum ráð fyrir að $h_u$ sé lengra frá rótinni en $h_v$.
+        \item<6-> Þá er $x$ líka sameiginlegur forfaðir $h_u$ og $v$.
+        \item<7-> Enn fremur er $x$ sameiginlegur forfaðir $v$ og foreldris $h_u$.
+    }
+}
+
+\section{Útfærsla}
+\env{frame}
+{
+    \selectcode{code/lca-hld.cpp}{7}{33}
+}
+
+\section{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Í hverju skrefi ferðumst við eftir einum ómerktum legg í áttina að rótinni.
+        \item<2-> Það eru í mesta lagi $\log_2 n$ ómerktir leggir á veginum að rótinni frá hverjum hnút.
+        \item<3-> Svo tímaflækjan er $\mathcal{O}(\onslide<4->{\log n})$.
+        \item<5-> Einn kostur þessara aðferðar er að minnisflækjan er
+                    $\mathcal{O}(\onslide<6->{\,n\,})$ í stað þess að vera $\mathcal{O}(\onslide<7->{n \log n})$.
+    }
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

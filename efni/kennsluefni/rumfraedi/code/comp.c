@@ -2,23 +2,14 @@
 #include <stdio.h>
 #define EPS 1e-9
 
-int eq(double a, double b)
-{ // Eru |a| og |b| nógu líkar?
-	return fabs(a - b) < EPS;
-}
+int eq(double a, double b)  { return fabs(a - b) <  EPS; }                      // Eru a og b nógu líkar?
+int neq(double a, double b) { return fabs(a - b) >= EPS; }                      // Eru a og b nógu ólíkar?
 
-int neq(double a, double b)
-{ // Eru |a| og |b| nógu ólíkar?
-	return fabs(a - b) >= EPS;
-}
-
-/*
-0.1 0.2 0.3
-*/
 int main()
 {
-	double x, y, z;
-	scanf("%lf%lf%lf", &x, &y, &z);
-	printf("ep(%.6f + %.6f, %.6f) = %d\n", x, y, z, eq(x + y, z) ? 1 : 0);
-	printf("%.6f + %.6f == %.6f = %d\n", x, y, z, x + y == z ? 1 : 0);
+    double x, y, z;
+    scanf("%lf%lf%lf", &x, &y, &z);
+    printf("eq(%.2f + %.2f, %.2f) = %d\n", x, y, z, eq(x + y, z) ? 1 : 0);
+    printf("(%.2f + %.2f == %.2f) = %d\n", x, y, z, x + y == z ? 1 : 0);
+    return 0;
 }

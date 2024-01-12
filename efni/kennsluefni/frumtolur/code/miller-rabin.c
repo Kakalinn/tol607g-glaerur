@@ -11,15 +11,10 @@ ll bigprod(ll x, ll y, ll m)
     return ((lll)x*y)%m;
 }
 
-ll modpow(ll x, ll n, ll m)
+ll modpow(ll x, ll n, ll m) 
 { 
-    ll r = 1;
-    while (n > 0) 
-    { 
-        if (n%2 == 1) r = bigprod(r, x, m);
-        n = n/2;
-        x = bigprod(x, x, m);
-    } 
+    ll r;
+    for (r = 1; n > 0; n = n/2, x = (x*x)%m) if (n&1) r = (r*x)%m;
     return r; 
 }
 
@@ -27,13 +22,12 @@ int miller_rabin(ll n)
 {
     if (n%2 == 0) return n == 2;
     if (n <= 3) return n == 3;
-    ll i, k, s = 0, d = n - 1,
+    ll a, x, i, k, s = 0, d = n - 1,
        t[12] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
     while (d%2 == 0) d /= 2, s++;
-    for (i = 0; i < k; i++) if (t[k] <= n - 2)
+    for (k = 0; k < 12; k++) if (t[k] <= n - 2)
     {
-        ll a = t[k];
-        ll x = modpow(a, d, n);
+        a = t[k], x = modpow(a, d, n);
         if (x == 1 || x == n - 1) continue;
         for (i = 0; i < s - 1; i++) if ((x = bigprod(x, x, n)) == n - 1) break;
         if (i == s - 1) return 0;

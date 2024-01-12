@@ -4,4 +4,7 @@ setja 'onslide' inn í mathmode
 gera index á allar glærur
 breyta kannski öllum "only" í "onslide"
 gera kannski yfir/undirkafla á allar glærur
+
 þýði nöfnin á öllum föllunum á íslensku (það er ekki púkó!)
+það gæti verið sniðugt að hafa sér struct fyrir net. Þá væri hægt að hafa sér struct fyrir mismunandi reiknirit, t.d. lca_graph, scc_graph, etc.
+

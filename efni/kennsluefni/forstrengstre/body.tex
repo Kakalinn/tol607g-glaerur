@@ -6,479 +6,488 @@
 
 \frame{\titlepage}
 
+\section{Inngangur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við segjum að ekki tómt rótartré $T = (V, E)$ ásamt vörpun $\tau \colon E \rightarrow \Sigma$,
-					þar sem $\Sigma$ er eitthvað stafróf, sé \emph{forstrengstré} (e. \emph{prefix tree})
-					ef fyrir leggi $e_1$ og $e_2$ gildir $\tau(e_1) \neq \tau(e_2)$ ef leggirnir liggja úr sama hnút.
-		\item<2-> Með orðum er $\tau$ átæk úr hverjum hnút, eða engir leggir úr sama hnút geta verið merktir með sama bókstak.
-		\item<3-> Forstrengstré eru oft kölluð \emph{Trie}.
-		\item<4-> Við segjum að strengur $s$ sé í trénu ef það er til hnútur $v$ í trénu þannig að
-						\[
-							s = \tau(e_1) \dots \tau(e_k)
-						\]
-					þar sem $e_1, \dots e_k$ eru leggirnir á einfalda veginum frá rót til $v$, í réttri röð.
-		\item<5-> Það er mjög algengt að geyma aukagögn í hnútunum í trénu.
-		\item<6-> Skoðum dæmi um forstrengstré sem hefur engin aukagögn í hnútunum.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við segjum að ekki tómt rótartré $T = (V, E)$ ásamt vörpun $\tau \colon E \rightarrow \Sigma$,
+                    þar sem $\Sigma$ er eitthvert endanlegt mengi, sé \emph{forstrengstré} (e. \emph{prefix tree})
+                    ef fyrir leggi $e_1$ og $e_2$ gildir $\tau(e_1) \neq \tau(e_2)$ ef leggirnir liggja úr sama hnút.
+        \item<2-> Við köllum $\Sigma$ \emph{stafrófið} okkar og stökin í $\Sigma$ köllum við \emph{bókstafi}.
+        \item<3-> Með öðrum orðum er $\tau$ átæk úr hverjum hnút eða, með enn öðrum orðum, engir leggir úr sama hnút geta verið merktir með sama bókstak.
+        \item<4-> Forstrengstré eru oft kölluð \emph{trie}.
+        \item<5-> Við segjum að strengur $s$ sé í trénu ef það er til hnútur $v$ í trénu þannig að
+        \[
+            s = \tau(e_1) \dots \tau(e_k)
+        \]
+                    þar sem $e_1, \dots e_k$ eru leggirnir á einfalda veginum frá rót til $v$, í réttri röð.
+        \item<6-> Það er mjög algengt að geyma aukagögn í hnútunum í trénu.
+        \item<7-> Skoðum dæmi um forstrengstré sem hefur engin aukagögn í hnútunum.
+    }
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
-	\env{tikzpicture}
-	{
-		\node[draw, circle, thick, white] (0) at (-1, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (3) at (1, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (4) at (1, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (5) at (2, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (6) at (3, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (9) at (6, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (10) at (2, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (11) at (3, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (12) at (4, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (17) at (6, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (18) at (5, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (19) at (6, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (20) at (7, -1) {};
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick, white] (0) at (-1, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (3) at (1, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (4) at (1, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (5) at (2, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (6) at (3, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (9) at (6, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (10) at (2, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (11) at (3, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (12) at (4, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (17) at (6, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (18) at (5, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (19) at (6, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (20) at (7, -1) {};
 
-		\path[draw, thick, ->] (0) -- (1);
-		\path[draw, thick] (1) -- (2);
-		\path[draw, thick] (1) -- (3);
-		\path[draw, thick] (3) -- (5);
-		\path[draw, thick] (5) -- (6);
-		\path[draw, thick] (6) -- (7);
-		\path[draw, thick] (7) -- (8);
-		\path[draw, thick] (8) -- (9);
-		\path[draw, thick] (1) -- (4);
-		\path[draw, thick] (4) -- (10);
-		\path[draw, thick] (10) -- (11);
-		\path[draw, thick] (11) -- (12);
-		\path[draw, thick] (2) -- (13);
-		\path[draw, thick] (13) -- (14);
-		\path[draw, thick] (14) -- (15);
-		\path[draw, thick] (15) -- (16);
-		\path[draw, thick] (16) -- (17);
-		\path[draw, thick] (7) -- (18);
-		\path[draw, thick] (18) -- (19);
-		\path[draw, thick] (19) -- (20);
+        \path[draw, thick, ->] (0) -- (1);
+        \path[draw, thick] (1) -- (2);
+        \path[draw, thick] (1) -- (3);
+        \path[draw, thick] (3) -- (5);
+        \path[draw, thick] (5) -- (6);
+        \path[draw, thick] (6) -- (7);
+        \path[draw, thick] (7) -- (8);
+        \path[draw, thick] (8) -- (9);
+        \path[draw, thick] (1) -- (4);
+        \path[draw, thick] (4) -- (10);
+        \path[draw, thick] (10) -- (11);
+        \path[draw, thick] (11) -- (12);
+        \path[draw, thick] (2) -- (13);
+        \path[draw, thick] (13) -- (14);
+        \path[draw, thick] (14) -- (15);
+        \path[draw, thick] (15) -- (16);
+        \path[draw, thick] (16) -- (17);
+        \path[draw, thick] (7) -- (18);
+        \path[draw, thick] (18) -- (19);
+        \path[draw, thick] (19) -- (20);
 
-		\node at (0.5, 0.2) {b};
-		\node at (1.5, 0.2) {e};
-		\node at (2.5, 0.2) {r};
-		\node at (3.5, 0.2) {g};
-		\node at (4.5, 0.2) {u};
-		\node at (5.5, 0.2) {r};
-		\node at (0.6, -0.4) {n};
-		\node at (1.5, -0.8) {a};
-		\node at (2.5, -0.8) {l};
-		\node at (3.5, -0.8) {a};
-		\node at (0.5, 0.8) {s};
-		\node at (1.5, 1.2) {a};
-		\node at (2.5, 1.2) {n};
-		\node at (3.5, 1.2) {d};
-		\node at (4.5, 1.2) {r};
-		\node at (5.5, 1.2) {a};
-		\node at (4.7, -0.4) {þ};
-		\node at (5.5, -0.8) {ó};
-		\node at (6.5, -0.8) {r};
-		%\only<all:2-3> { \node at (6,3) {$v$}; }
-		%\only<all:3> { \node at (5,1) {$x$}; }
-	}
-	\env{itemize}
-	{
-		\item<2-> Dæmi um strengi í trénu eru:
-		\env{itemize}
-		{
-			\item<3-> ,,sandra'',
-			\item<4-> ,,nala'',
-			\item<5-> ,,bergur'',
-			\item<6-> ,,bergþór'',
-			\item<7-> ,,san'' og
-			\item<8-> ,,'' (tómi strengurinn)
-		}
-	}
+        \node at (0.5, 0.2) {b};
+        \node at (1.5, 0.2) {e};
+        \node at (2.5, 0.2) {r};
+        \node at (3.5, 0.2) {g};
+        \node at (4.5, 0.2) {u};
+        \node at (5.5, 0.2) {r};
+        \node at (0.6, -0.4) {n};
+        \node at (1.5, -0.8) {a};
+        \node at (2.5, -0.8) {l};
+        \node at (3.5, -0.8) {a};
+        \node at (0.5, 0.8) {s};
+        \node at (1.5, 1.2) {a};
+        \node at (2.5, 1.2) {n};
+        \node at (3.5, 1.2) {d};
+        \node at (4.5, 1.2) {r};
+        \node at (5.5, 1.2) {a};
+        \node at (4.7, -0.4) {þ};
+        \node at (5.5, -0.8) {ó};
+        \node at (6.5, -0.8) {r};
+        %\only<all:2-3> { \node at (6,3) {$v$}; }
+        %\only<all:3> { \node at (5,1) {$x$}; }
+    }
+    \env{itemize}
+    {
+        \item<2-> Dæmi um strengi í trénu eru:
+        \env{itemize}
+        {
+            \item<3-> ,,sandra'',
+            \item<4-> ,,nala'',
+            \item<5-> ,,bergur'',
+            \item<6-> ,,bergþór'',
+            \item<7-> ,,san'' og
+            \item<8-> ,,'' (tómi strengurinn)
+        }
+    }
 }
 
+\section{Merktir lokahnútar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Algengt er að merkjar suma hnúta sem \emph{lokahnúta}.
-		\item<2-> Þetta eru dæmi um aukagögn sem við geymum í hnútum.
-		\item<3-> Við segjum að strengur $s$ sé í trénu ef það er til {\bf loka}hnútur $v$ í trénu þannig að
-						\[
-							s = \tau(e_1) \dots \tau(e_k)
-						\]
-					þar sem $e_1, \dots e_k$ eru leggirnir á einfalda veginum frá rót til $v$, í réttri röð.
-	}
+    \env{itemize}
+    {
+        \item<1-> Algengt er að merkja suma hnúta sem \emph{lokahnúta}.
+        \item<2-> Þetta eru dæmi um aukagögn sem við geymum í hnútum.
+        \item<3-> Við segjum að strengur $s$ sé í trénu ef það er til {\bf loka}hnútur $v$ í trénu þannig að
+        \[
+            s = \tau(e_1) \dots \tau(e_k)
+        \]
+                    þar sem $e_1, \dots e_k$ eru leggirnir á einfalda veginum frá rót til $v$, í réttri röð.
+    }
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
-	\env{tikzpicture}
-	{
-		\node[draw, circle, thick, white] (0) at (-1, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (3) at (1, 0) {};
-		\node[draw, circle, thick, fill, inner sep = 1.0pt] (4) at (1, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (5) at (2, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (6) at (3, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, 0) {};
-		\node[draw, circle, thick, fill, inner sep = 1.0pt] (9) at (6, 0) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (10) at (2, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (11) at (3, -1) {};
-		\node[draw, circle, thick, fill, inner sep = 1.0pt] (12) at (4, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {};
-		\node[draw, circle, thick, fill, inner sep = 1.0pt] (17) at (6, 1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (18) at (5, -1) {};
-		\node[draw, circle, thick, inner sep = 1.0pt] (19) at (6, -1) {};
-		\node[draw, circle, thick, fill, inner sep = 1.0pt] (20) at (7, -1) {};
+    \env{tikzpicture}
+    {
+        \node[draw, circle, thick, white] (0) at (-1, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (3) at (1, 0) {};
+        \node[draw, circle, thick, fill, inner sep = 1.0pt] (4) at (1, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (5) at (2, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (6) at (3, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, 0) {};
+        \node[draw, circle, thick, fill, inner sep = 1.0pt] (9) at (6, 0) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (10) at (2, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (11) at (3, -1) {};
+        \node[draw, circle, thick, fill, inner sep = 1.0pt] (12) at (4, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {};
+        \node[draw, circle, thick, fill, inner sep = 1.0pt] (17) at (6, 1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (18) at (5, -1) {};
+        \node[draw, circle, thick, inner sep = 1.0pt] (19) at (6, -1) {};
+        \node[draw, circle, thick, fill, inner sep = 1.0pt] (20) at (7, -1) {};
 
-		\path[draw, thick, ->] (0) -- (1);
-		\path[draw, thick] (1) -- (2);
-		\path[draw, thick] (1) -- (3);
-		\path[draw, thick] (3) -- (5);
-		\path[draw, thick] (5) -- (6);
-		\path[draw, thick] (6) -- (7);
-		\path[draw, thick] (7) -- (8);
-		\path[draw, thick] (8) -- (9);
-		\path[draw, thick] (1) -- (4);
-		\path[draw, thick] (4) -- (10);
-		\path[draw, thick] (10) -- (11);
-		\path[draw, thick] (11) -- (12);
-		\path[draw, thick] (2) -- (13);
-		\path[draw, thick] (13) -- (14);
-		\path[draw, thick] (14) -- (15);
-		\path[draw, thick] (15) -- (16);
-		\path[draw, thick] (16) -- (17);
-		\path[draw, thick] (7) -- (18);
-		\path[draw, thick] (18) -- (19);
-		\path[draw, thick] (19) -- (20);
+        \path[draw, thick, ->] (0) -- (1);
+        \path[draw, thick] (1) -- (2);
+        \path[draw, thick] (1) -- (3);
+        \path[draw, thick] (3) -- (5);
+        \path[draw, thick] (5) -- (6);
+        \path[draw, thick] (6) -- (7);
+        \path[draw, thick] (7) -- (8);
+        \path[draw, thick] (8) -- (9);
+        \path[draw, thick] (1) -- (4);
+        \path[draw, thick] (4) -- (10);
+        \path[draw, thick] (10) -- (11);
+        \path[draw, thick] (11) -- (12);
+        \path[draw, thick] (2) -- (13);
+        \path[draw, thick] (13) -- (14);
+        \path[draw, thick] (14) -- (15);
+        \path[draw, thick] (15) -- (16);
+        \path[draw, thick] (16) -- (17);
+        \path[draw, thick] (7) -- (18);
+        \path[draw, thick] (18) -- (19);
+        \path[draw, thick] (19) -- (20);
 
-		\node at (0.5, 0.2) {b};
-		\node at (1.5, 0.2) {e};
-		\node at (2.5, 0.2) {r};
-		\node at (3.5, 0.2) {g};
-		\node at (4.5, 0.2) {u};
-		\node at (5.5, 0.2) {r};
-		\node at (0.6, -0.4) {n};
-		\node at (1.5, -0.8) {a};
-		\node at (2.5, -0.8) {l};
-		\node at (3.5, -0.8) {a};
-		\node at (0.5, 0.8) {s};
-		\node at (1.5, 1.2) {a};
-		\node at (2.5, 1.2) {n};
-		\node at (3.5, 1.2) {d};
-		\node at (4.5, 1.2) {r};
-		\node at (5.5, 1.2) {a};
-		\node at (4.7, -0.4) {þ};
-		\node at (5.5, -0.8) {ó};
-		\node at (6.5, -0.8) {r};
-		%\only<all:2-3> { \node at (6,3) {$v$}; }
-		%\only<all:3> { \node at (5,1) {$x$}; }
-	}
-	\env{itemize}
-	{
-		\item<2-> Strengirnir í trénu eru:
-		\env{itemize}
-		{
-			\item<3-> ,,sandra'',
-			\item<4-> ,,nala'',
-			\item<5-> ,,bergur'',
-			\item<6-> ,,bergþór'' og
-			\item<7-> ,,n''
-		}
-	}
+        \node at (0.5, 0.2) {b};
+        \node at (1.5, 0.2) {e};
+        \node at (2.5, 0.2) {r};
+        \node at (3.5, 0.2) {g};
+        \node at (4.5, 0.2) {u};
+        \node at (5.5, 0.2) {r};
+        \node at (0.6, -0.4) {n};
+        \node at (1.5, -0.8) {a};
+        \node at (2.5, -0.8) {l};
+        \node at (3.5, -0.8) {a};
+        \node at (0.5, 0.8) {s};
+        \node at (1.5, 1.2) {a};
+        \node at (2.5, 1.2) {n};
+        \node at (3.5, 1.2) {d};
+        \node at (4.5, 1.2) {r};
+        \node at (5.5, 1.2) {a};
+        \node at (4.7, -0.4) {þ};
+        \node at (5.5, -0.8) {ó};
+        \node at (6.5, -0.8) {r};
+        %\only<all:2-3> { \node at (6,3) {$v$}; }
+        %\only<all:3> { \node at (5,1) {$x$}; }
+    }
+    \env{itemize}
+    {
+        \item<2-> Strengirnir í trénu eru:
+        \env{itemize}
+        {
+            \item<3-> ,,sandra'',
+            \item<4-> ,,nala'',
+            \item<5-> ,,bergur'',
+            \item<6-> ,,bergþór'' og
+            \item<7-> ,,n''
+        }
+        \item<8-> Hvaða breytingu þurfum við að framkvæma ef við viljum að tómi strengurinn sé í trénu?
+    }
 }
 
+\section{Hvernig á að bæta strengjum í forstrengstréð?}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvað gerum við ef við viljum bæta streng við forstrengstré?
-		\item<2-> Ef við viljum setja strenginn $s = s_1s_2 \dots s_n$ í tréð $T$ þá setjum við strenginn
-					$s' = s_2s_3 \dots s_n$ í hluttré $T$ sem við lendum í ef við flygjum leggnum merktum $s_1$.
-		\item<3-> Takið eftir að það hluttré má vera tómt (með öðrum orðum er ekki leggur merktur $s_1$).
-		\item<4-> Í því tilfelli stækkar tréð.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvað gerum við ef við viljum bæta streng við forstrengstré?
+        \item<2-> Ef við viljum setja strenginn $s = s_1s_2 \dots s_n$ í tréð $T$ þá setjum við strenginn
+                    $s' = s_2s_3 \dots s_n$ í hluttré $T$ sem við lendum í ef við flygjum leggnum merktum $s_1$.
+        \item<3-> Takið eftir að það hluttré má vera tómt (með öðrum orðum er ekki leggur merktur $s_1$).
+        \item<4-> Í því tilfelli stækkar tréð.
+        \item<5-> Í lokinn merkjum við hnútinn sem við endum í sem endahnút.
+    }
 }
 
+\section{Sýnidæmi}
 \env{frame}
 {
-	\env{tikzpicture}
-	{
-		\node[draw, circle, white, thick, inner sep = 1.0pt] at (4, -2) {}; %alignment
+    \env{tikzpicture}
+    {
+        %\node[draw, circle, thick, white] (0) at (-1, 0) {};
+        \onslide<all:1-2, 4-8, 10-15, 17-27, 29-36, 38-46, 48-61, 63-> { \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {}; }
+        \onslide<all:3, 9, 16, 28, 37, 47, 62> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (1) at (0, 0) {}; }
 
-		\node[draw, circle, thick, white] (0) at (-1, 0) {};
-		\only<all:1-2, 4-8, 10-15, 17-27, 29-36, 38-46, 48-61, 63-> { \node[draw, circle, thick, inner sep = 1.0pt] (1) at (0, 0) {}; }
-		\only<all:3, 9, 16, 28, 37, 47, 62> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (1) at (0, 0) {}; }
+        \onslide<all:5-9, 11-16, 18-28, 30-37, 39-47, 49-62, 64-> { \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 0) {}; }
+        \onslide<all:4, 10, 17, 29, 38, 48, 63> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (2) at (1, 0) {}; }
 
-		\only<all:5-9, 11-16, 18-28, 30-37, 39-47, 49-62, 64-> { \node[draw, circle, thick, inner sep = 1.0pt] (2) at (1, 0) {}; }
-		\only<all:4, 10, 17, 29, 38, 48, 63> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (2) at (1, 0) {}; }
+        \onslide<all:6-10, 12-17, 19-38, 40-> { \node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 0) {}; }
+        \onslide<all:5, 11, 18, 39> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (3) at (2, 0) {}; }
 
-		\only<all:6-10, 12-17, 19-38, 40-> { \node[draw, circle, thick, inner sep = 1.0pt] (3) at (2, 0) {}; }
-		\only<all:5, 11, 18, 39> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (3) at (2, 0) {}; }
+        \onslide<all:7-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (4) at (3, 0) {}; }
+        \onslide<all:6> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (4) at (3, 0) {}; }
 
-		\only<all:7-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (4) at (3, 0) {}; }
-		\only<all:6> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (4) at (3, 0) {}; }
+        \onslide<all:13-18, 20-39, 41-> { \node[draw, circle, thick, inner sep = 1.0pt] (5) at (3, -1) {}; }
+        \onslide<all:12, 19, 40> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (5) at (3, -1) {}; }
 
-		\only<all:13-18, 20-39, 41-> { \node[draw, circle, thick, inner sep = 1.0pt] (5) at (3, -1) {}; }
-		\only<all:12, 19, 40> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (5) at (3, -1) {}; }
+        \onslide<all:14-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (6) at (4, -1) {}; }
+        \onslide<all:13> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (6) at (4, -1) {}; }
 
-		\only<all:14-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (6) at (4, -1) {}; }
-		\only<all:13> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (6) at (4, -1) {}; }
+        \onslide<all:21-> { \node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, -2) {}; }
+        \onslide<all:20> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (7) at (4, -2) {}; }
 
-		\only<all:21-> { \node[draw, circle, thick, inner sep = 1.0pt] (7) at (4, -2) {}; }
-		\only<all:20> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (7) at (4, -2) {}; }
+        \onslide<all:22-> { \node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, -2) {}; }
+        \onslide<all:21> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (8) at (5, -2) {}; }
 
-		\only<all:22-> { \node[draw, circle, thick, inner sep = 1.0pt] (8) at (5, -2) {}; }
-		\only<all:21> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (8) at (5, -2) {}; }
+        \onslide<all:23-> { \node[draw, circle, thick, inner sep = 1.0pt] (9) at (6, -2) {}; }
+        \onslide<all:22> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (9) at (6, -2) {}; }
 
-		\only<all:23-> { \node[draw, circle, thick, inner sep = 1.0pt] (9) at (6, -2) {}; }
-		\only<all:22> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (9) at (6, -2) {}; }
+        \onslide<all:24-> { \node[draw, circle, thick, inner sep = 1.0pt] (10) at (7, -2) {}; }
+        \onslide<all:23> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (10) at (7, -2) {}; }
 
-		\only<all:24-> { \node[draw, circle, thick, inner sep = 1.0pt] (10) at (7, -2) {}; }
-		\only<all:23> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (10) at (7, -2) {}; }
+        \onslide<all:25-> { \node[draw, circle, thick, inner sep = 1.0pt] (11) at (8, -2) {}; }
+        \onslide<all:24> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (11) at (8, -2) {}; }
 
-		\only<all:25-> { \node[draw, circle, thick, inner sep = 1.0pt] (11) at (8, -2) {}; }
-		\only<all:24> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (11) at (8, -2) {}; }
+        \onslide<all:26-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (12) at (9, -2) {}; }
+        \onslide<all:25> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (12) at (9, -2) {}; }
 
-		\only<all:26-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (12) at (9, -2) {}; }
-		\only<all:25> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (12) at (9, -2) {}; }
+        \onslide<all:31-48, 50-63, 65-> { \node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {}; }
+        \onslide<all:30, 49, 64> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (13) at (2, 1) {}; }
 
-		\only<all:31-48, 50-63, 65-> { \node[draw, circle, thick, inner sep = 1.0pt] (13) at (2, 1) {}; }
-		\only<all:30, 49, 64> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (13) at (2, 1) {}; }
+        \onslide<all:32-49, 51-64, 66-> { \node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {}; }
+        \onslide<all:31, 50, 65> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (14) at (3, 1) {}; }
 
-		\only<all:32-49, 51-64, 66-> { \node[draw, circle, thick, inner sep = 1.0pt] (14) at (3, 1) {}; }
-		\only<all:31, 50, 65> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (14) at (3, 1) {}; }
+        \onslide<all:33-50, 52-65, 67-> { \node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {}; }
+        \onslide<all:32, 51, 66> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (15) at (4, 1) {}; }
 
-		\only<all:33-50, 52-65, 67-> { \node[draw, circle, thick, inner sep = 1.0pt] (15) at (4, 1) {}; }
-		\only<all:32, 51, 66> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (15) at (4, 1) {}; }
+        \onslide<all:34-51, 53-66, 68-> { \node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {}; }
+        \onslide<all:33, 52, 67> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (16) at (5, 1) {}; }
 
-		\only<all:34-51, 53-66, 68-> { \node[draw, circle, thick, inner sep = 1.0pt] (16) at (5, 1) {}; }
-		\only<all:33, 52, 67> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (16) at (5, 1) {}; }
+        \onslide<all:35-52, 54-67, 69-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (17) at (6, 1) {}; }
+        \onslide<all:34, 53, 68> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (17) at (6, 1) {}; }
 
-		\only<all:35-52, 54-67, 69-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (17) at (6, 1) {}; }
-		\only<all:34, 53, 68> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (17) at (6, 1) {}; }
+        \onslide<all:42-> { \node[draw, circle, thick, inner sep = 1.0pt] (18) at (4, 0) {}; }
+        \onslide<all:41> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (18) at (4, 0) {}; }
 
-		\only<all:42-> { \node[draw, circle, thick, inner sep = 1.0pt] (18) at (4, 0) {}; }
-		\only<all:41> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (18) at (4, 0) {}; }
+        \onslide<all:43-> { \node[draw, circle, thick, inner sep = 1.0pt] (19) at (5, 0) {}; }
+        \onslide<all:42> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (19) at (5, 0) {}; }
 
-		\only<all:43-> { \node[draw, circle, thick, inner sep = 1.0pt] (19) at (5, 0) {}; }
-		\only<all:42> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (19) at (5, 0) {}; }
+        \onslide<all:44-> { \node[draw, circle, thick, inner sep = 1.0pt] (20) at (6, 0) {}; }
+        \onslide<all:43> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (20) at (6, 0) {}; }
 
-		\only<all:44-> { \node[draw, circle, thick, inner sep = 1.0pt] (20) at (6, 0) {}; }
-		\only<all:43> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (20) at (6, 0) {}; }
+        \onslide<all:45-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (21) at (7, 0) {}; }
+        \onslide<all:44> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (21) at (7, 0) {}; }
 
-		\only<all:45-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (21) at (7, 0) {}; }
-		\only<all:44> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (21) at (7, 0) {}; }
+        \onslide<all:55-68, 70-> { \node[draw, circle, thick, inner sep = 1.0pt] (22) at (7, 1) {}; }
+        \onslide<all:54, 69> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (22) at (7, 1) {}; }
 
-		\only<all:55-68, 70-> { \node[draw, circle, thick, inner sep = 1.0pt] (22) at (7, 1) {}; }
-		\only<all:54, 69> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (22) at (7, 1) {}; }
+        \onslide<all:56-> { \node[draw, circle, thick, inner sep = 1.0pt] (23) at (8, 1) {}; }
+        \onslide<all:55> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (23) at (8, 1) {}; }
 
-		\only<all:56-> { \node[draw, circle, thick, inner sep = 1.0pt] (23) at (8, 1) {}; }
-		\only<all:55> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (23) at (8, 1) {}; }
+        \onslide<all:57-> { \node[draw, circle, thick, inner sep = 1.0pt] (24) at (8, 0) {}; }
+        \onslide<all:56> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (24) at (8, 0) {}; }
 
-		\only<all:57-> { \node[draw, circle, thick, inner sep = 1.0pt] (24) at (8, 0) {}; }
-		\only<all:56> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (24) at (8, 0) {}; }
+        \onslide<all:58-> { \node[draw, circle, thick, inner sep = 1.0pt] (25) at (9, 0) {}; }
+        \onslide<all:57> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (25) at (9, 0) {}; }
 
-		\only<all:58-> { \node[draw, circle, thick, inner sep = 1.0pt] (25) at (9, 0) {}; }
-		\only<all:57> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (25) at (9, 0) {}; }
+        \onslide<all:59-> { \node[draw, circle, thick, inner sep = 1.0pt] (26) at (9, 1) {}; }
+        \onslide<all:58> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (26) at (9, 1) {}; }
 
-		\only<all:59-> { \node[draw, circle, thick, inner sep = 1.0pt] (26) at (9, 1) {}; }
-		\only<all:58> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (26) at (9, 1) {}; }
+        \onslide<all:60-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (27) at (10, 1) {}; }
+        \onslide<all:59> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (27) at (10, 1) {}; }
 
-		\only<all:1-> { \node[draw, circle, white, thick, inner sep = 1.0pt] (27) at (10, 1) {}; } %alignment
-		\only<all:60-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (27) at (10, 1) {}; }
-		\only<all:59> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (27) at (10, 1) {}; }
+        \onslide<all:71-> { \node[draw, circle, thick, inner sep = 1.0pt] (28) at (7, 2) {}; }
+        \onslide<all:70> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (28) at (7, 2) {}; }
 
-		\only<all:71-> { \node[draw, circle, thick, inner sep = 1.0pt] (28) at (7, 2) {}; }
-		\only<all:70> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (28) at (7, 2) {}; }
+        \onslide<all:72-> { \node[draw, circle, thick, inner sep = 1.0pt] (29) at (6, 2) {}; }
+        \onslide<all:71> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (29) at (6, 2) {}; }
 
-		\only<all:72-> { \node[draw, circle, thick, inner sep = 1.0pt] (29) at (6, 2) {}; }
-		\only<all:71> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (29) at (6, 2) {}; }
+        \onslide<all:73-> { \node[draw, circle, thick, inner sep = 1.0pt] (30) at (5, 2) {}; }
+        \onslide<all:72> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (30) at (5, 2) {}; }
 
-		\only<all:73-> { \node[draw, circle, thick, inner sep = 1.0pt] (30) at (5, 2) {}; }
-		\only<all:72> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (30) at (5, 2) {}; }
+        \onslide<all:74-> { \node[draw, circle, thick, inner sep = 1.0pt] (31) at (4, 2) {}; }
+        \onslide<all:73> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (31) at (4, 2) {}; }
 
-		\only<all:74-> { \node[draw, circle, thick, inner sep = 1.0pt] (31) at (4, 2) {}; }
-		\only<all:73> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (31) at (4, 2) {}; }
-
-		\only<all:75-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (32) at (3, 2) {}; }
-		\only<all:74> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (32) at (3, 2) {}; }
+        \onslide<all:75-> { \node[draw, circle, fill, thick, inner sep = 1.0pt] (32) at (3, 2) {}; }
+        \onslide<all:74> { \node[draw, circle, blue, thick, inner sep = 1.0pt] (32) at (3, 2) {}; }
 
 
-		\path[draw, thick, ->] (0) -- (1);
-		\only<all:4-> { \path[draw, thick] (1) -- (2); }
-		\only<all:5-> { \path[draw, thick] (2) -- (3); }
-		\only<all:6-> { \path[draw, thick] (3) -- (4); }
-		\only<all:12-> { \path[draw, thick] (3) -- (5); }
-		\only<all:13-> { \path[draw, thick] (5) -- (6); }
-		\only<all:20-> { \path[draw, thick] (5) -- (7); }
-		\only<all:21-> { \path[draw, thick] (7) -- (8); }
-		\only<all:22-> { \path[draw, thick] (8) -- (9); }
-		\only<all:23-> { \path[draw, thick] (9) -- (10); }
-		\only<all:24-> { \path[draw, thick] (10) -- (11); }
-		\only<all:25-> { \path[draw, thick] (11) -- (12); }
-		\only<all:30-> { \path[draw, thick] (2) -- (13); }
-		\only<all:31-> { \path[draw, thick] (13) -- (14); }
-		\only<all:32-> { \path[draw, thick] (14) -- (15); }
-		\only<all:33-> { \path[draw, thick] (15) -- (16); }
-		\only<all:34-> { \path[draw, thick] (16) -- (17); }
-		\only<all:41-> { \path[draw, thick] (5) -- (18); }
-		\only<all:42-> { \path[draw, thick] (18) -- (19); }
-		\only<all:43-> { \path[draw, thick] (19) -- (20); }
-		\only<all:44-> { \path[draw, thick] (20) -- (21); }
-		\only<all:54-> { \path[draw, thick] (17) -- (22); }
-		\only<all:55-> { \path[draw, thick] (22) -- (23); }
-		\only<all:56-> { \path[draw, thick] (23) -- (24); }
-		\only<all:57-> { \path[draw, thick] (24) -- (25); }
-		\only<all:58-> { \path[draw, thick] (25) -- (26); }
-		\only<all:59-> { \path[draw, thick] (26) -- (27); }
-		\only<all:70-> { \path[draw, thick] (22) -- (28); }
-		\only<all:71-> { \path[draw, thick] (28) -- (29); }
-		\only<all:72-> { \path[draw, thick] (29) -- (30); }
-		\only<all:73-> { \path[draw, thick] (30) -- (31); }
-		\only<all:74-> { \path[draw, thick] (31) -- (32); }
+        \path[draw, thick, ->] (0) -- (1);
+        \onslide<all:4-> { \path[draw, thick] (1) -- (2); }
+        \onslide<all:5-> { \path[draw, thick] (2) -- (3); }
+        \onslide<all:6-> { \path[draw, thick] (3) -- (4); }
+        \onslide<all:12-> { \path[draw, thick] (3) -- (5); }
+        \onslide<all:13-> { \path[draw, thick] (5) -- (6); }
+        \onslide<all:20-> { \path[draw, thick] (5) -- (7); }
+        \onslide<all:21-> { \path[draw, thick] (7) -- (8); }
+        \onslide<all:22-> { \path[draw, thick] (8) -- (9); }
+        \onslide<all:23-> { \path[draw, thick] (9) -- (10); }
+        \onslide<all:24-> { \path[draw, thick] (10) -- (11); }
+        \onslide<all:25-> { \path[draw, thick] (11) -- (12); }
+        \onslide<all:30-> { \path[draw, thick] (2) -- (13); }
+        \onslide<all:31-> { \path[draw, thick] (13) -- (14); }
+        \onslide<all:32-> { \path[draw, thick] (14) -- (15); }
+        \onslide<all:33-> { \path[draw, thick] (15) -- (16); }
+        \onslide<all:34-> { \path[draw, thick] (16) -- (17); }
+        \onslide<all:41-> { \path[draw, thick] (5) -- (18); }
+        \onslide<all:42-> { \path[draw, thick] (18) -- (19); }
+        \onslide<all:43-> { \path[draw, thick] (19) -- (20); }
+        \onslide<all:44-> { \path[draw, thick] (20) -- (21); }
+        \onslide<all:54-> { \path[draw, thick] (17) -- (22); }
+        \onslide<all:55-> { \path[draw, thick] (22) -- (23); }
+        \onslide<all:56-> { \path[draw, thick] (23) -- (24); }
+        \onslide<all:57-> { \path[draw, thick] (24) -- (25); }
+        \onslide<all:58-> { \path[draw, thick] (25) -- (26); }
+        \onslide<all:59-> { \path[draw, thick] (26) -- (27); }
+        \onslide<all:70-> { \path[draw, thick] (22) -- (28); }
+        \onslide<all:71-> { \path[draw, thick] (28) -- (29); }
+        \onslide<all:72-> { \path[draw, thick] (29) -- (30); }
+        \onslide<all:73-> { \path[draw, thick] (30) -- (31); }
+        \onslide<all:74-> { \path[draw, thick] (31) -- (32); }
 
-		%\only<all:1-> { \node[white] at (3.5, -0.8) {r}; } %alignment
-		\only<all:4-> { \node at (0.5, 0.2) {a}; }
-		\only<all:5-> { \node at (1.5, 0.2) {p}; }
-		\only<all:6-> { \node at (2.5, 0.2) {i}; }
-		\only<all:12-> { \node at (2.7, -0.5) {a}; }
-		\only<all:13-> { \node at (3.5, -0.8) {r}; }
-		\only<all:20-> { \node at (3.7, -1.4) {k}; }
-		\only<all:21-> { \node at (4.5, -1.8) {ö}; }
-		\only<all:22-> { \node at (5.5, -1.8) {t}; }
-		\only<all:23-> { \node at (6.5, -1.8) {t}; }
-		\only<all:24-> { \node at (7.5, -1.8) {u}; }
-		\only<all:25-> { \node at (8.5, -1.8) {r}; }
-		\only<all:30-> { \node at (1.5, 0.8) {l}; }
-		\only<all:31-> { \node at (2.5, 1.2) {t}; }
-		\only<all:32-> { \node at (3.5, 1.2) {a}; }
-		\only<all:33-> { \node at (4.5, 1.2) {r}; }
-		\only<all:34-> { \node at (5.5, 1.2) {i}; }
-		\only<all:41-> { \node at (3.6, -0.2) {s}; }
-		\only<all:42-> { \node at (4.5, 0.2) {p}; }
-		\only<all:43-> { \node at (5.5, 0.2) {i}; }
-		\only<all:44-> { \node at (6.5, 0.2) {l}; }
-		\only<all:54-> { \node at (6.5, 1.2) {s}; }
-		\only<all:55-> { \node at (7.5, 1.2) {t}; }
-		\only<all:56-> { \node at (8.2, 0.5) {a}; }
-		\only<all:57-> { \node at (8.5, 0.2) {f}; }
-		\only<all:58-> { \node at (9.2, 0.5) {l}; }
-		\only<all:59-> { \node at (9.5, 1.2) {a}; }
-		\only<all:70-> { \node at (7.2, 1.7) {g}; }
-		\only<all:71-> { \node at (6.5, 2.2) {a}; }
-		\only<all:72-> { \node at (5.5, 2.2) {n}; }
-		\only<all:73-> { \node at (4.5, 2.2) {g}; }
-		\only<all:74-> { \node at (3.5, 2.2) {a}; }
+        \onslide<all:4-> { \node at (0.5, 0.2) {a}; }
+        \onslide<all:5-> { \node at (1.5, 0.2) {p}; }
+        \onslide<all:6-> { \node at (2.5, 0.2) {i}; }
+        \onslide<all:12-> { \node at (2.7, -0.5) {a}; }
+        \onslide<all:13-> { \node at (3.5, -0.8) {r}; }
+        \onslide<all:20-> { \node at (3.7, -1.4) {k}; }
+        \onslide<all:21-> { \node at (4.5, -1.8) {ö}; }
+        \onslide<all:22-> { \node at (5.5, -1.8) {t}; }
+        \onslide<all:23-> { \node at (6.5, -1.8) {t}; }
+        \onslide<all:24-> { \node at (7.5, -1.8) {u}; }
+        \onslide<all:25-> { \node at (8.5, -1.8) {r}; }
+        \onslide<all:30-> { \node at (1.5, 0.8) {l}; }
+        \onslide<all:31-> { \node at (2.5, 1.2) {t}; }
+        \onslide<all:32-> { \node at (3.5, 1.2) {a}; }
+        \onslide<all:33-> { \node at (4.5, 1.2) {r}; }
+        \onslide<all:34-> { \node at (5.5, 1.2) {i}; }
+        \onslide<all:41-> { \node at (3.6, -0.2) {s}; }
+        \onslide<all:42-> { \node at (4.5, 0.2) {p}; }
+        \onslide<all:43-> { \node at (5.5, 0.2) {i}; }
+        \onslide<all:44-> { \node at (6.5, 0.2) {l}; }
+        \onslide<all:54-> { \node at (6.5, 1.2) {s}; }
+        \onslide<all:55-> { \node at (7.5, 1.2) {t}; }
+        \onslide<all:56-> { \node at (8.2, 0.5) {a}; }
+        \onslide<all:57-> { \node at (8.5, 0.2) {f}; }
+        \onslide<all:58-> { \node at (9.2, 0.5) {l}; }
+        \onslide<all:59-> { \node at (9.5, 1.2) {a}; }
+        \onslide<all:70-> { \node at (7.2, 1.7) {g}; }
+        \onslide<all:71-> { \node at (6.5, 2.2) {a}; }
+        \onslide<all:72-> { \node at (5.5, 2.2) {n}; }
+        \onslide<all:73-> { \node at (4.5, 2.2) {g}; }
+        \onslide<all:74-> { \node at (3.5, 2.2) {a}; }
 
-		%\node at (6.5, -0.8) {r};
-		\only<all:1-> { \node[white] at (6,3) {,,api''}; } %alignment
-		\only<all:2-3> { \node at (6,3) {,,api''}; }
-		\only<all:4> { \node at (6,3) {,,pi''}; }
-		\only<all:5> { \node at (6,3) {,,i''}; }
-		\only<all:6> { \node at (6,3) {,,''}; }
-		\only<all:8-9> { \node at (6,3) {,,apar''}; }
-		\only<all:10> { \node at (6,3) {,,par''}; }
-		\only<all:11> { \node at (6,3) {,,ar''}; }
-		\only<all:12> { \node at (6,3) {,,r''}; }
-		\only<all:13> { \node at (6,3) {,,''}; }
-		\only<all:15-16> { \node at (6,3) {,,apaköttur''}; }
-		\only<all:17> { \node at (6,3) {,,paköttur''}; }
-		\only<all:18> { \node at (6,3) {,,aköttur''}; }
-		\only<all:19> { \node at (6,3) {,,köttur''}; }
-		\only<all:20> { \node at (6,3) {,,öttur''}; }
-		\only<all:21> { \node at (6,3) {,,ttur''}; }
-		\only<all:22> { \node at (6,3) {,,tur''}; }
-		\only<all:23> { \node at (6,3) {,,ur''}; }
-		\only<all:24> { \node at (6,3) {,,r''}; }
-		\only<all:25> { \node at (6,3) {,,''}; }
-		\only<all:27-28> { \node at (6,3) {,,altari''}; }
-		\only<all:29> { \node at (6,3) {,,ltari''}; }
-		\only<all:30> { \node at (6,3) {,,tari''}; }
-		\only<all:31> { \node at (6,3) {,,ari''}; }
-		\only<all:32> { \node at (6,3) {,,ri''}; }
-		\only<all:33> { \node at (6,3) {,,i''}; }
-		\only<all:34> { \node at (6,3) {,,''}; }
-		\only<all:36-37> { \node at (6,3) {,,apaspil''}; }
-		\only<all:38> { \node at (6,3) {,,paspil''}; }
-		\only<all:39> { \node at (6,3) {,,aspil''}; }
-		\only<all:40> { \node at (6,3) {,,spil''}; }
-		\only<all:41> { \node at (6,3) {,,pil''}; }
-		\only<all:42> { \node at (6,3) {,,il''}; }
-		\only<all:43> { \node at (6,3) {,,l''}; }
-		\only<all:44> { \node at (6,3) {,,''}; }
-		\only<all:46-47> { \node at (6,3) {,,altaristafla''}; }
-		\only<all:48> { \node at (6,3) {,,ltaristafla''}; }
-		\only<all:49> { \node at (6,3) {,,taristafla''}; }
-		\only<all:50> { \node at (6,3) {,,aristafla''}; }
-		\only<all:51> { \node at (6,3) {,,ristafla''}; }
-		\only<all:52> { \node at (6,3) {,,istafla''}; }
-		\only<all:53> { \node at (6,3) {,,stafla''}; }
-		\only<all:54> { \node at (6,3) {,,tafla''}; }
-		\only<all:55> { \node at (6,3) {,,afla''}; }
-		\only<all:56> { \node at (6,3) {,,fal''}; }
-		\only<all:57> { \node at (6,3) {,,la''}; }
-		\only<all:58> { \node at (6,3) {,,a''}; }
-		\only<all:59> { \node at (6,3) {,,''}; }
-		\only<all:61-62> { \node at (6,3) {,,altarisganga''}; }
-		\only<all:63> { \node at (6,3) {,,ltarisganga''}; }
-		\only<all:64> { \node at (6,3) {,,tarisganga''}; }
-		\only<all:65> { \node at (6,3) {,,arisganga''}; }
-		\only<all:66> { \node at (6,3) {,,risganga''}; }
-		\only<all:67> { \node at (6,3) {,,isganga''}; }
-		\only<all:68> { \node at (6,3) {,,sganga''}; }
-		\only<all:69> { \node at (6,3) {,,ganga''}; }
-		\only<all:70> { \node at (6,3) {,,anga''}; }
-		\only<all:71> { \node at (6,3) {,,nga''}; }
-		\only<all:72> { \node at (6,3) {,,ga''}; }
-		\only<all:73> { \node at (6,3) {,,a''}; }
-		\only<all:74> { \node at (6,3) {,,''}; }
-	}
+        \onslide<all:2-3> { \node at (6,3) {,,api''}; }
+        \onslide<all:4> { \node at (6,3) {,,pi''}; }
+        \onslide<all:5> { \node at (6,3) {,,i''}; }
+        \onslide<all:6> { \node at (6,3) {,,''}; }
+        \onslide<all:8-9> { \node at (6,3) {,,apar''}; }
+        \onslide<all:10> { \node at (6,3) {,,par''}; }
+        \onslide<all:11> { \node at (6,3) {,,ar''}; }
+        \onslide<all:12> { \node at (6,3) {,,r''}; }
+        \onslide<all:13> { \node at (6,3) {,,''}; }
+        \onslide<all:15-16> { \node at (6,3) {,,apaköttur''}; }
+        \onslide<all:17> { \node at (6,3) {,,paköttur''}; }
+        \onslide<all:18> { \node at (6,3) {,,aköttur''}; }
+        \onslide<all:19> { \node at (6,3) {,,köttur''}; }
+        \onslide<all:20> { \node at (6,3) {,,öttur''}; }
+        \onslide<all:21> { \node at (6,3) {,,ttur''}; }
+        \onslide<all:22> { \node at (6,3) {,,tur''}; }
+        \onslide<all:23> { \node at (6,3) {,,ur''}; }
+        \onslide<all:24> { \node at (6,3) {,,r''}; }
+        \onslide<all:25> { \node at (6,3) {,,''}; }
+        \onslide<all:27-28> { \node at (6,3) {,,altari''}; }
+        \onslide<all:29> { \node at (6,3) {,,ltari''}; }
+        \onslide<all:30> { \node at (6,3) {,,tari''}; }
+        \onslide<all:31> { \node at (6,3) {,,ari''}; }
+        \onslide<all:32> { \node at (6,3) {,,ri''}; }
+        \onslide<all:33> { \node at (6,3) {,,i''}; }
+        \onslide<all:34> { \node at (6,3) {,,''}; }
+        \onslide<all:36-37> { \node at (6,3) {,,apaspil''}; }
+        \onslide<all:38> { \node at (6,3) {,,paspil''}; }
+        \onslide<all:39> { \node at (6,3) {,,aspil''}; }
+        \onslide<all:40> { \node at (6,3) {,,spil''}; }
+        \onslide<all:41> { \node at (6,3) {,,pil''}; }
+        \onslide<all:42> { \node at (6,3) {,,il''}; }
+        \onslide<all:43> { \node at (6,3) {,,l''}; }
+        \onslide<all:44> { \node at (6,3) {,,''}; }
+        \onslide<all:46-47> { \node at (6,3) {,,altaristafla''}; }
+        \onslide<all:48> { \node at (6,3) {,,ltaristafla''}; }
+        \onslide<all:49> { \node at (6,3) {,,taristafla''}; }
+        \onslide<all:50> { \node at (6,3) {,,aristafla''}; }
+        \onslide<all:51> { \node at (6,3) {,,ristafla''}; }
+        \onslide<all:52> { \node at (6,3) {,,istafla''}; }
+        \onslide<all:53> { \node at (6,3) {,,stafla''}; }
+        \onslide<all:54> { \node at (6,3) {,,tafla''}; }
+        \onslide<all:55> { \node at (6,3) {,,afla''}; }
+        \onslide<all:56> { \node at (6,3) {,,fal''}; }
+        \onslide<all:57> { \node at (6,3) {,,la''}; }
+        \onslide<all:58> { \node at (6,3) {,,a''}; }
+        \onslide<all:59> { \node at (6,3) {,,''}; }
+        \onslide<all:61-62> { \node at (6,3) {,,altarisganga''}; }
+        \onslide<all:63> { \node at (6,3) {,,ltarisganga''}; }
+        \onslide<all:64> { \node at (6,3) {,,tarisganga''}; }
+        \onslide<all:65> { \node at (6,3) {,,arisganga''}; }
+        \onslide<all:66> { \node at (6,3) {,,risganga''}; }
+        \onslide<all:67> { \node at (6,3) {,,isganga''}; }
+        \onslide<all:68> { \node at (6,3) {,,sganga''}; }
+        \onslide<all:69> { \node at (6,3) {,,ganga''}; }
+        \onslide<all:70> { \node at (6,3) {,,anga''}; }
+        \onslide<all:71> { \node at (6,3) {,,nga''}; }
+        \onslide<all:72> { \node at (6,3) {,,ga''}; }
+        \onslide<all:73> { \node at (6,3) {,,a''}; }
+        \onslide<all:74> { \node at (6,3) {,,''}; }
+    }
 }
 
+\section{Minnisúthlutun í versta falli}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að útfæra forstrengstré munum við taka frá fylki af hnútum og úthluta þeim eftir þörf.
-		\item<2-> Með þessa aðferð í huga er gott að vita hvað munum þurfa marga hnúta í heildina.
-		\item<3-> Fyrir tómt forstrengstré þurfum við einn hnút.
-		\item<4-> Ef við viljum bæta við streng þá þurfum við aldrei fleiri hnúta en lengd strengsins.
-		\item<5-> Svo heildarfjöldi hnúta þarf að vera einum meira en samtals lengd allra strengjanna sem við setjum í forstrengstréð.
-	}
+    \env{itemize}
+    {
+        \item<1-> Til að útfæra forstrengstré munum við taka frá fylki af hnútum og úthluta þeim eftir þörf.
+        \item<2-> Með þessa aðferð í huga er gott að vita hvað munum þurfa marga hnúta í heildina.
+        \item<3-> Fyrir tómt forstrengstré þurfum við einn hnút.
+        \item<4-> Ef við viljum bæta við streng þá þurfum við aldrei fleiri hnúta en lengd strengsins.
+        \item<5-> Svo heildarfjöldi hnúta þarf að vera einum fleiri en samtals lengd allra strengjanna sem við setjum í forstrengstréð.
+    }
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/trie.c}{6}{27}
+    \selectcode{code/trie.c}{6}{27}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Ef við viljum setja streng af lengd $n$ inn í forstrengstréð þá tekur það $\mathcal{O}($\onslide<2->{$\,n\,$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Ef við viljum setja strengi af samtals lengd $n$ í forstrengstréð þá tekur það $\mathcal{O}(\onslide<2->{|\Sigma| \cdot n})$,
+                    þar sem $|\Sigma|$ er stærðin á stafrófinu.
+        \item<3-> Takið eftir að ef stafrófið er takmarkað þá er tímaflækjan línuleg.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

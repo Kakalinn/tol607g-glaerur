@@ -1,4 +1,4 @@
-\title{Reiknirit Knuths, Morrisar og Pratts (\texttt{KMP} $1970$)}
+\title{Reiknirit Knuths, Morrisar og Pratts ($1970$)}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -6,112 +6,118 @@
 
 \frame{\titlepage}
 
+\section{Yfirlit}
 \env{frame}
 {
-	\frametitle{Strengjaleit}
-	\env{itemize}
-	{
-		\item<1-> Gefum okkur langan streng $s$ og styttri streng $p$.
-		\item<2-> Hvernig getum við fundið alla hlutstrengi $s$ sem eru jafnir $p$.
-		\item<3-> Fyrsta sem manni dettur í hug er að bera $p$ saman við alla hlutstrengi $s$ af sömu lengd og $p$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gefum okkur langan streng $s$ og styttri streng $p$.
+        \item<2-> Hvernig getum við fundið alla hlutstrengi $s$ sem eru jafnir $p$.
+        \item<3-> Fyrsta sem manni dettur í hug er að bera $p$ saman við alla hlutstrengi $s$ af sömu lengd og $p$.
+    }
 }
 
+\section{Útfærsla á frumstæðri strengjaleit}
 \env{frame}
 {
-	\selectcode{code/naive-strengjaleit.c}{5}{14}
+    \selectcode{code/frumstaed-strengjaleit.c}{5}{14}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að strengurinn $s$ sé af lengd $n$ og strengurinn $p$ sé af lengd $m$.
-		\item<2-> Fjöldi hlutstrengja í $s$ að lengd $m$ er $n - m + 1$.
-		\item<3-> Strengjasamanburðurinn tekur línulegan tíma.
-		\item<4-> Svo tímaflækja leitarinnar er $\mathcal{O}($\onslide<5->{$nm - m^2$}$)$.
-		\item<6-> Ef $m = n/2$ þá er $nm - m^2 = n^2/2 - n^2/4 = n^2/4$ tímaflækjan er í raun $\mathcal{O}($\onslide<7->{$n^2$}$)$.
-		\item<8-> Dæmi um leiðinlega strengi væri $s = \text{,,}aaaaaaaaaaaaaaaa\text{''}$ og $p = \text{,,}aaaaaaab\text{''}$.
-		\item<9-> Þessi aðferð virkar þó sæmilega ef strengirnir eru nógu óreglulegir.
-		\item<10-> Dæmi um það hvenær þessi aðferð er góð er ef maður er að leita að orði í skáldsögu.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að strengurinn $s$ sé af lengd $n$ og strengurinn $p$ sé af lengd $m$.
+        \item<2-> Fjöldi hlutstrengja í $s$ að lengd $m$ er $n - m + 1$.
+        \item<3-> Strengjasamanburðurinn tekur línulegan tíma.
+        \item<4-> Svo tímaflækja leitarinnar er $\mathcal{O}($\onslide<5->{$nm - m^2$}$)$.
+        \item<6-> Ef $m = n/2$ þá er $nm - m^2 = n^2/2 - n^2/4 = n^2/4$ tímaflækjan er í raun $\mathcal{O}($\onslide<7->{$n^2$}$)$.
+        \item<8-> Dæmi um leiðinlega strengi væri $s = \text{,,}aaaaaaaaaaaaaaaa\text{''}$ og $p = \text{,,}aaaaaaab\text{''}$.
+        \item<9-> Þessi aðferð virkar þó sæmilega ef strengirnir eru nógu óreglulegir.
+        \item<10-> Dæmi um það hvenær þessi aðferð er góð er ef maður er að leita að orði í skáldsögu.
+    }
 }
 
+\section{Innbyggðar útfærslur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Aðferðin er líka nógu góð ef $\mathcal{O}(n^2)$ er ekki of hægt.
-		\item<2-> Það er þó óþarfi að útfæra hana því hún fylgir með flestum forritunarmálum, til dæmis:
-		\env{itemize}
-		{
-			\item<3-> Í \texttt{string.h} í \texttt{C} er \texttt{strstr(..)}.
-			\item<4-> Í \texttt{string} í \texttt{C++} er \texttt{find(..)}.
-			\item<5-> Í \texttt{String} í \texttt{Java} er \texttt{indexOf(..)}.
-		}
-		\item<6-> Munið bara að ef $n > 10^4$ er þetta yfirleitt of hægt.
-	}
+    \env{itemize}
+    {
+        \item<1-> Aðferðin er líka nógu góð ef $\mathcal{O}(n^2)$ er ekki of hægt.
+        \item<2-> Það er þó óþarfi að útfæra hana því hún fylgir með flestum forritunarmálum, til dæmis:
+        \env{itemize}
+        {
+            \item<3-> Í \texttt{string.h} í \texttt{C} er \texttt{strstr(..)}.
+            \item<4-> Í \texttt{string} í \texttt{C++} er \texttt{find(..)}.
+            \item<5-> Í \texttt{String} í \texttt{Java} er \texttt{indexOf(..)}.
+        }
+        \item<6-> Munið bara að ef $n > 10^4$ er þetta yfirleitt of hægt.
+    }
 }
 
+\section{Forstrengsfallið}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Er einhver leið til að bæta strengjaleitina úr fyrri glærum?
-		\item<2-> Skoðum betur sértilfellið $p = \text{,,}aaaabbbb\text{''}$.
-		\item<3-> Ef strengjasamanburðurinn misheppnast í $p_3$ þá myndi einfalda strengjaleitin okkar hliðra $p$ um einn og reyna aftur.
-		\item<4-> En við vitum að fyrstu þrír stafnirnir í næsta hlutstreng stemma, svo við getum byrjað í $p_2$.
-		\item<5-> Reiknirit Knuths, Morrisar og Pratts notar sér þessa hugmynd til að framkvæma strengjaleit.
-		\item<6-> Reikniritið byrjar á að forreikna hversu mikið maður veit eftir misheppnaðan samanburð.
-		\item<7-> Svo þurfum við einfaldlega að labba í gegnum $s$ og hliðra eins og á við.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum bætt tímaflækjun með því að nota svokallað \emph{forstrengsfall} (e. \emph{prefix function}) strengsins $a$.
+        \item<2-> Forstrengsfallið $f$ er gefið með $f(j) = \max\{k \in \mathbb{N} \colon k < |a|, a[1,k] = a[j - k + 1, j]\}$.
+        \item<3-> Sjáum fyrst að þetta fall uppfyllir $f(j + 1) \leq f(j) + 1$.
+        \item<4-> Látum $k = f(j)$ og sjáum að ef $a[j + 1] = a[k]$ þá er $f(j + 1) = k + 1$.
+        \item<5-> Ef $a[j + 1] \neq a[k]$ þá þurfum við að minnka $k$ þangað til við fáum jöfnuð.
+        \item<6-> Við minnkum $k$ með því að láta $k' = f(k - 1)$.
+    }
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að finna hversu mikið á að hliðra hverju sinni þurfum við að reikna \emph{forstrengsfall} (e. \emph{prefix function})
-					strengsins $p$.
-		\item<2-> Við látum $f(j)$, $1 \leq j \leq |p|$, vera gefið með $f(j) = \max\{k \colon s[1,k] = s[j - k + 1, j]\}$.
-		\item<3-> Sjáum fyrst að þetta fall uppfyllir $f(j + 1) \leq f(j) + 1$.
-		\item<4-> Látum $k = f(j)$ og sjáum að ef $s[j + 1] = s[k]$ þá er $f(j + 1) = k + 1$.
-		\item<5-> Ef $s[j + 1] \neq s[k]$ þá þurfum við að minnka $k$ þangað til við fáum jöfnuð.
-		\item<6-> Við minnkum $k$ með því að láta $k' = f(k - 1)$.
-		\item<7-> Það tekur $\mathcal{O}($\onslide<8->{$\,n\,$}$)$ tíma að reikna öll þessi gildi,
-					því $f(j + 1) \leq f(j) + 1$, svo við munum ekki þurfa að minnka $k$ oftar en $n$ sinnum.
-	}
+    \selectcode{code/kmp.c}{12}{17}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
-	\selectcode{code/kmp.c}{12}{30}
+    \env{itemize}
+    {
+        \item<1-> Takið eftir að hver ítrun innri lykkjanna svarar til einnar ítrunar ytri lykkjanna.
+        \item<2-> Svo innri lykkjan keyrir, í heildina, ekki oftar en ytri lykkjan.
+        \item<3-> Því er tímaflækjan í heildina $\mathcal{O}(\onslide<4->{\,n\,})$ syfir streng af lengd $n$.
+    }
 }
 
+\section{Strengjaleit með forstrengsfallinu}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Takið eftir að hver ítrun innri lykkjanna svarar til einnar ítrunar ytri lykkjanna.
-		\item<2-> Svo innri lykkjan keyrir, í heildina, ekki oftar en ytri lykkjan.
-		\item<3-> Því er tímaflækjan í heildina $\mathcal{O}($\onslide<4->{$n + m$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> En hvernig getum við notað forstrengsfallið til að framkvæma strengjaleit?
+        \item<2-> Gerum ráð fyrir að við séum að leit að streng $p$ í stærri streng $s$.
+        \item<3-> Látum þá $a = p + ``\alpha" + s$, þar sem $+$ táknar samskeytingu strengja og $\alpha$ er stafur sem er hvorki í $p$ né $s$.
+        \item<4-> Við látum svo $f$ vera forstrengsfall strengsins $a$.
+        \item<5-> Við höfum þá að $f \leq |p|$ og $f(j) = |p|$ þá og því aðeins að $j > |p|$ og hlutstrengurinn í $s$ sem byrjar á vísi $j - |p| - 1$
+                    og er $|p|$ af lengd er sá sami og $p$.
+    }
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\frametitle{Reiknirit Ahos og Corasicks ($1975$)}
-	\env{itemize}
-	{
-		\item<1-> Til er önnur aðferð, svipuð og \texttt{KMP}, sem finnur staðsetningar margra orða í einu í streng.
-		\item<2-> Hún er kennd við Aho og Corasick.
-		\item<3-> Ég fer ekki í hana hér en hún byggir á því að gera \emph{forstrengstré} (e. \emph{prefix tree}), stundum kallað \emph{trie}, og
-					nota kvika bestun til að finna \emph{bakstrengs hlekk} (e. \emph{suffix link}) fyrir hvern hnút.
-		\item<4-> Reikniritið keyrir í línulegum tíma í lengd allra strengjanna, ásamt fjölda heppnaðra samanburða,
-					að því gefnu að stafrófið sé takmarkað.
-	}
+    \selectcode{code/kmp.c}{12}{26}
 }
 
+\section{Tímaflækja}
+\env{frame}
+{
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að $|s| = n$ og $|p| = m$.
+        \item<2-> Þá er $|a| = n + m + 1$, svo tímaflækjan er $\mathcal{O}(\onslide<3->{n + m})$.
+    }
+}
+
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

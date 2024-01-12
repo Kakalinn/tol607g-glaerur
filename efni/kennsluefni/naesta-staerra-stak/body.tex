@@ -1,4 +1,4 @@
-\title{Næsta stærra stak (\texttt{NGE})}
+\title{Næsta stærra stak (\ilcode{NGE})}
 \author{Bergur Snorrason}
 \date{\today}
 
@@ -6,652 +6,660 @@
 
 \frame{\titlepage}
 
+\section{Yfirlit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Látum $a$ vera lista af $n$ tölum.
-		\item<2-> Okkar langar, fyrir hvert stak í listanum, að finna næst stak í listanum sem er stærra (e. \emph{next greater element} (\texttt{NGE})).
-		\item<3-> Sem dæmi er \texttt{NGE} miðju stakins $4$ í listanum $(2, 3, 4, 8, 5)$ talan $8$.
-		\item<4-> Til þæginda segjum við að \texttt{NGE} tölunnar $8$ í listanum $(2, 3, 4, 8, 5)$ sé $-1$.
-		\item<5-> Það er auðséð að við getum reiknað \texttt{NGE} allra talnanna með tvöfaldri \texttt{for}-lykkju.
-	}
+    \env{itemize}
+    {
+        \item<1-> Látum $a$ vera lista af $n$ tölum.
+        \item<2-> Okkur langar, fyrir hvert stak í listanum, að finna næst stak í listanum sem er stærra (e. \emph{next greater element} (\ilcode{NGE})).
+        \item<3-> Sem dæmi er \ilcode{NGE} miðju stakins $4$ í listanum $(2, 3, 4, 8, 5)$ talan $8$.
+        \item<4-> Til þæginda segjum við að \ilcode{NGE} tölunnar $8$ í listanum $(2, 3, 4, 8, 5)$ sé $-1$.
+        \item<5-> Það er auðséð að við getum reiknað \ilcode{NGE} allra talnanna með tvöfaldri \texttt{for}-lykkju.
+    }
 }
 
+\section{Frumstæð útfærsla}
 \env{frame}
 {
-	\selectcode{code/slow-nge.c}{3}{11}
+    \selectcode{code/slow-nge.c}{3}{11}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þar sem þessi lausnir er tvöföld \texttt{for}-lykkja, hvor af lengd $n$, þá er lausnin $\mathcal{O}($\onslide<2->{$n^2$}$)$.
-		\item<2-> En þetta má bæta.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þar sem þessi lausn er tvöföld \ilcode{for}-lykkja, hvor af lengd $n$, þá er lausnin $\mathcal{O}($\onslide<2->{$n^2$}$)$.
+        \item<3-> En þetta má bæta.
+    }
 }
 
+\section{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gefum okkur hlaða $h$. 
-		\item<2-> Löbbum í gegnum $a$ í réttri röð.
-		\item<3-> Tökum nú tölur úr hlaðan og setjum \texttt{NGE} þeirra talna sem $a_i$ á meðan $a_i$ er stærri en toppurinn á hlaðanum.
-		\item<4-> Þegar toppurinn á hlaðanum er stærri en $a_i$ þá látum við $a_i$ á hlaðann og höldum svo áfram.
-		\item<5-> Bersýnilega er hlaðinn ávallt raðaður, svo þú færð allar tölur sem eiga að hafa $a_i$ sem \texttt{NGE}.
-		\item<6-> Þegar búið er að fara í gegnum $a$ látum við \texttt{NGE} þeirra staka sem eftir eru í $h$ vera $-1$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gefum okkur hlaða $h$. 
+        \item<2-> Löbbum í gegnum $a$ í réttri röð.
+        \item<3-> Tökum nú tölur úr hlaðan og setjum \ilcode{NGE} þeirra talna sem $a_i$ á meðan $a_i$ er stærri en toppurinn á hlaðanum.
+        \item<4-> Þegar toppurinn á hlaðanum er stærri en $a_i$ þá látum við $a_i$ á hlaðann og höldum svo áfram.
+        \item<5-> Bersýnilega er hlaðinn ávallt raðaður, svo þú færð allar tölur sem eiga að hafa $a_i$ sem \ilcode{NGE}.
+        \item<6-> Þegar búið er að fara í gegnum $a$ látum við \ilcode{NGE} þeirra staka sem eftir eru í $h$ vera $-1$.
+    }
 }
 
 \defverbatim{\ngeAA}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-|
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                   |
 
- 0 1 2 3 4 5 6 7
-[x x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [x x x x x x x x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeAB}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
- |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                    |
 
- 0 1 2 3 4 5 6 7
-[x x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [x x x x x x x x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeAC}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
- |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                    |
 
- 0 1 2 3 4 5 6 7
-[x x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [x x x x x x x x]
 
 
-h: [0]
+                   h: [0]
 \end{verbatim} }
 
 \defverbatim{\ngeAD}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      |
 
- 0 1 2 3 4 5 6 7
-[x x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [x x x x x x x x]
 
 
-h: [0]
+                   h: [0]
 \end{verbatim} }
 
 \defverbatim{\ngeAE}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
- ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                    ^ |
 
- 0 1 2 3 4 5 6 7
-[x x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [x x x x x x x x]
 
 
-h: [0]
+                   h: [0]
 \end{verbatim} }
 
 \defverbatim{\ngeAF}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
- ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                    ^ |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [0]
+                   h: [0]
 \end{verbatim} }
 
 \defverbatim{\ngeAG}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeAH}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAI}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-     |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                        |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAJ}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      ^ |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAK}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-     |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                        |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAL}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-     |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                        |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1 2]
+                   h: [1 2]
 \end{verbatim} }
 
 \defverbatim{\ngeAM}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-       |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                          |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1 2]
+                   h: [1 2]
 \end{verbatim} }
 
 \defverbatim{\ngeAN}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-     ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                        ^ |
 
- 0 1 2 3 4 5 6 7
-[1 x x x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x x x x x x x]
 
 
-h: [1 2]
+                   h: [1 2]
 \end{verbatim} }
 
 \defverbatim{\ngeAO}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-     ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                        ^ |
 
- 0 1 2 3 4 5 6 7
-[1 x 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x 3 x x x x x]
 
 
-h: [1 2]
+                   h: [1 2]
 \end{verbatim} }
 
 \defverbatim{\ngeAP}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   ^   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      ^   |
 
- 0 1 2 3 4 5 6 7
-[1 x 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 x 3 x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAQ}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-   ^   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                      ^   |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 x x x x x]
 
 
-h: [1]
+                   h: [1]
 \end{verbatim} }
 
 \defverbatim{\ngeAR}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-       |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                          |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 x x x x x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeAS}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-       |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                          |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 x x x x x]
 
 
-h: [3]
+                   h: [3]
 \end{verbatim} }
 
 \defverbatim{\ngeAT}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 x x x x x]
 
 
-h: [3]
+                   h: [3]
 \end{verbatim} }
 
 \defverbatim{\ngeAU}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-       ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                          ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 x x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 x x x x x]
 
 
-h: [3]
+                   h: [3]
 \end{verbatim} }
 
 \defverbatim{\ngeAV}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-       ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                          ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [3]
+                   h: [3]
 \end{verbatim} }
 
 \defverbatim{\ngeAW}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeAX}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeAY}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeAZ}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeBA}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeBB}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBC}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-             |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBD}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBE}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-             |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBF}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-             |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5 6]
+                   h: [4 5 6]
 \end{verbatim} }
 
 \defverbatim{\ngeBG}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-               |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                  |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5 6]
+                   h: [4 5 6]
 \end{verbatim} }
 
 \defverbatim{\ngeBH}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-             ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x x x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x x x]
 
 
-h: [4 5 6]
+                   h: [4 5 6]
 \end{verbatim} }
 
 \defverbatim{\ngeBI}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-             ^ |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                ^ |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x 7 x]
 
 
-h: [4 5 6]
+                   h: [4 5 6]
 \end{verbatim} }
 
 \defverbatim{\ngeBJ}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           ^   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              ^   |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x x 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x x 7 x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBK}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-           ^   |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                              ^   |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x 7 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x 7 7 x]
 
 
-h: [4 5]
+                   h: [4 5]
 \end{verbatim} }
 
 \defverbatim{\ngeBL}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         ^     |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            ^     |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 x 7 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 x 7 7 x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeBM}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-         ^     |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                            ^     |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 7 7 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 7 7 7 x]
 
 
-h: [4]
+                   h: [4]
 \end{verbatim} }
 
 \defverbatim{\ngeBN}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-               |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                  |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 7 7 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 7 7 7 x]
 
 
-h: []
+                   h: []
 \end{verbatim} }
 
 \defverbatim{\ngeBO}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
-               |
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                                  |
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 7 7 7 x]
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 7 7 7 x]
 
 
-h: [8]
+                   h: [8]
 \end{verbatim} }
 
 \defverbatim{\ngeBP}
 { \begin{verbatim}
- 0 1 2 3 4 5 6 7
-[2 3 1 5 7 6 4 8]
+                    0 1 2 3 4 5 6 7
+                   [2 3 1 5 7 6 4 8]
+                   
+
+                    0 1 2 3 4 5 6 7
+                   [1 3 3 4 7 7 7 x]
 
 
- 0 1 2 3 4 5 6 7
-[1 3 3 4 7 7 7 x]
-
-
-h: [8]
+                   h: [8]
 \end{verbatim} }
 
+\section{Sýnidæmi}
 \env{frame}
 {
-	\only<all:1>{\ngeAA}
-	\only<all:2>{\ngeAB}
-	\only<all:3>{\ngeAC}
-	\only<all:4>{\ngeAD}
-	\only<all:5>{\ngeAE}
-	\only<all:6>{\ngeAF}
-	\only<all:7>{\ngeAG}
-	\only<all:8>{\ngeAH}
-	\only<all:9>{\ngeAI}
-	\only<all:10>{\ngeAJ}
-	\only<all:11>{\ngeAK}
-	\only<all:12>{\ngeAL}
-	\only<all:13>{\ngeAM}
-	\only<all:14>{\ngeAN}
-	\only<all:15>{\ngeAO}
-	\only<all:16>{\ngeAP}
-	\only<all:17>{\ngeAQ}
-	\only<all:18>{\ngeAR}
-	\only<all:19>{\ngeAS}
-	\only<all:20>{\ngeAT}
-	\only<all:21>{\ngeAU}
-	\only<all:22>{\ngeAV}
-	\only<all:23>{\ngeAW}
-	\only<all:24>{\ngeAX}
-	\only<all:25>{\ngeAY}
-	\only<all:26>{\ngeAZ}
-	\only<all:27>{\ngeBA}
-	\only<all:28>{\ngeBB}
-	\only<all:29>{\ngeBC}
-	\only<all:30>{\ngeBD}
-	\only<all:31>{\ngeBE}
-	\only<all:32>{\ngeBF}
-	\only<all:33>{\ngeBG}
-	\only<all:34>{\ngeBH}
-	\only<all:35>{\ngeBI}
-	\only<all:36>{\ngeBJ}
-	\only<all:37>{\ngeBK}
-	\only<all:38>{\ngeBL}
-	\only<all:39>{\ngeBM}
-	\only<all:40>{\ngeBN}
-	\only<all:41>{\ngeBO}
-	\only<all:42>{\ngeBP}
+    \only<all:1>{\ngeAA}
+    \only<all:2>{\ngeAB}
+    \only<all:3>{\ngeAC}
+    \only<all:4>{\ngeAD}
+    \only<all:5>{\ngeAE}
+    \only<all:6>{\ngeAF}
+    \only<all:7>{\ngeAG}
+    \only<all:8>{\ngeAH}
+    \only<all:9>{\ngeAI}
+    \only<all:10>{\ngeAJ}
+    \only<all:11>{\ngeAK}
+    \only<all:12>{\ngeAL}
+    \only<all:13>{\ngeAM}
+    \only<all:14>{\ngeAN}
+    \only<all:15>{\ngeAO}
+    \only<all:16>{\ngeAP}
+    \only<all:17>{\ngeAQ}
+    \only<all:18>{\ngeAR}
+    \only<all:19>{\ngeAS}
+    \only<all:20>{\ngeAT}
+    \only<all:21>{\ngeAU}
+    \only<all:22>{\ngeAV}
+    \only<all:23>{\ngeAW}
+    \only<all:24>{\ngeAX}
+    \only<all:25>{\ngeAY}
+    \only<all:26>{\ngeAZ}
+    \only<all:27>{\ngeBA}
+    \only<all:28>{\ngeBB}
+    \only<all:29>{\ngeBC}
+    \only<all:30>{\ngeBD}
+    \only<all:31>{\ngeBE}
+    \only<all:32>{\ngeBF}
+    \only<all:33>{\ngeBG}
+    \only<all:34>{\ngeBH}
+    \only<all:35>{\ngeBI}
+    \only<all:36>{\ngeBJ}
+    \only<all:37>{\ngeBK}
+    \only<all:38>{\ngeBL}
+    \only<all:39>{\ngeBM}
+    \only<all:40>{\ngeBN}
+    \only<all:41>{\ngeBO}
+    \only<all:42>{\ngeBP}
 }
 
+\section{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/nge.c}{3}{9}
+    \selectcode{code/nge.c}{3}{9}
 }
 
+\section{Tímaflækja}
 \env{frame}
 {
 
-	\env{itemize}
-	{
-		\item<1-> Við setjum hverja tölu í hlaðann að mestu einu sinni og tökum hana svo úr hlaðanum.
-		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við setjum hverja tölu í hlaðann að mestu einu sinni og tökum hana svo úr hlaðanum.
+        \item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$\,n\,$}$)$.
+    }
 }
 
+\section{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }

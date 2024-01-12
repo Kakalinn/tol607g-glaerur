@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 typedef long long ll;
-#define INF (1 << 30)
+#define INF (1LL << 60)
 using namespace std;
 typedef pair<ll, ll> ii;
 typedef vector<ii> vii;
@@ -51,7 +51,7 @@ void scc(vvii& g, ll *a)
 
 void bellman_ford(vvii& g, vi& s, vi& d, vi& a)                                 // Reiknirit Bellmans og Fords þar sem allir hnútar eru upphafshnútar,
 {                                                                               //   en það er aðeins ferðast eftir hnútum í s. Listinn a þarf að vera
-    ll i, j, k, m = s.size(), x, w, q[2 + 2*m*m], p[2 + 2*m*m];                 //   upphafstilltur með -1.
+    ll i, j, k, m = s.size(), x, w, q[3 + 2*m*m], p[3 + 2*m*m];                 //   upphafstilltur með -1.
     q[0] = q[1] = p[0] = p[1] = 2;
     for (i = 0; i < m; i++)
         d[s[i]] = 0, a[s[i]] = 1, q[q[1]++] = s[i], p[p[1]++] = 0;

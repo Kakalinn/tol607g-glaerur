@@ -41,18 +41,20 @@ leifareikningur
 veldishafning
 gcd
 frumtolur
+nim
 
 vika11
 talningarfraedi
 
 vika12
 rumfraedi
+nalaegustu-punktar-i-plani
 
 vika13
-naesta-staerra-stak
-hlaupabil
 kmp
-haesti-sameiginlegi-forfadir
+naesta-staerra-stak
+naesti-sameiginlegi-forfadir
+hlaupabil
 forstrengstre
 aho-corasick
 

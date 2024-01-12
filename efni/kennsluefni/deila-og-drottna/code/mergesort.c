@@ -6,8 +6,8 @@
 void merge(int* a, int l, int m, int r)
 {
     int i = l, j = m, b[r - l], c = 0;
-    while (i < m || j < r)
-        b[c++] = (i == m || (j < r && a[j] < a[i])) ? a[j++] : a[i++];          // Látum í b stærri tölun sem er fremst í skiptingunum á a.
+    while (i < m && j < r) b[c++] = a[a[j] < a[i] ? j++ : i++];                 // Látum í b stærri tölun sem er fremst í skiptingunum á a.
+    while (i < m || j < r) b[c++] = a[j < r ? j++ : i++];                       // Setjum restina af þeim helming sem er ekki tómur.
     for (i = l; i < r; i++) a[i] = b[i - l];                                    // Skrifum svo aftur inn í a, nú raðað.
 }
 

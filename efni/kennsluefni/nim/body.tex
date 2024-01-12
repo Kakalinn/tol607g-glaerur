@@ -45,10 +45,10 @@
     \env{itemize}
     {
         \item<1-> Almennt fæst að staða $n$ er tapstaða þá og því aðeins að $n$ gangi upp í þrjá.
-        \item<2-> Þetta fæst með þrepun.
-        \item<3-> Gerum ráð fyrir að $3 \cdot k$ sé tapstaða.
-        \item<4-> Þá eru stöður $3 \cdot k + 1$ og $3 \cdot k + 2$ vinningsstöður.
-        \item<5-> Þetta eru líka einu stöðurnar sem maður kemst í frá stöðunni $3 \cdot (k + 1)$, svo hún er tapstaða.
+        \item<1-> Þetta fæst með þrepun.
+        \item<2-> Gerum ráð fyrir að $3 \cdot k$ sé tapstaða.
+        \item<3-> Þá eru stöður $3 \cdot k + 1$ og $3 \cdot k + 2$ vinningsstöður.
+        \item<4-> Þetta eru líka einu stöðurnar sem maður kemst í frá stöðunni $3 \cdot (k + 1)$, svo hún er tapstaða.
     }
 }
 
@@ -64,23 +64,23 @@
         \item<5-> Hvernig getum við lýst vinningsstöðunum og tapstöðunum?
         \item<6-> Þessi spurning er flóknari.
         \item<7-> Hér samsömum við $m$-dir við stöður.
-        \item<8-> Staðan $(k_1, \dots, k_m)$ er tapstaða þá og því aðeins að $k_1 \oplus \dots \oplus k_m = 0$.
+        \item<8-> Hægt er að sýna að staðan $(k_1, \dots, k_m)$ er tapstaða þá og því aðeins að $k_1 \oplus \dots \oplus k_m = 0$.
     }
 }
 
-\section{Sönnun}
-\env{frame}
-{
-    \env{itemize}
-    {
-        \item<1-> Gerum ráð fyrir að við séum í stöðu $(k_1, \dots, k_m)$,
-                    látum $X = k_1 \oplus \dots \oplus k_m$ og
-                    gerum ráð fyrir að $X > 0$.
-        \item<2-> Nú er $X \neq 0$ svo til er $\ell$ þannig að $X \oplus K_{\ell} < X$.
-        %TODO
-        \item<3-> ........., sanna rétta hlutinn.
-    }
-}
+%\section{Sönnun}
+%\env{frame}
+%{
+    %\env{itemize}
+    %{
+        %\item<1-> Gerum ráð fyrir að við séum í stöðu $(k_1, \dots, k_m)$,
+                    %látum $X = k_1 \oplus \dots \oplus k_m$ og
+                    %gerum ráð fyrir að $X > 0$.
+        %\item<2-> Nú er $X \neq 0$ svo til er $\ell$ þannig að $X \oplus K_{\ell} < X$.
+        %%TODO
+        %\item<3-> ........., sanna rétta hlutinn.
+    %}
+%}
 
 \section{Grundy tölur á einföldum leikjum}
 \env{frame}
@@ -90,7 +90,6 @@
         \item<1-> Gerum ráð fyrir að við séum með leik þar sem:
         \env{itemize}
         {
-            %TODO
             \item<1-> Engar huldar upplýsingar.
             \item<1-> Leikurinn klárast eftir endanlegan fjölda leikja.
             \item<1-> Fyrir tiltekna stöðu geta báðir spilarar gert það sama.
@@ -117,27 +116,28 @@
     }
 }
 
-\section{Slide}
-\env{frame}
-{
-    \env{itemize}
-    {
-        \item<1-> Útfærum núna nokkur dæmi.
-        %TODO
-        \item<2-> Gerum ráð fyrir að við séum ....
-    }
-}
+% útfæra kannski dæmin tvö á undan
+%\section{Slide}
+%\env{frame}
+%{
+    %\env{itemize}
+    %{
+        %\item<1-> Útfærum núna nokkur dæmi.
+        %%TODO
+        %\item<2-> Gerum ráð fyrir að við séum ....
+    %}
+%}
 
-\section{Dæmi X}
+\section{Dæmi}
 \subsection{Lýsing}
 \env{frame}
 {
     \env{itemize}
     {
-        \item<1-> Tökum nýtt dæmi.
+        \item<1-> Tökum nú dæmi.
         \item<2-> Gerum ráð fyrir að við teiknum $n$ kassa á blað í línu, nema það er búið að krota yfir kassann í miðjunni.
-        \item<4-> Hver leikur felur í sér að krota yfir eins marga aðliggjandi kassa og manni lystir (að minnsta kosti einn).
-        \item<5-> Sá sem getur ekki leikið tapar.
+        \item<3-> Hver leikur felur í sér að krota yfir eins marga aðliggjandi kassa og manni lystir (að minnsta kosti einn).
+        \item<4-> Sá sem getur ekki leikið tapar.
     }
 }
 
@@ -158,12 +158,12 @@
 \subsection{Útfærsla}
 \env{frame}
 {
-    \selectcode{code/daemi3.c}{5}{23}
+    \selectcode{code/daemi.c}{5}{23}
 }
 
 \env{frame}
 {
-    \selectcode{code/daemi3.c}{14}{43}
+    \selectcode{code/daemi.c}{14}{43}
 }
 
 \subsection{Tímaflækja}
@@ -172,11 +172,10 @@
     \env{itemize}
     {
         \item<1-> Til að finna Grundy tölu á stöðu í einfalda leiknum þurfum við að reikna $n$ gildi,
-                    og hvert gildi er reiknað í $\mathcal{O}(\onslide<2->{\,n\,})$ tíma.
-        \item<3-> Svo það tekur $\mathcal{O}(\onslide<4->{n^2})$ tíma að reikna allar Grundy tölurnar.
-        \item<5-> Til að finna best leikinn í hverri stöðu prófum við alla mögulega leiki, svo það tekur
-                    $\mathcal{O}(\onslide<6->{n^2})$ tíma.
-        \item<7-> Í heildina tekur þetta því $\mathcal{O}(\onslide<8->{n^2})$ tíma.
+                    og hvert gildi er reiknað í $\mathcal{O}(\onslide<2->{n^2})$ tíma.
+        \item<3-> Svo það tekur $\mathcal{O}(\onslide<4->{n^3})$ tíma að reikna allar Grundy tölurnar.
+        \item<5-> Til að finna best leikinn í hverri stöðu prófum við alla mögulega leiki, sem tekur $\mathcal{O}(\onslide<6->{n^3})$ tíma.
+        \item<7-> Í heildina tekur þetta því $\mathcal{O}(\onslide<8->{n^3})$ tíma.
     }
 }
 
