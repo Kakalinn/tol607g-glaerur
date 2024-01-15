@@ -1,0 +1,192 @@
+\title{Innbyggðar gagnagrindur}
+\author{Bergur Snorrason}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Yfirlit}
+\env{frame}
+{
+    \frametitle{Innbyggðar gagnagrindur í \ilcode{C++}}
+    \env{itemize}
+    {
+        \item<1-> Grunnur \ilcode{C++} býr yfir mörgum öflugum gagnagrindum.
+        \item<2-> Skoðum helstu slíku gagnagrindur og tímaflækjur mikilvægust aðgerða þeirra.
+        \item<3-> Við munum bara fjalla um gagnagrindurnar í grófum dráttum.
+        \item<4-> Það er hægt að finna ítarlegra efni og dæmi um notkun á netinu.
+    }
+}
+
+\section{Fylki}
+\env{frame}
+{
+    \frametitle{Fylki}
+    \env{itemize}
+    {
+        \item<1-> Lýkt og í mörgum öðrum forritunarmálum eru fylki í \ilcode{C++}.
+        \item<2-> Fylki geyma gögn og eru af fastri stærð.
+        \item<3-> Þar sem þau eru af fastri stærð má gefa þeim tileinkað, aðliggjandi svæði í minni.
+        \item<4-> Þetta leyfir manni að vísa í fylkið í $\mathcal{O}(1)$.
+        \item<5->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
+            Bæta staki aftast & $\mathcal{O}(n)$\\
+            Skeyta saman tveimur & $\mathcal{O}(n)$\\
+        }
+    }
+}
+
+\section{vector}
+\env{frame}
+{
+    \frametitle{\ilcode{vector}}
+    \env{itemize}
+    {
+        \item<1-> Gagnagrindin \ilcode{vector} er að mestu leiti eins og fylki.
+        \item<2-> Það má þó bæta stökum aftan á \ilcode{vector} í $\mathcal{O}(1)$.
+        \item<3-> Margir nota bara \ilcode{vector} og aldrei fylki sem slík.
+        \item<4->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Lesa eða skrifa ótiltekið stak & $\mathcal{O}(1)$\\
+            Bæta staki aftast & $\mathcal{O}(1)$\\
+            Skeyta saman tveimur & $\mathcal{O}(n)$\\
+        }
+    }
+}
+
+\section{vector kóði}
+\env{frame}
+{
+    \code{code/vector.cpp}
+    \code{code/vector.out}
+}
+
+\section{list}
+\env{frame}
+{
+    \frametitle{\ilcode{list}}
+    \env{itemize}
+    {
+        \item<1-> Gagnagrindin \ilcode{list} geymir gögn líkt og fylki gera, en stökin eru ekki aðliggjandi í minni.
+        \item<2-> Því er uppfletting ekki hröð.
+        \item<3-> Aftur á móti er hægt að gera smávægilegar breytingar á \ilcode{list} sem er ekki hægt að gera á fylkjum.
+        \item<4->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Finna stak & $\mathcal{O}(n)$\\
+            Bæta staki aftast & $\mathcal{O}(1)$\\
+            Bæta staki fremst & $\mathcal{O}(1)$\\
+            Bæta staki fyrir aftan tiltekið stak & $\mathcal{O}(1)$\\
+            Bæta staki fyrir framan tiltekið stak & $\mathcal{O}(1)$\\
+            Skeyta saman tveimur & $\mathcal{O}(1)$\\
+        }
+    }
+}
+
+\section{list kóði}
+\env{frame}
+{
+    \code{code/list.cpp}
+    \code{code/list.out}
+}
+
+\section{stack}
+\env{frame}
+{
+    \frametitle{\ilcode{stack}}
+    \env{itemize}
+    {
+        \item<1-> Gagnagrindin \ilcode{stack} geymir gögn og leyfir aðgang að síðasta staki sem var bætt við.
+        \item<2->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Bæta við staki & $\mathcal{O}(1)$\\
+            Lesa nýjasta stakið & $\mathcal{O}(1)$\\
+            Fjarlægja nýjasta stakið  & $\mathcal{O}(1)$\\
+        }
+    }
+}
+
+\section{stack kóði}
+\env{frame}
+{
+    \code{code/stack.cpp}
+    \code{code/stack.out}
+}
+
+\section{queue}
+\env{frame}
+{
+    \frametitle{\ilcode{queue}}
+    \env{itemize}
+    {
+        \item<1-> Gagnagrindin \ilcode{queue} geymir gögn og leyfir aðgang að fyrsta stakinu sem var bætt við.
+        \item<2->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Bæta við staki & $\mathcal{O}(1)$\\
+            Lesa elsta stakið & $\mathcal{O}(1)$\\
+            Fjarlægja elsta stakið  & $\mathcal{O}(1)$\\
+        }
+    }
+}
+
+\section{queue kóði}
+\env{frame}
+{
+    \code{code/queue.cpp}
+    \code{code/queue.out}
+}
+
+\section{set}
+\env{frame}
+{
+    \frametitle{\ilcode{set}}
+    \env{itemize}
+    {
+        \item<1-> Gagnagrindin \ilcode{set} geymir gögn án endurtekninga og leyfir hraða uppflettingu.
+        \item<2->[]
+        \env{tabular}
+        {
+            {l | l}
+            Aðgerð & Tímaflækja\\
+            \hline
+            Bæta við staki & $\mathcal{O}(\log n)$\\
+            Fjarlægja stak & $\mathcal{O}(\log n)$\\
+            Gá hvort staki hafi verið bætt við  & $\mathcal{O}(\log n)$\\
+        }
+    }
+}
+
+\section{set kóði}
+\env{frame}
+{
+    \code{code/set.cpp}
+    \code{code/set.out}
+}
+
+\section{Þessi glæra er viljandi auð}
+\env{frame}
+{
+}
+
+\end{document}

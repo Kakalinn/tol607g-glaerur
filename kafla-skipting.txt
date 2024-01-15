@@ -3,6 +3,7 @@ inngangur
 
 vika02
 grunnatidi
+innbygdar-gagnagrindur
 timaflaekjur
 ad-hoc
 
