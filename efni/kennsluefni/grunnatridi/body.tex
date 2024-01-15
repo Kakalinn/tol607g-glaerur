@@ -88,10 +88,10 @@
         \item<2-> Fyrra gildið svarar til fyrsta staks þess sem við viljum raða og seinna gildið vísar á enda þess sem við viljum raða
             (ekki síðasta stakið)
         \item<3-> Ef við erum með $n$ staka fylki \ilcode{a} þá röðum við því með \ilcode{sort(a, a + n)}.
-        \item<4-> Við getum raðað flest öllum ílátum með \ilcode{sort}.
+        \item<4-> Við getum raðað flestum ílátum með \ilcode{sort}.
         \item<5-> Ef við erum með eitthvað ílát (til dæmis \ilcode{vector}) \ilcode{a} má raða með \ilcode{sort(a.begin(), a.end())}.
         \item<6-> Við getum líka bætt við okkar eigin samanburðarfalli sem þriðja inntak.
-        \item<7-> Það kemur þá í stað ``minna eða samasem'' samanburðarins sem er sjálfgefinn.
+        \item<7-> Það kemur þá í stað ,,minna eða samasem'' samanburðarins sem er sjálfgefinn.
     }
 }
 
@@ -122,7 +122,7 @@
         \item<3-> Fallið tekur fjögur viðföng:
         \env{itemize}
         {
-            \item<4-> \ilcode{void* a}. Þetta er fylkið sem við viljum raða.
+            \item<4-> \ilcode{void *a}. Þetta er fylkið sem við viljum raða.
             \item<5-> \ilcode{size\_t n}. Þetta er fjöldi staka í fylkinu sem \ilcode{a} svarar til.
             \item<6-> \ilcode{size\_t s}. Þetta er stærð hvers staks í fylkinu okkar (í bætum).
             \item<7-> \ilcode{int (*cmp)(const void*, const void*)}. Þetta er samanburðarfallið okkar.
@@ -267,18 +267,18 @@
     {
         \item<1-> Tímaflækjur algengra aðgerða eru:
         \item<2->[]
-    }
-    \footnotesize
-    \env{tabular}
-    {
-        {l | l | l}
-        Aðgerð & Lýsing & Tímaflækja\\
-        \hline
-        Línulega leit & Almenn leit í fylki & $\mathcal{O}(n)$\\
-        Helmingunarleit & Leit í röðuðu fylki & $\mathcal{O}(\log n)$\\
-        Röðun á heiltölum & Röðun á heiltalna fylki & $\mathcal{O}(n \log n)$\\
-        Strengjasamanburður & Bera saman tvo strengi af lengd $n$ & $\mathcal{O}(n)$\\
-        Almenn röðun & Röðun með $\mathcal{O}(T(m))$ samanburð & $\mathcal{O}(T(m) \cdot n \log n)$\\
+        \footnotesize
+        \env{tabular}
+        {
+            {p{3.0cm} | p{3.6cm} | p{2.4cm}}
+            Aðgerð & Lýsing & Tímaflækja\\
+            \hline
+            Línulega leit & Almenn leit í fylki & $\mathcal{O}(n)$\\
+            Helmingunarleit & Leit í röðuðu fylki & $\mathcal{O}(\log n)$\\
+            Röðun á heiltölum & Röðun á heiltalna fylki & $\mathcal{O}(n \log n)$\\
+            Strengjasamanburður & Bera saman tvo strengi af lengd $n$ & $\mathcal{O}(n)$\\
+            Almenn röðun & Röðun með samanburði í $\mathcal{O}(T(m))$ tíma & $\mathcal{O}(T(m) \cdot n \log n)$\\
+        }
     }
 }
 
@@ -299,8 +299,8 @@
             \item<5-> Ef útkoman er minni en fjöldi sekúnda í tímamörkum dæmisins þá er lausnin okkar nógu hröð, annars er hún of hæg.
         }
         \item<6-> Þessa reglu mætti um orða sem: ``Við gerum ráð fyrir að forritið geti framkvæmt $10^8$ aðgerðir á sekúndu''.
-        \item<7-> Þessi regla er gróf nálgun, en virkar mjög vel því þetta er það sem dæmahöfundar hafa í huga þegar þeir semja dæmi.
-        \item<8-> Með þetta í huga fáum við eftirfarandi töflu.
+        \item<7-> Reglan er gróf nálgun, en virkar mjög vel því þetta er það sem dæmahöfundar hafa í huga þegar þeir semja dæmi.
+        \item<8-> Reglan gefur eftirfarandi töflu.
     }
 }
 
