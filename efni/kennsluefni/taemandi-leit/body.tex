@@ -49,12 +49,11 @@
         \item<1-> Gefinn er listi \ilcode{a} af $n$ mismunandi heiltölum á bilinu $[0, m]$.
         \item<2-> Hver þeirra er stærst?
         \item<3-> Til að nota tæmandi leit þurfum við að byrja á að ákvarða lausnarrúmið.
-        \item<4-> Hér er það einfaldlega heiltölurnar á bilinu $[0, m]$.
+        \item<4-> Hér getum við einfaldlega valið heiltölurnar á bilinu $[0, m]$.
         \item<5-> Okkur nægir að ítra öfugt í gegnum heiltölurnar á bilinu $[0, m]$ þangað til við lendum á tölu sem er í \ilcode{a}.
         \item<6-> Við getum athugað hvort tiltekin tala sé í $a$ með því að ítra í gegnum \ilcode{a},
             sem tekur $\mathcal{O}(\onslide<7->{\,n\,})$ tíma.
         \item<8-> Þessi aðferð er því $\mathcal{O}(\onslide<9->{n \cdot m})$.
-        \item<10-> Hvaða gagnagrind úr síðasta fyrirlestri mætti nota til að bæta þessa tímaflækju?
     }
 }
 
@@ -123,23 +122,29 @@
         \item<2->[]
         \env{tabular}
         {
-            {| l | l |}
+            {| l l |}
             \hline
             Kennir $k$-ta einstökungs & \quad \ilcode{1 <\!< k}\\
             Kennir fyllimengis kennis & \quad \ilcode{\textasciitilde{A}}\\
-            Kennir samengis tveggja kenna & \quad \ilcode{A|B}\\
+            Kennir sammengis tveggja kenna & \quad \ilcode{A|B}\\
             Kennir sniðmengis tveggja kenna & \quad \ilcode{A\&B}\\
             Kennir samhverfs mismunar tveggja kenna & \quad \ilcode{A\textasciicircum B}\\
             Kennir mismunar tveggja kenna & \quad \ilcode{A\&(\textasciitilde{B})}\\
             \hline
         }
-        \item<3-> NB: Vegna forgangs aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
+        \item<3-> Vegna forgangs aðgerða í flestum forritunarmálum er góður vani að nota nóg af svigum þegar unnið er með bitaaðgerðir.
         \item<4-> Til dæmis er \ilcode{A\&B == 0} jafngilt \ilcode{A\&(B == 0)} í \ilcode{C/C++},
                     þó við viljum yfirleitt \ilcode{(A\&B) == 0}.
         \item<5-> Takið eftir að kennir fyllimengisins bætir mögulega við bitum utan þeirra sem við höfum áhuga því við erum í rauninni að taka fyllimengi
                     með stærra óðal.
-        \item<6-> Til að allt sé rétt þarf notum við \ilcode{(\textasciitilde{A})\&((1 <\!< n) - 1)}.
+        \item<6-> Til að allt sé rétt þarf stundum að nota \ilcode{(\textasciitilde{A})\&((1 <\!< n) - 1)}.
     }
+}
+
+\subsection{Útfærsla á aðgerðum fyrir bitakenna}
+\env{frame}
+{
+    \selectcode{code/masks.c}{3}{9}
 }
 
 \subsection{Lausn}
@@ -165,7 +170,7 @@
 {
     \env{itemize}
     {
-        \item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
+        \item<1-> Hér er lausnarrúmið af stærð $2^n$ og við erum $\mathcal{O}(n)$ tíma að ganga úr skugga um hvort tiltekin lausn sé í raun rétt,
             svo reikniritið er $\mathcal{O}(\onslide<2->{n \cdot 2^n})$.
     }
 }
@@ -346,7 +351,7 @@
     {
         \item<1-> Það eru ýmsir kostir við tæmandi leit.
         \item<2-> Til að mynda er lausnin sem reikniritin skila alltaf rétt (við sjáum seinna aðferðir þar sem það gildir ekki)
-        \item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (þegar maður er kominn með smá æfingu).
+        \item<3-> Tæmandi leit á það til að vera auðveld í útfærslu (með smá æfingu).
         \item<4-> Á keppnum er tæmandi leit yfirleitt í léttu dæmunum, ef hún er í keppninni á annað borð.
         \item<5-> Keppnir innihalda frekar dæmi þar sem tæmandi leit er aðeins hluti af lausninni.
     }
