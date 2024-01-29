@@ -6,6 +6,7 @@
 
 \frame{\titlepage}
 
+\section{Yfirlit yfir lausanaraðferðir}
 \env{frame}
 {
     \frametitle{Almennar nálganir lausna}
@@ -25,6 +26,8 @@
     }
 }
 
+\section{Deila og drottna}
+\subsection{Lýsing}
 \env{frame}
 {
     \frametitle{Deila og drottna}
@@ -38,14 +41,15 @@
     }
 }
 
+\subsection{Dæmi um reiknirit sem nota aðferðina að deila og drottna}
 \env{frame}
 {
     \frametitle{Deila og drottna, þekkt dæmi}
     \env{itemize}
     {
-        \item<1-> Mergesort.
+        \item<1-> Sameiningarröðun (e. \emph{mergesort}).
         \item<2-> Helmingunarleit (e. \emph{binary search}).
-        \item<3-> Þriðjungaleit (e. \emph{ternary search}).
+        \item<3-> Þriðjungunarleit (e. \emph{ternary search}).
         \item<4-> Margföldunarreiknirit Karatsuba.
         \item<5-> Margföldunarreiknirit Strassen.
         \item<6-> Nálægustu punktar í plani.
@@ -53,9 +57,11 @@
     }
 }
 
+\section{Sameiningarröðun}
+\subsection{Sameining raðaðra lista}
 \env{frame}
 {
-    \frametitle{Merge}
+    \frametitle{Sameining}
     \env{itemize}
     {
         \item<1-> Gerum ráð fyrir að við séum með tvo raðaða lista, $a$ og $b$.
@@ -153,6 +159,7 @@
         c = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 \end{verbatim} }
 
+\subsection{Sýnidæmi um sameiningu}
 \env{frame}
 {
     \only<all:1> \mergeA
@@ -169,9 +176,10 @@
     \only<all:12> \mergeL
 }
 
+\subsection{Útskýring}
 \env{frame}
 {
-    \frametitle{Mergesort}
+    \frametitle{Sameiningarröðun}
     \env{itemize}
     {
         \item<1-> Við getum notað þessa aðferð til að raða almennum lista.
@@ -180,23 +188,26 @@
     }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
     \selectcode{code/mergesort.c}{6}{20}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
-    \frametitle{Mergesort}
     \env{itemize}
     {
-        \item<1-> Mergesort er sígilt dæmi um deila og drottna reiknirit.
+        \item<1-> Sameiningarröðun er sígilt dæmi um deila og drottna reiknirit.
         \item<2-> Við helmingum alltaf listann og tökum svo saman í línulegum tíma.
         \item<3-> Hvert stak kemur fyrir í $\mathcal{O}(\log n)$ sameiningum, svo reikniritið er $\mathcal{O}($\onslide<4->{$n \log n$}$)$.
         \item<5-> Þetta er mjög algeng tímaflækja í deila og drottna reikniritum.
     }
 }
 
+\section{Helmingunarleit}
+\subsection{Útskýring}
 \env{frame}
 {
     \frametitle{Helmingunarleit}
@@ -213,11 +224,13 @@
     }
 }
 
+\subsection{Endurkvæm útfærsla}
 \env{frame}
 {
     \selectcode{code/bs-rec.c}{3}{9}
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
     \env{itemize}
@@ -228,6 +241,7 @@
     }
 }
 
+\subsection{Helmingunaraðferðin}
 \env{frame}
 {
     \env{itemize}
@@ -243,6 +257,7 @@
     }
 }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
     \frametitle{Sýnidæmi}
@@ -286,6 +301,7 @@
     }
 }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
     \env{itemize}
@@ -296,6 +312,7 @@
     }
 }
 
+\subsection{Hagnýtingar helmingunarleitar: Kisudæmið}
 \env{frame}
 {
     \env{itemize}
@@ -311,6 +328,7 @@
     }
 }
 
+\subsection{Lausn}
 \env{frame}
 {
     \env{itemize}
@@ -326,7 +344,7 @@
         \item<6-> Við megum þá ekki setja kött á bæli sem liggja í $[x_1, x_1 + r]$.
         \item<7-> Útilokum þau og veljum minnsta bælið sem er eftir, og endurtökum.
         \item<8-> Ef við komum fyrir $k$, eða fleiri, köttum svona þá er svarið við nýju spurningunni ``já'', en annars ``nei''.
-        \item<9-> Þetta tekur $\mathcal{O}($\onslide<10->{$n$}$)$.
+        \item<9-> Þetta tekur $\mathcal{O}($\onslide<10->{$\,n\,$}$)$.
     }
 }
 
@@ -349,6 +367,7 @@
     }
 }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
     \frametitle{Sýnidæmi}
@@ -392,6 +411,7 @@
     }
 }
 
+\subsection{Tímaflækja}
 \env{frame}
 {
     \env{itemize}
@@ -403,6 +423,7 @@
     }
 }
 
+\subsection{Yfirlit yfir aðferðina}
 \env{frame}
 {
     \env{itemize}
@@ -414,16 +435,19 @@
     }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
     \selectcode{code/kisur.c}{3}{25}
 }
 
+\section{Þriðjungunarleit}
+\subsection{Lýsing á verkefni}
 \env{frame}
 {
     \env{itemize}
     {
-        \frametitle{Þriðjungaleit}
+        \frametitle{Þriðjungunarleit}
         \item<1-> Gerum ráð fyrir að við séum með kúpt fall $f \colon [a, b] \rightarrow \mathbb{R}$.
         \item<2-> Munið að fall er kúpt ef $f(tx_1 + (1 - t)x_2) \leq tf(x_1) + (1 - t)f(x_2)$, fyrir öll $t \in [0, 1]$ og $x_1, x_2 \in [a, b]$.
         \item<3-> Hvernig finnum við útgildi (há- og lággildi) fallsins?
@@ -441,11 +465,11 @@
     }
 }
 
+\subsection{Skýring}
 \env{frame}
 {
     \env{itemize}
     {
-        \frametitle{Þriðjungaleit}
         \item<1-> Við getum fundið lággildið tölulega, svipað og með helmingunarleit.
         \item<2-> Við veljum punkta $m_1, m_2 \in [a, b]$ þannig að bilin $[a, m_1]$, $[m_1, m_2]$ og $[m_2, b]$ séu jafn löng.
         \item<3-> Við skoðum svo fallgildin $f(m_1)$ og $f(m_2)$.
@@ -456,11 +480,13 @@
     }
 }
 
+\subsection{Sýnidæmi}
 \env{frame}
 {
     \env{center}
     {
-        \begin{tikzpicture}[scale = 0.7, domain=-0.2:11.2]
+        \env{tikzpicture}
+        { [scale = 0.7, domain=-0.2:11.2]
             \draw[->] (-0.2,0) -- (11.2,0);
             \draw[->] (0,-0.2) -- (0,6.2);
             \draw[color = blue] plot[id=poly2] function{5 - 1.2*x + 0.1*x**2} node[right] {$f(x)$};
@@ -526,25 +552,29 @@
             \node<all:9>[below] at (6.22,-0.125) {$b$};
             \draw<all:9>(6.22,0.125) -- (6.22,-0.125);
             \draw<all:9>[dashed, gray] (6.22,0.125) -- (6.22,6.2);
-        \end{tikzpicture}
+        }
     }
 }
 
+\subsection{Hvenær má nota þriðjungunarleit?}
 \env{frame}
 {
     \env{itemize}
     {
         \item<1-> Við notum okkur oft að tvídiffranlegt fall er kúpt ef og aðeins ef önnur afleiðan er jákvæð.
         \item<2-> Umfjöllunin okkar heimfærist á eðlilegan hátt yfir á hvelf föll.
-        \item<3-> Þriðjungaleit er algeng í rúmfræði því Evklíðska firðin er kúpt.
+        \item<3-> Þriðjungunarleit er algeng í rúmfræði því Evklíðska firðin er kúpt.
     }
 }
 
+\subsection{Tímqflækja}
 \env{frame}
 {
     \selectcode{code/ts.c}{3}{21}
 }
 
+\section{Dæmi: Skortsala}
+\subsection{Lýsing}
 \env{frame}
 {
     \env{itemize}
@@ -561,6 +591,7 @@
     }
 }
 
+\subsection{Sýniinntak 1}
 \env{frame}
 {
     \env{itemize}
@@ -575,6 +606,7 @@
     }
 }
 
+\subsection{Þessi glæra er viljandi auð}
 \env{frame}
 {
     \env{itemize}
@@ -589,6 +621,7 @@
     }
 }
 
+\subsection{Sýniinntak 2}
 \env{frame}
 {
     \env{itemize}
@@ -610,6 +643,7 @@
     }
 }
 
+\subsection{Lausn}
 \env{frame}
 {
     \env{itemize}
@@ -631,11 +665,13 @@
     }
 }
 
+\subsection{Útfærsla}
 \env{frame}
 {
     \selectcode{code/skortsala.c}{6}{35}
 }
 
+\subsection{Þessi glæra er viljandi auð}
 \env{frame}
 {
 }
