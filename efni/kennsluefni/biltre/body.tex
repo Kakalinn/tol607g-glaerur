@@ -9,598 +9,598 @@
 \section{Inngangur}
 \env{frame}
 {
-	\frametitle{Dæmi}
-	\env{itemize}
-	{
-		\item<1-> Gefinn er listi með $n$ tölum.
-		\item<2-> Næst koma $q$ fyrirspurnir, þar sem hver er af einni af tveimur gerðum:
-		\env{itemize}
-		{
-			\item<3-> Bættu $k$ við $i$-tu töluna.
-			\item<4-> Reiknaðu summu allra talna á bilinu $[i, j]$.
-		}
-		\item<5-> Einföld útfærlsa á þessum fyrirspurnum gefur okkur
-					$\mathcal{O}($\onslide<6->{$\,1\,$}$)$ fyrir þá fyrri og
-					$\mathcal{O}($\onslide<7->{$\,n\,$}$)$ fyrir þá seinni.
-		\item<8-> Þar sem allar (eða langflestar) fyrirspurnir gætu verið af seinni gerðin yrði lausnin í heildina
-					$\mathcal{O}($\onslide<9->{$qn$}$)$.
-		\item<10-> Það er þó hægt að leysa þetta dæmi hraðar.
-		\item<11-> Algengt er að nota til þess \emph{biltré} (e. \emph{segment tree}).
-	}
+    \frametitle{Dæmi}
+    \env{itemize}
+    {
+        \item<1-> Gefinn er listi með $n$ tölum.
+        \item<2-> Næst koma $q$ fyrirspurnir, þar sem hver er af einni af tveimur gerðum:
+        \env{itemize}
+        {
+            \item<3-> Bættu $k$ við $i$-tu töluna.
+            \item<4-> Reiknaðu summu allra talna á bilinu $[i, j]$.
+        }
+        \item<5-> Einföld útfærlsa á þessum fyrirspurnum gefur okkur
+                    $\mathcal{O}($\onslide<6->{$\,1\,$}$)$ fyrir þá fyrri og
+                    $\mathcal{O}($\onslide<7->{$\,n\,$}$)$ fyrir þá seinni.
+        \item<8-> Þar sem allar (eða langflestar) fyrirspurnir gætu verið af seinni gerðin yrði lausnin í heildina
+                    $\mathcal{O}($\onslide<9->{$qn$}$)$.
+        \item<10-> Það er þó hægt að leysa þetta dæmi hraðar.
+        \item<11-> Algengt er að nota til þess \emph{biltré} (e. \emph{segment tree}).
+    }
 }
 
 \section{Sýnidæmi 1: Leggja við eitt stak og summa yfir bil}
 \subsection{Yfirlit}
 \env{frame}
 {
-	\frametitle{Biltré}
-	\env{itemize}
-	{
-		\item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
-		\item<2-> Rótin geymir svar við fyrirspurninni \ilcode{1 n} 
-					og ef hnútur geymir svarið við \ilcode{i j} þá geyma börn hans svör við \ilcode{i m}
-					og \ilcode{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
-		\item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \ilcode{i i} eru lauf trésins.
-		\item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna.
-		\item<5-> Þegar við útfærum tréð geymum við það eins og hrúgu.
-	}
+    \frametitle{Biltré}
+    \env{itemize}
+    {
+        \item<1-> Biltré er tvíundartré sem geymir svör við vissum fyrirspurnum af seinni gerðinni.
+        \item<2-> Rótin geymir svar við fyrirspurninni \ilcode{1 n} 
+                    og ef hnútur geymir svarið við \ilcode{i j} þá geyma börn hans svör við \ilcode{i m}
+                    og \ilcode{(m + 1) j}, þar sem $m$ er miðja heiltölubilsins $[i, j]$.
+        \item<3-> Þeir hnútar sem geyma svar við fyrirspurnum af gerðinni \ilcode{i i} eru lauf trésins.
+        \item<4-> Takið eftir að laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna.
+        \item<5-> Þegar við útfærum tréð geymum við það eins og hrúgu.
+    }
 }
 
 \subsection{Mynd af biltréi með fjögur lauf}
 \env{frame}
 {
-	\frametitle{Mynd af biltré, $n = 4$}
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\node[draw, circle, thick] (1) at (0,4) {$[1, 4]$};
+    \frametitle{Mynd af biltré, $n = 4$}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \node[draw, circle, thick] (1) at (0,4) {$[1, 4]$};
 
-			\node[draw, circle, thick] (2) at (-2,2) {$[1, 2]$};
-			\node[draw, circle, thick] (3) at (2,2) {$[3, 4]$};
+            \node[draw, circle, thick] (2) at (-2,2) {$[1, 2]$};
+            \node[draw, circle, thick] (3) at (2,2) {$[3, 4]$};
 
-			\node[draw, circle, thick] (4) at (-3,0) {$[1, 1]$};
-			\node[draw, circle, thick] (5) at (-1,0) {$[2, 2]$};
-			\node[draw, circle, thick] (6) at (1,0) {$[3, 3]$};
-			\node[draw, circle, thick] (7) at (3,0) {$[4, 4]$};
+            \node[draw, circle, thick] (4) at (-3,0) {$[1, 1]$};
+            \node[draw, circle, thick] (5) at (-1,0) {$[2, 2]$};
+            \node[draw, circle, thick] (6) at (1,0) {$[3, 3]$};
+            \node[draw, circle, thick] (7) at (3,0) {$[4, 4]$};
 
-			\path[draw, thick] (1) -- (2);
-			\path[draw, thick] (1) -- (3);
-			\path[draw, thick] (2) -- (4);
-			\path[draw, thick] (2) -- (5);
-			\path[draw, thick] (3) -- (6);
-			\path[draw, thick] (3) -- (7);
-		}
-	}
+            \path[draw, thick] (1) -- (2);
+            \path[draw, thick] (1) -- (3);
+            \path[draw, thick] (2) -- (4);
+            \path[draw, thick] (2) -- (5);
+            \path[draw, thick] (3) -- (6);
+            \path[draw, thick] (3) -- (7);
+        }
+    }
 }
 
 \subsection{Mynd af biltréi með sjö lauf}
 \env{frame}
 {
-	\frametitle{Mynd af biltré, $n = 7$}
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\node[draw, circle, thick] (1) at (0,6) {$[1, 7]$};
+    \frametitle{Mynd af biltré, $n = 7$}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \node[draw, circle, thick] (1) at (0,6) {$[1, 7]$};
 
-			\node[draw, circle, thick] (2) at (-3,4) {$[1, 4]$};
-			\node[draw, circle, thick] (3) at (3,4) {$[5, 7]$};
+            \node[draw, circle, thick] (2) at (-3,4) {$[1, 4]$};
+            \node[draw, circle, thick] (3) at (3,4) {$[5, 7]$};
 
-			\node[draw, circle, thick] (4) at (-4,2) {$[1, 2]$};
-			\node[draw, circle, thick] (5) at (-2,2) {$[3, 4]$};
-			\node[draw, circle, thick] (6) at (2,2) {$[5, 6]$};
-			\node[draw, circle, thick] (7) at (4,2) {$[7, 7]$};
+            \node[draw, circle, thick] (4) at (-4,2) {$[1, 2]$};
+            \node[draw, circle, thick] (5) at (-2,2) {$[3, 4]$};
+            \node[draw, circle, thick] (6) at (2,2) {$[5, 6]$};
+            \node[draw, circle, thick] (7) at (4,2) {$[7, 7]$};
 
-			\node[draw, circle, thick] (8) at (-5,0) {$[1, 1]$};
-			\node[draw, circle, thick] (9) at (-3.5,0) {$[2, 2]$};
-			\node[draw, circle, thick] (10) at (-2,0) {$[3, 3]$};
-			\node[draw, circle, thick] (11) at (-0.5,0) {$[4, 4]$};
-			\node[draw, circle, thick] (12) at (1,0) {$[5, 5]$};
-			\node[draw, circle, thick] (13) at (2.5,0) {$[6, 6]$};
+            \node[draw, circle, thick] (8) at (-5,0) {$[1, 1]$};
+            \node[draw, circle, thick] (9) at (-3.5,0) {$[2, 2]$};
+            \node[draw, circle, thick] (10) at (-2,0) {$[3, 3]$};
+            \node[draw, circle, thick] (11) at (-0.5,0) {$[4, 4]$};
+            \node[draw, circle, thick] (12) at (1,0) {$[5, 5]$};
+            \node[draw, circle, thick] (13) at (2.5,0) {$[6, 6]$};
 
-			\path[draw, thick] (1) -- (2);
-			\path[draw, thick] (1) -- (3);
-			\path[draw, thick] (2) -- (4);
-			\path[draw, thick] (2) -- (5);
-			\path[draw, thick] (3) -- (6);
-			\path[draw, thick] (3) -- (7);
-			\path[draw, thick] (4) -- (8);
-			\path[draw, thick] (4) -- (9);
-			\path[draw, thick] (5) -- (10);
-			\path[draw, thick] (5) -- (11);
-			\path[draw, thick] (6) -- (12);
-			\path[draw, thick] (6) -- (13);
-		}
-	}
+            \path[draw, thick] (1) -- (2);
+            \path[draw, thick] (1) -- (3);
+            \path[draw, thick] (2) -- (4);
+            \path[draw, thick] (2) -- (5);
+            \path[draw, thick] (3) -- (6);
+            \path[draw, thick] (3) -- (7);
+            \path[draw, thick] (4) -- (8);
+            \path[draw, thick] (4) -- (9);
+            \path[draw, thick] (5) -- (10);
+            \path[draw, thick] (5) -- (11);
+            \path[draw, thick] (6) -- (12);
+            \path[draw, thick] (6) -- (13);
+        }
+    }
 }
 
 \subsection{Yfirlit yfir uppfærslur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að við höfum biltré eins og lýst er að ofan og látum $H$ tákna hæð trésins.
-		\item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
-		\item<3-> Fyrri fyrirspurnin er einföld.
-		\item<4-> Ef við eigum að bæta $k$ við $i$-ta stakið finnum við fyrst laufið sem svarar til fyrirspurnar \ilcode{i i},
-					bætum $k$ við gildið þar og förum svo upp í rót í gegnum foreldrin og uppfærum á leiðinni gildin í þeim hnútum sem við lendum í.
-		\item<5-> Þar sem við heimsækjum bara þá hnúta sem eru á veginum frá rót til laufs (mest $H$ hnútar)
-					er tímaflækjan á fyrri fyrirspurninni $\mathcal{O}($\onslide<6->{$\,H\,$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við höfum biltré eins og lýst er að ofan og látum $H$ tákna hæð trésins.
+        \item<2-> Hvernig getum við leyst fyrirspurnirnar á glærunni á undan, og hver er tímaflækjan?
+        \item<3-> Fyrri fyrirspurnin er einföld.
+        \item<4-> Ef við eigum að bæta $k$ við $i$-ta stakið finnum við fyrst laufið sem svarar til fyrirspurnar \ilcode{i i},
+                    bætum $k$ við gildið þar og förum svo upp í rót í gegnum foreldrin og uppfærum á leiðinni gildin í þeim hnútum sem við lendum í.
+        \item<5-> Þar sem við heimsækjum bara þá hnúta sem eru á veginum frá rót til laufs (mest $H$ hnútar)
+                    er tímaflækjan á fyrri fyrirspurninni $\mathcal{O}($\onslide<6->{$\,H\,$}$)$.
+    }
 }
 
 \subsection{Dæmi um uppfærslur}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\only<all:1-2, 14-15, 24-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
-			\only<all:3-13, 16-23> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \only<all:1-2, 14-15, 24-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
+            \only<all:3-13, 16-23> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
 
 
-			\only<all:1-3, 12-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
-			\only<all:4-11> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
+            \only<all:1-3, 12-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
+            \only<all:4-11> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
 
-			\only<all:1-16, 22-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
-			\only<all:17-21> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
-
-
-			\only<all:1-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
-
-			\only<all:1-4, 10-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
-			\only<all:5-9> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
-
-			\only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
-
-			\only<all:1-17, 20-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
-			\only<all:18-19> { \node[draw, circle, thick, red] (7) at (4,2) {\phantom{xxx}}; }
+            \only<all:1-16, 22-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
+            \only<all:17-21> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
 
 
-			\only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
+            \only<all:1-4, 10-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
+            \only<all:5-9> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
 
-			\only<all:1-5, 8-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
-			\only<all:6-7> { \node[draw, circle, thick, red] (11) at (-0.5,0) {\phantom{xxx}}; }
+            \only<all:1-17, 20-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
+            \only<all:18-19> { \node[draw, circle, thick, red] (7) at (4,2) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
 
-			\path[draw, thick] (1) -- (2);
-			\path[draw, thick] (1) -- (3);
-			\path[draw, thick] (2) -- (4);
-			\path[draw, thick] (2) -- (5);
-			\path[draw, thick] (3) -- (6);
-			\path[draw, thick] (3) -- (7);
-			\path[draw, thick] (4) -- (8);
-			\path[draw, thick] (4) -- (9);
-			\path[draw, thick] (5) -- (10);
-			\path[draw, thick] (5) -- (11);
-			\path[draw, thick] (6) -- (12);
-			\path[draw, thick] (6) -- (13);
+            \only<all:1-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
 
-		
-			\only<all:2-14> { \node at (-3,6) {\ilcode{update(3, 7)}}; }
-			\only<all:15-24> { \node at (-3,6) {\ilcode{update(6, -12)}}; }
-			\only<all:25-> { \node at (-3,6) {}; }
+            \only<all:1-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
 
-			\only<all:1-12> { \node at (0,6) {$40$}; }
-			\only<all:13-22> { \node at (0,6) {$47$}; }
-			\only<all:23-> { \node at (0,6) {$35$}; }
+            \only<all:1-5, 8-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
+            \only<all:6-7> { \node[draw, circle, thick, red] (11) at (-0.5,0) {\phantom{xxx}}; }
 
-			\only<all:1-10> { \node at (-3,4) {$16$}; }
-			\only<all:11-> { \node at (-3,4) {$23$}; }
+            \only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
 
-			\only<all:1-20> { \node at (3,4) {$24$}; }
-			\only<all:21-> { \node at (3,4) {$12$}; }
+            \only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node at (-4,2) {$5$}; }
+            \path[draw, thick] (1) -- (2);
+            \path[draw, thick] (1) -- (3);
+            \path[draw, thick] (2) -- (4);
+            \path[draw, thick] (2) -- (5);
+            \path[draw, thick] (3) -- (6);
+            \path[draw, thick] (3) -- (7);
+            \path[draw, thick] (4) -- (8);
+            \path[draw, thick] (4) -- (9);
+            \path[draw, thick] (5) -- (10);
+            \path[draw, thick] (5) -- (11);
+            \path[draw, thick] (6) -- (12);
+            \path[draw, thick] (6) -- (13);
 
-			\only<all:1-8> { \node at (-2,2) {$11$}; }
-			\only<all:9-> { \node at (-2,2) {$18$}; }
+        
+            \only<all:2-14> { \node at (-3,6) {\ilcode{update(3, 7)}}; }
+            \only<all:15-24> { \node at (-3,6) {\ilcode{update(6, -12)}}; }
+            \only<all:25-> { \node at (-3,6) {}; }
 
-			\only<all:1-> { \node at (2,2) {$17$}; }
+            \only<all:1-12> { \node at (0,6) {$40$}; }
+            \only<all:13-22> { \node at (0,6) {$47$}; }
+            \only<all:23-> { \node at (0,6) {$35$}; }
 
-			\only<all:1-18> { \node at (4,2) {$7$}; }
-			\only<all:19-> { \node at (4,2) {$-5$}; }
+            \only<all:1-10> { \node at (-3,4) {$16$}; }
+            \only<all:11-> { \node at (-3,4) {$23$}; }
 
-			\only<all:1-> { \node at (-5,0) {$3$}; }
+            \only<all:1-20> { \node at (3,4) {$24$}; }
+            \only<all:21-> { \node at (3,4) {$12$}; }
 
-			\only<all:1-> { \node at (-3.5,0) {$2$}; }
+            \only<all:1-> { \node at (-4,2) {$5$}; }
 
-			\only<all:1-> { \node at (-2,0) {$9$}; }
+            \only<all:1-8> { \node at (-2,2) {$11$}; }
+            \only<all:9-> { \node at (-2,2) {$18$}; }
 
-			\only<all:1-6> { \node at (-0.5,0) {$2$}; }
-			\only<all:7-> { \node at (-0.5,0) {$9$}; }
+            \only<all:1-> { \node at (2,2) {$17$}; }
 
-			\only<all:1-> { \node at (1,0) {$9$}; }
+            \only<all:1-18> { \node at (4,2) {$7$}; }
+            \only<all:19-> { \node at (4,2) {$-5$}; }
 
-			\only<all:1-> { \node at (2.5,0) {$8$}; }
-		}
-	}
+            \only<all:1-> { \node at (-5,0) {$3$}; }
+
+            \only<all:1-> { \node at (-3.5,0) {$2$}; }
+
+            \only<all:1-> { \node at (-2,0) {$9$}; }
+
+            \only<all:1-6> { \node at (-0.5,0) {$2$}; }
+            \only<all:7-> { \node at (-0.5,0) {$9$}; }
+
+            \only<all:1-> { \node at (1,0) {$9$}; }
+
+            \only<all:1-> { \node at (2.5,0) {$8$}; }
+        }
+    }
 }
 
 \subsection{Útfærsla á uppfærslum}
 \env{frame}
 {
-	\selectcode{code/daemi1-segmenttree.c}{23}{37}
+    \selectcode{code/daemi1-segmenttree.c}{23}{37}
 }
 
 \subsection{Yfirlit yfir fyrirspurnir}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Seinni fyrirspurnin er ögn flóknari.
-		\item<2-> Auðveldast er að ímynda sér að við förum niður tréð og leitum að hvorum endapunktinum fyrir sig.
-		\item<3-> Á leiðinni upp getum við svo pússlað saman svarinu, eftir því hvort við erum að skoða hægri eða vinstri endapunktinn.
-		\item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í hnút
-			$[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er hægri endapunkturinn).
-		\item<5-> Við göngum svona upp þar til við lendum í bili sem inniheldur hinn endapunktinn.
-		\item<6-> Með sömu rökum og áðan er tímaflækjan $\mathcal{O}($\onslide<7->{$\,H\,$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Seinni fyrirspurnin er ögn flóknari.
+        \item<2-> Auðveldast er að ímynda sér að við förum niður tréð og leitum að hvorum endapunktinum fyrir sig.
+        \item<3-> Á leiðinni upp getum við svo pússlað saman svarinu, eftir því hvort við erum að skoða hægri eða vinstri endapunktinn.
+        \item<4-> Til dæmis, ef við erum að leita að hægri endapunkti $x$ og komum upp í bil $[i, j]$ þá bætum við gildinu í hnút
+            $[i, m]$ við það sem við höfum reiknað hingað til ef $x \in [m + 1, j]$, en annars bætum við engu við (því $x$ er hægri endapunkturinn).
+        \item<5-> Við göngum svona upp þar til við lendum í bili sem inniheldur hinn endapunktinn.
+        \item<6-> Með sömu rökum og áðan er tímaflækjan $\mathcal{O}($\onslide<7->{$\,H\,$}$)$.
+    }
 }
 
 \subsection{Dæmi um fyrirspurnir}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\only<all:2-9> { \node at (-3,6) {\ilcode{query(1, 7)}}; }
-			\only<all:10-17> { \node at (-3,6) {\ilcode{query(1, 2)}}; }
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \only<all:2-9> { \node at (-3,6) {\ilcode{query(1, 7)}}; }
+            \only<all:10-17> { \node at (-3,6) {\ilcode{query(1, 2)}}; }
 
-			\only<all:8> { \node at (-3,5.5) {\ilcode{= 2 + 18 + 12}}; }
-			\only<all:9> { \node at (-3,5.5) {\ilcode{= 32}}; }
-			\only<all:16> { \node at (-3,5.5) {\ilcode{= 2 + 9}}; }
-			\only<all:17> { \node at (-3,5.5) {\ilcode{= 11}}; }
-
-
-
-			\only<all:1-2, 4-10, 12-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
-			\only<all:3, 11> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
+            \only<all:8> { \node at (-3,5.5) {\ilcode{= 2 + 18 + 12}}; }
+            \only<all:9> { \node at (-3,5.5) {\ilcode{= 32}}; }
+            \only<all:16> { \node at (-3,5.5) {\ilcode{= 2 + 9}}; }
+            \only<all:17> { \node at (-3,5.5) {\ilcode{= 11}}; }
 
 
-			\only<all:1-3, 5-11, 13-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
-			\only<all:4, 12> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
 
-			\only<all:1-3, 10-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
-			\only<all:4> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
-			\only<all:5-9> { \node[draw, circle, thick, blue] (3) at (3,4) {\phantom{xxx}}; }
+            \only<all:1-2, 4-10, 12-> { \node[draw, circle, thick] (1) at (0,6) {\phantom{xxx}}; }
+            \only<all:3, 11> { \node[draw, circle, thick, red] (1) at (0,6) {\phantom{xxx}}; }
 
 
-			\only<all:1-4, 6-12, 14-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
-			\only<all:5, 13> { \node[draw, circle, thick, red] (4) at (-4,2) {\phantom{xxx}}; }
+            \only<all:1-3, 5-11, 13-> { \node[draw, circle, thick] (2) at (-3,4) {\phantom{xxx}}; }
+            \only<all:4, 12> { \node[draw, circle, thick, red] (2) at (-3,4) {\phantom{xxx}}; }
 
-			\only<all:1-4, 10-12, 14-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
-			\only<all:5, 13> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
-			\only<all:6-9> { \node[draw, circle, thick, blue] (5) at (-2,2) {\phantom{xxx}}; }
-
-			\only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
-
-			\only<all:1-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
+            \only<all:1-3, 10-> { \node[draw, circle, thick] (3) at (3,4) {\phantom{xxx}}; }
+            \only<all:4> { \node[draw, circle, thick, red] (3) at (3,4) {\phantom{xxx}}; }
+            \only<all:5-9> { \node[draw, circle, thick, blue] (3) at (3,4) {\phantom{xxx}}; }
 
 
-			\only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
+            \only<all:1-4, 6-12, 14-> { \node[draw, circle, thick] (4) at (-4,2) {\phantom{xxx}}; }
+            \only<all:5, 13> { \node[draw, circle, thick, red] (4) at (-4,2) {\phantom{xxx}}; }
 
-			\only<all:1-5, 10-13, 18-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
-			\only<all:6, 14> { \node[draw, circle, thick, red] (9) at (-3.5,0) {\phantom{xxx}}; }
-			\only<all:7-9, 15-17> { \node[draw, circle, thick, blue] (9) at (-3.5,0) {\phantom{xxx}}; }
+            \only<all:1-4, 10-12, 14-> { \node[draw, circle, thick] (5) at (-2,2) {\phantom{xxx}}; }
+            \only<all:5, 13> { \node[draw, circle, thick, red] (5) at (-2,2) {\phantom{xxx}}; }
+            \only<all:6-9> { \node[draw, circle, thick, blue] (5) at (-2,2) {\phantom{xxx}}; }
 
-			\only<all:1-13, 18-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
-			\only<all:14> { \node[draw, circle, thick, red] (10) at (-2,0) {\phantom{xxx}}; }
-			\only<all:15-17> { \node[draw, circle, thick, blue] (10) at (-2,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (6) at (2,2) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (7) at (4,2) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
 
-			\only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
+            \only<all:1-> { \node[draw, circle, thick] (8) at (-5,0) {\phantom{xxx}}; }
 
-			\path[draw, thick] (1) -- (2);
-			\path[draw, thick] (1) -- (3);
-			\path[draw, thick] (2) -- (4);
-			\path[draw, thick] (2) -- (5);
-			\path[draw, thick] (3) -- (6);
-			\path[draw, thick] (3) -- (7);
-			\path[draw, thick] (4) -- (8);
-			\path[draw, thick] (4) -- (9);
-			\path[draw, thick] (5) -- (10);
-			\path[draw, thick] (5) -- (11);
-			\path[draw, thick] (6) -- (12);
-			\path[draw, thick] (6) -- (13);
+            \only<all:1-5, 10-13, 18-> { \node[draw, circle, thick] (9) at (-3.5,0) {\phantom{xxx}}; }
+            \only<all:6, 14> { \node[draw, circle, thick, red] (9) at (-3.5,0) {\phantom{xxx}}; }
+            \only<all:7-9, 15-17> { \node[draw, circle, thick, blue] (9) at (-3.5,0) {\phantom{xxx}}; }
 
-			\node at (0,6) {$35$};
-			\node at (-3,4) {$23$};
-			\node at (3,4) {$12$};
-			\node at (-4,2) {$5$};
-			\node at (-2,2) {$18$};
-			\node at (2,2) {$17$};
-			\node at (4,2) {$-5$};
-			\node at (-5,0) {$3$};
-			\node at (-3.5,0) {$2$};
-			\node at (-2,0) {$9$};
-			\node at (-0.5,0) {$9$};
-			\node at (1,0) {$9$};
-			\node at (2.5,0) {$8$};
-		}
-	}
+            \only<all:1-13, 18-> { \node[draw, circle, thick] (10) at (-2,0) {\phantom{xxx}}; }
+            \only<all:14> { \node[draw, circle, thick, red] (10) at (-2,0) {\phantom{xxx}}; }
+            \only<all:15-17> { \node[draw, circle, thick, blue] (10) at (-2,0) {\phantom{xxx}}; }
+
+            \only<all:1-> { \node[draw, circle, thick] (11) at (-0.5,0) {\phantom{xxx}}; }
+
+            \only<all:1-> { \node[draw, circle, thick] (12) at (1,0) {\phantom{xxx}}; }
+
+            \only<all:1-> { \node[draw, circle, thick] (13) at (2.5,0) {\phantom{xxx}}; }
+
+            \path[draw, thick] (1) -- (2);
+            \path[draw, thick] (1) -- (3);
+            \path[draw, thick] (2) -- (4);
+            \path[draw, thick] (2) -- (5);
+            \path[draw, thick] (3) -- (6);
+            \path[draw, thick] (3) -- (7);
+            \path[draw, thick] (4) -- (8);
+            \path[draw, thick] (4) -- (9);
+            \path[draw, thick] (5) -- (10);
+            \path[draw, thick] (5) -- (11);
+            \path[draw, thick] (6) -- (12);
+            \path[draw, thick] (6) -- (13);
+
+            \node at (0,6) {$35$};
+            \node at (-3,4) {$23$};
+            \node at (3,4) {$12$};
+            \node at (-4,2) {$5$};
+            \node at (-2,2) {$18$};
+            \node at (2,2) {$17$};
+            \node at (4,2) {$-5$};
+            \node at (-5,0) {$3$};
+            \node at (-3.5,0) {$2$};
+            \node at (-2,0) {$9$};
+            \node at (-0.5,0) {$9$};
+            \node at (1,0) {$9$};
+            \node at (2.5,0) {$8$};
+        }
+    }
 }
 
 \subsection{Útfærsla á fyrirspurnum}
 \env{frame}
 {
-	\frametitle{Biltré í \ilcode{C}}
-	\selectcode{code/daemi1-segmenttree.c}{10}{21}
+    \frametitle{Biltré í \ilcode{C}}
+    \selectcode{code/daemi1-segmenttree.c}{10}{21}
 }
 
 \subsection{Umræða um tímaflækjur}
 \env{frame}
 {
-	\frametitle{Tímaflækja biltrjáa}
-	\env{itemize}
-	{
-		\item<1-> Þar sem lengd hvers bils sem hnútur svarar til helmingast þegar farið er niður tréð er
-					$\mathcal{O}(H) = \mathcal{O}($\onslide<2->{$\log n$}$)$.
-		\item<3-> Við erum því komin með lausn á upprunalega dæminu sem er $\mathcal{O}($\onslide<4->{$q \cdot \log n$}$)$.
-		\item<5-> Þetta væri nógu hratt ef, til dæmis, $n = q = 10^6$.
-		\item<6-> Tökum annað dæmi.
-	}
+    \frametitle{Tímaflækja biltrjáa}
+    \env{itemize}
+    {
+        \item<1-> Þar sem lengd hvers bils sem hnútur svarar til helmingast þegar farið er niður tréð er
+                    $\mathcal{O}(H) = \mathcal{O}($\onslide<2->{$\log n$}$)$.
+        \item<3-> Við erum því komin með lausn á upprunalega dæminu sem er $\mathcal{O}($\onslide<4->{$q \cdot \log n$}$)$.
+        \item<5-> Þetta væri nógu hratt ef, til dæmis, $n = q = 10^6$.
+        \item<6-> Tökum annað dæmi.
+    }
 }
 
 \section{Sýnidæmi 2: Breyta einu staki og finna stærsta stak á bili}
 \subsection{Yfirlit}
 \env{frame}
 {
-	\frametitle{Annað dæmi}
-	\env{itemize}
-	{
-		\item<1-> Fyrsta lína inntaksins inniheldur tvær jákvæðar heiltölur, $n$ og $m$, minni en $10^5$.
-		\item<2-> Næsta lína inniheldur $n$ heiltölur, á milli $-10^9$ og $10^9$.
-		\item<3-> Næstu $m$ línur innihalda fyrirspurnir, af tveimur gerðum. 
-		\item<4-> Fyrri gerðin hefst á \ilcode{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $x$-tu töluna sem $y$.
-		\item<5-> Seinni gerðin hefst á \ilcode{2} og inniheldur svo tvær tölu,
-			$x$ og $y$. Hér á að prenta út stærstu töluna á hlutbilinu $[x, y]$ í talnalistanum.
-		\item<6-> Hvernig leysum við þetta?
-	}
+    \frametitle{Annað dæmi}
+    \env{itemize}
+    {
+        \item<1-> Fyrsta lína inntaksins inniheldur tvær jákvæðar heiltölur, $n$ og $m$, minni en $10^5$.
+        \item<2-> Næsta lína inniheldur $n$ heiltölur, á milli $-10^9$ og $10^9$.
+        \item<3-> Næstu $m$ línur innihalda fyrirspurnir, af tveimur gerðum. 
+        \item<4-> Fyrri gerðin hefst á \ilcode{1} og inniheldur svo tvær tölur, $x$ og $y$. Hér á að setja $x$-tu töluna sem $y$.
+        \item<5-> Seinni gerðin hefst á \ilcode{2} og inniheldur svo tvær tölu,
+            $x$ og $y$. Hér á að prenta út stærstu töluna á hlutbilinu $[x, y]$ í talnalistanum.
+        \item<6-> Hvernig leysum við þetta?
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við getum leyst þetta með biltrjám.
-		\item<2-> Í stað þess að láta hnúta (sem eru ekki lauf) geyma summu barna sinna, þá geyma þeir stærra stak barna sinna.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum leyst þetta með biltrjám.
+        \item<2-> Í stað þess að láta hnúta (sem eru ekki lauf) geyma summu barna sinna, þá geyma þeir stærra stak barna sinna.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\frametitle{Lausn}
-	\selectcode{code/daemi2-segmenttree.c}{11}{38}
+    \frametitle{Lausn}
+    \selectcode{code/daemi2-segmenttree.c}{11}{38}
 }
 
 \section{Biltré með uppfærslum yfir bil}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Leysa má ýmis dæmi af þessari gerð, með biltrjám.
-		\item<2-> Þessi dæmi eru yfirleitt kölluð \emph{punkt-uppfærslur, bil-fyrirspurnir} (e. \emph{point-update, range-query}).
-		\item<3-> Algengt er að sýna næst hvernig nota megi biltré til að leysa \emph{bil-uppfærslur, punkt-fyrirspurnir}
-					(e. \emph{range-update, point-query}).
-		\item<4-> Þetta er, í grófum dráttum, gert með því að snúa trjánum við.
-		\item<5-> Við munum ekki skoða þetta.
-		\item<6-> Við tökum frekar fyrir \emph{lygn biltré}.
-		\item<7-> Þau leyfa okkur að leysa \emph{bil-uppfærslur, bil-fyrirspurnir} (e. \emph{range-update, range-query}).
-	}
+    \env{itemize}
+    {
+        \item<1-> Leysa má ýmis dæmi af þessari gerð, með biltrjám.
+        \item<2-> Þessi dæmi eru yfirleitt kölluð \emph{punkt-uppfærslur, bil-fyrirspurnir} (e. \emph{point-update, range-query}).
+        \item<3-> Algengt er að sýna næst hvernig nota megi biltré til að leysa \emph{bil-uppfærslur, punkt-fyrirspurnir}
+                    (e. \emph{range-update, point-query}).
+        \item<4-> Þetta er, í grófum dráttum, gert með því að snúa trjánum við.
+        \item<5-> Við munum ekki skoða þetta.
+        \item<6-> Við tökum frekar fyrir \emph{lygn biltré}.
+        \item<7-> Þau leyfa okkur að leysa \emph{bil-uppfærslur, bil-fyrirspurnir} (e. \emph{range-update, range-query}).
+    }
 }
 
 \section{Sýnidæmi 3: Leggja við öll stök á bili og finna stærsta stak á bili}
 \subsection{Yfirlit}
 \env{frame}
 {
-	\frametitle{Lygn dreifing}
-	\env{itemize}
-	{
-		\item<1-> Sem beinagrind munum við nota biltrjáa útfærsluna sem við notuðum til að leysa fyrsta dæmið.
-		\item<2-> Við munum nú láta fyrri fyrirspurnina, \ilcode{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
-		\item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
-		\item<4-> Við geymum í öðrum tréi þær uppfærslur sem við eigum eftir að framkvæma.
-		\item<5-> Í hverri endurkvæmni (bæði uppfærslum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
-		\item<6-> Þetta kallast \emph{lygn dreifing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
-		\item<7-> Ef biltré hefur lygna dreifingu köllum við það \emph{lygnt biltré} (e. \emph{segment tree with lazy propagation}).
-	}
+    \frametitle{Lygn dreifing}
+    \env{itemize}
+    {
+        \item<1-> Sem beinagrind munum við nota biltrjáa útfærsluna sem við notuðum til að leysa fyrsta dæmið.
+        \item<2-> Við munum nú láta fyrri fyrirspurnina, \ilcode{i j k}, þýða ``Bættu $k$ við allar tölur á bilinu $[i, j]$''.
+        \item<3-> Uppfærslan er framkvæmd á svipaðan hátt og fyrirspurnirnar eru.
+        \item<4-> Við geymum í öðrum tréi þær uppfærslur sem við eigum eftir að framkvæma.
+        \item<5-> Í hverri endurkvæmni (bæði uppfærslum og fyrirspurnum) dreifum við uppfærslunum í hnútnum niður á við.
+        \item<6-> Þetta kallast \emph{lygn dreifing} (e. \emph{lazy propagation}), því við framkvæmum hana bara þegar nauðsyn krefur.
+        \item<7-> Ef biltré hefur lygna dreifingu köllum við það \emph{lygnt biltré} (e. \emph{segment tree with lazy propagation}).
+    }
 }
 
 \subsection{Skipting uppfærslanna}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til hnúts í biltréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
-		\item<2-> Gerum ráð fyrir að við eigum eftir að framkvæma uppfærslu \ilcode{i j k}.
-		\item<3-> Næst þegar við köllum á \ilcode{qrec(i, j, ...)} eða \ilcode{urec(i, j, ...)}
-					þá munum við dreifa uppfærslunni \ilcode{i j k}.
-		\item<4-> Eftir dreifinguna munum við ekki eiga eftir uppfærslu á bilinu $[i, j]$, en við munum eiga eftir uppfærslurnar
-					\ilcode{i m k} og \ilcode{(m + 1) j k}.
-		\item<5-> Þegar við dreifum uppfærslunni \ilcode{i i k} þá nægir að uppfæra tilheyrandi lauf í biltrénu.
-	}
+    \env{itemize}
+    {
+        \item<1-> Látum $i < j$ vera heiltölur þannig að bilið $[i, j]$ svara til hnúts í biltréi og $m$ vera miðpunkt heiltölu bilsins $[i, j]$.
+        \item<2-> Gerum ráð fyrir að við eigum eftir að framkvæma uppfærslu \ilcode{i j k}.
+        \item<3-> Næst þegar við köllum á \ilcode{qrec(i, j, ...)} eða \ilcode{urec(i, j, ...)}
+                    þá munum við dreifa uppfærslunni \ilcode{i j k}.
+        \item<4-> Eftir dreifinguna munum við ekki eiga eftir uppfærslu á bilinu $[i, j]$, en við munum eiga eftir uppfærslurnar
+                    \ilcode{i m k} og \ilcode{(m + 1) j k}.
+        \item<5-> Þegar við dreifum uppfærslunni \ilcode{i i k} þá nægir að uppfæra tilheyrandi lauf í biltrénu.
+    }
 }
 
 \subsection{Gildin geymd í innrihnútum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna''.
-		\item<2-> Þetta gildir ekki fyrir lygn biltré.
-		\item<3-> Hnútar lygna biltrjáa þurfa að geyma summu barna sinna,
-					ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hans.
-		\item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
-		\item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \ilcode{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
-					því rótin geymir summu allra stakana.
-	}
+    \env{itemize}
+    {
+        \item<1-> Áðan var sagt ``laufin geyma þá gildin í listanum og aðrir hnútar geyma summu barna sinna''.
+        \item<2-> Þetta gildir ekki fyrir lygn biltré.
+        \item<3-> Hnútar lygna biltrjáa þurfa að geyma summu barna sinna,
+                    ásamt því að geyma þá summu sem fengist eftir allar óframkvæmdar uppfærslur afkomenda hans.
+        \item<4-> Þegar við ferðumst í gegnum tréð til að finna hvert við eigum að setja uppfærsluna uppfærum við tréð jafn óðum.
+        \item<5-> Til dæmis, ef við viljum framkvæma uppfærsluna \ilcode{i j k} þá þurfum við að bæta $k \cdot (j - i + 1)$ við rót biltrésins,
+                    því rótin geymir summu allra stakana.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/daemi3-segmenttree-le.c}{10}{44}
+    \selectcode{code/daemi3-segmenttree-le.c}{10}{44}
 }
 
 \subsection{Umræða um tímaflækjur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Nú hefur \ilcode{query(...)} sömu tímaflækju og í hefðbundnum biltrjám, það er að segja $\mathcal{O}($\onslide<2->{$\log n$}$)$.
-		\item<3-> Loks fæst (með sömu rökum og gefa tímaflækju \ilcode{query(...)}) að \ilcode{update(...)} er
-					$\mathcal{O}($\onslide<4->{$\log n$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Nú hefur \ilcode{query(...)} sömu tímaflækju og í hefðbundnum biltrjám, það er að segja $\mathcal{O}($\onslide<2->{$\log n$}$)$.
+        \item<3-> Loks fæst (með sömu rökum og gefa tímaflækju \ilcode{query(...)}) að \ilcode{update(...)} er
+                    $\mathcal{O}($\onslide<4->{$\log n$}$)$.
+    }
 }
 
 \section{Sýnidæmi 4: Leggja mismikið við stök á bili og finna summu yfir bil}
 \subsection{Yfirlit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að geta útfært lygnt biltré þurfum við geta skipt uppfærslum í tvennt.
-		\item<2-> Við þurfum líka að geta sameinað uppfærslur.
-		\item<3-> Í dæminu á undan skiptist \ilcode{i j k} í \ilcode{i m k} og \ilcode{m + 1 j k}.
-		\item<4-> Í dæminu á undan sameinast fyrirspurnir \ilcode{i j x} og \ilcode {i j y} í \ilcode{i j x + y}.
-		\item<5-> Tökum annað dæmi.
-		\item<6-> Við viljum aftur geta reiknað summuna yfir bil.
-		\item<7-> Við viljum einnig geta bætt núll við stak $x$, einum við stak $x + 1$, tveimur við stak $x + 2$, ..., $y - x$ við stak $y$.
-		\item<8-> Þessu uppfærsla svarar til að framkvæma \ilcode{a[x + i] += i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Til að geta útfært lygnt biltré þurfum við geta skipt uppfærslum í tvennt.
+        \item<2-> Við þurfum líka að geta sameinað uppfærslur.
+        \item<3-> Í dæminu á undan skiptist \ilcode{i j k} í \ilcode{i m k} og \ilcode{m + 1 j k}.
+        \item<4-> Í dæminu á undan sameinast fyrirspurnir \ilcode{i j x} og \ilcode {i j y} í \ilcode{i j x + y}.
+        \item<5-> Tökum annað dæmi.
+        \item<6-> Við viljum aftur geta reiknað summuna yfir bil.
+        \item<7-> Við viljum einnig geta bætt núll við stak $x$, einum við stak $x + 1$, tveimur við stak $x + 2$, ..., $y - x$ við stak $y$.
+        \item<8-> Þessu uppfærsla svarar til að framkvæma \ilcode{a[x + i] += i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+    }
 }
 
 \subsection{Skipting á uppfærslunni}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Er hægt að skipta uppfærslunni \ilcode{x y} í tvennt?
-		\item<2-> Nei.
-		\item<3-> En við getum bætt við viðfangi sem lýsir hvar summan á að byrja.
-		\item<4-> Uppfærslan \ilcode{x y r} svarar þá til \ilcode{a[x + i] += r + i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
-		\item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0}.
-		\item<6-> Við getum þá skipt \ilcode{x y r} í tvennt í \ilcode{x m r} og \ilcode{m + 1 y r + m - x + 1}
-	}
+    \env{itemize}
+    {
+        \item<1-> Er hægt að skipta uppfærslunni \ilcode{x y} í tvennt?
+        \item<2-> Nei.
+        \item<3-> En við getum bætt við viðfangi sem lýsir hvar summan á að byrja.
+        \item<4-> Uppfærslan \ilcode{x y r} svarar þá til \ilcode{a[x + i] += r + i;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+        \item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0}.
+        \item<6-> Við getum þá skipt \ilcode{x y r} í tvennt í \ilcode{x m r} og \ilcode{m + 1 y r + m - x + 1}
+    }
 }
 
 \subsection{Sameining uppfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Er hægt að sameina uppfærslurnar \ilcode{x y r} og \ilcode{x y w}?
-		\item<2-> Nei.
-		\item<3-> En við getum bætt við öðru viðfangi sem lýsir hversu mikið summan breytist í hverju skrefi.
-		\item<4-> Uppfærslan \ilcode{x y r k} svarar þá til \ilcode{a[x + i] += r + i*k;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
-		\item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0 1}.
-		\item<6-> Við getum nú sameinað tvær fyrirspurnir \ilcode{x y r k} og \ilcode{x y z w} í \ilcode{x y r + z k + w}.
-		\item<7-> Við getum einnig skipt \ilcode{x y r k} í \ilcode{x m r k} og \ilcode{m + 1 y r + k*(m - x + 1) k}.
-	}
+    \env{itemize}
+    {
+        \item<1-> Er hægt að sameina uppfærslurnar \ilcode{x y r} og \ilcode{x y w}?
+        \item<2-> Nei.
+        \item<3-> En við getum bætt við öðru viðfangi sem lýsir hversu mikið summan breytist í hverju skrefi.
+        \item<4-> Uppfærslan \ilcode{x y r k} svarar þá til \ilcode{a[x + i] += r + i*k;}, fyrir \ilcode{i} frá og með núll til og með $y - x$.
+        \item<5-> Til að framkvæma umbeðna fyrirspurn svörum við þá fyrirspurninni \ilcode{x y 0 1}.
+        \item<6-> Við getum nú sameinað tvær fyrirspurnir \ilcode{x y r k} og \ilcode{x y z w} í \ilcode{x y r + z k + w}.
+        \item<7-> Við getum einnig skipt \ilcode{x y r k} í \ilcode{x m r k} og \ilcode{m + 1 y r + k*(m - x + 1) k}.
+    }
 }
 
 \subsection{Uppfærsla á innri hnútum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að uppfæra gildin í hverjum hnút nýtum við okkur að uppfærsla \ilcode{x y r k} bætir í heildina 
+    \env{itemize}
+    {
+        \item<1-> Til að uppfæra gildin í hverjum hnút nýtum við okkur að uppfærsla \ilcode{x y r k} bætir í heildina 
 \[
-					r \cdot (y - x + 1) + k \cdot (y - x + 1) \cdot (y - x) / 2
+                    r \cdot (y - x + 1) + k \cdot (y - x + 1) \cdot (y - x) / 2
 \]
-					við laufin.
-	}
+                    við laufin.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/daemi4-segmenttree-le.c}{9}{20}
+    \selectcode{code/daemi4-segmenttree-le.c}{9}{20}
 }
 
 \env{frame}
 {
-	\selectcode{code/daemi4-segmenttree-le.c}{22}{56}
+    \selectcode{code/daemi4-segmenttree-le.c}{22}{56}
 }
 
 \section{Sýnidæmi 5: Finna lengda sammengis bila}
 \subsection{Yfirlit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum nú dæmi sem er aðeins flóknara.
-		\item<2-> Við höfum safn af bilum með heiltölu endapunkta sem byrjar tómt.
-		\item<3-> Við getum annað hvort bætt við bili í safnið eða fjarlægt það.
-		\item<4-> Við viljum síðan geta fundið lengd sammengis allra bilana í safninu.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum nú dæmi sem er aðeins flóknara.
+        \item<2-> Við höfum safn af bilum með heiltölu endapunkta sem byrjar tómt.
+        \item<3-> Við getum annað hvort bætt við bili í safnið eða fjarlægt það.
+        \item<4-> Við viljum síðan geta fundið lengd sammengis allra bilana í safninu.
+    }
 }
 
 \subsection{Lausn með biltrjám}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við getum leyst þetta dæmi með biltréi sem styður aðgerðirnar:
-		\env{itemize}
-		{
-			\item<2-> Leggja tölu við bil.
-			\item<3-> Finna hversu mörg stök á bilinu eru núll.
-		}
-		\item<4-> Við munum þurfa að gera ráð fyrir því að það séu aldrei neikvæðar tölur í trénu.
-		\item<5-> Þá getum við útfært þetta með biltréi sem geymir minnsta stakið (sem við sáum áðan),
-					ásamt því að geyma hversu oft minnsta stakið kemur fyrir.
-		\item<6-> Fjöldi núlla á bili er þá annaðhvort fjöldi minnstu stakanna á bilinu ef minnsta stakið er núll, en núll annars.
-		\item<7-> Þetta virkar aðeins ef minnsta stakið er aldrei minna núll.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum leyst þetta dæmi með biltréi sem styður aðgerðirnar:
+        \env{itemize}
+        {
+            \item<2-> Leggja tölu við bil.
+            \item<3-> Finna hversu mörg stök á bilinu eru núll.
+        }
+        \item<4-> Við munum þurfa að gera ráð fyrir því að það séu aldrei neikvæðar tölur í trénu.
+        \item<5-> Þá getum við útfært þetta með biltréi sem geymir minnsta stakið (sem við sáum áðan),
+                    ásamt því að geyma hversu oft minnsta stakið kemur fyrir.
+        \item<6-> Fjöldi núlla á bili er þá annaðhvort fjöldi minnstu stakanna á bilinu ef minnsta stakið er núll, en núll annars.
+        \item<7-> Þetta virkar aðeins ef minnsta stakið er aldrei minna núll.
+    }
 }
 
 \subsection{Aðferð til að höndla bil með stórum endapunktum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Lauf biltrésins munu nú svara til mögulegra gilda endapunkta bilanna
-		\item<2-> Ef endapunktarnir geta verið stórir (til dæmis $10^9$) verður þessi lausn of hæg.
-		\item<3-> Ef við vitum öll bilin fyrirfram getum við komist hjá því með því að geyma í trénu bara þá endapunkta við notum.
-		\item<4-> Gerum ráð fyrir að endapunktar bilanna séu alltaf einhver talnanna $x_1 < x_2 < \dots < x_m$.
-		\item<5-> Til að bæta bilinu $[x_i, x_j]$ í tréð notum við uppfærsluna \ilcode{i j 1}
-					og til að fjarlægja bilið notum við \ilcode{i j -1}.
-		\item<6-> Gildin í trénu verða aldrei neikvæð því við fjarlægju ekki bil nema að hafa sett það í tréð áður.
-		\item<7-> Til að fá rétta lengd geymir laufið sem svarar til vísi $i$ töluna $x_{i + 1} - x_i$.
-		\item<8-> Við svörum þá fyrirspurninni með \ilcode{i j - 1} ef minnsta gildið er núll (sem við reiknum með annarskonar fyrirspurn í biltrénu).
-	}
+    \env{itemize}
+    {
+        \item<1-> Lauf biltrésins munu nú svara til mögulegra gilda endapunkta bilanna
+        \item<2-> Ef endapunktarnir geta verið stórir (til dæmis $10^9$) verður þessi lausn of hæg.
+        \item<3-> Ef við vitum öll bilin fyrirfram getum við komist hjá því með því að geyma í trénu bara þá endapunkta við notum.
+        \item<4-> Gerum ráð fyrir að endapunktar bilanna séu alltaf einhver talnanna $x_1 < x_2 < \dots < x_m$.
+        \item<5-> Til að bæta bilinu $[x_i, x_j]$ í tréð notum við uppfærsluna \ilcode{i j 1}
+                    og til að fjarlægja bilið notum við \ilcode{i j -1}.
+        \item<6-> Gildin í trénu verða aldrei neikvæð því við fjarlægju ekki bil nema að hafa sett það í tréð áður.
+        \item<7-> Til að fá rétta lengd geymir laufið sem svarar til vísi $i$ töluna $x_{i + 1} - x_i$.
+        \item<8-> Við svörum þá fyrirspurninni með \ilcode{i j - 1} ef minnsta gildið er núll (sem við reiknum með annarskonar fyrirspurn í biltrénu).
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/daemi5-segmenttree-le.c}{12}{35}
+    \selectcode{code/daemi5-segmenttree-le.c}{12}{35}
 }
 
 \env{frame}
 {
-	\selectcode{code/daemi5-segmenttree-le.c}{37}{70}
+    \selectcode{code/daemi5-segmenttree-le.c}{37}{70}
 }
 
 \env{frame}
 {
-	\selectcode{code/daemi5-segmenttree-le.c}{72}{83}
+    \selectcode{code/daemi5-segmenttree-le.c}{72}{83}
 }
 
 \section{Þessi glæra er viljandi auð}

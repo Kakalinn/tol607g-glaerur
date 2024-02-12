@@ -20,7 +20,7 @@ vika06
 hrugur
 sammengisleit
 biltre
-square-root-decomposition
+rotarthattun
 
 vika07
 inngangur-neta
