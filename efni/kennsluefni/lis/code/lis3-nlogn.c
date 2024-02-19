@@ -9,13 +9,12 @@ int max(int a, int b) { return a < b ? b : a; }
 
 int lis(int *a, int *b, int n)                                                  // Finnur eina af lengstu vaxandi hlutrunum a.
 {
-    int i, j, x, y, d[n + 1], e[n];
+    int i, j, x, y, r, s, d[n + 1], e[n];
     for (i = 0; i < n + 1; i++) d[i] = i == 0 ? -INF : INF;                     // Upphafstillum minnistöfluna.
     for (i = 0; i < n; i++)
     {
-        int r = -1, s;                                                          // Reiknum, með helmingunarleit, hvar við setjum a[i] í minnistöfluna.
-        for (s = n + 1; s >= 1; s /= 2)
-            while (r + s < n + 1 && d[r + s] < a[i]) r += s;                    // ATH: Eftir leitina er vísirinn r - 1!
+        for (s = n + 1; s >= 1; s /= 2)                                         // Reiknum, með helmingunarleit, hvar við setjum a[i] í minnistöfluna.
+            while (r = -1, r + s < n + 1 && d[r + s] < a[i]) r += s;            // ATH: Eftir leitina er vísirinn r - 1!
         d[r + 1] = a[i], e[i] = d[r];                                           // Setjum a[i] í minnistöflun og geymum hvað stak kom á undan.
     }
     for (x = n; d[x] == INF; x--);                                              // Finnum lengdina á lengstu hlutrununum.
@@ -111,7 +110,7 @@ int main()
 {
     srand(time(NULL));
     int q = 1000000, n, m, i, j, x, l;
-#if 1                                                                           // 1 og 0 skipta milli tilvika.
+#if 0                                                                           // 1 og 0 skipta milli tilvika.
     scanf("%d", &n);                                                            // Innlestur hafinn.
     int a[n], b[n];
     for (i = 0; i < n; i++) scanf("%d", &a[i]);                                 // Innlestri lokið.
