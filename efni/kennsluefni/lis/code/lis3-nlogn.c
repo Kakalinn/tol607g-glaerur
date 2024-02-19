@@ -24,8 +24,18 @@ int lis(int *a, int *b, int n)                                                  
     return x;                                                                   // Skilum lengdinni á hlutrununni sem við fundum.
 }
 
-int v[MAXN], d[MAXN];                                                           // Allt hér að neðan, að main(...) utanskyldu, er til að sannreyna 
-int dp_lookup(int x)                                                            //    að fallið fyrir ofan sé rétt.
+
+
+
+
+
+
+
+// Allt hér að neðan, að main(...) utanskyldu, er til að sannreyna 
+//    að fallið fyrir ofan sé rétt.
+
+int v[MAXN], d[MAXN];
+int dp_lookup(int x)
 {
     if (d[x] != -1) return d[x];
     if (x == 0) return 1;
