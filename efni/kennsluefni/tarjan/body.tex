@@ -10,485 +10,485 @@
 \subsection{Skilgreiningar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Skilgreinum vensl $\sim$ á milli hnúta í óstefndu neti með því að $u \sim v$ ef og aðeins ef til er vegur milli $u$ og $v$.
-		\item<2-> Auðvelt er að sýna að þetta eru jafngildisvensl (sjálfhverf, samhverf og gegnvirk).
-		\item<3-> Við megum því skilgreina \emph{samhengisþátt} í netinu sem jafngildisflokka þessara vensla.
-		\item<4-> Samhengisþáttur í neti er því óstækkanlegt mengi þannig að komast má hverjum hnút í menginu til hvers annars með vegi.
-		\item<5-> Segja má að net sé samanhangandi þá og því aðeins að það innihaldi einn samhengisþátt.
-	}
+    \env{itemize}
+    {
+        \item<1-> Skilgreinum vensl $\sim$ á milli hnúta í óstefndu neti með því að $u \sim v$ ef og aðeins ef til er vegur milli $u$ og $v$.
+        \item<2-> Auðvelt er að sýna að þetta eru jafngildisvensl (sjálfhverf, samhverf og gegnvirk).
+        \item<3-> Við megum því skilgreina \emph{samhengisþátt} í netinu sem jafngildisflokka þessara vensla.
+        \item<4-> Samhengisþáttur í neti er því óstækkanlegt mengi þannig að komast má hverjum hnút í menginu til hvers annars með vegi.
+        \item<5-> Segja má að net sé samanhangandi þá og því aðeins að það innihaldi einn samhengisþátt.
+    }
 }
 
 \subsection{Lausn með dýptarleit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við getum beitt dýptarleit eða breiddarleit til að finna alla hnúta sem eru í sama samhengisþætti og tiltekinn hnútur.
-		\item<2-> Ef við framkvæmum dýptarleit sem byrjar í einhverjum hnút $x$ mun hún heimsækja alla hnúta í sama samhengisþætti og $x$.
-		\item<3-> Við þurfum að passa að leita ekki í tilteknum samhengisþætti oftar en einu sinni.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum beitt dýptarleit eða breiddarleit til að finna alla hnúta sem eru í sama samhengisþætti og tiltekinn hnútur.
+        \item<2-> Ef við framkvæmum dýptarleit sem byrjar í einhverjum hnút $x$ mun hún heimsækja alla hnúta í sama samhengisþætti og $x$.
+        \item<3-> Við þurfum að passa að leita ekki í tilteknum samhengisþætti oftar en einu sinni.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/cc-dfs.cpp}{6}{33}
+    \selectcode{code/cc-dfs.cpp}{6}{33}
 }
 
 \subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við framkvæmum sömu vinnu og í dýptaleit, svo tímaflækan er $\mathcal{O}($\onslide<2->{$E + V$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við framkvæmum sömu vinnu og í dýptarleit, svo tímaflækan er $\mathcal{O}($\onslide<2->{$E + V$}$)$.
+    }
 }
 
 \subsection{Lausn með sammengisleit}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Það er önnur náttúruleg leið til að finna samhengisþætti.
-		\item<2-> Við getum notað sammengisleit.
-		\item<3-> Þá sameinum við þá hnúta sem eru nágrannar.
-	}
+    \env{itemize}
+    {
+        \item<1-> Það er önnur náttúruleg leið til að finna samhengisþætti.
+        \item<2-> Við getum notað sammengisleit.
+        \item<3-> Þá sameinum við þá hnúta sem eru nágrannar.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/cc-uf.c}{5}{42}
+    \selectcode{code/cc-uf.c}{5}{42}
 }
 
 \section{Liðhnútar og brýr}
 \subsection{Skilgreining liðhnútar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Ef við tölum um að fjarlægja hnút úr neti þá er átt við að hnúturinn ásamt öllum leggjum til og frá honum eru fjarlægðir.
-		\item<2-> Gerum ráð fyrir að við höfum net $G$ og látum $G_u$ tákna netið þar sem hnútur $u$ hefur verið fjarlægður.
-		\item<3-> Við segjum að hnútur $u$ sé \emph{liðhnútur} (e. \emph{articulation point}) ef $G$ hefur færri samhengisþætti en $G_u$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Ef við tölum um að fjarlægja hnút úr neti þá er átt við að hnúturinn ásamt öllum leggjum til og frá honum eru fjarlægðir.
+        \item<2-> Gerum ráð fyrir að við höfum net $G$ og látum $G_u$ tákna netið þar sem hnútur $u$ hefur verið fjarlægður.
+        \item<3-> Við segjum að hnútur $u$ sé \emph{liðhnútur} (e. \emph{articulation point}) ef $G$ hefur færri samhengisþætti en $G_u$.
+    }
 }
 
 \subsection{Skilgreining brúa}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að fjarlægja legg úr neti nægir að fjarlægja legginn.
-		\item<2-> Táknum þá netið $G$ án leggsins $e$ með $G_e$.
-		\item<3-> Leggur $e$ eru sagður vera \emph{brú} (e. \emph{bridge}) ef $G$ hefur færri samhengisþætti en $G_e$.
-		\item<4-> Með öðrum orðum er hnútur $u$ liðhnútur (leggur $e$ brú) ef til eru hnútar $v_1$ og $v_2$ í sama samhengisþætti
-					þannig að allir vegir frá $v_1$ til $v_2$ fari í gegnum hnútinn $u$ (legginn $e$).
-	}
+    \env{itemize}
+    {
+        \item<1-> Til að fjarlægja legg úr neti nægir að fjarlægja legginn.
+        \item<2-> Táknum þá netið $G$ án leggsins $e$ með $G_e$.
+        \item<3-> Leggur $e$ eru sagður vera \emph{brú} (e. \emph{bridge}) ef $G$ hefur færri samhengisþætti en $G_e$.
+        \item<4-> Með öðrum orðum er hnútur $u$ liðhnútur (leggur $e$ brú) ef til eru hnútar $v_1$ og $v_2$ í sama samhengisþætti
+                    þannig að allir vegir frá $v_1$ til $v_2$ fari í gegnum hnútinn $u$ (legginn $e$).
+    }
 }
 
 \subsection{Hægar lausnir}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Ein leið til að finna alla liðhnúta er að telja fyrst samhengisþætti netsins, fjarlægja hnút, telja samhengisþætti
-					og endurtaka fyrir alla hnúta.
-		\item<2-> Þar sem við þurfum að finna alla samhengisþætti $2V + 1$ neta er þessi aðferð með tímaflækju $\mathcal{O}($\onslide<3->{$V^2 + VE$}$)$.
-		\item<4-> Samskonar aðferð til að finna brýr væri með tímaflækju $\mathcal{O}($\onslide<5->{$E^2 + VE$}$)$.
-		\item<6-> Þetta er þó ekki æskilegt, því getum við getum fundið bæði alla liðhnúta og allar brýr með einni dýptarleit.
-	}
+    \env{itemize}
+    {
+        \item<1-> Ein leið til að finna alla liðhnúta er að telja fyrst samhengisþætti netsins, fjarlægja hnút, telja samhengisþætti
+                    og endurtaka fyrir alla hnúta.
+        \item<2-> Þar sem við þurfum að finna alla samhengisþætti $2V + 1$ neta er þessi aðferð með tímaflækju $\mathcal{O}($\onslide<3->{$V^2 + VE$}$)$.
+        \item<4-> Samskonar aðferð til að finna brýr væri með tímaflækju $\mathcal{O}($\onslide<5->{$E^2 + VE$}$)$.
+        \item<6-> Þetta er þó ekki æskilegt, því getum við getum fundið bæði alla liðhnúta og allar brýr með einni dýptarleit.
+    }
 }
 
 \subsection{Hröð lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að netið okkar sé samanhangandi.
-		\item<2-> Ef svo er ekki getum við beitt þessari aðferð á hvern samhengisþátt.
-		\item<3-> Veljum einhvern hnút og framkvæmum dýptarleit frá honum.
-		\item<4-> Skilgreinum svo tvær breytur fyrir hvern hnút $u$ út frá þessari dýptarleit, $u_{low}$ og $u_{num}$.
-		\item<5-> Talan $u_{num}$ segir hversu mörg skref í leitin við tókum til að finna hnútinn $u$.
-		\item<6-> Talan $u_{low}$ er minnsta gildið $v_{num}$ þar sem $v$ er hnútur sem við við getum ferðast til án þess að nota leggi
-					sem hafa verið notaðir í leitinni.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að netið okkar sé samanhangandi.
+        \item<2-> Ef svo er ekki getum við beitt þessari aðferð á hvern samhengisþátt.
+        \item<3-> Veljum einhvern hnút og framkvæmum dýptarleit frá honum.
+        \item<4-> Skilgreinum svo tvær breytur fyrir hvern hnút $u$ út frá þessari dýptarleit, $u_{low}$ og $u_{num}$.
+        \item<5-> Talan $u_{num}$ segir hversu mörg skref í leitin við tókum til að finna hnútinn $u$.
+        \item<6-> Talan $u_{low}$ er minnsta gildið $v_{num}$ þar sem $v$ er hnútur sem við við getum ferðast til án þess að nota leggi
+                    sem hafa verið notaðir í leitinni.
+    }
 }
 
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að leitin okkar fari úr hnút $u$ í hnút $v$ með legg $e$.
-		\item<2-> Ef $v_{low} > u_{num}$ þá er $e$ brú.
-		\item<3-> Þetta þýðir að eina leiðin frá $v$ til $u$ er í gegnum legginn $e$.
-		\item<4-> Ef $v_{low} \geq u_{num}$ gildir fyrir einhvern nágranna $u$ þá er $u$ liðhnútur.
-		\item<5-> Þetta þýðir að eina leiðin frá $v$ í fyrri hnúta leitarinnar er í gegnum hnútinn $u$.
-		\item<6-> Við þurfum þó að afgreiða sérstaklega upphafshnútinn í leitinni.
-		\item<7-> Ef upphafshnúturinn þarf að heimsækja fleiri en einn nágranna sinna er hann liðhnútur.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að leitin okkar fari úr hnút $u$ í hnút $v$ með legg $e$.
+        \item<2-> Ef $v_{low} > u_{num}$ þá er $e$ brú.
+        \item<3-> Þetta þýðir að eina leiðin frá $v$ til $u$ er í gegnum legginn $e$.
+        \item<4-> Ef $v_{low} \geq u_{num}$ gildir fyrir einhvern nágranna $u$ þá er $u$ liðhnútur.
+        \item<5-> Þetta þýðir að eina leiðin frá $v$ í fyrri hnúta leitarinnar er í gegnum hnútinn $u$.
+        \item<6-> Við þurfum þó að afgreiða sérstaklega upphafshnútinn í leitinni.
+        \item<7-> Ef upphafshnúturinn þarf að heimsækja fleiri en einn nágranna sinna er hann liðhnútur.
+    }
 }
 
 \subsection{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{$0$}};}
-			\onslide<all:2-3, 34-35>{\node[draw, circle, thick, red] (1) at (2,0) {$0$};}
-			\onslide<all:4-33, 36->{\node[draw, circle, thick, blue] (1) at (2,0) {$0$};}
-			\onslide<all:35->{\node at (1.5,0.5) {$0$};}
-			\onslide<all:1-34>{\node at (1.5,0.5) {\phantom{$0$}};}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{$0$}};}
+            \onslide<all:2-3, 34-35>{\node[draw, circle, thick, red] (1) at (2,0) {$0$};}
+            \onslide<all:4-33, 36->{\node[draw, circle, thick, blue] (1) at (2,0) {$0$};}
+            \onslide<all:35->{\node at (1.5,0.5) {$0$};}
+            \onslide<all:1-34>{\node at (1.5,0.5) {\phantom{$0$}};}
 
-			\onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{$1$}};}
-			\onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{$1$}};}
-			\onslide<all:4-5, 32-33>{\node[draw, circle, thick, red] (2) at (2,2) {$1$};}
-			\onslide<all:6-31, 34->{\node[draw, circle, thick, blue] (2) at (2,2) {$1$};}
-			\onslide<all:33->{\node at (1.5,2.5) {$0$};}
-			\onslide<all:1-32>{\node at (1.5,2.5) {\phantom{$0$}};}
+            \onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{$1$}};}
+            \onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{$1$}};}
+            \onslide<all:4-5, 32-33>{\node[draw, circle, thick, red] (2) at (2,2) {$1$};}
+            \onslide<all:6-31, 34->{\node[draw, circle, thick, blue] (2) at (2,2) {$1$};}
+            \onslide<all:33->{\node at (1.5,2.5) {$0$};}
+            \onslide<all:1-32>{\node at (1.5,2.5) {\phantom{$0$}};}
 
-			\onslide<all:1-2, 4-24>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{$8$}};}
-			\onslide<all:3, 25>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{$8$}};}
-			\onslide<all:26-27>{\node[draw, circle, thick, red] (3) at (2,-2) {$8$};}
-			\onslide<all:28->{\node[draw, circle, thick, blue] (3) at (2,-2) {$8$};}
-			\onslide<all:27->{\node at (1.5,-1.5) {$0$};}
-			\onslide<all:1-26>{\node at (1.5,-1.5) {\phantom{$0$}};}
+            \onslide<all:1-2, 4-24>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{$8$}};}
+            \onslide<all:3, 25>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{$8$}};}
+            \onslide<all:26-27>{\node[draw, circle, thick, red] (3) at (2,-2) {$8$};}
+            \onslide<all:28->{\node[draw, circle, thick, blue] (3) at (2,-2) {$8$};}
+            \onslide<all:27->{\node at (1.5,-1.5) {$0$};}
+            \onslide<all:1-26>{\node at (1.5,-1.5) {\phantom{$0$}};}
 
-			\onslide<all:1-4>{\node[draw, circle, thick] (4) at (4,1) {\phantom{$2$}};}
-			\onslide<all:5>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{$2$}};}
-			\onslide<all:8-21, 24-29, 32-36>{\node[draw, circle, thick, blue] (4) at (4,1) {$2$};}
-			\onslide<all:6-7, 22-23, 30-31>{\node[draw, circle, thick, red] (4) at (4,1) {$2$};}
-			\onslide<all:37->{\node[draw, circle, thick, green] (4) at (4,1) {$2$};}
-			\onslide<all:31->{\node at (3.5,1.5) {$0$};}
-			\onslide<all:1-30>{\node at (3.5,1.5) {\phantom{$0$}};}
+            \onslide<all:1-4>{\node[draw, circle, thick] (4) at (4,1) {\phantom{$2$}};}
+            \onslide<all:5>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{$2$}};}
+            \onslide<all:8-21, 24-29, 32-36>{\node[draw, circle, thick, blue] (4) at (4,1) {$2$};}
+            \onslide<all:6-7, 22-23, 30-31>{\node[draw, circle, thick, red] (4) at (4,1) {$2$};}
+            \onslide<all:37->{\node[draw, circle, thick, green] (4) at (4,1) {$2$};}
+            \onslide<all:31->{\node at (3.5,1.5) {$0$};}
+            \onslide<all:1-30>{\node at (3.5,1.5) {\phantom{$0$}};}
 
-			\onslide<all:1-2, 4-6, 8-22>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{$7$}};}
-			\onslide<all:3, 7, 23>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{$7$}};}
-			\onslide<all:24-25, 28-29>{\node[draw, circle, thick, red] (5) at (4,-1) {$7$};}
-			\onslide<all:26-27, 30->{\node[draw, circle, thick, blue] (5) at (4,-1) {$7$};}
-			\onslide<all:29->{\node at (3.5,-0.5) {$0$};}
-			\onslide<all:1-28>{\node at (3.5,-0.5) {\phantom{$0$}};}
+            \onslide<all:1-2, 4-6, 8-22>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{$7$}};}
+            \onslide<all:3, 7, 23>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{$7$}};}
+            \onslide<all:24-25, 28-29>{\node[draw, circle, thick, red] (5) at (4,-1) {$7$};}
+            \onslide<all:26-27, 30->{\node[draw, circle, thick, blue] (5) at (4,-1) {$7$};}
+            \onslide<all:29->{\node at (3.5,-0.5) {$0$};}
+            \onslide<all:1-28>{\node at (3.5,-0.5) {\phantom{$0$}};}
 
-			\onslide<all:1-6>{\node[draw, circle, thick] (6) at (6,0) {\phantom{$3$}};}
-			\onslide<all:7>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{$3$}};}
-			\onslide<all:8-9, 20-21>{\node[draw, circle, thick, red] (6) at (6,0) {$3$};}
-			\onslide<all:10-19, 22-36>{\node[draw, circle, thick, blue] (6) at (6,0) {$3$};}
-			\onslide<all:37->{\node[draw, circle, thick, green] (6) at (6,0) {$3$};}
-			\onslide<all:21->{\node at (5.5,0.5) {$3$};}
-			\onslide<all:1-20>{\node at (5.5,0.5) {\phantom{$3$}};}
+            \onslide<all:1-6>{\node[draw, circle, thick] (6) at (6,0) {\phantom{$3$}};}
+            \onslide<all:7>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{$3$}};}
+            \onslide<all:8-9, 20-21>{\node[draw, circle, thick, red] (6) at (6,0) {$3$};}
+            \onslide<all:10-19, 22-36>{\node[draw, circle, thick, blue] (6) at (6,0) {$3$};}
+            \onslide<all:37->{\node[draw, circle, thick, green] (6) at (6,0) {$3$};}
+            \onslide<all:21->{\node at (5.5,0.5) {$3$};}
+            \onslide<all:1-20>{\node at (5.5,0.5) {\phantom{$3$}};}
 
-			\onslide<all:1-10>{\node[draw, circle, thick] (7) at (8,2) {\phantom{$5$}};}
-			\onslide<all:11>{\node[draw, circle, thick, yellow] (7) at (8,2) {\phantom{$5$}};}
-			\onslide<all:12-13>{\node[draw, circle, thick, red] (7) at (8,2) {$5$};}
-			\onslide<all:14->{\node[draw, circle, thick, blue] (7) at (8,2) {$5$};}
-			\onslide<all:13->{\node at (7.5,2.5) {$5$};}
-			\onslide<all:1-10>{\node at (7.5,2.5) {\phantom{$5$}};}
+            \onslide<all:1-10>{\node[draw, circle, thick] (7) at (8,2) {\phantom{$5$}};}
+            \onslide<all:11>{\node[draw, circle, thick, yellow] (7) at (8,2) {\phantom{$5$}};}
+            \onslide<all:12-13>{\node[draw, circle, thick, red] (7) at (8,2) {$5$};}
+            \onslide<all:14->{\node[draw, circle, thick, blue] (7) at (8,2) {$5$};}
+            \onslide<all:13->{\node at (7.5,2.5) {$5$};}
+            \onslide<all:1-10>{\node at (7.5,2.5) {\phantom{$5$}};}
 
-			\onslide<all:1-8, 10, 12-14>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{$6$}};}
-			\onslide<all:9, 11, 15>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{$6$}};}
-			\onslide<all:16-17>{\node[draw, circle, thick, red] (8) at (6,-2) {$6$};}
-			\onslide<all:18->{\node[draw, circle, thick, blue] (8) at (6,-2) {$6$};}
-			\onslide<all:17->{\node at (5.5,-1.5) {$3$};}
-			\onslide<all:1-16>{\node at (5.5,-1.5) {\phantom{$3$}};}
+            \onslide<all:1-8, 10, 12-14>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{$6$}};}
+            \onslide<all:9, 11, 15>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{$6$}};}
+            \onslide<all:16-17>{\node[draw, circle, thick, red] (8) at (6,-2) {$6$};}
+            \onslide<all:18->{\node[draw, circle, thick, blue] (8) at (6,-2) {$6$};}
+            \onslide<all:17->{\node at (5.5,-1.5) {$3$};}
+            \onslide<all:1-16>{\node at (5.5,-1.5) {\phantom{$3$}};}
 
-			\onslide<all:1-8>{\node[draw, circle, thick] (9) at (8,0) {\phantom{$4$}};}
-			\onslide<all:9>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{$4$}};}
-			\onslide<all:10-11, 14-15, 18-19>{\node[draw, circle, thick, red] (9) at (8,0) {$4$};}
-			\onslide<all:12-13, 16-17, 20-36>{\node[draw, circle, thick, blue] (9) at (8,0) {$4$};}
-			\onslide<all:37->{\node[draw, circle, thick, green] (9) at (8,0) {$4$};}
-			\onslide<all:19->{\node at (7.5,0.5) {$3$};}
-			\onslide<all:1-18>{\node at (7.5,0.5) {\phantom{$3$}};}
+            \onslide<all:1-8>{\node[draw, circle, thick] (9) at (8,0) {\phantom{$4$}};}
+            \onslide<all:9>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{$4$}};}
+            \onslide<all:10-11, 14-15, 18-19>{\node[draw, circle, thick, red] (9) at (8,0) {$4$};}
+            \onslide<all:12-13, 16-17, 20-36>{\node[draw, circle, thick, blue] (9) at (8,0) {$4$};}
+            \onslide<all:37->{\node[draw, circle, thick, green] (9) at (8,0) {$4$};}
+            \onslide<all:19->{\node at (7.5,0.5) {$3$};}
+            \onslide<all:1-18>{\node at (7.5,0.5) {\phantom{$3$}};}
 
-			\path[draw] (1) -- (2);
-			\path[draw] (2) -- (4);
-			\path[draw] (4) -- (5);
-			\path[draw] (3) -- (5);
-			\path[draw] (1) -- (3);
-			\path[draw] (6) -- (8);
-			\path[draw] (8) -- (9);
-			\path[draw] (6) -- (9);
-			\path[draw] (1) -- (5);
+            \path[draw] (1) -- (2);
+            \path[draw] (2) -- (4);
+            \path[draw] (4) -- (5);
+            \path[draw] (3) -- (5);
+            \path[draw] (1) -- (3);
+            \path[draw] (6) -- (8);
+            \path[draw] (8) -- (9);
+            \path[draw] (6) -- (9);
+            \path[draw] (1) -- (5);
 
-			\onslide<all:1-36> { \path[draw] (7) -- (9); }
-			\onslide<all:37> { \path[draw, green] (7) -- (9); }
-			\onslide<all:1-36> { \path[draw] (4) -- (6); }
-			\onslide<all:37> { \path[draw, green] (4) -- (6); }
-		}
-	}
+            \onslide<all:1-36> { \path[draw] (7) -- (9); }
+            \onslide<all:37> { \path[draw, green] (7) -- (9); }
+            \onslide<all:1-36> { \path[draw] (4) -- (6); }
+            \onslide<all:37> { \path[draw, green] (4) -- (6); }
+        }
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/lidhnutar-og-bryr.cpp}{11}{36}
+    \selectcode{code/lidhnutar-og-bryr.cpp}{11}{36}
 }
 
 \subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tímaflækjan er $\mathcal{O}($\onslide<2->{$E + V$}$)$ því það er tímaflækja dýptarleitar.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tímaflækjan er $\mathcal{O}($\onslide<2->{$E + V$}$)$ því það er tímaflækja dýptarleitar.
+    }
 }
 
 \section{Strangir samhengisþættir}
 \subsection{Skilgreining stranga samhengisþátta}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Gerum ráð fyrir að við séum með stefnt net.
-		\item<2-> Þá eru venslin sem við skilgreindum áðan ekki lengur jafngildisvensl því þau eru ekki samhverf.
-		\item<3-> Við getum þó gert þau samhverf með því að krefjast að það sé til vegur í báðar áttir.
-		\item<4-> Með öðrum orðum er $x \sim y$ ef og aðeins ef til er vegur frá $u$ til $v$ og vegur frá $v$ til $u$.
-		\item<5-> Jafngildisflokkar þessara vensla eru kallaðir \emph{strangir samhengisþættir} (e. \emph{strong connected components}).
-		\item<6-> Ég mun þó leyfa mér að kalla þetta \emph{samhengisþætti} þegar ljóst er að við séum að ræða um stenft net.
-	}
+    \env{itemize}
+    {
+        \item<1-> Gerum ráð fyrir að við séum með stefnt net.
+        \item<2-> Þá eru venslin sem við skilgreindum áðan ekki lengur jafngildisvensl því þau eru ekki samhverf.
+        \item<3-> Við getum þó gert þau samhverf með því að krefjast að það sé til vegur í báðar áttir.
+        \item<4-> Með öðrum orðum er $x \sim y$ ef og aðeins ef til er vegur frá $u$ til $v$ og vegur frá $v$ til $u$.
+        \item<5-> Jafngildisflokkar þessara vensla eru kallaðir \emph{strangir samhengisþættir} (e. \emph{strong connected components}).
+        \item<6-> Ég mun þó leyfa mér að kalla þetta \emph{samhengisþætti} þegar ljóst er að við séum að ræða um stenft net.
+    }
 }
 
 \subsection{Skilgreining herpingar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Takið eftir að ef netið inniheldur rás þá eru allir hnútar í rásinni í sama samhengisþætti.
-		\item<2-> Einnig gildir að ef netið inniheldur enga rás er hver hnútur sinn eigin samhengisþáttur.
-		\item<3-> Slík net kallast \emph{stefnd órásuð net} (e. \emph{directed acycle graphs (DAG)}).
-		\item<4-> Þau hafa ýmsa þæginlega eiginleik, til dæmis má beyta kvikri bestun á þau.
-		\item<5-> Við getum breytt stefndu neti í órásað stefnt net með því að deila út jafngildisvenslunum.
-		\item<6-> Nánar, þá lítum við svo á að hnútar í sama samhengisþætti séu í raun sami hnúturinn
-					og verður leggur milli samhengisþátta ef vegur liggur milli einhverja hnúta í samhengisþáttunum sem fer ekki í annan samhengisþátt.
-		\item<7-> Við köllum þetta net \emph{herpingu} (e. \emph{contraction}) upprunalega netsins.
-	}
+    \env{itemize}
+    {
+        \item<1-> Takið eftir að ef netið inniheldur rás þá eru allir hnútar í rásinni í sama samhengisþætti.
+        \item<2-> Einnig gildir að ef netið inniheldur enga rás er hver hnútur sinn eigin samhengisþáttur.
+        \item<3-> Slík net kallast \emph{stefnd órásuð net} (e. \emph{directed acycle graphs (DAG)}).
+        \item<4-> Þau hafa ýmsa þæginlega eiginleik, til dæmis má beyta kvikri bestun á þau.
+        \item<5-> Við getum breytt stefndu neti í órásað stefnt net með því að deila út jafngildisvenslunum.
+        \item<6-> Nánar, þá lítum við svo á að hnútar í sama samhengisþætti séu í raun sami hnúturinn
+                    og verður leggur milli samhengisþátta ef vegur liggur milli einhverja hnúta í samhengisþáttunum sem fer ekki í annan samhengisþátt.
+        \item<7-> Við köllum þetta net \emph{herpingu} (e. \emph{contraction}) upprunalega netsins.
+    }
 }
 
 \subsection{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{ [scale=1.25]
-			\onslide<all:1> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
-			\onslide<all:1> { \node[draw, circle, thick, red, fill] (2) at (2,0) {}; }
-			\onslide<all:1> { \node[draw, circle, thick, red, fill] (4) at (2,-2) {}; }
-			\onslide<all:1> { \node[draw, circle, thick, red, fill] (7) at (0,-2) {}; }
-			\onslide<all:2-3> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
+    \env{center}
+    {
+        \env{tikzpicture}
+        { [scale=1.25]
+            \onslide<all:1> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
+            \onslide<all:1> { \node[draw, circle, thick, red, fill] (2) at (2,0) {}; }
+            \onslide<all:1> { \node[draw, circle, thick, red, fill] (4) at (2,-2) {}; }
+            \onslide<all:1> { \node[draw, circle, thick, red, fill] (7) at (0,-2) {}; }
+            \onslide<all:2-3> { \node[draw, circle, thick, red, fill] (1) at (0,0) {}; }
 
-			\onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (3) at (2,2) {}; }
-			\onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (5) at (4,1) {}; }
-			\onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
-			\onslide<all:3> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
+            \onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (3) at (2,2) {}; }
+            \onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (5) at (4,1) {}; }
+            \onslide<all:1-2> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
+            \onslide<all:3> { \node[draw, circle, thick, blue, fill] (6) at (4,-1) {}; }
 
-			\node[draw, circle, thick, yellow, fill] (8) at (0,2) {};
+            \node[draw, circle, thick, yellow, fill] (8) at (0,2) {};
 
-			\node[draw, circle, thick, green, fill] (9) at (-2,2) {};
+            \node[draw, circle, thick, green, fill] (9) at (-2,2) {};
 
-			\onslide<all:1> { \path[draw, ->, very thick] (2) -- (1); }
-			\onslide<all:1> { \path[draw, ->, very thick] (4) -- (1); }
-			\onslide<all:1> { \path[draw, ->, very thick] (1) -- (7); }
-			\onslide<all:1> { \path[draw, ->, very thick] (7) -- (4); }
-			\onslide<all:1> { \path[draw, ->, very thick] (4) -- (2); }
-			\onslide<all:1> { \path[draw, ->, very thick] (2) -- (6); }
+            \onslide<all:1> { \path[draw, ->, very thick] (2) -- (1); }
+            \onslide<all:1> { \path[draw, ->, very thick] (4) -- (1); }
+            \onslide<all:1> { \path[draw, ->, very thick] (1) -- (7); }
+            \onslide<all:1> { \path[draw, ->, very thick] (7) -- (4); }
+            \onslide<all:1> { \path[draw, ->, very thick] (4) -- (2); }
+            \onslide<all:1> { \path[draw, ->, very thick] (2) -- (6); }
 
-			\onslide<all:2-> { \path[draw, ->, very thick] (1) -- (6); }
-			\onslide<all:1-2> { \path[draw, ->, very thick] (3) -- (5); }
-			\onslide<all:1-2> { \path[draw, ->, very thick] (6) -- (3); }
-			\onslide<all:1-2> { \path[draw, ->, very thick] (5) -- (6); }
-			\path[draw, ->, very thick] (1) -- (8);
-			\path[draw, ->, very thick] (8) -- (9);
-		}
-	}
+            \onslide<all:2-> { \path[draw, ->, very thick] (1) -- (6); }
+            \onslide<all:1-2> { \path[draw, ->, very thick] (3) -- (5); }
+            \onslide<all:1-2> { \path[draw, ->, very thick] (6) -- (3); }
+            \onslide<all:1-2> { \path[draw, ->, very thick] (5) -- (6); }
+            \path[draw, ->, very thick] (1) -- (8);
+            \path[draw, ->, very thick] (8) -- (9);
+        }
+    }
 }
 
 \subsection{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Til að finna herpinguna þurfum við fyrst að finna samhengisþættina.
-		\item<2-> Við getum breytt lítilega forritinu sem við vorum með áðan til að finna samhengisþætti stefnds nets.
-		\item<3-> Við getum skoðað hvort $u_{low} = u_{num}$ á leiðinni upp úr endurkvæmninni.
-		\item<4-> Ef svo er þá er $u$ fyrsti hnúturinn sem við sáum í samhengisþættinum sem $u$ tilheyrir.
-		\item<5-> Við geymum því hnútana sem við heimsækjum á hlaða.
-		\item<6-> Þegar við finnum umrætt $u$ (á leiðinni upp úr endurkvæmninni) tínum við af hlaðanum
-					þangað til við sjáum $u$ og setjum alla þá hnúta saman í samhengisþátt.
-	}
+    \env{itemize}
+    {
+        \item<1-> Til að finna herpinguna þurfum við fyrst að finna samhengisþættina.
+        \item<2-> Við getum breytt lítilega forritinu sem við vorum með áðan til að finna samhengisþætti stefnds nets.
+        \item<3-> Við getum skoðað hvort $u_{low} = u_{num}$ á leiðinni upp úr endurkvæmninni.
+        \item<4-> Ef svo er þá er $u$ fyrsti hnúturinn sem við sáum í samhengisþættinum sem $u$ tilheyrir.
+        \item<5-> Við geymum því hnútana sem við heimsækjum á hlaða.
+        \item<6-> Þegar við finnum umrætt $u$ (á leiðinni upp úr endurkvæmninni) tínum við af hlaðanum
+                    þangað til við sjáum $u$ og setjum alla þá hnúta saman í samhengisþátt.
+    }
 }
 
 \subsection{Sértilfelli}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við þurfum að passa okkur þegar við uppfærum $u_{low}$.
-		\item<2-> Ef við íhugum ekki röðina sem við veljum upphafshnúta getum við fengið rangar niðurstöður.
-		\item<3->[]
-		\env{tikzpicture}
-		{ [scale=1.25]
-			\onslide<handout:1-3|3-5> { \node[draw, circle, thick, black] (1) at (0, 0) {$2$}; }
-			\onslide<handout:4-5|6-7> { \node[draw, circle, thick, blue] (1) at (0, 0) {$2$}; }
-			\onslide<handout:6-|8-> { \node[draw, circle, thick, black] (1) at (0, 0) {$2$}; }
+    \env{itemize}
+    {
+        \item<1-> Við þurfum að passa okkur þegar við uppfærum $u_{low}$.
+        \item<2-> Ef við íhugum ekki röðina sem við veljum upphafshnúta getum við fengið rangar niðurstöður.
+        \item<3->[]
+        \env{tikzpicture}
+        { [scale=1.25]
+            \onslide<handout:1-3|3-5> { \node[draw, circle, thick, black] (1) at (0, 0) {$2$}; }
+            \onslide<handout:4-5|6-7> { \node[draw, circle, thick, blue] (1) at (0, 0) {$2$}; }
+            \onslide<handout:6-|8-> { \node[draw, circle, thick, black] (1) at (0, 0) {$2$}; }
 
-			\onslide<handout:1-5|3-7> { \node[draw, circle, thick, black] (2) at (2, 0) {$3$}; }
-			\onslide<handout:6-9|8-11> { \node[draw, circle, thick, blue] (2) at (2, 0) {$3$}; }
-			\onslide<handout:10-|12-> { \node[draw, circle, thick, black] (2) at (2, 0) {$3$}; }
+            \onslide<handout:1-5|3-7> { \node[draw, circle, thick, black] (2) at (2, 0) {$3$}; }
+            \onslide<handout:6-9|8-11> { \node[draw, circle, thick, blue] (2) at (2, 0) {$3$}; }
+            \onslide<handout:10-|12-> { \node[draw, circle, thick, black] (2) at (2, 0) {$3$}; }
 
-			\onslide<handout:1|3> { \node[draw, circle, thick, black] (3) at (4, 0) {$1$}; }
-			\onslide<handout:2-3|4-5> { \node[draw, circle, thick, blue] (3) at (4, 0) {$1$}; }
-			\onslide<handout:4-|6-> { \node[draw, circle, thick, black] (3) at (4, 0) {$1$}; }
-
-
-
-			\onslide<handout:1-|3-> { \node[circle, thick] at (-1, -0.5) {$num$}; }
-			\onslide<handout:3-|5-> { \node[circle, thick] at (4, -0.5) {$0$}; }
-			\onslide<handout:5-|7-> { \node[circle, thick] at (0, -0.5) {$0$}; }
-			\onslide<handout:7-|9-> { \node[circle, thick] at (2, -0.5) {$1$}; }
-
-			\onslide<handout:1-|3-> { \node[circle, thick] at (-1, -1.0) {$low$}; }
-			\onslide<handout:3-|5-> { \node[circle, thick] at (4, -1.0) {$0$}; }
-			\onslide<handout:5-|7-> { \node[circle, thick] at (0, -1.0) {$0$}; }
-			\onslide<handout:7-8|9-10> { \node[circle, thick] at (2, -1.0) {$1$}; }
-			\onslide<handout:9-|11-> { \node[circle, thick] at (2, -1.0) {$0$}; }
+            \onslide<handout:1|3> { \node[draw, circle, thick, black] (3) at (4, 0) {$1$}; }
+            \onslide<handout:2-3|4-5> { \node[draw, circle, thick, blue] (3) at (4, 0) {$1$}; }
+            \onslide<handout:4-|6-> { \node[draw, circle, thick, black] (3) at (4, 0) {$1$}; }
 
 
 
-			\onslide<handout:1-|3-> { \path[draw, ->, very thick] (1) -> (2); }
+            \onslide<handout:1-|3-> { \node[circle, thick] at (-1, -0.5) {$num$}; }
+            \onslide<handout:3-|5-> { \node[circle, thick] at (4, -0.5) {$0$}; }
+            \onslide<handout:5-|7-> { \node[circle, thick] at (0, -0.5) {$0$}; }
+            \onslide<handout:7-|9-> { \node[circle, thick] at (2, -0.5) {$1$}; }
 
-			\onslide<handout:1-7|3-9> { \path[draw, ->, very thick, black] (2) -> (3); }
-			\onslide<handout:8-9|10-11> { \path[draw, ->, very thick, blue] (2) -> (3); }
-			\onslide<handout:10-|12-> { \path[draw, ->, very thick, black] (2) -> (3); }
-			%\item<0|handout:1> { Ekki nota þennan kóða. Hann er hægari en það sem á eftir kemur. }
-		}
-		\item<12-> Hverjir eru ströngu samhengisþættir netsins?
-		\item<13-> Hverjir verða ströngu samhengisþættir netsins samkvæmt glærunni á undan?
-		\item<14-> Afhverju gerðist þetta ekki þegar við vorum að finna liðhnúta og brýr?
-		\item<15-> Einföld leið til að laga þetta er að uppfæra bara $u_{low}$ með nágrönnum sem við höfum ekki fundið stranga samhángisáttinn fyrir.
-	}
+            \onslide<handout:1-|3-> { \node[circle, thick] at (-1, -1.0) {$low$}; }
+            \onslide<handout:3-|5-> { \node[circle, thick] at (4, -1.0) {$0$}; }
+            \onslide<handout:5-|7-> { \node[circle, thick] at (0, -1.0) {$0$}; }
+            \onslide<handout:7-8|9-10> { \node[circle, thick] at (2, -1.0) {$1$}; }
+            \onslide<handout:9-|11-> { \node[circle, thick] at (2, -1.0) {$0$}; }
+
+
+
+            \onslide<handout:1-|3-> { \path[draw, ->, very thick] (1) -> (2); }
+
+            \onslide<handout:1-7|3-9> { \path[draw, ->, very thick, black] (2) -> (3); }
+            \onslide<handout:8-9|10-11> { \path[draw, ->, very thick, blue] (2) -> (3); }
+            \onslide<handout:10-|12-> { \path[draw, ->, very thick, black] (2) -> (3); }
+            %\item<0|handout:1> { Ekki nota þennan kóða. Hann er hægari en það sem á eftir kemur. }
+        }
+        \item<12-> Hverjir eru ströngu samhengisþættir netsins?
+        \item<13-> Hverjir verða ströngu samhengisþættir netsins samkvæmt glærunni á undan?
+        \item<14-> Afhverju gerðist þetta ekki þegar við vorum að finna liðhnúta og brýr?
+        \item<15-> Einföld leið til að laga þetta er að uppfæra bara $u_{low}$ með nágrönnum sem við höfum ekki fundið stranga samhángisáttinn fyrir.
+    }
 }
 
 \subsection{Sýnidæmi á reikniritunu}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{ [scale=1.25]
-			\onslide<all:1> { \node[draw, circle, thick, black] (3) at (4, 4) {\phantom{$1$}}; }
-			\onslide<all:2> { \node[draw, circle, thick, blue] (3) at (4, 4) {\phantom{$1$}}; }
-			\onslide<all:3, 13> { \node[draw, circle, thick, blue] (3) at (4, 4) {$1$}; }
-			\onslide<all:4-12> { \node[draw, circle, thick, black] (3) at (4, 4) {$1$}; }
-			\onslide<all:14-> { \node[draw, circle, thick, green] (3) at (4, 4) {$1$}; }
-			\onslide<all:3-> { \node[thick, black] at (4.25, 4.35) {$1$}; }
+    \env{center}
+    {
+        \env{tikzpicture}
+        { [scale=1.25]
+            \onslide<all:1> { \node[draw, circle, thick, black] (3) at (4, 4) {\phantom{$1$}}; }
+            \onslide<all:2> { \node[draw, circle, thick, blue] (3) at (4, 4) {\phantom{$1$}}; }
+            \onslide<all:3, 13> { \node[draw, circle, thick, blue] (3) at (4, 4) {$1$}; }
+            \onslide<all:4-12> { \node[draw, circle, thick, black] (3) at (4, 4) {$1$}; }
+            \onslide<all:14-> { \node[draw, circle, thick, green] (3) at (4, 4) {$1$}; }
+            \onslide<all:3-> { \node[thick, black] at (4.25, 4.35) {$1$}; }
 
-			\onslide<all:1-3> { \node[draw, circle, thick, black] (5) at (6, 3) {\phantom{$2$}}; }
-			\onslide<all:4, 9-12> { \node[draw, circle, thick, blue] (5) at (6, 3) {$2$}; }
-			\onslide<all:5-8, 13> { \node[draw, circle, thick, black] (5) at (6, 3) {$2$}; }
-			\onslide<all:14-> { \node[draw, circle, thick, green] (5) at (6, 3) {$2$}; }
-			\onslide<all:4-10> { \node[thick, black] at (6.25, 3.35) {$2$}; }
-			\onslide<all:11-> { \node[thick, black] at (6.25, 3.35) {$1$}; }
+            \onslide<all:1-3> { \node[draw, circle, thick, black] (5) at (6, 3) {\phantom{$2$}}; }
+            \onslide<all:4, 9-12> { \node[draw, circle, thick, blue] (5) at (6, 3) {$2$}; }
+            \onslide<all:5-8, 13> { \node[draw, circle, thick, black] (5) at (6, 3) {$2$}; }
+            \onslide<all:14-> { \node[draw, circle, thick, green] (5) at (6, 3) {$2$}; }
+            \onslide<all:4-10> { \node[thick, black] at (6.25, 3.35) {$2$}; }
+            \onslide<all:11-> { \node[thick, black] at (6.25, 3.35) {$1$}; }
 
-			\onslide<all:1-4> { \node[draw, circle, thick, black] (6) at (6, 1) {\phantom{$3$}}; }
-			\onslide<all:5-8> { \node[draw, circle, thick, blue] (6) at (6, 1) {$3$}; }
-			\onslide<all:9-13> { \node[draw, circle, thick, black] (6) at (6, 1) {$3$}; }
-			\onslide<all:14-> { \node[draw, circle, thick, green] (6) at (6, 1) {$3$}; }
-			\onslide<all:5-6> { \node[thick, black] at (6.25, 1.35) {$3$}; }
-			\onslide<all:7-> { \node[thick, black] at (6.25, 1.35) {$1$}; }
+            \onslide<all:1-4> { \node[draw, circle, thick, black] (6) at (6, 1) {\phantom{$3$}}; }
+            \onslide<all:5-8> { \node[draw, circle, thick, blue] (6) at (6, 1) {$3$}; }
+            \onslide<all:9-13> { \node[draw, circle, thick, black] (6) at (6, 1) {$3$}; }
+            \onslide<all:14-> { \node[draw, circle, thick, green] (6) at (6, 1) {$3$}; }
+            \onslide<all:5-6> { \node[thick, black] at (6.25, 1.35) {$3$}; }
+            \onslide<all:7-> { \node[thick, black] at (6.25, 1.35) {$1$}; }
 
-			\onslide<all:1-14> { \node[draw, circle, thick, black] (1) at (2, 2) {\phantom{$1$}}; }
-			\onslide<all:15> { \node[draw, circle, thick, blue] (1) at (2, 2) {\phantom{$1$}}; }
-			\onslide<all:16, 33> { \node[draw, circle, thick, blue] (1) at (2, 2) {$1$}; }
-			\onslide<all:17-32> { \node[draw, circle, thick, black] (1) at (2, 2) {$1$}; }
-			\onslide<all:34-> { \node[draw, circle, thick, red] (1) at (2, 2) {$1$}; }
-			\onslide<all:16-> { \node[thick, black] at (2.25, 2.35) {$1$}; }
+            \onslide<all:1-14> { \node[draw, circle, thick, black] (1) at (2, 2) {\phantom{$1$}}; }
+            \onslide<all:15> { \node[draw, circle, thick, blue] (1) at (2, 2) {\phantom{$1$}}; }
+            \onslide<all:16, 33> { \node[draw, circle, thick, blue] (1) at (2, 2) {$1$}; }
+            \onslide<all:17-32> { \node[draw, circle, thick, black] (1) at (2, 2) {$1$}; }
+            \onslide<all:34-> { \node[draw, circle, thick, red] (1) at (2, 2) {$1$}; }
+            \onslide<all:16-> { \node[thick, black] at (2.25, 2.35) {$1$}; }
 
-			\onslide<all:1-16> { \node[draw, circle, thick, black] (7) at (2, 0) {\phantom{$2$}}; }
-			\onslide<all:17, 29-32> { \node[draw, circle, thick, blue] (7) at (2, 0) {$2$}; }
-			\onslide<all:18-28, 33> { \node[draw, circle, thick, black] (7) at (2, 0) {$2$}; }
-			\onslide<all:34-> { \node[draw, circle, thick, red] (7) at (2, 0) {$2$}; }
-			\onslide<all:17-30> { \node[thick, black] at (2.25, 0.35) {$2$}; }
-			\onslide<all:31-> { \node[thick, black] at (2.25, 0.35) {$1$}; }
+            \onslide<all:1-16> { \node[draw, circle, thick, black] (7) at (2, 0) {\phantom{$2$}}; }
+            \onslide<all:17, 29-32> { \node[draw, circle, thick, blue] (7) at (2, 0) {$2$}; }
+            \onslide<all:18-28, 33> { \node[draw, circle, thick, black] (7) at (2, 0) {$2$}; }
+            \onslide<all:34-> { \node[draw, circle, thick, red] (7) at (2, 0) {$2$}; }
+            \onslide<all:17-30> { \node[thick, black] at (2.25, 0.35) {$2$}; }
+            \onslide<all:31-> { \node[thick, black] at (2.25, 0.35) {$1$}; }
 
-			\onslide<all:1-> { \node[draw, circle, thick, black] (4) at (4, 0) {\phantom{$3$}}; }
-			\onslide<all:18, 25-28> { \node[draw, circle, thick, blue] (4) at (4, 0) {$3$}; }
-			\onslide<all:19-24, 29-33> { \node[draw, circle, thick, black] (4) at (4, 0) {$3$}; }
-			\onslide<all:34-> { \node[draw, circle, thick, red] (4) at (4, 0) {$3$}; }
-			\onslide<all:18-26> { \node[thick, black] at (4.25, 0.35) {$3$}; }
-			\onslide<all:27-> { \node[thick, black] at (4.25, 0.35) {$1$}; }
+            \onslide<all:1-> { \node[draw, circle, thick, black] (4) at (4, 0) {\phantom{$3$}}; }
+            \onslide<all:18, 25-28> { \node[draw, circle, thick, blue] (4) at (4, 0) {$3$}; }
+            \onslide<all:19-24, 29-33> { \node[draw, circle, thick, black] (4) at (4, 0) {$3$}; }
+            \onslide<all:34-> { \node[draw, circle, thick, red] (4) at (4, 0) {$3$}; }
+            \onslide<all:18-26> { \node[thick, black] at (4.25, 0.35) {$3$}; }
+            \onslide<all:27-> { \node[thick, black] at (4.25, 0.35) {$1$}; }
 
-			\onslide<all:1-> { \node[draw, circle, thick, black] (2) at (4, 2) {\phantom{$4$}}; }
-			\onslide<all:19-24> { \node[draw, circle, thick, blue] (2) at (4, 2) {$4$}; }
-			\onslide<all:25-33> { \node[draw, circle, thick, black] (2) at (4, 2) {$4$}; }
-			\onslide<all:34-> { \node[draw, circle, thick, red] (2) at (4, 2) {$4$}; }
-			\onslide<all:19-22> { \node[thick, black] at (4.25, 2.35) {$4$}; }
-			\onslide<all:23-> { \node[thick, black] at (4.25, 2.35) {$1$}; }
+            \onslide<all:1-> { \node[draw, circle, thick, black] (2) at (4, 2) {\phantom{$4$}}; }
+            \onslide<all:19-24> { \node[draw, circle, thick, blue] (2) at (4, 2) {$4$}; }
+            \onslide<all:25-33> { \node[draw, circle, thick, black] (2) at (4, 2) {$4$}; }
+            \onslide<all:34-> { \node[draw, circle, thick, red] (2) at (4, 2) {$4$}; }
+            \onslide<all:19-22> { \node[thick, black] at (4.25, 2.35) {$4$}; }
+            \onslide<all:23-> { \node[thick, black] at (4.25, 2.35) {$1$}; }
 
-			\onslide<all:1-34> { \node[draw, circle, thick, black] (8) at (2, 4) {\phantom{$5$}}; }
-			\onslide<all:35, 38> { \node[draw, circle, thick, blue] (8) at (2, 4) {$5$}; }
-			\onslide<all:36-37> { \node[draw, circle, thick, black] (8) at (2, 4) {$5$}; }
-			\onslide<all:39> { \node[draw, circle, thick, yellow] (8) at (2, 4) {$5$}; }
-			\onslide<all:35-> { \node[thick, black] at (2.25, 4.35) {$5$}; }
+            \onslide<all:1-34> { \node[draw, circle, thick, black] (8) at (2, 4) {\phantom{$5$}}; }
+            \onslide<all:35, 38> { \node[draw, circle, thick, blue] (8) at (2, 4) {$5$}; }
+            \onslide<all:36-37> { \node[draw, circle, thick, black] (8) at (2, 4) {$5$}; }
+            \onslide<all:39> { \node[draw, circle, thick, yellow] (8) at (2, 4) {$5$}; }
+            \onslide<all:35-> { \node[thick, black] at (2.25, 4.35) {$5$}; }
 
-			\onslide<all:1-35> { \node[draw, circle, thick, black] (9) at (0, 4) {\phantom{$6$}}; }
-			\onslide<all:36> { \node[draw, circle, thick, blue] (9) at (0, 4) {$6$}; }
-			\onslide<all:37-> { \node[draw, circle, thick, purple] (9) at (0, 4) {$6$}; }
-			\onslide<all:36-> { \node[thick, black] at (0.25, 4.35) {$6$}; }
-
-
+            \onslide<all:1-35> { \node[draw, circle, thick, black] (9) at (0, 4) {\phantom{$6$}}; }
+            \onslide<all:36> { \node[draw, circle, thick, blue] (9) at (0, 4) {$6$}; }
+            \onslide<all:37-> { \node[draw, circle, thick, purple] (9) at (0, 4) {$6$}; }
+            \onslide<all:36-> { \node[thick, black] at (0.25, 4.35) {$6$}; }
 
 
 
 
 
-			\onslide<all:1-21, 24-> { \path[draw, ->, very thick] (2) -- (1); }
-			\onslide<all:22-23> { \path[draw, ->, very thick, blue] (2) -- (1); }
 
-			\onslide<all:1-25, 28-> { \path[draw, ->, very thick] (4) -- (1); }
-			\onslide<all:26-27> { \path[draw, ->, very thick, blue] (4) -- (1); }
 
-			\onslide<all:1-> { \path[draw, ->, very thick] (1) -- (7); }
+            \onslide<all:1-21, 24-> { \path[draw, ->, very thick] (2) -- (1); }
+            \onslide<all:22-23> { \path[draw, ->, very thick, blue] (2) -- (1); }
 
-			\onslide<all:1-29, 32-> { \path[draw, ->, very thick] (7) -- (4); }
-			\onslide<all:30-31> { \path[draw, ->, very thick, blue] (7) -- (4); }
+            \onslide<all:1-25, 28-> { \path[draw, ->, very thick] (4) -- (1); }
+            \onslide<all:26-27> { \path[draw, ->, very thick, blue] (4) -- (1); }
 
-			\onslide<all:1-> { \path[draw, ->, very thick] (4) -- (2); }
+            \onslide<all:1-> { \path[draw, ->, very thick] (1) -- (7); }
 
-			\onslide<all:1-19, 21-> { \path[draw, ->, very thick] (2) -- (6); }
-			\onslide<all:20> { \path[draw, ->, very thick, blue] (2) -- (6); }
+            \onslide<all:1-29, 32-> { \path[draw, ->, very thick] (7) -- (4); }
+            \onslide<all:30-31> { \path[draw, ->, very thick, blue] (7) -- (4); }
 
-			\onslide<all:1-> { \path[draw, ->, very thick] (3) -- (5); }
+            \onslide<all:1-> { \path[draw, ->, very thick] (4) -- (2); }
 
-			\onslide<all:1-5, 8-> { \path[draw, ->, very thick] (6) -- (3); }
-			\onslide<all:6-7> { \path[draw, ->, very thick, blue] (6) -- (3); }
+            \onslide<all:1-19, 21-> { \path[draw, ->, very thick] (2) -- (6); }
+            \onslide<all:20> { \path[draw, ->, very thick, blue] (2) -- (6); }
 
-			\onslide<all:1-9, 12-> { \path[draw, ->, very thick] (5) -- (6); }
-			\onslide<all:10-11> { \path[draw, ->, very thick, blue] (5) -- (6); }
+            \onslide<all:1-> { \path[draw, ->, very thick] (3) -- (5); }
 
-			\onslide<all:1-> { \path[draw, ->, very thick] (1) -- (8); }
+            \onslide<all:1-5, 8-> { \path[draw, ->, very thick] (6) -- (3); }
+            \onslide<all:6-7> { \path[draw, ->, very thick, blue] (6) -- (3); }
 
-			\onslide<all:1-> { \path[draw, ->, very thick] (8) -- (9); }
-		}
-	}
+            \onslide<all:1-9, 12-> { \path[draw, ->, very thick] (5) -- (6); }
+            \onslide<all:10-11> { \path[draw, ->, very thick, blue] (5) -- (6); }
+
+            \onslide<all:1-> { \path[draw, ->, very thick] (1) -- (8); }
+
+            \onslide<all:1-> { \path[draw, ->, very thick] (8) -- (9); }
+        }
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/stefndir-samhengisthaettir.cpp}{10}{29}
+    \selectcode{code/stefndir-samhengisthaettir.cpp}{9}{29}
 }
 
 \subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þar sem við leitum bara einu sinni í netinu með dýptarleit fæst að þetta reiknirit er $\mathcal{O}($\onslide<2->{$E + V$}$)$.
-		\item<3-> Við köllum þetta reiknrit, ásamt því sem finnur liðhnúta og brýr, reiknrit Tarjans.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þar sem við leitum bara einu sinni í netinu með dýptarleit fæst að þetta reiknirit er $\mathcal{O}($\onslide<2->{$E + V$}$)$.
+        \item<3-> Við köllum þetta reiknrit, ásamt því sem finnur liðhnúta og brýr, reiknrit Tarjans.
+    }
 }
 
 \section{Þessi glæra er viljandi auð}

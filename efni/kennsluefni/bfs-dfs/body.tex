@@ -9,372 +9,374 @@
 \section{Inngangur}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvernig ítrum við í gegnum alla hnúta nets.
-		\item<2-> Þetta má að sjálfsögðu gera á marga vegu, en algengt er að notast við annað að tvennu:
-		\env{itemize}
-		{
-			\item<3-> \emph{Dýptarleit} (e. \emph{deapth-first search}).
-			\item<4-> \emph{Breiddarleit} (e. \emph{breadth-first search}).
-		}
-		\item<5-> Báðar aðferðir byggja á því að byrja í einhverjum hnút og heimsækja svo nágranna hans.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvernig ítrum við í gegnum alla hnúta nets.
+        \item<2-> Þetta má að sjálfsögðu gera á marga vegu, en algengt er að notast við annað að tvennu:
+        \env{itemize}
+        {
+            \item<3-> \emph{Dýptarleit} (e. \emph{deapth-first search}).
+            \item<4-> \emph{Breiddarleit} (e. \emph{breadth-first search}).
+        }
+        \item<5-> Báðar aðferðir byggja á því að byrja í einhverjum hnút og heimsækja svo nágranna hans.
+    }
 }
 
 \section{Dýptarleit}
 \subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Dýptarleit byrjar í einhverjum hnút.
-		\item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
-		\item<3-> Í hverju skrefi heimsækir leitin einhvern nágranna hnútsins sem hefur ekki verið heimsóttur áður í leitinni.
-		\item<4-> Ef allir nágrannar hafa verið heimsóttir þá er farið til baka og nágrannar síðasta hnúts eru skoðaðir.
-		\item<5-> Tökum dæmi.
-	}
+    \frametitle{Dýptarleidd}
+    \env{itemize}
+    {
+        \item<1-> Dýptarleit byrjar í einhverjum hnút.
+        \item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
+        \item<3-> Í hverju skrefi heimsækir leitin einhvern nágranna hnútsins sem hefur ekki verið heimsóttur áður í leitinni.
+        \item<4-> Ef allir nágrannar hafa verið heimsóttir þá er farið til baka og nágrannar síðasta hnúts eru skoðaðir.
+        \item<5-> Tökum dæmi.
+    }
 }
 
 \subsection{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{x}};}
-			\onslide<all:2-3>{\node[draw, circle, thick] (1) at (2,0) {x};}
-			\onslide<all:4-25, 27->{\node[draw, circle, thick, blue] (1) at (2,0) {\phantom{x}};}
-			\onslide<all:26>{\node[draw, circle, thick, blue] (1) at (2,0) {x};}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{x}};}
+            \onslide<all:2-3>{\node[draw, circle, thick] (1) at (2,0) {x};}
+            \onslide<all:4-25, 27->{\node[draw, circle, thick, blue] (1) at (2,0) {\phantom{x}};}
+            \onslide<all:26>{\node[draw, circle, thick, blue] (1) at (2,0) {x};}
 
-			\onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{x}};}
-			\onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{x}};}
-			\onslide<all:4-5>{\node[draw, circle, thick] (2) at (2,2) {x};}
-			\onslide<all:6-24, 26->{\node[draw, circle, thick, blue] (2) at (2,2) {\phantom{x}};}
-			\onslide<all:25>{\node[draw, circle, thick, blue] (2) at (2,2) {x};}
+            \onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{x}};}
+            \onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{x}};}
+            \onslide<all:4-5>{\node[draw, circle, thick] (2) at (2,2) {x};}
+            \onslide<all:6-24, 26->{\node[draw, circle, thick, blue] (2) at (2,2) {\phantom{x}};}
+            \onslide<all:25>{\node[draw, circle, thick, blue] (2) at (2,2) {x};}
 
-			\onslide<all:1-2, 4-20>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{x}};}
-			\onslide<all:3, 21>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{x}};}
-			\onslide<all:22>{\node[draw, circle, thick] (3) at (2,-2) {x};}
-			\onslide<all:23->{\node[draw, circle, thick, blue] (3) at (2,-2) {\phantom{x}};}
+            \onslide<all:1-2, 4-20>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{x}};}
+            \onslide<all:3, 21>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{x}};}
+            \onslide<all:22>{\node[draw, circle, thick] (3) at (2,-2) {x};}
+            \onslide<all:23->{\node[draw, circle, thick, blue] (3) at (2,-2) {\phantom{x}};}
 
-			\onslide<all:1-4>{\node[draw, circle, thick] (4) at (4,1) {\phantom{x}};}
-			\onslide<all:5>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{x}};}
-			\onslide<all:6-7>{\node[draw, circle, thick] (4) at (4,1) {x};}
-			\onslide<all:8-17, 20-23, 25->{\node[draw, circle, thick, blue] (4) at (4,1) {\phantom{x}};}
-			\onslide<all:18-19, 24>{\node[draw, circle, thick, blue] (4) at (4,1) {x};}
+            \onslide<all:1-4>{\node[draw, circle, thick] (4) at (4,1) {\phantom{x}};}
+            \onslide<all:5>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{x}};}
+            \onslide<all:6-7>{\node[draw, circle, thick] (4) at (4,1) {x};}
+            \onslide<all:8-17, 20-23, 25->{\node[draw, circle, thick, blue] (4) at (4,1) {\phantom{x}};}
+            \onslide<all:18-19, 24>{\node[draw, circle, thick, blue] (4) at (4,1) {x};}
 
-			\onslide<all:1-2, 4-6, 8-18>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{x}};}
-			\onslide<all:3, 7, 19>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{x}};}
-			\onslide<all:20-21>{\node[draw, circle, thick] (5) at (4,-1) {x};}
-			\onslide<all:22, 24->{\node[draw, circle, thick, blue] (5) at (4,-1) {\phantom{x}};}
-			\onslide<all:23>{\node[draw, circle, thick, blue] (5) at (4,-1) {x};}
+            \onslide<all:1-2, 4-6, 8-18>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{x}};}
+            \onslide<all:3, 7, 19>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{x}};}
+            \onslide<all:20-21>{\node[draw, circle, thick] (5) at (4,-1) {x};}
+            \onslide<all:22, 24->{\node[draw, circle, thick, blue] (5) at (4,-1) {\phantom{x}};}
+            \onslide<all:23>{\node[draw, circle, thick, blue] (5) at (4,-1) {x};}
 
-			\onslide<all:1-6>{\node[draw, circle, thick] (6) at (6,0) {\phantom{x}};}
-			\onslide<all:7>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{x}};}
-			\onslide<all:8-9>{\node[draw, circle, thick] (6) at (6,0) {x};}
-			\onslide<all:10-16, 18->{\node[draw, circle, thick, blue] (6) at (6,0) {\phantom{x}};}
-			\onslide<all:17>{\node[draw, circle, thick, blue] (6) at (6,0) {x};}
+            \onslide<all:1-6>{\node[draw, circle, thick] (6) at (6,0) {\phantom{x}};}
+            \onslide<all:7>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{x}};}
+            \onslide<all:8-9>{\node[draw, circle, thick] (6) at (6,0) {x};}
+            \onslide<all:10-16, 18->{\node[draw, circle, thick, blue] (6) at (6,0) {\phantom{x}};}
+            \onslide<all:17>{\node[draw, circle, thick, blue] (6) at (6,0) {x};}
 
-			\onslide<all:1-10>{\node[draw, circle, thick] (7) at (6,2) {\phantom{x}};}
-			\onslide<all:11>{\node[draw, circle, thick, yellow] (7) at (6,2) {\phantom{x}};}
-			\onslide<all:12>{\node[draw, circle, thick] (7) at (6,2) {x};}
-			\onslide<all:13->{\node[draw, circle, thick, blue] (7) at (6,2) {\phantom{x}};}
+            \onslide<all:1-10>{\node[draw, circle, thick] (7) at (6,2) {\phantom{x}};}
+            \onslide<all:11>{\node[draw, circle, thick, yellow] (7) at (6,2) {\phantom{x}};}
+            \onslide<all:12>{\node[draw, circle, thick] (7) at (6,2) {x};}
+            \onslide<all:13->{\node[draw, circle, thick, blue] (7) at (6,2) {\phantom{x}};}
 
-			\onslide<all:1-8, 10, 12-13>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{x}};}
-			\onslide<all:9, 11, 14>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{x}};}
-			\onslide<all:15>{\node[draw, circle, thick] (8) at (6,-2) {x};}
-			\onslide<all:16->{\node[draw, circle, thick, blue] (8) at (6,-2) {\phantom{x}};}
+            \onslide<all:1-8, 10, 12-13>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{x}};}
+            \onslide<all:9, 11, 14>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{x}};}
+            \onslide<all:15>{\node[draw, circle, thick] (8) at (6,-2) {x};}
+            \onslide<all:16->{\node[draw, circle, thick, blue] (8) at (6,-2) {\phantom{x}};}
 
-			\onslide<all:1-8>{\node[draw, circle, thick] (9) at (8,0) {\phantom{x}};}
-			\onslide<all:9>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{x}};}
-			\onslide<all:10-11>{\node[draw, circle, thick] (9) at (8,0) {x};}
-			\onslide<all:12, 15, 17->{\node[draw, circle, thick, blue] (9) at (8,0) {\phantom{x}};}
-			\onslide<all:13-14, 16>{\node[draw, circle, thick, blue] (9) at (8,0) {x};}
+            \onslide<all:1-8>{\node[draw, circle, thick] (9) at (8,0) {\phantom{x}};}
+            \onslide<all:9>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{x}};}
+            \onslide<all:10-11>{\node[draw, circle, thick] (9) at (8,0) {x};}
+            \onslide<all:12, 15, 17->{\node[draw, circle, thick, blue] (9) at (8,0) {\phantom{x}};}
+            \onslide<all:13-14, 16>{\node[draw, circle, thick, blue] (9) at (8,0) {x};}
 
-			\onslide<all:1-3> { \path[draw] (1) -- (2); } %4
-			\onslide<all:4-> { \path[draw, blue] (1) -- (2); } %4
+            \onslide<all:1-3> { \path[draw] (1) -- (2); } %4
+            \onslide<all:4-> { \path[draw, blue] (1) -- (2); } %4
 
-			\onslide<all:1-5> { \path[draw] (2) -- (4); } %6
-			\onslide<all:6-> { \path[draw, blue] (2) -- (4); } %6
+            \onslide<all:1-5> { \path[draw] (2) -- (4); } %6
+            \onslide<all:6-> { \path[draw, blue] (2) -- (4); } %6
 
-			\onslide<all:1-19> { \path[draw] (4) -- (5); } %20
-			\onslide<all:20-> { \path[draw, blue] (4) -- (5); } %20
+            \onslide<all:1-19> { \path[draw] (4) -- (5); } %20
+            \onslide<all:20-> { \path[draw, blue] (4) -- (5); } %20
 
-			\onslide<all:1-21> { \path[draw] (5) -- (3); } %22
-			\onslide<all:22-> { \path[draw, blue] (5) -- (3); } %22
+            \onslide<all:1-21> { \path[draw] (5) -- (3); } %22
+            \onslide<all:22-> { \path[draw, blue] (5) -- (3); } %22
 
-			\onslide<all:1-> { \path[draw] (3) -- (1); }
+            \onslide<all:1-> { \path[draw] (3) -- (1); }
 
-			\onslide<all:1-7> { \path[draw] (4) -- (6); } %8
-			\onslide<all:8-> { \path[draw, blue] (4) -- (6); } %8
+            \onslide<all:1-7> { \path[draw] (4) -- (6); } %8
+            \onslide<all:8-> { \path[draw, blue] (4) -- (6); } %8
 
-			\onslide<all:1-> { \path[draw] (6) -- (8); }
+            \onslide<all:1-> { \path[draw] (6) -- (8); }
 
-			\onslide<all:1-14> { \path[draw] (8) -- (9); } %15
-			\onslide<all:15-> { \path[draw, blue] (8) -- (9); } %15
+            \onslide<all:1-14> { \path[draw] (8) -- (9); } %15
+            \onslide<all:15-> { \path[draw, blue] (8) -- (9); } %15
 
-			\onslide<all:1-11> { \path[draw] (9) -- (7); } %12
-			\onslide<all:12-> { \path[draw, blue] (9) -- (7); } %12
+            \onslide<all:1-11> { \path[draw] (9) -- (7); } %12
+            \onslide<all:12-> { \path[draw, blue] (9) -- (7); } %12
 
-			\onslide<all:1-9> { \path[draw] (6) -- (9); } %10
-			\onslide<all:10-> { \path[draw, blue] (6) -- (9); } %10
+            \onslide<all:1-9> { \path[draw] (6) -- (9); } %10
+            \onslide<all:10-> { \path[draw, blue] (6) -- (9); } %10
 
-			\onslide<all:1-> { \path[draw] (1) -- (5); }
-		}
-	}
+            \onslide<all:1-> { \path[draw] (1) -- (5); }
+        }
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Þegar kemur að því að útfæra dýptarleit er oftast notast við endurkvæmni.
-		\item<2-> Endurkvæmnin sér sjálkrafa um að ,,fara til baka''.
-		\item<3->[] \selectcode{code/dfs.cpp}{6}{14}
-		\item<4-> Eftir kall á \ilcode{dfs(g, 0)} segir \ilcode{v[j]} okkur hvort til sé vegur frá hnúti $0$ til hnúts $j$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Þegar kemur að því að útfæra dýptarleit er oftast notast við endurkvæmni.
+        \item<2-> Endurkvæmnin sér sjálkrafa um að ,,fara til baka''.
+        \item<3->[] \selectcode{code/dfs.cpp}{6}{14}
+        \item<4-> Eftir kall á \ilcode{dfs(g, 0)} segir \ilcode{v[j]} okkur hvort til sé vegur frá hnúti $0$ til hnúts $j$.
+    }
 }
 
 \subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum eftir að leitin heimsækir hvern hnút í mesta lagi einu sinni og
-					ferðast eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
-		\item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$E + V$}$)$.
-		\item<4-> Við getum í rauninni ekki beðið um betri tímaflækju.
-		\item<5-> Við munum alltaf þurfa að skoða alla hnúta og ef við skoðum ekki alla leggi þá erum við að hunsa uppbyggingu netsins.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum eftir að leitin heimsækir hvern hnút í mesta lagi einu sinni og
+                    ferðast eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
+        \item<2-> Svo tímaflækjan er $\mathcal{O}($\onslide<3->{$E + V$}$)$.
+        \item<4-> Við getum í rauninni ekki beðið um betri tímaflækju.
+        \item<5-> Við munum alltaf þurfa að skoða alla hnúta og ef við skoðum ekki alla leggi þá erum við að hunsa uppbyggingu netsins.
+    }
 }
 
 \section{Breiddarleit}
 \subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við byrjum á að merkja alla hnúta sem ,,ósnerta'', nema við merkjum einn hnút sem ,,séðan''.
-		\item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
-		\item<3-> Við endurtökum svo eftirfarandi þar til engir ,,séðir'' hnútar eru eftir:
-		\env{itemize}
-		{
-			\item<4-> Veljum þann ,,séða'' hnút sem við sáum fyrst.
-			\item<5-> Merkjum alla ,,ósnerta'' nágranna hans sem ,,séða''.
-			\item<6-> Merkjum upprunalegu hnútinn ,,kláraðann''.
-		}
-		\item<7-> Tökum dæmi.
-		\item<8-> Við munum merkja ,,séða'' hnúta með hvenær við sáum þá.
-	}
+    \frametitle{Breiddarleit}
+    \env{itemize}
+    {
+        \item<1-> Við byrjum á að merkja alla hnúta sem ,,ósnerta'', nema við merkjum einn hnút sem ,,séðan''.
+        \item<2-> Sá hnútur er kallaður \emph{upphafshnúturinn}.
+        \item<3-> Við endurtökum svo eftirfarandi þar til engir ,,séðir'' hnútar eru eftir:
+        \env{itemize}
+        {
+            \item<4-> Veljum þann ,,séða'' hnút sem við sáum fyrst.
+            \item<5-> Merkjum alla ,,ósnerta'' nágranna hans sem ,,séða''.
+            \item<6-> Merkjum upprunalegu hnútinn ,,kláraðann''.
+        }
+        \item<7-> Tökum dæmi.
+        \item<8-> Við munum merkja ,,séða'' hnúta með hvenær við sáum þá.
+    }
 }
 
 \subsection{Sýnidæmi}
 \env{frame}
 {
-	\env{center}
-	{
-		\env{tikzpicture}
-		{
-			\onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{0}};}
-			\onslide<all:2-4>{\node[draw, circle, thick, red] (1) at (2,0) {0};}
-			\onslide<all:5->{\node[draw, circle, thick, blue] (1) at (2,0) {0};}
+    \env{center}
+    {
+        \env{tikzpicture}
+        {
+            \onslide<all:1>{\node[draw, circle, thick] (1) at (2,0) {\phantom{0}};}
+            \onslide<all:2-4>{\node[draw, circle, thick, red] (1) at (2,0) {0};}
+            \onslide<all:5->{\node[draw, circle, thick, blue] (1) at (2,0) {0};}
 
-			\onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{1}};}
-			\onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{1}};}
-			\onslide<all:4-5>{\node[draw, circle, thick, yellow] (2) at (2,2) {1};}
-			\onslide<all:6-8>{\node[draw, circle, thick, red] (2) at (2,2) {1};}
-			\onslide<all:9->{\node[draw, circle, thick, blue] (2) at (2,2) {1};}
+            \onslide<all:1-2>{\node[draw, circle, thick] (2) at (2,2) {\phantom{1}};}
+            \onslide<all:3>{\node[draw, circle, thick, yellow] (2) at (2,2) {\phantom{1}};}
+            \onslide<all:4-5>{\node[draw, circle, thick, yellow] (2) at (2,2) {1};}
+            \onslide<all:6-8>{\node[draw, circle, thick, red] (2) at (2,2) {1};}
+            \onslide<all:9->{\node[draw, circle, thick, blue] (2) at (2,2) {1};}
 
-			\onslide<all:1-2>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{1}};}
-			\onslide<all:3>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{1}};}
-			\onslide<all:4-9>{\node[draw, circle, thick, yellow] (3) at (2,-2) {1};}
-			\onslide<all:10>{\node[draw, circle, thick, red] (3) at (2,-2) {1};}
-			\onslide<all:11->{\node[draw, circle, thick, blue] (3) at (2,-2) {1};}
+            \onslide<all:1-2>{\node[draw, circle, thick] (3) at (2,-2) {\phantom{1}};}
+            \onslide<all:3>{\node[draw, circle, thick, yellow] (3) at (2,-2) {\phantom{1}};}
+            \onslide<all:4-9>{\node[draw, circle, thick, yellow] (3) at (2,-2) {1};}
+            \onslide<all:10>{\node[draw, circle, thick, red] (3) at (2,-2) {1};}
+            \onslide<all:11->{\node[draw, circle, thick, blue] (3) at (2,-2) {1};}
 
-			\onslide<all:1-6>{\node[draw, circle, thick] (4) at (4,1) {\phantom{2}};}
-			\onslide<all:7>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{2}};}
-			\onslide<all:8-13>{\node[draw, circle, thick, yellow] (4) at (4,1) {2};}
-			\onslide<all:14-16>{\node[draw, circle, thick, red] (4) at (4,1) {2};}
-			\onslide<all:17->{\node[draw, circle, thick, blue] (4) at (4,1) {2};}
+            \onslide<all:1-6>{\node[draw, circle, thick] (4) at (4,1) {\phantom{2}};}
+            \onslide<all:7>{\node[draw, circle, thick, yellow] (4) at (4,1) {\phantom{2}};}
+            \onslide<all:8-13>{\node[draw, circle, thick, yellow] (4) at (4,1) {2};}
+            \onslide<all:14-16>{\node[draw, circle, thick, red] (4) at (4,1) {2};}
+            \onslide<all:17->{\node[draw, circle, thick, blue] (4) at (4,1) {2};}
 
-			\onslide<all:1-2>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{1}};}
-			\onslide<all:3>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{1}};}
-			\onslide<all:4-11>{\node[draw, circle, thick, yellow] (5) at (4,-1) {1};}
-			\onslide<all:12>{\node[draw, circle, thick, red] (5) at (4,-1) {1};}
-			\onslide<all:13->{\node[draw, circle, thick, blue] (5) at (4,-1) {1};}
+            \onslide<all:1-2>{\node[draw, circle, thick] (5) at (4,-1) {\phantom{1}};}
+            \onslide<all:3>{\node[draw, circle, thick, yellow] (5) at (4,-1) {\phantom{1}};}
+            \onslide<all:4-11>{\node[draw, circle, thick, yellow] (5) at (4,-1) {1};}
+            \onslide<all:12>{\node[draw, circle, thick, red] (5) at (4,-1) {1};}
+            \onslide<all:13->{\node[draw, circle, thick, blue] (5) at (4,-1) {1};}
 
-			\onslide<all:1-14>{\node[draw, circle, thick] (6) at (6,0) {\phantom{3}};}
-			\onslide<all:15>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{3}};}
-			\onslide<all:16-17>{\node[draw, circle, thick, yellow] (6) at (6,0) {3};}
-			\onslide<all:18-20>{\node[draw, circle, thick, red] (6) at (6,0) {3};}
-			\onslide<all:21->{\node[draw, circle, thick, blue] (6) at (6,0) {3};}
+            \onslide<all:1-14>{\node[draw, circle, thick] (6) at (6,0) {\phantom{3}};}
+            \onslide<all:15>{\node[draw, circle, thick, yellow] (6) at (6,0) {\phantom{3}};}
+            \onslide<all:16-17>{\node[draw, circle, thick, yellow] (6) at (6,0) {3};}
+            \onslide<all:18-20>{\node[draw, circle, thick, red] (6) at (6,0) {3};}
+            \onslide<all:21->{\node[draw, circle, thick, blue] (6) at (6,0) {3};}
 
-			\onslide<all:1-24>{\node[draw, circle, thick] (7) at (6,2) {\phantom{5}};}
-			\onslide<all:25>{\node[draw, circle, thick, yellow] (7) at (6,2) {\phantom{5}};}
-			\onslide<all:26-27>{\node[draw, circle, thick, yellow] (7) at (6,2) {5};}
-			\onslide<all:28>{\node[draw, circle, thick, red] (7) at (6,2) {5};}
-			\onslide<all:29->{\node[draw, circle, thick, blue] (7) at (6,2) {5};}
+            \onslide<all:1-24>{\node[draw, circle, thick] (7) at (6,2) {\phantom{5}};}
+            \onslide<all:25>{\node[draw, circle, thick, yellow] (7) at (6,2) {\phantom{5}};}
+            \onslide<all:26-27>{\node[draw, circle, thick, yellow] (7) at (6,2) {5};}
+            \onslide<all:28>{\node[draw, circle, thick, red] (7) at (6,2) {5};}
+            \onslide<all:29->{\node[draw, circle, thick, blue] (7) at (6,2) {5};}
 
-			\onslide<all:1-18>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{4}};}
-			\onslide<all:19>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{4}};}
-			\onslide<all:20-21>{\node[draw, circle, thick, yellow] (8) at (6,-2) {4};}
-			\onslide<all:22>{\node[draw, circle, thick, red] (8) at (6,-2) {4};}
-			\onslide<all:23->{\node[draw, circle, thick, blue] (8) at (6,-2) {4};}
+            \onslide<all:1-18>{\node[draw, circle, thick] (8) at (6,-2) {\phantom{4}};}
+            \onslide<all:19>{\node[draw, circle, thick, yellow] (8) at (6,-2) {\phantom{4}};}
+            \onslide<all:20-21>{\node[draw, circle, thick, yellow] (8) at (6,-2) {4};}
+            \onslide<all:22>{\node[draw, circle, thick, red] (8) at (6,-2) {4};}
+            \onslide<all:23->{\node[draw, circle, thick, blue] (8) at (6,-2) {4};}
 
-			\onslide<all:1-18>{\node[draw, circle, thick] (9) at (8,0) {\phantom{4}};}
-			\onslide<all:19>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{4}};}
-			\onslide<all:20-23>{\node[draw, circle, thick, yellow] (9) at (8,0) {4};}
-			\onslide<all:24-26>{\node[draw, circle, thick, red] (9) at (8,0) {4};}
-			\onslide<all:27->{\node[draw, circle, thick, blue] (9) at (8,0) {4};}
+            \onslide<all:1-18>{\node[draw, circle, thick] (9) at (8,0) {\phantom{4}};}
+            \onslide<all:19>{\node[draw, circle, thick, yellow] (9) at (8,0) {\phantom{4}};}
+            \onslide<all:20-23>{\node[draw, circle, thick, yellow] (9) at (8,0) {4};}
+            \onslide<all:24-26>{\node[draw, circle, thick, red] (9) at (8,0) {4};}
+            \onslide<all:27->{\node[draw, circle, thick, blue] (9) at (8,0) {4};}
 
-			\path[draw] (1) -- (2) -- (4) -- (5) -- (3) -- (1);
-			\path[draw] (4) -- (6) -- (8) -- (9) -- (7);
-			\path[draw] (6) -- (9);
-			\path[draw] (1) -- (5);
-		}
-	}
+            \path[draw] (1) -- (2) -- (4) -- (5) -- (3) -- (1);
+            \path[draw] (4) -- (6) -- (8) -- (9) -- (7);
+            \path[draw] (6) -- (9);
+            \path[draw] (1) -- (5);
+        }
+    }
 }
 
 \subsection{Útfærlsa}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við munum halda utan um ,,séða'' hnúta með biðröð.
-		\item<2-> Við byrjum því á að setja upphafshnútinn okkar í biðröðina.
-		\item<3-> Við tökum svo hnút úr biðröðinni, setjum alla ,,óséða'' nágranna hans í biðröðina og höldum áfram þangað til biðröðin er tóm.
-		\item<4->[] \selectcode{code/bfs.cpp}{18}{31}
-	}
+    \env{itemize}
+    {
+        \item<1-> Við munum halda utan um ,,séða'' hnúta með biðröð.
+        \item<2-> Við byrjum því á að setja upphafshnútinn okkar í biðröðina.
+        \item<3-> Við tökum svo hnút úr biðröðinni, setjum alla ,,óséða'' nágranna hans í biðröðina og höldum áfram þangað til biðröðin er tóm.
+        \item<4->[] \selectcode{code/bfs.cpp}{18}{31}
+    }
 }
 
 \subsection{Fjarlægðir í óvegnum netum}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við segjum að hnútar $u$ og $v$ séu fjarlægð $k$ frá hvorum öðrum ef stysti vegurinn frá $u$ til $v$ er af lengd $k$.
-		\item<2-> Við segjum líka að það séu $k$ skref á milli hnútanna.
-		\item<3-> Ef enginn vegur er á milli hnútanna segjum við að lengdin á milli þeirra sé $\infty$.
-		\item<4-> Mikilvægur eiginleiki breiddarleitar er að hún heimsækir fyrst þá hnúta sem eru næst upphafshnútnum.
-		\item<5-> Með öðrum orðum, ef $u$ er $k_1$ skref frá upphafshnútnum og $v$ er $k_2$ skref frá upphafshnútunum, $k_1 \neq k_2$,
-					þá heimsækir breiddarleit $u$ á undan $v$ þá og því aðeins að $k_1 < k_2$.
-		\item<6-> Við getum því notað breiddarleit til að finna fjarlægðina frá upphafshnútnum að öllum öðrum hnútum.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við segjum að hnútar $u$ og $v$ séu fjarlægð $k$ frá hvorum öðrum ef stysti vegurinn frá $u$ til $v$ er af lengd $k$.
+        \item<2-> Við segjum líka að það séu $k$ skref á milli hnútanna.
+        \item<3-> Ef enginn vegur er á milli hnútanna segjum við að lengdin á milli þeirra sé $\infty$.
+        \item<4-> Mikilvægur eiginleiki breiddarleitar er að hún heimsækir fyrst þá hnúta sem eru næst upphafshnútnum.
+        \item<5-> Með öðrum orðum, ef $u$ er $k_1$ skref frá upphafshnútnum og $v$ er $k_2$ skref frá upphafshnútunum, $k_1 \neq k_2$,
+                    þá heimsækir breiddarleit $u$ á undan $v$ þá og því aðeins að $k_1 < k_2$.
+        \item<6-> Við getum því notað breiddarleit til að finna fjarlægðina frá upphafshnútnum að öllum öðrum hnútum.
+    }
 }
 
 \subsection{Tímaflækja}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Líkt og í dýptarleit þá heimsækjum við hvern hnút í mesta lagi einu sinni og
-					ferðumst eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
-		\item<2-> Svo tímaflækjan er aftur $\mathcal{O}($\onslide<3->{$E + V$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Líkt og í dýptarleit þá heimsækjum við hvern hnút í mesta lagi einu sinni og
+                    ferðumst eftir hverjum legg í mesta lagi tvisvar (einu sinni í stefndu neti).
+        \item<2-> Svo tímaflækjan er aftur $\mathcal{O}($\onslide<3->{$E + V$}$)$.
+    }
 }
 
 \section{Samanburður breiddarleitar og dýptarleitar}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Báðar leitirnar segja okkur til hvaða hnúta megi komast frá upphafshnútnum og gera það með sömu tímaflækju.
-		\item<2-> Breiddarleit gefur okkur einnig fjarlægð allra hnúta frá upphafshnútnum.
-		\item<3-> Í dýptarleit getum við unnið áfram með gögnin eftir endurkvæma kallið okkar, sem býður upp á mikla fjölbreyttni.
-		\item<4-> Dýptarleit má því finna í reikniritum sem finna grannröð neta, tengipunkta og brýr (þetta verður allt skilgreint seinna).
-	}
+    \env{itemize}
+    {
+        \item<1-> Báðar leitirnar segja okkur til hvaða hnúta megi komast frá upphafshnútnum og gera það með sömu tímaflækju.
+        \item<2-> Breiddarleit gefur okkur einnig fjarlægð allra hnúta frá upphafshnútnum.
+        \item<3-> Í dýptarleit getum við unnið áfram með gögnin eftir endurkvæma kallið okkar, sem býður upp á mikla fjölbreyttni.
+        \item<4-> Dýptarleit má því finna í reikniritum sem finna grannröð neta, tengipunkta og brýr (þetta verður allt skilgreint seinna).
+    }
 }
 
 \section{Dæmi 1}
 \subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum dæmi.
-		\item<2-> Fyrsta lína inntaksins inniheldur tvær heiltölur, $r$ og $c$.
-		\item<3-> Inntakið inniheldur síðan $r$ strengir, allir af lengd $c$.
-		\item<4-> Strengirnar byrjar og enda allir á \ilcode{`X'} ásamt því að fyrsti og síðasti strengurinn inniheldur bara stafinn \ilcode{`X'}.
-		\item<5-> Annars innihalda strengirnir bara stafina \ilcode{`X'}, \ilcode{`.'} og eitt stykki \ilcode{`O'}.
-		\item<6->[] \code{code/2.in}
-		\item<7-> Við viljum svo prenta sama borð, nema í stað bókstafana á að koma hversu fá skref við þurfum að taka til frá \ilcode{`O'}
-					til að komast þangað ef við megum ferðast upp, niður, til hægri og til vinstri, en ekki á reitunum með \ilcode{`X'}.
-		\item<8-> Fyrir þá reiti sem við komumst ekki á prentum við \ilcode{-1}.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum dæmi.
+        \item<2-> Fyrsta lína inntaksins inniheldur tvær heiltölur, $r$ og $c$.
+        \item<3-> Inntakið inniheldur síðan $r$ strengir, allir af lengd $c$.
+        \item<4-> Strengirnar byrjar og enda allir á \ilcode{`X'} ásamt því að fyrsti og síðasti strengurinn inniheldur bara stafinn \ilcode{`X'}.
+        \item<5-> Annars innihalda strengirnir bara stafina \ilcode{`X'}, \ilcode{`.'} og eitt stykki \ilcode{`O'}.
+        \item<6->[] \code{code/2.in}
+        \item<7-> Við viljum svo prenta sama borð, nema í stað bókstafana á að koma hversu fá skref við þurfum að taka til frá \ilcode{`O'}
+                    til að komast þangað ef við megum ferðast upp, niður, til hægri og til vinstri, en ekki á reitunum með \ilcode{`X'}.
+        \item<8-> Fyrir þá reiti sem við komumst ekki á prentum við \ilcode{-1}.
+    }
 }
 
 \subsection{Sýniinntak}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Sem dæmi hefur inntakið
-				\code{code/2.in}
-					úttakið	
-				\code{code/2.ans}
-	}
+    \env{itemize}
+    {
+        \item<1-> Sem dæmi hefur inntakið
+                \code{code/2.in}
+                    úttakið    
+                \code{code/2.ans}
+    }
 }
 
 \subsection{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Hvernig tengist þetta dæmi efni vikunnar?
-		\item<2-> Við getum túlkað þessa mynd sem net.
-		\item<3-> Ímyndum okkur að hver auður reitur sé hnútur.
-		\item<4-> Við tengjum svo aðliggjandi auða hnúta með leggjum.
-		\item<5-> Þar sem við viljum finna fjalægðir frá tilteknum hnút til allra annara hnúta notum við \onslide<6->{breiddar}leit.
-		\item<7-> Fjöldi hnúta í netinu er alltaf minni en $r \cdot c$ og fjöldi leggja er alltaf minni en $2 \cdot r \cdot c$.
-		\item<8-> Svo þetta reiknirit er $\mathcal{O}($\onslide<9->{$E + V$}$) = \mathcal{O}($\onslide<10->{$r \cdot c$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1-> Hvernig tengist þetta dæmi efni vikunnar?
+        \item<2-> Við getum túlkað þessa mynd sem net.
+        \item<3-> Ímyndum okkur að hver auður reitur sé hnútur.
+        \item<4-> Við tengjum svo aðliggjandi auða hnúta með leggjum.
+        \item<5-> Þar sem við viljum finna fjalægðir frá tilteknum hnút til allra annara hnúta notum við \onslide<6->{breiddar}leit.
+        \item<7-> Fjöldi hnúta í netinu er alltaf minni en $r \cdot c$ og fjöldi leggja er alltaf minni en $2 \cdot r \cdot c$.
+        \item<8-> Svo þetta reiknirit er $\mathcal{O}($\onslide<9->{$E + V$}$) = \mathcal{O}($\onslide<10->{$r \cdot c$}$)$.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\selectcode{code/daemi.cpp}{5}{41}
+    \selectcode{code/daemi.cpp}{5}{41}
 }
 
 \section{Dæmi 2}
 \subsection{Lýsing}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Tökum annað dæmi.
-		\item<2-> Ykkur er gefið net og tiltekinn hnút $u$.
-		\item<3-> Prentið alla einfalda vegi í netinu sem byrja í $u$.
-		\item<4-> Munið að vegur er einfaldur ef hann heimsækir aldrei sama hnútinn tvisvar.
-	}
+    \env{itemize}
+    {
+        \item<1-> Tökum annað dæmi.
+        \item<2-> Ykkur er gefið net og tiltekinn hnút $u$.
+        \item<3-> Prentið alla einfalda vegi í netinu sem byrja í $u$.
+        \item<4-> Munið að vegur er einfaldur ef hann heimsækir aldrei sama hnútinn tvisvar.
+    }
 }
 
 \subsection{Lausn}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1-> Við getum leyst þetta með því að breita dýptarleitar útfærslunni okkar lítillega.
-		\item<2-> Til að koma í veg fyrir að heimsækja hnút oftar en einu sinni í dýpterleit merkjum við hann og heimsækjum ekki merkta hnúta.
-		\item<3-> Við munum ennþá þurfa að merkja hnúta því við erum að leita að einföldum vegum (almennt er ekki takmarkaður fjöldi vega í neti).
-		\item<4-> Munurinn er að við munum merkja hnút þegar við sjáum hann, halda áfram endurkvæmt til ómerktra nágranna hans og afmerkja hann svo.
-	}
+    \env{itemize}
+    {
+        \item<1-> Við getum leyst þetta með því að breita dýptarleitar útfærslunni okkar lítillega.
+        \item<2-> Til að koma í veg fyrir að heimsækja hnút oftar en einu sinni í dýpterleit merkjum við hann og heimsækjum ekki merkta hnúta.
+        \item<3-> Við munum ennþá þurfa að merkja hnúta því við erum að leita að einföldum vegum (almennt er ekki takmarkaður fjöldi vega í neti).
+        \item<4-> Munurinn er að við munum merkja hnút þegar við sjáum hann, halda áfram endurkvæmt til ómerktra nágranna hans og afmerkja hann svo.
+    }
 }
 
 \subsection{Útfærsla}
 \env{frame}
 {
-	\env{itemize}
-	{
-		\item<1->[]	\selectcode{code/allir-vegir.cpp}{7}{18}
-		\item<2-> Þetta forrit prentar alla einfalda vegi sem byrja í hnút $u$.
-		\item<3-> Til að hámarka fjölda slíkra vega getum við búið til net þar sem öll pör hnúta eru nágrannar.
-		\item<4-> Þá myndi þetta forrit prenta allar umraðanir sem byrja á $x$.
-		\item<5-> Tímaflækjan er því $\mathcal{O}($\onslide<6->{$V!$}$)$.
-	}
+    \env{itemize}
+    {
+        \item<1->[]    \selectcode{code/allir-vegir.cpp}{7}{18}
+        \item<2-> Þetta forrit prentar alla einfalda vegi sem byrja í hnút $u$.
+        \item<3-> Til að hámarka fjölda slíkra vega getum við búið til net þar sem öll pör hnúta eru nágrannar.
+        \item<4-> Þá myndi þetta forrit prenta allar umraðanir sem byrja á $x$.
+        \item<5-> Tímaflækjan er því $\mathcal{O}($\onslide<6->{$V!$}$)$.
+    }
 }
 
 \section{Þessi glæra er viljandi auð}
