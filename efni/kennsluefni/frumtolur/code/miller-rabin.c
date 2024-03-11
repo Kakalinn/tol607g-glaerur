@@ -18,8 +18,8 @@ ll modpow(ll x, ll n, ll m)
     return r; 
 }
 
-int miller_rabin(ll n)
-{
+int miller_rabin(ll n)                                                          // Ef fallið skilar 1 er n frumtala. Annars er n mjög líklega ekki
+{                                                                               //   frumtala.
     if (n%2 == 0) return n == 2;
     if (n <= 3) return n == 3;
     ll a, x, i, k, s = 0, d = n - 1,

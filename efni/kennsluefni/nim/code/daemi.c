@@ -12,7 +12,7 @@ int mex(int* a, int n)                                                          
 }
 
 int d[MAXN];
-int dp_lookup(int x)
+int dp_lookup(int x)                                                            // Notum kvika bestun til að reikna Grundy tölu stöðunnar x.
 {
     if (x == 0) return 0;                                                       // Grunntilfelli.
     if (d[x] != -1) return d[x];                                                // Við erum búin að reikna svarið. Skilum því sem við reiknuðum þá.

@@ -73,12 +73,12 @@ void eratos()
     for (i = 0; i < MAXN; i++) if (e[i] == i) p[pp++] = i;
 }
 
-ll pollard_rho(ll n, ll *a)                                                     // Þetta fall not rho(...) til að frumþátta tölun n.
-{
+ll pollard_rho(ll n, ll *a)                                                     // Þetta fall frumþáttar n og geymir þættina í a. Fylkið a þarf að rúma
+{                                                                               //  alla frumþætti n, sem eru aldrei fleiri en log(n).
     ll i, r, c = 0, s[200], p[6] = {2, 3, 5, 7, 11, 13};
     for (i = 0; i < 6; i++) while (n%p[i] == 0) n /= p[i], a[c++] = p[i];       // Styttum út með nokkrum harðkóðuðum frumtölum, því reikniritið er voða
     if (n == 1) return c;                                                       //   krúttlegt fyrir litlar tölur.
-    s[s[0] = 1] = n;                                                                // Setjum það sem eftir er á hlaða.
+    s[s[0] = 1] = n;                                                            // Setjum það sem eftir er á hlaða.
     while (s[0] > 0)
     {
         ll k = s[s[0]--];                                                       // Tökum tölu af hlaðanum.
