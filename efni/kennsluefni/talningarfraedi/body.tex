@@ -191,7 +191,7 @@
 {
     \env{itemize}
     {
-        \item<1-> Við munum ferkar telja hversu margar umraðanir hafa fastapunkt.
+        \item<1-> Við munum frekar telja hversu margar umraðanir hafa fastapunkt.
         \item<2-> Þetta er algengt að gera í talningarfræði.
         \item<3-> Látum nú $A_j$ tákna mengi þeirra umraðana þar sem $j$ er fastapunktur.
         \item<4-> Þá er $\bigcap_{j \in J} A_j$ mengi þeirra umraðana þar sem allir punktar $J$ eru fastapunktar.
@@ -215,7 +215,6 @@
         &= \sum_{\substack{J \subset \{1, ..., n\} \\ J \neq \emptyset}} (-1)^{|J| - 1} \left | \bigcap_{j \in J} A_j \right |\\
         &= \sum_{j = 1}^n (-1)^{j + 1} {n \choose j} (n - j)!\\
         &= \sum_{j = 1}^n (-1)^{j + 1} \frac{n!}{(n - j)!j!} (n - j)!\\
-        &= \sum_{j = 1}^n (-1)^{j + 1} \frac{n!}{j!}\\
         &= n!\sum_{j = 1}^n \frac{(-1)^{j + 1}}{j!}.
     }
 }
@@ -377,7 +376,7 @@
     \env{itemize}
     {
         \item<1-> Látum $\sigma$ vera umröðun á $\{1, ..., n\}$.
-        \item<2-> Þá kallast par $(i, j) \in \{1, ..., n\} \times \{1, ..., n\}$ þannig að $i < j$ og $\sigma(i) > \sigma(j)$,
+        \item<2-> Þá kallast heiltölupar $(i, j)$ þannig að $1 \leq i < j \leq n$ og $\sigma(i) > \sigma(j)$,
             \emph{umhverfing} (e. \emph{inversion}) í $\sigma$.
         \item<3-> Látum \ilcode{a} tákna $n$ staka lista þannig að $j$-ta stak listans sé $\sigma(j)$.
         \item<4-> Svona táknum við iðulega umraðanir þegar við útfærum þær í tölvu.
@@ -402,7 +401,7 @@
                 (við teljum ekki þau stök sem eru komin á sinn stað).
         \item<8-> Við byrjum því með $1$ í hverju staki í biltrénu okkar.
         \item<9-> Þegar við höfum fært stak á sinn stað setjum við tilheyrandi gildi sem $0$.
-        \item<10-> Summa fyrst $j - 1$ stakanna í trénu er því fjöldi staka sem $j$-ta stakið í listanum þarf að sipta á til að komast á sinn stað.
+        \item<10-> Summa fyrstu $j - 1$ stakanna í trénu er því fjöldi staka sem $j$-ta stakið í listanum þarf að sipta á til að komast á sinn stað.
     }
 }
 \defverbatim{\slowinva}
@@ -789,28 +788,28 @@
     }
 }
 
-\section{Talning umhverfinga með því að deila og drottna}
+\subsection{Talning umhverfinga með því að deila og drottna}
 \env{frame}
 {
     \env{itemize}
     {
         \item<1-> Önnur leið til að telja umhverfingar er að deila og drottna.
-        \item<2-> Við getum raðað tölunum með \ilcode{merge sort} og talið í leiðinni hvað við þurfum að færa tölurnar um mörg sæti.
+        \item<2-> Við getum raðað tölunum með \ilcode{mergesort} og talið í leiðinni hvað við þurfum að færa tölurnar um mörg sæti.
         \item<3-> Þegar við erum að sameina erum við með tvo raðaða lista.
-        \item<4-> Við fjarlægjum síðan minsta stakið sem er í listunum.
+        \item<4-> Við fjarlægjum síðan minnsta stakið sem er í listunum.
         \item<5-> Ef við fjarlægjum stak úr vinstri listanum færist það um ekkert sæti.
         \item<6-> Ef við fjarlægjum stak úr hægri listanum færist það um eitt sæti fyrir hvert stak sem er eftir í vinstri listanum.
         \item<7-> Við getum útfærst þetta neðansækið og ofansækið.
     }
 }
 
-\section{Ofansækin útfærsla}
+\subsection{Ofansækin útfærsla}
 \env{frame}
 {
     \selectcode{code/invnum-mergesort-td.c}{5}{26}
 }
 
-\section{Neðansækin útfærsla}
+\subsection{Neðansækin útfærsla}
 \env{frame}
 {
     \selectcode{code/invnum-mergesort-bu.c}{6}{19}
@@ -821,7 +820,7 @@
 {
     \env{itemize}
     {
-        \item<1-> Bæði reikniritin hafa sömu tímaflækju og \ilcode{merge sort}, það er að segja $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
+        \item<1-> Bæði reikniritin hafa sömu tímaflækju og \ilcode{mergesort}, það er að segja $\mathcal{O}($\onslide<2->{$n \log n$}$)$.
     }
 }
 
@@ -964,7 +963,7 @@
     \selectcode{code/matrix.c}{4}{23}
 }
 
-\subsection{Tímqflækjur}
+\subsection{Tímaflækjur}
 \env{frame}
 {
     \env{itemize}
@@ -978,7 +977,7 @@
     }
 }
 
-\section{Veldishafning flykja í netafræði}
+\subsection{Veldishafning flykja í netafræði}
 \env{frame}
 {
     \env{itemize}
@@ -1005,7 +1004,7 @@
             a_n = \sum_{j = 1}^k c_j \cdot a_{n - j},
         \]
         fyrir öll $n$ þannig að $n - k \in \mathbb{N}$.
-        \item<2-> Munið, til dæmis, að Fiboncci tölurnar eru línulega rakningarvensl með $a_1 = a_2 = c_1 = c_2 = 1$.
+        \item<2-> Munið, til dæmis, að Fiboncci tölurnar eru gefnar með línulegu rakningarvenslunum þar sem $a_1 = a_2 = c_1 = c_2 = 1$.
         \item<3-> Látum $k$-ta stigs línuleg rakningarvensl vera gefnin, líkt og að ofan.
     }
 }
@@ -1077,7 +1076,7 @@
         \item<2-> Við getum notað $M^p$ til að fá $a_{k + p}$.
         \item<3-> Þetta getum við reinkað í $\mathcal{O}($\onslide<4->{$k^3 \log p$}$)$ tíma.
         \item<5-> Við getum, til dæmis, notað þetta til að reikna $n$-tu Fibonacci töluna í $\mathcal{O}($\onslide<6->{$\log n$}$)$ tíma.
-        \item<7-> Það er meiri en nógu hratt fyrir $n < 10^{18}$.
+        \item<7-> Það er meira en nógu hratt fyrir $n < 10^{18}$.
     }
 }
 
@@ -1093,7 +1092,7 @@
     \env{itemize}
     {
         \item<1-> Í dæmum sem beita má þessari aðferð er oft erfitt að finna rakningarvenslin (þegar þau eru ekki gefin beint).
-        \item<2-> Þá má nota netafræðina í staðin.
+        \item<2-> Þá má nota netafræðina í staðinn.
         \item<3-> Tökum dæmi.
     }
 }
@@ -1158,7 +1157,7 @@
         \item<2->[] \gangarfylki
         \item<3-> Köllum þetta fylki $A$.
         \item<4-> Við þurfum síðan að leggja saman $(A^{p - 1})_{uv}$ fyrir öll $u$ og $v$ þar sem $u$ er löglegur dálkur.
-        \item<5-> Þá eru við að telja saman alla vegi í netinu af lengd $p$ sem byrja í löglegum dálki.
+        \item<5-> Þá eru við að leggja saman alla vegi í netinu af lengd $p$ sem byrja í löglegum dálki.
         \item<6-> Við þurfum ekki að passa að síðasti hnúturinn sé löglegur því það liggur enginn leggur í ólöglegan hnút.
     }
 }
