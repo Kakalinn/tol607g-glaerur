@@ -1,0 +1,85 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{angles, shapes}
+\usepackage{array}
+
+\setbeamertemplate{footline}{% 
+  \hfill% 
+  \insertframenumber%
+  %\,/\,\inserttotalframenumber
+  \kern2em\vskip4pt% 
+}
+
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand\env[2]
+{
+    \begin{#1}
+    #2
+    \end{#1}
+}
+\newcommand\varenv[3]
+{
+    \begin{#1}[#2]
+    #3
+    \end{#1}
+}
+\newcommand\slidewidth[1]
+{
+    \resizebox{\textwidth}{!}{#1}
+}
+
+% grá code blocks
+\newcommand{\ilcode}[1]{\colorbox{gray!20}{\color{black} \texttt{#1}}}
+
+\newcommand\code[1]{{\tiny\lstinputlisting[language = C, numbers = left]{#1}}}
+\newcommand\selectcode[3]{{\tiny\lstinputlisting[language = C, numbers = left, firstnumber = #2, linerange = {#2 - #3}]{#1}}}
+
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\definecolor{mygreen}{rgb}{0, 0, 1}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+
+\lstset{
+    keepspaces,
+    breaklines       = false,
+    commentstyle     = \color{mygray},
+    numbersep        = 5pt,
+    numberstyle      = \tiny\color{mygray},
+    keywordstyle     = \color{mygreen},
+    showspaces       = false,
+    showstringspaces = false,
+    stringstyle      = \color{myorange},
+    tabsize          = 4
+}
+\lstset{literate=
+{æ}{{\ae}}1
+{í}{{\'{i}}}1
+{ó}{{\'{o}}}1
+{á}{{\'{a}}}1
+{é}{{\'{e}}}1
+{ú}{{\'{u}}}1
+{ý}{{\'{y}}}1
+{ð}{{\dh}}1
+{þ}{{\th}}1
+{ö}{{\"o}}1
+{Á}{{\'{A}}}1
+{Í}{{\'{I}}}1
+{Ó}{{\'{O}}}1
+{Ú}{{\'{U}}}1
+{Æ}{{\AE}}1
+{Ö}{{\"O}}1
+{Ø}{{\O}}1
+{Þ}{{\TH}}1
+}
+
+

@@ -6,11 +6,7 @@
 typedef long long ll;
 typedef __int128 lll;
 
-ll bigprod(ll x, ll y, ll m)
-{
-    return ((lll)x*y)%m;
-}
-
+ll bigprod(ll x, ll y, ll m) { return ((lll)x*y)%m; }
 ll modpow(ll x, ll n, ll m) 
 { 
     ll r;
@@ -34,6 +30,14 @@ int miller_rabin(ll n)                                                          
     }
     return 1;
 }
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+/* Allt fyrir neðan er til að prófa og þarf ekki til að keyra fallið */
+///////////////////////////////////////////////////////////////////////
 
 int e[MAXN];
 void eratos()

@@ -37,11 +37,16 @@ def pollard_rho(n):
     return a
 
 
+
+
+n = int(input())
+while n != 4:
+    r, l = 0, []
+    while len(l) != 1:
+        r += 1
+        l = pollard_rho(n)
+        n = sum(l)
+    print(l[0], r)
+    n = int(input())
     
-
-
-
-
-
-print(pollard_rho(int(input())))
 

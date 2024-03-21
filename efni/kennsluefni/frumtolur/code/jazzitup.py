@@ -1,9 +1,7 @@
 from random import randrange
 def miller_rabin(n, k):
-    if n%2 == 0:
-        return n == 2
-    if n <= 3:
-        return n == 3
+    if n%2 == 0: return n == 2
+    if n <= 3: return n == 3
     s = 0
     d = n - 1
     t = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
@@ -24,6 +22,9 @@ def miller_rabin(n, k):
         if e: return False;
     return True;
 
-n, k = map(int, input().split())
-print(miller_rabin(n, k))
+n = int(input())
+r = 2
+while not miller_rabin(r, 10) or n%r == 0: r += 1
+print(r)
+
 

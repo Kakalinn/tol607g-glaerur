@@ -1,13 +1,36 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <stdio.h>
 #include <assert.h>
-#define MAXN 100000
+#define getchar() fgetc_unlocked(stdin)
+#define irep(E, F) for (int E = 0; E < (F); E++)
+#define rep(E, F) for (E = 0; E < (F); E++)
+#define per(E, F) for (E = (F) - 1; E >= 0; E--)
+typedef long long ll;
+ll min(ll a, ll b) { return a < b ? a : b; }
+ll max(ll a, ll b) { return a > b ? a : b; }
+
+ll get_int()
+{
+    ll r = 0, c = getchar(), s = 1;
+    while (c != '-' && (c < '0' || c > '9')) c = getchar();
+    while (c == '-') s *= -1, c = getchar();
+    while (c >= '0' && c <= '9') r = r*10 + c - '0', c = getchar();
+    return s*r;
+}
+
 typedef long long ll;
 typedef __int128 lll;
 
-ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a%b); }
-ll bigprod(ll x, ll y, ll m) { return ((lll)x*y)%m; }
+ll gcd(ll a, ll b)
+{
+    return b == 0 ? a : gcd(b, a%b);
+}
+
+ll bigprod(ll x, ll y, ll m)
+{
+    return ((lll)x*y)%m;
+}
+
 ll modpow(ll x, ll n, ll m)
 { 
     ll r = 1;
@@ -20,7 +43,7 @@ ll modpow(ll x, ll n, ll m)
     return r; 
 }
 
-int miller_rabin(ll n)
+ll miller_rabin(ll n)
 {
     if (n%2 == 0) return n == 2;
     if (n <= 3) return n == 3;
@@ -69,69 +92,21 @@ ll pollard_rho(ll n, ll *a)                                                     
     return c;
 }
 
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////
-/* Allt fyrir neðan er til að prófa og þarf ekki til að keyra fallið */
-///////////////////////////////////////////////////////////////////////
-
-ll e[MAXN], p[MAXN], pp = 0;
-void eratos()
-{
-    ll i, j;
-    for (i = 0; i < MAXN; i++) e[i] = 0;
-    e[0] = e[1] = -1;
-    for (i = 0; i < MAXN; i++) if (e[i] == 0)
-        for (j = i; j < MAXN; j += i) if (e[j] == 0) e[j] = i;
-    for (i = 0; i < MAXN; i++) if (e[i] == i) p[pp++] = i;
-}
-
-void test(ll x)
-{
-    ll i, r, a[200], m;
-    printf("Factoring %lld...\n", x);
-    m = pollard_rho(x, a);
-    printf("The factors of %lld are: ", x); for (i = 0; i < m; i++) printf("%lld ", a[i]); printf("\n");
-    for (i = 0; i < m; i++) if (!miller_rabin(a[i]))
-    {
-        printf("Miller-Rabin states that %lld is not a prime\n", a[i]);
-        assert(0);
-    }
-    r = 1;
-    for (i = 0; i < m; i++) r *= a[i];
-    assert(r == x);
-}
-
-ll bigrand()
-{
-    ll r = rand(), s = rand();
-    return r*RAND_MAX + s;
-}
-
 int main()
 {
-    srand(time(NULL));
-    ll e = 10, x, i, j;
-    eratos();
-    while (1)
+    ll i, a[200], n = get_int();
+    while (n != 4)
     {
-        //scanf("%lld", &x);
-        x = bigrand()%e + 1;
-        if (e*10 < e) e = 10;
-        else e *= 10;
-        test(x);
-        test(bigrand());
-        x = p[rand()%pp];
-        j = x;
-        while (j*x > x)
+        ll r = 0, m = 0;
+        while (m != 1)
         {
-            test(j);
-            j *= x;
+            r++;
+            m = pollard_rho(n, a);
+            n = 0;
+            rep(i, m) n += a[i];
         }
+        printf("%lld %lld\n", a[0], r);
+        n = get_int();
     }
+    return 0;
 }
-
