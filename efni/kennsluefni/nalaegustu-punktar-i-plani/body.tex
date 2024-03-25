@@ -31,7 +31,7 @@
                     bestu pörin í hvorum helmingnum.
         \item<5-> Það er of hægt að skoða öll pörin sem liggja á milli, þá verður tímaflækjan $\mathcal{O}(n^2)$.
         \item<6-> Látum $d$ vera minnstu fjarlægðina sem fannst í hvorum helmingnum fyrir sig.
-        \item<7-> Við getum því hunsað þá punkta sem hafa $x$-hnit utan bilsins $[x_0 - d, x_0 + d]$.
+        \item<7-> Við getum þá hunsað þá punkta sem hafa $x$-hnit utan bilsins $[x_0 - d, x_0 + d]$.
         \item<8-> Röðum afgangnum eftir $y$-hniti.
         \item<9-> Svo kemur trikkið.
         \item<10-> Okkur nægir, fyrir hvern punkt, að skoða fastann fjölda af næstu punktum.
@@ -44,7 +44,7 @@
     \env{itemize}
     {
         \item<1-> Skiptum svæðinu fyrir ofan punktinn $x_i$ í átta ferninga, hver með hliðarlengdir $d/2$.
-        \item<2-> Ef fjarlægðin milli alla punktanna í hvorum helming er ekki minni en $d$ þá getur mest einn punktur verið í hverjum ferningi
+        \item<2-> Ef fjarlægðin milli allra punktana í hvorum helming er ekki minni en $d$ þá getur mest einn punktur verið í hverjum ferningi
                     (þar með talið er $x_i$).
         \item<3-> Allir punktar utan þessa svæðis eru meira en $d$ fjarlægð frá $i$-ta punktinum, svo við þurfum ekki að skoða þá.
         \item<4-> Svo við þurfum bara að skoða fjarlægðina frá $x_i$ í $x_j$ þegar $j - i \leq 7$.
@@ -123,8 +123,8 @@
         \item<5-> Eina ástæðan fyrir því að hvert endurkvæmt kall sé $\mathcal{O}(n \log n)$ er að við röðum í hvert skipti.
         \item<6-> Það er óþarfi því við erum alltaf að raða sömu punktunum aftur og aftur.
         \item<7-> Það eru fleiri en ein leið til að þurfa ekki að raða oft.
-        \item<8-> Ein leið er að gera það sama og er gert í mergesort.
-        \item<9-> Þá erum við í raun að raða, en við gerum það í línulegum tíma.
+        \item<8-> Ein leið er að gera það sama og er gert í \ilcode{mergesort}.
+        \item<9-> Þá erum við í raun að raða, en við gerum það í línulegum tíma (í hverju endurkvæma kalli).
     }
 }
 
