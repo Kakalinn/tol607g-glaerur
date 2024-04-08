@@ -210,7 +210,7 @@
 \subsection{Útfærsla}
 \env{frame}
 {
-    \selectcode{code/lca-slow.cpp}{7}{27}
+    \selectcode{code/lca-slow.cpp}{7}{26}
 }
 
 \subsection{Tímaflækja}
@@ -242,13 +242,13 @@
         \item<4-> Fyrra skrefinu má lýsa nánar.
         \item<5-> Látum hnútana okkar vera $u$ og $v$, þannig að $r(u) \geq r(v)$.
         \item<6-> Við viljum því ferðast nákvæmlega $r(v) - r(u)$ sinnum í áttina að rótinni.
-        \item<7-> Ein leið til að gera þetta hratt er að geyma ekki bara foreldri hvers hnúts,
-                    heldur alla hnúta sem eru $2^k$ fyrir neðan hnútinn í trénu.
+        \item<7-> Ein lausn er að geyma ekki bara foreldri hvers hnúts $u$,
+            heldur alla forfeður $u$ sem hafa metorð $r(u) - 2^k$.
         \item<8-> Við þurfum því að geyma $\mathcal{O}($\onslide<9->{$\log R$}$)$ stökk fyrir hvern hnút.
         \item<10-> Táknum með $p(u, k)$ þann hnút sem þú endar í ef þú ferðast $2^k$ sinnum frá $u$ gegnum foreldrin.
         \item<11-> Til þæginda segjum við að foreldri rótarinnar sé rótin sjálf.
         \item<12-> Til dæmis er $p(u, 0)$ foreldri $u$.
-        \item<13-> Við finnum þessi gildi með rakningunni $p(u, i) = p(p(u, i - 1), i - 1)$.
+        \item<13-> Við finnum þessi gildi með rakningunni $p(u, k) = p(p(u, k - 1), k - 1)$.
     }
 }
 

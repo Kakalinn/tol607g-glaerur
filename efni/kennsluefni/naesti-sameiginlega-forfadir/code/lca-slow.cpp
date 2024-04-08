@@ -7,9 +7,8 @@ typedef vector<vi> vvi;
 int p[MAXN], r[MAXN];
 void lca_dfs(vvi& g, int x, int q, int w)                                       // Dýptarleit til að reikna metorð (w) og foreldri (q).
 {
-    int i;
     r[x] = w, p[x] = q;                                                         // Reiknum foreldri og metorð.
-    for (i = 0; i < g[x].size(); i++) if (g[x][i] != q)                         // Ítrum í gegnum alla nágranna sem eru ekki foreldrið okkar.
+    for (int i = 0; i < g[x].size(); i++) if (g[x][i] != q)                     // Ítrum í gegnum alla nágranna sem eru ekki foreldrið okkar.
         lca_dfs(g, g[x][i], x, w + 1);                                          // Höldum leitinni áfram.
 }
 
