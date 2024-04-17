@@ -1,6 +1,6 @@
 from bisect import bisect
 
-def lis(a, weakly_increasing = True, return_indices = True):
+def lis(a, weakly_increasing = False, return_indices = True):
     INF = 2**32
     s = 0 if weakly_increasing else -1
     e, d = [INF]*(len(a) + 1), [INF]*(len(a) + 1)

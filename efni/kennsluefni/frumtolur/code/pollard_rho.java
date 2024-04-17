@@ -12,16 +12,26 @@ public class pollard_rho
         System.out.println();
     }
 
-    static long modpow(long x, long n, long m)
-    {
-        long r;
-        for (r = 1; n > 0; n = n/2, x = (x*x)%m) if (n%2 == 1) r = (r*x)%m;
-        return r; 
-    }
     static long gcd(long a, long b) { return b == 0 ? a : gcd(b, a%b); }
     static long bigprod(long x, long y, long m)
     {
-        return BigInteger.valueOf(x).multiply(BigInteger.valueOf(y)).mod(BigInteger.valueOf(m)).longValue();
+        BigInteger r = BigInteger.valueOf(x);
+        r = r.multiply(BigInteger.valueOf(y));
+        r = r.mod(BigInteger.valueOf(m));
+        return r.longValue();
+    }
+    static long bigsquare(long x, long a, long m)
+    {
+        BigInteger r = BigInteger.valueOf(bigprod(x, x, m));
+        r = r.add(BigInteger.valueOf(a));
+        r = r.mod(BigInteger.valueOf(m));
+        return r.longValue();
+    }
+    static long modpow(long x, long n, long m)
+    {
+        long r;
+        for (r = 1; n > 0; n = n/2, x = bigsquare(x, 0, m)) if (n%2 == 1) r = bigprod(r, x, m);
+        return r; 
     }
     static boolean miller_rabin(long n)
     {
@@ -30,11 +40,11 @@ public class pollard_rho
         long a, x, i, s = 0, d = n - 1;
         long[] t = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
         while (d%2 == 0) { d /= 2; s++; }
-        for (int k = 0; k < 12; k++) if (t[k] <= n - 2)
+        for (int k = 0; k < t.length; k++) if (t[k] <= n - 2)
         {
             a = t[k]; x = modpow(a, d, n);
             if (x == 1 || x == n - 1) continue;
-            for (i = 0; i < s - 1; i++) if ((x = bigprod(x, x, n)) == n - 1) break;
+            for (i = 0; i < s - 1; i++) if ((x = bigsquare(x, 0, n)) == n - 1) break;
             if (i == s - 1) return false;
         }
         return true;
@@ -42,15 +52,15 @@ public class pollard_rho
     static long rho(long n)
     {
         long[] s = {2, 3, 4, 5, 7, 11, 13, 1031};
-        long i, a, x, y, d;
-        for (a = 1;; a++) for (int j = 0; j < 8; j++)
+        long a, x, y, d;
+        for (a = 1;; a++) for (int i = 0; i < 8; i++)
         {
-            x = y = s[j]; d = 1;
+            x = y = s[i]; d = 1;
             while (d == 1)
             {
-                x = (bigprod(x, x, n) + a)%n;
-                y = (bigprod(y, y, n) + a)%n;
-                y = (bigprod(y, y, n) + a)%n;
+                x = bigsquare(x, a, n);
+                y = bigsquare(y, a, n);
+                y = bigsquare(y, a, n);
                 d = gcd(Math.abs(x - y), n);
             }
             if (d != n) return d;
@@ -59,7 +69,7 @@ public class pollard_rho
     static long[] pollard_rho(long n)
     {
         int ss = 0, aa = 0;
-        long[] s = new long[200], p = {2, 3, 5, 7, 11, 13}, a = new long[200];
+        long[] s = new long[200], a = new long[200], p = {2, 3, 5, 7, 11, 13};
         for (int i = 0; i < p.length; i++) while (n%p[i] == 0) { n /= p[i]; a[aa++] = p[i]; }
         if (n != 1) s[ss++] = n;
         while (ss > 0)

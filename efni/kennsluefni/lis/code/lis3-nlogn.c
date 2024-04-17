@@ -4,7 +4,6 @@
 #include <time.h>
 #include <assert.h>
 #define INF (1 << 30)
-#define MAXN 1001
 int max(int a, int b) { return a < b ? b : a; }
 
 int lis(int *a, int *b, int n)                                                  // Finnur eina af lengstu vaxandi hlutrunum a.
@@ -13,8 +12,8 @@ int lis(int *a, int *b, int n)                                                  
     for (i = 0; i < n + 1; i++) d[i] = i == 0 ? -INF : INF;                     // Upphafstillum minnistöfluna.
     for (i = 0; i < n; i++)
     {
-        for (r = -1, s = n + 1; s >= 1; s /= 2)                                         // Reiknum, með helmingunarleit, hvar við setjum a[i] í minnistöfluna.
-            while (r + s < n + 1 && d[r + s] < a[i]) r += s;            // ATH: Eftir leitina er vísirinn r - 1!
+        for (r = -1, s = n + 1; s >= 1; s /= 2)                                 // Reiknum, með helmingunarleit, hvar við setjum a[i] í minnistöfluna.
+            while (r + s < n + 1 && d[r + s] < a[i]) r += s;                    // ATH: Eftir leitina er vísirinn r - 1!
         d[r + 1] = a[i], e[i] = d[r];                                           // Setjum a[i] í minnistöflun og geymum hvað stak kom á undan.
     }
     for (x = n; d[x] == INF; x--);                                              // Finnum lengdina á lengstu hlutrununum.
@@ -33,6 +32,7 @@ int lis(int *a, int *b, int n)                                                  
 // Allt hér að neðan, að main(...) utanskyldu, er til að sannreyna 
 //    að fallið fyrir ofan sé rétt.
 
+#define MAXN 1001
 int v[MAXN], d[MAXN];
 int dp_lookup(int x)
 {

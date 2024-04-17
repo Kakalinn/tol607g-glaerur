@@ -16,5 +16,6 @@ int main()
     ll x;
     scanf("%lld", &x);                                                          // Innlestur.
     factor(x);                                                                  // Frumþáttum töluna.
+    return 0;
 }
 

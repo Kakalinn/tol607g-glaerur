@@ -16,5 +16,6 @@ int main()
         if (isp(x)) printf("%lld\n", x);                                        // Prentum töluna ef hún er frumtala á staðalúttak.
         else fprintf(stderr, ">> %lld is not a prime\n", x);                    // Prentum töluna ef hún er samsett á stderr.
     }
+    return 0;
 }
 
