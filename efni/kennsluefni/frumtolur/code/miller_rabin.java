@@ -10,15 +10,18 @@ public class miller_rabin
         System.out.println(miller_rabin(s.nextLong()));
     }
 
+    static long bigprod(long x, long y, long m)
+    {
+        BigInteger r = BigInteger.valueOf(x);
+        r = r.multiply(BigInteger.valueOf(y));
+        r = r.mod(BigInteger.valueOf(m));
+        return r.longValue();
+    }
     static long modpow(long x, long n, long m)
     {
         long r;
-        for (r = 1; n > 0; n = n/2, x = (x*x)%m) if (n%2 == 1) r = (r*x)%m;
+        for (r = 1; n > 0; n = n/2, x = bigprod(x, x, m)) if (n%2 == 1) r = bigprod(r, x, m);
         return r; 
-    }
-    static long bigprod(long x, long y, long m)
-    {
-        return BigInteger.valueOf(x).multiply(BigInteger.valueOf(y)).mod(BigInteger.valueOf(m)).longValue();
     }
     static boolean miller_rabin(long n)
     {
@@ -27,7 +30,7 @@ public class miller_rabin
         long a, x, i, s = 0, d = n - 1;
         long[] t = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
         while (d%2 == 0) { d /= 2; s++; }
-        for (int k = 0; k < 12; k++) if (t[k] <= n - 2)
+        for (int k = 0; k < t.length; k++) if (t[k] <= n - 2)
         {
             a = t[k]; x = modpow(a, d, n);
             if (x == 1 || x == n - 1) continue;

@@ -3,20 +3,22 @@ public class knapsack
 {
     public static void main(String[] args)
     {
-        Scanner s = new Scanner(System.in);
-        int n = s.nextInt(), c = s.nextInt(), x = 0;
-        int[] v = new int[n], h = new int[n];
-        for (int i = 0; i < n; i++) { v[i] = s.nextInt(); h[i] = s.nextInt(); }
-        int[] r = knapsack(h, v, n, c);
+        Scanner io = new Scanner(System.in);
+        int n = io.nextInt(), c = io.nextInt(), x = 0;
+        int[] w = new int[n], v = new int[n];
+        for (int i = 0; i < n; i++) { w[i] = io.nextInt(); v[i] = io.nextInt(); }
+        int[] r = knapsack(v, w, n, c);
 
-        System.out.println("Við veljum " + r.length + " hluti");
-        System.out.print("  ");
         int t = 0, s = 0;
+        for (int i = 0; i < r.length; i++) s += r[i];
+        System.out.println("Við veljum " + s + " hluti");
+        System.out.print("  ");
+        s = 0;
         for (int i = 0; i < r.length; i++)
         {
-            t += v[a[i]];
-            s += w[a[i]];
-            System.out.print(r[i] + " ");
+            t += r[i]*v[i];
+            s += r[i]*w[i];
+            if (r[i] == 1) System.out.print(i + " ");
         }
         System.out.println();
         System.out.println("Samtals notum við " + s + " rýmd");

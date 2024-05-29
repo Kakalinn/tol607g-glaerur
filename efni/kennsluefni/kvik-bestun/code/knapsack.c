@@ -28,7 +28,7 @@ void knapsack(int *v, int *w, int *r, int n, int c)                             
 int main()
 {
     int k, n, c, i, j, v[MAXN], w[MAXN], r[MAXN];
-    scanf("%d%d", &c, &n);                                                      // Innlestur hefst.
+    scanf("%d%d", &n, &c);                                                      // Innlestur hefst.
     for (i = 0; i < n; i++) scanf("%d%d", &v[i], &w[i]);                        // Innlestri lokið.
     knapsack(v, w, r, n, c);                                                    // Reiknum svarið.
     for (k = i = 0; i < n; i++) k += r[i];                                      // Teljum hvað við völdum marga hluti.
